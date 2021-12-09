@@ -8,6 +8,7 @@ public class NewsController {
 
 	@GetMapping("/news/add")
 	public String newsAdd() {
+		// 11
 		return "newsAdd";
 	}
 }
