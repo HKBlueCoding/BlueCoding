@@ -100,6 +100,12 @@
                         <img src="resources/assets/images/mainPage/book2.jfif" alt="Los Angeles" width="221" height="300">
                         <img src="resources/assets/images/mainPage/book7.jpg" alt="Los Angeles" width="221" height="300">
                      </div>
+                     <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
+    					<span class="carousel-control-prev-icon"></span>
+  					 </button>
+  					 <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
+    					<span class="carousel-control-next-icon"></span>
+  					 </button>
                   </div>
                </div>
                <!-- 책 list -->  
