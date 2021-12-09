@@ -11,4 +11,5 @@ public class NewsController {
 		// 11
 		return "newsAdd";
 	}
+
 }
