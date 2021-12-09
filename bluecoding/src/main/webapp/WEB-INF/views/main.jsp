@@ -81,52 +81,8 @@
     								<button type="button" class="btn btn-outline-info">SF/과학</button>  									
   									<button type="button" class="btn btn-outline-primary">드라마/영화</button>
                            </div>
-<<<<<<< HEAD
-                           <div class="col-lg-3 col-md-3 col-12 p-0">
-                              <div class="search-input">
-                                 <label for="category"><i class="lni lni-grid-alt theme-color"></i></label>
-                                 <select name="category" id="category">
-                                    <option value="none" selected="" disabled="">Categories</option>
-                                    <option value="none">Vehicle</option>
-                                    <option value="none">Electronics</option>
-                                    <option value="none">Mobiles</option>
-                                    <option value="none">Furniture</option>
-                                    <option value="none">Fashion</option>
-                                    <option value="none">Jobs</option>
-                                    <option value="none">Real Estate</option>
-                                    <option value="none">Animals</option>
-                                    <option value="none">Education</option>
-                                    <option value="none">Matrimony</option>
-                                 </select>
-                              </div>
-                           </div>
-                           <div class="col-lg-3 col-md-3 col-12 p-0">
-                              <div class="search-input">
-                                 <label for="location"><i class="lni lni-map-marker theme-color"></i></label>
-                                 <select name="location" id="location">
-                                    <option value="none" selected="" disabled="">Locations</option>
-                                    <option value="none">New York</option>
-                                    <option value="none">California</option>
-                                    <option value="none">Washington</option>
-                                    <option value="none">Birmingham</option>
-                                    <option value="none">Chicago</option>
-                                    <option value="none">Phoenix</option>
-                                 </select>
-                              </div>
-                           </div>
-                           <div class="col-lg-2 col-md-2 col-12 p-0">
-                              <div class="search-btn button">
-                                 <button class="btn"><i class="lni lni-search-alt"></i> Search</button>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <!-- End Search Form. -->
-                  </div>
-=======
                      <!-- End Search Form -->
                   </div>                  
->>>>>>> branch 'main' of https://github.com/HKBlueCoding/bluecoding.git
                </div>
 
 <!-- 끝 -->   
