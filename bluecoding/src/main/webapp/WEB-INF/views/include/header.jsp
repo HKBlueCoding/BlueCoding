@@ -21,12 +21,12 @@
 	rel="stylesheet">
 
 <!-- ========================= CSS here ========================= -->
-<link rel="stylesheet" href="resources/assets/css/bootstrap.min.css" />
-<link rel="stylesheet" href="resources/assets/css/LineIcons.2.0.css" />
-<link rel="stylesheet" href="resources/assets/css/animate.css" />
-<link rel="stylesheet" href="resources/assets/css/tiny-slider.css" />
-<link rel="stylesheet" href="resources/assets/css/glightbox.min.css" />
-<link rel="stylesheet" href="resources/assets/css/main.css" />
+<link rel="stylesheet" href="../resources/assets/css/bootstrap.min.css" />
+<link rel="stylesheet" href="../resources/assets/css/LineIcons.2.0.css" />
+<link rel="stylesheet" href="../resources/assets/css/animate.css" />
+<link rel="stylesheet" href="../resources/assets/css/tiny-slider.css" />
+<link rel="stylesheet" href="../resources/assets/css/glightbox.min.css" />
+<link rel="stylesheet" href="../resources/assets/css/main.css" />
 </head>
 
 <body>
@@ -39,7 +39,7 @@
 					<div class="nav-inner">
 						<nav class="navbar navbar-expand-lg">
 							<a class="navbar-brand" href="index.html"> <img
-								src="assets/images/logo/logo.svg" alt="Logo">
+								src="../assets/images/logo/logo.svg" alt="Logo">
 							</a>
 							<button class="navbar-toggler mobile-menu-btn" type="button"
 								data-bs-toggle="collapse"
@@ -96,11 +96,11 @@
 
 
 	<!-- ========================= JS here ========================= -->
-	<script src="resources/assets/js/bootstrap.min.js"></script>
-	<script src="resources/assets/js/wow.min.js"></script>
-	<script src="resources/assets/js/tiny-slider.js"></script>
-	<script src="resources/assets/js/glightbox.min.js"></script>
-	<script src="resources/assets/js/main.js"></script>
+	<script src="../resources/assets/js/bootstrap.min.js"></script>
+	<script src="../resources/assets/js/wow.min.js"></script>
+	<script src="../resources/assets/js/tiny-slider.js"></script>
+	<script src="../resources/assets/js/glightbox.min.js"></script>
+	<script src="../resources/assets/js/main.js"></script>
 	<script type="text/javascript">
         //========= Category Slider 
         tns({

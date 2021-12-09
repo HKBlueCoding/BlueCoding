@@ -10,7 +10,7 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="shortcut icon" type="image/x-icon"
-	href="assets/images/favicon.svg" />
+	href="../assets/images/favicon.svg" />
 <!-- Place favicon.ico in the root directory -->
 <!-- 1  -->
 <!-- Web Font -->
@@ -21,12 +21,12 @@
 	rel="stylesheet">
 
 <!-- ========================= CSS here ========================= -->
-<link rel="stylesheet" href="resources/assets/css/bootstrap.min.css" />
-<link rel="stylesheet" href="resources/assets/css/LineIcons.2.0.css" />
-<link rel="stylesheet" href="resources/assets/css/animate.css" />
-<link rel="stylesheet" href="resources/assets/css/tiny-slider.css" />
-<link rel="stylesheet" href="resources/assets/css/glightbox.min.css" />
-<link rel="stylesheet" href="resources/assets/css/main.css" />
+<link rel="stylesheet" href="../resources/assets/css/bootstrap.min.css" />
+<link rel="stylesheet" href="../resources/assets/css/LineIcons.2.0.css" />
+<link rel="stylesheet" href="../resources/assets/css/animate.css" />
+<link rel="stylesheet" href="../resources/assets/css/tiny-slider.css" />
+<link rel="stylesheet" href="../resources/assets/css/glightbox.min.css" />
+<link rel="stylesheet" href="../resources/assets/css/main.css" />
 </head>
 <body>
 
@@ -70,11 +70,11 @@
     <!--/ End Footer Area -->
     
     	<!-- ========================= JS here ========================= -->
-	<script src="resources/assets/js/bootstrap.min.js"></script>
-	<script src="resources/assets/js/wow.min.js"></script>
-	<script src="resources/assets/js/tiny-slider.js"></script>
-	<script src="resources/assets/js/glightbox.min.js"></script>
-	<script src="resources/assets/js/main.js"></script>
+	<script src="../resources/assets/js/bootstrap.min.js"></script>
+	<script src="../resources/assets/js/wow.min.js"></script>
+	<script src="../resources/assets/js/tiny-slider.js"></script>
+	<script src="../resources/assets/js/glightbox.min.js"></script>
+	<script src="../resources/assets/js/main.js"></script>
 	<script type="text/javascript">
         //========= Category Slider 
         tns({
