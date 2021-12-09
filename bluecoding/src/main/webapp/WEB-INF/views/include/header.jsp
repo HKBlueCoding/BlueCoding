@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 	<!-- Start Header Area -->
-	  <!-- 1 -->
 	<header class="header navbar-area">
 		<div class="container">
 			<div class="row align-items-center">
