@@ -2645,6 +2645,7 @@ textarea.form-control-lg {
 
 .form-floating {
   position: relative;
+  width: 100%;
 }
 .form-floating > .form-control,
 .form-floating > .form-select {
@@ -7000,7 +7001,7 @@ textarea.form-control-lg {
 }
 
 .my-5 {
-  margin-top: 3rem !important;
+  margin-top: 0.1rem !important;
   margin-bottom: 3rem !important;
 }
 
@@ -11250,7 +11251,7 @@ header.masthead .site-heading .h1 {
 	background: #fff3;
 	border-radius: 6px;
 	padding: 1px;
-	padding-right: 45px;
+	padding-right: 1px;
 }  
 #title {
 	font-size: 2.25rem;
@@ -11260,5 +11261,12 @@ header.masthead .site-heading .h1 {
 }
 #title2 {
 	font-size: 2.0rem;
+}
+hr {
+    margin: 1rem 0;
+    color: inherit;
+}
+#qna {
+	width: 150%;
 }
 }

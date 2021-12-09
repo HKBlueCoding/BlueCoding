@@ -11,4 +11,10 @@ public class QnaController {
 		
 		return "qnaView";
 	}
+	
+	@GetMapping("/qna/update")
+	public String qnaUpdate() {
+		
+		return "qnaUpdate";
+	}	
 }

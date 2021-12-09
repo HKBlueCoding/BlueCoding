@@ -53,6 +53,7 @@
             <div class="row gx-4 gx-lg-5 justify-content-center">
                <div class="col-md-10 col-lg-8 col-xl-7">
                   <p id="title">뉴스 글쓰기</p>
+                  <hr class="my-4">
                   <!-- ================== 카테고리 ======================= -->
                   <div class="categorise search-form wow fadeInUp">
                      <div class="row">
@@ -67,7 +68,7 @@
                            </div>
                         </div>
                      </div>
-                  </div>
+                  </div><br>
                   <!-- ================== 카테고리 끝 ======================= -->
                   <div class="my-5">
                      <!-- * * * * * * * * * * * * * * *-->

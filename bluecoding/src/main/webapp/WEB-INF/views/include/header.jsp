@@ -7,7 +7,7 @@
 					<div class="nav-inner">
 						<nav class="navbar navbar-expand-lg">
 							<a class="navbar-brand" href="index.html"> <img
-								src="../assets/images/logo/logo.svg" alt="Logo">
+								src="../resources/assets/images/logo/BlueNovel.png"  width="190" height="130" alt="Logo">
 							</a>
 							<button class="navbar-toggler mobile-menu-btn" type="button"
 								data-bs-toggle="collapse"
