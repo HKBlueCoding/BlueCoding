@@ -1,6 +1,5 @@
-
-
-    <!-- Start Footer Area -->
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+   <!-- Start Footer Area -->
     <footer class="footer">
         <!-- Start Footer Top -->
 
@@ -37,4 +36,4 @@
         </div>
         <!-- End Footer Middle -->
     </footer>
-    <!--/ End Footer Area -->
+   <!--/ End Footer Area -->
