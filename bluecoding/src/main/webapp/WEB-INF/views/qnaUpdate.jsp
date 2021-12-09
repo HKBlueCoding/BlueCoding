@@ -114,7 +114,7 @@
                            <div class="text-center text-danger mb-3">Error sending message!</div>
                         </div>
                         <!-- Submit Button-->
-                        <button class="btn btn-primary text-uppercase disabled"  id="submitButton" type="submit">사진 입력하기(바꿔야 됨)</button>
+                        <button class="btn btn-primary text-uppercase disabled"  id="submitButton" type="submit">이미지 선택(바꿔야 됨)</button>
                         <!-- ======================= 버튼 ========================== -->
                         <div class="button header-button">
                            <a href="javascript:void(0)" class="btn">등록</a>
