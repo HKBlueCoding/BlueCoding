@@ -6,6 +6,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class UserController {
+	
+	@RequestMapping(value="/user/register", method=RequestMethod.GET)
+	public String register() {
+		
+		return "register";
+	}
 
 	@RequestMapping(value="/user/find/id", method=RequestMethod.GET)
 	public String findId() {
