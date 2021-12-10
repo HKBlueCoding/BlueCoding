@@ -30,4 +30,10 @@ public class UserController {
 		
 		return "userChest";
 	}
+	
+	@RequestMapping(value="/user/view", method=RequestMethod.GET)
+	public String userView() {
+		
+		return "userView";
+	}
 }
