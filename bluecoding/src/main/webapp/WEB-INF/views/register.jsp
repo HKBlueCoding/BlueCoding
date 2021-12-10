@@ -112,7 +112,7 @@ body {
         <input type="text" name="email" id="email" /><br />
         
     <label for="bith">생년월일</label><br />
-        <input type="date" id="birthdate"><br />
+        <input type="date" name="birth" id="birth"><br />
         
     <label for="phone">전화번호</label><br />
 		<input type="phone" name="phone"><br />
