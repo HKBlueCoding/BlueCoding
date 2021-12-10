@@ -269,21 +269,21 @@
          <!-- Start Search Form -->
          <div class="search-form wow fadeInUp" style="margin: 1px; padding: 1px;">
             <div class="row">
-               <div class="button header-button" style="width: 20%;">
+               <div class="button header-button" style="width: 13%; margin-left: 50px; padding: 1px;">
                   <a href="javascript:void(0)" class="btn">작품 올리기</a>
                </div>
-               <div class="button header-button" style="width: 20%;">
+               <div class="button header-button" style="width: 20%; margin-left: 1px; padding: 1px;">
                   <a onClick="javascript:history.back()" class="btn">돌아가기</a>
                </div>
-               <div class="col-lg-4 col-md-4 col-12 p-0">
+               <div class="col-lg-4 col-md-4 col-12 p-0"  style="width: 30%;  margin-left: 100px;">
                   <div class="search-input">
                      <label for="keyword"><i class="lni lni-search-alt theme-color"></i></label>
-                     <input type="text" name="keyword" id="keyword" placeholder="Product keyword">
+                     <input type="text" name="keyword" id="keyword" placeholder="검색하세요.">
                   </div>
                </div>
                <div class="col-lg-2 col-md-2 col-12 p-0">
                   <div class="search-btn button">
-                     <button class="btn"><i class="lni lni-search-alt"></i> Search</button>
+                     <button class="btn"><i class="lni lni-search-alt"></i> 검색</button>
                   </div>
                </div>
             </div>
