@@ -29,14 +29,14 @@
       <link rel="stylesheet" href="../resources/assets/css/main.css" />
       <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
   	  <!-- Nucleo Icons -->
-  	  <link href="../resources/materual/assets/css/nucleo-icons.css" rel="stylesheet" />
-  	  <link href="../resources/materual/assets/css/nucleo-svg.css" rel="stylesheet" />
+  	  <link href="../resources/material/assets/css/nucleo-icons.css" rel="stylesheet" />
+  	  <link href="../resources/material/assets/css/nucleo-svg.css" rel="stylesheet" />
   	  <!-- Font Awesome Icons -->
   	  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
   	  <!-- Material Icons -->
   	  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
   	  <!-- CSS Files -->
-  	  <link id="pagestyle" href="../resources/materual/assets/css/material-dashboard.css?v=3.0.0" rel="stylesheet" />
+  	  <link id="pagestyle" href="../resources/material/assets/css/material-dashboard.css?v=3.0.0" rel="stylesheet" />
       <style type="text/css">
          .hero-area.overlay::before {
          all: unset;
@@ -50,41 +50,53 @@
          padding-right: 45px;
          }
          #mainLogo{
-         color: #0c74db;
+         color: Black;
          }
          .txt_line { 
          overflow:hidden; 
          text-overflow:ellipsis;
          white-space:nowrap;  
          }
+         .hero-area-set {
+    		background-color: DarkSlateGray;
+    		background-size: cover;
+    		background-position: center center;
+    		background-repeat: no-repeat;
+    		z-index: 2;
+    		padding-top: 250px;
+    		padding-bottom: 300px;
+    		z-index: 2;
+		 }
       </style>
    </head>
 <body>
+
       <jsp:include page="/WEB-INF/views/include/header.jsp"/>
-      <section class="hero-area overlay">
+      <section class="hero-area-set overlay">
          <div class="row">
             <div class="col-lg-10 offset-lg-1 col-md-12 col-12">
                <div class="hero-text text-center">
                   <!-- Start Hero Text -->
                   <div class="section-heading">
-                    <h2 class="wow fadeInUp" id="mainLogo" data-wow-delay=".3s" style="visibility: visible; animation-delay: 0.3s; animation-name: fadeInUp;">Blue Novel</h2>
+                    <h2 class="wow fadeInUp" id="mainLogo" data-wow-delay=".3s" style="visibility: visible; animation-delay: 0.3s; animation-name: fadeInUp;">관리자 페이지</h2>
                   	<div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+          <!-- [관리자 접속수] -->                	
           <div class="card">
-            <div class="card-header p-3 pt-2">
-              <div class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl mt-n4 position-absolute">
+            <div class="card-header p-3 pt-2" align="left">
+              <div class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl mt-n4 position-absolute" >
                 <i class="material-icons opacity-10">weekend</i>
               </div>
               <div class="text-end pt-1">
-                <p class="text-sm mb-0 text-capitalize">Today's Money</p>
-                <h4 class="mb-0">$53k</h4>
+                <h4 class="mb-0">관리자 접속수</h4>
               </div>
             </div>
             <hr class="dark horizontal my-0">
             <div class="card-footer p-3">
-              <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+55% </span>than lask week</p>
+              <h4 class="mb-0">9999명</h4>
             </div>
           </div>
         </div>
+        <!-- [관리자 접속수] -->
                   </div>
                   <!-- End Search Form -->
                   <!-- Start Search Form -->
@@ -241,11 +253,11 @@
       <script src="../resources/assets/js/glightbox.min.js"></script>
       <script src="../resources/assets/js/main.js"></script>
  <!--   Core JS Files   -->
-  <script src="../resources/materual/assets/js/core/popper.min.js"></script>
-  <script src="../resources/materual/assets/js/core/bootstrap.min.js"></script>
-  <script src="../resources/materual/assets/js/plugins/perfect-scrollbar.min.js"></script>
-  <script src="../resources/materual/assets/js/plugins/smooth-scrollbar.min.js"></script>
-  <script src="../resources/materual/assets/js/plugins/chartjs.min.js"></script>
+  <script src="../resources/material/assets/js/core/popper.min.js"></script>
+  <script src="../resources/material/assets/js/core/bootstrap.min.js"></script>
+  <script src="../resources/material/assets/js/plugins/perfect-scrollbar.min.js"></script>
+  <script src="../resources/material/assets/js/plugins/smooth-scrollbar.min.js"></script>
+  <script src="../resources/material/assets/js/plugins/chartjs.min.js"></script>
   <script>
     var ctx = document.getElementById("chart-bars").getContext("2d");
 
@@ -505,7 +517,7 @@
   <!-- Github buttons -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="./assets/js/material-dashboard.min.js?v=3.0.0"></script>      
+  <script src="../resource/material/assets/js/material-dashboard.min.js?v=3.0.0"></script>      
       <script type="text/javascript">
          //========= Category Slider 
          tns({
