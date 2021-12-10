@@ -50,7 +50,7 @@
          padding-right: 45px;
          }
          #mainLogo{
-         color: Black;
+         color: DarkGray;
          }
          .txt_line { 
          overflow:hidden; 
@@ -58,7 +58,7 @@
          white-space:nowrap;  
          }
          .hero-area-set {
-    		background-color: DarkSlateGray;
+    		background-color: black;
     		background-size: cover;
     		background-position: center center;
     		background-repeat: no-repeat;
@@ -75,16 +75,16 @@
       <section class="hero-area-set overlay">
          <div class="row">
             <div class="col-lg-10 offset-lg-1 col-md-12 col-12">
-               <div class="hero-text text-center">
+               <div>
                   <!-- Start Hero Text -->
                   <div class="section-heading">
-                    <h2 class="wow fadeInUp" id="mainLogo" data-wow-delay=".3s" style="visibility: visible; animation-delay: 0.3s; animation-name: fadeInUp;">관리자 페이지</h2>
-                  	<div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-          <!-- [관리자 접속수] -->                	
+                  <!-- [첫번째 row(관리자 접속수 등)] -->
+<div class="row">
+        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
           <div class="card">
-            <div class="card-header p-3 pt-2" align="left">
-              <div class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl mt-n4 position-absolute" >
-                <i class="material-icons opacity-10">weekend</i>
+            <div class="card-header p-3 pt-2">
+              <div class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl mt-n4 position-absolute">
+                <i class="material-icons opacity-10" align="left">weekend</i>
               </div>
               <div class="text-end pt-1">
                 <h4 class="mb-0">관리자 접속수</h4>
@@ -92,67 +92,117 @@
             </div>
             <hr class="dark horizontal my-0">
             <div class="card-footer p-3">
-              <h4 class="mb-0">9999명</h4>
+              <p class="mb-0" align="right">9999명</p>
             </div>
           </div>
         </div>
-        <!-- [관리자 접속수] -->
+        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+        <!-- *상담원조회* -->
+          <div class="card">
+            <div class="card-footer p-3">
+              &nbsp;<button type="button" class="btn btn-secondary">관리자/상담원 아이디 생성</button>
+              &nbsp;<button type="button" class="btn btn-secondary">관리자/상담원 아이디 조회</button>
+            </div>
+          </div>
+        </div>
+        <!-- *뉴스쓰기* -->
+        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+          <div class="card">
+            <div class="card-header p-3 pt-2">
+  				<button type="button" class="btn btn-secondary" style="height: auto; width: 100%;">&nbsp;&nbsp;&nbsp;뉴스쓰기&nbsp;&nbsp;&nbsp;</button>	
+            </div>
+          </div>
+        </div>
+        <!-- *결제내역*
+        	 *이달의 수익* -->
+        <div class="col-xl-3 col-sm-6">
+          <div class="card">
+            <div class="card-header p-3 pt-2">
+				<button type="button" class="btn btn-secondary" style="height: auto; width: 100%;">&nbsp;결제 내역&nbsp;</button>	
+          		<button type="button" class="btn btn-secondary" style="height: auto; width: 100%;">&nbsp;이달의 수익&nbsp;</button>	
+          </div>
+        </div>
+      </div>
+      		<!-- [여기까지 첫번째 row] -->
                   </div>
+        
+        
+                  </div>
+                  <br>
                   <!-- End Search Form -->
                   <!-- Start Search Form -->
-                  <div class="theme wow fadeInUp" data-wow-delay=".7s" style="visibility: visible; animation-delay: 0.7s; animation-name: fadeInUp;">
-                     <div class="row">
-                        <div class="col-lg-12">
-                           <!-- 버튼 fade -->
-                           <button type="button" class="btn btn-outline-primary">판타지</button>
-                           <button type="button" class="btn btn-outline-primary">청소년</button>    								    								
-                           <button type="button" class="btn btn-outline-secondary">고전</button>
-                           <button type="button" class="btn btn-outline-dark">공포/호러</button>
-                           <button type="button" class="btn btn-outline-dark">미스터리/스릴러</button>
-                           <button type="button" class="btn btn-outline-danger">로맨스</button>
-                           <button type="button" class="btn btn-outline-info">SF/과학</button>  									
-                           <button type="button" class="btn btn-outline-primary">드라마/영화</button>
-                        </div>
-                        <!-- End Search Form -->
-                     </div>
-                  </div>
                   <!-- 끝 -->   
                </div>
+              </div>
                <br>
-               <!-- [Content 책] -->
-               <div id="demo2" class="carousel slide" data-wow-delay=".10s" style="visibility: visible; animation-delay: 0.10s; animation-name: fadeInUp;">
-                  <!-- 책 list -->
-                  <div class="carousel-inner">
-                     <div class="carousel-item active"align="center">
-                        <img src="resources/assets/images/mainPage/book1.jfif" alt="Los Angeles" width="221" height="300">
-                        <img src="resources/assets/images/mainPage/book2.jfif" alt="Los Angeles" width="221" height="300">
-                        <img src="resources/assets/images/mainPage/book3.jfif" alt="Los Angeles" width="221" height="300">
-                     </div>
-                     <div class="carousel-item"align="center">
-                        <img src="resources/assets/images/mainPage/book4.jfif" alt="Los Angeles" width="221" height="300">
-                        <img src="resources/assets/images/mainPage/book5.png" alt="Los Angeles" width="221" height="300">
-                        <img src="resources/assets/images/mainPage/book6.jpg" alt="Los Angeles" width="221" height="300">
-                     </div>
-                     <div class="carousel-item" align="center">
-                        <img src="resources/assets/images/mainPage/book4.jfif" alt="Los Angeles" width="221" height="300">
-                        <img src="resources/assets/images/mainPage/book2.jfif" alt="Los Angeles" width="221" height="300">
-                        <img src="resources/assets/images/mainPage/book7.jpg" alt="Los Angeles" width="221" height="300">
-                     </div>
-                     <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
-    					<span class="carousel-control-prev-icon"></span>
-  					 </button>
-  					 <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
-    					<span class="carousel-control-next-icon"></span>
-  					 </button>
+               
+               <!-- [1번째 줄] -->
+			  <div class="container-fluid py-4">
+			  <!-- [삭제된 책] -->
+<div class="row mb-4" align="center">
+        <div class="col-lg-6 col-md-6 mb-md-0 mb-4" style="height:auto; width:30%;" align="right">
+          <div class="card" >
+            <div class="card-header pb-0" >
+              <div class="row">
+                <div class="col-lg-6 col-7" >
+                  <h6>삭제된 책의 정보</h6>
+                </div>
+                <div class="col-lg-6 col-5 my-auto text-end">
+                  <div class="dropdown float-lg-end pe-4">
+                    <a class="cursor-pointer" id="dropdownTable" data-bs-toggle="dropdown" aria-expanded="false">
+                      <i class="fa fa-ellipsis-v text-secondary" aria-hidden="true"></i>
+                    </a>
+                    <ul class="dropdown-menu px-2 py-3 ms-sm-n4 ms-n5" aria-labelledby="dropdownTable">
+                      <li><a class="dropdown-item border-radius-md" href="javascript:;">Action</a></li>
+                      <li><a class="dropdown-item border-radius-md" href="javascript:;">Another action</a></li>
+                      <li><a class="dropdown-item border-radius-md" href="javascript:;">Something else here</a></li>
+                    </ul>
                   </div>
-               </div>
-               <!-- 책 list -->  
-               <button class="carousel-control-prev" type="button" data-bs-target="#demo2" data-bs-slide="prev" style="cursor:pointer">
-               <span class="carousel-control-prev-icon"></span>
-               </button>
-               <button class="carousel-control-next" type="button" data-bs-target="#demo2" data-bs-slide="next" style="cursor:pointer">
-               <span class="carousel-control-next-icon"></span>
-               </button>
+                </div>
+              </div>
+            </div>
+            <div class="card-body px-0 pb-2" >
+              <div class="table-responsive">
+                <table class="table align-items-center mb-0">
+                  <thead>
+                    <tr>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">책이름</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">저자</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>  
+                      <td align="center">
+                        <span class="text-xs font-weight-bold"> 책이름 </span>
+                      </td>
+                      <td align="center">
+                        <span class="text-xs font-weight-bold"> 저자 </span>
+                      </td>                      
+                    </tr>
+                    <tr align="center">
+					  <td class="align-middle text-center text-sm">
+                        <span class="text-xs font-weight-bold"> 위대한 개츠비3 </span>
+                      </td>
+					  <td class="align-middle text-center text-sm">
+                        <span class="text-xs font-weight-bold"> 홍길동 </span>
+                      </td>                      
+  					 </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- [삭제된 책 끝] -->
+        
+        <!-- [삭제된 게시글] -->
+
+      	<!-- [삭제된 게시글 끝] -->
+      </div>
+      
+      			  	
+			  </div>               
+			   <!-- [1번째 줄 끝] -->              
             </div>
             <hr>
             <!-- [Content 책] -->  
@@ -243,7 +293,7 @@
                   </div>                  
                </div>
             </section>
-         </div>
+         
       </section>
       <jsp:include page="/WEB-INF/views/include/footer.jsp"/>
       <!-- ========================= JS here ========================= -->
