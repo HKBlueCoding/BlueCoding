@@ -39,7 +39,7 @@
   	  <link id="pagestyle" href="../resources/material/assets/css/material-dashboard.css?v=3.0.0" rel="stylesheet" />
       <style type="text/css">
          .hero-area.overlay::before {
-         all: unset;
+         	all: unset;
          }
          .theme{
          margin-top: 40px;
@@ -66,6 +66,12 @@
     		padding-top: 250px;
     		padding-bottom: 300px;
     		z-index: 2;
+		 }
+		 .overlay::before {
+		 	all: unset;
+		 }
+		 .card .card-body{
+		 	all: unset;
 		 }
       </style>
    </head>
@@ -146,14 +152,12 @@
               <div class="row">
                 <div class="col-lg-6 col-7" >
                   <h6>삭제된 책의 정보</h6>
+                  <br>
                 </div>
-                <div class="col-lg-6 col-5 my-auto text-end">
-                  <div class="dropdown float-lg-end pe-4">
-                    <a class="cursor-pointer" id="dropdownTable" data-bs-toggle="dropdown" aria-expanded="false">
-                      <i class="fa fa-ellipsis-v text-secondary" aria-hidden="true"></i>
-                    </a>
-                  </div>
-                </div>
+                <div class="col-lg-6 col-4 my-auto text-end">
+                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bookDel">
+                  	더보기</button>
+                </div> 
               </div>
             </div>
             <div class="card-body px-0 pb-2" >
@@ -196,14 +200,13 @@
             <div class="card-header pb-0" >
               <div class="row">
                 <div class="col-lg-6 col-7" >
-                  <h6>삭제된 게시글</h6>                
+                  <h6>삭제된 게시글</h6>
+                  <br>                
                 </div>
- 					<div class="dropdown float-lg-end pe-4" align="center">
-					  <div class="search-input">
-                     	<label for="keyword"><i class="lni lni-search-alt theme-color"></i></label>
-                     	<input type="text" name="keyword" id="keyword" placeholder="검색하세요.">
-                  	 </div>
-                  </div>                 
+                <div class="col-lg-6 col-4 my-auto text-end">
+                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#boardDel">
+                  	더보기</button>
+                </div>                                       
               </div>
             </div>
             <div class="card-body px-0 pb-2" >
@@ -211,17 +214,17 @@
                 <table class="table align-items-center mb-0">
                   <thead>
                     <tr>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">책이름</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">저자</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">게시글</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">내용</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>  
+                    <tr>
                       <td align="center">
-                        <span class="text-xs font-weight-bold"> 책이름 </span>
+                        <span class="text-xs font-weight-bold">게시글 제목</span>
                       </td>
                       <td align="center">
-                        <span class="text-xs font-weight-bold"> 저자 </span>
+                        <span class="text-xs font-weight-bold"> 게시글 내용 </span>
                       </td>                      
                     </tr>
                     <tr align="center">
@@ -246,7 +249,8 @@
             <div class="card-header pb-0" >
               <div class="row">
                 <div class="col-lg-6 col-7" >
-                  <h6>삭제된 책의 정보</h6>
+                  <h6>수수료 내역</h6>
+                  <br>
                 </div>
                 <div class="col-lg-6 col-5 my-auto text-end">
                   <div class="dropdown float-lg-end pe-4">
@@ -269,18 +273,18 @@
                   <tbody>
                     <tr>  
                       <td align="center">
-                        <span class="text-xs font-weight-bold"> 책이름 </span>
+                        <span class="text-xs font-weight-bold">이익</span>
                       </td>
                       <td align="center">
-                        <span class="text-xs font-weight-bold"> 저자 </span>
+                        <span class="text-xs font-weight-bold">처리시간</span>
                       </td>                      
                     </tr>
                     <tr align="center">
 					  <td class="align-middle text-center text-sm">
-                        <span class="text-xs font-weight-bold"> 위대한 개츠비3 </span>
+                        <span class="text-xs font-weight-bold">+300</span>
                       </td>
 					  <td class="align-middle text-center text-sm">
-                        <span class="text-xs font-weight-bold"> 홍길동 </span>
+                        <span class="text-xs font-weight-bold">2021-03-12</span>
                       </td>                      
   					 </tr>
                   </tbody>
@@ -296,97 +300,267 @@
 			  </div>               
 			   <!-- [1번째 줄 끝] -->              
             </div>
-            <hr>
-            <!-- [Content 책] -->  
-            <section class="how-works section" style="background-color: #fff;">
-               <div class="container">
-                  <div class="row">
-                     <div class="col-lg-8 col-md-8 col-12">
-                        <!-- Start Single Work -->
-                        <div class="single-work wow fadeInUp" data-wow-delay=".2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
-                           <span class="serial">인기</span>
-                           <br>                       		
-                           <img src="resources/assets/images/mainPage/board1.png" alt="Los Angeles" width="175" height="150" >
-                           <h3>게시글 제목</h3>
-                           <br>
-                           <p class="txt_line">느리고 흐물흐물하지만 덕분에 절대로 부러지지 않는, 무심한 듯 씩씩하게 살아온 김필영 씨의 삶과 결혼 이야기.
-                              백 명의 사람에겐 백 가지의 사정이 있듯, 김필영 씨에게도 자신만의 사연이 있다. 휴대폰 가게와 성형외과와 아파트 분양 사무실에서 일했을 때도, 경찰 공무원 수험생으로 3년을 보내고 낙방했을 때도, 만난 지 두 달이 안 된 남자와 결혼하고 두 아이를 낳은 후에도, 필영의 삶은 오롯이 그 자신의 이야기만으로 채워졌다.
-                              에세이가 범람하는 이 시대에도 그의 이야기는 선명한 개성을 갖고 있다. 대부분의 독자가 만나 보지 못했을 풍경이 담겨 있기 때문이다. 이 책에는 많은 독자가 ‘닮고 싶은’ 삶을 사는 롤 모델이 등장하지 않는다. 똑똑하고 당찬 사람도 없고, 상처 입은 자기 자신을 오래도록 위로하는 섬세한 영혼도 없다. 대신에 실패로 물든 시간 속을 무심히 거닐던 사람이 마주했던 독특한 광경들이 독립영화의 한 장면처럼 펼쳐진다.
-                           </p>
-                        </div>
-                        <!-- End Single Work -->
-                     </div>
-                     <div class="col-lg-4 col-md-4 col-12">
-                        <!-- Start Single Work -->
-                        <div class="single-work wow fadeInUp" data-wow-delay=".4s" style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInUp;">
-                           <span class="serial">1위</span>
-                           <img src="resources/assets/images/mainPage/book7.jpg" alt="Los Angeles" width="180" height="195">
-                           <h3>언스크립티드</h3>
-                        </div>
-                        <!-- End Single Work -->
-                     </div>
-                  </div>
-                  <!-- 2 순위 -->
-                  <br>
-                  <div class="row">
-                     <div class="col-lg-8 col-md-8 col-12">
-                        <!-- Start Single Work -->
-                        <div class="single-work wow fadeInUp" data-wow-delay=".2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
-                           <span class="serial">인기</span>
-                           <br>                       		
-                           <img src="resources/assets/images/mainPage/board1.png" alt="Los Angeles" width="175" height="150" >
-                           <h3>게시글 제목</h3>
-                           <br>
-                           <p class="txt_line">느리고 흐물흐물하지만 덕분에 절대로 부러지지 않는, 무심한 듯 씩씩하게 살아온 김필영 씨의 삶과 결혼 이야기.
-                              백 명의 사람에겐 백 가지의 사정이 있듯, 김필영 씨에게도 자신만의 사연이 있다. 휴대폰 가게와 성형외과와 아파트 분양 사무실에서 일했을 때도, 경찰 공무원 수험생으로 3년을 보내고 낙방했을 때도, 만난 지 두 달이 안 된 남자와 결혼하고 두 아이를 낳은 후에도, 필영의 삶은 오롯이 그 자신의 이야기만으로 채워졌다.
-                              에세이가 범람하는 이 시대에도 그의 이야기는 선명한 개성을 갖고 있다. 대부분의 독자가 만나 보지 못했을 풍경이 담겨 있기 때문이다. 이 책에는 많은 독자가 ‘닮고 싶은’ 삶을 사는 롤 모델이 등장하지 않는다. 똑똑하고 당찬 사람도 없고, 상처 입은 자기 자신을 오래도록 위로하는 섬세한 영혼도 없다. 대신에 실패로 물든 시간 속을 무심히 거닐던 사람이 마주했던 독특한 광경들이 독립영화의 한 장면처럼 펼쳐진다.
-                           </p>
-                        </div>
-                        <!-- End Single Work -->
-                     </div>
-                     <div class="col-lg-4 col-md-4 col-12">
-                        <!-- Start Single Work -->
-                        <div class="single-work wow fadeInUp" data-wow-delay=".4s" style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInUp;">
-                           <span class="serial">2위</span>
-                           <img src="resources/assets/images/mainPage/book5.png" alt="Los Angeles" width="180" height="195">
-                           <h3>비밀의 화원</h3>
-                        </div>
-                        <!-- End Single Work -->
-                     </div>
-                  </div>
-                  
-                  <!-- 3순위 -->
-                  <br>
-                  <div class="row">
-                     <div class="col-lg-8 col-md-8 col-12">
-                        <!-- Start Single Work -->
-                        <div class="single-work wow fadeInUp" data-wow-delay=".2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
-                           <span class="serial">인기</span>
-                           <br>                       		
-                           <img src="resources/assets/images/mainPage/board1.png" alt="Los Angeles" width="175" height="150" >
-                           <h3>게시글 제목</h3>
-                           <br>
-                           <p class="txt_line">느리고 흐물흐물하지만 덕분에 절대로 부러지지 않는, 무심한 듯 씩씩하게 살아온 김필영 씨의 삶과 결혼 이야기.
-                              백 명의 사람에겐 백 가지의 사정이 있듯, 김필영 씨에게도 자신만의 사연이 있다. 휴대폰 가게와 성형외과와 아파트 분양 사무실에서 일했을 때도, 경찰 공무원 수험생으로 3년을 보내고 낙방했을 때도, 만난 지 두 달이 안 된 남자와 결혼하고 두 아이를 낳은 후에도, 필영의 삶은 오롯이 그 자신의 이야기만으로 채워졌다.
-                              에세이가 범람하는 이 시대에도 그의 이야기는 선명한 개성을 갖고 있다. 대부분의 독자가 만나 보지 못했을 풍경이 담겨 있기 때문이다. 이 책에는 많은 독자가 ‘닮고 싶은’ 삶을 사는 롤 모델이 등장하지 않는다. 똑똑하고 당찬 사람도 없고, 상처 입은 자기 자신을 오래도록 위로하는 섬세한 영혼도 없다. 대신에 실패로 물든 시간 속을 무심히 거닐던 사람이 마주했던 독특한 광경들이 독립영화의 한 장면처럼 펼쳐진다.
-                           </p>
-                        </div>
-                        <!-- End Single Work -->
-                     </div>
-                     <div class="col-lg-4 col-md-4 col-12">
-                        <!-- Start Single Work -->
-                        <div class="single-work wow fadeInUp" data-wow-delay=".4s" style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInUp;">
-                           <span class="serial">3위</span>
-                           <img src="resources/assets/images/mainPage/book1.jfif" alt="Los Angeles" width="180" height="195">
-                           <h3>위대한 개츠비</h3>
-                        </div>
-                        <!-- End Single Work -->
-                     </div>
-                  </div>                  
-               </div>
-            </section>
+ 
          
       </section>
+      
+      <!-- css modal -->
+      
+      <!-- [삭제된 책 정보] -->
+<!-- The Modal -->
+<div class="modal" id="bookDel">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">삭제된 책 정보</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+      <div class="container-fluid py-4" style="height:auto; width:60%;">
+         <div class="row">
+            <div class="col-12">
+               <div class="card my-4">
+                  <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                     <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+                        <h6 class="text-white text-capitalize ps-3">작품 목록</h6>
+                     </div>
+                  </div>
+                  <div id="tbPadd" class="card-body px-0 pb-2">
+                     <div class="table-responsive p-0">
+                        <table class="table align-items-center mb-0">
+                           <thead>
+                              <tr>
+                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">&nbsp;&nbsp;작성한 글</th>
+                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">작성자</th>
+                                 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">조회수</th>
+                                 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">작성일</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr>
+                                 <td>
+                                    <div class="d-flex px-2 py-1">
+                                       <div>
+                                          <img src="../resources/assets/images/mainPage/board1.png" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
+                                       </div>
+                                       <div class="d-flex flex-column justify-content-center">
+                                          <a href="add" class="mb-0 text-sm" style="color: black">제목입니다[0]</a>
+                                          <p class="text-xs text-secondary mb-0">장르</p>
+                                          <p class="text-xs text-secondary mb-0">댓글(개수)</p>
+                                       </div>
+                                    </div>
+                                 </td>
+                                 <td class="align-middle">
+                                    <span class="text-secondary text-xs font-weight-bold">이름</span>
+                                 </td>
+                                 <td class="align-middle text-center text-sm">
+                                    <span class="badge badge-sm bg-gradient-success" style="background-image: linear-gradient(180deg,#419cef 10%,#106ec3 100%);">100</span>
+                                 </td>
+                                 <td class="align-middle text-center">
+                                    <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
+                                 </td>
+                              </tr>
+                              <tr>
+                                 <td>
+                                    <div class="d-flex px-2 py-1">
+                                       <div>
+                                          <img src="../resources/assets/images/mainPage/board1.png" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
+                                       </div>
+                                       <div class="d-flex flex-column justify-content-center">
+                                          <a href="add" class="mb-0 text-sm" style="color: black">제목입니다[0]</a>
+                                          <p class="text-xs text-secondary mb-0">장르</p>
+                                          <p class="text-xs text-secondary mb-0">댓글(개수)</p>
+                                       </div>
+                                    </div>
+                                 </td>
+                                 <td class="align-middle">
+                                    <span class="text-secondary text-xs font-weight-bold">이름</span>
+                                 </td>
+                                 <td class="align-middle text-center text-sm">
+                                    <span class="badge badge-sm bg-gradient-success" style="background-image: linear-gradient(180deg,#419cef 10%,#106ec3 100%);">100</span>
+                                 </td>
+                                 <td class="align-middle text-center">
+                                    <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
+                                 </td>
+                              </tr>
+                              <tr>
+                                 <td>
+                                    <div class="d-flex px-2 py-1">
+                                       <div>
+                                          <img src="../resources/assets/images/mainPage/board1.png" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
+                                       </div>
+                                       <div class="d-flex flex-column justify-content-center">
+                                          <a href="add" class="mb-0 text-sm" style="color: black">제목입니다[0]</a>
+                                          <p class="text-xs text-secondary mb-0">장르</p>
+                                          <p class="text-xs text-secondary mb-0">댓글(개수)</p>
+                                       </div>
+                                    </div>
+                                 </td>
+                                 <td class="align-middle">
+                                    <span class="text-secondary text-xs font-weight-bold">이름</span>
+                                 </td>
+                                 <td class="align-middle text-center text-sm">
+                                    <span class="badge badge-sm bg-gradient-success" style="background-image: linear-gradient(180deg,#419cef 10%,#106ec3 100%);">100</span>
+                                 </td>
+                                 <td class="align-middle text-center">
+                                    <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="search-input" >
+                     <label for="keyword"><i class="lni lni-search-alt theme-color"></i></label>
+                     <input type="text" name="keyword" id="keyword" placeholder="검색하세요." align="center">
+                  </div>            
+         </div>          		
+	  </div>
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>       
+ </div>     
+   <!-- [삭제된 책 정보 끝 by modal] -->        
+      
+      
+      <!-- [삭제된  게시글] -->
+<!-- The Modal -->
+<div class="modal" id="boardDel">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">삭제된 게시판</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+    <div class="container-fluid py-4" style="height:auto; width:60%;">
+         <div class="row">
+            <div class="col-12">
+               <div class="card my-4">
+                  <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                     <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+                        <h6 class="text-white text-capitalize ps-3">삭제된 커뮤니티</h6>
+               </div>  
+                     </div>
+                  </div>
+                  <div id="tbPadd" class="card-body px-0 pb-2">
+                     <div class="table-responsive p-0">
+                        <table class="table align-items-center mb-0">
+                           <thead>
+                              <tr>
+                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">&nbsp;&nbsp;작성한 글</th>
+                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">작성자</th>
+                                 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">조회수</th>
+                                 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">작성일</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr>
+                                 <td>
+                                    <div class="d-flex px-2 py-1">
+                                       <div>
+                                          <img src="../resources/assets/images/mainPage/board1.png" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
+                                       </div>
+                                       <div class="d-flex flex-column justify-content-center">
+                                          <a href="add" class="mb-0 text-sm" style="color: black">제목입니다[0]</a>
+                                          <p class="text-xs text-secondary mb-0">댓글(개수)</p>
+                                       </div>
+                                    </div>
+                                 </td>
+                                 <td class="align-middle">
+                                    <span class="text-secondary text-xs font-weight-bold">이름</span>
+                                 </td>
+                                 <td class="align-middle text-center text-sm">
+                                    <span class="badge badge-sm bg-gradient-success" style="background-image: linear-gradient(180deg,#419cef 10%,#106ec3 100%);">100</span>
+                                 </td>
+                                 <td class="align-middle text-center">
+                                    <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
+                                 </td>
+                              </tr>
+                              <tr>
+                                 <td>
+                                    <div class="d-flex px-2 py-1">
+                                       <div>
+                                          <img src="../resources/assets/images/mainPage/board1.png" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
+                                       </div>
+                                       <div class="d-flex flex-column justify-content-center">
+                                          <a href="add" class="mb-0 text-sm" style="color: black">제목입니다[0]</a>
+                                          <p class="text-xs text-secondary mb-0">댓글(개수)</p>
+                                       </div>
+                                    </div>
+                                 </td>
+                                 <td class="align-middle">
+                                    <span class="text-secondary text-xs font-weight-bold">이름</span>
+                                 </td>
+                                 <td class="align-middle text-center text-sm">
+                                    <span class="badge badge-sm bg-gradient-success" style="background-image: linear-gradient(180deg,#419cef 10%,#106ec3 100%);">100</span>
+                                 </td>
+                                 <td class="align-middle text-center">
+                                    <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
+                                 </td>
+                              </tr>
+                              <tr>
+                                 <td>
+                                    <div class="d-flex px-2 py-1">
+                                       <div>
+                                          <img src="../resources/assets/images/mainPage/board1.png" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
+                                       </div>
+                                       <div class="d-flex flex-column justify-content-center">
+                                          <a href="add" class="mb-0 text-sm" style="color: black">제목입니다[0]</a>
+                                          <p class="text-xs text-secondary mb-0">댓글(개수)</p>
+                                       </div>
+                                    </div>
+                                 </td>
+                                 <td class="align-middle">
+                                    <span class="text-secondary text-xs font-weight-bold">이름</span>
+                                 </td>
+                                 <td class="align-middle text-center text-sm">
+                                    <span class="badge badge-sm bg-gradient-success" style="background-image: linear-gradient(180deg,#419cef 10%,#106ec3 100%);">100</span>
+                                 </td>
+                                 <td class="align-middle text-center">
+                                    <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         <div class="search-input" >
+                     <label for="keyword"><i class="lni lni-search-alt theme-color"></i></label>
+                     <input type="text" name="keyword" id="keyword" placeholder="검색하세요." align="center">
+                  </div>            
+         </div>
+	  </div>
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>      
+      <!-- [삭제된  게시글 끝 by modal] -->
+       
+      <!-- css modal -->
+      
       <jsp:include page="/WEB-INF/views/include/footer.jsp"/>
       <!-- ========================= JS here ========================= -->
       <script src="../resources/assets/js/bootstrap.min.js"></script>
