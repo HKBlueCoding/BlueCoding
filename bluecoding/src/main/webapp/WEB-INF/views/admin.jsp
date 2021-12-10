@@ -106,8 +106,8 @@
         <!-- *상담원조회* -->
           <div class="card">
             <div class="card-footer p-3">
-              &nbsp;<button type="button" class="btn btn-secondary">관리자/상담원 아이디 생성</button>
-              &nbsp;<button type="button" class="btn btn-secondary">관리자/상담원 아이디 조회</button>
+              &nbsp;&nbsp;<button type="button" class="btn btn-secondary">관리자/상담원 아이디 생성</button>
+              &nbsp;&nbsp;<button type="button" class="btn btn-secondary">관리자/상담원 아이디 조회</button>
             </div>
           </div>
         </div>
