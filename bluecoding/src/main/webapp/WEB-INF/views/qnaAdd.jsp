@@ -7,7 +7,7 @@
    <head>
       <meta charset="utf-8" />
       <meta http-equiv="x-ua-compatible" content="ie=edge" />
-      <title>문의하기</title>
+      <title>뉴스 글쓰기</title>
       <meta name="description" content="" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <link rel="shortcut icon" type="image/x-icon"
@@ -52,7 +52,7 @@
          <div class="container px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5 justify-content-center">
                <div class="col-md-10 col-lg-8 col-xl-7">
-                  <p id="title">문의하기</p>
+                  <p id="title">문의글 쓰기</p>
                   <hr class="my-4">
                   <!-- ================== 카테고리 ======================= -->
                   <div class="categorise search-form wow fadeInUp">
@@ -62,11 +62,8 @@
                               <label for="category"></label>
                               <select name="category" id="category"  required>
                                  <option value="none" selected disabled>카테고리</option>
-                                 <option value="none">계정 관련</option>
-                                 <option value="none">책 관련</option>
-                                 <option value="none">충전 관련</option>
-                                 <option value="none">신고 관련</option>
-                                 <option value="none">기타</option>
+                                 <option value="none">공지사항</option>
+                                 <option value="none">이벤트</option>
                               </select>
                            </div>
                         </div>
@@ -115,10 +112,10 @@
                            <div class="text-center text-danger mb-3">Error sending message!</div>
                         </div>
                         <!-- Submit Button-->
-                        <button class="btn btn-primary text-uppercase disabled"  id="submitButton" type="submit">이미지 선택(바꿔야 됨)</button>
+                        <button class="btn btn-primary text-uppercase disabled"  id="submitButton" type="submit">사진 입력하기(바꿔야 됨)</button>
                         <!-- ======================= 버튼 ========================== -->
                         <div class="button header-button">
-                           <a href="qnaUpdateDone" class="btn">수정</a>
+                           <a href="javascript:void(0)" class="btn">등록</a>
                         </div>
                         <div class="button header-button">
                            <a onClick="javascript:history.back()" class="btn">돌아가기</a>

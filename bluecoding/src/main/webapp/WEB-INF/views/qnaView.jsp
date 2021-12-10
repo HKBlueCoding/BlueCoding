@@ -59,7 +59,7 @@
                      &nbsp;&nbsp; 작성자 : 홍길동 &nbsp;&nbsp;&nbsp;&nbsp; YYYY-MM-DD HH-MM &nbsp;&nbsp;&nbsp;&nbsp;
                      <!-- ======================= 버튼 ========================== -->
                      <div class="button header-button">
-                        <a href="javascript:void(0)" class="btn">수정</a>
+                        <a href="update" class="btn">수정</a>
                      </div>
                      <div class="button header-button">
                         <a href="javascript:void(0)" class="btn">삭제</a>

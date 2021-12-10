@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>이벤트</title>
 
 <!-- Web Font -->
 <link
@@ -93,7 +93,7 @@
                             <img src="../resources/assets/images/mainPage/board1.png" width="50" height="50" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
                           </div>
                           <div class="d-flex flex-column justify-content-center">
-                            <h6 class="mb-0 text-sm">제목입니다[0]</h6>
+                            <a href="event/view" class="mb-0 text-sm">제목입니다[0]</a>
                             <p class="text-xs text-secondary mb-0">글의 내용....</p>
                           </div>
                         </div>
@@ -121,7 +121,7 @@
                             <img src="../resources/assets/images/mainPage/board1.png" width="50" height="50" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
                           </div>
                           <div class="d-flex flex-column justify-content-center">
-                            <h6 class="mb-0 text-sm">제목입니다[0]</h6>
+                            <a href="event/view" class="mb-0 text-sm">제목입니다[0]</a>
                             <p class="text-xs text-secondary mb-0">글의 내용....</p>
                           </div>
                         </div>
@@ -149,7 +149,7 @@
                             <img src="../resources/assets/images/mainPage/board1.png" width="50" height="50" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
                           </div>
                           <div class="d-flex flex-column justify-content-center">
-                            <h6 class="mb-0 text-sm">제목입니다[0]</h6>
+                            <a href="event/view" class="mb-0 text-sm">제목입니다[0]</a>
                             <p class="text-xs text-secondary mb-0">글의 내용....</p>
                           </div>
                         </div>
@@ -177,7 +177,7 @@
                             <img src="../resources/assets/images/mainPage/board1.png" width="50" height="50" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
                           </div>
                           <div class="d-flex flex-column justify-content-center">
-                            <h6 class="mb-0 text-sm">제목입니다[0]</h6>
+                            <a href="event/view" class="mb-0 text-sm">제목입니다[0]</a>
                             <p class="text-xs text-secondary mb-0">글의 내용....</p>
                           </div>
                         </div>
@@ -205,7 +205,7 @@
                             <img src="../resources/assets/images/mainPage/board1.png" width="50" height="50" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
                           </div>
                           <div class="d-flex flex-column justify-content-center">
-                            <h6 class="mb-0 text-sm">제목입니다[0]</h6>
+                            <a href="event/view" class="mb-0 text-sm">제목입니다[0]</a>
                             <p class="text-xs text-secondary mb-0">글의 내용....</p>
                           </div>
                         </div>
@@ -233,7 +233,7 @@
                             <img src="../resources/assets/images/mainPage/board1.png" width="50" height="50" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
                           </div>
                           <div class="d-flex flex-column justify-content-center">
-                            <h6 class="mb-0 text-sm">제목입니다[0]</h6>
+                            <a href="event/view" class="mb-0 text-sm">제목입니다[0]</a>
                             <p class="text-xs text-secondary mb-0">글의 내용....</p>
                           </div>
                         </div>
@@ -261,7 +261,7 @@
                             <img src="../resources/assets/images/mainPage/board1.png" width="50" height="50" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
                           </div>
                           <div class="d-flex flex-column justify-content-center">
-                            <h6 class="mb-0 text-sm">제목입니다[0]</h6>
+                            <a href="event/view" class="mb-0 text-sm">제목입니다[0]</a>
                             <p class="text-xs text-secondary mb-0">글의 내용....</p>
                           </div>
                         </div>
@@ -289,7 +289,7 @@
                             <img src="../resources/assets/images/mainPage/board1.png" width="50" height="50" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
                           </div>
                           <div class="d-flex flex-column justify-content-center">
-                            <h6 class="mb-0 text-sm">제목입니다[0]</h6>
+                            <a href="event/view" class="mb-0 text-sm">제목입니다[0]</a>
                             <p class="text-xs text-secondary mb-0">글의 내용....</p>
                           </div>
                         </div>
@@ -317,6 +317,29 @@
           </div>
         </div>
       </div>
+               <!-- Start Search Form -->
+         <div class="search-form wow fadeInUp" style="margin: 1px; padding: 1px;">
+            <div class="row">
+               <div class="button header-button" style="width: 13%; margin-left: 50px; padding: 1px;">
+                  <a href="add" class="btn">작성</a>
+               </div>
+               <div class="button header-button" style="width: 20%; margin-left: 1px; padding: 1px;">
+                  <a onClick="javascript:history.back()" class="btn">돌아가기</a>
+               </div>
+               <div class="col-lg-4 col-md-4 col-12 p-0"  style="width: 30%;  margin-left: 100px;">
+                  <div class="search-input">
+                     <label for="keyword"><i class="lni lni-search-alt theme-color"></i></label>
+                     <input type="text" name="keyword" id="keyword" placeholder="검색하세요.">
+                  </div>
+               </div>
+               <div class="col-lg-2 col-md-2 col-12 p-0">
+                  <div class="search-btn button">
+                     <button class="btn"><i class="lni lni-search-alt"></i> 검색</button>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!-- End Search Form -->
 </div>
 	<div align="center"><a align="center">1</a>&nbsp;&nbsp;<a align="center">2</a>&nbsp;&nbsp;<a align="center">3</a>&nbsp;&nbsp;<a align="center">4</a>&nbsp;&nbsp;<a align="center">5</a></div>
 <br>

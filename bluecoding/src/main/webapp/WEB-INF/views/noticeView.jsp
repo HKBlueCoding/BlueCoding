@@ -7,7 +7,7 @@
    <head>
       <meta charset="utf-8" />
       <meta http-equiv="x-ua-compatible" content="ie=edge" />
-      <title>문의하기</title>
+      <title>공지사항 상세 보기</title>
       <meta name="description" content="" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <link rel="shortcut icon" type="image/x-icon"
@@ -52,28 +52,23 @@
          <div class="container px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5 justify-content-center">
                <div class="col-md-10 col-lg-8 col-xl-7">
-                  <p id="title">문의하기</p>
+                  <p id="title">문의 내역</p>
                   <hr class="my-4">
-                  <!-- ================== 카테고리 ======================= -->
-                  <div class="categorise search-form wow fadeInUp">
-                     <div class="row">
-                        <div class="col-lg-3 col-md-3 col-12 p-0">
-                           <div class="search-input">
-                              <label for="category"></label>
-                              <select name="category" id="category"  required>
-                                 <option value="none" selected disabled>카테고리</option>
-                                 <option value="none">계정 관련</option>
-                                 <option value="none">책 관련</option>
-                                 <option value="none">충전 관련</option>
-                                 <option value="none">신고 관련</option>
-                                 <option value="none">기타</option>
-                              </select>
-                           </div>
-                        </div>
+                  <p id="title2">&nbsp;&nbsp;제목</p>
+                  <div id="qna">
+                     &nbsp;&nbsp; 작성자 : 홍길동 &nbsp;&nbsp;&nbsp;&nbsp; YYYY-MM-DD HH-MM &nbsp;&nbsp;&nbsp;&nbsp;
+                     <!-- ======================= 버튼 ========================== -->
+                     <div class="button header-button">
+                        <a href="notice/update" class="btn">수정</a>
                      </div>
+                     <div class="button header-button">
+                        <a href="javascript:void(0)" class="btn">삭제</a>
+                     </div>
+                     <div class="button header-button">
+                        <a href="javascript:void(0)" class="btn">신고하기</a>
+                     </div>
+                     <!-- ======================= 버튼 끝 ========================== -->                  
                   </div>
-                  <br>
-                  <!-- ================== 카테고리 끝 ======================= -->
                   <div class="my-5">
                      <!-- * * * * * * * * * * * * * * *-->
                      <!-- * * SB Forms Contact Form * *-->
@@ -83,14 +78,10 @@
                      <!-- https://startbootstrap.com/solution/contact-forms-->
                      <!-- to get an API token!-->
                      <form id="contactForm" data-sb-form-api-token="API_TOKEN">
-                        <div class="form-floating">
-                           <input class="form-control" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
-                           <label for="name">제목</label>                          
-                           <div class="invalid-feedback" data-sb-feedback="name:required">제목을 입력하세요.</div>
-                        </div>
                         <br>
                         <div class="form-floating" id="formMag">
-                           <textarea class="form-control" id="message" placeholder="Enter your message here..." style="height: 35rem" data-sb-validations="required"></textarea>
+                           <textarea class="form-control" id="message" placeholder="Enter your message here..." style="height: 15rem" data-sb-validations="required" disabled></textarea>
+                           <textarea class="form-control" id="message" placeholder="Enter your message here..." style="height: 15rem" data-sb-validations="required" disabled> [답변]</textarea>
                            <label for="message">내용</label>
                            <div class="invalid-feedback" data-sb-feedback="message:required">내용을 입력하세요.</div>
                         </div>
@@ -114,23 +105,12 @@
                         <div class="d-none" id="submitErrorMessage">
                            <div class="text-center text-danger mb-3">Error sending message!</div>
                         </div>
-                        <!-- Submit Button-->
-                        <button class="btn btn-primary text-uppercase disabled"  id="submitButton" type="submit">이미지 선택(바꿔야 됨)</button>
-                        <!-- ======================= 버튼 ========================== -->
-                        <div class="button header-button">
-                           <a href="qnaUpdateDone" class="btn">수정</a>
-                        </div>
-                        <div class="button header-button">
-                           <a onClick="javascript:history.back()" class="btn">돌아가기</a>
-                        </div>
-                        <!-- ======================= 버튼 끝 ========================== -->
                      </form>
                   </div>
                </div>
             </div>
          </div>
       </main>
-      <!-- =================== 글쓰기 폼 끝===================== -->
       <!-- ==================== footer ====================== -->      
       <!-- footer -->
       <jsp:include page="/WEB-INF/views/include/footer.jsp"/>

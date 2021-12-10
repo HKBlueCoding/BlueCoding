@@ -18,14 +18,35 @@ public class NewsController {
 	public String notice() {
 		
 		return "notice";
-	
 	}
-	
 	@RequestMapping(value="/news/event", method=RequestMethod.GET)
 	public String event() {
 		
 		return "event";
+	}
 	
+	
+	@GetMapping(value="/news/notice/view")
+	public String newsView() {
+		
+		return "noticeView"; 
+	}	
+	@GetMapping(value="news/event/view")
+	public String eventView() {
+		
+		return "eventView";
+	}
+
+	
+	@GetMapping(value="/news/notice/update")
+	public String newsUpdate() {
+		
+		return "noticeUpdate";
+	}
+	@GetMapping(value="/news/event/update")
+	public String eventUpdate() {
+		
+		return "eventUpdate";
 	}
 
 }
