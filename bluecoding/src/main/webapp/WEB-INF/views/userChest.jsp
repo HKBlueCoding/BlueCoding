@@ -40,7 +40,7 @@
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
       <!-- CSS Files -->
       <link id="pagestyle" href="../resources/assets/css/material-dashboard.css?v=3.0.0" rel="stylesheet" />
-      <!-- marerial CSS END -->    	
+      <!-- marerial CSS END -->
       <style>
          body{
          background-image: url(../resources/assets/images/here/noticeBG.jpg);
@@ -54,19 +54,21 @@
    <body>
       <jsp:include page="/WEB-INF/views/include/header.jsp" />
       <br><br><br><br><br><br><br><br>
+      <!-- ========================= 관심 작품 끝 ========================= -->
+      <div id="aa">
       <div class="container-fluid py-4" style="height:auto; width:60%;">
          <!-- ======================= 버튼 ========================== -->
          <div class="button header-button">
-            <a href="javascript:void(0)" class="btn" style="background-color: #30c8e0">관심 작품</a>
+            <a href="javascript:void(0)" class="btn" style="background-color: #30c8e0" id="show">관심 작품</a>
          </div>
          <div class="button header-button">
-            <a href="javascript:void(0)" class="btn" style="background-color: #30c8e0">구매 내역</a>
+            <a href="javascript:void(0)" class="btn" style="background-color: #30c8e0" id="show2">구매 내역</a>
          </div>
          <div class="button header-button">
-            <a href="javascript:void(0)" class="btn" style="background-color: #30c8e0">결제 내역</a>
+            <a href="javascript:void(0)" class="btn" style="background-color: #30c8e0" id="show3">결제 내역</a>
          </div>
          <div class="button header-button">
-            <a href="javascript:void(0)" class="btn" style="background-color: #30c8e0">수익 관리</a>
+            <a href="javascript:void(0)" class="btn" style="background-color: #30c8e0" id="show4">수익 관리</a>
          </div>
          <!-- ======================= 버튼 끝 ========================== -->
          <br><br>
@@ -302,14 +304,10 @@
       <div align="center"><a align="center">1</a>&nbsp;&nbsp;<a align="center">2</a>&nbsp;&nbsp;<a align="center">3</a>&nbsp;&nbsp;<a align="center">4</a>&nbsp;&nbsp;<a align="center">5</a></div>
       <br>
       <br>
+      </div>
       <!-- ========================= 관심 작품 끝 ========================= -->
-      
-      
-      
-      
-      
-      
       <!-- ========================== 구매 내역 ========================== -->
+      <div id="bb">
       <div class="container-fluid py-4" style="height:auto; width:60%;">
          <!-- ======================= 버튼 ========================== -->
          <div class="button header-button">
@@ -326,7 +324,7 @@
          </div>
          <div class="button header-button" style="margin-left: 200px;">
             <p style=" border-width:3px; border-style:inset; font-family: 돋움; font-weight: bold; color: #546699;">현재 코인 : 100개</p>
-         </div>         
+         </div>
          <div class="button header-button">
             <a href="javascript:void(0)" class="btn" style="background-color: #6e707e">충전하기</a>
          </div>
@@ -377,8 +375,8 @@
                                  </td>
                                  <td class="align-middle text-center">
                                     <div class="button header-button">
-          							  	<a href="javascript:void(0)" class="btn" style="background-color: #ab0dd7">환불하기</a>
-         							</div>
+                                       <a href="javascript:void(0)" class="btn" style="background-color: #ab0dd7">환불하기</a>
+                                    </div>
                                  </td>
                               </tr>
                               <tr>
@@ -405,8 +403,8 @@
                                  </td>
                                  <td class="align-middle text-center">
                                     <div class="button header-button">
-          							  	<a href="javascript:void(0)" class="btn" style="background-color: #ab0dd7">환불하기</a>
-         							</div>
+                                       <a href="javascript:void(0)" class="btn" style="background-color: #ab0dd7">환불하기</a>
+                                    </div>
                                  </td>
                               </tr>
                               <tr>
@@ -433,8 +431,8 @@
                                  </td>
                                  <td class="align-middle text-center">
                                     <div class="button header-button">
-          							  	<a href="javascript:void(0)" class="btn" style="background-color: #ab0dd7">환불하기</a>
-         							</div>
+                                       <a href="javascript:void(0)" class="btn" style="background-color: #ab0dd7">환불하기</a>
+                                    </div>
                                  </td>
                               </tr>
                               <tr>
@@ -461,8 +459,8 @@
                                  </td>
                                  <td class="align-middle text-center">
                                     <div class="button header-button">
-          							  	<a href="javascript:void(0)" class="btn" style="background-color: #ab0dd7">환불하기</a>
-         							</div>
+                                       <a href="javascript:void(0)" class="btn" style="background-color: #ab0dd7">환불하기</a>
+                                    </div>
                                  </td>
                               </tr>
                               <tr>
@@ -489,8 +487,8 @@
                                  </td>
                                  <td class="align-middle text-center">
                                     <div class="button header-button">
-          							  	<a href="javascript:void(0)" class="btn" style="background-color: #ab0dd7">환불하기</a>
-         							</div>
+                                       <a href="javascript:void(0)" class="btn" style="background-color: #ab0dd7">환불하기</a>
+                                    </div>
                                  </td>
                               </tr>
                               <tr>
@@ -517,8 +515,8 @@
                                  </td>
                                  <td class="align-middle text-center">
                                     <div class="button header-button">
-          							  	<a href="javascript:void(0)" class="btn" style="background-color: #ab0dd7">환불하기</a>
-         							</div>
+                                       <a href="javascript:void(0)" class="btn" style="background-color: #ab0dd7">환불하기</a>
+                                    </div>
                                  </td>
                               </tr>
                               <tr>
@@ -545,8 +543,8 @@
                                  </td>
                                  <td class="align-middle text-center">
                                     <div class="button header-button">
-          							  	<a href="javascript:void(0)" class="btn" style="background-color: #ab0dd7">환불하기</a>
-         							</div>
+                                       <a href="javascript:void(0)" class="btn" style="background-color: #ab0dd7">환불하기</a>
+                                    </div>
                                  </td>
                               </tr>
                               <tr>
@@ -573,8 +571,8 @@
                                  </td>
                                  <td class="align-middle text-center">
                                     <div class="button header-button">
-          							  	<a href="javascript:void(0)" class="btn" style="background-color: #ab0dd7">환불하기</a>
-         							</div>
+                                       <a href="javascript:void(0)" class="btn" style="background-color: #ab0dd7">환불하기</a>
+                                    </div>
                                  </td>
                               </tr>
                            </tbody>
@@ -605,14 +603,10 @@
       <div align="center"><a align="center">1</a>&nbsp;&nbsp;<a align="center">2</a>&nbsp;&nbsp;<a align="center">3</a>&nbsp;&nbsp;<a align="center">4</a>&nbsp;&nbsp;<a align="center">5</a></div>
       <br>
       <br>
-	  <!-- ========================== 구매 내역 끝 ========================== -->
-      
-      
-      
-      
-      
-      
+      </div>
+      <!-- ========================== 구매 내역 끝 ========================== -->
       <!-- ========================== 결제 내역 ========================== -->
+      <div id="cc">
       <div class="container-fluid py-4" style="height:auto; width:60%;">
          <!-- ======================= 버튼 ========================== -->
          <div class="button header-button">
@@ -671,8 +665,8 @@
                                  </td>
                                  <td class="align-middle text-center">
                                     <div class="button header-button">
-          							  	<a href="javascript:void(0)" class="btn" style="background-color: #ab0dd7">환불하기</a>
-         							</div>
+                                       <a href="javascript:void(0)" class="btn" style="background-color: #ab0dd7">환불하기</a>
+                                    </div>
                                  </td>
                               </tr>
                               <tr>
@@ -691,8 +685,8 @@
                                  </td>
                                  <td class="align-middle text-center">
                                     <div class="button header-button">
-          							  	<a href="javascript:void(0)" class="btn" style="background-color: #ab0dd7">환불하기</a>
-         							</div>
+                                       <a href="javascript:void(0)" class="btn" style="background-color: #ab0dd7">환불하기</a>
+                                    </div>
                                  </td>
                               </tr>
                               <tr>
@@ -711,8 +705,8 @@
                                  </td>
                                  <td class="align-middle text-center">
                                     <div class="button header-button">
-          							  	<a href="javascript:void(0)" class="btn" style="background-color: #ab0dd7">환불하기</a>
-         							</div>
+                                       <a href="javascript:void(0)" class="btn" style="background-color: #ab0dd7">환불하기</a>
+                                    </div>
                                  </td>
                               </tr>
                               <tr>
@@ -731,8 +725,8 @@
                                  </td>
                                  <td class="align-middle text-center">
                                     <div class="button header-button">
-          							  	<a href="javascript:void(0)" class="btn" style="background-color: #ab0dd7">환불하기</a>
-         							</div>
+                                       <a href="javascript:void(0)" class="btn" style="background-color: #ab0dd7">환불하기</a>
+                                    </div>
                                  </td>
                               </tr>
                               <tr>
@@ -751,8 +745,8 @@
                                  </td>
                                  <td class="align-middle text-center">
                                     <div class="button header-button">
-          							  	<a href="javascript:void(0)" class="btn" style="background-color: #ab0dd7">환불하기</a>
-         							</div>
+                                       <a href="javascript:void(0)" class="btn" style="background-color: #ab0dd7">환불하기</a>
+                                    </div>
                                  </td>
                               </tr>
                            </tbody>
@@ -766,15 +760,10 @@
       <div align="center"><a align="center">1</a>&nbsp;&nbsp;<a align="center">2</a>&nbsp;&nbsp;<a align="center">3</a>&nbsp;&nbsp;<a align="center">4</a>&nbsp;&nbsp;<a align="center">5</a></div>
       <br>
       <br>
-	  <!-- ========================== 결제 내역 끝 ========================== -->
-      
-      
-      
-      
-      
-      
-      
-	  <!-- ========================== 수익 관리 ========================== -->
+      </div>
+      <!-- ========================== 결제 내역 끝 ========================== -->
+      <!-- ========================== 수익 관리 ========================== -->
+      <div id="dd">
       <div class="container-fluid py-4" style="height:auto; width:60%;">
          <!-- ======================= 버튼 ========================== -->
          <div class="button header-button">
@@ -791,7 +780,7 @@
          </div>
          <div class="button header-button" style="margin-left: 200px;">
             <p style=" border-width:3px; border-style:inset; font-family: 돋움; font-weight: bold; color: #546699;">현재 코인 : 100개</p>
-         </div>         
+         </div>
          <div class="button header-button">
             <a href="javascript:void(0)" class="btn" style="background-color: #6e707e">현금화 하기</a>
          </div>
@@ -1029,12 +1018,8 @@
       <div align="center"><a align="center">1</a>&nbsp;&nbsp;<a align="center">2</a>&nbsp;&nbsp;<a align="center">3</a>&nbsp;&nbsp;<a align="center">4</a>&nbsp;&nbsp;<a align="center">5</a></div>
       <br>
       <br>
-
-
-	  <!-- ========================== 수익 관리 끝 ========================== -->
-
-
-
+      </div>
+      <!-- ========================== 수익 관리 끝 ========================== -->
       <jsp:include page="/WEB-INF/views/include/footer.jsp" />
       <!-- ========================= ClassiGrids JS HERE ========================= -->
       <script src="../resources/assets/js/bootstrap.min.js"></script>
@@ -1106,5 +1091,57 @@
       <script async defer src="https://buttons.github.io/buttons.js"></script>
       <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
       <script src="../resources/assets/js/material-dashboard.min.js?v=3.0.0"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script>
+         $(document).ready(function(){
+            
+           // #aa -> 관심 작품
+           // #bb -> 구매 내역
+           // #cc -> 결제 내역
+           // #dd -> 수익 관리
+             
+           // 구매 내역을 닫음
+           $("#bb").hide();
+         
+           // 결제 내역을 닫음
+           $("#cc").hide();
+         
+           // 수익 관리를 닫음
+           $("#dd").hide();
+         
+            
+           // 관심 작품 열기
+           $("#show").click(function(){
+              $("#aa").show();
+             $("#bb").hide();
+             $("#cc").hide();
+             $("#dd").hide();
+           });
+           
+           // 구매 내역 열기
+           $("#show2").click(function(){
+              $("#bb").show();
+             $("#aa").hide();
+             $("#cc").hide();
+             $("#dd").hide();    
+           });
+           
+           // 결제 내역 열기
+           $("#show3").click(function(){
+              $("#cc").show();
+             $("#aa").hide();
+             $("#bb").hide();
+             $("#dd").hide();
+           });
+           
+           // 수익 관리 열기
+           $("#show4").click(function(){
+              $("#dd").show();
+             $("#aa").hide();
+             $("#bb").hide();
+             $("#cc").hide();
+           });  
+         });
+      </script>      
    </body>
 </html>
