@@ -44,7 +44,7 @@
                                     <a data-bs-toggle="modal" data-bs-target="#login"><i class="lni lni-enter"></i> Login</a>
                                 </li>
                                 <li>
-                                    <a href="#"><i class="lni lni-user"></i> Register</a>
+                                    <a href="../../user/register"><i class="lni lni-user"></i> Register</a>
                                 </li>
                             </ul>
                         </div>
