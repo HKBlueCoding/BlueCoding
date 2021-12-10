@@ -33,9 +33,23 @@ public class BookController {
 		return "bookList";
 	}
 	
+	@GetMapping("/add")
+	public String bookAdd() {
+		
+		return "bookAdd";
+	}
+	
+	@GetMapping("/view")
+	public String bookView() {
+		
+		return "bookView";
+	}
+	
 	@GetMapping("/view/add")
 	public String bookViewAdd() {
 		
 		return "bookViewAdd";
 	}
+	
+
 }
