@@ -266,31 +266,29 @@
                </div>
             </div>
          </div>
-         <!-- ======================= 버튼 ========================== -->
-         <div class="button header-button">
-            <a href="javascript:void(0)" class="btn">작품 올리기</a>
+         <!-- Start Search Form -->
+         <div class="search-form wow fadeInUp" style="margin: 1px; padding: 1px;">
+            <div class="row">
+               <div class="button header-button" style="width: 20%;">
+                  <a href="javascript:void(0)" class="btn">작품 올리기</a>
+               </div>
+               <div class="button header-button" style="width: 20%;">
+                  <a onClick="javascript:history.back()" class="btn">돌아가기</a>
+               </div>
+               <div class="col-lg-4 col-md-4 col-12 p-0">
+                  <div class="search-input">
+                     <label for="keyword"><i class="lni lni-search-alt theme-color"></i></label>
+                     <input type="text" name="keyword" id="keyword" placeholder="Product keyword">
+                  </div>
+               </div>
+               <div class="col-lg-2 col-md-2 col-12 p-0">
+                  <div class="search-btn button">
+                     <button class="btn"><i class="lni lni-search-alt"></i> Search</button>
+                  </div>
+               </div>
+            </div>
          </div>
-         <div class="button header-button">
-            <a onClick="javascript:history.back()" class="btn">돌아가기</a>
-         </div>
-         <!-- ======================= 버튼 끝 ========================== -->
-                                 <!-- Start Search Form -->
-                        <div class="search-form wow fadeInUp">
-                            <div class="row">
-                                <div class="col-lg-4 col-md-4 col-12 p-0">
-                                    <div class="search-input">
-                                        <label for="keyword"><i class="lni lni-search-alt theme-color"></i></label>
-                                        <input type="text" name="keyword" id="keyword" placeholder="Product keyword">
-                                    </div>
-                                </div>
-                                <div class="col-lg-2 col-md-2 col-12 p-0">
-                                    <div class="search-btn button">
-                                        <button class="btn"><i class="lni lni-search-alt"></i> Search</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Search Form -->
+         <!-- End Search Form -->
       </div>
       <div align="center"><a align="center">1</a>&nbsp;&nbsp;<a align="center">2</a>&nbsp;&nbsp;<a align="center">3</a>&nbsp;&nbsp;<a align="center">4</a>&nbsp;&nbsp;<a align="center">5</a></div>
       <br>
