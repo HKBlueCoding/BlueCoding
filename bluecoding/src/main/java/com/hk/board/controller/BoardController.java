@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -36,21 +37,22 @@ public class BoardController {
 		return "boardAddDone";
 	}
 	
-	@RequestMapping(value="/board/update", method=RequestMethod.GET)
-	public String boardView(Model model, @RequestParam("articleNO") int articleNO) {
+	@GetMapping(value="/board/view")
+	public String boardView() {
 		
 		return "boardView";
 	}
 	
-	@RequestMapping(value="/board/update", method=RequestMethod.POST)
-	public String boardUpdate(Model model, @ModelAttribute BoardVO boardVO ) {
+	
+	@GetMapping(value="/board/update")
+	public String boardUpdate() {
 		
-		return "boardUpdateDone";
+		return "boardUpdate";
 	}
 	
 	@RequestMapping(value="/board/delete", method=RequestMethod.GET)
 	public String boardDelete(Model model, @RequestParam("articleNO") int articleNO) {
 		
-		return "boardDeleteDone";
+		return "boardDelete";
 	}
 }
