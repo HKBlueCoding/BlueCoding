@@ -69,223 +69,129 @@ body {
 	padding-right: 1.5rem;
 }
 
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>아이디 찾기</title>
+    <style>
+        @import url("http://fonts.googleapis.com/earlyaccess/nanumgothic.css");
+	
+	html {
+		height: 100%;
+	}
+	
+	body {
+	    width:100%;
+	    height:100%;
+	    margin: 0;
+  		padding-top: 200px;
+  		padding-bottom: 40px;
+  		font-family: "Nanum Gothic", arial, helvetica, sans-serif;
+  		background-repeat: no-repeat;
+	}
+	
+    .card {
+        margin: 0 auto; /* Added */
+        float: none; /* Added */
+        margin-bottom: 10px; /* Added */
+	}
+
+    #btn-Yes{
+        background-color: #e4932b;
+        border: none;
+    }
+	
+	.form-signin .form-control {
+  		position: relative;
+  		height: auto;
+  		-webkit-box-sizing: border-box;
+     	-moz-box-sizing: border-box;
+        	 box-sizing: border-box;
+  		padding: 10px;
+  		font-size: 16px;
+	}
+    .card-title{
+        margin-left: 30px;
+    }
+	 .links{
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    a{ 
+    	color: #f58b34; text-decoration: none; 
+    }
+    .text2{
+    	color : blue;
+    }
+    </style>
+
 </style>
 </head>
-
-
-<script>
- function gohome() {
-  var frm = document.idfindscreen;
-  frm.method = "post";
-  frm.action = "./home.jsp"; //넘어간화면
-  frm.submit(); //등록이 될수 있는 조건이면, 정보를 보내겠다.
- }
-
- function gojoin() {
-  var frm = document.idfindscreen;
-  frm.method = "post";
-  frm.action = "./join.jsp"; //넘어간화면
-  frm.submit(); //등록이 될수 있는 조건이면, 정보를 보내겠다.
- }
-
- function gologin() {
-  var frm = document.idfindscreen;
-  frm.method = "post";
-  frm.action = "./login.jsp";
-  frm.submit();
- }
-
- function goidfind() {
-  var frm = document.idfindscreen;
-  frm.method = "post";
-  frm.action = "./id_find.jsp";
-  frm.submit();
- }
-
- function gopwfind() {
-  var frm = document.idfindscreen;
-  frm.method = "post";
-  frm.action = "./pw_find.jsp";
-  frm.submit();
- }
- function logout() {
-  var frm = document.idfindscreen;
-  frm.method = "post";
-  frm.action = "./logoutCtl.jsp";
-  frm.submit();
- }
- function id_search1() { //이름,핸드폰으로 '찾기' 버튼
-
-  var frm = document.idfindscreen;
-
-  if (frm.name.value.length < 1) {
-   alert("이름을 입력해주세요");
-   return;
-  }
-
-  if (frm.phone1.value.length<2 || frm.phone1.value.length>4) {
-   alert("핸드폰번호를 정확하게 입력해주세요");
-   return;
-  }
-  if (frm.phone2.value.length<2 || frm.phone2.value.length>4) {
-   alert("핸드폰번호를 정확하게 입력해주세요");
-   return;
-  }
-
-  frm.method = "post";
-  frm.action = "./id_searchCtl.jsp"; //넘어간화면
-  frm.submit();  }
-
-​
-
- function id_search2() { //이름,이메일로 '찾기' 버튼
-
-  var frm = document.idfindscreen;
-
-  if (frm.name2.value.length < 1) {
-   alert("이름을 입력해주세요");
-   return;
-  }
-  if (frm.email.value.length < 1 || frm.e_domain.value.length < 1) {
-   alert("이메일을 입력해주세요");
-   return;
-  }
-
-  frm.method = "post";
-  frm.action = "./id_searchCtl2.jsp"; //넘어간화면
-  frm.submit();  }
-
-​
-
- //이메일 부분
-
- function checkid() {
-
-  var frm = document.idfindscreen;
-
-  var regExp = '/^([/\w/g\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/';
-
-  if (!regExp.test(frm.email.value)) {
-
-   alert('올바른 email을 입력해주세요.');
-
-   frm.email.focus();
-
-  }
-
- }
-
- function domainCheck() {
-
-  var frm = document.idfindscreen;
-
-  if (frm.domain.value == 0) {
-   frm.e_domain.value = "";
-   frm.e_domain.disabled = false;
-
-  } else {
-   frm.e_domain.value = frm.domain.value;
-   frm.e_domain.disabled = true;
-
-  }
-
- }
-</script>
-
 
 </HEAD>
 
 <BODY>
 	<jsp:include page="/WEB-INF/views/include/header.jsp" />
 
-	<form name="idfindscreen">
+  <body cellpadding="0" cellspacing="0" marginleft="0" margintop="0" width="100%" height="100%" align="center">
 
-		<font face="Yang Rounded">
+	<div class="card align-middle" style="width:25rem;">
+		<div class="card-title" style="margin-top:30px;">
+            
+			<h2 class="card-title" style="color:#f58b34;"><img src="/resources/img/rabbit_logo.png"/></h2>
+		</div>
+        
+		<div class="card-body">
+      <form action="findId" class="form-signin" method="POST">
+  		 <p class="text2"> ${findid2}</p>
+        <input type="text" name="name" id="name" class="form-control" placeholder="이름" required autofocus><BR>
+        <input type="email" name="email" id="email" class="form-control" placeholder="이메일" required><br>
+        	<p class="check" id="check">${check}</p><br/>
+        <button id="btn-Yes" class="btn btn-lg btn-primary btn-block" type="submit">아 이 디 찾 기</button>
+      
+      </form>
+        
+		</div>
+        <div class="links">
+            <a href="pwd">비밀번호 찾기</a> | <a href="memberLogin">로그인</a> | <a href="register">회원가입</a>
 
-
-			<table width="1330px" height="430px" align="center">
-				<tr>
-					<td>
-						<table width="600px" align="center" border="0"
-							style="color: black; background-color: #F6F6F6; font-size: 20px;">
-							<tr>
-								<td>
-									<table width="750px" align="center" border=0;
-										style="background-color: white; margin-top: 3%">
-										<tr>
-											<td align="center"><img src="../../img/miki_icon.png"
-												height="30px"></td>
-											<td>아이디 찾기</td>
-											<td><div id="sub-title">| 회원정보에 등록한 정보로 인증.</td>
-											<td width="300px"></td>
-										</tr>
-									</table>
-								</td>
-							</tr>
-
-							<tr>
-								<td>
-									<table width="300px" height="20px" border="0"
-										style="margin-top: 3%; font-size: 18px;">
-										<br>
-										<br>
-										<tr>
-											<td>&nbsp;&nbsp; <img src="../../img/check.png"
-												height="30px">
-											</td>
-											<td>&nbsp;이름,이메일로 찾기</td>
-										</tr>
-									</table>
-								</td>
-							</tr>
-
-							<td>
-								<table width="380px" height="70px" align="center" border="0"
-									style="font-size: 16px;">
-									<tr>
-										<td>이름</td>
-										<td><input type="text" name="name2"></td>
-									</tr>
-									<tr>
-										<td style="text-align: center;">e-mail&nbsp;</td>
-										<td><input type="text" name="email" style="width: 80px"
-											onblur="checkid()"> @ <input type="text"
-											name="e_domain" style="width: 80px"> <select
-											name="domain" onchange="domainCheck();">
-												<option value="0" selected="selected">직접입력</option>
-												<option value="naver.com">naver.com</option>
-												<option value="hanmail.net">hanmail.net</option>
-												<option value="nate.com">nate.com</option>
-												<option value="yahoo.com">yahoo.com</option>
-										</select></td>
-									</tr>
-								</table>
-							</td>
-							</tr>
-
-							<tr>
-								<td>
-									<table width="140px" height="10px" border="0"
-										style="margin-top: 2%" align="center">
-										<tr>
-											<td><input type="button" name="enter2" value="  찾기  "
-												align="center"
-												style="cursor: pointer; background: white; color: black; border-color: black;"
-												onClick="id_search2()"></td>
-											<td><input type="button" name="cancle2" value="  취소  "
-												align="center"
-												style="cursor: pointer; background: white; color: black; border-color: black"
-												onClick="cancle()"></td>
-										</tr>
-									</table> <br>
-								</td>
-							</tr>
-						</table>
-					</td>
-				</tr>
-			</table>
-		</font>
-	</form>
+        </div>
+	</div>
+   
+  </body>
+  <script type="text/javascript">
+		
+  		
+  
+  		$("#name").focusout(function(){
+  			
+	     if($('#name').val() == ""){
+	   		$('#check').text('이름을 입력해주세요.');
+	   	  	$('#check').css('color', 'red');
+	   
+	     }else{
+	    	 $('#check').hide();
+	     }
+	     });
+	     
+  		$("#email").focusout(function(){
+	     if($('#email').val() == ""){
+	   		$('#check').text('이메일을 입력해주세요');
+	   	  	$('#check').css('color', 'red');
+	     }else{
+	    	 $('#check').hide();
+	     }
+	     });
+  
+  </script>
 
 	<jsp:include page="/WEB-INF/views/include/footer.jsp" />
 
