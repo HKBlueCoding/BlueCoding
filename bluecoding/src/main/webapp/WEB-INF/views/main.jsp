@@ -152,7 +152,7 @@
                      <div class="col-lg-8 col-md-8 col-12">
                         <!-- Start Single Work -->
                         <div class="single-work wow fadeInUp" data-wow-delay=".2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
-                           <span class="serial">2위</span>
+                           <span class="serial">인기</span>
                            <br>                       		
                            <img src="resources/assets/images/mainPage/board1.png" alt="Los Angeles" width="175" height="150" >
                            <h3>게시글 제목</h3>
@@ -167,7 +167,7 @@
                      <div class="col-lg-4 col-md-4 col-12">
                         <!-- Start Single Work -->
                         <div class="single-work wow fadeInUp" data-wow-delay=".4s" style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInUp;">
-                           <span class="serial">02</span>
+                           <span class="serial">2위</span>
                            <img src="resources/assets/images/mainPage/book5.png" alt="Los Angeles" width="180" height="195">
                            <h3>비밀의 화원</h3>
                         </div>
@@ -176,11 +176,12 @@
                   </div>
                   
                   <!-- 3순위 -->
+                  <br>
                   <div class="row">
                      <div class="col-lg-8 col-md-8 col-12">
                         <!-- Start Single Work -->
                         <div class="single-work wow fadeInUp" data-wow-delay=".2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
-                           <span class="serial">2위</span>
+                           <span class="serial">인기</span>
                            <br>                       		
                            <img src="resources/assets/images/mainPage/board1.png" alt="Los Angeles" width="175" height="150" >
                            <h3>게시글 제목</h3>
@@ -195,7 +196,7 @@
                      <div class="col-lg-4 col-md-4 col-12">
                         <!-- Start Single Work -->
                         <div class="single-work wow fadeInUp" data-wow-delay=".4s" style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInUp;">
-                           <span class="serial">02</span>
+                           <span class="serial">3위</span>
                            <img src="resources/assets/images/mainPage/book1.jfif" alt="Los Angeles" width="180" height="195">
                            <h3>위대한 개츠비</h3>
                         </div>
