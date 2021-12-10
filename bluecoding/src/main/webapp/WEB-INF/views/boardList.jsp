@@ -4,7 +4,7 @@
 <html>
    <head>
       <meta charset="UTF-8">
-      <title>도서 정보</title>
+      <title>커뮤니티</title>
       <!-- Web Font -->
       <link
          href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
@@ -262,7 +262,7 @@
          <div class="search-form wow fadeInUp" style="margin: 1px; padding: 1px;">
             <div class="row">
                <div class="button header-button" style="width: 13%; margin-left: 50px; padding: 1px;">
-                  <a href="javascript:void(0)" class="btn">새 글 쓰기</a>
+                  <a href="add" class="btn">새 글 쓰기</a>
                </div>
                <div class="button header-button" style="width: 20%; margin-left: 1px; padding: 1px;">
                   <a onClick="javascript:history.back()" class="btn">돌아가기</a>
