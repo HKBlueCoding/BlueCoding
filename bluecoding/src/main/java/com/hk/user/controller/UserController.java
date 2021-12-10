@@ -24,4 +24,10 @@ public class UserController {
 		
 		return "pwd";
 	}
+	
+	@RequestMapping(value="/user/chest", method=RequestMethod.GET)
+	public String userChest() {
+		
+		return "userChest";
+	}
 }
