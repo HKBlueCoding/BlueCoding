@@ -64,7 +64,7 @@
 <body>
 		<jsp:include page="/WEB-INF/views/include/header.jsp" />
 <br><br><br><br><br><br><br>	
-<div class="container-fluid py-4">
+<div class="container-fluid py-4" style="height:auto; width:60%;">
       <div class="row">
         <div class="col-12">
           <div class="card my-4">

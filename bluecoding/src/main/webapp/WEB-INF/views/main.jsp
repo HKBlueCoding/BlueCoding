@@ -52,7 +52,6 @@
 <body>
       <jsp:include page="/WEB-INF/views/include/header.jsp"/>
       <section class="hero-area overlay">
-         <div class="container">
          <div class="row">
             <div class="col-lg-10 offset-lg-1 col-md-12 col-12">
                <div class="hero-text text-center">

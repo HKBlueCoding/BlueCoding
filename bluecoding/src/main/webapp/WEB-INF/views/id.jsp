@@ -14,29 +14,29 @@
 	rel="stylesheet">
 
 <!-- ========================= ClassiGrids CSS HERE ========================= -->
-<link rel="stylesheet" href="/resources/assets/css/bootstrap.min.css" />
-<link rel="stylesheet" href="/resources/assets/css/LineIcons.2.0.css" />
-<link rel="stylesheet" href="/resources/assets/css/animate.css" />
-<link rel="stylesheet" href="/resources/assets/css/tiny-slider.css" />
-<link rel="stylesheet" href="/resources/assets/css/glightbox.min.css" />
-<link rel="stylesheet" href="/resources/assets/css/main.css" />
+<link rel="stylesheet" href="../../resources/assets/css/bootstrap.min.css" />
+<link rel="stylesheet" href="../../resources/assets/css/LineIcons.2.0.css" />
+<link rel="stylesheet" href="../../resources/assets/css/animate.css" />
+<link rel="stylesheet" href="../../resources/assets/css/tiny-slider.css" />
+<link rel="stylesheet" href="../../resources/assets/css/glightbox.min.css" />
+<link rel="stylesheet" href="../../resources/assets/css/main.css" />
 
 <!-- SBAdmin2 CSS START -->
 <!-- Custom fonts for this template -->
 <link
-	href="/resources/sbadmin2/vendor/fontawesome-free/css/all.min.css"
+	href="../../resources/sbadmin2/vendor/fontawesome-free/css/all.min.css"
 	rel="stylesheet" type="text/css">
 <link
 	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
 	rel="stylesheet">
 
 <!-- Custom styles for this template -->
-<link href="/resources/sbadmin2/css/sb-admin-2.min.css"
+<link href="../../resources/sbadmin2/css/sb-admin-2.min.css"
 	rel="stylesheet">
 
 <!-- Custom styles for this page -->
 <link
-	href="/resources/sbadmin2/vendor/datatables/dataTables.bootstrap4.min.css"
+	href="../../resources/sbadmin2/vendor/datatables/dataTables.bootstrap4.min.css"
 	rel="stylesheet">
 
 <!-- SBAdmin2 CSS END -->
@@ -45,8 +45,8 @@
 <link rel="stylesheet" type="text/css"
 	href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
 <!-- Nucleo Icons -->
-<link href="/resources/assets/css/nucleo-icons.css" rel="stylesheet" />
-<link href="/resources/assets/css/nucleo-svg.css" rel="stylesheet" />
+<link href="../../resources/assets/css/nucleo-icons.css" rel="stylesheet" />
+<link href="../../resources/assets/css/nucleo-svg.css" rel="stylesheet" />
 <!-- Font Awesome Icons -->
 <script src="https://kit.fontawesome.com/42d5adcbca.js"
 	crossorigin="anonymous"></script>
@@ -56,18 +56,19 @@
 	rel="stylesheet">
 <!-- CSS Files -->
 <link id="pagestyle"
-	href="/resources/assets/css/material-dashboard.css?v=3.0.0"
+	href="../../resources/assets/css/material-dashboard.css?v=3.0.0"
 	rel="stylesheet" />
 <!-- marerial CSS END -->
 <style>
 body {
-	background-image: url(/main/resources/assets/images/here/noticeBG.jpg);
+	background-image: url(../../main/resources/assets/images/here/noticeBG.jpg);
 }
 
 #tbPadd {
 	padding-left: 1.5rem;
 	padding-right: 1.5rem;
 }
+
 </style>
 </head>
 
@@ -212,7 +213,7 @@ body {
 									<table width="750px" align="center" border=0;
 										style="background-color: white; margin-top: 3%">
 										<tr>
-											<td align="center"><img src="../img/miki_icon.png"
+											<td align="center"><img src="../../img/miki_icon.png"
 												height="30px"></td>
 											<td>아이디 찾기</td>
 											<td><div id="sub-title">| 회원정보에 등록한 정보로 인증.</td>
@@ -229,7 +230,7 @@ body {
 										<br>
 										<br>
 										<tr>
-											<td>&nbsp;&nbsp; <img src="../img/check.png"
+											<td>&nbsp;&nbsp; <img src="../../img/check.png"
 												height="30px">
 											</td>
 											<td>&nbsp;이름,이메일로 찾기</td>
@@ -283,22 +284,17 @@ body {
 					</td>
 				</tr>
 			</table>
-			</td>
-			</tr>
-			</table>
-
-
 		</font>
 	</form>
 
 	<jsp:include page="/WEB-INF/views/include/footer.jsp" />
 
 	<!-- ========================= ClassiGrids JS HERE ========================= -->
-	<script src="/resources/assets/js/bootstrap.min.js"></script>
-	<script src="/resources/assets/js/wow.min.js"></script>
-	<script src="/resources/assets/js/tiny-slider.js"></script>
-	<script src="/resources/assets/js/glightbox.min.js"></script>
-	<script src="/resources/assets/js/main.js"></script>
+	<script src="../../resources/assets/js/bootstrap.min.js"></script>
+	<script src="../../resources/assets/js/wow.min.js"></script>
+	<script src="../../resources/assets/js/tiny-slider.js"></script>
+	<script src="../../resources/assets/js/glightbox.min.js"></script>
+	<script src="../../resources/assets/js/main.js"></script>
 	<script type="text/javascript">
 		//========= Category Slider 
 		tns({
@@ -334,33 +330,33 @@ body {
 
 	<!-- SBAdmin2 JS START -->
 	<!-- Bootstrap core JavaScript-->
-	<script src="/resources/sbadmin2/vendor/jquery/jquery.min.js"></script>
+	<script src="../../resources/sbadmin2/vendor/jquery/jquery.min.js"></script>
 	<script
-		src="/resources/sbadmin2/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+		src="../../resources/sbadmin2/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 	<!-- Core plugin JavaScript-->
 	<script
-		src="/resources/sbadmin2/vendor/jquery-easing/jquery.easing.min.js"></script>
+		src="../../resources/sbadmin2/vendor/jquery-easing/jquery.easing.min.js"></script>
 
 	<!-- Custom scripts for all pages-->
-	<script src="/resources/sbadmin2/js/sb-admin-2.min.js"></script>
+	<script src="../../resources/sbadmin2/js/sb-admin-2.min.js"></script>
 
 	<!-- Page level plugins -->
 	<script
-		src="/resources/sbadmin2/vendor/datatables/jquery.dataTables.min.js"></script>
+		src="../../resources/sbadmin2/vendor/datatables/jquery.dataTables.min.js"></script>
 	<script
-		src="/resources/sbadmin2/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+		src="../../resources/sbadmin2/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
 	<!-- Page level custom scripts -->
-	<script src="/resources/sbadmin2/js/demo/datatables-demo.js"></script>
+	<script src="../../resources/sbadmin2/js/demo/datatables-demo.js"></script>
 
 	<!-- SBAdmin2 JS END -->
 
 	<!--   Core JS Files   -->
-	<script src="/resources/assets/js/core/popper.min.js"></script>
-	<script src="/resources/assets/js/core/bootstrap.min.js"></script>
-	<script src="/resources/assets/js/plugins/perfect-scrollbar.min.js"></script>
-	<script src="/resources/assets/js/plugins/smooth-scrollbar.min.js"></script>
+	<script src="../../resources/assets/js/core/popper.min.js"></script>
+	<script src="../../resources/assets/js/core/bootstrap.min.js"></script>
+	<script src="../../resources/assets/js/plugins/perfect-scrollbar.min.js"></script>
+	<script src="../../resources/assets/js/plugins/smooth-scrollbar.min.js"></script>
 	<script>
     var win = navigator.platform.indexOf('Win') > -1;
     if (win && document.querySelector('#sidenav-scrollbar')) {
@@ -374,6 +370,6 @@ body {
 	<!-- Github buttons -->
 	<script async defer src="https://buttons.github.io/buttons.js"></script>
 	<!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
-	<script src="/resources/assets/js/material-dashboard.min.js?v=3.0.0"></script>
+	<script src="../../resources/assets/js/material-dashboard.min.js?v=3.0.0"></script>
 </BODY>
 </HTML>
