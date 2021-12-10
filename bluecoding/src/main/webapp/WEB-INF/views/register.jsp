@@ -173,7 +173,7 @@ body {
 		<input type="phone" name="phone"><br />
                 
         
-        <br><button class="btn" type="submit" id ="sumit" value="등록" /></button>
+        <br><input type="submit" id ="sumit" value="등록" /></button>
         
     </form>
     </div>
