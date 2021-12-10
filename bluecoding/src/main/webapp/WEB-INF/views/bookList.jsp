@@ -274,6 +274,23 @@
             <a onClick="javascript:history.back()" class="btn">돌아가기</a>
          </div>
          <!-- ======================= 버튼 끝 ========================== -->
+                                 <!-- Start Search Form -->
+                        <div class="search-form wow fadeInUp">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-12 p-0">
+                                    <div class="search-input">
+                                        <label for="keyword"><i class="lni lni-search-alt theme-color"></i></label>
+                                        <input type="text" name="keyword" id="keyword" placeholder="Product keyword">
+                                    </div>
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-12 p-0">
+                                    <div class="search-btn button">
+                                        <button class="btn"><i class="lni lni-search-alt"></i> Search</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Search Form -->
       </div>
       <div align="center"><a align="center">1</a>&nbsp;&nbsp;<a align="center">2</a>&nbsp;&nbsp;<a align="center">3</a>&nbsp;&nbsp;<a align="center">4</a>&nbsp;&nbsp;<a align="center">5</a></div>
       <br>
