@@ -56,18 +56,18 @@
                   <hr class="my-4">
                   <p id="title2">&nbsp;&nbsp;제목</p>
                   <div id="qna">
-                  &nbsp;&nbsp; 작성자 : 홍길동 &nbsp;&nbsp;&nbsp;&nbsp; YYYY-MM-DD HH-MM &nbsp;&nbsp;&nbsp;&nbsp;
-                        <!-- ======================= 버튼 ========================== -->
-                        <div class="button header-button">
-                           <a href="javascript:void(0)" class="btn">수정</a>
-                        </div>
-                        <div class="button header-button">
-                           <a href="javascript:void(0)" class="btn">삭제</a>
-                        </div>
-                        <div class="button header-button">
-                           <a href="javascript:void(0)" class="btn">신고하기</a>
-                        </div>
-                        <!-- ======================= 버튼 끝 ========================== -->                  
+                     &nbsp;&nbsp; 작성자 : 홍길동 &nbsp;&nbsp;&nbsp;&nbsp; YYYY-MM-DD HH-MM &nbsp;&nbsp;&nbsp;&nbsp;
+                     <!-- ======================= 버튼 ========================== -->
+                     <div class="button header-button">
+                        <a href="javascript:void(0)" class="btn">수정</a>
+                     </div>
+                     <div class="button header-button">
+                        <a href="javascript:void(0)" class="btn">삭제</a>
+                     </div>
+                     <div class="button header-button">
+                        <a href="javascript:void(0)" class="btn">신고하기</a>
+                     </div>
+                     <!-- ======================= 버튼 끝 ========================== -->                  
                   </div>
                   <div class="my-5">
                      <!-- * * * * * * * * * * * * * * *-->
@@ -111,7 +111,6 @@
             </div>
          </div>
       </main>
-      
       <!-- ==================== footer ====================== -->      
       <!-- footer -->
       <jsp:include page="/WEB-INF/views/include/footer.jsp"/>

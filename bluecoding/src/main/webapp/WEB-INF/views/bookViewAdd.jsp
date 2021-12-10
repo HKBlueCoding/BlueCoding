@@ -74,7 +74,8 @@
                            </div>
                         </div>
                      </div>
-                  </div><br>
+                  </div>
+                  <br>
                   <!-- ================== 카테고리 끝 ======================= -->
                   <div class="my-5">
                      <!-- * * * * * * * * * * * * * * *-->
@@ -90,18 +91,16 @@
                            <label for="name">제목</label>                          
                            <div class="invalid-feedback" data-sb-feedback="name:required">제목을 입력하세요.</div>
                         </div>
-                        
                         <br>
                         <div class="form-floating" id="formMag">
                            <textarea class="form-control" id="message" placeholder="Enter your message here..." style="height: 35rem" data-sb-validations="required"></textarea>
                            <div class="invalid-feedback" data-sb-feedback="message:required">내용을 입력하세요.</div>
                            <br><br>
                            <div id="Writer">
-                           		작가의 말
+                              &nbsp;작가의 말
                            </div>
-                           <textarea class="form-control" placeholder="Enter your message here..." style="height: 15rem"></textarea>                           
+                           <textarea class="form-control" placeholder="Enter your message here..." style="height: 15rem"></textarea>
                            <label for="message">내용</label>
-                           
                         </div>
                         <br />
                         <!-- Submit success message-->
@@ -127,6 +126,7 @@
                         <div class="button header-button">
                            <p>유료 여부 <input type="checkbox"></p>
                         </div>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
                         <div class="button header-button">
                            <a href="javascript:void(0)"  id="submitButton"  class="btn">등록</a>
                         </div>
