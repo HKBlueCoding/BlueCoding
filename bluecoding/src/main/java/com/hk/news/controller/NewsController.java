@@ -24,20 +24,19 @@ public class NewsController {
 		
 		return "event";
 	}
-	
-	
+
 	@GetMapping(value="/news/notice/view")
-	public String newsView() {
+	public String noticeView() {
 		
 		return "noticeView"; 
-	}	
-	@GetMapping(value="news/event/view")
+	}
+	
+	@GetMapping(value="/news/event/view")
 	public String eventView() {
 		
 		return "eventView";
 	}
 
-	
 	@GetMapping(value="/news/notice/update")
 	public String newsUpdate() {
 		

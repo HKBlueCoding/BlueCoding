@@ -45,7 +45,7 @@
    <body>
       <!-- header -->
       <jsp:include page="/WEB-INF/views/include/header.jsp"/>
-      <br><br><br><br>
+      <br><br><br><br><br><br><br><br>
       <!-- =================== 글쓰기 폼 ===================== -->
       <!-- Main Content-->
       <main class="mb-4">
