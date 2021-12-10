@@ -81,79 +81,46 @@ body {
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 	crossorigin="anonymous">
-<title>아이디 찾기</title>
+<title>Insert title here</title>
 <style>
-@import url("http://fonts.googleapis.com/earlyaccess/nanumgothic.css");
 
-html {
-	height: 100%;
-}
-
-body {
-	width: 100%;
-	height: 100%;
-	margin: 0;
-	padding-top: 200px;
-	padding-bottom: 40px;
-	font-family: "Nanum Gothic", arial, helvetica, sans-serif;
-	background-repeat: no-repeat;
-}
-
-.card {
-	margin: 0 auto; /* Added */
-	float: none; /* Added */
-	margin-bottom: 10px; /* Added */
-}
-
-#btn-Yes {
-	background-color: #e4932b;
-	border: none;
-}
-
-.form-signin .form-control {
-	position: relative;
-	height: auto;
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
-	padding: 10px;
-	font-size: 16px;
-}
-
-.card-title {
-	margin-left: 30px;
-}
-
-.links {
-	text-align: center;
-	margin-bottom: 10px;
-}
-
-a {
-	color: #f58b34;
-	text-decoration: none;
-}
-
-.text2 {
-	color: blue;
-}
 </style>
 </head>
 
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/include/header.jsp" />
+
+<div class=regForm  style="height:auto; width:60%;">
 <form id="bi">
-     <label for="name">Username</label><br />
+    <label for="id">아이디</label><br />
+        <input type="text" name="id" id="id" /><br />
+        
+    <label for="pwd">비밀번호</label><br />
+        <input type="password" name="pwd" id="pwd" /><br />
+        
+    <label for="find">비밀번호 찾기 질문</label><br />
+        <input type="text" name="find" id="find" /><br />
+        
+    <label for="name">회원 실명</label><br />
         <input type="text" name="name" id="name" /><br />
-    <label for="name">Email</label><br />
+        
+    <label for="nick">닉네임</label><br />
+        <input type="text" name="nick" id="nick" /><br />
+        
+    <label for="name">이메일</label><br />
         <input type="text" name="email" id="email" /><br />
-        <label for="pass">Password</label><br />
-        <input type="password" name="pass" id="pass" /><br />
-        <label for="pass-check">Confirm Password</label><br />
-        <input type="password" id="pass2" /><br />
-        <input type="submit" id ="sumit" value="SUMIT" />
+        
+    <label for="bith">생년월일</label><br />
+        <input type="date" id="birthdate"><br />
+        
+    <label for="phone">전화번호</label><br />
+		<input type="phone" name="phone"><br />
+                
+        
+        <br><input type="submit" id ="sumit" value="등록" />
     </form>
+    </div>
     <jsp:include page="/WEB-INF/views/include/footer.jsp" />
     
     <!-- ========================= ClassiGrids JS HERE ========================= -->
