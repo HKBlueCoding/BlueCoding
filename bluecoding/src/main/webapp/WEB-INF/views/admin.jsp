@@ -145,15 +145,15 @@
                 <div class="card-header pb-0">
                   <div class="row">
                     <div class="col-lg-6 col-7">
-                      <h6><a href="#">삭제된 책의 정보</a></h6>
-                      <h6 align="center">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">삭제된 회차[클릭]</a></h6>
+                      <h6><a href="#" onclick="bookOn()">삭제된 책의 정보</a></h6>
+                      <h6 align="center">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" onclick="pageOn()">삭제된 회차[클릭]</a></h6>
                     </div>
                     <div class="col-lg-6 col-4 my-auto text-end">
                       <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bookDel"> 더보기</button>
                     </div>
                   </div>
                 </div>
-                <div class="card-body px-0 pb-2">
+                <div id="bookList" class="card-body px-0 pb-2">
                   <div class="table-responsive">
                     <table class="table align-items-center mb-0">
                       <thead>
@@ -183,6 +183,36 @@
                     </table>
                   </div>
                 </div>
+                <div id="pageList" class="card-body px-0 pb-2" style="display:none; ">
+                  <div class="table-responsive">
+                    <table class="table align-items-center mb-0">
+                      <thead>
+                        <tr>
+                          <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">책이름</th>
+                          <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">회차</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td align="center">
+                            <span class="txt_line text-xs font-weight-bold"> 마법천자문 </span>
+                          </td>
+                          <td align="center">
+                            <span class="txt_line text-xs font-weight-bold"> 3회 비춰라 빛 광(光) </span>
+                          </td>
+                        </tr>
+                        <tr align="center">
+                          <td class="align-middle text-center text-sm">
+                            <span class="txt_line text-xs font-weight-bold"> 데미안 </span>
+                          </td>
+                          <td class="align-middle text-center text-sm">
+                            <span class="txt_line text-xs font-weight-bold"> 6화 야곱의 싸움 </span>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>				
               </div>
             </div>
             <!-- [삭제된 책 끝] -->
@@ -286,7 +316,7 @@
       </div>
     </section>
     <!-- css modal -->
-    <!-- [삭제된 책 정보] -->
+    <!-- [삭제된 책 정보&회차 Modal] -->
     <!-- The Modal -->
     <div class="modal" id="bookDel">
       <div class="modal-dialog modal-xl">
@@ -298,18 +328,18 @@
           </div>
           <!-- Modal body -->
           <div class="modal-body">
-            <div class="container-fluid py-4" style="height:auto; width:60%;">
+            <div id="bkDetails" class="container-fluid py-4" style="height:auto; width:60%;">
               <div class="row">
                 <div class="col-12">
                   <div class="card my-4">
                     <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                       <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                        <h6 class="text-white text-capitalize ps-3">작품 목록</h6>
+                        &nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-danger" onclick="bkModalOn()">책 정보</button>&nbsp;/&nbsp;<button type="button" class="btn btn-danger" onclick="pgModalOn()">회차 목록</button>
                       </div>
                     </div>
                     <div id="tbPadd" class="card-body px-0 pb-2">
                       <div class="table-responsive p-0">
-                        <table class="table align-items-center mb-0">
+                        <table id="bkDetails" class="table align-items-center mb-0">
                           <thead>
                             <tr>
                               <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">&nbsp;&nbsp;작성한 글</th>
@@ -390,6 +420,7 @@
                             </tr>
                           </tbody>
                         </table>
+                   
                       </div>
                     </div>
                   </div>
@@ -402,6 +433,74 @@
                 <input type="text" name="keyword" id="keyword" placeholder="검색하세요." align="center">
               </div>
             </div>
+
+            <div id="pgDetails" class="container-fluid py-4" style="height:auto; width:60%; display: none;">
+              <div class="row">
+                <div class="col-12">
+                  <div class="card my-4">
+                    <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                      <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+                        &nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-danger" onclick="bkModalOn()">책 정보</button>&nbsp;/&nbsp;<button type="button" class="btn btn-danger" onclick="pgModalOn()">회차 목록</button>
+                      </div>
+                    </div>
+                    <div id="tbPadd" class="card-body px-0 pb-2">
+                      <div class="table-responsive p-0">
+                        
+                        <!-- Modal IN 회차 내용 -->
+ 
+                        <table  class="table align-items-center mb-0">
+                          <thead>
+                            <tr>
+                              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">작성한글</th>
+                              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">회차</th>
+                              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">아이디</th>
+                              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">작성일</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td class="align-middle text-center text-sm">
+                              	<span class="text-secondary text-xs font-weight-bold">마법천자문</span>
+                              </td>
+                              <td class="align-middle text-center text-sm">
+                              	<span class="text-secondary text-xs font-weight-bold">3회 비춰라 빛 광(光)</span>
+                              </td>
+                              <td class="align-middle text-center text-sm">
+                              	<span class="text-secondary text-xs font-weight-bold">도굴꾼</span>
+                              </td>
+                              <td class="align-middle text-center">
+                              	<span class="text-secondary text-xs font-weight-bold">2021-11-05</span>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td class="align-middle text-center text-sm">
+                              	<span class="text-secondary text-xs font-weight-bold">이상한 나라의 엘리스</span>
+                              </td>
+                              <td class="align-middle text-center text-sm">
+                              	<span class="text-secondary text-xs font-weight-bold">3회 모자장수</span>
+                              </td>
+                              <td class="align-middle text-center text-sm">
+                              	<span class="text-secondary text-xs font-weight-bold">루이스 캐럴</span>
+                              </td>
+                              <td class="align-middle text-center">
+                              	<span class="text-secondary text-xs font-weight-bold">1903-11-1</span>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>          
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="search-input">
+                <label for="keyword">
+                  <i class="lni lni-search-alt theme-color"></i>
+                </label>
+                <input type="text" name="keyword" id="keyword" placeholder="검색하세요." align="center">
+              </div>
+            </div>
+            
           </div>
           <!-- Modal footer -->
           <div class="modal-footer">
@@ -411,8 +510,8 @@
       </div>
     </div>
     </div>
-    <!-- [삭제된 책 정보 끝 by modal] -->
-    <!-- [삭제된  게시글] -->
+    <!-- [삭제된 책 정보&회차 끝 by modal] -->
+    <!-- [삭제된  게시글 Modal] -->
     <!-- The Modal -->
     <div class="modal" id="boardDel">
       <div class="modal-dialog modal-xl">
@@ -534,7 +633,7 @@
       </div>
     </div>
     <!-- [삭제된  게시글 끝 by modal] -->
-    <!-- [수수료  내역] -->
+    <!-- [수수료  내역 Modal] -->
     <!-- The Modal -->
     <div class="modal" id="commList">
       <div class="modal-dialog modal-xl">

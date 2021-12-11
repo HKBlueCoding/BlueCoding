@@ -2,13 +2,12 @@
  * 
  */
 
-
-function chest1(){
-    	  
  	var aChest =  document.getElementById('aa');
  	var bChest =  document.getElementById('bb');  	  
  	var cChest =  document.getElementById('cc');
 	var dChest =  document.getElementById('dd');
+
+function chest1(){
 	
 	bChest.style.display = "none";
 	cChest.style.display = "none";
@@ -18,11 +17,6 @@ function chest1(){
 }
 
 function chest2(){
-    	  
- 	var aChest =  document.getElementById('aa');
- 	var bChest =  document.getElementById('bb');  	  
- 	var cChest =  document.getElementById('cc');
-	var dChest =  document.getElementById('dd');
 	
 	aChest.style.display = "none";
 	cChest.style.display = "none";
@@ -32,11 +26,6 @@ function chest2(){
 }
 
 function chest3(){
-    	  
- 	var aChest =  document.getElementById('aa');
- 	var bChest =  document.getElementById('bb');  	  
- 	var cChest =  document.getElementById('cc');
-	var dChest =  document.getElementById('dd');
 	
 	aChest.style.display = "none";
 	bChest.style.display = "none";
@@ -45,17 +34,18 @@ function chest3(){
 	 
 }
 
-function chest4(){
-    	  
- 	var aChest =  document.getElementById('aa');
- 	var bChest =  document.getElementById('bb');  	  
- 	var cChest =  document.getElementById('cc');
-	var dChest =  document.getElementById('dd');
-	
+function chest4(){	
 	aChest.style.display = "none";
 	bChest.style.display = "none";
 	cChest.style.display = "none";
 	dChest.style.display = "block";
 	
 	 
+}
+
+window.onload = function (){
+
+	bChest.style.display = "none";
+	cChest.style.display = "none";
+	dChest.style.display = "none";	
 }
