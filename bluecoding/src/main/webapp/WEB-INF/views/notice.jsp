@@ -58,6 +58,11 @@
   	padding-left: 1.5rem;
     padding-right: 1.5rem;
   }
+  .txt_line { 
+  	overflow:hidden; 
+  	text-overflow:ellipsis;
+ 	white-space:nowrap;  
+   }  
   </style>
 </head>
 
