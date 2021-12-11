@@ -45,14 +45,14 @@
    <body>
       <!-- header -->
       <jsp:include page="/WEB-INF/views/include/header.jsp"/>
-      <br><br><br><br>
+      <br><br><br><br><br><br><br><br>
       <!-- =================== 글쓰기 폼 ===================== -->
       <!-- Main Content-->
       <main class="mb-4">
          <div class="container px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5 justify-content-center">
                <div class="col-md-10 col-lg-8 col-xl-7">
-                  <p id="title">문의 내역</p>
+                  <p id="title">커뮤니티글 상세 보기</p>
                   <hr class="my-4">
                   <p id="title2">&nbsp;&nbsp;제목</p>
                   <div id="qna">

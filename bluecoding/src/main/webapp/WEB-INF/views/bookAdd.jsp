@@ -7,7 +7,7 @@
    <head>
       <meta charset="utf-8" />
       <meta http-equiv="x-ua-compatible" content="ie=edge" />
-      <title>뉴스 글쓰기</title>
+      <title>뉴스글 쓰기</title>
       <meta name="description" content="" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <link rel="shortcut icon" type="image/x-icon"
@@ -45,14 +45,14 @@
    <body>
       <!-- header -->
       <jsp:include page="/WEB-INF/views/include/header.jsp"/>
-      <br><br><br><br>
+      <br><br><br><br><br><br><br><br>
       <!-- =================== 글쓰기 폼 ===================== -->
       <!-- Main Content-->
       <main class="mb-4">
          <div class="container px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5 justify-content-center">
                <div class="col-md-10 col-lg-8 col-xl-7">
-                  <p id="title">뉴스 글쓰기</p>
+                  <p id="title">뉴스글 쓰기</p>
                   <hr class="my-4">
                   <!-- ================== 카테고리 ======================= -->
                   <div class="categorise search-form wow fadeInUp">
@@ -118,7 +118,7 @@
                            <a href="javascript:void(0)" class="btn">등록</a>
                         </div>
                         <div class="button header-button">
-                           <a onClick="javascript:history.back()" class="btn">돌아가기</a>
+                           <a onClick="funbtn()" class="btn">돌아가기</a>
                         </div>
                         <!-- ======================= 버튼 끝 ========================== -->
                      </form>
@@ -177,5 +177,14 @@
              }
          });
       </script>
+      <script>
+         function funbtn() {
+           if (confirm("이전 페이지로 돌아가시겠습니까??")) {
+             javascript:history.back();
+           } else {
+           	return;
+           }
+         }
+      </script>      
    </body>
 </html>

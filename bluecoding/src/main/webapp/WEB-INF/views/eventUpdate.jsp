@@ -7,11 +7,11 @@
    <head>
       <meta charset="utf-8" />
       <meta http-equiv="x-ua-compatible" content="ie=edge" />
-      <title>수정하기</title>
+      <title>이벤트글 수정</title>
       <meta name="description" content="" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <link rel="shortcut icon" type="image/x-icon"
-         href="../assets/images/favicon.svg" />
+         href="../../assets/images/favicon.svg" />
       <!-- Place favicon.ico in the root directory -->
       <!-- 1  -->
       <!-- Web Font -->
@@ -21,12 +21,12 @@
       <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap"
          rel="stylesheet">
       <!-- ========================= CSS here ========================= -->
-      <link rel="stylesheet" href="../resources/assets/css/bootstrap.min.css" />
-      <link rel="stylesheet" href="../resources/assets/css/LineIcons.2.0.css" />
-      <link rel="stylesheet" href="../resources/assets/css/animate.css" />
-      <link rel="stylesheet" href="../resources/assets/css/tiny-slider.css" />
-      <link rel="stylesheet" href="../resources/assets/css/glightbox.min.css" />
-      <link rel="stylesheet" href="../resources/assets/css/main.css" />
+      <link rel="stylesheet" href="../../resources/assets/css/bootstrap.min.css" />
+      <link rel="stylesheet" href="../../resources/assets/css/LineIcons.2.0.css" />
+      <link rel="stylesheet" href="../../resources/assets/css/animate.css" />
+      <link rel="stylesheet" href="../../resources/assets/css/tiny-slider.css" />
+      <link rel="stylesheet" href="../../resources/assets/css/glightbox.min.css" />
+      <link rel="stylesheet" href="../../resources/assets/css/main.css" />
       <!-- ============================== 글쓰기(startbootstrap-clean-blog-gh-pages) ============================== -->
       <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
       <!-- Font Awesome icons (free version)-->
@@ -35,7 +35,7 @@
       <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
       <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
       <!-- Core theme CSS (includes Bootstrap)-->
-      <link href="../resources/assets/css/styles.css" rel="stylesheet" />
+      <link href="../../resources/assets/css/styles.css" rel="stylesheet" />
       <style>
          .search-form{
          /* all: unset; */
@@ -45,14 +45,14 @@
    <body>
       <!-- header -->
       <jsp:include page="/WEB-INF/views/include/header.jsp"/>
-      <br><br><br><br>
+      <br><br><br><br><br><br><br><br>
       <!-- =================== 글쓰기 폼 ===================== -->
       <!-- Main Content-->
       <main class="mb-4">
          <div class="container px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5 justify-content-center">
                <div class="col-md-10 col-lg-8 col-xl-7">
-                  <p id="title">문의하기</p>
+                  <p id="title">이벤트글 수정</p>
                   <hr class="my-4">
                   <!-- ================== 카테고리 ======================= -->
                   <div class="categorise search-form wow fadeInUp">
@@ -121,7 +121,7 @@
                            <a href="qnaUpdateDone" class="btn">수정</a>
                         </div>
                         <div class="button header-button">
-                           <a onClick="javascript:history.back()" class="btn">돌아가기</a>
+                           <a onClick="funbtn()" class="btn">돌아가기</a>
                         </div>
                         <!-- ======================= 버튼 끝 ========================== -->
                      </form>
@@ -137,18 +137,18 @@
       <!-- Bootstrap core JS-->
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
       <!-- Core theme JS-->
-      <script src="../resources/assets/js/scripts.js"></script>
+      <script src="../../resources/assets/js/scripts.js"></script>
       <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
       <!-- * *                               SB Forms JS                               * *-->
       <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
       <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
       <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
       <!-- ========================= JS here ========================= -->
-      <script src="../resources/assets/js/bootstrap.min.js"></script>
-      <script src="../resources/assets/js/wow.min.js"></script>
-      <script src="../resources/assets/js/tiny-slider.js"></script>
-      <script src="../resources/assets/js/glightbox.min.js"></script>
-      <script src="../resources/assets/js/main.js"></script>
+      <script src="../../resources/assets/js/bootstrap.min.js"></script>
+      <script src="../../resources/assets/js/wow.min.js"></script>
+      <script src="../../resources/assets/js/tiny-slider.js"></script>
+      <script src="../../resources/assets/js/glightbox.min.js"></script>
+      <script src="../../resources/assets/js/main.js"></script>
       <script type="text/javascript">
          //========= Category Slider 
          tns({
@@ -180,5 +180,14 @@
              }
          });
       </script>
+      <script>
+         function funbtn() {
+           if (confirm("이전 페이지로 돌아가시겠습니까??")) {
+             javascript:history.back();
+           } else {
+           	return;
+           }
+         }
+      </script>      
    </body>
 </html>

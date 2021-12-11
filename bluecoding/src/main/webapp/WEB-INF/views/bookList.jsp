@@ -273,7 +273,7 @@
                   <a href="javascript:void(0)" class="btn">작품 올리기</a>
                </div>
                <div class="button header-button" style="width: 20%; margin-left: 1px; padding: 1px;">
-                  <a onClick="javascript:history.back()" class="btn">돌아가기</a>
+                  <a onClick="funbtn()" class="btn">돌아가기</a>
                </div>
                <div class="col-lg-4 col-md-4 col-12 p-0"  style="width: 30%;  margin-left: 100px;">
                   <div class="search-input">
@@ -364,5 +364,14 @@
       <script async defer src="https://buttons.github.io/buttons.js"></script>
       <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
       <script src="../resources/assets/js/material-dashboard.min.js?v=3.0.0"></script>
+      <script>
+         function funbtn() {
+           if (confirm("이전 페이지로 돌아가시겠습니까??")) {
+             javascript:history.back();
+           } else {
+           	return;
+           }
+         }
+      </script>      
    </body>
 </html>
