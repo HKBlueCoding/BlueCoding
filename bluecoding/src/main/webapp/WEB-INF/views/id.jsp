@@ -103,7 +103,7 @@
          font-size: 16px;
          }
          .card-title{
-         margin-left: 30px;
+         margin-top: 30px;
          }
          .links{
          text-align: center;
@@ -122,9 +122,9 @@
    <BODY>
       <jsp:include page="/WEB-INF/views/include/header.jsp" />
       <body cellpadding="0" cellspacing="0" marginleft="0" margintop="0" width="100%" height="100%" align="center">
-         <div class="card align-middle" style="width:25rem;">
-            <div class="card-title" style="margin-top:30px;">
-               <h2 class="card-title" style="color:#f58b34;"><img src="/resources/img/rabbit_logo.png"/></h2>
+         <div class="card align-middle" style="width:25rem;" align="center">
+            <div class="card-title" style="margin-top:30px;" align="center">
+               <img src="/resources/assets/images/logo/BlueNovel.png" style="max-width: 70%; height: auto;" /></h2>
             </div>
             <div class="card-body">
                <form action="findId" class="form-signin" method="POST">

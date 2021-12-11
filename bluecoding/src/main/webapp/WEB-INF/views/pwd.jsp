@@ -121,7 +121,7 @@ body {
 }
 
 .card-title {
-	margin-left: 30px;
+	margin-top: 30px;
 }
 
 .links {
@@ -146,11 +146,11 @@ a {
 	<div cellpadding="0" cellspacing="0" marginleft="0" margintop="0"
 		width="100%" height="100%" align="center">
 	
-		<div class="card align-middle" style="width: 25rem;">
-			<div class="card-title" style="margin-top: 30px;">
+		<div class="card align-middle" style="width: 25rem;" align="center">
+			<div class="card-title" style="margin-top: 0px;" align="center">
 
 				<h2 class="card-title" style="color: #f58b34;">
-					<img src="/resources/img/rabbit_logo.png" />
+					<img src="/resources/assets/images/logo/BlueNovel.png" style="max-width: 70%; height: auto;" /></h2>
 				</h2>
 			</div>
 
