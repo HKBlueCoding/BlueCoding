@@ -62,7 +62,7 @@
                         <a href="update" class="btn">수정</a>
                      </div>
                      <div class="button header-button">
-                        <a href="javascript:void(0)" class="btn">삭제</a>
+                        <a onClick="funok()" class="btn">삭제</a>
                      </div>
                      <div class="button header-button">
                         <a href="javascript:void(0)" class="btn">신고하기</a>
@@ -159,6 +159,15 @@
                  }
              }
          });
+      </script>
+      <script>
+         function funok() {
+           if (confirm("글을 정말 삭제하시겠습니까??")) {
+            alert("정상적으로 삭제되었습니다.")
+           } else {
+           	return;
+           }
+         }
       </script>
    </body>
 </html>

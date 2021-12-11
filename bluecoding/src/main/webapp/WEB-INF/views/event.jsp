@@ -4,7 +4,7 @@
 <html>
    <head>
       <meta charset="UTF-8">
-      <title>이벤트 목록</title>
+      <title>이벤트</title>
       <!-- Web Font -->
       <link
          href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
@@ -41,6 +41,9 @@
       <!-- CSS Files -->
       <link id="pagestyle" href="../resources/assets/css/material-dashboard.css?v=3.0.0" rel="stylesheet" />
       <!-- marerial CSS END -->    	
+      <!-- ====================== 페이징 ====================== -->
+      <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+      <!-- ====================== 페이징 끝 ====================== -->
       <style>
          body{
          background-image: url(../resources/assets/images/here/noticeBG.jpg);
@@ -68,11 +71,10 @@
                         <table class="table align-items-center mb-0">
                            <thead>
                               <tr>
-                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">작성한 글</th>
+                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">&nbsp;&nbsp;작성한 글</th>
                                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">작성자</th>
                                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">조회수</th>
                                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">작성일</th>
-                                 <th class="text-secondary opacity-7"></th>
                               </tr>
                            </thead>
                            <tbody>
@@ -80,224 +82,176 @@
                                  <td>
                                     <div class="d-flex px-2 py-1">
                                        <div>
-                                          <img src="../resources/assets/images/mainPage/board1.png" width="50" height="50" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
+                                          <img src="../resources/assets/images/mainPage/board1.png" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
                                        </div>
                                        <div class="d-flex flex-column justify-content-center">
-                                          <a href="event/view" class="mb-0 text-sm">제목입니다[0]</a>
-                                          <p class="text-xs text-secondary mb-0">글의 내용....</p>
+                                          <a href="/news/event/view" class="mb-0 text-sm" style="color: black">제목입니다[0]</a>
+                                          <p class="text-xs text-secondary mb-0">글의 내용...</p>
                                        </div>
                                     </div>
                                  </td>
-                                 <td>
-                                    <p class="text-xs font-weight-bold mb-0">LV 9999</p>
-                                    <p class="text-xs text-secondary mb-0">사용자1</p>
+                                 <td class="align-middle">
+                                    <span class="text-secondary text-xs font-weight-bold">아이디</span>
                                  </td>
                                  <td class="align-middle text-center text-sm">
-                                    <span class="badge badge-sm bg-gradient-success">100</span>
+                                    <span class="badge badge-sm bg-gradient-success" style="background-image: linear-gradient(180deg,#419cef 10%,#106ec3 100%);">100</span>
                                  </td>
                                  <td class="align-middle text-center">
                                     <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
-                                 </td>
-                                 <td class="align-middle">
-                                    <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                                    Edit
-                                    </a>
                                  </td>
                               </tr>
                               <tr>
                                  <td>
                                     <div class="d-flex px-2 py-1">
                                        <div>
-                                          <img src="../resources/assets/images/mainPage/board1.png" width="50" height="50" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
+                                          <img src="../resources/assets/images/mainPage/board1.png" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
                                        </div>
                                        <div class="d-flex flex-column justify-content-center">
-                                          <a href="event/view" class="mb-0 text-sm">제목입니다[0]</a>
-                                          <p class="text-xs text-secondary mb-0">글의 내용....</p>
+                                          <a href="/news/event/view" class="mb-0 text-sm" style="color: black">제목입니다[0]</a>
+                                          <p class="text-xs text-secondary mb-0">글의 내용...</p>
                                        </div>
                                     </div>
                                  </td>
-                                 <td>
-                                    <p class="text-xs font-weight-bold mb-0">LV 9999</p>
-                                    <p class="text-xs text-secondary mb-0">사용자1</p>
+                                 <td class="align-middle">
+                                    <span class="text-secondary text-xs font-weight-bold">아이디</span>
                                  </td>
                                  <td class="align-middle text-center text-sm">
-                                    <span class="badge badge-sm bg-gradient-success">100</span>
+                                    <span class="badge badge-sm bg-gradient-success" style="background-image: linear-gradient(180deg,#419cef 10%,#106ec3 100%);">100</span>
                                  </td>
                                  <td class="align-middle text-center">
                                     <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
-                                 </td>
-                                 <td class="align-middle">
-                                    <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                                    Edit
-                                    </a>
                                  </td>
                               </tr>
                               <tr>
                                  <td>
                                     <div class="d-flex px-2 py-1">
                                        <div>
-                                          <img src="../resources/assets/images/mainPage/board1.png" width="50" height="50" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
+                                          <img src="../resources/assets/images/mainPage/board1.png" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
                                        </div>
                                        <div class="d-flex flex-column justify-content-center">
-                                          <a href="event/view" class="mb-0 text-sm">제목입니다[0]</a>
-                                          <p class="text-xs text-secondary mb-0">글의 내용....</p>
+                                          <a href="/news/event/view" class="mb-0 text-sm" style="color: black">제목입니다[0]</a>
+                                          <p class="text-xs text-secondary mb-0">글의 내용...</p>
                                        </div>
                                     </div>
                                  </td>
-                                 <td>
-                                    <p class="text-xs font-weight-bold mb-0">LV 9999</p>
-                                    <p class="text-xs text-secondary mb-0">사용자1</p>
+                                 <td class="align-middle">
+                                    <span class="text-secondary text-xs font-weight-bold">아이디</span>
                                  </td>
                                  <td class="align-middle text-center text-sm">
-                                    <span class="badge badge-sm bg-gradient-success">100</span>
+                                    <span class="badge badge-sm bg-gradient-success" style="background-image: linear-gradient(180deg,#419cef 10%,#106ec3 100%);">100</span>
                                  </td>
                                  <td class="align-middle text-center">
                                     <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
-                                 </td>
-                                 <td class="align-middle">
-                                    <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                                    Edit
-                                    </a>
                                  </td>
                               </tr>
                               <tr>
                                  <td>
                                     <div class="d-flex px-2 py-1">
                                        <div>
-                                          <img src="../resources/assets/images/mainPage/board1.png" width="50" height="50" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
+                                          <img src="../resources/assets/images/mainPage/board1.png" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
                                        </div>
                                        <div class="d-flex flex-column justify-content-center">
-                                          <a href="event/view" class="mb-0 text-sm">제목입니다[0]</a>
-                                          <p class="text-xs text-secondary mb-0">글의 내용....</p>
+                                          <a href="/news/event/view" class="mb-0 text-sm" style="color: black">제목입니다[0]</a>
+                                          <p class="text-xs text-secondary mb-0">글의 내용...</p>
                                        </div>
                                     </div>
                                  </td>
-                                 <td>
-                                    <p class="text-xs font-weight-bold mb-0">LV 9999</p>
-                                    <p class="text-xs text-secondary mb-0">사용자1</p>
+                                 <td class="align-middle">
+                                    <span class="text-secondary text-xs font-weight-bold">아이디</span>
                                  </td>
                                  <td class="align-middle text-center text-sm">
-                                    <span class="badge badge-sm bg-gradient-success">100</span>
+                                    <span class="badge badge-sm bg-gradient-success" style="background-image: linear-gradient(180deg,#419cef 10%,#106ec3 100%);">100</span>
                                  </td>
                                  <td class="align-middle text-center">
                                     <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
-                                 </td>
-                                 <td class="align-middle">
-                                    <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                                    Edit
-                                    </a>
                                  </td>
                               </tr>
                               <tr>
                                  <td>
                                     <div class="d-flex px-2 py-1">
                                        <div>
-                                          <img src="../resources/assets/images/mainPage/board1.png" width="50" height="50" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
+                                          <img src="../resources/assets/images/mainPage/board1.png" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
                                        </div>
                                        <div class="d-flex flex-column justify-content-center">
-                                          <a href="event/view" class="mb-0 text-sm">제목입니다[0]</a>
-                                          <p class="text-xs text-secondary mb-0">글의 내용....</p>
+                                          <a href="/news/event/view" class="mb-0 text-sm" style="color: black">제목입니다[0]</a>
+                                          <p class="text-xs text-secondary mb-0">글의 내용...</p>
                                        </div>
                                     </div>
                                  </td>
-                                 <td>
-                                    <p class="text-xs font-weight-bold mb-0">LV 9999</p>
-                                    <p class="text-xs text-secondary mb-0">사용자1</p>
+                                 <td class="align-middle">
+                                    <span class="text-secondary text-xs font-weight-bold">아이디</span>
                                  </td>
                                  <td class="align-middle text-center text-sm">
-                                    <span class="badge badge-sm bg-gradient-success">100</span>
+                                    <span class="badge badge-sm bg-gradient-success" style="background-image: linear-gradient(180deg,#419cef 10%,#106ec3 100%);">100</span>
                                  </td>
                                  <td class="align-middle text-center">
                                     <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
-                                 </td>
-                                 <td class="align-middle">
-                                    <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                                    Edit
-                                    </a>
                                  </td>
                               </tr>
                               <tr>
                                  <td>
                                     <div class="d-flex px-2 py-1">
                                        <div>
-                                          <img src="../resources/assets/images/mainPage/board1.png" width="50" height="50" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
+                                          <img src="../resources/assets/images/mainPage/board1.png" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
                                        </div>
                                        <div class="d-flex flex-column justify-content-center">
-                                          <a href="event/view" class="mb-0 text-sm">제목입니다[0]</a>
-                                          <p class="text-xs text-secondary mb-0">글의 내용....</p>
+                                          <a href="/news/event/view" class="mb-0 text-sm" style="color: black">제목입니다[0]</a>
+                                          <p class="text-xs text-secondary mb-0">글의 내용...</p>
                                        </div>
                                     </div>
                                  </td>
-                                 <td>
-                                    <p class="text-xs font-weight-bold mb-0">LV 9999</p>
-                                    <p class="text-xs text-secondary mb-0">사용자1</p>
+                                 <td class="align-middle">
+                                    <span class="text-secondary text-xs font-weight-bold">아이디</span>
                                  </td>
                                  <td class="align-middle text-center text-sm">
-                                    <span class="badge badge-sm bg-gradient-success">100</span>
+                                    <span class="badge badge-sm bg-gradient-success" style="background-image: linear-gradient(180deg,#419cef 10%,#106ec3 100%);">100</span>
                                  </td>
                                  <td class="align-middle text-center">
                                     <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
-                                 </td>
-                                 <td class="align-middle">
-                                    <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                                    Edit
-                                    </a>
                                  </td>
                               </tr>
                               <tr>
                                  <td>
                                     <div class="d-flex px-2 py-1">
                                        <div>
-                                          <img src="../resources/assets/images/mainPage/board1.png" width="50" height="50" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
+                                          <img src="../resources/assets/images/mainPage/board1.png" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
                                        </div>
                                        <div class="d-flex flex-column justify-content-center">
-                                          <a href="event/view" class="mb-0 text-sm">제목입니다[0]</a>
-                                          <p class="text-xs text-secondary mb-0">글의 내용....</p>
+                                          <a href="/news/event/view" class="mb-0 text-sm" style="color: black">제목입니다[0]</a>
+                                          <p class="text-xs text-secondary mb-0">글의 내용...</p>
                                        </div>
                                     </div>
                                  </td>
-                                 <td>
-                                    <p class="text-xs font-weight-bold mb-0">LV 9999</p>
-                                    <p class="text-xs text-secondary mb-0">사용자1</p>
+                                 <td class="align-middle">
+                                    <span class="text-secondary text-xs font-weight-bold">아이디</span>
                                  </td>
                                  <td class="align-middle text-center text-sm">
-                                    <span class="badge badge-sm bg-gradient-success">100</span>
+                                    <span class="badge badge-sm bg-gradient-success" style="background-image: linear-gradient(180deg,#419cef 10%,#106ec3 100%);">100</span>
                                  </td>
                                  <td class="align-middle text-center">
                                     <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
-                                 </td>
-                                 <td class="align-middle">
-                                    <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                                    Edit
-                                    </a>
                                  </td>
                               </tr>
                               <tr>
                                  <td>
                                     <div class="d-flex px-2 py-1">
                                        <div>
-                                          <img src="../resources/assets/images/mainPage/board1.png" width="50" height="50" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
+                                          <img src="../resources/assets/images/mainPage/board1.png" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
                                        </div>
                                        <div class="d-flex flex-column justify-content-center">
-                                          <a href="event/view" class="mb-0 text-sm">제목입니다[0]</a>
-                                          <p class="text-xs text-secondary mb-0">글의 내용....</p>
+                                          <a href="/news/event/view" class="mb-0 text-sm" style="color: black">제목입니다[0]</a>
+                                          <p class="text-xs text-secondary mb-0">글의 내용...</p>
                                        </div>
                                     </div>
                                  </td>
-                                 <td>
-                                    <p class="text-xs font-weight-bold mb-0">LV 9999</p>
-                                    <p class="text-xs text-secondary mb-0">사용자1</p>
+                                 <td class="align-middle">
+                                    <span class="text-secondary text-xs font-weight-bold">아이디</span>
                                  </td>
                                  <td class="align-middle text-center text-sm">
-                                    <span class="badge badge-sm bg-gradient-success">100</span>
+                                    <span class="badge badge-sm bg-gradient-success" style="background-image: linear-gradient(180deg,#419cef 10%,#106ec3 100%);">100</span>
                                  </td>
                                  <td class="align-middle text-center">
                                     <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
-                                 </td>
-                                 <td class="align-middle">
-                                    <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                                    Edit
-                                    </a>
                                  </td>
                               </tr>
                            </tbody>
@@ -331,7 +285,19 @@
          </div>
          <!-- End Search Form -->
       </div>
-      <div align="center"><a align="center">1</a>&nbsp;&nbsp;<a align="center">2</a>&nbsp;&nbsp;<a align="center">3</a>&nbsp;&nbsp;<a align="center">4</a>&nbsp;&nbsp;<a align="center">5</a></div>
+      <!-- ====================== 페이징 ====================== -->
+      <div class="w3-center">
+         <div class="w3-bar">
+            <a href="#" class="w3-button">«</a>
+            <a href="#" class="w3-button w3-blue">1</a>
+            <a href="#" class="w3-button">2</a>
+            <a href="#" class="w3-button">3</a>
+            <a href="#" class="w3-button">4</a>
+            <a href="#" class="w3-button">5</a>
+            <a href="#" class="w3-button">»</a>
+         </div>
+      </div>
+      <!-- ====================== 페이징 끝 ====================== -->
       <br>
       <br>
       <jsp:include page="/WEB-INF/views/include/footer.jsp" />
@@ -413,6 +379,6 @@
            	return;
            }
          }
-      </script>  
+      </script>      
    </body>
 </html>

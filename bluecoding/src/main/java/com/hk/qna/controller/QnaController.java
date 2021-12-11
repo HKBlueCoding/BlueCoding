@@ -9,7 +9,7 @@ public class QnaController {
 	@GetMapping("/qna/home")
 	public String qnaList() {
 		
-		return "qnaList";
+		return "qnaHome";
 	}
 	
 	@GetMapping("/qna/add")

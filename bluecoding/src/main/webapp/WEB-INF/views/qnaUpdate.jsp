@@ -45,7 +45,7 @@
    <body>
       <!-- header -->
       <jsp:include page="/WEB-INF/views/include/header.jsp"/>
-      <br><br><br><br>
+      <br><br><br><br><br><br><br><br>
       <!-- =================== 글쓰기 폼 ===================== -->
       <!-- Main Content-->
       <main class="mb-4">
@@ -118,10 +118,10 @@
                         <button class="btn btn-primary text-uppercase disabled"  id="submitButton" type="submit">이미지 선택(바꿔야 됨)</button>
                         <!-- ======================= 버튼 ========================== -->
                         <div class="button header-button">
-                           <a href="qnaUpdateDone" class="btn">수정</a>
+                           <a onClick="funok()" class="btn">수정</a>
                         </div>
                         <div class="button header-button">
-                           <a onClick="javascript:history.back()" class="btn">돌아가기</a>
+                           <a onClick="funbtn()" class="btn">돌아가기</a>
                         </div>
                         <!-- ======================= 버튼 끝 ========================== -->
                      </form>
@@ -179,6 +179,25 @@
                  }
              }
          });
+      </script>
+      <script>
+         function funbtn() {
+           if (confirm("이전 페이지로 돌아가시겠습니까??")) {
+             javascript:history.back();
+           } else {
+           	return;
+           }
+         }
+      </script>    
+      <script>
+         function funok() {
+           if (alert("정상적으로 수정되었습니다.") == true) {
+            
+           } else {
+            alert("수정에 실패하였습니다.")
+           	   return;
+           }
+         }
       </script>
    </body>
 </html>

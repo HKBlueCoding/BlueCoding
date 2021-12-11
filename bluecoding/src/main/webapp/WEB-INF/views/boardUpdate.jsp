@@ -98,7 +98,7 @@
                         <button class="btn btn-primary text-uppercase disabled"  id="submitButton" type="submit">이미지 선택(바꿔야 됨)</button>
                         <!-- ======================= 버튼 ========================== -->
                         <div class="button header-button">
-                           <a href="boardUpdateDone" class="btn">수정</a>
+                           <a onClick="funok()" class="btn">수정</a>
                         </div>
                         <div class="button header-button">
                            <a onClick="funbtn()" class="btn">돌아가기</a>
@@ -169,5 +169,15 @@
            }
          }
       </script>      
+      <script>
+         function funok() {
+           if (alert("정상적으로 수정되었습니다.") == true) {
+            
+           } else {
+            alert("수정에 실패하였습니다.")
+           	   return;
+           }
+         }
+      </script>
    </body>
 </html>

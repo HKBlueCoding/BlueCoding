@@ -41,6 +41,9 @@
       <!-- CSS Files -->
       <link id="pagestyle" href="../resources/assets/css/material-dashboard.css?v=3.0.0" rel="stylesheet" />
       <!-- marerial CSS END -->    	
+      <!-- ====================== 페이징 ====================== -->
+      <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+      <!-- ====================== 페이징 끝 ====================== -->      
       <style>
          body{
          background-image: url(../resources/assets/images/here/noticeBG.jpg);
@@ -282,7 +285,19 @@
          </div>
          <!-- End Search Form -->
       </div>
-      <div align="center"><a align="center">1</a>&nbsp;&nbsp;<a align="center">2</a>&nbsp;&nbsp;<a align="center">3</a>&nbsp;&nbsp;<a align="center">4</a>&nbsp;&nbsp;<a align="center">5</a></div>
+      <!-- ====================== 페이징 ====================== -->
+      <div class="w3-center">
+         <div class="w3-bar">
+            <a href="#" class="w3-button">«</a>
+            <a href="#" class="w3-button w3-blue">1</a>
+            <a href="#" class="w3-button">2</a>
+            <a href="#" class="w3-button">3</a>
+            <a href="#" class="w3-button">4</a>
+            <a href="#" class="w3-button">5</a>
+            <a href="#" class="w3-button">»</a>
+         </div>
+      </div>
+      <!-- ====================== 페이징 끝 ====================== -->
       <br>
       <br>
       <jsp:include page="/WEB-INF/views/include/footer.jsp" />

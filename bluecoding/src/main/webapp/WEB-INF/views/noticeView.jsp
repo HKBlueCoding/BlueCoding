@@ -4,7 +4,7 @@
 <html>
    <head>
       <meta charset="UTF-8">
-      <title>공지사항</title>
+      <title>공지사항 상세 보기</title>
       <!-- Web Font -->
       <link
          href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
@@ -41,6 +41,9 @@
       <!-- CSS Files -->
       <link id="pagestyle" href="../../resources/assets/css/material-dashboard.css?v=3.0.0" rel="stylesheet" />
       <!-- marerial CSS END -->    	
+      <!-- ====================== 페이징 ====================== -->
+      <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+      <!-- ====================== 페이징 끝 ====================== -->
       <style>
          body{
          background-image: url(../../resources/assets/images/here/noticeBG.jpg);
@@ -62,7 +65,7 @@
                   <div style="width: 100%; padding: 1px;">
                      <div style="width: 100%; padding: 1px;">
                         <div style="width: 100%; padding: 1px;">
-                           <p id="title" style="font-size: 40px;">공지사항</p>
+                           <p id="title" style="font-size: 40px;">공지사항 상세 보기</p>
                            <hr class="my-4" style="width: 70%;">
                            <p id="title2" style="font-size: 30px;">&nbsp;&nbsp;제목</p>
                         </div>
@@ -101,10 +104,10 @@
          <!-- ======================= 버튼 ========================== -->
          <div align="right" style="width: 100%;">
             <div class="button header-button">
-               <a href="javascript:void(0)" class="btn">수정</a>
+               <a href="../notice/update" class="btn">수정</a>
             </div>
             <div class="button header-button">
-               <a href="javascript:void(0)" class="btn">삭제</a>
+               <a onClick="funok()" class="btn">삭제</a>
             </div>
             <div class="button header-button">
                <a href="javascript:void(0)" class="btn">신고하기</a>
@@ -145,7 +148,7 @@
                                           <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">수정</a>
                                        </div>
                                        <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">삭제</a>
+                                          <a onClick="funok2()" class="btn" style="background-color: #30d8e0;">삭제</a>
                                        </div>
                                        <div class="button header-button">
                                           <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">신고하기</a>
@@ -173,7 +176,7 @@
                                           <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">수정</a>
                                        </div>
                                        <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">삭제</a>
+                                          <a onClick="funok2()" class="btn" style="background-color: #30d8e0;">삭제</a>
                                        </div>
                                        <div class="button header-button">
                                           <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">신고하기</a>
@@ -201,7 +204,7 @@
                                           <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">수정</a>
                                        </div>
                                        <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">삭제</a>
+                                          <a onClick="funok2()" class="btn" style="background-color: #30d8e0;">삭제</a>
                                        </div>
                                        <div class="button header-button">
                                           <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">신고하기</a>
@@ -229,7 +232,7 @@
                                           <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">수정</a>
                                        </div>
                                        <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">삭제</a>
+                                          <a onClick="funok2()" class="btn" style="background-color: #30d8e0;">삭제</a>
                                        </div>
                                        <div class="button header-button">
                                           <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">신고하기</a>
@@ -257,7 +260,7 @@
                                           <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">수정</a>
                                        </div>
                                        <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">삭제</a>
+                                          <a onClick="funok2()" class="btn" style="background-color: #30d8e0;">삭제</a>
                                        </div>
                                        <div class="button header-button">
                                           <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">신고하기</a>
@@ -285,7 +288,7 @@
                                           <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">수정</a>
                                        </div>
                                        <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">삭제</a>
+                                          <a onClick="funok2()" class="btn" style="background-color: #30d8e0;">삭제</a>
                                        </div>
                                        <div class="button header-button">
                                           <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">신고하기</a>
@@ -313,7 +316,7 @@
                                           <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">수정</a>
                                        </div>
                                        <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">삭제</a>
+                                          <a onClick="funok2()" class="btn" style="background-color: #30d8e0;">삭제</a>
                                        </div>
                                        <div class="button header-button">
                                           <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">신고하기</a>
@@ -341,7 +344,7 @@
                                           <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">수정</a>
                                        </div>
                                        <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">삭제</a>
+                                          <a onClick="funok2()" class="btn" style="background-color: #30d8e0;">삭제</a>
                                        </div>
                                        <div class="button header-button">
                                           <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">신고하기</a>
@@ -369,7 +372,7 @@
                                           <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">수정</a>
                                        </div>
                                        <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">삭제</a>
+                                          <a onClick="funok2()" class="btn" style="background-color: #30d8e0;">삭제</a>
                                        </div>
                                        <div class="button header-button">
                                           <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">신고하기</a>
@@ -397,7 +400,7 @@
                                           <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">수정</a>
                                        </div>
                                        <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">삭제</a>
+                                          <a onClick="funok2()" class="btn" style="background-color: #30d8e0;">삭제</a>
                                        </div>
                                        <div class="button header-button">
                                           <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">신고하기</a>
@@ -425,7 +428,7 @@
                                           <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">수정</a>
                                        </div>
                                        <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">삭제</a>
+                                          <a onClick="funok2()" class="btn" style="background-color: #30d8e0;">삭제</a>
                                        </div>
                                        <div class="button header-button">
                                           <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">신고하기</a>
@@ -453,7 +456,7 @@
                                           <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">수정</a>
                                        </div>
                                        <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">삭제</a>
+                                          <a onClick="funok2()" class="btn" style="background-color: #30d8e0;">삭제</a>
                                        </div>
                                        <div class="button header-button">
                                           <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">신고하기</a>
@@ -481,7 +484,7 @@
                                           <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">수정</a>
                                        </div>
                                        <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">삭제</a>
+                                          <a onClick="funok2()" class="btn" style="background-color: #30d8e0;">삭제</a>
                                        </div>
                                        <div class="button header-button">
                                           <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">신고하기</a>
@@ -509,7 +512,7 @@
                                           <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">수정</a>
                                        </div>
                                        <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">삭제</a>
+                                          <a onClick="funok2()" class="btn" style="background-color: #30d8e0;">삭제</a>
                                        </div>
                                        <div class="button header-button">
                                           <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">신고하기</a>
@@ -537,7 +540,7 @@
                                           <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">수정</a>
                                        </div>
                                        <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">삭제</a>
+                                          <a onClick="funok2()" class="btn" style="background-color: #30d8e0;">삭제</a>
                                        </div>
                                        <div class="button header-button">
                                           <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">신고하기</a>
@@ -565,7 +568,7 @@
                                           <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">수정</a>
                                        </div>
                                        <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">삭제</a>
+                                          <a onClick="funok2()" class="btn" style="background-color: #30d8e0;">삭제</a>
                                        </div>
                                        <div class="button header-button">
                                           <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">신고하기</a>
@@ -612,16 +615,28 @@
             <!-- ======================= 버튼 ========================== -->
             <div align="center">
                <div class="button header-button">
-                  <a href="javascript:void(0)"  id="submitButton"  class="btn">댓글 등록</a>
+                  <a onClick="funok3()"  id="submitButton"  class="btn">댓글 등록</a>
                </div>
                <div class="button header-button">
-                  <a onClick="javascript:history.back()"class="btn">돌아가기</a>
+                  <a onClick="funbtn()" class="btn">돌아가기</a>
                </div>
             </div>
             <!-- ======================= 버튼 끝 ========================== -->
          </form>
       </div>
-      <div align="center"><a align="center">1</a>&nbsp;&nbsp;<a align="center">2</a>&nbsp;&nbsp;<a align="center">3</a>&nbsp;&nbsp;<a align="center">4</a>&nbsp;&nbsp;<a align="center">5</a></div>
+      <!-- ====================== 페이징 ====================== -->
+      <div class="w3-center">
+         <div class="w3-bar">
+            <a href="#" class="w3-button">«</a>
+            <a href="#" class="w3-button w3-blue">1</a>
+            <a href="#" class="w3-button">2</a>
+            <a href="#" class="w3-button">3</a>
+            <a href="#" class="w3-button">4</a>
+            <a href="#" class="w3-button">5</a>
+            <a href="#" class="w3-button">»</a>
+         </div>
+      </div>
+      <!-- ====================== 페이징 끝 ====================== -->
       <br>
       <br>
       <jsp:include page="/WEB-INF/views/include/footer.jsp" />
@@ -740,5 +755,42 @@
       <script async defer src="https://buttons.github.io/buttons.js"></script>
       <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
       <script src="../../resources/assets/js/material-dashboard.min.js?v=3.0.0"></script>
+      <script>
+         function funbtn() {
+           if (confirm("이전 페이지로 돌아가시겠습니까??")) {
+             javascript:history.back();
+           } else {
+           	return;
+           }
+         }
+      </script>  
+      <script>
+         function funok() {
+           if (confirm("글을 정말 삭제하시겠습니까??")) {
+            alert("정상적으로 삭제되었습니다.")
+           } else {
+           	return;
+           }
+         }
+      </script>
+      <script>
+         function funok2() {
+           if (confirm("글을 정말 삭제하시겠습니까??")) {
+            alert("정상적으로 삭제되었습니다.")
+           } else {
+           	return;
+           }
+         }
+      </script>
+      <script>
+         function funok3() {
+           if (alert("정상적으로 등록되었습니다.") == true) {
+            
+           } else {
+            alert("등록에 실패하였습니다.")
+           	   return;
+           }
+         }
+      </script>
    </body>
 </html>

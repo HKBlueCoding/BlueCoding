@@ -40,7 +40,10 @@
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
       <!-- CSS Files -->
       <link id="pagestyle" href="../resources/assets/css/material-dashboard.css?v=3.0.0" rel="stylesheet" />
-      <!-- marerial CSS END -->    	
+      <!-- marerial CSS END -->
+      <!-- ====================== 페이징 ====================== -->
+      <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+      <!-- ====================== 페이징 끝 ====================== -->
       <style>
          body{
          background-image: url(../resources/assets/images/here/noticeBG.jpg);
@@ -82,7 +85,7 @@
                                           <img src="../resources/assets/images/mainPage/board1.png" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
                                        </div>
                                        <div class="d-flex flex-column justify-content-center">
-                                          <a href="add" class="mb-0 text-sm" style="color: black">제목입니다[0]</a>
+                                          <a href="view" class="mb-0 text-sm" style="color: black">제목입니다[0]</a>
                                           <p class="text-xs text-secondary mb-0">장르</p>
                                           <p class="text-xs text-secondary mb-0">댓글(개수)</p>
                                        </div>
@@ -270,7 +273,7 @@
          <div class="search-form wow fadeInUp" style="margin: 1px; padding: 1px;">
             <div class="row">
                <div class="button header-button" style="width: 13%; margin-left: 50px; padding: 1px;">
-                  <a href="javascript:void(0)" class="btn">작품 올리기</a>
+                  <a href="add" class="btn">작품 올리기</a>
                </div>
                <div class="button header-button" style="width: 20%; margin-left: 1px; padding: 1px;">
                   <a onClick="funbtn()" class="btn">돌아가기</a>
@@ -290,7 +293,19 @@
          </div>
          <!-- End Search Form -->
       </div>
-      <div align="center"><a align="center">1</a>&nbsp;&nbsp;<a align="center">2</a>&nbsp;&nbsp;<a align="center">3</a>&nbsp;&nbsp;<a align="center">4</a>&nbsp;&nbsp;<a align="center">5</a></div>
+      <!-- ====================== 페이징 ====================== -->
+      <div class="w3-center">
+         <div class="w3-bar">
+            <a href="#" class="w3-button">«</a>
+            <a href="#" class="w3-button w3-blue">1</a>
+            <a href="#" class="w3-button">2</a>
+            <a href="#" class="w3-button">3</a>
+            <a href="#" class="w3-button">4</a>
+            <a href="#" class="w3-button">5</a>
+            <a href="#" class="w3-button">»</a>
+         </div>
+      </div>
+      <!-- ====================== 페이징 끝 ====================== -->
       <br>
       <br>
       <jsp:include page="/WEB-INF/views/include/footer.jsp" />

@@ -62,11 +62,8 @@
                               <label for="category"></label>
                               <select name="category" id="category"  required>
                                  <option value="none" selected disabled>카테고리</option>
-                                 <option value="none">계정 관련</option>
-                                 <option value="none">책 관련</option>
-                                 <option value="none">충전 관련</option>
-                                 <option value="none">신고 관련</option>
-                                 <option value="none">기타</option>
+                                 <option value="none">공지사항</option>
+                                 <option value="none">이벤트</option>
                               </select>
                            </div>
                         </div>
@@ -118,7 +115,7 @@
                         <button class="btn btn-primary text-uppercase disabled"  id="submitButton" type="submit">이미지 선택(바꿔야 됨)</button>
                         <!-- ======================= 버튼 ========================== -->
                         <div class="button header-button">
-                           <a href="qnaUpdateDone" class="btn">수정</a>
+                           <a onClick="funok()" class="btn">수정</a>
                         </div>
                         <div class="button header-button">
                            <a onClick="funbtn()" class="btn">돌아가기</a>
@@ -188,6 +185,16 @@
            	return;
            }
          }
-      </script>      
+      </script>
+      <script>
+         function funok() {
+           if (alert("정상적으로 수정되었습니다.") == true) {
+            
+           } else {
+            alert("수정에 실패하였습니다.")
+           	   return;
+           }
+         }
+      </script>
    </body>
 </html>

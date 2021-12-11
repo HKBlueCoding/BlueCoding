@@ -45,7 +45,7 @@
    <body>
       <!-- header -->
       <jsp:include page="/WEB-INF/views/include/header.jsp"/>
-      <br><br><br><br>
+      <br><br><br><br><br><br><br><br>
       <!-- =================== 글쓰기 폼 ===================== -->
       <!-- Main Content-->
       <main class="mb-4">
@@ -115,7 +115,7 @@
                         <button class="btn btn-primary text-uppercase disabled"  id="submitButton" type="submit">사진 입력하기(바꿔야 됨)</button>
                         <!-- ======================= 버튼 ========================== -->
                         <div class="button header-button">
-                           <a href="javascript:void(0)" class="btn">등록</a>
+                           <a onClick="funok()" class="btn">등록</a>
                         </div>
                         <div class="button header-button">
                            <a onClick="funbtn()" class="btn">돌아가기</a>
@@ -183,6 +183,16 @@
              javascript:history.back();
            } else {
            	return;
+           }
+         }
+      </script>
+      <script>
+         function funok() {
+           if (alert("정상적으로 등록되었습니다.") == true) {
+            
+           } else {
+            alert("등록에 실패하였습니다.")
+           	   return;
            }
          }
       </script>
