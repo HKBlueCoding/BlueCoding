@@ -111,7 +111,7 @@
                                           <img src="../resources/assets/images/mainPage/board1.png" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
                                        </div>
                                        <div class="d-flex flex-column justify-content-center">
-                                          <a href="add" class="mb-0 text-sm" style="color: black">제목입니다[0]</a>
+                                          <a href="view" class="mb-0 text-sm" style="color: black">제목입니다[0]</a>
                                           <p class="text-xs text-secondary mb-0">장르</p>
                                           <p class="text-xs text-secondary mb-0">댓글(개수)</p>
                                        </div>
@@ -134,7 +134,7 @@
                                           <img src="../resources/assets/images/mainPage/board1.png" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
                                        </div>
                                        <div class="d-flex flex-column justify-content-center">
-                                          <a href="add" class="mb-0 text-sm" style="color: black">제목입니다[0]</a>
+                                          <a href="view" class="mb-0 text-sm" style="color: black">제목입니다[0]</a>
                                           <p class="text-xs text-secondary mb-0">장르</p>
                                           <p class="text-xs text-secondary mb-0">댓글(개수)</p>
                                        </div>
@@ -157,7 +157,7 @@
                                           <img src="../resources/assets/images/mainPage/board1.png" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
                                        </div>
                                        <div class="d-flex flex-column justify-content-center">
-                                          <a href="add" class="mb-0 text-sm" style="color: black">제목입니다[0]</a>
+                                          <a href="view" class="mb-0 text-sm" style="color: black">제목입니다[0]</a>
                                           <p class="text-xs text-secondary mb-0">장르</p>
                                           <p class="text-xs text-secondary mb-0">댓글(개수)</p>
                                        </div>
@@ -180,7 +180,7 @@
                                           <img src="../resources/assets/images/mainPage/board1.png" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
                                        </div>
                                        <div class="d-flex flex-column justify-content-center">
-                                          <a href="add" class="mb-0 text-sm" style="color: black">제목입니다[0]</a>
+                                          <a href="view" class="mb-0 text-sm" style="color: black">제목입니다[0]</a>
                                           <p class="text-xs text-secondary mb-0">장르</p>
                                           <p class="text-xs text-secondary mb-0">댓글(개수)</p>
                                        </div>
@@ -203,7 +203,7 @@
                                           <img src="../resources/assets/images/mainPage/board1.png" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
                                        </div>
                                        <div class="d-flex flex-column justify-content-center">
-                                          <a href="add" class="mb-0 text-sm" style="color: black">제목입니다[0]</a>
+                                          <a href="view" class="mb-0 text-sm" style="color: black">제목입니다[0]</a>
                                           <p class="text-xs text-secondary mb-0">장르</p>
                                           <p class="text-xs text-secondary mb-0">댓글(개수)</p>
                                        </div>
@@ -226,7 +226,7 @@
                                           <img src="../resources/assets/images/mainPage/board1.png" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
                                        </div>
                                        <div class="d-flex flex-column justify-content-center">
-                                          <a href="add" class="mb-0 text-sm" style="color: black">제목입니다[0]</a>
+                                          <a href="view" class="mb-0 text-sm" style="color: black">제목입니다[0]</a>
                                           <p class="text-xs text-secondary mb-0">장르</p>
                                           <p class="text-xs text-secondary mb-0">댓글(개수)</p>
                                        </div>
@@ -249,7 +249,7 @@
                                           <img src="../resources/assets/images/mainPage/board1.png" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
                                        </div>
                                        <div class="d-flex flex-column justify-content-center">
-                                          <a href="add" class="mb-0 text-sm" style="color: black">제목입니다[0]</a>
+                                          <a href="view" class="mb-0 text-sm" style="color: black">제목입니다[0]</a>
                                           <p class="text-xs text-secondary mb-0">장르</p>
                                           <p class="text-xs text-secondary mb-0">댓글(개수)</p>
                                        </div>
