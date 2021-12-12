@@ -29,3 +29,20 @@ function pgModalOn() {
 	pgDetails.style.display = "block";
 		
 }
+
+/* [어드민 아이디] */
+
+function adRegister(){
+	
+	var adId = prompt('아이디를 입력하세요');
+	if(adId == null){ return; } 
+	var adPwd = prompt('입력한 아이디:'+ adId+'\n비밀번호를 입력하세요');
+	
+	
+}
+
+/* [이달의 수익] */
+
+function monthComm(){
+	alert(3+'월\n이달의 수익은 '+ 99999 +'원 입니다.');
+}

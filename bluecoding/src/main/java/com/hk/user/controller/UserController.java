@@ -25,6 +25,12 @@ public class UserController {
 		return "pwd";
 	}
 	
+	@RequestMapping(value="/user/info", method=RequestMethod.GET)
+	public String userInfo() {
+		
+		return "userInfo";
+	}
+	
 	@RequestMapping(value="/user/chest", method=RequestMethod.GET)
 	public String userChest() {
 		

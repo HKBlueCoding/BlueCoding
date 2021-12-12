@@ -104,7 +104,9 @@
                 <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
                   <!-- *상담원조회* -->
                   <div class="card">
-                    <div class="card-footer p-3"><button type="button" class="btn btn-secondary">관리자/상담원 아이디 생성</button> &nbsp;&nbsp; <button type="button" class="btn btn-secondary">관리자/상담원 아이디 조회</button>
+                    <div class="card-footer p-3" align="center">
+                      <button type="button" class="btn btn-secondary" onclick="adRegister()">관리자/상담원 아이디 생성</button>
+                      <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#adSelect">관리자/상담원 아이디 조회</button>
                     </div>
                   </div>
                 </div>
@@ -112,7 +114,8 @@
                 <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
                   <div class="card">
                     <div class="card-header p-3 pt-2">
-                      <button type="button" class="btn btn-secondary" style="height: auto; width: 100%;">&nbsp;&nbsp;&nbsp;뉴스쓰기&nbsp;&nbsp;&nbsp;</button>
+                      <button type="button" class="btn btn-secondary" style="height: auto; width: 100%;" onclick="location.href='../news/add';">&nbsp;&nbsp;&nbsp;뉴스쓰기&nbsp;&nbsp;&nbsp;</button>
+					  <button type="button" class="btn btn-secondary" style="height: auto; width: 100%;" onclick="location.href='../qna';">&nbsp;&nbsp;&nbsp;상담원 페이지 이동&nbsp;&nbsp;&nbsp;</button>
                     </div>
                   </div>
                 </div>
@@ -121,8 +124,8 @@
                 <div class="col-xl-3 col-sm-6">
                   <div class="card">
                     <div class="card-header p-3 pt-2">
-                      <button type="button" class="btn btn-secondary" style="height: auto; width: 100%;">&nbsp;결제 내역&nbsp;</button>
-                      <button type="button" class="btn btn-secondary" style="height: auto; width: 100%;">&nbsp;이달의 수익&nbsp;</button>
+                      <button type="button" class="btn btn-secondary" style="height: auto; width: 100%;" data-bs-toggle="modal" data-bs-target="#coinHistory">&nbsp;결제 내역&nbsp;</button>
+                      <button type="button" class="btn btn-secondary" style="height: auto; width: 100%;" onclick="monthComm()">&nbsp;이달의 수익&nbsp;</button>
                     </div>
                   </div>
                 </div>
@@ -135,18 +138,25 @@
             <!-- 끝 -->
           </div>
         </div>
+        <div class="col-xl-3 col-sm-6" style="margin-left: 120px;">
+        	<button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#reportSelect">제재된 아이디 조회</button>
+        </div>
         <br>
         <!-- [1번째 줄] -->
         <div class="container-fluid py-4">
           <!-- [삭제된 책] -->
           <div class="row mb-4" align="center">
-            <div class="col-lg-6 col-md-6 mb-md-0 mb-4" style=" margin-left: 60px; height:auto; width:30%;" align="right">
+            <div class="col-lg-6 col-md-6 mb-md-0 mb-4" style="margin-left: 60px; height: auto; width: 30%;" align="right">
               <div class="card">
                 <div class="card-header pb-0">
                   <div class="row">
                     <div class="col-lg-6 col-7">
-                      <h6><a href="#" onclick="bookOn()">삭제된 책의 정보</a></h6>
-                      <h6 align="center">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" onclick="pageOn()">삭제된 회차[클릭]</a></h6>
+                      <h6>
+                        <a href="#" onclick="bookOn()">삭제된 책의 정보</a>
+                      </h6>
+                      <h6 align="center" style="margin-left: 55px;">
+                        <a href="#" onclick="pageOn()">삭제된 회차[클릭]</a>
+                      </h6>
                     </div>
                     <div class="col-lg-6 col-4 my-auto text-end">
                       <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bookDel"> 더보기</button>
@@ -183,7 +193,7 @@
                     </table>
                   </div>
                 </div>
-                <div id="pageList" class="card-body px-0 pb-2" style="display:none; ">
+                <div id="pageList" class="card-body px-0 pb-2" style="display: none;">
                   <div class="table-responsive">
                     <table class="table align-items-center mb-0">
                       <thead>
@@ -212,12 +222,12 @@
                       </tbody>
                     </table>
                   </div>
-                </div>				
+                </div>
               </div>
             </div>
             <!-- [삭제된 책 끝] -->
             <!-- [삭제된 게시글] -->
-            <div class="col-lg-6 col-md-6 mb-md-0 mb-4" style="height:auto; width:30%;" align="right">
+            <div class="col-lg-6 col-md-6 mb-md-0 mb-4" style="height: auto; width: 30%;" align="right">
               <div class="card">
                 <div class="card-header pb-0">
                   <div class="row">
@@ -236,7 +246,7 @@
                       <thead>
                         <tr>
                           <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">게시글</th>
-                          <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">내용</th>
+                          <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">아이디</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -245,7 +255,7 @@
                             <span class="txt_line text-xs font-weight-bold">%@#무료@충@전</span>
                           </td>
                           <td align="center">
-                            <span class="txt_line text-xs font-weight-bold"> 도박충전소 </span>
+                            <span class="txt_line text-xs font-weight-bold"> doback123 </span>
                           </td>
                         </tr>
                         <tr align="center">
@@ -253,7 +263,7 @@
                             <span class="txt_line text-xs font-weight-bold"> 도배도배도배도배도배도배도배도배도배도배도배도배도배도배도배도배도배도배도배도배도배도배도배도배 </span>
                           </td>
                           <td class="align-middle text-center text-sm">
-                            <span class="txt_line text-xs font-weight-bold"> 도배인 </span>
+                            <span class="txt_line text-xs font-weight-bold"> dovain123 </span>
                           </td>
                         </tr>
                       </tbody>
@@ -264,7 +274,7 @@
             </div>
             <!-- [삭제된 게시글 끝] -->
             <!-- [수수료 내역] -->
-            <div class="col-lg-6 col-md-6 mb-md-0 mb-4" style="height:auto; width:30%;" align="right">
+            <div class="col-lg-6 col-md-6 mb-md-0 mb-4" style="height: auto; width: 30%;" align="right">
               <div class="card">
                 <div class="card-header pb-0">
                   <div class="row">
@@ -328,13 +338,12 @@
           </div>
           <!-- Modal body -->
           <div class="modal-body">
-            <div id="bkDetails" class="container-fluid py-4" style="height:auto; width:60%;">
+            <div id="bkDetails" class="container-fluid py-4" style="height: auto; width: 60%;">
               <div class="row">
                 <div class="col-12">
                   <div class="card my-4">
                     <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                      <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                        &nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-danger" onclick="bkModalOn()">책 정보</button>&nbsp;/&nbsp;<button type="button" class="btn btn-danger" onclick="pgModalOn()">회차 목록</button>
+                      <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3"> &nbsp;&nbsp;&nbsp; <button type="button" class="btn btn-danger" onclick="bkModalOn()">책 정보</button> &nbsp;/&nbsp; <button type="button" class="btn btn-danger" onclick="pgModalOn()">회차 목록</button>
                       </div>
                     </div>
                     <div id="tbPadd" class="card-body px-0 pb-2">
@@ -366,7 +375,7 @@
                                 <span class="text-secondary text-xs font-weight-bold">이름</span>
                               </td>
                               <td class="align-middle text-center text-sm">
-                                <span class="badge badge-sm bg-gradient-success" style="background-image: linear-gradient(180deg,#419cef 10%,#106ec3 100%);">100</span>
+                                <span class="badge badge-sm bg-gradient-success" style="background-image: linear-gradient(180deg, #419cef 10%, #106ec3 100%);">100</span>
                               </td>
                               <td class="align-middle text-center">
                                 <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
@@ -389,7 +398,7 @@
                                 <span class="text-secondary text-xs font-weight-bold">이름</span>
                               </td>
                               <td class="align-middle text-center text-sm">
-                                <span class="badge badge-sm bg-gradient-success" style="background-image: linear-gradient(180deg,#419cef 10%,#106ec3 100%);">100</span>
+                                <span class="badge badge-sm bg-gradient-success" style="background-image: linear-gradient(180deg, #419cef 10%, #106ec3 100%);">100</span>
                               </td>
                               <td class="align-middle text-center">
                                 <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
@@ -412,7 +421,7 @@
                                 <span class="text-secondary text-xs font-weight-bold">이름</span>
                               </td>
                               <td class="align-middle text-center text-sm">
-                                <span class="badge badge-sm bg-gradient-success" style="background-image: linear-gradient(180deg,#419cef 10%,#106ec3 100%);">100</span>
+                                <span class="badge badge-sm bg-gradient-success" style="background-image: linear-gradient(180deg, #419cef 10%, #106ec3 100%);">100</span>
                               </td>
                               <td class="align-middle text-center">
                                 <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
@@ -420,7 +429,6 @@
                             </tr>
                           </tbody>
                         </table>
-                   
                       </div>
                     </div>
                   </div>
@@ -433,22 +441,18 @@
                 <input type="text" name="keyword" id="keyword" placeholder="검색하세요." align="center">
               </div>
             </div>
-
-            <div id="pgDetails" class="container-fluid py-4" style="height:auto; width:60%; display: none;">
+            <div id="pgDetails" class="container-fluid py-4" style="height: auto; width: 60%; display: none;">
               <div class="row">
                 <div class="col-12">
                   <div class="card my-4">
                     <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                      <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                        &nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-danger" onclick="bkModalOn()">책 정보</button>&nbsp;/&nbsp;<button type="button" class="btn btn-danger" onclick="pgModalOn()">회차 목록</button>
+                      <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3"> &nbsp;&nbsp;&nbsp; <button type="button" class="btn btn-danger" onclick="bkModalOn()">책 정보</button> &nbsp;/&nbsp; <button type="button" class="btn btn-danger" onclick="pgModalOn()">회차 목록</button>
                       </div>
                     </div>
                     <div id="tbPadd" class="card-body px-0 pb-2">
                       <div class="table-responsive p-0">
-                        
                         <!-- Modal IN 회차 내용 -->
- 
-                        <table  class="table align-items-center mb-0">
+                        <table class="table align-items-center mb-0">
                           <thead>
                             <tr>
                               <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">작성한글</th>
@@ -460,34 +464,34 @@
                           <tbody>
                             <tr>
                               <td class="align-middle text-center text-sm">
-                              	<span class="text-secondary text-xs font-weight-bold">마법천자문</span>
+                                <span class="text-secondary text-xs font-weight-bold">마법천자문</span>
                               </td>
                               <td class="align-middle text-center text-sm">
-                              	<span class="text-secondary text-xs font-weight-bold">3회 비춰라 빛 광(光)</span>
+                                <span class="text-secondary text-xs font-weight-bold">3회 비춰라 빛 광(光)</span>
                               </td>
                               <td class="align-middle text-center text-sm">
-                              	<span class="text-secondary text-xs font-weight-bold">도굴꾼</span>
+                                <span class="text-secondary text-xs font-weight-bold">도굴꾼</span>
                               </td>
                               <td class="align-middle text-center">
-                              	<span class="text-secondary text-xs font-weight-bold">2021-11-05</span>
+                                <span class="text-secondary text-xs font-weight-bold">2021-11-05</span>
                               </td>
                             </tr>
                             <tr>
                               <td class="align-middle text-center text-sm">
-                              	<span class="text-secondary text-xs font-weight-bold">이상한 나라의 엘리스</span>
+                                <span class="text-secondary text-xs font-weight-bold">이상한 나라의 엘리스</span>
                               </td>
                               <td class="align-middle text-center text-sm">
-                              	<span class="text-secondary text-xs font-weight-bold">3회 모자장수</span>
+                                <span class="text-secondary text-xs font-weight-bold">3회 모자장수</span>
                               </td>
                               <td class="align-middle text-center text-sm">
-                              	<span class="text-secondary text-xs font-weight-bold">루이스 캐럴</span>
+                                <span class="text-secondary text-xs font-weight-bold">루이스 캐럴</span>
                               </td>
                               <td class="align-middle text-center">
-                              	<span class="text-secondary text-xs font-weight-bold">1903-11-1</span>
+                                <span class="text-secondary text-xs font-weight-bold">1903-11-1</span>
                               </td>
                             </tr>
                           </tbody>
-                        </table>          
+                        </table>
                       </div>
                     </div>
                   </div>
@@ -500,7 +504,6 @@
                 <input type="text" name="keyword" id="keyword" placeholder="검색하세요." align="center">
               </div>
             </div>
-            
           </div>
           <!-- Modal footer -->
           <div class="modal-footer">
@@ -508,7 +511,6 @@
           </div>
         </div>
       </div>
-    </div>
     </div>
     <!-- [삭제된 책 정보&회차 끝 by modal] -->
     <!-- [삭제된  게시글 Modal] -->
@@ -523,7 +525,7 @@
           </div>
           <!-- Modal body -->
           <div class="modal-body">
-            <div class="container-fluid py-4" style="height:auto; width:60%;">
+            <div class="container-fluid py-4" style="height: auto; width: 60%;">
               <div class="row">
                 <div class="col-12">
                   <div class="card my-4">
@@ -561,7 +563,7 @@
                               <span class="text-secondary text-xs font-weight-bold">이름</span>
                             </td>
                             <td class="align-middle text-center text-sm">
-                              <span class="badge badge-sm bg-gradient-success" style="background-image: linear-gradient(180deg,#419cef 10%,#106ec3 100%);">100</span>
+                              <span class="badge badge-sm bg-gradient-success" style="background-image: linear-gradient(180deg, #419cef 10%, #106ec3 100%);">100</span>
                             </td>
                             <td class="align-middle text-center">
                               <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
@@ -583,7 +585,7 @@
                               <span class="text-secondary text-xs font-weight-bold">이름</span>
                             </td>
                             <td class="align-middle text-center text-sm">
-                              <span class="badge badge-sm bg-gradient-success" style="background-image: linear-gradient(180deg,#419cef 10%,#106ec3 100%);">100</span>
+                              <span class="badge badge-sm bg-gradient-success" style="background-image: linear-gradient(180deg, #419cef 10%, #106ec3 100%);">100</span>
                             </td>
                             <td class="align-middle text-center">
                               <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
@@ -605,7 +607,7 @@
                               <span class="text-secondary text-xs font-weight-bold">이름</span>
                             </td>
                             <td class="align-middle text-center text-sm">
-                              <span class="badge badge-sm bg-gradient-success" style="background-image: linear-gradient(180deg,#419cef 10%,#106ec3 100%);">100</span>
+                              <span class="badge badge-sm bg-gradient-success" style="background-image: linear-gradient(180deg, #419cef 10%, #106ec3 100%);">100</span>
                             </td>
                             <td class="align-middle text-center">
                               <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
@@ -645,7 +647,7 @@
           </div>
           <!-- Modal body -->
           <div class="modal-body">
-            <div class="container-fluid py-4" style="height:auto; width:60%;">
+            <div class="container-fluid py-4" style="height: auto; width: 60%;">
               <div class="row">
                 <div class="col-12">
                   <div class="card my-4">
@@ -742,7 +744,313 @@
         </div>
       </div>
     </div>
-    <!-- [수수료 by modal] -->
+    <!-- [수수료 내역 끝 by modal] -->
+    <!-- [관리자, 상담원 아이디 조회 by Model] -->
+    <!-- The Modal -->
+    <div class="modal" id="adSelect">
+      <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">관리자/ 상담원 아이디 리스트</h4>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <!-- Modal body -->
+          <div class="modal-body">
+            <table class="table">
+              <thead>
+                <tr>
+                  <td>직책</td>
+                  <td>아이디</td>
+                  <td>비밀번호</td>
+                  <td>생성일</td>
+                  <td>&nbsp;&nbsp;삭제</td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>관리자</td>
+                  <td>Doe</td>
+                  <td>johnexample</td>
+                  <td>2021-03-30</td>
+                  <td>
+                    <button type="button" class="btn btn-outline-dark">삭제</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>상담원</td>
+                  <td>Doe2</td>
+                  <td>johnexample</td>
+                  <td>2021-03-30</td>
+                  <td>
+                    <button type="button" class="btn btn-outline-dark">삭제</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>관리자</td>
+                  <td>Doe3</td>
+                  <td>johnexample</td>
+                  <td>2021-03-30</td>
+                  <td>
+                    <button type="button" class="btn btn-outline-dark">삭제</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- [관리자, 상담원 아이디 조회 by Model 끝] -->
+    <!-- [결제 내역 by Modal] -->
+    <div class="modal" id="coinHistory">
+      <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">결제 내역</h4>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <!-- Modal body -->
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-12">
+                <div class="card my-4">
+                  <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                    <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+                      <h6 class="text-white text-capitalize ps-3">결제 내역</h6>
+                    </div>
+                  </div>
+                  <div id="tbPadd" class="card-body px-0 pb-2">
+                    <div class="table-responsive p-0">
+                      <table class="table align-items-center mb-0">
+                        <thead>
+                          <tr>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">&nbsp;&nbsp;처리 결과</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">결제된 코인</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">결제일</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">아이디</th>
+                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">환불</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td class="align-middle text-center">
+                              <div>
+                                <div class="d-flex flex-column justify-content-center">
+                                  <span class="text-secondary text-xs font-weight-bold">카드 or 이벤트 or 환불</span>
+                                </div>
+                              </div>
+                            </td>
+                            <td class="align-middle text-center">
+                              <span class="text-secondary text-xs font-weight-bold">-200코인</span>
+                            </td>
+                            <td class="align-middle text-center">
+                              <span class="text-secondary text-xs font-weight-bold">21/12/10</span>
+                            </td>
+                            <td class="align-middle text-center">
+                              <span class="text-secondary text-xs font-weight-bold">qwer123</span>
+                            </td>
+                            <td class="align-middle text-center">
+                              <div class="button header-button">
+                                <a href="javascript:void(0)" class="btn" style="background-color: #ab0dd7">청약철회</a>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td class="align-middle text-center">
+                              <div>
+                                <div class="d-flex flex-column justify-content-center">
+                                  <span class="text-secondary text-xs font-weight-bold">카드 or 이벤트 or 환불</span>
+                                </div>
+                              </div>
+                            </td>
+                            <td class="align-middle text-center">
+                              <span class="text-secondary text-xs font-weight-bold">-200코인</span>
+                            </td>
+                            <td class="align-middle text-center">
+                              <span class="text-secondary text-xs font-weight-bold">21/12/10</span>
+                            </td>
+                            <td class="align-middle text-center">
+                              <span class="text-secondary text-xs font-weight-bold">qwer123</span>
+                            </td>
+                            <td class="align-middle text-center">
+                              <div class="button header-button">
+                                <a href="javascript:void(0)" class="btn" style="background-color: #ab0dd7">청약철회</a>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td class="align-middle text-center">
+                              <div>
+                                <div class="d-flex flex-column justify-content-center">
+                                  <span class="text-secondary text-xs font-weight-bold">카드 or 이벤트 or 환불</span>
+                                </div>
+                              </div>
+                            </td>
+                            <td class="align-middle text-center">
+                              <span class="text-secondary text-xs font-weight-bold">-200코인</span>
+                            </td>
+                            <td class="align-middle text-center">
+                              <span class="text-secondary text-xs font-weight-bold">21/12/10</span>
+                            </td>
+                            <td class="align-middle text-center">
+                              <span class="text-secondary text-xs font-weight-bold">qwer123</span>
+                            </td>
+                            <td class="align-middle text-center">
+                              <div class="button header-button">
+                                <a href="javascript:void(0)" class="btn" style="background-color: #ab0dd7">청약철회</a>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td class="align-middle text-center">
+                              <div>
+                                <div class="d-flex flex-column justify-content-center">
+                                  <span class="text-secondary text-xs font-weight-bold">카드 or 이벤트 or 환불</span>
+                                </div>
+                              </div>
+                            </td>
+                            <td class="align-middle text-center">
+                              <span class="text-secondary text-xs font-weight-bold">-200코인</span>
+                            </td>
+                            <td class="align-middle text-center">
+                              <span class="text-secondary text-xs font-weight-bold">21/12/10</span>
+                            </td>
+                            <td class="align-middle text-center">
+                              <span class="text-secondary text-xs font-weight-bold">qwer123</span>
+                            </td>
+                            <td class="align-middle text-center">
+                              <div class="button header-button">
+                                <a href="javascript:void(0)" class="btn" style="background-color: #ab0dd7">청약철회</a>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td class="align-middle text-center">
+                              <div>
+                                <div class="d-flex flex-column justify-content-center">
+                                  <span class="text-secondary text-xs font-weight-bold">카드 or 이벤트 or 환불</span>
+                                </div>
+                              </div>
+                            </td>
+                            <td class="align-middle text-center">
+                              <span class="text-secondary text-xs font-weight-bold">-200코인</span>
+                            </td>
+                            <td class="align-middle text-center">
+                              <span class="text-secondary text-xs font-weight-bold">21/12/10</span>
+                            </td>
+                            <td class="align-middle text-center">
+                              <span class="text-secondary text-xs font-weight-bold">qwer123</span>
+                            </td>
+                            <td class="align-middle text-center">
+                              <div class="button header-button">
+                                <a href="javascript:void(0)" class="btn" style="background-color: #ab0dd7">청약철회</a>
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+                <!-- ====================== 페이징 ====================== -->
+                <div class="w3-center" align="center">
+                  <div class="w3-bar">
+                    <a href="#" class="w3-button">«</a>
+                    <a href="#" class="w3-button w3-blue">1</a>
+                    <a href="#" class="w3-button">2</a>
+                    <a href="#" class="w3-button">3</a>
+                    <a href="#" class="w3-button">4</a>
+                    <a href="#" class="w3-button">5</a>
+                    <a href="#" class="w3-button">»</a>
+                  </div>
+                </div>
+                <div class="search-input">
+                  <label for="keyword">
+                    <i class="lni lni-search-alt theme-color"></i>
+                  </label>
+                  <input type="text" name="keyword" id="keyword" placeholder="검색하세요." align="center">
+                </div>
+                <!-- ====================== 페이징 끝 ====================== -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+    <!-- [결제 내역 by Modal 끝] -->
+
+    <!-- [제재된 아이디 조회 by Model] -->
+    <!-- The Modal -->
+    <div class="modal" id="reportSelect">
+      <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">제재된 아이디</h4>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <!-- Modal body -->
+          <div class="modal-body">
+            <table class="table">
+              <thead>
+                <tr>
+                  <td>단계</td>
+                  <td>아이디</td>
+                  <td>사유</td>
+                  <td>제재 기간</td>
+                  <td align="center">설정</td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>3단계</td>
+                  <td>Doe</td>
+                  <td>도배 및 악성 게시글</td>
+                  <td>2021-03-30</td>
+                  <td align="center"><button type="button" class="btn btn-dark">단계 변경</button></td>
+                </tr>
+                <tr>
+                  <td>3단계</td>
+                  <td>Doe</td>
+                  <td>도배 및 악성 게시글</td>
+                  <td>2021-03-30</td>
+                  <td align="center"><button type="button" class="btn btn-dark">단계 변경</button></td>
+                </tr>
+                 <tr>
+                  <td>3단계</td>
+                  <td>Doe</td>
+                  <td>도배 및 악성 게시글</td>
+                  <td>2021-03-30</td>
+                  <td align="center"><button type="button" class="btn btn-dark">단계 변경</button></td>
+                </tr>
+              </tbody>
+            </table>
+              <div class="search-input">
+                <label for="keyword">
+                  <i class="lni lni-search-alt theme-color"></i>
+                </label>
+                <input type="text" name="keyword" id="keyword" placeholder="검색하세요." align="center">
+              </div>            
+          </div>
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- [제재된 아이디 조회 by Model 끝] -->    
+    
     <!-- css modal -->
     <jsp:include page="/WEB-INF/views/include/footer.jsp" />
     <!-- ========================= JS here ========================= -->

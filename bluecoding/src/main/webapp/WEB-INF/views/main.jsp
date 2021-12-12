@@ -99,10 +99,10 @@
                            <img src="resources/assets/images/mainPage/book2.jfif" alt="Los Angeles" width="221" height="300">
                            <img src="resources/assets/images/mainPage/book7.jpg" alt="Los Angeles" width="221" height="300">
                         </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
+                        <button class="carousel-control-prev" type="button" data-bs-target="#demo2" data-bs-slide="prev">
                         <span class="carousel-control-prev-icon"></span>
                         </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
+                        <button class="carousel-control-next" type="button" data-bs-target="#demo2" data-bs-slide="next">
                         <span class="carousel-control-next-icon"></span>
                         </button>
                      </div>
@@ -138,7 +138,7 @@
                         <div class="col-lg-4 col-md-4 col-12">
                            <!-- Start Single Work -->
                            <div class="single-work wow fadeInUp" data-wow-delay=".4s" style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInUp;">
-                              <span class="serial">1위</span>
+                              <span class="serial">1위</span><br>
                               <img src="resources/assets/images/mainPage/book7.jpg" alt="Los Angeles" width="180" height="220">
                               <h3>언스크립티드</h3>
                            </div>
@@ -166,7 +166,7 @@
                         <div class="col-lg-4 col-md-4 col-12">
                            <!-- Start Single Work -->
                            <div class="single-work wow fadeInUp" data-wow-delay=".4s" style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInUp;">
-                              <span class="serial">2위</span>
+                              <span class="serial">2위</span><br>
                               <img src="resources/assets/images/mainPage/book5.png" alt="Los Angeles" width="180" height="220">
                               <h3>비밀의 화원</h3>
                            </div>
@@ -181,7 +181,7 @@
                            <div class="single-work wow fadeInUp" data-wow-delay=".2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
                               <span class="serial">인기</span>
                               <br>                       		
-                              <img src="resources/assets/images/mainPage/board1.png" alt="Los Angeles" width="175" height="220" >
+                              <img src="resources/assets/images/mainPage/board1.png" alt="Los Angeles" width="175" height="150" >
                               <h3>게시글 제목</h3>
                               <br>
                               <p class="txt_line">느리고 흐물흐물하지만 덕분에 절대로 부러지지 않는, 무심한 듯 씩씩하게 살아온 김필영 씨의 삶과 결혼 이야기.
@@ -194,7 +194,7 @@
                         <div class="col-lg-4 col-md-4 col-12">
                            <!-- Start Single Work -->
                            <div class="single-work wow fadeInUp" data-wow-delay=".4s" style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInUp;">
-                              <span class="serial">3위</span>
+                              <span class="serial">3위</span><br>
                               <img src="resources/assets/images/mainPage/book1.jfif" alt="Los Angeles" width="180" height="220">
                               <h3>위대한 개츠비</h3>
                            </div>
