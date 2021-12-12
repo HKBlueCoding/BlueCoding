@@ -4,5 +4,26 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <typeAliases>
+    
+    	<typeAlias type="com.hk.author.vo.AuthorVO" alias="AuthorVO" />
+    	<typeAlias type="com.hk.board.vo.BoardVO" alias="BoardVO" />
+    	<typeAlias type="com.hk.boardreply.vo.BoardReplyVO" alias="BoardReplyVO" />
+    	<typeAlias type="com.hk.book.vo.BookVO" alias="BookVO" />
+    	<typeAlias type="com.hk.coinhistory.vo.CoinHistoryVO" alias="CoinHistoryVO" />
+    	
+    	<typeAlias type="com.hk.commission.vo.CommissionVO" alias="CommissionVO" />   	
+    	<typeAlias type="com.hk.favo.vo.FavoVO" alias="FavoVO" />
+    	<typeAlias type="com.hk.news.vo.NewsVO" alias="NewsVO" />
+    	<typeAlias type="com.hk.newsreply.vo.NewsReplyVO" alias="NewsReplyVO" />	
+    	<typeAlias type="com.hk.page.vo.PageVO" alias="PageVO" />
+    	
+    	<typeAlias type="com.hk.pagebuy.vo.PageBuyVO" alias="PageBuyVO" />
+    	<typeAlias type="com.hk.pagereply.vo.PageReplyVO" alias="PageReplyVO" />	
+    	<typeAlias type="com.hk.qna.vo.QnaVO" alias="QnaVO" />
+    	<typeAlias type="com.hk.report.vo.ReportVO" alias="ReportVO" />
+    	<typeAlias type="com.hk.review.vo.ReviewVO" alias="ReviewVO" />
+    	
+    	<typeAlias type="com.hk.user.vo.UserVO" alias="UserVO" />
+    	
     </typeAliases>
 </configuration>    
