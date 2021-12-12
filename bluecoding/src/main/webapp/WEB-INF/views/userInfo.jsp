@@ -199,12 +199,14 @@
                                 <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
                               </td>
                             </tr>
-
+						
                           </tbody>
                         </table>
-                      </div>
+                      </div> 
                     </div>
+                    
                   </div>
+                  <a href="#">회원 탈퇴</a>
                 </div>
               </div>
             </div>
