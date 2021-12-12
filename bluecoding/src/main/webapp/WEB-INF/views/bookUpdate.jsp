@@ -7,7 +7,7 @@
    <head>
       <meta charset="utf-8" />
       <meta http-equiv="x-ua-compatible" content="ie=edge" />
-      <title>커뮤니티글 상세 보기</title>
+      <title>도서 수정</title>
       <meta name="description" content="" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <link rel="shortcut icon" type="image/x-icon"
@@ -54,23 +54,8 @@
          <div class="container px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5 justify-content-center">
                <div class="col-md-10 col-lg-8 col-xl-7">
-                  <p id="title">도서 상세 보기</p>
+                  <p id="title">도서 수정</p>
                   <hr class="my-4">
-                  <p id="title2">&nbsp;&nbsp;제목</p>
-                  <div id="qna">
-                     &nbsp;&nbsp; 작성자 : 홍길동 &nbsp;&nbsp;&nbsp;&nbsp; YYYY-MM-DD HH-MM &nbsp;&nbsp;&nbsp;&nbsp;
-                     <!-- ======================= 버튼 ========================== -->
-                     <div class="button header-button">
-                        <a href="../book/update" class="btn">수정</a>
-                     </div>
-                     <div class="button header-button">
-                        <a onClick="funok()" class="btn">삭제</a>
-                     </div>
-                     <div class="button header-button">
-                        <a href="javascript:void(0)" class="btn">신고하기</a>
-                     </div>
-                     <!-- ======================= 버튼 끝 ========================== -->                  
-                  </div>
                   <div class="my-5">
                      <!-- * * * * * * * * * * * * * * *-->
                      <!-- * * SB Forms Contact Form * *-->
@@ -80,10 +65,14 @@
                      <!-- https://startbootstrap.com/solution/contact-forms-->
                      <!-- to get an API token!-->
                      <form id="contactForm" data-sb-form-api-token="API_TOKEN">
+                        <div class="form-floating">
+                           <input class="form-control" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
+                           <label for="name">제목</label>                          
+                           <div class="invalid-feedback" data-sb-feedback="name:required">제목을 입력하세요.</div>
+                        </div>
                         <br>
                         <div class="form-floating" id="formMag">
-                           <textarea class="form-control" id="message" placeholder="Enter your message here..." style="height: 15rem" data-sb-validations="required" disabled></textarea>
-                           <textarea class="form-control" id="message" placeholder="Enter your message here..." style="height: 15rem" data-sb-validations="required" disabled> [답변]</textarea>
+                           <textarea class="form-control" id="message" placeholder="Enter your message here..." style="height: 35rem" data-sb-validations="required"></textarea>
                            <label for="message">내용</label>
                            <div class="invalid-feedback" data-sb-feedback="message:required">내용을 입력하세요.</div>
                         </div>
@@ -107,12 +96,23 @@
                         <div class="d-none" id="submitErrorMessage">
                            <div class="text-center text-danger mb-3">Error sending message!</div>
                         </div>
+                        <!-- Submit Button-->
+                        <button class="btn btn-primary text-uppercase disabled"  id="submitButton" type="submit">이미지 선택(바꿔야 됨)</button>
+                        <!-- ======================= 버튼 ========================== -->
+                        <div class="button header-button">
+                           <a onClick="funok()" class="btn">수정</a>
+                        </div>
+                        <div class="button header-button">
+                           <a onClick="funbtn()" class="btn">돌아가기</a>
+                        </div>
+                        <!-- ======================= 버튼 끝 ========================== -->
                      </form>
                   </div>
                </div>
             </div>
          </div>
       </main>
+      <!-- =================== 글쓰기 폼 끝===================== -->
       <!-- ==================== footer ====================== -->      
       <!-- footer -->
       <jsp:include page="/WEB-INF/views/include/footer.jsp"/>
@@ -163,11 +163,21 @@
          });
       </script>
       <script>
-         function funok() {
-           if (confirm("글을 정말 삭제하시겠습니까??")) {
-        	   alert("정상적으로 삭제되었습니다.")
+         function funbtn() {
+           if (confirm("이전 페이지로 돌아가시겠습니까??")) {
+             javascript:history.back();
            } else {
            	return;
+           }
+         }
+      </script>      
+      <script>
+         function funok() {
+           if (alert("정상적으로 수정되었습니다.") == true) {
+            
+           } else {
+            alert("수정에 실패하였습니다.")
+           	   return;
            }
          }
       </script>
