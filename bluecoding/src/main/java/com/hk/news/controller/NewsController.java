@@ -2,6 +2,7 @@ package com.hk.news.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -14,6 +15,11 @@ public class NewsController {
 	public String newsAdd() {
 		// 11
 		return "newsAdd";
+	}	
+	@PostMapping("/news/add")
+	public String newsAddDone() {
+		// 11
+		return "notice";
 	}
 	
 	@RequestMapping(value="/news/notice", method=RequestMethod.GET)

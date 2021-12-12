@@ -26,4 +26,4 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
     	<typeAlias type="com.hk.user.vo.UserVO" alias="UserVO" />
     	
     </typeAliases>
-</configuration>    
+</configuration>

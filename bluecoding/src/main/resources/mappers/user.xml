@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.user">
+
+	<!-- 테이블 컬럼하고, VO하고 1:1로 맵핑했을때 이름이 다른경우 -->
+	<resultMap id="boardResult" type="UserVO">
+	
+		<result property="id" column="id" />
+		<result property="pwd" column="pwd" />
+		<result property="find" column="find" />
+		<result property="name" column="name" />
+		<result property="coin" column="coin" />
+		
+		<result property="nick" column="nick" />
+		<result property="email" column="email" />
+		<result property="birth" column="birth" />
+		<result property="joinDate" column="joinDate" />
+		<result property="pageNO" column="pageNO" />
+		
+		<result property="phone" column="phone" />
+		<result property="gauge" column="gauge" />
+		<result property="profile" column="profile" />
+		<result property="prohibitLv" column="prohibitLv" />
+		<result property="admin" column="admin" />
+
+	</resultMap>
+
+	<insert id="insertArticle" parameterType="UserVO">
+	<![CDATA[
+	INSERT INTO B_USER
+	(ID, PWD, FIND, NAME, COIN, NICK, EMAIL, BIRTH, JOINDATE, PAGENO, PHONE, GAUGE, PROFILE, PROHIBITLV, ADMIN) 
+	VALUES(#{id}, #{pwd}, #{find}, #{name}, 0 , #{nick}, #{email}, #{birth}, sysdate, null, #{phone}, 0, null, 0, null)
+	]]>
+	</insert>
+
+</mapper>
