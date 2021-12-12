@@ -82,6 +82,7 @@ body {
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 	crossorigin="anonymous">
 <title>아이디 찾기</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" />
 <style>
 @import url("http://fonts.googleapis.com/earlyaccess/nanumgothic.css");
 
@@ -139,7 +140,7 @@ a {
 }
 </style>
 </head>
-
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
 
 <body>
 	<jsp:include page="/WEB-INF/views/include/header.jsp" />
@@ -176,10 +177,8 @@ a {
 			</div>
 		</div>
 	</div>	
+	<jsp:include page="../../WEB-INF/views/include/footer.jsp" />
 </body>
-
-<jsp:include page="../../WEB-INF/views/include/footer.jsp" />
-
 <script type="text/javascript">
 
 	

@@ -41,8 +41,6 @@
       <link href="../../resources/assets/css/nucleo-icons.css" rel="stylesheet" />
       <link href="../../resources/assets/css/nucleo-svg.css" rel="stylesheet" />
       <!-- Font Awesome Icons -->
-      <script src="https://kit.fontawesome.com/42d5adcbca.js"
-         crossorigin="anonymous"></script>
       <!-- Material Icons -->
       <link
          href="https://fonts.googleapis.com/icon?family=Material+Icons+Round"
@@ -52,6 +50,7 @@
          href="../../resources/assets/css/material-dashboard.css?v=3.0.0"
          rel="stylesheet" />
       <!-- marerial CSS END -->
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" />     
       <style>
          body {
          background-image: url(../../main/resources/assets/images/here/noticeBG.jpg);
@@ -60,16 +59,7 @@
          padding-left: 1.5rem;
          padding-right: 1.5rem;
          }
-         <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-         <meta charset="utf-8">
-         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-         <meta name="viewport" content="width=device-width, initial-scale=1">
-         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-         <meta name="description" content="">
-         <meta name="author" content="">
-         <!-- Bootstrap CSS -->
-         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-         <title>아이디 찾기</title>
+	  </style>
       <style>
          @import url("http://fonts.googleapis.com/earlyaccess/nanumgothic.css");
          html {
@@ -116,12 +106,12 @@
          color : blue;
          }
       </style>
-      </style>
+      <script src="https://kit.fontawesome.com/42d5adcbca.js"
+              crossorigin="anonymous"></script>      
+	  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>      
    </head>
-   </HEAD>
-   <BODY>
+<body>
       <jsp:include page="/WEB-INF/views/include/header.jsp" />
-      <body cellpadding="0" cellspacing="0" marginleft="0" margintop="0" width="100%" height="100%" align="center">
          <div class="card align-middle" style="width:25rem;" align="center">
             <div class="card-title" style="margin-top:30px;" align="center">
                <img src="/resources/assets/images/logo/BlueNovel.png" style="max-width: 70%; height: auto;" /></h2>
@@ -140,7 +130,7 @@
                <a href="pwd">비밀번호 찾기</a> | <a href="memberLogin">로그인</a> | <a href="register">회원가입</a>
             </div>
          </div>
-   </body>
+</body>
    <script type="text/javascript">
       $("#name").focusout(function(){
       	
@@ -238,5 +228,5 @@
    <script async defer src="https://buttons.github.io/buttons.js"></script>
    <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
    <script src="../../resources/assets/js/material-dashboard.min.js?v=3.0.0"></script>
-   </BODY>
-</HTML>
+   </body>
+</html>

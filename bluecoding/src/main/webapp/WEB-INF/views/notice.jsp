@@ -34,8 +34,6 @@
       <!-- Nucleo Icons -->
       <link href="../resources/assets/css/nucleo-icons.css" rel="stylesheet" />
       <link href="../resources/assets/css/nucleo-svg.css" rel="stylesheet" />
-      <!-- Font Awesome Icons -->
-      <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
       <!-- Material Icons -->
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
       <!-- CSS Files -->
@@ -44,6 +42,9 @@
       <!-- ====================== 페이징 ====================== -->
       <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
       <!-- ====================== 페이징 끝 ====================== -->
+      <!-- Font Awesome Icons -->
+      <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>      
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" />
       <style>
          body{
          background-image: url(../resources/assets/images/here/noticeBG.jpg);
@@ -53,6 +54,7 @@
          padding-right: 1.5rem;
          }
       </style>
+	  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>      
    </head>
    <body>
       <jsp:include page="/WEB-INF/views/include/header.jsp" />

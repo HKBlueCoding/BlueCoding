@@ -31,6 +31,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
     <!-- CSS Files -->
     <link id="pagestyle" href="../resources/material/assets/css/material-dashboard.css?v=3.0.0" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" />
     <style type="text/css">
       .hero-area.overlay::before {
         all: unset;
@@ -74,6 +75,7 @@
         all: unset;
       }
     </style>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>    
 </head>
 <body>
     <jsp:include page="/WEB-INF/views/include/header.jsp" />

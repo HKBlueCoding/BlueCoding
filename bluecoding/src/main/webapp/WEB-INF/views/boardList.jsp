@@ -43,7 +43,8 @@
       <!-- marerial CSS END -->    	
       <!-- ====================== 페이징 ====================== -->
       <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-      <!-- ====================== 페이징 끝 ====================== -->      
+      <!-- ====================== 페이징 끝 ====================== -->
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" />
       <style>
          body{
          background-image: url(../resources/assets/images/here/noticeBG.jpg);
@@ -53,6 +54,7 @@
          padding-right: 1.5rem;
          }
       </style>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
    </head>
    <body>
       <jsp:include page="/WEB-INF/views/include/header.jsp" />

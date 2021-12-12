@@ -2,7 +2,7 @@
    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-   <head>
+<head>
       <meta charset="UTF-8">
       <title>보관함</title>
       <!-- Web Font -->
@@ -44,6 +44,7 @@
       <!-- ====================== 페이징 ====================== -->
       <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
       <!-- ====================== 페이징 끝 ====================== -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" />      
       <style>
          body{
          background-image: url(../resources/assets/images/here/noticeBG.jpg);
@@ -53,8 +54,9 @@
          padding-right: 1.5rem;
          }
       </style>
-   </head>
-   <body>
+	  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>      
+</head>
+<body>
       <jsp:include page="/WEB-INF/views/include/header.jsp" />
       <br><br><br><br><br><br><br><br>
       <!-- ========================= 관심 작품 끝 ========================= -->
@@ -1144,5 +1146,5 @@
       <script src="../resources/assets/js/material-dashboard.min.js?v=3.0.0"></script>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
       <script src="../../resources/bluecoding/userChest.js"></script>
-   </body>
+</body>
 </html>
