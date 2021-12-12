@@ -7,7 +7,7 @@
    <head>
       <meta charset="utf-8" />
       <meta http-equiv="x-ua-compatible" content="ie=edge" />
-      <title>작품 글쓰기</title>
+      <title>회차 글쓰기</title>
       <meta name="description" content="" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <link rel="shortcut icon" type="image/x-icon"
@@ -53,7 +53,7 @@
          <div class="container px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5 justify-content-center">
                <div class="col-md-10 col-lg-8 col-xl-7">
-                  <p id="title">작품 글쓰기</p>
+                  <p id="title">회차 글쓰기</p>
                   <hr class="my-4">
                   <!-- ================== 카테고리 ======================= -->
                   <div class="categorise search-form wow fadeInUp">
@@ -89,7 +89,7 @@
                      <form id="contactForm" data-sb-form-api-token="API_TOKEN">
                         <div class="form-floating">
                            <input class="form-control" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
-                           <label for="name">제목</label>                          
+                           <label for="name">1화 제목</label>                          
                            <div class="invalid-feedback" data-sb-feedback="name:required">제목을 입력하세요.</div>
                         </div>
                         <br>
@@ -101,7 +101,7 @@
                               &nbsp;작가의 말
                            </div>
                            <textarea class="form-control" placeholder="Enter your message here..." style="height: 15rem"></textarea>
-                           <label for="message">내용</label>
+                           <label for="message">본문</label>
                         </div>
                         <br />
                         <!-- Submit success message-->

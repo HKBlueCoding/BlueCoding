@@ -89,8 +89,8 @@
                                        </div>
                                        <div class="d-flex flex-column justify-content-center">
                                           <a href="view" class="mb-0 text-sm" style="color: black">제목입니다[0]</a>
-                                          <p class="text-xs text-secondary mb-0">장르</p>
-                                          <p class="text-xs text-secondary mb-0">댓글(개수)</p>
+                                          <p class="text-xs text-secondary mb-0">작가 이름</p>
+                                          <p class="text-xs text-secondary mb-0">리뷰(개수)</p>
                                        </div>
                                     </div>
                                  </td>
@@ -112,8 +112,8 @@
                                        </div>
                                        <div class="d-flex flex-column justify-content-center">
                                           <a href="view" class="mb-0 text-sm" style="color: black">제목입니다[0]</a>
-                                          <p class="text-xs text-secondary mb-0">장르</p>
-                                          <p class="text-xs text-secondary mb-0">댓글(개수)</p>
+                                          <p class="text-xs text-secondary mb-0">작가 이름</p>
+                                          <p class="text-xs text-secondary mb-0">리뷰(개수)</p>
                                        </div>
                                     </div>
                                  </td>
@@ -135,8 +135,8 @@
                                        </div>
                                        <div class="d-flex flex-column justify-content-center">
                                           <a href="view" class="mb-0 text-sm" style="color: black">제목입니다[0]</a>
-                                          <p class="text-xs text-secondary mb-0">장르</p>
-                                          <p class="text-xs text-secondary mb-0">댓글(개수)</p>
+                                          <p class="text-xs text-secondary mb-0">작가 이름</p>
+                                          <p class="text-xs text-secondary mb-0">리뷰(개수)</p>
                                        </div>
                                     </div>
                                  </td>
@@ -158,8 +158,8 @@
                                        </div>
                                        <div class="d-flex flex-column justify-content-center">
                                           <a href="view" class="mb-0 text-sm" style="color: black">제목입니다[0]</a>
-                                          <p class="text-xs text-secondary mb-0">장르</p>
-                                          <p class="text-xs text-secondary mb-0">댓글(개수)</p>
+                                          <p class="text-xs text-secondary mb-0">작가 이름</p>
+                                          <p class="text-xs text-secondary mb-0">리뷰(개수)</p>
                                        </div>
                                     </div>
                                  </td>
@@ -181,8 +181,8 @@
                                        </div>
                                        <div class="d-flex flex-column justify-content-center">
                                           <a href="view" class="mb-0 text-sm" style="color: black">제목입니다[0]</a>
-                                          <p class="text-xs text-secondary mb-0">장르</p>
-                                          <p class="text-xs text-secondary mb-0">댓글(개수)</p>
+                                          <p class="text-xs text-secondary mb-0">작가 이름</p>
+                                          <p class="text-xs text-secondary mb-0">리뷰(개수)</p>
                                        </div>
                                     </div>
                                  </td>
@@ -204,8 +204,8 @@
                                        </div>
                                        <div class="d-flex flex-column justify-content-center">
                                           <a href="view" class="mb-0 text-sm" style="color: black">제목입니다[0]</a>
-                                          <p class="text-xs text-secondary mb-0">장르</p>
-                                          <p class="text-xs text-secondary mb-0">댓글(개수)</p>
+                                          <p class="text-xs text-secondary mb-0">작가 이름</p>
+                                          <p class="text-xs text-secondary mb-0">리뷰(개수)</p>
                                        </div>
                                     </div>
                                  </td>
@@ -227,8 +227,8 @@
                                        </div>
                                        <div class="d-flex flex-column justify-content-center">
                                           <a href="view" class="mb-0 text-sm" style="color: black">제목입니다[0]</a>
-                                          <p class="text-xs text-secondary mb-0">장르</p>
-                                          <p class="text-xs text-secondary mb-0">댓글(개수)</p>
+                                          <p class="text-xs text-secondary mb-0">작가 이름</p>
+                                          <p class="text-xs text-secondary mb-0">리뷰(개수)</p>
                                        </div>
                                     </div>
                                  </td>
@@ -250,8 +250,8 @@
                                        </div>
                                        <div class="d-flex flex-column justify-content-center">
                                           <a href="view" class="mb-0 text-sm" style="color: black">제목입니다[0]</a>
-                                          <p class="text-xs text-secondary mb-0">장르</p>
-                                          <p class="text-xs text-secondary mb-0">댓글(개수)</p>
+                                          <p class="text-xs text-secondary mb-0">작가 이름</p>
+                                          <p class="text-xs text-secondary mb-0">리뷰(개수)</p>
                                        </div>
                                     </div>
                                  </td>

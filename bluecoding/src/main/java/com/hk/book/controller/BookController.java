@@ -45,10 +45,22 @@ public class BookController {
 		return "bookView";
 	}
 	
+	@GetMapping("/update")
+	public String bookUpdate() {
+		
+		return "bookUpdate";
+	}
+	
 	@GetMapping("/view/add")
 	public String bookViewAdd() {
 		
 		return "bookViewAdd";
+	}
+	
+	@GetMapping("/view/page")
+	public String bookViewPage() {
+		
+		return "bookViewPage";
 	}
 	
 	@GetMapping("/view/update")
