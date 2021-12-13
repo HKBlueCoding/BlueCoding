@@ -69,7 +69,7 @@
                         <div style="width: 100%; padding: 1px;">
                            <p id="title" style="font-size: 40px;">공지사항 상세 보기</p>
                            <hr class="my-4" style="width: 70%;">
-                           <p id="title2" style="font-size: 30px;">&nbsp;&nbsp;제목</p>
+                           <p id="title2" style="font-size: 30px;">&nbsp;&nbsp;${news.newsTitle }</p>
                         </div>
                      </div>
                   </div>
@@ -80,9 +80,9 @@
                         <table class="table align-items-center mb-0">
                            <thead>
                               <tr>
-                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">작성자 : 홍길동</th>
-                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">작성일 : YYYY-MM-DD / HH-MM</th>
-                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">조회수 : 100회</th>
+                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">작성자 : ${news.id }</th>
+                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">작성일 : ${news.newsDate }</th>
+                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">조회수 : ${news.nViewCnt }</th>
                                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">댓글 : 50건</th>
                               </tr>
                            </thead>
@@ -91,7 +91,7 @@
                                  <td>
                                     <div class="d-flex px-2 py-1" style="width: 200%;" >
                                        <div>
-                                          <img src="../../resources/assets/images/mainPage/board1.png" width="400" height="200" class="avatar avatar-sm me-3 border-radius-lg" alt="user1"  style="float: left">내용
+                                          <img src="../../resources/assets/images/mainPage/board1.png" width="400" height="200" class="avatar avatar-sm me-3 border-radius-lg" alt="user1"  style="float: left">${news.newsText }
                                        </div>
                                     </div>
                                  </td>

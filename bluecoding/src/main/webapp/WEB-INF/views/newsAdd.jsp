@@ -36,13 +36,13 @@
       <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
       <!-- Core theme CSS (includes Bootstrap)-->
       <link href="../resources/assets/css/styles.css" rel="stylesheet" />
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" />      
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" />
       <style>
          .search-form{
          /* all: unset; */
          }
       </style>
-	  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>      
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>      
    </head>
    <body>
       <!-- header -->
@@ -50,46 +50,47 @@
       <br><br><br><br><br><br><br><br>
       <!-- =================== 글쓰기 폼 ===================== -->
       <!-- Main Content-->
-      <main class="mb-4">
-         <div class="container px-4 px-lg-5">
-            <div class="row gx-4 gx-lg-5 justify-content-center">
-               <div class="col-md-10 col-lg-8 col-xl-7">
-                  <p id="title">뉴스글 쓰기</p>
-                  <hr class="my-4">
-                  <!-- ================== 카테고리 ======================= -->
-                  <div class="categorise search-form wow fadeInUp">
-                     <div class="row">
-                        <div class="col-lg-3 col-md-3 col-12 p-0">
-                           <div class="search-input">
-                              <label for="category"></label>
-                              <select name="category" id="category"  required>
-                                 <option value="none" selected disabled>카테고리</option>
-                                 <option value="none">공지사항</option>
-                                 <option value="none">이벤트</option>
-                              </select>
+      <form id="contactForm" data-sb-form-api-token="API_TOKEN" action="add" method="post">
+         <main class="mb-4">
+            <div class="container px-4 px-lg-5">
+               <div class="row gx-4 gx-lg-5 justify-content-center">
+                  <div class="col-md-10 col-lg-8 col-xl-7">
+                     <p id="title">뉴스글 쓰기</p>
+                     <hr class="my-4">
+                     <!-- ================== 카테고리 ======================= -->
+                     <div class="categorise search-form wow fadeInUp">
+                        <div class="row">
+                           <div class="col-lg-3 col-md-3 col-12 p-0">
+                              <div class="search-input">
+                                 <label for="category"></label>
+                                 <select name="category" id="category" required>
+                                    <option value="none"  selected disabled>카테고리</option>
+                                    <option value="notice">공지사항</option>
+                                    <option value="event">이벤트</option>
+                                 </select>
+                              </div>
                            </div>
                         </div>
                      </div>
-                  </div>
-                  <br>
-                  <!-- ================== 카테고리 끝 ======================= -->
-                  <div class="my-5">
-                     <!-- * * * * * * * * * * * * * * *-->
-                     <!-- * * SB Forms Contact Form * *-->
-                     <!-- * * * * * * * * * * * * * * *-->
-                     <!-- This form is pre-integrated with SB Forms.-->
-                     <!-- To make this form functional, sign up at-->
-                     <!-- https://startbootstrap.com/solution/contact-forms-->
-                     <!-- to get an API token!-->
-                     <form id="contactForm" data-sb-form-api-token="API_TOKEN" action="add" method="post">
+                     <br>
+                     <!-- ================== 카테고리 끝 ======================= -->
+                     <div class="my-5">
+                        <!-- * * * * * * * * * * * * * * *-->
+                        <!-- * * SB Forms Contact Form * *-->
+                        <!-- * * * * * * * * * * * * * * *-->
+                        <!-- This form is pre-integrated with SB Forms.-->
+                        <!-- To make this form functional, sign up at-->
+                        <!-- https://startbootstrap.com/solution/contact-forms-->
+                        <!-- to get an API token!-->
                         <div class="form-floating">
-                           <input class="form-control" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
+                           <input class="form-control" name="newsTitle"  id="name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
                            <label for="name">제목</label>                          
                            <div class="invalid-feedback" data-sb-feedback="name:required">제목을 입력하세요.</div>
                         </div>
                         <br>
                         <div class="form-floating" id="formMag">
-                           <textarea class="form-control" id="message" placeholder="Enter your message here..." style="height: 35rem" data-sb-validations="required"></textarea>
+                           <textarea class="form-control" id="message" name="newsText" placeholder="Enter your message here..." style="height: 35rem" data-sb-validations="required"></textarea>
+                           <input type="hidden" name="newsImage">
                            <label for="message">내용</label>
                            <div class="invalid-feedback" data-sb-feedback="message:required">내용을 입력하세요.</div>
                         </div>
@@ -117,22 +118,18 @@
                         <button class="btn btn-primary text-uppercase disabled"  id="submitButton" type="submit">사진 입력하기(바꿔야 됨)</button>
                         <!-- ======================= 버튼 ========================== -->
                         <div class="button header-button">
-                           <a onClick="funok()" class="btn">등록</a>
-                        </div>
-                        <div class="button header-button">
                            <input type="submit" onClick="funok()" class="btn" value="등록">
                         </div>
                         <div class="button header-button">
                            <a onClick="funbtn()" class="btn">돌아가기</a>
                         </div>
                         <!-- ======================= 버튼 끝 ========================== -->
-                        <input type="hidden" name="imageFilename">
-                     </form>
+                     </div>
                   </div>
                </div>
             </div>
-         </div>
-      </main>
+         </main>
+      </form>
       <!-- =================== 글쓰기 폼 끝===================== -->
       <!-- ==================== footer ====================== -->      
       <!-- footer -->
@@ -189,16 +186,6 @@
              javascript:history.back();
            } else {
            	return;
-           }
-         }
-      </script>
-      <script>
-         function funok() {
-           if (alert("정상적으로 등록되었습니다.") == true) {
-            
-           } else {
-            alert("등록에 실패하였습니다.")
-           	   return;
            }
          }
       </script>

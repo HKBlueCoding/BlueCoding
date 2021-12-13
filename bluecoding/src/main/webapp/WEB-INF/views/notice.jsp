@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" isELIgnored="false"%>
+   pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
@@ -84,44 +84,42 @@
                               </tr>
                            </thead>
                            <tbody>
-                           <c:choose>
-                           	 <c:when test="${empty news }">
-                           	 	<tr>
-                           	 		<td>null입니다.</td>
-                           	 	</tr>
-                           	  </c:when>
-                           	  <c:when test="${!empty news }">
-                           	   	 <c:forEach var="newsList"  items="${news }">
-                           	   	 
-                         	  		<tr>
-                                 		<td class="align-middle text-center">
-                                    		<span class="text-secondary text-xs font-weight-bold">${newsList.newsNO }</span>
-                                 		</td>
-                                 		<td>
-                                    		<div class="d-flex px-2 py-1">
-                                       			<div>
-                                          			<img src="../resources/assets/images/mainPage/board1.png" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
-                                       			</div>
-                                       			<div class="d-flex flex-column justify-content-center">
-                                          			<a href="/news/notice/view" class="mb-0 text-sm" style="color: black">${newsList.newsTitle }</a>
-                                          			<p class="text-xs text-secondary mb-0">${newsList.newsText }</p>
-                                       			</div>
-                                    		</div>
-                                 		</td>
-                                 <td class="align-middle">
-                                    <span class="text-secondary text-xs font-weight-bold">${newsList.id }</span>
-                                 </td>
-                                 <td class="align-middle text-center text-sm">
-                                    <span class="badge badge-sm bg-gradient-success" style="background-image: linear-gradient(180deg,#419cef 10%,#106ec3 100%);">${newsList.nViewCnt }</span>
-                                 </td>
-                                 <td class="align-middle text-center">
-                                    <span class="text-secondary text-xs font-weight-bold">${newsList.newsDate }</span>
-                                 </td>
-                              </tr>                           	   	 
-                           	     </c:forEach>
-                           	 </c:when>
-                           </c:choose>
-
+                              <c:choose>
+                                 <c:when test="${empty newsList }">
+                                    <tr>
+                                       <td>null입니다.</td>
+                                    </tr>
+                                 </c:when>
+                                 <c:when test="${!empty newsList }">
+                                    <c:forEach var="news"  items="${newsList }">
+                                       <tr>
+                                          <td class="align-middle text-center">
+                                             <span class="text-secondary text-xs font-weight-bold">${news.newsNO }</span>
+                                          </td>
+                                          <td>
+                                             <div class="d-flex px-2 py-1">
+                                                <div>
+                                                   <img src="../resources/assets/images/mainPage/board1.png" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
+                                                </div>
+                                                <div class="d-flex flex-column justify-content-center">
+                                                   <a href="/news/notice/view" class="mb-0 text-sm" style="color: black">${news.newsTitle }</a>
+                                                   <p class="text-xs text-secondary mb-0">${news.newsText }</p>
+                                                </div>
+                                             </div>
+                                          </td>
+                                          <td class="align-middle">
+                                             <span class="text-secondary text-xs font-weight-bold">${news.id }</span>
+                                          </td>
+                                          <td class="align-middle text-center text-sm">
+                                             <span class="badge badge-sm bg-gradient-success" style="background-image: linear-gradient(180deg,#419cef 10%,#106ec3 100%);">${news.nViewCnt }</span>
+                                          </td>
+                                          <td class="align-middle text-center">
+                                             <span class="text-secondary text-xs font-weight-bold">${news.newsDate }</span>
+                                          </td>
+                                       </tr>
+                                    </c:forEach>
+                                 </c:when>
+                              </c:choose>
                            </tbody>
                         </table>
                      </div>
@@ -247,6 +245,7 @@
            	return;
            }
          }
-      </script>      
+      </script> 
+            
    </body>
 </html>

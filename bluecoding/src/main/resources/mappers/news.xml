@@ -6,7 +6,7 @@
 <mapper namespace="mapper.news">
 
 	<!-- 테이블 컬럼하고, VO하고 1:1로 맵핑했을때 이름이 다른경우 -->
-	<resultMap id="uewsResult" type="NewsVO">
+	<resultMap id="newsResult" type="NewsVO">
 	
 		<result property="newsNO" column="newsNO" />
 		<result property="category" column="category" />
@@ -23,11 +23,32 @@
 
 	<!-- [뉴스 글쓰기] -->
 	<insert id="insertNews" parameterType="NewsVO">
+	 <selectKey keyProperty="newsNO" resultType="int" order="BEFORE">
+	 	SELECT max(newsNO)+1 FROM B_NEWS
+	 </selectKey>
 	 <![CDATA[
 	  INSERT INTO B_NEWS
-	  (NEWSNO, CATEGORY, NEWSTITLE, NEWSTEXT, NEWSDATE, NEWSIMAGE, NVIEWCNT, ID)
-	   VALUES(#{NEWSNO}, #{category}, #{newsTitle}, #{newsText}, sysdate, null, 'lee');
+	  (NEWSNO, CATEGORY, NEWSTITLE, NEWSTEXT, NEWSDATE, NEWSIMAGE, NVIEWCNT, ID,nick)
+	   VALUES( #{newsNO}, #{category}, #{newsTitle}, #{newsText}, sysdate, #{newsImage}, 0, 'abc12345', '홍길동')
 	 ]]>
 	</insert>
 	
+	<select id="selectAllNews" resultMap="newsResult">
+    <![CDATA[
+		SELECT NEWSNO, CATEGORY, NEWSTITLE, NEWSTEXT, NEWSDATE, NEWSIMAGE, NVIEWCNT, NEWSDELETE, ID, NICK FROM B_NEWS
+    ]]>
+	</select>
+	
+	<select id="OneNews" resultType="NewsVO" parameterType="int">
+    <![CDATA[
+    	SELECT * FROM B_NEWS WHERE newsNO=#{newsNO}
+    ]]>
+	</select>
+	
+	<update id="updateNews" parameterType="NewsVO">
+    <![CDATA[
+		UPDATE B_NEWS SET CATEGORY=#{category} NEWSTITLE=#{newsTitle}, NEWSTEXT=#{newsText}, NEWSIMAGE=#{newsImage}
+		WHERE NEWSNO=#{newsNO}
+    ]]>
+	</update>
 </mapper>
