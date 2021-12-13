@@ -49,11 +49,9 @@ public class UserController {
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter pw = response.getWriter();
 		
-		if(ret == 0) {
+		
 			
-			return "redirect:/";
-		}		
-		return "redirect:/";
+		return "done/userDone";
 	}
 
 	@RequestMapping(value="/user/find/id", method=RequestMethod.GET)
