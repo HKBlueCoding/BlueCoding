@@ -48,8 +48,16 @@
       <!-- header -->
       <jsp:include page="/WEB-INF/views/include/header.jsp"/>
       <br><br><br><br><br><br><br><br>
+      <c:choose>
+         <c:when test="${empty newsVO }">
+            <tr>
+               <td>null입니다.</td>
+            </tr>
+         </c:when>
+         <c:when test="${!empty newsVO }">
       <!-- =================== 글쓰기 폼 ===================== -->
       <!-- Main Content-->
+                     <form id="contactForm" data-sb-form-api-token="API_TOKEN" action="update" method="post">
       <main class="mb-4">
          <div class="container px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5 justify-content-center">
@@ -63,9 +71,9 @@
                            <div class="search-input">
                               <label for="category"></label>
                               <select name="category" id="category"  required>
-                                 <option value="none" selected disabled>카테고리</option>
-                                 <option value="none">공지사항</option>
-                                 <option value="none">이벤트</option>
+                                 <option value="none"  selected disabled>${newsVO.category }</option>
+                                 <option value="notice">공지사항</option>
+                                 <option value="event">이벤트</option>
                               </select>
                            </div>
                         </div>
@@ -81,16 +89,17 @@
                      <!-- To make this form functional, sign up at-->
                      <!-- https://startbootstrap.com/solution/contact-forms-->
                      <!-- to get an API token!-->
-                     <form id="contactForm" data-sb-form-api-token="API_TOKEN">
+
                         <div class="form-floating">
                            <input class="form-control" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
-                           <label for="name">제목</label>                          
+                           <label for="name">${newsVO.newsTitle }</label>  
+                           <input type="hidden" value="${newsVO.newsNO }" name="newsNO">           
                            <div class="invalid-feedback" data-sb-feedback="name:required">제목을 입력하세요.</div>
                         </div>
                         <br>
                         <div class="form-floating" id="formMag">
                            <textarea class="form-control" id="message" placeholder="Enter your message here..." style="height: 35rem" data-sb-validations="required"></textarea>
-                           <label for="message">내용</label>
+                           <label for="message">${newsVO.newsText }</label>
                            <div class="invalid-feedback" data-sb-feedback="message:required">내용을 입력하세요.</div>
                         </div>
                         <br />
@@ -117,18 +126,20 @@
                         <button class="btn btn-primary text-uppercase disabled"  id="submitButton" type="submit">이미지 선택(바꿔야 됨)</button>
                         <!-- ======================= 버튼 ========================== -->
                         <div class="button header-button">
-                           <a onClick="funok()" class="btn">수정</a>
+                           <input type="submit" class="btn" value="수정">
                         </div>
                         <div class="button header-button">
                            <a onClick="funbtn()" class="btn">돌아가기</a>
                         </div>
                         <!-- ======================= 버튼 끝 ========================== -->
-                     </form>
                   </div>
                </div>
             </div>
          </div>
       </main>
+	</form>
+         </c:when>
+      </c:choose>
       <!-- =================== 글쓰기 폼 끝===================== -->
       <!-- ==================== footer ====================== -->      
       <!-- footer -->

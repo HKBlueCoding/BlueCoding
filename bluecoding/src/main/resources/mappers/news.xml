@@ -33,10 +33,17 @@
 	 ]]>
 	</insert>
 	
-	<select id="selectAllNews" resultMap="newsResult">
+	<select id="selectAllNoticeNews" resultMap="newsResult">
     <![CDATA[
 		SELECT NEWSNO, CATEGORY, NEWSTITLE, NEWSTEXT, NEWSDATE, NEWSIMAGE, NVIEWCNT, NEWSDELETE, ID, NICK 
-		FROM B_NEWS
+		FROM B_NEWS WHERE category = 'notice'
+    ]]>
+	</select>
+	
+	<select id="selectAllEventNews" resultMap="newsResult">
+    <![CDATA[
+		SELECT NEWSNO, CATEGORY, NEWSTITLE, NEWSTEXT, NEWSDATE, NEWSIMAGE, NVIEWCNT, NEWSDELETE, ID, NICK 
+		FROM B_NEWS WHERE category = 'event'
     ]]>
 	</select>
 	

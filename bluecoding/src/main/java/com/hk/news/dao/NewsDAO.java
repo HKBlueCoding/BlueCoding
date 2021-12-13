@@ -20,11 +20,17 @@ public class NewsDAO {
 		return ret;
 	}
 
-	public List<NewsVO> listArticleNews() {
+	public List<NewsVO> listNoticeNews() {
 		// TODO Auto-generated method stub
-		List<NewsVO> newsList = sqlSession.selectList("mapper.news.selectAllNews");
+		List<NewsVO> newsList = sqlSession.selectList("mapper.news.selectAllNoticeNews");
 		return newsList;
 	}
+	
+	public List<NewsVO> listEventNews() {
+		// TODO Auto-generated method stub
+		List<NewsVO> newsList = sqlSession.selectList("mapper.news.selectAllEventNews");
+		return newsList;
+	}	
 
 	public NewsVO oneNews(int newsNO) {
 		// TODO Auto-generated method stub
