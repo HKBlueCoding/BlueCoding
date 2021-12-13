@@ -57,8 +57,13 @@
                             				<img src="../../resources/material/assets/img/team-4.jpg" width="36" height="36" class="avatar avatar-sm me-3 border-radius-lg" alt="user6">
                           				</div>
                           				<div class="d-flex flex-column justify-content-center">
-                            				<input type="text" class="mb-0 text-sm" value="닉네임" disabled/>
-                            				<p class="text-xs text-secondary mb-0" onclick="">더보기</p>
+                            				<h6 id="loginNick" class="mb-0 text-sm"></h6>
+                            				<a class="text-xs text-secondary mb-0" onclick="loginMenu" style="font-size: 0.875em;" data-bs-toggle="collapse" data-bs-target="#loginMore">메뉴</a>
+                          					<ul class="sub-menu collapse" id="loginMore" >
+                                            	<li class="nav-item"><a id="loginInfo" href="">내 정보</a></li>
+                                            	<li class="nav-item"><a href="javascript:void(0)">캐시 충전</a></li>
+                                            	<li id="loginCash" class="nav-item"></li>
+                                        	</ul>
                           				</div>
                         			</div>
                                 </li>
@@ -73,7 +78,7 @@
     </div>
     <!-- 게이지 바 -->
     <div class="progress" style="height: 30px;">
-        <div class="progress-bar" style="width: 60%; height: 30px;">Lv 1 (60%)</div>
+        <div class="progress-bar" id="loginGauge" style="width: 60%; height: 30px; color:black;">로그인 하여 도서 게이지를 확인하세요</div>
     </div>
 </header>
 <!-- End Header Area -->
@@ -108,7 +113,7 @@
 		  
             <!-- Modal footer -->
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">뒤로가기</button>
+                <button type="button" id="loginBack" class="btn btn-danger" data-bs-dismiss="modal">뒤로가기</button>
             </div>
         </div>
     </div>

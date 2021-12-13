@@ -2,16 +2,15 @@ package com.hk.user.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -48,10 +47,8 @@ public class UserController {
 		
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter pw = response.getWriter();
-		
-		
 			
-		return "done/userDone";
+		return "done/registerDone";
 	}
 
 	@RequestMapping(value="/user/find/id", method=RequestMethod.GET)
@@ -102,12 +99,18 @@ public class UserController {
 	// [로그인 확인]
 	@RequestMapping(value="/checkLogin",method=RequestMethod.GET , produces= "application/json; charset=utf-8")
 	@ResponseBody
-	public UserVO checkLogin(@ModelAttribute UserVO userVO) {
+	public UserVO checkLogin(@ModelAttribute UserVO userVO, HttpSession session) {
+		// 0.파라메터에 넣었으니, 없으면 알아서 세션 생성됨
 		logger.debug("[userVO] =="+userVO.toString()); // 값 찍기
 		
-		// DB에서 로그인 체크
+		// 1.DB에서 로그인 체크
 		userVO = userService.checkLogin(userVO);
-
+		
+		// 2.만약 로그인 값이 null이 아니면 session을 추가
+		if(userVO != null) {
+			session.setAttribute("login", userVO);
+		}
+		
 		return userVO;
 	}
 	
