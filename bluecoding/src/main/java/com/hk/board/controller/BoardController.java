@@ -1,6 +1,10 @@
 package com.hk.board.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -51,20 +55,43 @@ public class BoardController {
 		return "boardList";
 	}
 	
-	// UPDATE
 	@GetMapping(value="/board/view")
 	public String boardView(Model model, @RequestParam("articleNO") int articleNO) {
 		
 		BoardVO boardVO = boardService.viewArticle(articleNO);
 		model.addAttribute("board", boardVO);
 		return "boardView";
+	}	
+	
+	// UPDATE
+	@GetMapping(value="/board/update")
+	public void boardUpdate( @ModelAttribute BoardVO boardVO,HttpServletResponse response) throws IOException {
+		
+		int ret = boardService.modArticle(boardVO);
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter pw = response.getWriter();
+		
+		// 실패 
+		if(ret == 0) {
+			pw.println("<script>"
+					+ "	alert('작성에 실패하였습니다.');"
+					+ " location.href='../../board/view?articleNO="+boardVO.getArticleNO()+"'; "
+					+ " </script>");
+			return;
+		}
+		// 성공
+		pw.println("<script>"
+				+ "	alert('작성에 성공하였습니다.');"
+				+ " location.href='../../board/view?articleNO="+boardVO.getArticleNO()+"'; "
+				+ " </script>");
+		
+		return;
 	}
 		
 	@PostMapping(value="/board/update")
-	public String boardUpdate(Model model, @ModelAttribute BoardVO boardVO) {
+	public String boardUpdate2(Model model, @ModelAttribute BoardVO boardVO) {
 		
-		int ret = boardService.modArticle(boardVO);
-		model.addAttribute("ret", ret);
+		
 		return "boardList";
 	}
 	
