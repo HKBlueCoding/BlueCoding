@@ -35,7 +35,8 @@
 	
 	<select id="selectAllNews" resultMap="newsResult">
     <![CDATA[
-		SELECT NEWSNO, CATEGORY, NEWSTITLE, NEWSTEXT, NEWSDATE, NEWSIMAGE, NVIEWCNT, NEWSDELETE, ID, NICK FROM B_NEWS
+		SELECT NEWSNO, CATEGORY, NEWSTITLE, NEWSTEXT, NEWSDATE, NEWSIMAGE, NVIEWCNT, NEWSDELETE, ID, NICK 
+		FROM B_NEWS
     ]]>
 	</select>
 	
@@ -47,8 +48,9 @@
 	
 	<update id="updateNews" parameterType="NewsVO">
     <![CDATA[
-		UPDATE B_NEWS SET CATEGORY=#{category} NEWSTITLE=#{newsTitle}, NEWSTEXT=#{newsText}, NEWSIMAGE=#{newsImage}
+		UPDATE B_NEWS SET CATEGORY=#{category}, NEWSTITLE=#{newsTitle}, NEWSTEXT=#{newsText}, NEWSIMAGE=#{newsImage}
 		WHERE NEWSNO=#{newsNO}
     ]]>
 	</update>
+	
 </mapper>

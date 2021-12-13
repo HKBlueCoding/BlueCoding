@@ -102,7 +102,7 @@
                                                    <img src="../resources/assets/images/mainPage/board1.png" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
                                                 </div>
                                                 <div class="d-flex flex-column justify-content-center">
-                                                   <a href="/news/notice/view" class="mb-0 text-sm" style="color: black">${news.newsTitle }</a>
+                                                   <a href="/news/notice/view?newsNO=${news.newsNO }" class="mb-0 text-sm" style="color: black">${news.newsTitle }</a>
                                                    <p class="text-xs text-secondary mb-0">${news.newsText }</p>
                                                 </div>
                                              </div>

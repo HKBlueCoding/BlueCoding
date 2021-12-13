@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
    <head>
@@ -44,7 +47,7 @@
       <!-- ====================== 페이징 ====================== -->
       <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
       <!-- ====================== 페이징 끝 ====================== -->
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" />    
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" />
       <style>
          body{
          background-image: url(../../resources/assets/images/here/noticeBG.jpg);
@@ -54,69 +57,78 @@
          padding-right: 1.5rem;
          }
       </style>
-	  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>        
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>        
    </head>
    <body>
       <jsp:include page="/WEB-INF/views/include/header.jsp" />
       <br><br><br><br><br><br><br>
-      <div class="container-fluid py-4" style="height:auto; width:60%;">
-         <div class="row">
-            <div class="col-12">
-               <!-- Main Content-->
-               <main class="mb-4" style="width: 100%; padding: 1px;">
-                  <div style="width: 100%; padding: 1px;">
-                     <div style="width: 100%; padding: 1px;">
+      <c:choose>
+         <c:when test="${empty newsVO }">
+            <tr>
+               <td>null입니다.</td>
+            </tr>
+         </c:when>
+         <c:when test="${!empty newsVO }">
+            <div class="container-fluid py-4" style="height:auto; width:60%;">
+               <div class="row">
+                  <div class="col-12">
+                     <!-- Main Content-->
+                     <main class="mb-4" style="width: 100%; padding: 1px;">
                         <div style="width: 100%; padding: 1px;">
-                           <p id="title" style="font-size: 40px;">공지사항 상세 보기</p>
-                           <hr class="my-4" style="width: 70%;">
-                           <p id="title2" style="font-size: 30px;">&nbsp;&nbsp;${news.newsTitle }</p>
+                           <div style="width: 100%; padding: 1px;">
+                              <div style="width: 100%; padding: 1px;">
+                                 <p id="title" style="font-size: 40px;">공지사항 상세 보기</p>
+                                 <hr class="my-4" style="width: 70%;">
+                                 <p id="title2" style="font-size: 30px;">&nbsp;&nbsp;${newsVO.newsTitle }</p>
+                              </div>
+                           </div>
+                        </div>
+                     </main>
+                     <div class="card my-4">
+                        <div id="tbPadd" class="card-body px-0 pb-2">
+                           <div class="table-responsive p-0">
+                              <table class="table align-items-center mb-0">
+                                 <thead>
+                                    <tr>
+                                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">작성자 : ${newsVO.id }</th>
+                                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">작성일 : ${newsVO.newsDate }</th>
+                                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">조회수 : ${newsVO.nViewCnt }</th>
+                                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">댓글 : 50건</th>
+                                    </tr>
+                                 </thead>
+                                 <tbody>
+                                    <tr>
+                                       <td>
+                                          <div class="d-flex px-2 py-1" style="width: 200%;" >
+                                             <div>
+                                                <img src="../../resources/assets/images/mainPage/board1.png" width="400" height="200" class="avatar avatar-sm me-3 border-radius-lg" alt="user1"  style="float: left">${newsVO.newsText }
+                                             </div>
+                                          </div>
+                                       </td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                           </div>
                         </div>
                      </div>
                   </div>
-               </main>
-               <div class="card my-4">
-                  <div id="tbPadd" class="card-body px-0 pb-2">
-                     <div class="table-responsive p-0">
-                        <table class="table align-items-center mb-0">
-                           <thead>
-                              <tr>
-                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">작성자 : ${news.id }</th>
-                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">작성일 : ${news.newsDate }</th>
-                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">조회수 : ${news.nViewCnt }</th>
-                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">댓글 : 50건</th>
-                              </tr>
-                           </thead>
-                           <tbody>
-                              <tr>
-                                 <td>
-                                    <div class="d-flex px-2 py-1" style="width: 200%;" >
-                                       <div>
-                                          <img src="../../resources/assets/images/mainPage/board1.png" width="400" height="200" class="avatar avatar-sm me-3 border-radius-lg" alt="user1"  style="float: left">${news.newsText }
-                                       </div>
-                                    </div>
-                                 </td>
-                              </tr>
-                           </tbody>
-                        </table>
-                     </div>
+               </div>
+               <!-- ======================= 버튼 ========================== -->
+               <div align="right" style="width: 100%;">
+                  <div class="button header-button">
+                     <a href="../notice/update?newsNO=${newsVO.newsNO }" class="btn">수정</a>
+                  </div>
+                  <div class="button header-button">
+                     <a onClick="funok()" class="btn">삭제</a>
+                  </div>
+                  <div class="button header-button">
+                     <a href="javascript:void(0)" class="btn">신고하기</a>
                   </div>
                </div>
+               <!-- ======================= 버튼 끝 ========================== -->
             </div>
-         </div>
-         <!-- ======================= 버튼 ========================== -->
-         <div align="right" style="width: 100%;">
-            <div class="button header-button">
-               <a href="../notice/update" class="btn">수정</a>
-            </div>
-            <div class="button header-button">
-               <a onClick="funok()" class="btn">삭제</a>
-            </div>
-            <div class="button header-button">
-               <a href="javascript:void(0)" class="btn">신고하기</a>
-            </div>
-         </div>
-         <!-- ======================= 버튼 끝 ========================== -->
-      </div>
+         </c:when>
+      </c:choose>
       <div class="container-fluid py-4" style="height:auto; width:60%;">
          <hr class="my-4" style="width: 100%;">
          <div class="row">

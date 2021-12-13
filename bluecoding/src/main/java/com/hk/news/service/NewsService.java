@@ -36,7 +36,4 @@ public class NewsService {
 		return newsDAO.updateArticleNews(newsVO);
 	}
 
-
-
-
 }

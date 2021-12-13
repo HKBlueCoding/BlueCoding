@@ -1,7 +1,6 @@
 package com.hk.news.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -36,15 +35,17 @@ public class NewsController {
 	}	
 	@PostMapping("/news/add")
 	public String newsAddDone(Model model, @ModelAttribute NewsVO newsVO, HttpServletResponse response) throws IOException {
-		logger.debug("[newsVO]=="+newsVO);
+		logger.debug("[newsVO] = " + newsVO);
 		response.setContentType("text/html; charset=UTF-8");
 		
 		int ret = newsService.addNews(newsVO);
 		model.addAttribute("ret", ret);
-		PrintWriter pw = response.getWriter();
-		logger.debug("[newsRET]=="+ret);
 		
-		return "redirect:/news/"+newsVO.getCategory();
+		// 해당 게시판으로 이동하려면
+		model.addAttribute("category", newsVO.getCategory());
+		logger.debug("[ret] = " + ret);
+		
+		return "done/newsAddDone";
 	}
 	
 	@RequestMapping(value="/news/notice", method=RequestMethod.GET)
@@ -52,7 +53,7 @@ public class NewsController {
 		// 리스트
 		List<NewsVO> newsList = newsService.listNews();
 		model.addAttribute("newsList", newsList);
-		logger.debug("[newsList]= " + newsList);
+		logger.debug("[newsList] = " + newsList);
 		return "notice";
 	}
 	@RequestMapping(value="/news/event", method=RequestMethod.GET)
@@ -62,9 +63,14 @@ public class NewsController {
 	}
 
 	@GetMapping(value="/news/notice/view")
-	public String noticeView() {
+	public String noticeView(Model model, @RequestParam("newsNO") int newsNO) {
+		NewsVO newsVO = newsService.newsOne(newsNO);
+		// list -> vo 1개
+		//  vo 
+		model.addAttribute("newsVO", newsVO);
+		logger.debug("[newsVO] = " + newsVO);
 		
-		return "noticeView"; 
+		return "noticeView";
 	}
 	
 	@GetMapping(value="/news/event/view")
@@ -76,22 +82,21 @@ public class NewsController {
 	@GetMapping(value="/news/notice/update")
 	public String newsUpdate(Model model, @RequestParam("newsNO") int newsNO) {
 		NewsVO newsVO = newsService.newsOne(newsNO);
-		model.addAttribute("newsList", newsVO);
-
+		model.addAttribute("newsVO", newsVO);
+		
 		return "noticeUpdate";
 	}
 	
 	@PostMapping("/news/notice/update")
-	public String newsUpdateDone(Model model, @ModelAttribute NewsVO newsVO, HttpServletResponse response) throws IOException {
-		logger.debug("[newsVO]=="+newsVO);
-		response.setContentType("text/html; charset=UTF-8");
+	public String newsUpdateDone(Model model, @ModelAttribute NewsVO newsVO) throws IOException {
+		logger.debug("[newsVO] = " + newsVO);
 		
 		int ret = newsService.updateNews(newsVO);
 		model.addAttribute("ret", ret);
-		PrintWriter pw = response.getWriter();
-		logger.debug("[newsRET]=="+ret);
+		logger.debug("[ret] = " + ret);
 		
-		return "redirect:/";
+		model.addAttribute("category",newsVO.getCategory());
+		return "done/noticeUpdateDone";
 	}
 	
 	@GetMapping(value="/news/event/update")
