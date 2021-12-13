@@ -81,7 +81,7 @@
                      <!-- To make this form functional, sign up at-->
                      <!-- https://startbootstrap.com/solution/contact-forms-->
                      <!-- to get an API token!-->
-                     <form id="contactForm" data-sb-form-api-token="API_TOKEN">
+                     <form id="contactForm" data-sb-form-api-token="API_TOKEN" action="add" method="post">
                         <div class="form-floating">
                            <input class="form-control" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
                            <label for="name">제목</label>                          
@@ -120,9 +120,13 @@
                            <a onClick="funok()" class="btn">등록</a>
                         </div>
                         <div class="button header-button">
+                           <input type="submit" onClick="funok()" class="btn" value="등록">
+                        </div>
+                        <div class="button header-button">
                            <a onClick="funbtn()" class="btn">돌아가기</a>
                         </div>
                         <!-- ======================= 버튼 끝 ========================== -->
+                        <input type="hidden" name="imageFilename">
                      </form>
                   </div>
                </div>

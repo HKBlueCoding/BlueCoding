@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.news">
+
+	<!-- 테이블 컬럼하고, VO하고 1:1로 맵핑했을때 이름이 다른경우 -->
+	<resultMap id="uewsResult" type="NewsVO">
+	
+		<result property="newsNO" column="newsNO" />
+		<result property="category" column="category" />
+		<result property="newsTitle" column="newsTitle" />
+		<result property="newsText" column="newsText" />
+		<result property="newsDate" column="newsDate" />
+		<result property="newsImage" column="newsImage" />
+		<result property="nViewCnt" column="nViewCnt" />
+		<result property="newsDelete" column="newsDelete" />
+		<result property="id" column="id" />
+		<result property="nick" column="nick" />
+
+	</resultMap>
+
+	<!-- [뉴스 글쓰기] -->
+	<insert id="insertNews" parameterType="NewsVO">
+	 <![CDATA[
+	  INSERT INTO B_NEWS
+	  (NEWSNO, CATEGORY, NEWSTITLE, NEWSTEXT, NEWSDATE, NEWSIMAGE, NVIEWCNT, ID)
+	   VALUES(#{NEWSNO}, #{category}, #{newsTitle}, #{newsText}, sysdate, null, 'lee');
+	 ]]>
+	</insert>
+	
+</mapper>
