@@ -125,37 +125,37 @@
       <h3>회원가입</h3>
       <br>
       <form method="post" action="register">
-        <label for="id">아이디</label>
+        <label for="id">아이디(영문+숫자)</label>
         <br />
-        <input type="text" name="id" id="id" />
+        <input type="text" name="id" id="id" pattern="[A-Za-z0-9]{8,15}" title="영문자+숫자, 8~15글자" required/>
         <br />
-        <label for="pwd">비밀번호</label>
+        <label for="pwd">비밀번호(대문자, 특수문자1개)</label>
         <br />
-        <input type="password" name="pwd" id="pwd" />
-        <br />
-        <label for="find">비밀번호 찾기 질문</label>
-        <br />
-        <input type="text" name="find" id="find" />
+        <input type="password" name="pwd" id="pwd"  pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{10,16}$" title="대문자, 특수문자 포함 10~16글자" required />
         <br />
         <label for="name">회원 실명</label>
         <br />
-        <input type="text" name="name" id="name" />
+        <input type="text" name="name" id="name" minlength="1" maxlength="10" title="1글자이상 10글자 이하" required/>
         <br />
         <label for="nick">닉네임</label>
         <br />
-        <input type="text" name="nick" id="nick" />
+        <input type="text" name="nick" id="nick" minlength="2" maxlength="12" title="2글자 이상 12글자 이하" required/>
         <br />
         <label for="name">이메일</label>
         <br />
-        <input type="text" name="email" id="email" />
+        <input type="text" name="email" id="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required/>
         <br />
         <label for="birth">생년월일</label>
         <br />
-        <input type="text" name="birth" id="birth" placeholder="ex)2022-01-01">
+        <input type="text" name="birth" id="birth" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" placeholder="ex)2022-01-01" title="ex)2022-01-01" required />
         <br />
         <label for="phone">전화번호</label>
         <br />
-        <input type="phone" name="phone">
+        <input type="phone" name="phone" pattern="[0-9]{2,3}-[0-9]{3,4}-[0-9]{3,4}" title="형식 010-0000-0000">
+        <br />
+        <label for="find">비밀번호 찾기 질문(선택)</label>
+        <br />
+        <input type="text" name="find" id="find" minlength="2" maxlength="10" title="2글자 이상 10글자 이하"/>
         <br />
         <input type="hidden" name="profile" id="profile">
         <br>
@@ -200,24 +200,6 @@
                 }
               }
             });
-    </script>
-    <script type="text/javascript">
-      $("#name").focusout(function() {
-        if ($('#name').val() == "") {
-          $('#check').text('이름을 입력해주세요.');
-          $('#check').css('color', 'red');
-        } else {
-          $('#check').hide();
-        }
-      });
-      $("#email").focusout(function() {
-        if ($('#email').val() == "") {
-          $('#check').text('이메일을 입력해주세요');
-          $('#check').css('color', 'red');
-        } else {
-          $('#check').hide();
-        }
-      });
     </script>
     <!-- SBAdmin2 JS START -->
     <!-- Bootstrap core JavaScript-->

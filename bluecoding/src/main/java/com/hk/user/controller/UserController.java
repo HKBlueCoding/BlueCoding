@@ -45,6 +45,7 @@ public class UserController {
 		int ret = userService.addUser(userVO);
 		model.addAttribute("ret", ret);
 		
+		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter pw = response.getWriter();
 		
 		if(ret == 0) {
@@ -59,7 +60,6 @@ public class UserController {
 				+ "	alert('회원가입에 성공하엿습니다.');"
 				+ " location.href='../../'; "
 				+ " </script>");
-		
 		return;
 	}
 
