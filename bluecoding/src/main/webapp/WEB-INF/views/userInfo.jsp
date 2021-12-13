@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <title>ClassiGrids - Classified Ads and Listing Website Template. </title>
@@ -35,8 +35,8 @@
     <link id="pagestyle" href="../resources/material/assets/css/material-dashboard.css?v=3.0.0" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
-  </head>
-  <body>
+</head>
+<body>
     <jsp:include page="/WEB-INF/views/include/header.jsp" />
     <br>
     <br>
@@ -181,9 +181,7 @@
                             <tr>
                               <td>
                                 <div class="d-flex px-2 py-1">
-                                  <div>
-                                    [댓글] 
-                                  </div>
+                                  <div> [댓글] </div>
                                   <div class="d-flex flex-column justify-content-center">
                                     <a href="view" class="mb-0 text-sm" style="color: black">제목입니다[0]</a>
                                   </div>
@@ -199,12 +197,10 @@
                                 <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
                               </td>
                             </tr>
-						
                           </tbody>
                         </table>
-                      </div> 
+                      </div>
                     </div>
-                    
                   </div>
                   <a href="#">회원 탈퇴</a>
                 </div>
@@ -566,5 +562,5 @@
         }
       });
     </script>
-  </body>
+</body>
 </html>

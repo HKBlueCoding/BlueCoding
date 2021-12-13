@@ -2,8 +2,10 @@ package com.hk.user.vo;
 
 import java.util.Date;
 
-public class UserVO {
+import org.springframework.format.annotation.DateTimeFormat;
 
+public class UserVO {
+	
 	// private Attribute
 	private String id;
 	private String pwd;
@@ -12,6 +14,7 @@ public class UserVO {
 	private int coin;
 	private String nick;
 	private String email;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date birth;
 	private Date joinDate;
 	private int pageNO;

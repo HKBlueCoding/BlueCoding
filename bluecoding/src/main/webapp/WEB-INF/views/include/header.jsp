@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <!-- Start Header Area -->
 <header class="header navbar-area">
     <div class="container">
@@ -14,8 +15,7 @@
                             data-bs-target="#navbarSupportedContent"
                             aria-controls="navbarSupportedContent"
                             aria-expanded="false"
-                            aria-label="Toggle navigation"
-                        >
+                            aria-label="Toggle navigation">
                             <span class="toggler-icon"></span> <span class="toggler-icon"></span>
                             <span class="toggler-icon"></span>
                         </button>
@@ -71,22 +71,22 @@
 
             <!-- Modal body -->
             <div class="modal-body">
-                <form action="/action_page.php">
                     <div class="mb-3 mt-3" align="center">
                         <input type="text" class="form-control" id="id" placeholder="아이디" name="id" minlength="8" maxlength="15" style="height: auto; width: 80%;" required />
                     </div>
                     <div class="mb-3" align="center">
                         <input type="password" class="form-control" id="pwd" placeholder="비밀번호" name="pwd" minlength="10" maxlength="16" style="height: auto; width: 80%;" required />
                     </div>
-                    <div align="center"><button type="submit" class="btn btn-secondary" style="height: auto; width: 80%;">&nbsp;&nbsp;&nbsp;로그인&nbsp;&nbsp;&nbsp;</button></div>
+                    <div align="center">
+                    	<button class="btn btn-secondary" onclick="loginBtn()" style="height: auto; width: 80%;">&nbsp;&nbsp;&nbsp;로그인&nbsp;&nbsp;&nbsp;</button>
+                    </div>
                     <br />
                     <div class="form-check mb-3" align="center">
                         <label class="form-check-label"> <input class="form-check-input" type="checkbox" name="remember" align="center" /> 로그인 유지 </label>
                     </div>
                     <p align="center"><a href="../../user/find/id">아이디찾기</a>&nbsp;/&nbsp;<a href="../../user/find/pwd">비밀번호 찾기</a></p>
-                </form>
             </div>
-
+		  
             <!-- Modal footer -->
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal">뒤로가기</button>

@@ -17,9 +17,9 @@ public class UserService {
 		return userDAO.addUser(userVO) ;
 	}
 
-
-	
-	
-	
+	public UserVO checkLogin(UserVO userVO) {
+		// TODO Auto-generated method stub
+		return userDAO.isExisted(userVO);
+	}	
 	
 }

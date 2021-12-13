@@ -76,15 +76,17 @@
                      <!-- To make this form functional, sign up at-->
                      <!-- https://startbootstrap.com/solution/contact-forms-->
                      <!-- to get an API token!-->
-                     <form id="contactForm" data-sb-form-api-token="API_TOKEN">
+                     <form id="contactForm" method="post" action="post" data-sb-form-api-token="API_TOKEN">
                         <div class="form-floating">
-                           <input class="form-control" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
+                           <input class="form-control" id="bookTitle" name="bookTitle" type="text" placeholder="Enter your name..."  data-sb-validations="required" />
                            <label for="name">책 제목</label>                          
                            <div class="invalid-feedback" data-sb-feedback="name:required">제목을 입력하세요.</div>
                         </div>
                         <br>
                          <div class="form-floating">
-                           <input class="form-control" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
+                           <input class="form-control" id="name" name="name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
+                           <!-- 아이디 보내기 ↓ -->
+                           
                            <label for="name">작가명</label>                          
                            <div class="invalid-feedback" data-sb-feedback="name:required">작가명을 입력하세요.</div>
                           </div>
