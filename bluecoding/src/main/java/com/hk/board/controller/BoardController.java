@@ -54,7 +54,8 @@ public class BoardController {
 		model.addAttribute("ret", ret);
 		return "boardList";
 	}
-	
+
+	// UPDATE
 	@GetMapping(value="/board/view")
 	public String boardView(Model model, @RequestParam("articleNO") int articleNO) {
 		
@@ -62,37 +63,15 @@ public class BoardController {
 		model.addAttribute("board", boardVO);
 		return "boardView";
 	}	
-	
-	// UPDATE
+		
 	@GetMapping(value="/board/update")
-	public void boardUpdate( @ModelAttribute BoardVO boardVO,HttpServletResponse response) throws IOException {
-		
-		int ret = boardService.modArticle(boardVO);
-		response.setContentType("text/html; charset=UTF-8");
-		PrintWriter pw = response.getWriter();
-		
-		// 실패 
-		if(ret == 0) {
-			pw.println("<script>"
-					+ "	alert('작성에 실패하였습니다.');"
-					+ " location.href='../../board/view?articleNO="+boardVO.getArticleNO()+"'; "
-					+ " </script>");
-			return;
-		}
-		// 성공
-		pw.println("<script>"
-				+ "	alert('작성에 성공하였습니다.');"
-				+ " location.href='../../board/view?articleNO="+boardVO.getArticleNO()+"'; "
-				+ " </script>");
-		
-		return;
-	}
-		
-	@PostMapping(value="/board/update")
 	public String boardUpdate2(Model model, @ModelAttribute BoardVO boardVO) {
-		
-		
-		return "boardList";
+		// 여기서 수정된 값 들어오고
+		logger.debug("[boardVO] 업데이트로 들어온 값 = "+ boardVO);
+		int ret = boardService.modArticle(boardVO);
+		model.addAttribute("ret", ret);
+		model.addAttribute("articleNO", boardVO.getArticleNO());
+		return "done/boardUpdateDone";
 	}
 	
 	// DELETE

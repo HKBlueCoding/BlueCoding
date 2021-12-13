@@ -43,6 +43,7 @@
          }
       </style>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
+      <script src="../resources/bluecoding/boardView.js"></script>
    </head>
    <body>
       <!-- header -->
@@ -50,26 +51,37 @@
       <br><br><br><br><br><br><br><br>
       <!-- =================== 글쓰기 폼 ===================== -->
       <!-- Main Content-->
+      <form id="contactForm" data-sb-form-api-token="API_TOKEN" name="frmArticle" method="post" action="update" >
       <main class="mb-4">
          <div class="container px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5 justify-content-center">
                <div class="col-md-10 col-lg-8 col-xl-7">
                   <p id="title">커뮤니티글 상세 보기</p>
                   <hr class="my-4">
-                  <p id="title2">&nbsp;&nbsp;${board.articleNO}. ${board.boardTitle }</p>
+                  게시글 번호 :<br>
+                  <input type="text"  value="${board.articleNO }"  disabled />
+                  <input type="hidden" name="articleNO" value="${board.articleNO}"  />
+                  <br>
+                  제목 :<br>
+                  <input type=text value="${board.boardTitle }"  name="title"  id="i_title" disabled />
                   <div id="qna">
                      &nbsp;&nbsp; 작성자 : ${board.id } &nbsp;&nbsp;&nbsp;&nbsp; ${board.boardDate } &nbsp;&nbsp;&nbsp;&nbsp;
                      <!-- ======================= 버튼 ========================== -->
-                     <div class="button header-button">
-                        <a href="../board/update" class="btn">수정</a>
+                     <div class="button header-button" id="tr_btn_modify" style="display: none;">
+	      			 	<a  onClick="fn_modify_article(frmArticle)" class="btn">수정반영</a>
+	      			 	<a onClick="backToList(frmArticle)" class="btn">취소</a>
+	      			 </div>
+                     <div class="button header-button" id="tr_btn_one" >
+                        <a onclick="fn_enable(this.form)" class="btn">수정</a>
                      </div>
-                     <div class="button header-button">
+                     <div class="button header-button" id="tr_btn_two">
                         <a onClick="funok()" class="btn">삭제</a>
                      </div>
-                     <div class="button header-button">
+                     <div class="button header-button" id="tr_btn_three">
                         <a href="javascript:void(0)" class="btn">신고하기</a>
                      </div>
-                     <!-- ======================= 버튼 끝 ========================== -->                  
+                     
+                     <!-- ======================= 버튼 끝 ========================== -->
                   </div>
                   <div class="my-5">
                      <!-- * * * * * * * * * * * * * * *-->
@@ -79,11 +91,11 @@
                      <!-- To make this form functional, sign up at-->
                      <!-- https://startbootstrap.com/solution/contact-forms-->
                      <!-- to get an API token!-->
-                     <form id="contactForm" data-sb-form-api-token="API_TOKEN">
+                    
                         <br>
                         <div class="form-floating" id="formMag">
-                           <textarea class="form-control" id="message" placeholder="Enter your message here..." style="height: 15rem" data-sb-validations="required" disabled></textarea>
-                           <label for="message">${board.boardText }</label>
+                           <textarea class="form-control" name="boardText"  id="boardContent" placeholder="Enter your message here..." style="height: 15rem" data-sb-validations="required" disabled></textarea>
+                           <label for="message" >${board.boardText }</label>
                            <div class="invalid-feedback" data-sb-feedback="message:required">내용을 입력하세요.</div>
                         </div>
                         <br />
@@ -124,7 +136,7 @@
                                                       <p class="text-xs text-secondary mb-0">YYYY/MM/DD / hh:mm</p>
                                                    </div>
                                                 </div>
-                                             </td>
+                                             </td>											
 <!-- ======================= 버튼 ========================== -->
                                              <td>
                                                 <div align="right"  style="width: 100%;">
@@ -137,11 +149,11 @@
                                                    <div class="button header-button">
                                                       <a href="javascript:void(0)" class="btn" style="background-color: #ff00eb;">신고하기</a>
                                                    </div>
-                                                </div>
+                                                </div>										 
 <!-- ======================= 버튼 끝 ========================== -->
                                              </td>
                                           </tr>
-<!-- ========================== 답글 끝 ========================== -->
+<!-- ======================= 답글 끝 ========================== -->
                                        </tbody>
                                     </table>
                                  </div>
@@ -217,6 +229,7 @@
             </div>
          </div>
       </main>
+      </form>
       <!-- ==================== footer ====================== -->      
       <!-- footer -->
       <jsp:include page="/WEB-INF/views/include/footer.jsp"/>

@@ -1,38 +1,11 @@
-/**
- * 
- */
-     function backToList(obj){
-	    obj.action="list";
-	    obj.submit();
-     }
-	 
-	 function fn_remove_article(url,articleNO){
-		 var form = document.createElement("form");
-		 form.setAttribute("method", "post");
-		 form.setAttribute("action", url);
-	     var articleNOInput = document.createElement("input");
-	     articleNOInput.setAttribute("type","hidden");
-	     articleNOInput.setAttribute("name","articleNO");
-	     articleNOInput.setAttribute("value", articleNO);
-		 
-	     form.appendChild(articleNOInput);
-	     document.body.appendChild(form);
-	     form.submit();
-	 
-	 }
-	 
-	 function fn_reply_form(url, parentNO){
-		 var form = document.createElement("form");
-		 form.setAttribute("method", "post");
-		 form.setAttribute("action", url);
-	     var parentNOInput = document.createElement("input");
-	     parentNOInput.setAttribute("type","hidden");
-	     parentNOInput.setAttribute("name","parentNO");
-	     parentNOInput.setAttribute("value", parentNO);
-		 
-	     form.appendChild(parentNOInput);
-	     document.body.appendChild(form);
-		 form.submit();
+
+	 function fn_enable(obj){
+		 document.getElementById("boardContent").disabled=false;
+		 document.getElementById("i_title").disabled=false;
+		 document.getElementById("tr_btn_modify").style.display="block";
+		 document.getElementById("tr_btn_one").style.display="none"; 
+		 document.getElementById("tr_btn_two").style.display="none"; 
+		 document.getElementById("tr_btn_three").style.display="none"; 
 	 }
 	 
 	 function deleteConfirm(id) {

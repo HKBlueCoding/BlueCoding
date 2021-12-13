@@ -61,6 +61,7 @@
          }
       </style>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
+      
    </head>
    <body>
       <jsp:include page="/WEB-INF/views/include/header.jsp" />
@@ -102,7 +103,7 @@
                                  		<td>
                                     		<div class="d-flex px-2 py-1">
                                        			<div class="d-flex flex-column justify-content-center">
-                                          			<a href="update?articleNO=${boardList.articleNO}" class="mb-0 text-sm" style="color: black">${boardList.boardTitle }</a>
+                                          			<a href="view?articleNO=${boardList.articleNO}" class="mb-0 text-sm" style="color: black">${boardList.boardTitle }</a>
                                           			<p class="text-xs text-secondary mb-0">${boardList.boardText }</p>
                                        			</div>
                                     		</div>
