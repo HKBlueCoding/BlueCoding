@@ -14,8 +14,7 @@ public class UserVO {
 	private int coin;
 	private String nick;
 	private String email;
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private Date birth;
+	private String birth;
 	private Date joinDate;
 	private int pageNO;
 	private String phone;
@@ -23,8 +22,6 @@ public class UserVO {
 	private String profile;
 	private int prohibitLV;
 	private String admin;
-	
-	// Getter & Setter
 	public String getId() {
 		return id;
 	}
@@ -67,10 +64,10 @@ public class UserVO {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public Date getBirth() {
+	public String getBirth() {
 		return birth;
 	}
-	public void setBirth(Date birth) {
+	public void setBirth(String birth) {
 		this.birth = birth;
 	}
 	public Date getJoinDate() {
@@ -115,8 +112,6 @@ public class UserVO {
 	public void setAdmin(String admin) {
 		this.admin = admin;
 	}
-	
-	// toString()
 	@Override
 	public String toString() {
 		return "UserVO [id=" + id + ", pwd=" + pwd + ", find=" + find + ", name=" + name + ", coin=" + coin + ", nick="
@@ -124,6 +119,5 @@ public class UserVO {
 				+ ", phone=" + phone + ", gauge=" + gauge + ", profile=" + profile + ", prohibitLV=" + prohibitLV
 				+ ", admin=" + admin + "]";
 	}
-	
 	
 }

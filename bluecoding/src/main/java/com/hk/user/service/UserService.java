@@ -1,5 +1,9 @@
 package com.hk.user.service;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +18,10 @@ public class UserService {
 
 	public int addUser(UserVO userVO) {
 		// TODO Auto-generated method stub
-		return userDAO.addUser(userVO) ;
+		// userDAO로 데이터를 먼저 넣음
+
+		
+		return userDAO.addUser(userVO);
 	}
 
 	public UserVO checkLogin(UserVO userVO) {

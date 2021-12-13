@@ -1,9 +1,5 @@
 package com.hk.user.dao;
 
-import java.text.SimpleDateFormat;
-import java.util.HashMap;
-import java.util.Map;
-
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,13 +18,8 @@ public class UserDAO {
 
 	public int addUser(UserVO userVO) {
 		// TODO Auto-generated method stub
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		String birthFix = simpleDateFormat.format(userVO.getBirth());
-		logger.debug(birthFix);
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("userVO", userVO);
-		map.put("birthFix", birthFix);
-		int ret = sqlSession.insert("mapper.user.insertUser", map);
+		logger.debug("[userVO]"+userVO);
+		int ret = sqlSession.insert("mapper.user.insertUser",userVO);
 		
 		return ret;
 	}

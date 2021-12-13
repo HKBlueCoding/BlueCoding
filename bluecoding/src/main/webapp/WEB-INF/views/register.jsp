@@ -124,7 +124,7 @@
     <div class="float-right" style="height: auto; width: 20%; color: white; background-color: rgba(0, 0, 0, 0.3);" align="center">
       <h3>회원가입</h3>
       <br>
-      <form id="bi" method="post" action="register">
+      <form method="post" action="register">
         <label for="id">아이디</label>
         <br />
         <input type="text" name="id" id="id" />
@@ -151,12 +151,13 @@
         <br />
         <label for="birth">생년월일</label>
         <br />
-        <input type="date" name="birth" id="birth">
+        <input type="text" name="birth" id="birth" placeholder="ex)2022-01-01">
         <br />
         <label for="phone">전화번호</label>
         <br />
         <input type="phone" name="phone">
         <br />
+        <input type="hidden" name="profile" id="profile">
         <br>
         <input type="submit" id="sumit" value="등록" />
       </form>

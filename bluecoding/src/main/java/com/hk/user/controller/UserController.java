@@ -40,7 +40,7 @@ public class UserController {
 	
 	// [회원가입]
 	@PostMapping(value="/user/register")
-	public String registerDone(Model model, @ModelAttribute UserVO userVO, HttpServletResponse response) throws IOException {
+	public void registerDone(Model model, @ModelAttribute UserVO userVO, HttpServletResponse response) throws IOException {
 		logger.debug("[userVO]"+userVO);
 		int ret = userService.addUser(userVO);
 		model.addAttribute("ret", ret);
@@ -51,11 +51,16 @@ public class UserController {
 			pw.println("<script>"
 					+ "	alert('회원가입에 실패하엿습니다.');"
 					+ " location.href='../../user/register'; "
-					+ " </scrpt>");
-			return "register";
+					+ " </script>");
+			return;
 		}
 		
-		return "main";
+		pw.println("<script>"
+				+ "	alert('회원가입에 성공하엿습니다.');"
+				+ " location.href='../../'; "
+				+ " </script>");
+		
+		return;
 	}
 
 	@RequestMapping(value="/user/find/id", method=RequestMethod.GET)
@@ -90,8 +95,7 @@ public class UserController {
 		
 		// DB에서 로그인 체크
 		userVO = userService.checkLogin(userVO);
-		
-		
+
 		return userVO;
 	}
 	
