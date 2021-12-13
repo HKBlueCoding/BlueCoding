@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hk.user.service.UserService;
@@ -40,7 +41,7 @@ public class UserController {
 	
 	// [회원가입]
 	@PostMapping(value="/user/register")
-	public void registerDone(Model model, @ModelAttribute UserVO userVO, HttpServletResponse response) throws IOException {
+	public String registerDone(Model model, @ModelAttribute UserVO userVO, HttpServletResponse response) throws IOException {
 		logger.debug("[userVO]"+userVO);
 		int ret = userService.addUser(userVO);
 		model.addAttribute("ret", ret);
@@ -49,18 +50,10 @@ public class UserController {
 		PrintWriter pw = response.getWriter();
 		
 		if(ret == 0) {
-			pw.println("<script>"
-					+ "	alert('회원가입에 실패하엿습니다.');"
-					+ " location.href='../../user/register'; "
-					+ " </script>");
-			return;
-		}
-		
-		pw.println("<script>"
-				+ "	alert('회원가입에 성공하엿습니다.');"
-				+ " location.href='../../'; "
-				+ " </script>");
-		return;
+			
+			return "redirect:/";
+		}		
+		return "redirect:/";
 	}
 
 	@RequestMapping(value="/user/find/id", method=RequestMethod.GET)
@@ -85,6 +78,27 @@ public class UserController {
 	public String userChest() {
 		
 		return "userChest";
+	}
+	
+	// [아이디 중복체크]
+	@RequestMapping(value="/dupId",method=RequestMethod.GET , produces= "application/json; charset=utf-8")
+	@ResponseBody	
+	public Map<String, Integer> dupId(@RequestParam("id") String id){
+		logger.debug("아이디 =="+id);
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		// 아이디 있는지 체크
+		UserVO userVO = userService.checkId(id);
+		
+		if(userVO == null) {
+			// null이면 성공
+			map.put("rs", 1);
+		}else {
+			// 같은 아이디가 있으면 실패
+			map.put("rs", 0);
+		}
+		
+		
+		return map;
 	}
 	
 	// [로그인 확인]

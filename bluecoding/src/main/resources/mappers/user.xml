@@ -30,17 +30,24 @@
 
 	<!-- [회원가입] -->
 	<insert id="insertUser" parameterType="UserVO">
-	<![CDATA[ 
+	 <![CDATA[ 
 		INSERT INTO B_USER (ID, PWD, FIND, NAME, COIN, NICK, EMAIL, BIRTH, JOINDATE, PAGENO, PHONE, GAUGE, PROFILE,PROHIBITLV, ADMIN )
 		VALUES( #{id}, #{pwd}, #{find}, #{name}, 0, #{nick}, #{email}, #{birth}, sysdate, 0, #{phone}, 0, #{profile}, 0, '')
-	]]>
+	 ]]>
 	</insert>
+	
+	<!-- [아이디 중복체크] -->
+	<select id="dupId" parameterType="java.lang.String" resultType="UserVO">
+	 <![CDATA[
+		select * from b_user where id = #{id}
+	 ]]>
+	</select>
 	
 	<!-- [로그인] -->
 	<select id="isExisted" parameterType="UserVO" resultType="UserVO">
-	<![CDATA[
+	 <![CDATA[
 	  SELECT * FROM b_user WHERE id = #{id} AND pwd=#{pwd}
-	]]>
+	 ]]>
 	</select>
 	
 </mapper>

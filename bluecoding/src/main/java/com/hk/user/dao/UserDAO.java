@@ -29,5 +29,11 @@ public class UserDAO {
 		userVO = sqlSession.selectOne("mapper.user.isExisted", userVO);
 		return userVO;
 	}
+
+	public UserVO dupId(String id) {
+		// TODO Auto-generated method stub
+		UserVO userVO = sqlSession.selectOne("mapper.user.dupId",id);
+		return userVO;
+	}
 	
 }

@@ -19,14 +19,17 @@ public class UserService {
 	public int addUser(UserVO userVO) {
 		// TODO Auto-generated method stub
 		// userDAO로 데이터를 먼저 넣음
-
-		
 		return userDAO.addUser(userVO);
 	}
 
 	public UserVO checkLogin(UserVO userVO) {
 		// TODO Auto-generated method stub
 		return userDAO.isExisted(userVO);
+	}
+
+	public UserVO checkId(String id) {
+		// TODO Auto-generated method stub
+		return userDAO.dupId(id);
 	}	
 	
 }

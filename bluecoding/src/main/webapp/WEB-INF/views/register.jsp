@@ -118,6 +118,9 @@
       }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
+      		integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
+            crossorigin="anonymous"></script>
 </head>
 <body>
     <jsp:include page="/WEB-INF/views/include/header.jsp" />
@@ -132,6 +135,10 @@
         <label for="pwd">비밀번호(대문자, 특수문자1개)</label>
         <br />
         <input type="password" name="pwd" id="pwd"  pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{10,16}$" title="대문자, 특수문자 포함 10~16글자" required />
+        <br />
+        <label for="pwd">비밀번호 확인</label>
+        <br />
+        <input type="password" id="pwdCheck" required>
         <br />
         <label for="name">회원 실명</label>
         <br />
@@ -233,5 +240,7 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="../../resources/assets/js/material-dashboard.min.js?v=3.0.0"></script>
+    <script src="../../resources/bluecoding/login.js"></script>
+	<script src="../../resources/bluecoding/register.js"></script>
 </body>
 </html>

@@ -37,8 +37,8 @@
                                 <li class="nav-item"><a href="../../qna/home" aria-label="Toggle navigation">고객센터</a></li>
                             </ul>
                         </div>
-                        <!-- navbar collapse -->
-                        <div class="login-button">
+                        <!-- [비로그인시] -->
+                        <div id="notLogin" class="login-button" >
                             <ul>
                                 <li>
                                     <a data-bs-toggle="modal" data-bs-target="#login"><i class="lni lni-enter"></i> Login</a>
@@ -48,6 +48,22 @@
                                 </li>
                             </ul>
                         </div>
+                        <!-- [로그인 성공시] -->
+                        <div id="successLogin" class="login-button" style="display:none; ">
+                            <ul>
+                                <li>
+									<div class="d-flex px-2 py-1">
+                          				<div>
+                            				<img src="../../resources/material/assets/img/team-4.jpg" width="36" height="36" class="avatar avatar-sm me-3 border-radius-lg" alt="user6">
+                          				</div>
+                          				<div class="d-flex flex-column justify-content-center">
+                            				<input type="text" class="mb-0 text-sm" value="닉네임" disabled/>
+                            				<p class="text-xs text-secondary mb-0" onclick="">더보기</p>
+                          				</div>
+                        			</div>
+                                </li>
+                            </ul>
+                        </div>                        
                     </nav>
                     <!-- navbar -->
                 </div>
@@ -75,10 +91,10 @@
             <!-- Modal body -->
             <div class="modal-body">
                     <div class="mb-3 mt-3" align="center">
-                        <input type="text" class="form-control" id="id" placeholder="아이디" name="id" minlength="8" maxlength="15" style="height: auto; width: 80%;" required />
+                        <input type="text" class="form-control" id="loginId" placeholder="아이디" name="id" minlength="8" maxlength="15" style="height: auto; width: 80%;" required />
                     </div>
                     <div class="mb-3" align="center">
-                        <input type="password" class="form-control" id="pwd" placeholder="비밀번호" name="pwd" minlength="10" maxlength="16" style="height: auto; width: 80%;" required />
+                        <input type="password" class="form-control" id="loginPwd" placeholder="비밀번호" name="pwd" minlength="10" maxlength="16" style="height: auto; width: 80%;" required />
                     </div>
                     <div align="center">
                     	<button class="btn btn-secondary" onclick="loginBtn()" style="height: auto; width: 80%;">&nbsp;&nbsp;&nbsp;로그인&nbsp;&nbsp;&nbsp;</button>
