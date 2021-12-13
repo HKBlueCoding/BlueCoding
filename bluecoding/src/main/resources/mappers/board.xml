@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="mapper.board">
+
+	<resultMap id="boardResult" type="BoardVO">
+	
+		<result property="articleNO" column="articleNO" />
+		<result property="boardTitle" column="boardTitle" />
+		<result property="boardText" column="boardText" />
+		<result property="boardDate" column="boardDate" />
+		
+		<result property="boardImage" column="boardImage" />
+		<result property="bViewCnt" column="bViewCnt" />
+		<result property="boardDelete" column="boardDelete" />
+		<result property="id" column="id" />
+		<result property="nick" column="nick" />
+		
+	</resultMap>
+
+	<!-- [커뮤니티 게시글 조회] -->
+	<select id="selectAllBoardList" resultMap="boardResult">
+	<![CDATA[
+	SELECT ARTICLENO, BOARDTITLE, BOARDTEXT, BOARDDATE, BOARDIMAGE, BVIEWCNT, BOARDDELETE, ID, NICK
+	FROM B_BOARD
+	]]>
+	</select>
+
+	<!-- [커뮤니티 게시글 추가] -->
+	<insert id="insertArticle2" parameterType="BoardVO">
+   		<selectKey keyProperty="articleNO" resultType="int" order="BEFORE">
+   			<![CDATA[
+   		    SELECT MAX(ARTICLENO)+1 FROM B_BOARD
+			]]>
+  		</selectKey>
+  			<![CDATA[
+			INSERT INTO B_BOARD
+			(ARTICLENO, BOARDTITLE, BOARDTEXT, BOARDDATE, BOARDIMAGE, BVIEWCNT, BOARDDELETE, ID, NICK)
+			VALUES(#{articleNO}, #{boardTitle}, #{boardText}, sysdate, #{boardImage}, 0, #{boardDelete}, #{id}, #{nick})
+			]]>
+	</insert>
+	
+	<!-- [커뮤니티 게시글 수정] -->	
+	<select id="selectOneArticle" resultType="BoardVO">
+		<![CDATA[
+		SELECT ARTICLENO, BOARDTITLE, BOARDTEXT, BOARDDATE, BOARDIMAGE, BVIEWCNT, BOARDDELETE, ID, NICK
+		FROM B_BOARD WHERE ARTICLENO=#{ARTICLENO}
+		]]>
+	</select>
+	
+	<update id="UpdateArticle" parameterType="BoardVO">
+		<![CDATA[
+		UPDATE B_BOARD SET BOARDTITLE=#{boardTitle}, BOARDTEXT=#{boardText}
+		WHERE ARTICLENO=#{articleNO}
+		]]>
+	</update>
+
+	<!-- [커뮤니티 게시글 삭제표시] -->		
+	<update id="DeleteArticle">
+		<![CDATA[
+	UPDATE B_BOARD SET BOARDDELETE='Y'
+	WHERE ARTICLENO=#{ARTICLENO}
+		]]>	
+	</update>
+	
+</mapper>

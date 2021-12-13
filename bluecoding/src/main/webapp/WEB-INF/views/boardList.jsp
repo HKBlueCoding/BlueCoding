@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
+<%
+  request.setCharacterEncoding("UTF-8");
+%>
 <!DOCTYPE html>
 <html>
    <head>
@@ -79,161 +85,25 @@
                                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">작성일</th>
                               </tr>
                            </thead>
+                           
+                            <c:choose>
+                            	<c:when test="${empty boardList }">
+									<tr height="10">
+										<td colspan="4">
+											<p align="center">
+												<b><span style="font-size: 9pt;">등록된 글이 없습니다.</span></b>
+											</p>
+										</td>
+									</tr>
+                            	</c:when>
+								<c:when test="${!empty boardList}">
+								
+								
+                            	</c:when>
+                            </c:choose>
+                           
+                           
                            <tbody>
-                              <tr>
-                                 <td>
-                                    <div class="d-flex px-2 py-1">
-                                       <div>
-                                          <img src="../resources/assets/images/mainPage/board1.png" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
-                                       </div>
-                                       <div class="d-flex flex-column justify-content-center">
-                                          <a href="view" class="mb-0 text-sm" style="color: black">제목입니다[0]</a>
-                                          <p class="text-xs text-secondary mb-0">댓글(개수)</p>
-                                       </div>
-                                    </div>
-                                 </td>
-                                 <td class="align-middle">
-                                    <span class="text-secondary text-xs font-weight-bold">이름</span>
-                                 </td>
-                                 <td class="align-middle text-center text-sm">
-                                    <span class="badge badge-sm bg-gradient-success" style="background-image: linear-gradient(180deg,#419cef 10%,#106ec3 100%);">100</span>
-                                 </td>
-                                 <td class="align-middle text-center">
-                                    <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
-                                 </td>
-                              </tr>
-                              <tr>
-                                 <td>
-                                    <div class="d-flex px-2 py-1">
-                                       <div>
-                                          <img src="../resources/assets/images/mainPage/board1.png" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
-                                       </div>
-                                       <div class="d-flex flex-column justify-content-center">
-                                          <a href="view" class="mb-0 text-sm" style="color: black">제목입니다[0]</a>
-                                          <p class="text-xs text-secondary mb-0">댓글(개수)</p>
-                                       </div>
-                                    </div>
-                                 </td>
-                                 <td class="align-middle">
-                                    <span class="text-secondary text-xs font-weight-bold">이름</span>
-                                 </td>
-                                 <td class="align-middle text-center text-sm">
-                                    <span class="badge badge-sm bg-gradient-success" style="background-image: linear-gradient(180deg,#419cef 10%,#106ec3 100%);">100</span>
-                                 </td>
-                                 <td class="align-middle text-center">
-                                    <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
-                                 </td>
-                              </tr>
-                              <tr>
-                                 <td>
-                                    <div class="d-flex px-2 py-1">
-                                       <div>
-                                          <img src="../resources/assets/images/mainPage/board1.png" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
-                                       </div>
-                                       <div class="d-flex flex-column justify-content-center">
-                                          <a href="view" class="mb-0 text-sm" style="color: black">제목입니다[0]</a>
-                                          <p class="text-xs text-secondary mb-0">댓글(개수)</p>
-                                       </div>
-                                    </div>
-                                 </td>
-                                 <td class="align-middle">
-                                    <span class="text-secondary text-xs font-weight-bold">이름</span>
-                                 </td>
-                                 <td class="align-middle text-center text-sm">
-                                    <span class="badge badge-sm bg-gradient-success" style="background-image: linear-gradient(180deg,#419cef 10%,#106ec3 100%);">100</span>
-                                 </td>
-                                 <td class="align-middle text-center">
-                                    <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
-                                 </td>
-                              </tr>
-                              <tr>
-                                 <td>
-                                    <div class="d-flex px-2 py-1">
-                                       <div>
-                                          <img src="../resources/assets/images/mainPage/board1.png" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
-                                       </div>
-                                       <div class="d-flex flex-column justify-content-center">
-                                          <a href="view" class="mb-0 text-sm" style="color: black">제목입니다[0]</a>
-                                          <p class="text-xs text-secondary mb-0">댓글(개수)</p>
-                                       </div>
-                                    </div>
-                                 </td>
-                                 <td class="align-middle">
-                                    <span class="text-secondary text-xs font-weight-bold">이름</span>
-                                 </td>
-                                 <td class="align-middle text-center text-sm">
-                                    <span class="badge badge-sm bg-gradient-success" style="background-image: linear-gradient(180deg,#419cef 10%,#106ec3 100%);">100</span>
-                                 </td>
-                                 <td class="align-middle text-center">
-                                    <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
-                                 </td>
-                              </tr>
-                              <tr>
-                                 <td>
-                                    <div class="d-flex px-2 py-1">
-                                       <div>
-                                          <img src="../resources/assets/images/mainPage/board1.png" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
-                                       </div>
-                                       <div class="d-flex flex-column justify-content-center">
-                                          <a href="view" class="mb-0 text-sm" style="color: black">제목입니다[0]</a>
-                                          <p class="text-xs text-secondary mb-0">댓글(개수)</p>
-                                       </div>
-                                    </div>
-                                 </td>
-                                 <td class="align-middle">
-                                    <span class="text-secondary text-xs font-weight-bold">이름</span>
-                                 </td>
-                                 <td class="align-middle text-center text-sm">
-                                    <span class="badge badge-sm bg-gradient-success" style="background-image: linear-gradient(180deg,#419cef 10%,#106ec3 100%);">100</span>
-                                 </td>
-                                 <td class="align-middle text-center">
-                                    <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
-                                 </td>
-                              </tr>
-                              <tr>
-                                 <td>
-                                    <div class="d-flex px-2 py-1">
-                                       <div>
-                                          <img src="../resources/assets/images/mainPage/board1.png" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
-                                       </div>
-                                       <div class="d-flex flex-column justify-content-center">
-                                          <a href="view" class="mb-0 text-sm" style="color: black">제목입니다[0]</a>
-                                          <p class="text-xs text-secondary mb-0">댓글(개수)</p>
-                                       </div>
-                                    </div>
-                                 </td>
-                                 <td class="align-middle">
-                                    <span class="text-secondary text-xs font-weight-bold">이름</span>
-                                 </td>
-                                 <td class="align-middle text-center text-sm">
-                                    <span class="badge badge-sm bg-gradient-success" style="background-image: linear-gradient(180deg,#419cef 10%,#106ec3 100%);">100</span>
-                                 </td>
-                                 <td class="align-middle text-center">
-                                    <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
-                                 </td>
-                              </tr>
-                              <tr>
-                                 <td>
-                                    <div class="d-flex px-2 py-1">
-                                       <div>
-                                          <img src="../resources/assets/images/mainPage/board1.png" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
-                                       </div>
-                                       <div class="d-flex flex-column justify-content-center">
-                                          <a href="view" class="mb-0 text-sm" style="color: black">제목입니다[0]</a>
-                                          <p class="text-xs text-secondary mb-0">댓글(개수)</p>
-                                       </div>
-                                    </div>
-                                 </td>
-                                 <td class="align-middle">
-                                    <span class="text-secondary text-xs font-weight-bold">이름</span>
-                                 </td>
-                                 <td class="align-middle text-center text-sm">
-                                    <span class="badge badge-sm bg-gradient-success" style="background-image: linear-gradient(180deg,#419cef 10%,#106ec3 100%);">100</span>
-                                 </td>
-                                 <td class="align-middle text-center">
-                                    <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
-                                 </td>
-                              </tr>
                               <tr>
                                  <td>
                                     <div class="d-flex px-2 py-1">
