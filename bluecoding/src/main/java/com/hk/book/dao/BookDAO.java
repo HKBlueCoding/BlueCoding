@@ -22,7 +22,7 @@ public class BookDAO {
 
 	public int bookAdd(BookVO bookVO) {
 		// TODO Auto-generated method stub
-		int ret = sqlSession.insert("mapper.news.insertBook", bookVO);
+		int ret = sqlSession.insert("mapper.book.insertBook", bookVO);
 		return ret;
 	}
 

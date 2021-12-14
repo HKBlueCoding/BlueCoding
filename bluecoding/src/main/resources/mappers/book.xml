@@ -34,8 +34,8 @@
 	 </selectKey>
 	 <![CDATA[
 	  INSERT INTO B_BOOK
-	  (BOOKNO, BOOKTITLE, INTRO, THEME, BOOKIMAGE, BOOKDELETE, NAME, ID, BOOKDATE, BVIEWCNT)
-	   VALUES( #{bookNO}, #{bookTitle}, #{intro}, #{theme}, #{bookImage}, #{name}, 'abc12345', sysdate, 0)
+	  (BOOKNO, BOOKTITLE, INTRO, THEME, BOOKIMAGE, NAME, ID, BOOKDATE, BVIEWCNT)
+	   VALUES( #{bookNO}, #{bookTitle}, #{intro}, #{theme}, #{bookImage}, '홍길동', 'abc12345', sysdate, 0)
 	 ]]>
 	</insert>	
 </mapper>

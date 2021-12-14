@@ -58,7 +58,7 @@ public class BookController {
 		int ret = bookService.addBook(bookVO);
 		model.addAttribute("ret", ret);
 		
-		return "bookAddDone";
+		return "done/bookAddDone";
 	}	
 	
 	@GetMapping("/view")
