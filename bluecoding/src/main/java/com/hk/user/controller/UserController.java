@@ -100,7 +100,7 @@ public class UserController {
 	
 	// [로그인 체크]
 	@RequestMapping(value="/finishLogin", method=RequestMethod.POST)
-	public String finishLogin(HttpServletRequest request, @RequestParam("loginId") String id, 
+	public String finishLogin(HttpSession session, @RequestParam("loginId") String id, 
 							  @RequestParam("loginPwd") String pwd, @RequestParam(value="loginCookie", required=false)String loginCookie,Model model) {
 		//logger.debug("VO는?"+userVO);
 		logger.debug("아이디="+id);
@@ -108,16 +108,19 @@ public class UserController {
 		UserVO userVO = new UserVO();
 		userVO.setId(id);
 		userVO.setPwd(pwd);
-		// 다시 확인..
+		
+		// 조회후
 		userVO = userService.checkLogin(userVO);
 		
-		// 그냥 쳐보고
-		HttpSession session = request.getSession();
-		if(loginCookie.equals(null)) {
-			session.setAttribute("login", userVO);
-		}else {
-			
-		}
+		session.setAttribute("login", userVO);
+		
+		/*
+		 * // 쿠키를 야부에 따라 리턴 if(loginCookie.equals(null)) { // 1. 로그인유지를 안했을 경우
+		 * 
+		 * }else {
+		 * 
+		 * }
+		 */
 		
 		return "done/loginDone";
 	}
