@@ -10,18 +10,17 @@
 <title>Insert title here</title>
 </head>
 <body>
-	
 	<!-- 로그인 실패시 -->
-	<c:if test="${empty login.id || login.id eq '' }">
+	<c:if test="${rs == 0 }">
 	  <script>
-		alert('아이디 또는 비밀번호를 확인하세요');
+		alert('로그인 되어있지 않습니다!');
 		history.back();
 	  </script>
 	</c:if>
 	<!-- 로그인 성공시 -->
-	<c:if test="${ !empty login.id && login.id ne ''}">
+	<c:if test="${ rs > 0}">
 	  <script>
-	  	alert('${login.nick}님 환영합니다');
+	  	alert('정상적으로 로그아웃 되었습니다');
 	  	location.href="../../../";
 	  </script>
 	</c:if>

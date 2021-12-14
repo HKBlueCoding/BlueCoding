@@ -20,11 +20,7 @@ public class BookController {
 		
 	// 메인 페이지
 	@GetMapping("/")
-	public String home(HttpSession session, Model model) {
-		
-		UserVO userVO = (UserVO) session.getAttribute("login");
-		logger.debug("[세션 감지됨]="+userVO);
-		model.addAttribute("login", userVO);
+	public String home(Model model) {
 		
 		return "main";
 	}

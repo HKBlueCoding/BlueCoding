@@ -98,29 +98,13 @@ public class UserController {
 		return map;
 	}
 	
-	// [로그인 확인]
-	@RequestMapping(value="/checkLogin",method=RequestMethod.POST , produces= "application/json; charset=utf-8")
-	@ResponseBody
-	public UserVO checkLogin(@ModelAttribute UserVO userVO, HttpSession session, Model model) {
-		// 0.파라메터에 넣었으니, 없으면 알아서 세션 생성됨
-		logger.debug("[userVO] =="+userVO.toString()); // 값 찍기
-		
-		// 1.DB에서 로그인 체크
-		userVO = userService.checkLogin(userVO);
-		
-		// 2.만약 로그인 값이 null이 아니면 session을 추가
-		if(userVO != null) {
-			session.setAttribute("login", userVO);
-		}
-		
-		return userVO;
-	}
-	
+	// [로그인 체크]
 	@RequestMapping(value="/finishLogin", method=RequestMethod.POST)
-	
-	public String finishLogin(HttpServletRequest request, @RequestParam("id") String id, @RequestParam("pwd") String pwd, Model model) {
+	public String finishLogin(HttpServletRequest request, @RequestParam("loginId") String id, 
+							  @RequestParam("loginPwd") String pwd, @RequestParam(value="loginCookie", required=false)String loginCookie,Model model) {
 		//logger.debug("VO는?"+userVO);
 		logger.debug("아이디="+id);
+		logger.debug("로그인 쿠키="+loginCookie);
 		UserVO userVO = new UserVO();
 		userVO.setId(id);
 		userVO.setPwd(pwd);
@@ -129,8 +113,30 @@ public class UserController {
 		
 		// 그냥 쳐보고
 		HttpSession session = request.getSession();
-		session.setAttribute("login", userVO);
+		if(loginCookie.equals(null)) {
+			session.setAttribute("login", userVO);
+		}else {
+			
+		}
+		
 		return "done/loginDone";
 	}
 	
+	// [로그아웃]
+	@RequestMapping(value="/logout", method=RequestMethod.GET)
+	public String logout(HttpSession session, Model model) {
+		
+		UserVO userVO = (UserVO) session.getAttribute("login");
+		
+		int rs = 0;
+		if(userVO != null) {
+			session.invalidate();
+			rs++;
+			
+		}
+		
+		model.addAttribute("rs",rs);
+		
+		return "done/logoutDone";
+	}
 }
