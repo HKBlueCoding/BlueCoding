@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.hk.user.service.UserService;
 import com.hk.user.vo.UserVO;
@@ -97,9 +99,9 @@ public class UserController {
 	}
 	
 	// [로그인 확인]
-	@RequestMapping(value="/checkLogin",method=RequestMethod.GET , produces= "application/json; charset=utf-8")
+	@RequestMapping(value="/checkLogin",method=RequestMethod.POST , produces= "application/json; charset=utf-8")
 	@ResponseBody
-	public UserVO checkLogin(@ModelAttribute UserVO userVO, HttpSession session) {
+	public UserVO checkLogin(@ModelAttribute UserVO userVO, HttpSession session, Model model) {
 		// 0.파라메터에 넣었으니, 없으면 알아서 세션 생성됨
 		logger.debug("[userVO] =="+userVO.toString()); // 값 찍기
 		
@@ -112,6 +114,23 @@ public class UserController {
 		}
 		
 		return userVO;
+	}
+	
+	@RequestMapping(value="/finishLogin", method=RequestMethod.POST)
+	
+	public String finishLogin(HttpServletRequest request, @RequestParam("id") String id, @RequestParam("pwd") String pwd, Model model) {
+		//logger.debug("VO는?"+userVO);
+		logger.debug("아이디="+id);
+		UserVO userVO = new UserVO();
+		userVO.setId(id);
+		userVO.setPwd(pwd);
+		// 다시 확인..
+		userVO = userService.checkLogin(userVO);
+		
+		// 그냥 쳐보고
+		HttpSession session = request.getSession();
+		session.setAttribute("login", userVO);
+		return "done/loginDone";
 	}
 	
 }

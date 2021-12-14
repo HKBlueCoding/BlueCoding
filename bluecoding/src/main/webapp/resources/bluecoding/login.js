@@ -3,7 +3,13 @@
  */
 
 // 세션안에 값을 가져옴
-var login = sessionStorage.getItem("login");
+var login = window.sessionStorage.getItem("login");
+
+/* [로그인 세션 체크] */
+
+function loginTracking(){
+
+}
 
 /* [로그인 체크 ] */
 function loginBtn() {
@@ -32,57 +38,40 @@ function loginBtn() {
 	
 	/* ======== [로그인 체크] ========= */
 	$.ajax({
-		type: 'GET',
+		type: 'POST',
 		url: '../../checkLogin',
 		dataType: "json",
 		data: { "id": id, "pwd": pwd},
 		success: function(data) {
 			// data.server에서 보낸 mapId
 			alert('환영합니다 ' + data.nick+"님!!");
-			$('#notLogin').css("display","none");
-			$('#successLogin').css("display","block");
+			alert(data.id);
 			
-			//사용자의 모습으로 로그인
-			$('#loginNick').text(data.nick);
+			var newForm = document.createElement('form');
+			newForm.method = 'POST'; 
+			newForm.action = 'finishLogin';
+
+			var input1 = document.createElement('input');
 			
-			// 게이지 레벨로 색깔지정
-			if(data.gauge < 100 ){
-				$('#loginGauge').text('Lv 1 ('+data.gauge+'%)');
-				$('#loginGauge').css("width", data.gauge+'%');
-			}
+			input1.setAttribute("type", "hidden"); 
+			input1.setAttribute("name", "id"); 
+			input1.setAttribute("value", data.id); 
 			
-			// [ lv 2 ]
-			if(data.gauge >= 100 && data.gauge < 200){
-				$('#loginGauge').text('Lv 2 ('+(data.gauge-100)+'%)');
-				$('#loginGauge').css("width", (data.gauge-100)+'%');
-				$('#loginGauge').attr("class","progress-bar bg-success");
-			}
+			var input2 = document.createElement('input');
+			input2.setAttribute("type", "hidden"); 
+			input2.setAttribute("name", "pwd");
+			console.log(input1);
+			console.log(input2);
+			alert(input1);
+			input2.setAttribute("value", data.pwd);
 			
-			// [ lv 3 ]
-			if(data.gauge >= 200 && data.gauge < 300){
-				$('#loginGauge').text('Lv 3 ('+(data.gauge-200)+'%)');
-				$('#loginGauge').css("width", (data.gauge-200)+'%');
-				$('#loginGauge').attr("class","progress-bar bg-info");
-			}
+			newForm.appendChild(input1); 
+			newForm.appendChild(input2);
 			
-			// [ 마지막 lv ]
-			if(data.gauge >= 300){
-				$('#loginGauge').text('Lv 4 (만랩입니다...)');
-				$('#loginGauge').css("width", '100%');
-				$('#loginGauge').attr("class","progress-bar bg-warning");
-			}
+			document.body.appendChild(newForm);
 			
-			// 이미지가 없을시, 지정한 기본 이미지로 변경
-			if(data.profile == null || data.profile== ""){
-				// ??? 	
-			}
-			$('#loginCash').text(' 보유캐시: '+data.coin+'캐시');
-			$('#loginInfo').attr("href","../../user/info?id="+data.id);
-			
-			// 세션 tracking으로 웹페이지 연동
-			
-			
-			$('#loginBack').click();
+			newForm.submit();
+				
 		},
 		error: function(request, error) {
 			alert('에러!! : ' + request.responseText + ":" + error);
@@ -90,15 +79,4 @@ function loginBtn() {
 		
 	});
 
-}
-
-/* [로그인 세션 체크] */
-	
-window.onload = function(){ // 변수선언함
-	
-	// 세션의 값을 체크
-	if(login == null || login == ""){
-	
-	}
-	
 }

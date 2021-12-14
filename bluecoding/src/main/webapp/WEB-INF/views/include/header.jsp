@@ -1,4 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+	<% 
+		Object userVO = (Object) session.getAttribute("login");
+	%>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
       <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
       		  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
               crossorigin="anonymous"></script>
@@ -38,7 +45,7 @@
                             </ul>
                         </div>
                         <!-- [비로그인시] -->
-                        <div id="notLogin" class="login-button" >
+                         <div id="notLogin" class="login-button" >
                             <ul>
                                 <li>
                                     <a data-bs-toggle="modal" data-bs-target="#login"><i class="lni lni-enter"></i> Login</a>
@@ -47,9 +54,9 @@
                                     <a href="../../user/register"><i class="lni lni-user"></i> Register</a>
                                 </li>
                             </ul>
-                        </div>
+                         </div>  
                         <!-- [로그인 성공시] -->
-                        <div id="successLogin" class="login-button" style="display:none; ">
+                         <div id="successLogin" class="login-button" style="display:none; ">
                             <ul>
                                 <li>
 									<div class="d-flex px-2 py-1">
@@ -60,7 +67,7 @@
                             				<h6 id="loginNick" class="mb-0 text-sm"></h6>
                             				<a class="text-xs text-secondary mb-0" onclick="loginMenu" style="font-size: 0.875em;" data-bs-toggle="collapse" data-bs-target="#loginMore">메뉴</a>
                           					<ul class="sub-menu collapse" id="loginMore" >
-                                            	<li class="nav-item"><a id="loginInfo" href="">내 정보</a></li>
+                                            	<li class="nav-item"><a id="loginInfo" href=""></a></li>
                                             	<li class="nav-item"><a href="javascript:void(0)">캐시 충전</a></li>
                                             	<li id="loginCash" class="nav-item"></li>
                                         	</ul>
@@ -68,7 +75,7 @@
                         			</div>
                                 </li>
                             </ul>
-                        </div>                        
+                         </div>                    
                     </nav>
                     <!-- navbar -->
                 </div>
