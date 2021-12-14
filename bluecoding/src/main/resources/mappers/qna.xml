@@ -5,20 +5,40 @@
 
 <mapper namespace="mapper.qna">
 
-	<!-- 테이블 컬럼하고, VO하고 1:1로 맵핑했을때 이름이 다른경우 -->
 	<resultMap id="qnaResult" type="QnaVO">
-	
+
 		<result property="qnaNO" column="qnaNO" />
 		<result property="qnaParentNO" column="qnaParentNO" />
 		<result property="qnaList" column="qnaList" />
 		<result property="qnaTitle" column="qnaTitle" />
-		<result property="newsDate" column="newsDate" />
-		<result property="newsImage" column="newsImage" />
-		<result property="nViewCnt" column="nViewCnt" />
-		<result property="newsDelete" column="newsDelete" />
+		<result property="qnaText" column="qnaText" />
+
+		<result property="qnaImage" column="qnaImage" />
+		<result property="isProcess" column="isProcess" />
+		<result property="qnaDate" column="qnaDate" />
+		<result property="finishDate" column="finishDate" />
 		<result property="id" column="id" />
-		<result property="nick" column="nick" />
 
 	</resultMap>
+
+	<!-- [문의 게시글 조회] -->
+	<select id="selectAllQnaList" resultMap="qnaResult">
+	<![CDATA[
+		SELECT QNANO, QNAPARENTNO, QNALIST, QNATITLE, QNATEXT, QNAIMAGE, ISPROCESS, QNADATE, FINISHDATE, ID
+		FROM B_QNA
+	]]>
+	</select>
+	
+	<!-- [문의 글쓰기] -->
+	<insert id="insertQna" parameterType="QnaVO">
+	 <selectKey keyProperty="qnaNO" resultType="int" order="BEFORE">
+	 	SELECT MAX(QNANO)+1 FROM B_QNA
+	 </selectKey>
+	 <![CDATA[
+		INSERT INTO B_QNA
+		(QNANO, QNAPARENTNO, QNALIST, QNATITLE, QNATEXT, QNAIMAGE, QNADATE, ID)
+		VALUES(#{qnaNO}, 0, #{qnaList}, #{qnaTitle}, #{qnaText}, #{qnaImage}, sysdate, 'sndlgudlsa123')
+	 ]]>
+	</insert>
 
 </mapper>

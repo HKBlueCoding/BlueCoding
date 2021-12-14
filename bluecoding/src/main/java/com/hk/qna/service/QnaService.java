@@ -10,14 +10,20 @@ import com.hk.qna.vo.QnaVO;
 
 @Service
 public class QnaService {
-
+	
 	@Autowired
 	QnaDAO qnaDAO;
-	
-	
+
+	// List
 	public List<QnaVO> listQna() {
 		// TODO Auto-generated method stub
 		return qnaDAO.selectAllQna();
+	}
+
+	// Add
+	public int addQna(QnaVO qnaVO) {
+		// TODO Auto-generated method stub
+		return qnaDAO.addQna(qnaVO);
 	}
 
 }

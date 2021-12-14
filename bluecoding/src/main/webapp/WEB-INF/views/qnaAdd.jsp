@@ -50,6 +50,7 @@
       <br><br><br><br><br><br><br><br>
       <!-- =================== 글쓰기 폼 ===================== -->
       <!-- Main Content-->
+      <form id="contactForm" data-sb-form-api-token="API_TOKEN" action="add" method="post">
       <main class="mb-4">
          <div class="container px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5 justify-content-center">
@@ -62,7 +63,7 @@
                         <div class="col-lg-3 col-md-3 col-12 p-0">
                            <div class="search-input">
                               <label for="category"></label>
-                              <select name="category" id="category"  required>
+                              <select name="qnaList" id="qnaList"  required>
                                  <option value="none" selected disabled>카테고리</option>
                                  <option value="none">계정 관련</option>
                                  <option value="none">책 관련</option>
@@ -86,13 +87,14 @@
                      <!-- to get an API token!-->
                      <form id="contactForm" data-sb-form-api-token="API_TOKEN">
                         <div class="form-floating">
-                           <input class="form-control" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
+                           <input class="form-control" id="qnaTitle" name="qnaTitle" type="text" placeholder="Enter your name..." data-sb-validations="required" />
                            <label for="name">제목</label>                          
                            <div class="invalid-feedback" data-sb-feedback="name:required">제목을 입력하세요.</div>
                         </div>
                         <br>
                         <div class="form-floating" id="formMag">
-                           <textarea class="form-control" id="message" placeholder="Enter your message here..." style="height: 35rem" data-sb-validations="required"></textarea>
+                           <textarea class="form-control" id="message" name="qnaText" placeholder="Enter your message here..." style="height: 35rem" data-sb-validations="required"></textarea>
+                           <input type="hidden" name="qnaImage">
                            <label for="message">내용</label>
                            <div class="invalid-feedback" data-sb-feedback="message:required">내용을 입력하세요.</div>
                         </div>
@@ -118,9 +120,10 @@
                         </div>
                         <!-- Submit Button-->
                         <button class="btn btn-primary text-uppercase disabled"  id="submitButton" type="submit">사진 입력하기(바꿔야 됨)</button>
-                        <!-- ======================= 버튼 ========================== -->
+                        
+                        <!-- ======================= 버튼 ========================== -->                     
                         <div class="button header-button">
-                           <a onClick="funok()" class="btn">등록</a>
+                           <input type="submit" class="btn" value="등록">
                         </div>
                         <div class="button header-button">
                            <a onClick="funbtn()" class="btn">돌아가기</a>
@@ -132,6 +135,7 @@
             </div>
          </div>
       </main>
+      </form>
       <!-- =================== 글쓰기 폼 끝===================== -->
       <!-- ==================== footer ====================== -->      
       <!-- footer -->
@@ -188,16 +192,6 @@
              javascript:history.back();
            } else {
            	return;
-           }
-         }
-      </script>
-      <script>
-         function funok() {
-           if (alert("정상적으로 등록되었습니다.") == true) {
-            
-           } else {
-            alert("등록에 실패하였습니다.")
-           	   return;
            }
          }
       </script>

@@ -16,9 +16,17 @@ public class QnaDAO {
 	
 	public List<QnaVO> selectAllQna() {
 		// TODO Auto-generated method stub
-		List<QnaVO> qnaList = sqlSession.selectList("mapper.board.selectAllQnaList");
+		
+		List<QnaVO> qnaList = sqlSession.selectList("mapper.qna.selectAllQnaList");
 		
 		return qnaList;
+	}
+
+	public int addQna(QnaVO qnaVO) {
+		// TODO Auto-generated method stub
+		
+		int ret = sqlSession.insert("mapper.qna.insertQna", qnaVO);
+		return ret;
 	}
 
 }
