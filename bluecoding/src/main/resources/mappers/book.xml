@@ -5,5 +5,37 @@
         
 <mapper namespace="mapper.book">
 
+	<!-- 테이블 컬럼하고, VO하고 1:1로 맵핑했을때 이름이 다른경우 -->
+	<resultMap id="bookResult" type="BookVO">
+	
+		<result property="bookNO" column="bookNO" />
+		<result property="bookTitle" column="bookTitle" />
+		<result property="intro" column="intro" />
+		<result property="theme" column="theme" />
+		<result property="bookImage" column="bookImage" />
+		<result property="bookDelete" column="bookDelete" />
+		<result property="name" column="name" />
+		<result property="id" column="id" />
+		<result property="bookDate" column="bookDate" />
+		<result property="bViewCnt" column="bViewCnt" />
 
+	</resultMap>
+	
+	<select id="selectAllBook" resultMap="bookResult">
+    <![CDATA[
+		SELECT BOOKNO, BOOKTITLE, INTRO, THEME, BOOKIMAGE, BOOKDELETE, NAME, ID, BOOKDATE, BVIEWCNT 
+		FROM B_BOOK
+    ]]>
+	</select>
+
+	<insert id="insertBook" parameterType="BookVO">
+	 <selectKey keyProperty="bookNO" resultType="int" order="BEFORE">
+	 	SELECT max(bookNO)+1 FROM B_BOOK
+	 </selectKey>
+	 <![CDATA[
+	  INSERT INTO B_BOOK
+	  (BOOKNO, BOOKTITLE, INTRO, THEME, BOOKIMAGE, BOOKDELETE, NAME, ID, BOOKDATE, BVIEWCNT)
+	   VALUES( #{bookNO}, #{bookTitle}, #{intro}, #{theme}, #{bookImage}, #{name}, 'abc12345', sysdate, 0)
+	 ]]>
+	</insert>	
 </mapper>

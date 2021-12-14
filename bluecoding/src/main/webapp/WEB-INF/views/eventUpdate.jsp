@@ -36,13 +36,13 @@
       <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
       <!-- Core theme CSS (includes Bootstrap)-->
       <link href="../../resources/assets/css/styles.css" rel="stylesheet" />
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" />      
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" />
       <style>
          .search-form{
          /* all: unset; */
          }
       </style>
-	  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>      
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>      
    </head>
    <body>
       <!-- header -->
@@ -55,89 +55,91 @@
             </tr>
          </c:when>
          <c:when test="${!empty newsVO }">
-      <!-- =================== 글쓰기 폼 ===================== -->
-      <!-- Main Content-->
-                     <form id="contactForm" data-sb-form-api-token="API_TOKEN" action="update" method="post">
-      <main class="mb-4">
-         <div class="container px-4 px-lg-5">
-            <div class="row gx-4 gx-lg-5 justify-content-center">
-               <div class="col-md-10 col-lg-8 col-xl-7">
-                  <p id="title">이벤트글 수정</p>
-                  <hr class="my-4">
-                  <!-- ================== 카테고리 ======================= -->
-                  <div class="categorise search-form wow fadeInUp">
-                     <div class="row">
-                        <div class="col-lg-3 col-md-3 col-12 p-0">
-                           <div class="search-input">
-                              <label for="category"></label>
-                              <select name="category" id="category"  required>
-                                 <option value="none"  selected disabled>카테고리</option>
-                                 <option value="notice">공지사항</option>
-                                 <option value="event">이벤트</option>
-                              </select>
+            <!-- =================== 글쓰기 폼 ===================== -->
+            <!-- Main Content-->
+            <form id="contactForm" data-sb-form-api-token="API_TOKEN" action="update" method="post">
+               <main class="mb-4">
+                  <div class="container px-4 px-lg-5">
+                     <div class="row gx-4 gx-lg-5 justify-content-center">
+                        <div class="col-md-10 col-lg-8 col-xl-7">
+                           <p id="title">이벤트글 수정</p>
+                           <hr class="my-4">
+                           <!-- ================== 카테고리 ======================= -->
+                           <div class="categorise search-form wow fadeInUp">
+                              <div class="row">
+                                 <div class="col-lg-3 col-md-3 col-12 p-0">
+                                    <div class="search-input">
+                                       <label for="category"></label>
+                                       <select name="category" id="category"  required>
+                                          <option value="none"  selected disabled>카테고리</option>
+                                          <option value="notice">공지사항</option>
+                                          <option value="event">이벤트</option>
+                                       </select>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <br>
+                           <!-- ================== 카테고리 끝 ======================= -->
+                           <div class="my-5">
+                              <!-- * * * * * * * * * * * * * * *-->
+                              <!-- * * SB Forms Contact Form * *-->
+                              <!-- * * * * * * * * * * * * * * *-->
+                              <!-- This form is pre-integrated with SB Forms.-->
+                              <!-- To make this form functional, sign up at-->
+                              <!-- https://startbootstrap.com/solution/contact-forms-->
+                              <!-- to get an API token!-->
+                              <div class="form-floating">
+                                 <input name="newsTitle" class="form-control" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required"  value="${newsVO.newsTitle }"/>
+                                 <label for="name">제목</label>  
+                                 <input type="hidden" value="${newsVO.newsNO }" name="newsNO">           
+                                 <div class="invalid-feedback" data-sb-feedback="name:required">제목을 입력하세요.</div>
+                              </div>
+                              <br>
+                              <div class="form-floating" id="formMag">
+                                 <textarea name="newsText" class="form-control" id="message" placeholder="Enter your message here..." style="height: 35rem" data-sb-validations="required">${newsVO.newsText }</textarea>
+                                 <label for="message">내용</label>
+                                 <input type="hidden" name="newsImage">
+                                 <div class="invalid-feedback" data-sb-feedback="message:required">내용을 입력하세요.</div>
+                              </div>
+                              <br />
+                              <!-- Submit success message-->
+                              <!---->
+                              <!-- This is what your users will see when the form-->
+                              <!-- has successfully submitted-->
+                              <div class="d-none" id="submitSuccessMessage">
+                                 <div class="text-center mb-3">
+                                    <div class="fw-bolder">Form submission successful!</div>
+                                    To activate this form, sign up at
+                                    <br />
+                                    <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
+                                 </div>
+                              </div>
+                              <!-- Submit error message-->
+                              <!---->
+                              <!-- This is what your users will see when there is-->
+                              <!-- an error submitting the form-->
+                              <div class="d-none" id="submitErrorMessage">
+                                 <div class="text-center text-danger mb-3">Error sending message!</div>
+                              </div>
+                              <!-- Submit Button-->
+                              <button class="btn btn-primary text-uppercase disabled"  id="submitButton" type="submit">이미지 선택(바꿔야 됨)</button>
+                              <!-- ======================= 버튼 ========================== -->
+                              <c:if test="${login.admin eq 'A'}">
+                                 <div class="button header-button">
+                                    <input type="submit" class="btn" value="수정">
+                                 </div>
+                              </c:if>
+                              <div class="button header-button">
+                                 <a onClick="funbtn()" class="btn">돌아가기</a>
+                              </div>
+                              <!-- ======================= 버튼 끝 ========================== -->
                            </div>
                         </div>
                      </div>
                   </div>
-                  <br>
-                  <!-- ================== 카테고리 끝 ======================= -->
-                  <div class="my-5">
-                     <!-- * * * * * * * * * * * * * * *-->
-                     <!-- * * SB Forms Contact Form * *-->
-                     <!-- * * * * * * * * * * * * * * *-->
-                     <!-- This form is pre-integrated with SB Forms.-->
-                     <!-- To make this form functional, sign up at-->
-                     <!-- https://startbootstrap.com/solution/contact-forms-->
-                     <!-- to get an API token!-->
-
-                        <div class="form-floating">
-                           <input class="form-control" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required"  value="${newsVO.newsTitle }"/>
-                           <label for="name">제목</label>  
-                           <input type="hidden" value="${newsVO.newsNO }" name="newsNO">           
-                           <div class="invalid-feedback" data-sb-feedback="name:required">제목을 입력하세요.</div>
-                        </div>
-                        <br>
-                        <div class="form-floating" id="formMag">
-                           <textarea class="form-control" id="message" placeholder="Enter your message here..." style="height: 35rem" data-sb-validations="required">${newsVO.newsText }</textarea>
-                           <label for="message">내용</label>
-                           <div class="invalid-feedback" data-sb-feedback="message:required">내용을 입력하세요.</div>
-                        </div>
-                        <br />
-                        <!-- Submit success message-->
-                        <!---->
-                        <!-- This is what your users will see when the form-->
-                        <!-- has successfully submitted-->
-                        <div class="d-none" id="submitSuccessMessage">
-                           <div class="text-center mb-3">
-                              <div class="fw-bolder">Form submission successful!</div>
-                              To activate this form, sign up at
-                              <br />
-                              <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
-                           </div>
-                        </div>
-                        <!-- Submit error message-->
-                        <!---->
-                        <!-- This is what your users will see when there is-->
-                        <!-- an error submitting the form-->
-                        <div class="d-none" id="submitErrorMessage">
-                           <div class="text-center text-danger mb-3">Error sending message!</div>
-                        </div>
-                        <!-- Submit Button-->
-                        <button class="btn btn-primary text-uppercase disabled"  id="submitButton" type="submit">이미지 선택(바꿔야 됨)</button>
-                        <!-- ======================= 버튼 ========================== -->
-                        <div class="button header-button">
-                           <input type="submit" class="btn" value="수정">
-                        </div>
-                        <div class="button header-button">
-                           <a onClick="funbtn()" class="btn">돌아가기</a>
-                        </div>
-                        <!-- ======================= 버튼 끝 ========================== -->
-                  </div>
-               </div>
-            </div>
-         </div>
-      </main>
-	</form>
+               </main>
+            </form>
          </c:when>
       </c:choose>
       <!-- =================== 글쓰기 폼 끝===================== -->

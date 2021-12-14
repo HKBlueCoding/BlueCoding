@@ -7,7 +7,7 @@
    <head>
       <meta charset="utf-8" />
       <meta http-equiv="x-ua-compatible" content="ie=edge" />
-      <title>작품 올리기</title>
+      <title>작품 글쓰기</title>
       <meta name="description" content="" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <link rel="shortcut icon" type="image/x-icon"
@@ -50,49 +50,59 @@
       <br><br><br><br><br><br><br><br>
       <!-- =================== 글쓰기 폼 ===================== -->
       <!-- Main Content-->
-      <main class="mb-4">
-         <div class="container px-4 px-lg-5">
-            <div class="row gx-4 gx-lg-5 justify-content-center">
-               <div class="col-md-10 col-lg-8 col-xl-7">
-                  <p id="title">작품 올리기</p>
-                  <hr class="my-4">
-                  <!-- ================== 카테고리 ======================= -->
-                  <div class="categorise search-form wow fadeInUp">
-                     <div class="row">
-                        <div class="col-lg-3 col-md-3 col-12 p-0">
-                           <div class="search-input">
-                              <label for="category"></label>
+      <form id="contactForm" method="post" action="add" data-sb-form-api-token="API_TOKEN">
+         <main class="mb-4">
+            <div class="container px-4 px-lg-5">
+               <div class="row gx-4 gx-lg-5 justify-content-center">
+                  <div class="col-md-10 col-lg-8 col-xl-7">
+                     <p id="title">작품 글쓰기</p>
+                     <hr class="my-4">
+                     <!-- ================== 카테고리 ======================= -->
+                     <div class="categorise search-form wow fadeInUp">
+                        <div class="row">
+                           <div class="col-lg-3 col-md-3 col-12 p-0">
+                              <div class="search-input">
+                                 <label for="category"></label>
+                                 <select name="theme" id="category"  required>
+                                    <option value="none" selected disabled>테마 선택</option>
+                                    <option value="none">판타지</option>
+                                    <option value="none">청소년</option>
+                                    <option value="none">고전</option>
+                                    <option value="none">공포/호러</option>
+                                    <option value="none">미스터리/스릴러</option>
+                                    <option value="none">로맨스</option>
+                                    <option value="none">SF/과학</option>
+                                    <option value="none">드라마/영화</option>
+                                 </select>
+                              </div>
                            </div>
                         </div>
                      </div>
-                  </div>
-                  <br>
-                  <!-- ================== 카테고리 끝 ======================= -->
-                  <div class="my-5">
-                     <!-- * * * * * * * * * * * * * * *-->
-                     <!-- * * SB Forms Contact Form * *-->
-                     <!-- * * * * * * * * * * * * * * *-->
-                     <!-- This form is pre-integrated with SB Forms.-->
-                     <!-- To make this form functional, sign up at-->
-                     <!-- https://startbootstrap.com/solution/contact-forms-->
-                     <!-- to get an API token!-->
-                     <form id="contactForm" method="post" action="post" data-sb-form-api-token="API_TOKEN">
+                     <br>
+                     <!-- ================== 카테고리 끝 ======================= -->
+                     <div class="my-5">
+                        <!-- * * * * * * * * * * * * * * *-->
+                        <!-- * * SB Forms Contact Form * *-->
+                        <!-- * * * * * * * * * * * * * * *-->
+                        <!-- This form is pre-integrated with SB Forms.-->
+                        <!-- To make this form functional, sign up at-->
+                        <!-- https://startbootstrap.com/solution/contact-forms-->
+                        <!-- to get an API token!-->
                         <div class="form-floating">
-                           <input class="form-control" id="bookTitle" name="bookTitle" type="text" placeholder="Enter your name..."  data-sb-validations="required" />
-                           <label for="name">책 제목</label>                          
+                           <input class="form-control" id="name" name="bookTitle" type="text" placeholder="Enter your name..." data-sb-validations="required" />
+                           <label for="name">제목</label>                          
                            <div class="invalid-feedback" data-sb-feedback="name:required">제목을 입력하세요.</div>
                         </div>
                         <br>
-                         <div class="form-floating">
+                        <div class="form-floating">
                            <input class="form-control" id="name" name="name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
-                           <!-- 아이디 보내기 ↓ -->
-                           
                            <label for="name">작가명</label>                          
                            <div class="invalid-feedback" data-sb-feedback="name:required">작가명을 입력하세요.</div>
-                          </div>
+                        </div>
                         <br>   
                         <div class="form-floating" id="formMag">
-                           <textarea class="form-control" id="message" placeholder="Enter your message here..." style="height: 10rem" data-sb-validations="required"></textarea>
+                           <textarea name="intro" class="form-control" id="message" placeholder="Enter your message here..." style="height: 10rem" data-sb-validations="required"></textarea>
+                           <input type="hidden" name="newsImage">
                            <label for="message">줄거리</label>
                            <div class="invalid-feedback" data-sb-feedback="message:required">줄거리을 입력하세요.</div>
                         </div>
@@ -119,19 +129,28 @@
                         <!-- Submit Button-->
                         <button class="btn btn-primary text-uppercase disabled"  id="submitButton" type="submit">사진 입력하기(바꿔야 됨)</button>
                         <!-- ======================= 버튼 ========================== -->
-                        <div class="button header-button">
-                           <a onClick="funok()" class="btn">등록</a>
-                        </div>
+                        <!-- [로그인시] -->
+                        <c:if test="${!empty login.id && login.id ne '' }">
+                           <div class="button header-button">
+                              <input type="submit" class="btn" value="등록">
+                           </div>
+                        </c:if>
+                        <!-- [비 로그인시]] -->
+                        <c:if test="${empty login.id || login.id  eq '' }">
+                           <div class="button header-button">
+                              <a data-bs-toggle="modal"  data-bs-target="#login" class="btn">등록</a>
+                           </div>
+                        </c:if>
                         <div class="button header-button">
                            <a onClick="funbtn()" class="btn">돌아가기</a>
                         </div>
                         <!-- ======================= 버튼 끝 ========================== -->
-                     </form>
+                     </div>
                   </div>
                </div>
             </div>
-         </div>
-      </main>
+         </main>
+      </form>
       <!-- =================== 글쓰기 폼 끝===================== -->
       <!-- ==================== footer ====================== -->      
       <!-- footer -->

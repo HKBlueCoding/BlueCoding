@@ -115,15 +115,26 @@
                </div>
                <!-- ======================= 버튼 ========================== -->
                <div align="right" style="width: 100%;">
-                  <div class="button header-button">
-                     <a href="../notice/update?newsNO=${newsVO.newsNO }" class="btn">수정</a>
-                  </div>
-                  <div class="button header-button">
-                     <a onClick="funok()" class="btn">삭제</a>
-                  </div>
-                  <div class="button header-button">
-                     <a href="javascript:void(0)" class="btn">신고하기</a>
-                  </div>
+                  <c:if test="${login.admin eq 'A'}">
+                     <div class="button header-button">
+                        <a href="../notice/update?newsNO=${newsVO.newsNO }" class="btn">수정</a>
+                     </div>
+                     <div class="button header-button">
+                        <a onClick="funok()" class="btn">삭제</a>
+                     </div>
+                  </c:if>
+                  <!-- [로그인시] -->
+                  <c:if test="${!empty login.id && login.id ne '' }">
+                     <div class="button header-button">
+                        <a href="javascript:void(0)" class="btn" style="background-color: #ff00eb;">신고하기</a>
+                     </div>
+                  </c:if>
+                  <!-- [비 로그인시]] -->
+                  <c:if test="${empty login.id || login.id  eq '' }">
+                     <div class="button header-button">
+                        <a data-bs-toggle="modal"  data-bs-target="#login" class="btn" style="background-color: #ff00eb;">신고하기</a>
+                     </div>
+                  </c:if>
                </div>
                <!-- ======================= 버튼 끝 ========================== -->
             </div>
@@ -154,18 +165,38 @@
                                           <!-- ======================= 버튼 ========================== -->
                                           <td>
                                              <div align="right"  style="width: 100%;">
-                                                <div class="button header-button">
-                                                   <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">답글 쓰기</a>
-                                                </div>
-                                                <div class="button header-button">
-                                                   <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">수정</a>
-                                                </div>
-                                                <div class="button header-button">
-                                                   <a onClick="funok2()" class="btn" style="background-color: #30d8e0;">삭제</a>
-                                                </div>
-                                                <div class="button header-button">
-                                                   <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">신고하기</a>
-                                                </div>
+                                                <!-- [로그인시] -->
+                                                <c:if test="${!empty login.id && login.id ne '' }">
+                                                   <div class="button header-button">
+                                                      <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">답글 쓰기</a>
+                                                   </div>
+                                                </c:if>
+                                                <!-- [비 로그인시]] -->
+                                                <c:if test="${empty login.id || login.id  eq '' }">
+                                                   <div class="button header-button">
+                                                      <a data-bs-toggle="modal"  data-bs-target="#login" class="btn" style="background-color: #30d8e0;">답글 쓰기</a>
+                                                   </div>
+                                                </c:if>
+                                                <c:if test="${login.admin eq 'C'}">
+                                                   <div class="button header-button">
+                                                      <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">수정</a>
+                                                   </div>
+                                                   <div class="button header-button">
+                                                      <a onClick="funok2()" class="btn" style="background-color: #30d8e0;">삭제</a>
+                                                   </div>
+                                                </c:if>
+                                                <!-- [로그인시] -->
+                                                <c:if test="${!empty login.id && login.id ne '' }">
+                                                   <div class="button header-button">
+                                                      <a href="javascript:void(0)" class="btn" style="background-color: #ff00eb;">신고하기</a>
+                                                   </div>
+                                                </c:if>
+                                                <!-- [비 로그인시]] -->
+                                                <c:if test="${empty login.id || login.id  eq '' }">
+                                                   <div class="button header-button">
+                                                      <a data-bs-toggle="modal"  data-bs-target="#login" class="btn" style="background-color: #ff00eb;">신고하기</a>
+                                                   </div>
+                                                </c:if>
                                              </div>
                                              <!-- ======================= 버튼 끝 ========================== -->
                                           </td>
@@ -184,18 +215,38 @@
                                              <!-- ======================= 버튼 ========================== -->
                                           <td>
                                              <div align="right"  style="width: 100%;">
-                                                <div class="button header-button">
-                                                   <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">답글 쓰기</a>
-                                                </div>
-                                                <div class="button header-button">
-                                                   <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">수정</a>
-                                                </div>
-                                                <div class="button header-button">
-                                                   <a onClick="funok2()" class="btn" style="background-color: #30d8e0;">삭제</a>
-                                                </div>
-                                                <div class="button header-button">
-                                                   <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">신고하기</a>
-                                                </div>
+                                                <!-- [로그인시] -->
+                                                <c:if test="${!empty login.id && login.id ne '' }">
+                                                   <div class="button header-button">
+                                                      <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">답글 쓰기</a>
+                                                   </div>
+                                                </c:if>
+                                                <!-- [비 로그인시]] -->
+                                                <c:if test="${empty login.id || login.id  eq '' }">
+                                                   <div class="button header-button">
+                                                      <a data-bs-toggle="modal"  data-bs-target="#login" class="btn" style="background-color: #30d8e0;">답글 쓰기</a>
+                                                   </div>
+                                                </c:if>
+                                                <c:if test="${login.admin eq 'C'}">
+                                                   <div class="button header-button">
+                                                      <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">수정</a>
+                                                   </div>
+                                                   <div class="button header-button">
+                                                      <a onClick="funok2()" class="btn" style="background-color: #30d8e0;">삭제</a>
+                                                   </div>
+                                                </c:if>
+                                                <!-- [로그인시] -->
+                                                <c:if test="${!empty login.id && login.id ne '' }">
+                                                   <div class="button header-button">
+                                                      <a href="javascript:void(0)" class="btn" style="background-color: #ff00eb;">신고하기</a>
+                                                   </div>
+                                                </c:if>
+                                                <!-- [비 로그인시]] -->
+                                                <c:if test="${empty login.id || login.id  eq '' }">
+                                                   <div class="button header-button">
+                                                      <a data-bs-toggle="modal"  data-bs-target="#login" class="btn" style="background-color: #ff00eb;">신고하기</a>
+                                                   </div>
+                                                </c:if>
                                              </div>
                                              <!-- ======================= 버튼 끝 ========================== -->
                                           </td>
@@ -239,9 +290,18 @@
                   </div>
                   <!-- ======================= 버튼 ========================== -->
                   <div align="center">
-                     <div class="button header-button">
-                        <a onClick="funok3()"  id="submitButton"  class="btn">댓글 등록</a>
-                     </div>
+                     <!-- [로그인시] -->
+                     <c:if test="${!empty login.id && login.id ne '' }">
+                        <div class="button header-button">
+                           <a onClick="funok3()"  id="submitButton"  class="btn">댓글 등록</a>
+                        </div>
+                     </c:if>
+                     <!-- [비 로그인시]] -->
+                     <c:if test="${empty login.id || login.id  eq '' }">
+                        <div class="button header-button">
+                           <a data-bs-toggle="modal"  data-bs-target="#login" class="btn">댓글 등록</a>
+                        </div>
+                     </c:if>
                      <div class="button header-button">
                         <a onClick="funbtn()" class="btn">돌아가기</a>
                      </div>

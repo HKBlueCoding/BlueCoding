@@ -117,9 +117,11 @@
                         <!-- Submit Button-->
                         <button class="btn btn-primary text-uppercase disabled"  id="submitButton" type="submit">사진 입력하기(바꿔야 됨)</button>
                         <!-- ======================= 버튼 ========================== -->
-                        <div class="button header-button">
-                           <input type="submit" class="btn" value="등록">
-                        </div>
+                        <c:if test="${login.admin eq 'A'}">
+                           <div class="button header-button">
+                              <input type="submit" class="btn" value="등록">
+                           </div>
+                        </c:if>
                         <div class="button header-button">
                            <a onClick="funbtn()" class="btn">돌아가기</a>
                         </div>

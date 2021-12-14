@@ -130,9 +130,11 @@
          <!-- Start Search Form -->
          <div class="search-form wow fadeInUp" style="margin: 1px; padding: 1px;">
             <div class="row">
-               <div class="button header-button" style="width: 13%; margin-left: 50px; padding: 1px;">
-                  <a href="add" class="btn">작성</a>
-               </div>
+               <c:if test="${login.admin eq 'A'}">
+                  <div class="button header-button" style="width: 13%; margin-left: 50px; padding: 1px;">
+                     <a href="add" class="btn">작성</a>
+                  </div>
+               </c:if>
                <div class="button header-button" style="width: 20%; margin-left: 1px; padding: 1px;">
                   <a onClick="funbtn()" class="btn">돌아가기</a>
                </div>
@@ -246,6 +248,5 @@
            }
          }
       </script> 
-            
    </body>
 </html>

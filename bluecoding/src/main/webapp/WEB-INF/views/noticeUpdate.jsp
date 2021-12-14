@@ -90,16 +90,16 @@
                               <!-- https://startbootstrap.com/solution/contact-forms-->
                               <!-- to get an API token!-->
                               <div class="form-floating">
-                                 <input class="form-control" name="newsTitle"  id="name" type="text" placeholder="Enter your name..." data-sb-validations="required"  value="${newsVO.newsTitle }"/>
+                                 <input name="newsTitle" class="form-control" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required"  value="${newsVO.newsTitle }"/>
                                  <label for="name">제목</label>  
-                                 <input type="hidden" value="${newsVO.newsNO }" name="newsNO">                        
+                                 <input type="hidden" value="${newsVO.newsNO }" name="newsNO">           
                                  <div class="invalid-feedback" data-sb-feedback="name:required">제목을 입력하세요.</div>
                               </div>
                               <br>
                               <div class="form-floating" id="formMag">
-                                 <textarea class="form-control" id="message" name="newsText" placeholder="Enter your message here..." style="height: 35rem" data-sb-validations="required">${newsVO.newsText }</textarea>
-                                 <input type="hidden" name="newsImage">
+                                 <textarea name="newsText" class="form-control" id="message" placeholder="Enter your message here..." style="height: 35rem" data-sb-validations="required">${newsVO.newsText }</textarea>
                                  <label for="message">내용</label>
+                                 <input type="hidden" name="newsImage">
                                  <div class="invalid-feedback" data-sb-feedback="message:required">내용을 입력하세요.</div>
                               </div>
                               <br />
@@ -125,9 +125,11 @@
                               <!-- Submit Button-->
                               <button class="btn btn-primary text-uppercase disabled"  id="submitButton" type="submit">이미지 선택(바꿔야 됨)</button>
                               <!-- ======================= 버튼 ========================== -->
+                              <c:if test="${login.admin eq 'A'}">
                               <div class="button header-button">
                                  <input type="submit" class="btn" value="수정">
                               </div>
+                              </c:if>
                               <div class="button header-button">
                                  <a onClick="funbtn()" class="btn">돌아가기</a>
                               </div>

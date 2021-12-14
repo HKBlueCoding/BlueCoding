@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
    <head>
@@ -34,18 +37,17 @@
       <!-- Nucleo Icons -->
       <link href="../resources/assets/css/nucleo-icons.css" rel="stylesheet" />
       <link href="../resources/assets/css/nucleo-svg.css" rel="stylesheet" />
-      <!-- Font Awesome Icons -->
-      <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
       <!-- Material Icons -->
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
       <!-- CSS Files -->
       <link id="pagestyle" href="../resources/assets/css/material-dashboard.css?v=3.0.0" rel="stylesheet" />
-      <!-- marerial CSS END -->
+      <!-- marerial CSS END -->    	
       <!-- ====================== 페이징 ====================== -->
       <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" />
-	
       <!-- ====================== 페이징 끝 ====================== -->
+      <!-- Font Awesome Icons -->
+      <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>      
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" />
       <style>
          body{
          background-image: url(../resources/assets/images/here/noticeBG.jpg);
@@ -55,7 +57,7 @@
          padding-right: 1.5rem;
          }
       </style>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>      
    </head>
    <body>
       <jsp:include page="/WEB-INF/views/include/header.jsp" />
@@ -66,7 +68,7 @@
                <div class="card my-4">
                   <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                      <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                        <h6 class="text-white text-capitalize ps-3">작품 목록</h6>
+                        <h6 class="text-white text-capitalize ps-3">도서 목록</h6>
                      </div>
                   </div>
                   <div id="tbPadd" class="card-body px-0 pb-2">
@@ -74,6 +76,7 @@
                         <table class="table align-items-center mb-0">
                            <thead>
                               <tr>
+                                 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" style="width: 10%">번호</th>
                                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">&nbsp;&nbsp;작성한 글</th>
                                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">작성자</th>
                                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">조회수</th>
@@ -81,190 +84,43 @@
                               </tr>
                            </thead>
                            <tbody>
-                              <tr>
-                                 <td>
-                                    <div class="d-flex px-2 py-1">
-                                       <div>
-                                          <img src="../resources/assets/images/mainPage/board1.png" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
-                                       </div>
-                                       <div class="d-flex flex-column justify-content-center">
-                                          <a href="view" class="mb-0 text-sm" style="color: black">제목입니다[0]</a>
-                                          <p class="text-xs text-secondary mb-0">작가 이름</p>
-                                          <p class="text-xs text-secondary mb-0">리뷰(개수)</p>
-                                       </div>
-                                    </div>
-                                 </td>
-                                 <td class="align-middle">
-                                    <span class="text-secondary text-xs font-weight-bold">이름</span>
-                                 </td>
-                                 <td class="align-middle text-center text-sm">
-                                    <span class="badge badge-sm bg-gradient-success" style="background-image: linear-gradient(180deg,#419cef 10%,#106ec3 100%);">100</span>
-                                 </td>
-                                 <td class="align-middle text-center">
-                                    <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
-                                 </td>
-                              </tr>
-                              <tr>
-                                 <td>
-                                    <div class="d-flex px-2 py-1">
-                                       <div>
-                                          <img src="../resources/assets/images/mainPage/board1.png" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
-                                       </div>
-                                       <div class="d-flex flex-column justify-content-center">
-                                          <a href="view" class="mb-0 text-sm" style="color: black">제목입니다[0]</a>
-                                          <p class="text-xs text-secondary mb-0">작가 이름</p>
-                                          <p class="text-xs text-secondary mb-0">리뷰(개수)</p>
-                                       </div>
-                                    </div>
-                                 </td>
-                                 <td class="align-middle">
-                                    <span class="text-secondary text-xs font-weight-bold">이름</span>
-                                 </td>
-                                 <td class="align-middle text-center text-sm">
-                                    <span class="badge badge-sm bg-gradient-success" style="background-image: linear-gradient(180deg,#419cef 10%,#106ec3 100%);">100</span>
-                                 </td>
-                                 <td class="align-middle text-center">
-                                    <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
-                                 </td>
-                              </tr>
-                              <tr>
-                                 <td>
-                                    <div class="d-flex px-2 py-1">
-                                       <div>
-                                          <img src="../resources/assets/images/mainPage/board1.png" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
-                                       </div>
-                                       <div class="d-flex flex-column justify-content-center">
-                                          <a href="view" class="mb-0 text-sm" style="color: black">제목입니다[0]</a>
-                                          <p class="text-xs text-secondary mb-0">작가 이름</p>
-                                          <p class="text-xs text-secondary mb-0">리뷰(개수)</p>
-                                       </div>
-                                    </div>
-                                 </td>
-                                 <td class="align-middle">
-                                    <span class="text-secondary text-xs font-weight-bold">이름</span>
-                                 </td>
-                                 <td class="align-middle text-center text-sm">
-                                    <span class="badge badge-sm bg-gradient-success" style="background-image: linear-gradient(180deg,#419cef 10%,#106ec3 100%);">100</span>
-                                 </td>
-                                 <td class="align-middle text-center">
-                                    <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
-                                 </td>
-                              </tr>
-                              <tr>
-                                 <td>
-                                    <div class="d-flex px-2 py-1">
-                                       <div>
-                                          <img src="../resources/assets/images/mainPage/board1.png" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
-                                       </div>
-                                       <div class="d-flex flex-column justify-content-center">
-                                          <a href="view" class="mb-0 text-sm" style="color: black">제목입니다[0]</a>
-                                          <p class="text-xs text-secondary mb-0">작가 이름</p>
-                                          <p class="text-xs text-secondary mb-0">리뷰(개수)</p>
-                                       </div>
-                                    </div>
-                                 </td>
-                                 <td class="align-middle">
-                                    <span class="text-secondary text-xs font-weight-bold">이름</span>
-                                 </td>
-                                 <td class="align-middle text-center text-sm">
-                                    <span class="badge badge-sm bg-gradient-success" style="background-image: linear-gradient(180deg,#419cef 10%,#106ec3 100%);">100</span>
-                                 </td>
-                                 <td class="align-middle text-center">
-                                    <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
-                                 </td>
-                              </tr>
-                              <tr>
-                                 <td>
-                                    <div class="d-flex px-2 py-1">
-                                       <div>
-                                          <img src="../resources/assets/images/mainPage/board1.png" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
-                                       </div>
-                                       <div class="d-flex flex-column justify-content-center">
-                                          <a href="view" class="mb-0 text-sm" style="color: black">제목입니다[0]</a>
-                                          <p class="text-xs text-secondary mb-0">작가 이름</p>
-                                          <p class="text-xs text-secondary mb-0">리뷰(개수)</p>
-                                       </div>
-                                    </div>
-                                 </td>
-                                 <td class="align-middle">
-                                    <span class="text-secondary text-xs font-weight-bold">이름</span>
-                                 </td>
-                                 <td class="align-middle text-center text-sm">
-                                    <span class="badge badge-sm bg-gradient-success" style="background-image: linear-gradient(180deg,#419cef 10%,#106ec3 100%);">100</span>
-                                 </td>
-                                 <td class="align-middle text-center">
-                                    <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
-                                 </td>
-                              </tr>
-                              <tr>
-                                 <td>
-                                    <div class="d-flex px-2 py-1">
-                                       <div>
-                                          <img src="../resources/assets/images/mainPage/board1.png" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
-                                       </div>
-                                       <div class="d-flex flex-column justify-content-center">
-                                          <a href="view" class="mb-0 text-sm" style="color: black">제목입니다[0]</a>
-                                          <p class="text-xs text-secondary mb-0">작가 이름</p>
-                                          <p class="text-xs text-secondary mb-0">리뷰(개수)</p>
-                                       </div>
-                                    </div>
-                                 </td>
-                                 <td class="align-middle">
-                                    <span class="text-secondary text-xs font-weight-bold">이름</span>
-                                 </td>
-                                 <td class="align-middle text-center text-sm">
-                                    <span class="badge badge-sm bg-gradient-success" style="background-image: linear-gradient(180deg,#419cef 10%,#106ec3 100%);">100</span>
-                                 </td>
-                                 <td class="align-middle text-center">
-                                    <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
-                                 </td>
-                              </tr>
-                              <tr>
-                                 <td>
-                                    <div class="d-flex px-2 py-1">
-                                       <div>
-                                          <img src="../resources/assets/images/mainPage/board1.png" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
-                                       </div>
-                                       <div class="d-flex flex-column justify-content-center">
-                                          <a href="view" class="mb-0 text-sm" style="color: black">제목입니다[0]</a>
-                                          <p class="text-xs text-secondary mb-0">작가 이름</p>
-                                          <p class="text-xs text-secondary mb-0">리뷰(개수)</p>
-                                       </div>
-                                    </div>
-                                 </td>
-                                 <td class="align-middle">
-                                    <span class="text-secondary text-xs font-weight-bold">이름</span>
-                                 </td>
-                                 <td class="align-middle text-center text-sm">
-                                    <span class="badge badge-sm bg-gradient-success" style="background-image: linear-gradient(180deg,#419cef 10%,#106ec3 100%);">100</span>
-                                 </td>
-                                 <td class="align-middle text-center">
-                                    <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
-                                 </td>
-                              </tr>
-                              <tr>
-                                 <td>
-                                    <div class="d-flex px-2 py-1">
-                                       <div>
-                                          <img src="../resources/assets/images/mainPage/board1.png" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
-                                       </div>
-                                       <div class="d-flex flex-column justify-content-center">
-                                          <a href="view" class="mb-0 text-sm" style="color: black">제목입니다[0]</a>
-                                          <p class="text-xs text-secondary mb-0">작가 이름</p>
-                                          <p class="text-xs text-secondary mb-0">리뷰(개수)</p>
-                                       </div>
-                                    </div>
-                                 </td>
-                                 <td class="align-middle">
-                                    <span class="text-secondary text-xs font-weight-bold">이름</span>
-                                 </td>
-                                 <td class="align-middle text-center text-sm">
-                                    <span class="badge badge-sm bg-gradient-success" style="background-image: linear-gradient(180deg,#419cef 10%,#106ec3 100%);">100</span>
-                                 </td>
-                                 <td class="align-middle text-center">
-                                    <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
-                                 </td>
-                              </tr>
+                              <c:choose>
+                                 <c:when test="${empty bookList }">
+                                    <tr>
+                                       <td>null입니다.</td>
+                                    </tr>
+                                 </c:when>
+                                 <c:when test="${!empty bookList }">
+                                    <c:forEach var="book"  items="${bookList }">
+                                       <tr>
+                                          <td class="align-middle text-center">
+                                             <span class="text-secondary text-xs font-weight-bold">${book.bookNO }</span>
+                                          </td>
+                                          <td>
+                                             <div class="d-flex px-2 py-1">
+                                                <div>
+                                                   <img src="../resources/assets/images/mainPage/board1.png" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
+                                                </div>
+                                                <div class="d-flex flex-column justify-content-center">
+                                                   <a href="/view?newsNO=${book.bookNO }" class="mb-0 text-sm" style="color: black">${book.bookTitle }</a>
+                                                   <p class="text-xs text-secondary mb-0">${book.intro }</p>
+                                                   <p class="text-xs text-secondary mb-0">리뷰(개수)</p>
+                                                </div>
+                                             </div>
+                                          </td>
+                                          <td class="align-middle">
+                                             <span class="text-secondary text-xs font-weight-bold">${book.id }</span>
+                                          </td>
+                                          <td class="align-middle text-center text-sm">
+                                             <span class="badge badge-sm bg-gradient-success" style="background-image: linear-gradient(180deg,#419cef 10%,#106ec3 100%);">${book.bViewCnt }</span>
+                                          </td>
+                                          <td class="align-middle text-center">
+                                             <span class="text-secondary text-xs font-weight-bold">${book.bookDate }</span>
+                                          </td>
+                                       </tr>
+                                    </c:forEach>
+                                 </c:when>
+                              </c:choose>
                            </tbody>
                         </table>
                      </div>
@@ -275,9 +131,18 @@
          <!-- Start Search Form -->
          <div class="search-form wow fadeInUp" style="margin: 1px; padding: 1px;">
             <div class="row">
-               <div class="button header-button" style="width: 13%; margin-left: 50px; padding: 1px;">
-                  <a href="add" class="btn">작품 올리기</a>
-               </div>
+               <!-- [로그인시] -->
+               <c:if test="${!empty login.id && login.id ne '' }">
+                  <div class="button header-button" style="width: 13%; margin-left: 50px; padding: 1px;">
+                     <a href="add" class="btn">작품 올리기</a>
+                  </div>
+               </c:if>
+               <!-- [비 로그인시]] -->
+               <c:if test="${empty login.id || login.id  eq '' }">
+                  <div class="button header-button" style="width: 13%; margin-left: 50px; padding: 1px;">
+                     <a data-bs-toggle="modal"  data-bs-target="#login" class="btn">작품 올리기</a>
+                  </div>
+               </c:if>
                <div class="button header-button" style="width: 20%; margin-left: 1px; padding: 1px;">
                   <a onClick="funbtn()" class="btn">돌아가기</a>
                </div>
@@ -377,7 +242,6 @@
            }
            Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
          }
-         //
       </script>
       <!-- Github buttons -->
       <script async defer src="https://buttons.github.io/buttons.js"></script>
@@ -391,6 +255,6 @@
            	return;
            }
          }
-      </script>      
+      </script> 
    </body>
 </html>

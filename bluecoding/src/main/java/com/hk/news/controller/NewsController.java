@@ -93,15 +93,18 @@ public class NewsController {
 
 	@GetMapping("/news/notice/update")
 	public String newsNoticeUpdate(Model model, @RequestParam("newsNO") int newsNO) {
+		logger.debug("[newsNO11] = " + newsNO);
+		
 		NewsVO newsVO = newsService.newsOne(newsNO);
 		model.addAttribute("newsVO", newsVO);
-
+		logger.debug("[newsVO11] = " + newsVO);
+		
 		return "noticeUpdate";
 	}
 
 	@PostMapping("/news/notice/update")
 	public String newsNoticeUpdateDone(Model model, @ModelAttribute NewsVO newsVO) throws IOException {
-		logger.debug("[newsVO] = " + newsVO);
+		logger.debug("[newsVO22] = " + newsVO);
 
 		int ret = newsService.updateNews(newsVO);
 		model.addAttribute("ret", ret);
@@ -113,15 +116,18 @@ public class NewsController {
 
 	@GetMapping("/news/event/update")
 	public String newsEventUpdate(Model model, @RequestParam("newsNO") int newsNO) {
+		logger.debug("[newsNO11] = " + newsNO);
+		
 		NewsVO newsVO = newsService.newsOne(newsNO);
 		model.addAttribute("newsVO", newsVO);
-
+		logger.debug("[newsVO11] = " + newsVO);
+		
 		return "eventUpdate";
 	}
 
 	@PostMapping("/news/event/update")
 	public String newsEventUpdateDone(Model model, @ModelAttribute NewsVO newsVO) throws IOException {
-		logger.debug("[newsVO] = " + newsVO);
+		logger.debug("[newsVO22] = " + newsVO);
 
 		int ret = newsService.updateNews(newsVO);
 		model.addAttribute("ret", ret);
