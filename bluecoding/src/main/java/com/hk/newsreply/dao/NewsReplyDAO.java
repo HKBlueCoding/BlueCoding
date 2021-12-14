@@ -1,5 +1,7 @@
 package com.hk.newsreply.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -12,9 +14,10 @@ public class NewsReplyDAO {
 	@Autowired
 	SqlSession sqlSession;
 
-	public int addArticleNewsReply(NewsReplyVO newsReplyVO) {
+	public List<NewsReplyVO> listNewsReply(int newsNO) {
 		// TODO Auto-generated method stub
-		int ret = sqlSession.insert("mapper.newsReply.insertNewsReply", newsReplyVO);
-		return ret;
+		List<NewsReplyVO> newsReplyVO = sqlSession.selectList("mapper.newsReply.selectAllNewsReply", newsNO);
+		
+		return newsReplyVO;
 	}
 }

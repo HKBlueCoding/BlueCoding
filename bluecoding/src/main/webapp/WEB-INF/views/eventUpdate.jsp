@@ -91,15 +91,15 @@
                      <!-- to get an API token!-->
 
                         <div class="form-floating">
-                           <input class="form-control" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
-                           <label for="name">${newsVO.newsTitle }</label>  
+                           <input class="form-control" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required"  value="${newsVO.newsTitle }"/>
+                           <label for="name">제목</label>  
                            <input type="hidden" value="${newsVO.newsNO }" name="newsNO">           
                            <div class="invalid-feedback" data-sb-feedback="name:required">제목을 입력하세요.</div>
                         </div>
                         <br>
                         <div class="form-floating" id="formMag">
-                           <textarea class="form-control" id="message" placeholder="Enter your message here..." style="height: 35rem" data-sb-validations="required"></textarea>
-                           <label for="message">${newsVO.newsText }</label>
+                           <textarea class="form-control" id="message" placeholder="Enter your message here..." style="height: 35rem" data-sb-validations="required">${newsVO.newsText }</textarea>
+                           <label for="message">내용</label>
                            <div class="invalid-feedback" data-sb-feedback="message:required">내용을 입력하세요.</div>
                         </div>
                         <br />

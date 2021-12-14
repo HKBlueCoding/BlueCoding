@@ -19,15 +19,10 @@
 
 	</resultMap>
 
-	<!-- [뉴스 글쓰기] -->
-	<insert id="insertNewsReply" parameterType="NewsReplyVO">
-	 <selectKey keyProperty="newsReplyNO" resultType="int" order="BEFORE">
-	 	SELECT max(newsReplyNO)+1 FROM B_NEWSREPLY
-	 </selectKey>
-	 <![CDATA[
-	  INSERT INTO B_NEWSREPLY 
-	  (NEWSREPLYNO, NREPARENTNO, NEWSRETEXT, NEWSREDATE, NEWSREDELETE, NEWSNO, ID, NICK) 
-	  VALUES(0, 0, '', '', '', 0, '', '')
-	 ]]>
-	</insert>
+	<select id="selectAllNewsReply" resultMap="newsReplyResult">
+    <![CDATA[
+		SELECT NEWSREPLYNO, NREPARENTNO, NEWSRETEXT, NEWSREDATE, NEWSREDELETE, NEWSNO, ID, NICK
+		FROM B_NEWSREPLY WHERE newsNO=#{newsNO}
+    ]]>
+	</select>
 </mapper>	

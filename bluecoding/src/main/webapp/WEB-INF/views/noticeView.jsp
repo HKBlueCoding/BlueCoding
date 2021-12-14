@@ -127,518 +127,130 @@
                </div>
                <!-- ======================= 버튼 끝 ========================== -->
             </div>
+            <div class="container-fluid py-4" style="height:auto; width:60%;">
+               <hr class="my-4" style="width: 100%;">
+               <div class="row">
+                  <div class="col-12">
+                     <div class="card my-4">
+                        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                           <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+                              <h6 class="text-white text-capitalize ps-3">댓글</h6>
+                           </div>
+                        </div>
+                        <c:forEach var="newsReply" items="${newsReplyVO }">
+                           <div id="tbPadd" class="card-body px-0 pb-2">
+                              <div class="table-responsive p-0">
+                                 <table class="table align-items-center mb-0">
+                                    <tbody>
+                                       <tr>
+                                          <td>
+                                             <div class="d-flex px-2 py-1">
+                                                <div class="d-flex flex-column justify-content-center">
+                                                   <p class="text-xs text-secondary mb-0" style="font-size: 15px;">작성자명 : ${newsReply.nick }(${newsReply.id }),&nbsp;&nbsp;&nbsp;&nbsp;${newsReply.newsReDate }</p>
+                                                   <p class="text-xs text-secondary mb-0">${newsReply.newsReText }</p>
+                                                </div>
+                                             </div>
+                                          </td>
+                                          <!-- ======================= 버튼 ========================== -->
+                                          <td>
+                                             <div align="right"  style="width: 100%;">
+                                                <div class="button header-button">
+                                                   <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">답글 쓰기</a>
+                                                </div>
+                                                <div class="button header-button">
+                                                   <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">수정</a>
+                                                </div>
+                                                <div class="button header-button">
+                                                   <a onClick="funok2()" class="btn" style="background-color: #30d8e0;">삭제</a>
+                                                </div>
+                                                <div class="button header-button">
+                                                   <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">신고하기</a>
+                                                </div>
+                                             </div>
+                                             <!-- ======================= 버튼 끝 ========================== -->
+                                          </td>
+                                       </tr>
+                                       <!-- ========================== 답글 ========================== -->
+                                       <tr>
+                                          <td>
+                                             <div class="d-flex px-2 py-1">
+                                                <div class="d-flex flex-column justify-content-center">
+                                                   <input type="hidden" name="newsNO"  value="${newsReply.newsReplyNO }">
+                                                   <input type="hidden" name="newsNO"  value="${newsReply.nReParentNO }">
+                                                   <p class="text-xs text-secondary mb-0" style="font-size: 15px;">&nbsp;&nbsp;&nbsp;&nbsp; ⤷ 작성자명 : ${newsReply.nick }(${newsReply.id }),&nbsp;&nbsp;&nbsp;&nbsp;${newsReply.newsReDate }</p>
+                                                   <p class="text-xs text-secondary mb-0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${newsReply.newsReText }</p>
+                                                </div>
+                                             </div>
+                                             <!-- ======================= 버튼 ========================== -->
+                                          <td>
+                                             <div align="right"  style="width: 100%;">
+                                                <div class="button header-button">
+                                                   <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">답글 쓰기</a>
+                                                </div>
+                                                <div class="button header-button">
+                                                   <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">수정</a>
+                                                </div>
+                                                <div class="button header-button">
+                                                   <a onClick="funok2()" class="btn" style="background-color: #30d8e0;">삭제</a>
+                                                </div>
+                                                <div class="button header-button">
+                                                   <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">신고하기</a>
+                                                </div>
+                                             </div>
+                                             <!-- ======================= 버튼 끝 ========================== -->
+                                          </td>
+                                       </tr>
+                                       <!-- ========================== 답글 끝 ========================== -->
+                                    </tbody>
+                                 </table>
+                              </div>
+                           </div>
+                        </c:forEach>
+                     </div>
+                  </div>
+               </div>
+               <form id="contactForm"  data-sb-form-api-token="API_TOKEN">
+                  <br>
+                  <div class="form-floating" id="formMag">
+                     <textarea name="newsReText" class="form-control" id="message" placeholder="Enter your message here..." style="height: 15rem" data-sb-validations="required"></textarea>
+                     <div class="invalid-feedback" data-sb-feedback="message:required">내용을 입력하세요.</div>
+                     <br><br>
+                     <label for="message">댓글 쓰기</label>
+                     <input type="hidden" name="newsNO"  value="${newsVO.newsNO }">
+                  </div>
+                  <!-- Submit success message-->
+                  <!---->
+                  <!-- This is what your users will see when the form-->
+                  <!-- has successfully submitted-->
+                  <div class="d-none" id="submitSuccessMessage">
+                     <div class="text-center mb-3">
+                        <div class="fw-bolder">Form submission successful!</div>
+                        To activate this form, sign up at
+                        <br />
+                        <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
+                     </div>
+                  </div>
+                  <!-- Submit error message-->
+                  <!---->
+                  <!-- This is what your users will see when there is-->
+                  <!-- an error submitting the form-->
+                  <div class="d-none" id="submitErrorMessage">
+                     <div class="text-center text-danger mb-3">Error sending message!</div>
+                  </div>
+                  <!-- ======================= 버튼 ========================== -->
+                  <div align="center">
+                     <div class="button header-button">
+                        <a onClick="funok3()"  id="submitButton"  class="btn">댓글 등록</a>
+                     </div>
+                     <div class="button header-button">
+                        <a onClick="funbtn()" class="btn">돌아가기</a>
+                     </div>
+                  </div>
+                  <!-- ======================= 버튼 끝 ========================== -->
+               </form>
+            </div>
          </c:when>
       </c:choose>
-      <div class="container-fluid py-4" style="height:auto; width:60%;">
-         <hr class="my-4" style="width: 100%;">
-         <div class="row">
-            <div class="col-12">
-               <div class="card my-4">
-                  <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                     <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                        <h6 class="text-white text-capitalize ps-3">댓글</h6>
-                     </div>
-                  </div>
-                  <div id="tbPadd" class="card-body px-0 pb-2">
-                     <div class="table-responsive p-0">
-                        <table class="table align-items-center mb-0">
-                           <tbody>
-                              <tr>
-                                 <td>
-                                    <div class="d-flex px-2 py-1">
-                                       <div class="d-flex flex-column justify-content-center">
-                                          <p class="text-xs text-secondary mb-0" style="font-size: 15px;">작성자명 : 홍길동,&nbsp;&nbsp;&nbsp;&nbsp;YYYY-MM-DD / HH-MM</p>
-                                          <p class="text-xs text-secondary mb-0">댓글 내용</p>
-                                       </div>
-                                    </div>
-                                 </td>
-                                 <!-- ======================= 버튼 ========================== -->
-                                 <td>
-                                    <div align="right"  style="width: 100%;">
-                                       <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">답글 쓰기</a>
-                                       </div>
-                                       <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">수정</a>
-                                       </div>
-                                       <div class="button header-button">
-                                          <a onClick="funok2()" class="btn" style="background-color: #30d8e0;">삭제</a>
-                                       </div>
-                                       <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">신고하기</a>
-                                       </div>
-                                    </div>
-                                    <!-- ======================= 버튼 끝 ========================== -->
-                                 </td>
-                              </tr>
-                              <!-- ========================== 답글 ========================== -->
-                              <tr>
-                                 <td>
-                                    <div class="d-flex px-2 py-1">
-                                       <div class="d-flex flex-column justify-content-center">
-                                          <p class="text-xs text-secondary mb-0" style="font-size: 15px;">&nbsp;&nbsp;&nbsp;&nbsp; ⤷ 작성자명 : 홍길동,&nbsp;&nbsp;&nbsp;&nbsp;YYYY-MM-DD / HH-MM</p>
-                                          <p class="text-xs text-secondary mb-0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;답글 내용</p>
-                                       </div>
-                                    </div>
-                                    <!-- ======================= 버튼 ========================== -->
-                                 <td>
-                                    <div align="right"  style="width: 100%;">
-                                       <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">답글 쓰기</a>
-                                       </div>
-                                       <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">수정</a>
-                                       </div>
-                                       <div class="button header-button">
-                                          <a onClick="funok2()" class="btn" style="background-color: #30d8e0;">삭제</a>
-                                       </div>
-                                       <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">신고하기</a>
-                                       </div>
-                                    </div>
-                                    <!-- ======================= 버튼 끝 ========================== -->
-                                 </td>
-                              </tr>
-                              <!-- ========================== 답글 끝 ========================== -->
-                              <tr>
-                                 <td>
-                                    <div class="d-flex px-2 py-1">
-                                       <div class="d-flex flex-column justify-content-center">
-                                          <p class="text-xs text-secondary mb-0" style="font-size: 15px;">작성자명 : 홍길동,&nbsp;&nbsp;&nbsp;&nbsp;YYYY-MM-DD / HH-MM</p>
-                                          <p class="text-xs text-secondary mb-0">댓글 내용</p>
-                                       </div>
-                                    </div>
-                                    <!-- ======================= 버튼 ========================== -->
-                                 <td>
-                                    <div align="right"  style="width: 100%;">
-                                       <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">답글 쓰기</a>
-                                       </div>
-                                       <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">수정</a>
-                                       </div>
-                                       <div class="button header-button">
-                                          <a onClick="funok2()" class="btn" style="background-color: #30d8e0;">삭제</a>
-                                       </div>
-                                       <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">신고하기</a>
-                                       </div>
-                                    </div>
-                                    <!-- ======================= 버튼 끝 ========================== -->
-                                 </td>
-                              </tr>
-                              <!-- ========================== 답글 ========================== -->
-                              <tr>
-                                 <td>
-                                    <div class="d-flex px-2 py-1">
-                                       <div class="d-flex flex-column justify-content-center">
-                                          <p class="text-xs text-secondary mb-0" style="font-size: 15px;">&nbsp;&nbsp;&nbsp;&nbsp; ⤷ 작성자명 : 홍길동,&nbsp;&nbsp;&nbsp;&nbsp;YYYY-MM-DD / HH-MM</p>
-                                          <p class="text-xs text-secondary mb-0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;답글 내용</p>
-                                       </div>
-                                    </div>
-                                    <!-- ======================= 버튼 ========================== -->
-                                 <td>
-                                    <div align="right"  style="width: 100%;">
-                                       <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">답글 쓰기</a>
-                                       </div>
-                                       <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">수정</a>
-                                       </div>
-                                       <div class="button header-button">
-                                          <a onClick="funok2()" class="btn" style="background-color: #30d8e0;">삭제</a>
-                                       </div>
-                                       <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">신고하기</a>
-                                       </div>
-                                    </div>
-                                    <!-- ======================= 버튼 끝 ========================== -->
-                                 </td>
-                              </tr>
-                              <!-- ========================== 답글 끝 ========================== -->
-                              <tr>
-                                 <td>
-                                    <div class="d-flex px-2 py-1">
-                                       <div class="d-flex flex-column justify-content-center">
-                                          <p class="text-xs text-secondary mb-0" style="font-size: 15px;">작성자명 : 홍길동,&nbsp;&nbsp;&nbsp;&nbsp;YYYY-MM-DD / HH-MM</p>
-                                          <p class="text-xs text-secondary mb-0">댓글 내용</p>
-                                       </div>
-                                    </div>
-                                    <!-- ======================= 버튼 ========================== -->
-                                 <td>
-                                    <div align="right"  style="width: 100%;">
-                                       <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">답글 쓰기</a>
-                                       </div>
-                                       <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">수정</a>
-                                       </div>
-                                       <div class="button header-button">
-                                          <a onClick="funok2()" class="btn" style="background-color: #30d8e0;">삭제</a>
-                                       </div>
-                                       <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">신고하기</a>
-                                       </div>
-                                    </div>
-                                    <!-- ======================= 버튼 끝 ========================== -->
-                                 </td>
-                              </tr>
-                              <!-- ========================== 답글 ========================== -->
-                              <tr>
-                                 <td>
-                                    <div class="d-flex px-2 py-1">
-                                       <div class="d-flex flex-column justify-content-center">
-                                          <p class="text-xs text-secondary mb-0" style="font-size: 15px;">&nbsp;&nbsp;&nbsp;&nbsp; ⤷ 작성자명 : 홍길동,&nbsp;&nbsp;&nbsp;&nbsp;YYYY-MM-DD / HH-MM</p>
-                                          <p class="text-xs text-secondary mb-0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;답글 내용</p>
-                                       </div>
-                                    </div>
-                                    <!-- ======================= 버튼 ========================== -->
-                                 <td>
-                                    <div align="right"  style="width: 100%;">
-                                       <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">답글 쓰기</a>
-                                       </div>
-                                       <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">수정</a>
-                                       </div>
-                                       <div class="button header-button">
-                                          <a onClick="funok2()" class="btn" style="background-color: #30d8e0;">삭제</a>
-                                       </div>
-                                       <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">신고하기</a>
-                                       </div>
-                                    </div>
-                                    <!-- ======================= 버튼 끝 ========================== -->
-                                 </td>
-                              </tr>
-                              <!-- ========================== 답글 끝 ========================== -->
-                              <tr>
-                                 <td>
-                                    <div class="d-flex px-2 py-1">
-                                       <div class="d-flex flex-column justify-content-center">
-                                          <p class="text-xs text-secondary mb-0" style="font-size: 15px;">작성자명 : 홍길동,&nbsp;&nbsp;&nbsp;&nbsp;YYYY-MM-DD / HH-MM</p>
-                                          <p class="text-xs text-secondary mb-0">댓글 내용</p>
-                                       </div>
-                                    </div>
-                                    <!-- ======================= 버튼 ========================== -->
-                                 <td>
-                                    <div align="right"  style="width: 100%;">
-                                       <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">답글 쓰기</a>
-                                       </div>
-                                       <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">수정</a>
-                                       </div>
-                                       <div class="button header-button">
-                                          <a onClick="funok2()" class="btn" style="background-color: #30d8e0;">삭제</a>
-                                       </div>
-                                       <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">신고하기</a>
-                                       </div>
-                                    </div>
-                                    <!-- ======================= 버튼 끝 ========================== -->
-                                 </td>
-                              </tr>
-                              <!-- ========================== 답글 ========================== -->
-                              <tr>
-                                 <td>
-                                    <div class="d-flex px-2 py-1">
-                                       <div class="d-flex flex-column justify-content-center">
-                                          <p class="text-xs text-secondary mb-0" style="font-size: 15px;">&nbsp;&nbsp;&nbsp;&nbsp; ⤷ 작성자명 : 홍길동,&nbsp;&nbsp;&nbsp;&nbsp;YYYY-MM-DD / HH-MM</p>
-                                          <p class="text-xs text-secondary mb-0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;답글 내용</p>
-                                       </div>
-                                    </div>
-                                    <!-- ======================= 버튼 ========================== -->
-                                 <td>
-                                    <div align="right"  style="width: 100%;">
-                                       <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">답글 쓰기</a>
-                                       </div>
-                                       <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">수정</a>
-                                       </div>
-                                       <div class="button header-button">
-                                          <a onClick="funok2()" class="btn" style="background-color: #30d8e0;">삭제</a>
-                                       </div>
-                                       <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">신고하기</a>
-                                       </div>
-                                    </div>
-                                    <!-- ======================= 버튼 끝 ========================== -->
-                                 </td>
-                              </tr>
-                              <!-- ========================== 답글 끝 ========================== -->
-                              <tr>
-                                 <td>
-                                    <div class="d-flex px-2 py-1">
-                                       <div class="d-flex flex-column justify-content-center">
-                                          <p class="text-xs text-secondary mb-0" style="font-size: 15px;">작성자명 : 홍길동,&nbsp;&nbsp;&nbsp;&nbsp;YYYY-MM-DD / HH-MM</p>
-                                          <p class="text-xs text-secondary mb-0">댓글 내용</p>
-                                       </div>
-                                    </div>
-                                    <!-- ======================= 버튼 ========================== -->
-                                 <td>
-                                    <div align="right"  style="width: 100%;">
-                                       <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">답글 쓰기</a>
-                                       </div>
-                                       <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">수정</a>
-                                       </div>
-                                       <div class="button header-button">
-                                          <a onClick="funok2()" class="btn" style="background-color: #30d8e0;">삭제</a>
-                                       </div>
-                                       <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">신고하기</a>
-                                       </div>
-                                    </div>
-                                    <!-- ======================= 버튼 끝 ========================== -->
-                                 </td>
-                              </tr>
-                              <!-- ========================== 답글 ========================== -->
-                              <tr>
-                                 <td>
-                                    <div class="d-flex px-2 py-1">
-                                       <div class="d-flex flex-column justify-content-center">
-                                          <p class="text-xs text-secondary mb-0" style="font-size: 15px;">&nbsp;&nbsp;&nbsp;&nbsp; ⤷ 작성자명 : 홍길동,&nbsp;&nbsp;&nbsp;&nbsp;YYYY-MM-DD / HH-MM</p>
-                                          <p class="text-xs text-secondary mb-0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;답글 내용</p>
-                                       </div>
-                                    </div>
-                                    <!-- ======================= 버튼 ========================== -->
-                                 <td>
-                                    <div align="right"  style="width: 100%;">
-                                       <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">답글 쓰기</a>
-                                       </div>
-                                       <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">수정</a>
-                                       </div>
-                                       <div class="button header-button">
-                                          <a onClick="funok2()" class="btn" style="background-color: #30d8e0;">삭제</a>
-                                       </div>
-                                       <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">신고하기</a>
-                                       </div>
-                                    </div>
-                                    <!-- ======================= 버튼 끝 ========================== -->
-                                 </td>
-                              </tr>
-                              <!-- ========================== 답글 끝 ========================== -->
-                              <tr>
-                                 <td>
-                                    <div class="d-flex px-2 py-1">
-                                       <div class="d-flex flex-column justify-content-center">
-                                          <p class="text-xs text-secondary mb-0" style="font-size: 15px;">작성자명 : 홍길동,&nbsp;&nbsp;&nbsp;&nbsp;YYYY-MM-DD / HH-MM</p>
-                                          <p class="text-xs text-secondary mb-0">댓글 내용</p>
-                                       </div>
-                                    </div>
-                                    <!-- ======================= 버튼 ========================== -->
-                                 <td>
-                                    <div align="right"  style="width: 100%;">
-                                       <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">답글 쓰기</a>
-                                       </div>
-                                       <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">수정</a>
-                                       </div>
-                                       <div class="button header-button">
-                                          <a onClick="funok2()" class="btn" style="background-color: #30d8e0;">삭제</a>
-                                       </div>
-                                       <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">신고하기</a>
-                                       </div>
-                                    </div>
-                                    <!-- ======================= 버튼 끝 ========================== -->
-                                 </td>
-                              </tr>
-                              <!-- ========================== 답글 ========================== -->
-                              <tr>
-                                 <td>
-                                    <div class="d-flex px-2 py-1">
-                                       <div class="d-flex flex-column justify-content-center">
-                                          <p class="text-xs text-secondary mb-0" style="font-size: 15px;">&nbsp;&nbsp;&nbsp;&nbsp; ⤷ 작성자명 : 홍길동,&nbsp;&nbsp;&nbsp;&nbsp;YYYY-MM-DD / HH-MM</p>
-                                          <p class="text-xs text-secondary mb-0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;답글 내용</p>
-                                       </div>
-                                    </div>
-                                    <!-- ======================= 버튼 ========================== -->
-                                 <td>
-                                    <div align="right"  style="width: 100%;">
-                                       <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">답글 쓰기</a>
-                                       </div>
-                                       <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">수정</a>
-                                       </div>
-                                       <div class="button header-button">
-                                          <a onClick="funok2()" class="btn" style="background-color: #30d8e0;">삭제</a>
-                                       </div>
-                                       <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">신고하기</a>
-                                       </div>
-                                    </div>
-                                    <!-- ======================= 버튼 끝 ========================== -->
-                                 </td>
-                              </tr>
-                              <!-- ========================== 답글 끝 ========================== -->
-                              <tr>
-                                 <td>
-                                    <div class="d-flex px-2 py-1">
-                                       <div class="d-flex flex-column justify-content-center">
-                                          <p class="text-xs text-secondary mb-0" style="font-size: 15px;">작성자명 : 홍길동,&nbsp;&nbsp;&nbsp;&nbsp;YYYY-MM-DD / HH-MM</p>
-                                          <p class="text-xs text-secondary mb-0">댓글 내용</p>
-                                       </div>
-                                    </div>
-                                    <!-- ======================= 버튼 ========================== -->
-                                 <td>
-                                    <div align="right"  style="width: 100%;">
-                                       <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">답글 쓰기</a>
-                                       </div>
-                                       <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">수정</a>
-                                       </div>
-                                       <div class="button header-button">
-                                          <a onClick="funok2()" class="btn" style="background-color: #30d8e0;">삭제</a>
-                                       </div>
-                                       <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">신고하기</a>
-                                       </div>
-                                    </div>
-                                    <!-- ======================= 버튼 끝 ========================== -->
-                                 </td>
-                              </tr>
-                              <!-- ========================== 답글 ========================== -->
-                              <tr>
-                                 <td>
-                                    <div class="d-flex px-2 py-1">
-                                       <div class="d-flex flex-column justify-content-center">
-                                          <p class="text-xs text-secondary mb-0" style="font-size: 15px;">&nbsp;&nbsp;&nbsp;&nbsp; ⤷ 작성자명 : 홍길동,&nbsp;&nbsp;&nbsp;&nbsp;YYYY-MM-DD / HH-MM</p>
-                                          <p class="text-xs text-secondary mb-0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;답글 내용</p>
-                                       </div>
-                                    </div>
-                                    <!-- ======================= 버튼 ========================== -->
-                                 <td>
-                                    <div align="right"  style="width: 100%;">
-                                       <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">답글 쓰기</a>
-                                       </div>
-                                       <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">수정</a>
-                                       </div>
-                                       <div class="button header-button">
-                                          <a onClick="funok2()" class="btn" style="background-color: #30d8e0;">삭제</a>
-                                       </div>
-                                       <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">신고하기</a>
-                                       </div>
-                                    </div>
-                                    <!-- ======================= 버튼 끝 ========================== -->
-                                 </td>
-                              </tr>
-                              <!-- ========================== 답글 끝 ========================== -->
-                              <tr>
-                                 <td>
-                                    <div class="d-flex px-2 py-1">
-                                       <div class="d-flex flex-column justify-content-center">
-                                          <p class="text-xs text-secondary mb-0" style="font-size: 15px;">작성자명 : 홍길동,&nbsp;&nbsp;&nbsp;&nbsp;YYYY-MM-DD / HH-MM</p>
-                                          <p class="text-xs text-secondary mb-0">댓글 내용</p>
-                                       </div>
-                                    </div>
-                                    <!-- ======================= 버튼 ========================== -->
-                                 <td>
-                                    <div align="right"  style="width: 100%;">
-                                       <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">답글 쓰기</a>
-                                       </div>
-                                       <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">수정</a>
-                                       </div>
-                                       <div class="button header-button">
-                                          <a onClick="funok2()" class="btn" style="background-color: #30d8e0;">삭제</a>
-                                       </div>
-                                       <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">신고하기</a>
-                                       </div>
-                                    </div>
-                                    <!-- ======================= 버튼 끝 ========================== -->
-                                 </td>
-                              </tr>
-                              <!-- ========================== 답글 ========================== -->
-                              <tr>
-                                 <td>
-                                    <div class="d-flex px-2 py-1">
-                                       <div class="d-flex flex-column justify-content-center">
-                                          <p class="text-xs text-secondary mb-0" style="font-size: 15px;">&nbsp;&nbsp;&nbsp;&nbsp; ⤷ 작성자명 : 홍길동,&nbsp;&nbsp;&nbsp;&nbsp;YYYY-MM-DD / HH-MM</p>
-                                          <p class="text-xs text-secondary mb-0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;답글 내용</p>
-                                       </div>
-                                    </div>
-                                    <!-- ======================= 버튼 ========================== -->
-                                 <td>
-                                    <div align="right"  style="width: 100%;">
-                                       <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">답글 쓰기</a>
-                                       </div>
-                                       <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">수정</a>
-                                       </div>
-                                       <div class="button header-button">
-                                          <a onClick="funok2()" class="btn" style="background-color: #30d8e0;">삭제</a>
-                                       </div>
-                                       <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">신고하기</a>
-                                       </div>
-                                    </div>
-                                    <!-- ======================= 버튼 끝 ========================== -->
-                                 </td>
-                              </tr>
-                              <!-- ========================== 답글 끝 ========================== -->
-                           </tbody>
-                        </table>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-         <form id="contactForm"  data-sb-form-api-token="API_TOKEN">
-            <br>
-            <div class="form-floating" id="formMag">
-               <textarea class="form-control" id="message" placeholder="Enter your message here..." style="height: 15rem" data-sb-validations="required"></textarea>
-               <div class="invalid-feedback" data-sb-feedback="message:required">내용을 입력하세요.</div>
-               <br><br>
-               <label for="message">댓글 쓰기</label>
-               <input type="hidden" name="newsNO"  value="${newsVO.newsNO }">
-            </div>
-            <!-- Submit success message-->
-            <!---->
-            <!-- This is what your users will see when the form-->
-            <!-- has successfully submitted-->
-            <div class="d-none" id="submitSuccessMessage">
-               <div class="text-center mb-3">
-                  <div class="fw-bolder">Form submission successful!</div>
-                  To activate this form, sign up at
-                  <br />
-                  <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
-               </div>
-            </div>
-            <!-- Submit error message-->
-            <!---->
-            <!-- This is what your users will see when there is-->
-            <!-- an error submitting the form-->
-            <div class="d-none" id="submitErrorMessage">
-               <div class="text-center text-danger mb-3">Error sending message!</div>
-            </div>
-            <!-- ======================= 버튼 ========================== -->
-            <div align="center">
-               <div class="button header-button">
-                  <a onClick="funok3()"  id="submitButton"  class="btn">댓글 등록</a>
-               </div>
-               <div class="button header-button">
-                  <a onClick="funbtn()" class="btn">돌아가기</a>
-               </div>
-            </div>
-            <!-- ======================= 버튼 끝 ========================== -->
-         </form>
-      </div>
       <!-- ====================== 페이징 ====================== -->
       <div class="w3-center">
          <div class="w3-bar">
