@@ -63,13 +63,13 @@
                         <div class="col-lg-3 col-md-3 col-12 p-0">
                            <div class="search-input">
                               <label for="category"></label>
-                              <select name="qnaList" id="qnaList"  required>
-                                 <option value="none" selected disabled>카테고리</option>
-                                 <option value="none">계정 관련</option>
-                                 <option value="none">책 관련</option>
-                                 <option value="none">충전 관련</option>
-                                 <option value="none">신고 관련</option>
-                                 <option value="none">기타</option>
+                              <select name="qnaList" id="qnaList">
+                                 <option value="none" selected>목록 선택</option>
+                                 <option value="계정 관련">계정 관련</option>
+                                 <option value="책 관련">책 관련</option>
+                                 <option value="충전 관련">충전 관련</option>
+                                 <option value="신고 관련">신고 관련</option>
+                                 <option value="기타">기타</option>
                               </select>
                            </div>
                         </div>

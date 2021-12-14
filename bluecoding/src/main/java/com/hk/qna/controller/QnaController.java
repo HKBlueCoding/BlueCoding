@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.hk.qna.service.QnaService;
 import com.hk.qna.vo.QnaVO;
@@ -60,15 +61,24 @@ public class QnaController {
 
 	// 일반유저 게시글 상세보기
 	@GetMapping("/qna/view")
-	public String qnaView() {
-		
+	public String qnaView(Model model, @RequestParam("qnaNO") int qnaNO) {
+		logger.debug("[qnaNO] = " + qnaNO);
+		QnaVO qnaVO = qnaService.viewQna(qnaNO);
+		model.addAttribute("qna", qnaVO);		
 		return "qnaView";
 	}
 
 	// 일반유저 게시글 수정
-	@GetMapping("/qna/update")
-	public String qnaUpdate() {
+	@PostMapping("/qna/update")
+	public String qnaUpdate(Model model, @ModelAttribute QnaVO qnaVO) {
 		
-		return "qnaUpdate";
-	}	
+		logger.debug("Get Attribute [qnaVO] = " + qnaVO);
+		int ret = qnaService.modQna(qnaVO);
+		model.addAttribute("ret", ret);
+		model.addAttribute("qnaNO", qnaVO.getQnaNO());
+		
+		return "/done/qnaUpdateDone";
+	}
+	
+		
 }

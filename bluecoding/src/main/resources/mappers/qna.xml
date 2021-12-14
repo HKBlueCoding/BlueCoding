@@ -28,17 +28,32 @@
 		FROM B_QNA
 	]]>
 	</select>
-	
+
 	<!-- [문의 글쓰기] -->
 	<insert id="insertQna" parameterType="QnaVO">
-	 <selectKey keyProperty="qnaNO" resultType="int" order="BEFORE">
-	 	SELECT MAX(QNANO)+1 FROM B_QNA
-	 </selectKey>
+		<selectKey keyProperty="qnaNO" resultType="int"
+			order="BEFORE">
+			SELECT MAX(QNANO)+1 FROM B_QNA
+		</selectKey>
 	 <![CDATA[
 		INSERT INTO B_QNA
 		(QNANO, QNAPARENTNO, QNALIST, QNATITLE, QNATEXT, QNAIMAGE, QNADATE, ID)
 		VALUES(#{qnaNO}, 0, #{qnaList}, #{qnaTitle}, #{qnaText}, #{qnaImage}, sysdate, 'sndlgudlsa123')
 	 ]]>
 	</insert>
+
+	<!-- [문의 게시글 수정] -->
+	<select id="selectOneQna" resultType="QnaVO" parameterType="int">
+		<![CDATA[
+		SELECT * FROM B_QNA WHERE qnaNO=#{qnaNO}
+		]]>
+	</select>
+	
+	<update id="updateQna" parameterType="QnaVO">
+    <![CDATA[
+		UPDATE B_QNA SET QNATITLE=#{qnaTitle}, QNALIST=#{qnaList}, QNATEXT=#{qnaText}, QNAIMAGE=#{qnaImage}
+		WHERE QNANO=#{qnaNO}
+    ]]>
+	</update>
 
 </mapper>

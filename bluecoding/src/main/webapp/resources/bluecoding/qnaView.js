@@ -3,8 +3,9 @@
  */
 
 function fn_enable(obj) {
+	document.getElementById("qnaListLimit").disabled = false;
 	document.getElementById("qnaContent").disabled = false;
-	document.getElementById("i_title").disabled = false;
+	document.getElementById("qnaContent2").disabled = false;
 	document.getElementById("tr_btn_modify").style.display = "block";
 	document.getElementById("tr_btn_one").style.display = "none";
 	document.getElementById("tr_btn_two").style.display = "none";
@@ -12,8 +13,9 @@ function fn_enable(obj) {
 }
 
 function fn_modify_article(obj) {
-	obj.action = "${contextPath}/board/modArticle.do";
-	obj.submit();
+
+	document.frmArticle.action = "update?qnaNO="+obj;
+	document.frmArticle.submit();
 
 }
 
@@ -30,7 +32,7 @@ function deleteConfirm(id) {
 	}
 }
 
-function funbtn() {
+function funbtn(obj) {
 	if (confirm("이전 페이지로 돌아가시겠습니까??")) {
 		javascript: history.back();
 	} else {

@@ -26,4 +26,15 @@ public class QnaService {
 		return qnaDAO.addQna(qnaVO);
 	}
 
+	public QnaVO viewQna(int qnaNO) {
+		// TODO Auto-generated method stub
+		return qnaDAO.selectQna(qnaNO);
+	}
+
+	public int modQna(QnaVO qnaVO) {
+		// TODO Auto-generated method stub
+		return qnaDAO.updateQna(qnaVO);
+	}
+
+
 }

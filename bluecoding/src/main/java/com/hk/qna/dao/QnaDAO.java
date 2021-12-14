@@ -29,4 +29,17 @@ public class QnaDAO {
 		return ret;
 	}
 
+	public QnaVO selectQna(int qnaNO) {
+		// TODO Auto-generated method stub
+		
+		QnaVO qnaVO = sqlSession.selectOne("mapper.qna.selectOneQna", qnaNO);
+		return qnaVO;
+	}
+
+	public int updateQna(QnaVO qnaVO) {
+		// TODO Auto-generated method stub
+		int ret = sqlSession.update("mapper.qna.updateQna", qnaVO);
+		return ret;
+	}
+	
 }

@@ -48,11 +48,15 @@ public class BoardController {
 	}
 	
 	@PostMapping(value="/board/add")
-	public String boardAddDone(Model model, @ModelAttribute BoardVO boardVO) {
+	public String boardAddDone(Model model, @ModelAttribute BoardVO boardVO, HttpServletResponse response) {
+		
+		logger.debug("[boardVO] = " + boardVO);
+		response.setContentType("text/html; charset=UTF-8");
 		
 		int ret = boardService.addArticle(boardVO);
 		model.addAttribute("ret", ret);
-		return "boardList";
+		
+		return "done/boardAddDone";
 	}
 
 	// UPDATE

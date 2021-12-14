@@ -30,11 +30,13 @@
 
 	<!-- [커뮤니티 게시글 추가] -->
 	<insert id="insertArticle" parameterType="BoardVO">
-
+	 <selectKey keyProperty="articleNO" resultType="int" order="BEFORE">
+	 		SELECT MAX(ARTICLENO)+1 FROM B_BOARD
+	 		</selectKey>
   			<![CDATA[
-			INSERT INTO B_BOARD
-			(ARTICLENO, BOARDTITLE, BOARDTEXT, BOARDDATE, BOARDIMAGE, BVIEWCNT, BOARDDELETE, ID, NICK)
-			VALUES((SELECT MAX(ARTICLENO+1)), #{boardTitle}, #{boardText}, sysdate, #{boardImage}, 0, #{boardDelete}, #{id}, #{nick})
+			INSERT INTO B_BOARD 
+			(ARTICLENO, BOARDTITLE, BOARDTEXT, BOARDDATE, BOARDIMAGE, BVIEWCNT, ID, NICK) 
+			VALUES(#{articleNO}, #{boardTitle}, #{boardText}, sysdate, #{boardImage}, 0, 'sndlgudsla123', 'qkrwjdghks')
 			]]>
 	</insert>
 	

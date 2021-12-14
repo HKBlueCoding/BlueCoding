@@ -49,6 +49,7 @@
       <jsp:include page="/WEB-INF/views/include/header.jsp"/>
       <br><br><br><br><br><br><br><br>
       <!-- =================== 글쓰기 폼 ===================== -->
+      <form id="contactForm" data-sb-form-api-token="API_TOKEN" action="add" method="post">
       <!-- Main Content-->
       <main class="mb-4">
          <div class="container px-4 px-lg-5">
@@ -78,13 +79,14 @@
                      <!-- to get an API token!-->
                      <form id="contactForm" data-sb-form-api-token="API_TOKEN">
                         <div class="form-floating">
-                           <input class="form-control" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
+                           <input class="form-control" id="name" name="boardTitle" type="text" placeholder="Enter your name..." data-sb-validations="required" />
                            <label for="name">제목</label>                          
                            <div class="invalid-feedback" data-sb-feedback="name:required">제목을 입력하세요.</div>
                         </div>
                         <br>
                         <div class="form-floating" id="formMag">
-                           <textarea class="form-control" id="message" placeholder="Enter your message here..." style="height: 35rem" data-sb-validations="required"></textarea>
+                           <textarea class="form-control" id="message" name="boardText" placeholder="Enter your message here..." style="height: 35rem" data-sb-validations="required"></textarea>
+                           <input type="hidden" name="boardImage">
                            <label for="message">내용</label>
                            <div class="invalid-feedback" data-sb-feedback="message:required">내용을 입력하세요.</div>
                         </div>
@@ -112,7 +114,7 @@
                         <button class="btn btn-primary text-uppercase disabled"  id="submitButton" type="submit">사진 입력하기(바꿔야 됨)</button>
                         <!-- ======================= 버튼 ========================== -->
                         <div class="button header-button">
-                           <a onClick="funok()" class="btn">등록</a>
+                           <input type="submit" class="btn" value="등록">
                         </div>
                         <div class="button header-button">
                            <a onClick="funbtn()" class="btn">돌아가기</a>
@@ -124,6 +126,7 @@
             </div>
          </div>
       </main>
+      </form>
       <!-- =================== 글쓰기 폼 끝===================== -->
       <!-- ==================== footer ====================== -->      
       <!-- footer -->

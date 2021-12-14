@@ -62,8 +62,8 @@
                   <input type="text"  value="${board.articleNO }"  disabled />
                   <input type="hidden" name="articleNO" value="${board.articleNO}"  />
                   <br>
-                  제목 :<br>
-                  <input type=text value="${board.boardTitle }"  name="title"  id="i_title" disabled />
+                  <p id="title2"><input type=text value="${board.boardTitle }"  name="title"  id="i_title" disabled /></p>
+                  
                   <div id="qna">
                      &nbsp;&nbsp; 작성자 : ${board.id } &nbsp;&nbsp;&nbsp;&nbsp; ${board.boardDate } &nbsp;&nbsp;&nbsp;&nbsp;
                      <!-- ======================= 버튼 ========================== -->
