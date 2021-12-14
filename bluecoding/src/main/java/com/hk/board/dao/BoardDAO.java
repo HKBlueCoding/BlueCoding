@@ -25,7 +25,7 @@ public class BoardDAO {
 	public int addArticle(BoardVO boardVO) {
 		// TODO Auto-generated method stub
 
-		int ret = sqlSession.insert("mapper.board.insertArticle2", boardVO);
+		int ret = sqlSession.insert("mapper.board.insertArticle", boardVO);
 		return ret;
 	}
 

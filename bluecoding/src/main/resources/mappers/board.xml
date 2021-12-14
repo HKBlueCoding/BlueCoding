@@ -29,16 +29,12 @@
 	</select>
 
 	<!-- [커뮤니티 게시글 추가] -->
-	<insert id="insertArticle2" parameterType="BoardVO">
-   		<selectKey keyProperty="articleNO" resultType="int" order="BEFORE">
-   			<![CDATA[
-   		    SELECT MAX(ARTICLENO)+1 FROM B_BOARD
-			]]>
-  		</selectKey>
+	<insert id="insertArticle" parameterType="BoardVO">
+
   			<![CDATA[
 			INSERT INTO B_BOARD
 			(ARTICLENO, BOARDTITLE, BOARDTEXT, BOARDDATE, BOARDIMAGE, BVIEWCNT, BOARDDELETE, ID, NICK)
-			VALUES(#{articleNO}, #{boardTitle}, #{boardText}, sysdate, #{boardImage}, 0, #{boardDelete}, #{id}, #{nick})
+			VALUES((SELECT MAX(ARTICLENO+1)), #{boardTitle}, #{boardText}, sysdate, #{boardImage}, 0, #{boardDelete}, #{id}, #{nick})
 			]]>
 	</insert>
 	
