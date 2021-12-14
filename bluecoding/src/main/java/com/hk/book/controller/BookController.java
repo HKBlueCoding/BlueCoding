@@ -1,16 +1,14 @@
 package com.hk.book.controller;
 
-import java.text.DateFormat;
-import java.util.Date;
-import java.util.Locale;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.hk.user.vo.UserVO;
 
 /**
  * Handles requests for the application home page.
@@ -22,7 +20,11 @@ public class BookController {
 		
 	// 메인 페이지
 	@GetMapping("/")
-	public String home() {
+	public String home(HttpSession session, Model model) {
+		
+		UserVO userVO = (UserVO) session.getAttribute("login");
+		logger.debug("[세션 감지됨]="+userVO);
+		model.addAttribute("login", userVO);
 		
 		return "main";
 	}
