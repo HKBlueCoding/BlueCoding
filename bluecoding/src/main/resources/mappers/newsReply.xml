@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.newsReply">
+
+	<!-- 테이블 컬럼하고, VO하고 1:1로 맵핑했을때 이름이 다른경우 -->
+	<resultMap id="newsReplyResult" type="NewsReplyVO">
+	
+		<result property="newsReplyNO" column="newsReplyNO" />
+		<result property="nReParentNO" column="nReParentNO" />
+		<result property="newsReText" column="newsReText" />
+		<result property="newsReDate" column="newsReDate" />
+		<result property="newsReDelete" column="newsReDelete" />
+		<result property="newsNO" column="newsNO" />
+		<result property="id" column="id" />
+		<result property="nick" column="nick" />
+
+	</resultMap>
+
+	<!-- [뉴스 글쓰기] -->
+	<insert id="insertNewsReply" parameterType="NewsReplyVO">
+	 <selectKey keyProperty="newsReplyNO" resultType="int" order="BEFORE">
+	 	SELECT max(newsReplyNO)+1 FROM B_NEWSREPLY
+	 </selectKey>
+	 <![CDATA[
+	  INSERT INTO B_NEWSREPLY 
+	  (NEWSREPLYNO, NREPARENTNO, NEWSRETEXT, NEWSREDATE, NEWSREDELETE, NEWSNO, ID, NICK) 
+	  VALUES(0, 0, '', '', '', 0, '', '')
+	 ]]>
+	</insert>
+</mapper>	

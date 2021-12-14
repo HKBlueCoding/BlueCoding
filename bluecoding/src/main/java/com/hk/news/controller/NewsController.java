@@ -2,7 +2,6 @@ package com.hk.news.controller;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -68,6 +67,17 @@ public class NewsController {
 		return "event";
 	}
 
+//	@GetMapping("/news/notice/view")
+//	public String noticeView(Model model, @RequestParam("newsNO") int newsNO) {
+//		NewsVO newsVO = newsService.newsOne(newsNO);
+//		// list -> vo 1개
+//		// vo
+//		model.addAttribute("newsVO", newsVO);
+//		logger.debug("[newsVO] = " + newsVO);
+//
+//		return "noticeView";
+//	}
+	
 	@GetMapping("/news/notice/view")
 	public String noticeView(Model model, @RequestParam("newsNO") int newsNO) {
 		NewsVO newsVO = newsService.newsOne(newsNO);
@@ -77,15 +87,7 @@ public class NewsController {
 		logger.debug("[newsVO] = " + newsVO);
 
 		return "noticeView";
-	}
-	
-//	@GetMapping("/news/notice/view")
-//	public String noticeView(Model model, @RequestParam("newsNO") int newsNO) {
-//		Map<String, Object> map = newsService.addNews(newsNO);
-//		model.addAttribute("news", map.get("newsVO"));
-//		model.addAttribute("reply", map.get("newsReplyVO"));
-//		return "noticeView";
-//	}
+	}	
 
 	@GetMapping("/news/event/view")
 	public String eventView(Model model, @RequestParam("newsNO") int newsNO) {

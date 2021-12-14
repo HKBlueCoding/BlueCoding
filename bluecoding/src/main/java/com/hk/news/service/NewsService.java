@@ -1,14 +1,13 @@
 package com.hk.news.service;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hk.news.dao.NewsDAO;
 import com.hk.news.vo.NewsVO;
+import com.hk.newsreply.vo.NewsReplyVO;
 
 @Service
 public class NewsService {
@@ -20,22 +19,6 @@ public class NewsService {
 		// TODO Auto-generated method stub
 		return newsDAO.addArticleNews(newsVO);
 	}
-
-//	public Map<String, Object> addNews(int newsNO) {
-//		// TODO Auto-generated method stub
-//		
-//		NewsVO newsVO = newsDAO.selectArticle(articleNO);
-//		MemberVO memberVO = memberDAO.selectName(articleVO.getId());
-//		logger.debug("articleVO = " + articleVO.toString());
-//		logger.debug("memberVO = " + memberVO.toString());
-//		
-//		Map<String, Object> map = new HashMap<String, Object>();
-//		
-//		map.put("articleVO", articleVO);
-//		map.put("memberVO", memberVO);
-//
-//		return map;
-//	}
 	
 	public List<NewsVO> listNewsNotice() {
 		// TODO Auto-generated method stub
@@ -47,12 +30,23 @@ public class NewsService {
 		return newsDAO.listEventNews();
 	}
 
+//	public NewsVO newsOne(int newsNO) {
+//		// TODO Auto-generated method stub
+//
+//		return newsDAO.oneNews(newsNO);
+//	}	
+	
 	public NewsVO newsOne(int newsNO) {
 		// TODO Auto-generated method stub
-
+		// 하나는 해당 게시글하나
+		NewsVO newsVO = newsDAO.oneNews(newsNO);
+		List<NewsReplyVO> list = null; // newsNO
+		
+		// 그 게시글의 댓글
+		
 		return newsDAO.oneNews(newsNO);
 	}
-
+	
 	public int updateNews(NewsVO newsVO) {
 		// TODO Auto-generated method stub
 		

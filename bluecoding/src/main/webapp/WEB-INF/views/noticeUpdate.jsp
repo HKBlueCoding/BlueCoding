@@ -71,7 +71,7 @@
                                     <div class="search-input">
                                        <label for="category"></label>
                                        <select name="category" id="category" required>
-                                          <option value="none"  selected disabled>${newsVO.category }</option>
+                                          <option value="none"  selected disabled>카테고리</option>
                                           <option value="notice">공지사항</option>
                                           <option value="event">이벤트</option>
                                        </select>

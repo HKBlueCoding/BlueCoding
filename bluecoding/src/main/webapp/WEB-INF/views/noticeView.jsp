@@ -599,13 +599,14 @@
                </div>
             </div>
          </div>
-         <form id="contactForm" data-sb-form-api-token="API_TOKEN">
+         <form id="contactForm"  data-sb-form-api-token="API_TOKEN">
             <br>
             <div class="form-floating" id="formMag">
                <textarea class="form-control" id="message" placeholder="Enter your message here..." style="height: 15rem" data-sb-validations="required"></textarea>
                <div class="invalid-feedback" data-sb-feedback="message:required">내용을 입력하세요.</div>
                <br><br>
                <label for="message">댓글 쓰기</label>
+               <input type="hidden" name="newsNO"  value="${newsVO.newsNO }">
             </div>
             <!-- Submit success message-->
             <!---->
