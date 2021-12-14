@@ -87,7 +87,7 @@ public class NewsController {
 		logger.debug("[newsVO] = " + newsVO);
 
 		return "noticeView";
-	}	
+	}
 
 	@GetMapping("/news/event/view")
 	public String eventView(Model model, @RequestParam("newsNO") int newsNO) {
