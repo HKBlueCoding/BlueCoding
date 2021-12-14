@@ -3,9 +3,10 @@ package com.hk.user.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -21,7 +22,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.hk.user.service.UserService;
 import com.hk.user.vo.UserVO;
@@ -101,26 +101,22 @@ public class UserController {
 	// [로그인 체크]
 	@RequestMapping(value="/finishLogin", method=RequestMethod.POST)
 	public String finishLogin(HttpSession session, @RequestParam("loginId") String id, 
-							  @RequestParam("loginPwd") String pwd, @RequestParam(value="loginCookie", required=false)String loginCookie,Model model) {
+							  @RequestParam("loginPwd") String pwd) {
 		//logger.debug("VO는?"+userVO);
 		logger.debug("아이디="+id);
-		logger.debug("로그인 쿠키="+loginCookie);
 		UserVO userVO = new UserVO();
 		userVO.setId(id);
 		userVO.setPwd(pwd);
 		
-		// 조회후
+		// 조회후 
 		userVO = userService.checkLogin(userVO);
 		
-		session.setAttribute("login", userVO);
+		// userVO가 null이면 로그인 안된것..
+		if(userVO == null) {
+			return "done/loginDone";
+		}
 		
-		/*
-		 * // 쿠키를 야부에 따라 리턴 if(loginCookie.equals(null)) { // 1. 로그인유지를 안했을 경우
-		 * 
-		 * }else {
-		 * 
-		 * }
-		 */
+		session.setAttribute("login", userVO);	 
 		
 		return "done/loginDone";
 	}

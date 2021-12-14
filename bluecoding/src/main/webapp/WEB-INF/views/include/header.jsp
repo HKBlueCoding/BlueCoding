@@ -114,7 +114,7 @@
 
             <!-- Modal body -->
             <div class="modal-body">
-            	<form name="frmLogin" method="post" action="finishLogin">
+            	<form name="frmLogin" method="post" action="../../finishLogin">
                     <div class="mb-3 mt-3" align="center">
                         <input type="text" class="form-control" id="loginId" placeholder="아이디" name="loginId" style="height: auto; width: 80%;" required />
                     </div>
@@ -123,10 +123,6 @@
                     </div>
                     <div align="center">
                     	<input type="button" class="btn btn-secondary" onclick="loginBtn()" value="&nbsp;&nbsp;&nbsp;로그인&nbsp;&nbsp;&nbsp;" style="height: auto; width: 80%;">
-                    </div>
-                    <br />
-                    <div class="form-check mb-3" align="center">
-                        <label class="form-check-label"> <input class="form-check-input" type="checkbox" name="loginCookie" value="loginCookie" align="center" /> 로그인 유지 </label>
                     </div>
                     <p align="center"><a href="../../user/find/id">아이디찾기</a>&nbsp;/&nbsp;<a href="../../user/find/pwd">비밀번호 찾기</a></p>
       			</form>      
