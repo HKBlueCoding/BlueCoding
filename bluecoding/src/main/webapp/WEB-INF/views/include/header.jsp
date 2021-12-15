@@ -41,7 +41,7 @@
                                     </ul>
                                 </li>
                                 <li class="nav-item"><a href="../../user/chest" aria-label="Toggle navigation">보관함</a></li>
-                                <li class="nav-item"><a href="../../qna/home" aria-label="Toggle navigation">고객센터</a></li>
+                                <li class="nav-item"><a onclick="goQnaHome('${login.id }')" aria-label="Toggle navigation">고객센터</a></li>
                             </ul>
                         </div>
                         <!-- [비로그인시] -->
@@ -49,7 +49,7 @@
                          <div id="notLogin" class="login-button" >
                             <ul>
                                 <li>
-                                    <a data-bs-toggle="modal" data-bs-target="#login"><i class="lni lni-enter"></i> Login</a>
+                                    <a id="loginClick" data-bs-toggle="modal" data-bs-target="#login"><i class="lni lni-enter"></i> Login</a>
                                 </li>
                                 <li>
                                     <a href="../../user/register"><i class="lni lni-user"></i> Register</a>

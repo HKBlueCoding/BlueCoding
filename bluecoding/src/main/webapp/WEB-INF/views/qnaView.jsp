@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" isELIgnored="false"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -67,7 +67,7 @@
 	<br>
 			<!-- =================== 글쓰기 폼 ===================== -->
 			<!-- Main Content-->
-			<form id="contactForm" data-sb-form-api-token="API_TOKEN" name="frmArticle" method="post" action="update">
+			<form id="contactForm" data-sb-form-api-token="API_TOKEN" name="frmArticle" method="post" action="update" encType="multipart/form-data">
 				<main class="mb-4">
 					<div class="container px-4 px-lg-5">
 						<div class="row gx-4 gx-lg-5 justify-content-center">
@@ -98,13 +98,15 @@
 
 								</p>
 								<br>
+								<h3>제목</h3>
+								<br>
 								<p id="title2">
 									<input type=text value="${qna.qnaTitle }" name="qnaTitle"
-										id="qnaContent"  size=53  disabled />
+										   id="qnaContent" class="form-control" size=53  disabled />
 								</p>
 								<div id="qna">
 									<input type="hidden" name="qnaNO" value="${qna.qnaNO}">
-									<input type="hidden" name="id" value="${qna.id }" readonly>
+									<input type="hidden" name="id" value="${qna.id }">
 									<p>작성자: ${qna.id } / 작성일: ${qna.qnaDate}</p>
 									<br>
 									<!-- ======================= 버튼 ========================== -->
@@ -113,14 +115,13 @@
 										<button type="submit" class="btn">수정반영</button>
 										<a onClick="funbtn(this.form)" class="btn">취소</a>
 									</div>
+									
 									<div class="button header-button" id="tr_btn_one">
 										<a onclick="fn_enable(this.form)" class="btn">수정</a>
 									</div>
+									
 									<div class="button header-button" id="tr_btn_two">
-										<a onClick="funok()" class="btn">삭제</a>
-									</div>
-									<div class="button header-button" id="tr_btn_three">
-										<a href="javascript:void(0)" class="btn">신고하기</a>
+										<a href="" class="btn">신고하기</a>
 									</div>
 								</div>
 
@@ -138,33 +139,28 @@
 									<!-- <form id="contactForm" data-sb-form-api-token="API_TOKEN"> -->
 									<br>
 									<div class="form-floating" id="formMag">
-										<textarea class="form-control" id="qnaContent2" name="qnaText" placeholder="Enter your message here..."
-											style="height: 15rem" data-sb-validations="required" disabled>${qna.qnaText }</textarea>
-										<label for="message">내용</label>
-										<input type="hidden" name="qnaImage">
-										<div class="invalid-feedback" data-sb-feedback="message:required">내용을 입력하세요.</div>
+										<h3>내용</h3>
+										<textarea id="qnaContent2" name="qnaText"
+											      rows="15" cols="90" disabled>${qna.qnaText }</textarea>  
 									</div>
+									<br>
+										<div align="center">
+										 <h3>이미지</h3>
+									      <c:if test="${empty qna.qnaImage }">
+                           	               <img src="../../resources/assets/images/mainPage/board1.png" width="688" height="362" class="avatar avatar-sm me-3 border-radius-lg" alt="user1" id="preview" style="float: left">
+                                          </c:if>
+                                          <c:if test="${!empty qna.qnaImage }">
+                                           <img src="../../download?uploadFile=${qna.qnaImage }&inFolder=qna&pk=${qna.qnaNO}" width="688" height="362" class="avatar avatar-sm me-3 border-radius-lg" alt="user1" id="preview" style="float: left">
+                                          </c:if>
+                                         </div>
+                                         <br>
+                                         <div align="center" id="tr_btn_File" style="display: none;">
+                                         이미지 선택: <input type="file" name="uploadFile" onchange="readURL(this)" > 																		
+										 <input type="hidden" name="qnaImage" value="${qna.qnaImage}">
+										 </div>
 									<br />
-									<!-- Submit success message-->
-									<!---->
-									<!-- This is what your users will see when the form-->
-									<!-- has successfully submitted-->
-									<div class="d-none" id="submitSuccessMessage">
-										<div class="text-center mb-3">
-											<div class="fw-bolder">Form submission successful!</div>
-											To activate this form, sign up at <br /> <a
-												href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
-										</div>
-									</div>
-									<!-- Submit error message-->
-									<!---->
-									<!-- This is what your users will see when there is-->
-									<!-- an error submitting the form-->
-									<div class="d-none" id="submitErrorMessage">
-										<div class="text-center text-danger mb-3">Error sending
-											message!</div>
-									</div>
-									<!-- </form> -->
+									
+
 								</div>
 							</div>
 						</div>
@@ -222,6 +218,17 @@
 				}
 			}
 		});
+	</script>
+	<script>
+ 	function readURL(input){
+		if(input.files && input.files[0]){
+			var reader = new FileReader();
+			reader.onload = function (e){
+				$('#preview').attr('src',e.target.result);
+			}
+			reader.readAsDataURL(input.files[0]);
+		}
+	}	
 	</script>
 </body>
 </html>

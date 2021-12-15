@@ -50,8 +50,8 @@
       <br><br><br><br><br><br><br><br>
       <!-- =================== 글쓰기 폼 ===================== -->
       <!-- Main Content-->
-      <form id="contactForm" data-sb-form-api-token="API_TOKEN" action="add" method="post">
-      <main class="mb-4">
+      <form id="contactForm" data-sb-form-api-token="API_TOKEN" action="add" method="post" encType="multipart/form-data">
+       <main class="mb-4">
          <div class="container px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5 justify-content-center">
                <div class="col-md-10 col-lg-8 col-xl-7">
@@ -63,8 +63,9 @@
                         <div class="col-lg-3 col-md-3 col-12 p-0">
                            <div class="search-input">
                               <label for="category"></label>
-                              <select name="qnaList" id="qnaList">
-                                 <option value="none" selected>목록 선택</option>
+                              <input type="hidden" name="id" value="${login.id }">
+                              <select name="qnaList" id="qnaList" required>
+                                 <option value="" selected>목록 선택</option>
                                  <option value="계정 관련">계정 관련</option>
                                  <option value="책 관련">책 관련</option>
                                  <option value="충전 관련">충전 관련</option>
@@ -85,42 +86,19 @@
                      <!-- To make this form functional, sign up at-->
                      <!-- https://startbootstrap.com/solution/contact-forms-->
                      <!-- to get an API token!-->
-                     <form id="contactForm" data-sb-form-api-token="API_TOKEN">
                         <div class="form-floating">
-
-                           <input class="form-control" id="qnaTitle" name="qnaTitle" type="text" placeholder="Enter your name..." data-sb-validations="required" />
-                           <label for="name">제목</label>                          
-                           <div class="invalid-feedback" data-sb-feedback="name:required">제목을 입력하세요.</div>
+                           <input class="form-control" id="qnaTitle" name="qnaTitle" type="text" maxlength="50" required/>
+                           <label for="qnaTitle">제목</label>                          
                         </div>
                         <br>
                         <div class="form-floating" id="formMag">
-                           <textarea class="form-control" id="message" name="qnaText" placeholder="Enter your message here..." style="height: 35rem" data-sb-validations="required"></textarea>
+                           <textarea name="qnaText" rows="15" cols="90" maxlength="800" required></textarea>
                            <input type="hidden" name="qnaImage">
-                           <label for="message">내용</label>
-                           <div class="invalid-feedback" data-sb-feedback="message:required">내용을 입력하세요.</div>
                         </div>
                         <br />
-                        <!-- Submit success message-->
-                        <!---->
-                        <!-- This is what your users will see when the form-->
-                        <!-- has successfully submitted-->
-                        <div class="d-none" id="submitSuccessMessage">
-                           <div class="text-center mb-3">
-                              <div class="fw-bolder">Form submission successful!</div>
-                              To activate this form, sign up at
-                              <br />
-                              <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
-                           </div>
-                        </div>
-                        <!-- Submit error message-->
-                        <!---->
-                        <!-- This is what your users will see when there is-->
-                        <!-- an error submitting the form-->
-                        <div class="d-none" id="submitErrorMessage">
-                           <div class="text-center text-danger mb-3">Error sending message!</div>
-                        </div>
-                        <!-- Submit Button-->
-                        <button class="btn btn-primary text-uppercase disabled"  id="submitButton" type="submit">사진 입력하기(바꿔야 됨)</button>
+                        
+                       <!-- 사진 입력하기 -->
+                       이미지 선택: &nbsp;<input id="uploadFile" name="uploadFile" type="file">
                         
                         <!-- ======================= 버튼 ========================== -->                     
                         <div class="button header-button">
@@ -129,13 +107,12 @@
                         <div class="button header-button">
                            <a onClick="funbtn()" class="btn">돌아가기</a>
                         </div>
-                        <!-- ======================= 버튼 끝 ========================== -->
-                     </form>
+                        <!-- ======================= 버튼 끝 ========================== -->                     
                   </div>
                </div>
             </div>
          </div>
-      </main>
+       </main>
       </form>
       <!-- =================== 글쓰기 폼 끝===================== -->
       <!-- ==================== footer ====================== -->      

@@ -59,4 +59,19 @@ function gaugeSet(gauge) {
 		$('#loginGauge').css("width", '100%');
 		$('#loginGauge').attr("class","progress-bar bg-warning");
 	}	
-}	
+}
+
+function goQnaHome(id){
+	
+	// 로그인을 안했을경우
+	if(id == null || id ==""){
+		document.getElementById('loginClick').click();
+		brake;
+	}
+	
+	// 로그인 했을경우 qna로 이동
+	location.href = '../../qna/home?id='+id;
+	
+}
+
+	

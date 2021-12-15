@@ -7,9 +7,10 @@ function fn_enable(obj) {
 	document.getElementById("qnaContent").disabled = false;
 	document.getElementById("qnaContent2").disabled = false;
 	document.getElementById("tr_btn_modify").style.display = "block";
+	document.getElementById("tr_btn_File").style.display = "block";
 	document.getElementById("tr_btn_one").style.display = "none";
 	document.getElementById("tr_btn_two").style.display = "none";
-	document.getElementById("tr_btn_three").style.display = "none";
+	
 }
 
 function deleteConfirm(id) {
@@ -31,16 +32,4 @@ function funbtn(obj) {
 	} else {
 		return;
 	}
-}
-
-function funok() {
-	if (confirm("글을 정말 삭제하시겠습니까??")) {
-		
-		alert("정상적으로 삭제되었습니다.")
-		
-	} else {
-	
-		return;
-	}
-	
 }

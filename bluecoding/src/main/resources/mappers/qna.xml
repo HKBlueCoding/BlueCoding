@@ -22,10 +22,10 @@
 	</resultMap>
 
 	<!-- [문의 게시글 조회] -->
-	<select id="selectAllQnaList" resultMap="qnaResult">
+	<select id="selectAllQnaList" resultMap="qnaResult" parameterType="java.lang.String">
 	<![CDATA[
 		SELECT QNANO, QNAPARENTNO, QNALIST, QNATITLE, QNATEXT, QNAIMAGE, ISPROCESS, QNADATE, FINISHDATE, ID
-		FROM B_QNA
+		FROM B_QNA WHERE ID = #{id}
 	]]>
 	</select>
 
@@ -38,7 +38,7 @@
 	 <![CDATA[
 		INSERT INTO B_QNA
 		(QNANO, QNAPARENTNO, QNALIST, QNATITLE, QNATEXT, QNAIMAGE, QNADATE, ID)
-		VALUES(#{qnaNO}, #{qnaParentNO}, #{qnaList}, #{qnaTitle}, #{qnaText}, #{qnaImage}, sysdate, 'sndlgudsla123')
+		VALUES(#{qnaNO}, #{qnaParentNO}, #{qnaList}, #{qnaTitle}, #{qnaText}, #{qnaImage}, sysdate, #{id})
 	 ]]>
 	</insert>
 
@@ -56,14 +56,12 @@
     ]]>
 	</update>
 	
-	<delete id="deleteQna" parameterType="int" >
-	<![CDATA[
-		DELETE FROM B_QNA
-		WHERE QNANO IN (
-			SELECT QNANO FROM B_QNA
-				START WITH QNANO = #{QNANO}
-				CONNET BY PRIOR QNANO = QNAPARENTNO )
-	]]>
-	</delete>
+	<!-- [PK받아오기] -->
+	<select id="selectQnaNO" resultType="int" parameterType="QnaVO">
+	 <![CDATA[
+		SELECT qnaNO FROM b_qna 
+		WHERE qnaList=#{qnaList} AND qnaTitle=#{qnaTitle} AND id=#{id}
+	 ]]>
+	</select>
 
 </mapper>

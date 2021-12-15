@@ -108,7 +108,7 @@
                          </div>
                          <!-- 이미지 미리보기 끝 -->   
                               <br>
-                              이미지 선택: <input type="file" name="uploadFile" onchange="readURL(this);" />
+                              이미지 선택: <input type="file" name="uploadFile" onchange="readURL(this)" />
 
                               <!-- ======================= 버튼 ========================== -->
                               <c:if test="${login.admin eq 'A'}">

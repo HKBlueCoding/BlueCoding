@@ -14,10 +14,10 @@ public class QnaDAO {
 	@Autowired
 	SqlSession sqlSession;
 	
-	public List<QnaVO> selectAllQna() {
+	public List<QnaVO> selectAllQna(String id) {
 		// TODO Auto-generated method stub
 		
-		List<QnaVO> qnaList = sqlSession.selectList("mapper.qna.selectAllQnaList");
+		List<QnaVO> qnaList = sqlSession.selectList("mapper.qna.selectAllQnaList",id);
 		
 		return qnaList;
 	}
@@ -41,12 +41,14 @@ public class QnaDAO {
 		int ret = sqlSession.update("mapper.qna.updateQna", qnaVO);
 		return ret;
 	}
-
-	public int deleteQna(int qnaNO) {
+	
+	// qnaNO 조회
+	public int selectQnaNO(QnaVO qnaVO) {
 		// TODO Auto-generated method stub
 		
-		int ret = sqlSession.delete("mapper.qna.deleteQna", qnaNO);
-		return ret;
+		int qnaNO = sqlSession.selectOne("mapper.qna.selectQnaNO",qnaVO);
+		
+		return qnaNO;
 	}
 	
 }

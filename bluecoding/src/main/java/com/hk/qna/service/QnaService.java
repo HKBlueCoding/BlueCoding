@@ -15,15 +15,25 @@ public class QnaService {
 	QnaDAO qnaDAO;
 
 	// List
-	public List<QnaVO> listQna() {
+	public List<QnaVO> listQna(String id) {
 		// TODO Auto-generated method stub
-		return qnaDAO.selectAllQna();
+		return qnaDAO.selectAllQna(id);
 	}
 
 	// Add
 	public int addQna(QnaVO qnaVO) {
 		// TODO Auto-generated method stub
-		return qnaDAO.addQna(qnaVO);
+		
+		// 추가 됬는지의 여부를 받음
+		int ret = qnaDAO.addQna(qnaVO);
+		
+		// 성공 여부에 따라서 PK이름을 조회
+		int qnaNO = 0;
+		if(ret > 0) {
+			qnaNO = qnaDAO.selectQnaNO(qnaVO);
+		}
+				
+		return qnaNO;
 	}
 
 	public QnaVO viewQna(int qnaNO) {
@@ -35,12 +45,5 @@ public class QnaService {
 		// TODO Auto-generated method stub
 		return qnaDAO.updateQna(qnaVO);
 	}
-
-	public int deleteQna(int qnaNO) {
-		// TODO Auto-generated method stub
-		
-		return qnaDAO.deleteQna(qnaNO);
-	}
-
 
 }

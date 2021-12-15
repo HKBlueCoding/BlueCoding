@@ -153,7 +153,7 @@ body {
 			<div class="row">
 				<div class="button header-button"
 					style="width: 13%; margin-left: 50px; padding: 1px;">
-					<a href="/qna/add" class="btn">문의글 작성</a>
+					<a href="/qna/add" class="btn">작성</a>
 				</div>
 				<div class="button header-button"
 					style="width: 20%; margin-left: 1px; padding: 1px;">
@@ -276,6 +276,12 @@ body {
            	return;
            }
          }
-      </script>
+         </script>
+      <c:if test="${empty login.id || login.id ne qnaList[0].id}">
+       <script>
+		  javascript:history.back();
+		</script>
+      </c:if>
+     
 </body>
 </html>
