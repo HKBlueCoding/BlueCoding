@@ -26,7 +26,7 @@ public class BookDAO {
 		return ret;
 	}
 
-	public BookVO OneBook(int bookNO) {
+	public BookVO oneBook(int bookNO) {
 		// TODO Auto-generated method stub
 		BookVO bookVO = sqlSession.selectOne("mapper.book.selectOneBook", bookNO);
 		return bookVO;

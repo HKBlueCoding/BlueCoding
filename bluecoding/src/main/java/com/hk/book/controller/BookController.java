@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.hk.book.service.BookService;
 import com.hk.book.vo.BookVO;
-import com.hk.news.vo.NewsVO;
 
 /**
  * Handles requests for the application home page.
@@ -66,9 +65,14 @@ public class BookController {
 	
 	@GetMapping("/view")
 	public String bookView(Model model, @RequestParam("bookNO") int bookNO) {
-		BookVO bookVO = bookService.bookOne(bookNO);
+		
+		Map<String, Object> map = bookService.bookOneList(bookNO);
+		logger.debug("[map] = " + map);
 		logger.debug("[bookNO] = " + bookNO);
-		model.addAttribute("bookVO", bookVO);
+		
+		model.addAttribute("bookVO", map.get("bookVO"));
+		model.addAttribute("reviewVO", map.get("reviewVO"));
+		model.addAttribute("pageVO", map.get("pageVO"));
 		
 		return "bookView";
 	}

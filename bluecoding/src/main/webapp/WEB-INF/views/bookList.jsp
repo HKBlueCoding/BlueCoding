@@ -102,7 +102,7 @@
                                                    <img src="../resources/assets/images/mainPage/board1.png" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
                                                 </div>
                                                 <div class="d-flex flex-column justify-content-center">
-                                                   <a href="/view?newsNO=${book.bookNO }" class="mb-0 text-sm" style="color: black">${book.bookTitle }</a>
+                                                   <a href="/view?bookNO=${book.bookNO }" class="mb-0 text-sm" style="color: black">${book.bookTitle }</a>
                                                    <p class="text-xs text-secondary mb-0">${book.intro }</p>
                                                    <p class="text-xs text-secondary mb-0">리뷰(개수)</p>
                                                 </div>

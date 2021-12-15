@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.page">
+
+	<!-- 테이블 컬럼하고, VO하고 1:1로 맵핑했을때 이름이 다른경우 -->
+	<resultMap id="pageResult" type="PageVO">
+	
+		<result property="pageNO" column="pageNO" />
+		<result property="series" column="series" />
+		<result property="pageTitle" column="pageTitle" />
+		<result property="pageText" column="pageText" />
+		<result property="pageDate" column="pageDate" />
+		<result property="comment" column="comment" />
+		<result property="pViewCnt" column="pViewCnt" />
+		<result property="charge" column="charge" />
+		<result property="like" column="like" />
+		<result property="pageDelete" column="pageDelete" />
+		<result property="bookNO" column="bookNO" />
+
+	</resultMap>
+
+	<select id="selectAllPage" resultMap="pageResult">
+    <![CDATA[
+		SELECT PAGENO, SERIES, PAGETITLE, PAGETEXT, PAGEDATE, "COMMENT", PVIEWCNT, CHARGE, "LIKE", PAGEDELETE, BOOKNO 
+		FROM B_PAGE WHERE pageNO=#{pageNO}
+    ]]>
+	</select>
+</mapper>	

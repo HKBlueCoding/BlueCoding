@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.review">
+
+	<!-- 테이블 컬럼하고, VO하고 1:1로 맵핑했을때 이름이 다른경우 -->
+	<resultMap id="reviewResult" type="ReviewVO">
+	
+		<result property="revNO" column="revNO" />
+		<result property="revParentNO" column="revParentNO" />
+		<result property="revText" column="revText" />
+		<result property="revDate" column="revDate" />
+		<result property="revDelete" column="revDelete" />
+		<result property="bookNO" column="bookNO" />
+		<result property="id" column="id" />
+		<result property="nick" column="nick" />
+
+	</resultMap>
+
+	<select id="selectAllReview" resultMap="reviewResult">
+    <![CDATA[
+		SELECT REVNO, REVPARENTNO, REVTEXT, REVDATE, REVDELETE, BOOKNO, ID, NICK 
+		FROM B_REVIEW WHERE revNO=#{revNO}
+    ]]>
+	</select>
+</mapper>	
