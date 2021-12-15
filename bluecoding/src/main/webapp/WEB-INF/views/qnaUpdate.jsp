@@ -48,6 +48,13 @@
       <!-- header -->
       <jsp:include page="/WEB-INF/views/include/header.jsp"/>
       <br><br><br><br><br><br><br><br>
+       <c:choose>
+      	<c:when test="${empty qnaVO }">
+        	<tr>
+            	<td>null입니다.</td>
+            </tr>
+         </c:when>
+      <c:when test="${!empty qnaVO }">
       <!-- =================== 글쓰기 폼 ===================== -->
       <!-- Main Content-->
       <main class="mb-4">
@@ -62,7 +69,7 @@
                         <div class="col-lg-3 col-md-3 col-12 p-0">
                            <div class="search-input">
                               <label for="category"></label>
-                              <select name="category" id="category"  required>
+                              <select name="qnaList" id="qnaList"  required>
                                  <option value="none" selected disabled>카테고리</option>
                                  <option value="none">계정 관련</option>
                                  <option value="none">책 관련</option>
@@ -132,6 +139,8 @@
             </div>
          </div>
       </main>
+	  </c:when>
+      </c:choose>
       <!-- =================== 글쓰기 폼 끝===================== -->
       <!-- ==================== footer ====================== -->      
       <!-- footer -->

@@ -36,5 +36,11 @@ public class QnaService {
 		return qnaDAO.updateQna(qnaVO);
 	}
 
+	public int deleteQna(int qnaNO) {
+		// TODO Auto-generated method stub
+		
+		return qnaDAO.deleteQna(qnaNO);
+	}
+
 
 }

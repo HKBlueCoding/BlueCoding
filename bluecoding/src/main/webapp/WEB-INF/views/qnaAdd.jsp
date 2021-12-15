@@ -87,6 +87,7 @@
                      <!-- to get an API token!-->
                      <form id="contactForm" data-sb-form-api-token="API_TOKEN">
                         <div class="form-floating">
+
                            <input class="form-control" id="qnaTitle" name="qnaTitle" type="text" placeholder="Enter your name..." data-sb-validations="required" />
                            <label for="name">제목</label>                          
                            <div class="invalid-feedback" data-sb-feedback="name:required">제목을 입력하세요.</div>

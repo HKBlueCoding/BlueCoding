@@ -41,5 +41,12 @@ public class QnaDAO {
 		int ret = sqlSession.update("mapper.qna.updateQna", qnaVO);
 		return ret;
 	}
+
+	public int deleteQna(int qnaNO) {
+		// TODO Auto-generated method stub
+		
+		int ret = sqlSession.delete("mapper.qna.deleteQna", qnaNO);
+		return ret;
+	}
 	
 }

@@ -12,13 +12,6 @@ function fn_enable(obj) {
 	document.getElementById("tr_btn_three").style.display = "none";
 }
 
-function fn_modify_article(obj) {
-
-	document.frmArticle.action = "update?qnaNO="+obj;
-	document.frmArticle.submit();
-
-}
-
 function deleteConfirm(id) {
 	var alter = confirm("Are you sure to delete " + id + "?");
 
@@ -42,8 +35,12 @@ function funbtn(obj) {
 
 function funok() {
 	if (confirm("글을 정말 삭제하시겠습니까??")) {
+		
 		alert("정상적으로 삭제되었습니다.")
+		
 	} else {
+	
 		return;
 	}
+	
 }

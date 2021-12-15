@@ -80,5 +80,14 @@ public class QnaController {
 		return "/done/qnaUpdateDone";
 	}
 	
+	@PostMapping(value = "/qna/delete/{id}")
+	public String deleteQna(Model model, @RequestParam("qnaNO") int qnaNO) {
+		
+		int qnaNoList = qnaService.deleteQna(qnaNO);
+		model.addAttribute("rs", qnaNoList);
+		
+	    return "/done/qnaDeleteDone";
+	}
+	
 		
 }

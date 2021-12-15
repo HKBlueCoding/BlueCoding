@@ -38,7 +38,7 @@
 	 <![CDATA[
 		INSERT INTO B_QNA
 		(QNANO, QNAPARENTNO, QNALIST, QNATITLE, QNATEXT, QNAIMAGE, QNADATE, ID)
-		VALUES(#{qnaNO}, 0, #{qnaList}, #{qnaTitle}, #{qnaText}, #{qnaImage}, sysdate, 'sndlgudlsa123')
+		VALUES(#{qnaNO}, #{qnaParentNO}, #{qnaList}, #{qnaTitle}, #{qnaText}, #{qnaImage}, sysdate, 'sndlgudsla123')
 	 ]]>
 	</insert>
 
@@ -55,5 +55,15 @@
 		WHERE QNANO=#{qnaNO}
     ]]>
 	</update>
+	
+	<delete id="deleteQna" parameterType="int" >
+	<![CDATA[
+		DELETE FROM B_QNA
+		WHERE QNANO IN (
+			SELECT QNANO FROM B_QNA
+				START WITH QNANO = #{QNANO}
+				CONNET BY PRIOR QNANO = QNAPARENTNO )
+	]]>
+	</delete>
 
 </mapper>
