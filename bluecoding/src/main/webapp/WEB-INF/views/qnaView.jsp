@@ -67,8 +67,7 @@
 	<br>
 			<!-- =================== 글쓰기 폼 ===================== -->
 			<!-- Main Content-->
-			<form id="contactForm" data-sb-form-api-token="API_TOKEN"
-				name="frmArticle" method="post" action="update">
+			<form id="contactForm" data-sb-form-api-token="API_TOKEN" name="frmArticle" method="post" action="update">
 				<main class="mb-4">
 					<div class="container px-4 px-lg-5">
 						<div class="row gx-4 gx-lg-5 justify-content-center">
@@ -141,8 +140,8 @@
 									<div class="form-floating" id="formMag">
 										<textarea class="form-control" id="qnaContent2" name="qnaText" placeholder="Enter your message here..."
 											style="height: 15rem" data-sb-validations="required" disabled>${qna.qnaText }</textarea>
-										<input type="hidden" name="qnaImage">
 										<label for="message">내용</label>
+										<input type="hidden" name="qnaImage">
 										<div class="invalid-feedback" data-sb-feedback="message:required">내용을 입력하세요.</div>
 									</div>
 									<br />

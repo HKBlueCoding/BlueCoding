@@ -68,7 +68,7 @@ public class BoardController {
 		return "boardView";
 	}	
 		
-	@GetMapping(value="/board/update")
+	@PostMapping(value="/board/update")
 	public String boardUpdate2(Model model, @ModelAttribute BoardVO boardVO) {
 		// 여기서 수정된 값 들어오고
 		logger.debug("[boardVO] 업데이트로 들어온 값 = "+ boardVO);
