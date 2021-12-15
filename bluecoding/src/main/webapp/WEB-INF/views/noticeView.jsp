@@ -182,7 +182,7 @@
                                                       <a data-bs-toggle="modal"  data-bs-target="#login" class="btn" style="background-color: #30d8e0;">답글 쓰기</a>
                                                    </div>
                                                 </c:if>
-                                                <c:if test="${login.admin eq 'C'}">
+                                                <c:if test="${login.admin eq 'A' || login.admin eq 'C'}">
                                                    <div class="button header-button">
                                                       <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">수정</a>
                                                    </div>
@@ -232,7 +232,7 @@
                                                       <a data-bs-toggle="modal"  data-bs-target="#login" class="btn" style="background-color: #30d8e0;">답글 쓰기</a>
                                                    </div>
                                                 </c:if>
-                                                <c:if test="${login.admin eq 'C'}">
+                                                <c:if test="${login.admin eq 'A' || login.admin eq 'C'}">
                                                    <div class="button header-button">
                                                       <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">수정</a>
                                                    </div>

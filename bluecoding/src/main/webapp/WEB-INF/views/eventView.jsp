@@ -43,7 +43,7 @@
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
       <!-- CSS Files -->
       <link id="pagestyle" href="../../resources/assets/css/material-dashboard.css?v=3.0.0" rel="stylesheet" />
-      <!-- marerial CSS END -->    	
+      <!-- marerial CSS END -->       
       <!-- ====================== 페이징 ====================== -->
       <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
       <!-- ====================== 페이징 끝 ====================== -->
@@ -101,7 +101,12 @@
                                        <td>
                                           <div class="d-flex px-2 py-1" style="width: 200%;" >
                                              <div>
-                                                <img src="../../resources/assets/images/mainPage/board1.png" width="400" height="200" class="avatar avatar-sm me-3 border-radius-lg" alt="user1"  style="float: left">${newsVO.newsText }
+                                                <c:if test="${empty newsVO.newsImage }">
+                                                   <img src="../../resources/assets/images/mainPage/board1.png" width="400" height="200" class="avatar avatar-sm me-3 border-radius-lg" alt="user1"  style="float: left">${newsVO.newsText }
+                                                </c:if>
+                                                <c:if test="${!empty newsVO.newsImage }">
+                                                   <img src="../../download?uploadFile=${newsVO.newsImage }&inFolder=news&pk=${newsVO.newsNO}" width="400" height="200" class="avatar avatar-sm me-3 border-radius-lg" alt="user1"  style="float: left">${newsVO.newsText }
+                                                </c:if>
                                              </div>
                                           </div>
                                        </td>
@@ -177,7 +182,7 @@
                                                       <a data-bs-toggle="modal"  data-bs-target="#login" class="btn" style="background-color: #30d8e0;">답글 쓰기</a>
                                                    </div>
                                                 </c:if>
-                                                <c:if test="${login.admin eq 'C'}">
+                                                <c:if test="${login.admin eq 'A' || login.admin eq 'C'}">
                                                    <div class="button header-button">
                                                       <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">수정</a>
                                                    </div>
@@ -227,7 +232,7 @@
                                                       <a data-bs-toggle="modal"  data-bs-target="#login" class="btn" style="background-color: #30d8e0;">답글 쓰기</a>
                                                    </div>
                                                 </c:if>
-                                                <c:if test="${login.admin eq 'C'}">
+                                                <c:if test="${login.admin eq 'A' || login.admin eq 'C'}">
                                                    <div class="button header-button">
                                                       <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">수정</a>
                                                    </div>
@@ -336,33 +341,33 @@
       <script type="text/javascript">
          //========= Category Slider 
          tns({
-         	container : '.category-slider',
-         	items : 3,
-         	slideBy : 'page',
-         	autoplay : false,
-         	mouseDrag : true,
-         	gutter : 0,
-         	nav : false,
-         	controls : true,
-         	controlsText : [ '<i class="lni lni-chevron-left"></i>',
-         			'<i class="lni lni-chevron-right"></i>' ],
-         	responsive : {
-         		0 : {
-         			items : 1,
-         		},
-         		540 : {
-         			items : 2,
-         		},
-         		768 : {
-         			items : 4,
-         		},
-         		992 : {
-         			items : 5,
-         		},
-         		1170 : {
-         			items : 6,
-         		}
-         	}
+            container : '.category-slider',
+            items : 3,
+            slideBy : 'page',
+            autoplay : false,
+            mouseDrag : true,
+            gutter : 0,
+            nav : false,
+            controls : true,
+            controlsText : [ '<i class="lni lni-chevron-left"></i>',
+                  '<i class="lni lni-chevron-right"></i>' ],
+            responsive : {
+               0 : {
+                  items : 1,
+               },
+               540 : {
+                  items : 2,
+               },
+               768 : {
+                  items : 4,
+               },
+               992 : {
+                  items : 5,
+               },
+               1170 : {
+                  items : 6,
+               }
+            }
          });
          </div>
          
@@ -381,33 +386,33 @@
       <script type="text/javascript">
          //========= Category Slider 
          tns({
-         	container : '.category-slider',
-         	items : 3,
-         	slideBy : 'page',
-         	autoplay : false,
-         	mouseDrag : true,
-         	gutter : 0,
-         	nav : false,
-         	controls : true,
-         	controlsText : [ '<i class="lni lni-chevron-left"></i>',
-         			'<i class="lni lni-chevron-right"></i>' ],
-         	responsive : {
-         		0 : {
-         			items : 1,
-         		},
-         		540 : {
-         			items : 2,
-         		},
-         		768 : {
-         			items : 4,
-         		},
-         		992 : {
-         			items : 5,
-         		},
-         		1170 : {
-         			items : 6,
-         		}
-         	}
+            container : '.category-slider',
+            items : 3,
+            slideBy : 'page',
+            autoplay : false,
+            mouseDrag : true,
+            gutter : 0,
+            nav : false,
+            controls : true,
+            controlsText : [ '<i class="lni lni-chevron-left"></i>',
+                  '<i class="lni lni-chevron-right"></i>' ],
+            responsive : {
+               0 : {
+                  items : 1,
+               },
+               540 : {
+                  items : 2,
+               },
+               768 : {
+                  items : 4,
+               },
+               992 : {
+                  items : 5,
+               },
+               1170 : {
+                  items : 6,
+               }
+            }
          });
       </script>
       <!-- SBAdmin2 JS START -->
@@ -447,7 +452,7 @@
            if (confirm("이전 페이지로 돌아가시겠습니까??")) {
              javascript:history.back();
            } else {
-           	return;
+              return;
            }
          }
       </script>  
@@ -456,7 +461,7 @@
            if (confirm("글을 정말 삭제하시겠습니까??")) {
             alert("정상적으로 삭제되었습니다.")
            } else {
-           	return;
+              return;
            }
          }
       </script>
@@ -465,7 +470,7 @@
            if (confirm("글을 정말 삭제하시겠습니까??")) {
             alert("정상적으로 삭제되었습니다.")
            } else {
-           	return;
+              return;
            }
          }
       </script>
@@ -475,7 +480,7 @@
             
            } else {
             alert("등록에 실패하였습니다.")
-           	   return;
+                 return;
            }
          }
       </script>

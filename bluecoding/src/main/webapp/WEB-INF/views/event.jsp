@@ -41,7 +41,7 @@
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
       <!-- CSS Files -->
       <link id="pagestyle" href="../resources/assets/css/material-dashboard.css?v=3.0.0" rel="stylesheet" />
-      <!-- marerial CSS END -->    	
+      <!-- marerial CSS END -->       
       <!-- ====================== 페이징 ====================== -->
       <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
       <!-- ====================== 페이징 끝 ====================== -->
@@ -61,7 +61,7 @@
    </head>
    <body>
       <jsp:include page="/WEB-INF/views/include/header.jsp" />
-      <br><br><br><br><br><br><br>	
+      <br><br><br><br><br><br><br>   
       <div class="container-fluid py-4" style="height:auto; width:60%;">
          <div class="row">
             <div class="col-12">
@@ -99,7 +99,12 @@
                                           <td>
                                              <div class="d-flex px-2 py-1">
                                                 <div>
+                                                  <c:if test="${empty news.newsImage }">
                                                    <img src="../resources/assets/images/mainPage/board1.png" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
+                                                  </c:if>
+                                                  <c:if test="${!empty news.newsImage }">
+                                                   <img src="../../download?uploadFile=${news.newsImage }&inFolder=news&pk=${news.newsNO}" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
+                                                  </c:if>
                                                 </div>
                                                 <div class="d-flex flex-column justify-content-center">
                                                    <a href="/news/event/view?newsNO=${news.newsNO }" class="mb-0 text-sm" style="color: black">${news.newsTitle }</a>
@@ -178,33 +183,33 @@
       <script type="text/javascript">
          //========= Category Slider 
          tns({
-         	container : '.category-slider',
-         	items : 3,
-         	slideBy : 'page',
-         	autoplay : false,
-         	mouseDrag : true,
-         	gutter : 0,
-         	nav : false,
-         	controls : true,
-         	controlsText : [ '<i class="lni lni-chevron-left"></i>',
-         			'<i class="lni lni-chevron-right"></i>' ],
-         	responsive : {
-         		0 : {
-         			items : 1,
-         		},
-         		540 : {
-         			items : 2,
-         		},
-         		768 : {
-         			items : 4,
-         		},
-         		992 : {
-         			items : 5,
-         		},
-         		1170 : {
-         			items : 6,
-         		}
-         	}
+            container : '.category-slider',
+            items : 3,
+            slideBy : 'page',
+            autoplay : false,
+            mouseDrag : true,
+            gutter : 0,
+            nav : false,
+            controls : true,
+            controlsText : [ '<i class="lni lni-chevron-left"></i>',
+                  '<i class="lni lni-chevron-right"></i>' ],
+            responsive : {
+               0 : {
+                  items : 1,
+               },
+               540 : {
+                  items : 2,
+               },
+               768 : {
+                  items : 4,
+               },
+               992 : {
+                  items : 5,
+               },
+               1170 : {
+                  items : 6,
+               }
+            }
          });
       </script>
       <!-- SBAdmin2 JS START -->
@@ -244,7 +249,7 @@
            if (confirm("이전 페이지로 돌아가시겠습니까??")) {
              javascript:history.back();
            } else {
-           	return;
+              return;
            }
          }
       </script> 
