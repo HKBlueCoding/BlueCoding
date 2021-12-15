@@ -49,59 +49,50 @@
       <br><br><br><br><br><br><br><br>
       <!-- =================== 글쓰기 폼 ===================== -->
       <!-- Main Content-->
-      <main class="mb-4">
-         <div class="container px-4 px-lg-5">
-            <div class="row gx-4 gx-lg-5 justify-content-center">
-               <div class="col-md-10 col-lg-8 col-xl-7">
-                  <p id="title">회차 글쓰기</p>
-                  <hr class="my-4">
-                  <!-- ================== 카테고리 ======================= -->
-                  <div class="categorise search-form wow fadeInUp">
-                     <div class="row">
-                        <div class="col-lg-3 col-md-3 col-12 p-0">
-                           <div class="search-input">
-                              <label for="category"></label>
-                              <select name="category" id="category"  required>
-                                 <option value="none" selected disabled>카테고리</option>
-                                 <option value="none">판타지</option>
-                                 <option value="none">청소년</option>
-                                 <option value="none">고전</option>
-                                 <option value="none">공포/호러</option>
-                                 <option value="none">미스터리/스릴러</option>
-                                 <option value="none">로맨스</option>
-                                 <option value="none">SF/과학</option>
-                                 <option value="none">드라마/영화</option>
-                              </select>
+      <form id="contactForm" data-sb-form-api-token="API_TOKEN" action="add" method="post">
+         <main class="mb-4">
+            <div class="container px-4 px-lg-5">
+               <div class="row gx-4 gx-lg-5 justify-content-center">
+                  <div class="col-md-10 col-lg-8 col-xl-7" style="width: 80%">
+                     <p id="title">회차 글쓰기</p>
+                     <hr class="my-4">
+                     <!-- ================== 카테고리 ======================= -->
+                     <div class="categorise search-form wow fadeInUp">
+                        <div class="row">
+                           <div class="col-lg-3 col-md-3 col-12 p-0">
+                              <div class="search-input" style="width: 50%">
+                                 <p>회차 : <input type="number" name="series" value="1" min="1" max="10" style="padding: 20px;" required></p>
+                              </div>
                            </div>
                         </div>
                      </div>
-                  </div>
-                  <br>
-                  <!-- ================== 카테고리 끝 ======================= -->
-                  <div class="my-5">
-                     <!-- * * * * * * * * * * * * * * *-->
-                     <!-- * * SB Forms Contact Form * *-->
-                     <!-- * * * * * * * * * * * * * * *-->
-                     <!-- This form is pre-integrated with SB Forms.-->
-                     <!-- To make this form functional, sign up at-->
-                     <!-- https://startbootstrap.com/solution/contact-forms-->
-                     <!-- to get an API token!-->
-                     <form id="contactForm" data-sb-form-api-token="API_TOKEN">
+                     <br>
+                     <!-- ================== 카테고리 끝 ======================= -->
+                     <div class="my-5">
+                        <!-- * * * * * * * * * * * * * * *-->
+                        <!-- * * SB Forms Contact Form * *-->
+                        <!-- * * * * * * * * * * * * * * *-->
+                        <!-- This form is pre-integrated with SB Forms.-->
+                        <!-- To make this form functional, sign up at-->
+                        <!-- https://startbootstrap.com/solution/contact-forms-->
+                        <!-- to get an API token!-->
                         <div class="form-floating">
-                           <input class="form-control" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
-                           <label for="name">1화 제목</label>                          
+                           <input class="form-control" id="name" name="pageTitle" type="text" placeholder="Enter your name..." data-sb-validations="required" />
+                           <label for="name">제목</label>
+                           <input type="hidden" value="${bookVO.bookNO }" name="bookNO">
+                           <input type="hidden" value="${pageVO.charge }" name="charge">
                            <div class="invalid-feedback" data-sb-feedback="name:required">제목을 입력하세요.</div>
                         </div>
                         <br>
-                        <div class="form-floating" id="formMag">
-                           <textarea class="form-control" id="message" placeholder="Enter your message here..." style="height: 35rem" data-sb-validations="required"></textarea>
+                        <div class="form-floating" id="formMag" style="width: 100%">
+                           <textarea class="form-control" id="message" name="pageText" placeholder="Enter your message here..." style="height: 35rem" data-sb-validations="required"></textarea>
+                           <label for="message">본문</label>
                            <div class="invalid-feedback" data-sb-feedback="message:required">내용을 입력하세요.</div>
                            <br><br>
                            <div id="Writer">
                               &nbsp;작가의 말
                            </div>
-                           <textarea class="form-control" placeholder="Enter your message here..." style="height: 15rem"></textarea>
-                           <label for="message">본문</label>
+                           <textarea name="comment" class="form-control" placeholder="Enter your message here..." style="height: 15rem"></textarea>
                         </div>
                         <br />
                         <!-- Submit success message-->
@@ -125,22 +116,22 @@
                         </div>
                         <!-- ======================= 버튼 ========================== -->
                         <div class="button header-button">
-                           <p>유료 여부 <input type="checkbox"></p>
+                           <p>유료 여부 <input type="checkbox" name="charge"></p>
                         </div>
                         &nbsp;&nbsp;&nbsp;&nbsp;
                         <div class="button header-button">
-                           <a href="javascript:void(0)"  id="submitButton"  class="btn">등록</a>
+                           <input type="submit" class="btn" value="등록">
                         </div>
                         <div class="button header-button">
                            <a onClick="funbtn()" class="btn">돌아가기</a>
                         </div>
                         <!-- ======================= 버튼 끝 ========================== -->
-                     </form>
+                     </div>
                   </div>
                </div>
             </div>
-         </div>
-      </main>
+         </main>
+      </form>
       <!-- =================== 글쓰기 폼 끝===================== -->
       <!-- ==================== footer ====================== -->      
       <!-- footer -->
@@ -199,6 +190,11 @@
            	return;
            }
          }
-      </script>      
+      </script>
+      <c:if test="${empty login.id || login.id ne bookVO.id}">
+         <script>
+            javascript:history.back();
+         </script>
+      </c:if>
    </body>
 </html>

@@ -12,13 +12,13 @@
 
 <c:if test="${ret == 0}">
   <script>
-   alert('수정에 실패하였습니다.');
+   alert('등록에 실패하였습니다.');
    location.href="../../";
   </script>
 </c:if>
 <c:if test="${ret == 1}">
   <script>
-   alert('정상적으로 수정되었습니다.');
+   alert('정상적으로 등록되었습니다.');
    location.href="../../view?bookNO=${bookNO}";
   </script>
 </c:if>

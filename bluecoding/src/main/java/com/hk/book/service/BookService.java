@@ -66,5 +66,11 @@ public class BookService {
 		
 		return map;
 	}
+	
+	public int addPage(PageVO pageVO) {
+		// TODO Auto-generated method stub
+		
+		return pageDAO.pageAdd(pageVO);
+	}
 
 }

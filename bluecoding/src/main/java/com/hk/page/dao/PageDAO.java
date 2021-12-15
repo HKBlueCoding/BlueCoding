@@ -19,5 +19,11 @@ public class PageDAO {
 		List<PageVO> pageVO = sqlSession.selectList("mapper.page.selectAllPage", bookNO);
 		
 		return pageVO;
-	}	
+	}
+
+	public int pageAdd(PageVO pageVO) {
+		// TODO Auto-generated method stub
+		int ret = sqlSession.insert("mapper.page.insertPage", pageVO);
+		return ret;
+	}
 }

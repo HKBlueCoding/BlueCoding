@@ -25,7 +25,20 @@
 	<select id="selectAllPage" resultMap="pageResult">
     <![CDATA[
 		SELECT PAGENO, SERIES, PAGETITLE, PAGETEXT, PAGEDATE, "COMMENT", PVIEWCNT, CHARGE, "LIKE", PAGEDELETE, BOOKNO 
-		FROM B_PAGE WHERE pageNO=#{pageNO}
+		FROM B_PAGE WHERE bookNO = #{bookNO}
+		ORDER BY SERIES ASC
     ]]>
 	</select>
+	
+	<insert id="insertPage" parameterType="PageVO">
+	 <selectKey keyProperty="pageNO" resultType="int" order="BEFORE">
+	 	SELECT max(pageNO)+1 FROM B_PAGE
+	 </selectKey>
+	 <![CDATA[
+	  INSERT INTO B_PAGE 
+	  (PAGENO, SERIES, PAGETITLE, PAGETEXT, PAGEDATE, "COMMENT", PVIEWCNT, CHARGE, "LIKE", BOOKNO) 
+	  VALUES(#{pageNO}, #{series}, #{pageTitle}, #{pageText}, sysdate, #{comment}, 1, #{charge}, 1, #{bookNO})
+	 ]]>
+	</insert>
+	
 </mapper>	

@@ -103,7 +103,6 @@
                                                 </div>
                                                 <div class="d-flex flex-column justify-content-center">
                                                    <a href="/view?bookNO=${book.bookNO }" class="mb-0 text-sm" style="color: black">${book.bookTitle }</a>
-                                                   <p class="text-xs text-secondary mb-0">${book.intro }</p>
                                                    <p class="text-xs text-secondary mb-0">리뷰(개수)</p>
                                                 </div>
                                              </div>

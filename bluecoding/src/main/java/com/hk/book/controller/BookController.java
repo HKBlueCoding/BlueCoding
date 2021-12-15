@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.hk.book.service.BookService;
 import com.hk.book.vo.BookVO;
+import com.hk.page.vo.PageVO;
 
 /**
  * Handles requests for the application home page.
@@ -96,16 +97,29 @@ public class BookController {
 		model.addAttribute("ret", ret);
 		logger.debug("[ret] = " + ret);
 
-		model.addAttribute("theme", bookVO.getTheme());
+		model.addAttribute("bookNO", bookVO.getBookNO());
 		
 		return "done/bookUpdateDone";
 	}	
 	
 	@GetMapping("/view/add")
-	public String bookViewAdd() {
+	public String bookViewAdd(@RequestParam("bookNO")int bookNO, Model model) {
 		
+		BookVO bookVO = bookService.bookOne(bookNO);
+		model.addAttribute("bookVO", bookVO);
 		return "bookViewAdd";
 	}
+	
+	@PostMapping("/view/add")
+	public String bookViewAddDone(Model model, @ModelAttribute PageVO pageVO, HttpServletResponse response) {
+		logger.debug("[bookVO] = " + pageVO);
+		response.setContentType("text/html; charset=UTF-8");
+
+		int ret = bookService.addPage(pageVO);
+		model.addAttribute("ret", ret);
+		model.addAttribute("bookNO", pageVO.getBookNO());
+		return "done/bookViewAddDone";
+	}	
 	
 	@GetMapping("/view/page")
 	public String bookViewPage() {

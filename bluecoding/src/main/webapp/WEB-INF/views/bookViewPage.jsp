@@ -83,7 +83,7 @@
       <main class="mb-4">
          <div class="container px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5 justify-content-center">
-               <div class="col-md-10 col-lg-8 col-xl-7">
+               <div class="col-md-10 col-lg-8 col-xl-7" style="width: 85%;">
                   <p id="title">회차 보기</p>
                   <hr class="my-4">
                   <p id="title2">&nbsp;&nbsp;제목</p>
@@ -112,21 +112,21 @@
                      <!-- to get an API token!-->
                		</div>
                      <form id="contactForm" data-sb-form-api-token="API_TOKEN">
-                        <div class="form-floating">
+                        <div class="form-floating" style="width: 66.6%;">
                            <input class="form-control" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
                            <label for="name">1화 제목</label>                          
                            <div class="invalid-feedback" data-sb-feedback="name:required">제목을 입력하세요.</div>
                         </div>
                         <br>
-                        <div class="form-floating" id="formMag">
+                        <div class="form-floating" id="formMag" style="width: 66.6%;">
                            <textarea class="form-control" id="message" placeholder="Enter your message here..." style="height: 35rem" data-sb-validations="required"></textarea>
+                           <label for="message">본문</label>
                            <div class="invalid-feedback" data-sb-feedback="message:required">내용을 입력하세요.</div>
                            <br><br>
                            <div id="Writer">
                               &nbsp;작가의 말
                            </div>
                            <textarea class="form-control" placeholder="Enter your message here..." style="height: 15rem"></textarea>
-                           <label for="message">본문</label>
                         </div>
                         <br />
                         <!-- Submit success message-->

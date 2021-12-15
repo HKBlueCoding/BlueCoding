@@ -54,13 +54,13 @@
          <main class="mb-4">
             <div class="container px-4 px-lg-5">
                <div class="row gx-4 gx-lg-5 justify-content-center">
-                  <div class="col-md-10 col-lg-8 col-xl-7">
+                  <div class="col-md-10 col-lg-8 col-xl-7" style="width: 80%">
                      <p id="title">도서 수정</p>
                      <hr class="my-4">
                      <!-- ================== 카테고리 ======================= -->
                      <div class="categorise search-form wow fadeInUp">
                         <div class="row">
-                           <div class="col-lg-3 col-md-3 col-12 p-0">
+                           <div class="col-lg-3 col-md-3 col-12 p-0" style="width: 20%">
                               <div class="search-input">
                                  <label for="category"></label>
                                  <select name="theme" id="category"  required>
@@ -88,21 +88,21 @@
                         <!-- To make this form functional, sign up at-->
                         <!-- https://startbootstrap.com/solution/contact-forms-->
                         <!-- to get an API token!-->
-                        <div class="form-floating">
+                        <div class="form-floating" style="width: 80%">
                            <input class="form-control" id="name"  value="${ bookVO.bookTitle}" name="bookTitle" type="text" placeholder="Enter your name..." data-sb-validations="required" />
                            <label for="name">제목</label>
                            <input type="hidden" value="${bookVO.bookNO }" name="bookNO">
                            <div class="invalid-feedback" data-sb-feedback="name:required">제목을 입력하세요.</div>
                         </div>
                         <br>
-                        <div class="form-floating">
-                           <input class="form-control" id="name" value="${ bookVO.name}" name="name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
+                        <div class="form-floating" style="width: 30%">
+                           <input class="form-control" id="name" value="${bookVO.name}" name="name" type="text" placeholder="Enter your name..." data-sb-validations="required"  readonly/>
                            <label for="name">작가명</label>                          
                            <div class="invalid-feedback" data-sb-feedback="name:required">작가명을 입력하세요.</div>
                         </div>
                         <br>   
-                        <div class="form-floating" id="formMag">
-                           <textarea name="intro" class="form-control" id="message" placeholder="Enter your message here..." style="height: 10rem" data-sb-validations="required">${ bookVO.intro}</textarea>
+                        <div class="form-floating" id="formMag" style="width: 100%; ">
+                           <textarea name="intro" class="form-control" id="message" placeholder="Enter your message here..." style="height: 10rem" data-sb-validations="required">${bookVO.intro}</textarea>
                            <input type="hidden" name="bookImage">
                            <label for="message">줄거리</label>
                            <div class="invalid-feedback" data-sb-feedback="message:required">줄거리을 입력하세요.</div>

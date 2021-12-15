@@ -96,7 +96,7 @@
                            <!-- ======================= 버튼 ========================== -->
                            <c:if test="${login.admin eq 'A' || login.admin eq 'C'}">
                               <div class="button header-button">
-                                 <a href="../view/add" class="btn">회차 글쓰기</a>
+                                 <a href="../view/add?bookNO=${bookVO.bookNO }" class="btn">회차 글쓰기</a>
                               </div>
                               <div class="button header-button">
                                  <a href="../update?bookNO=${bookVO.bookNO }" class="btn">수정</a>
@@ -122,8 +122,8 @@
                            </div>
                            <br><br>
                            <div class="form-floating" id="formMag">
-                              <textarea class="form-control" id="message" placeholder="Enter your message here..." style="height: 10rem; width: 45%" data-sb-validations="required" disabled></textarea>
-                              <label for="message">줄거리</label>
+                              <textarea class="form-control" id="message" name="intro" placeholder="Enter your message here..." style="height: 10rem; width: 45%" data-sb-validations="required" disabled></textarea>
+                              <label for="message">${bookVO.intro}</label>
                               <div class="invalid-feedback" data-sb-feedback="message:required">줄거리을 입력하세요.</div>
                               <br>
                               <div class="button header-button">
@@ -172,7 +172,7 @@
                                                    <td>
                                                       <div class="d-flex px-2 py-1">
                                                          <div class="d-flex flex-column justify-content-center">
-                                                            <p class="text-xs text-secondary mb-0" style="font-size: 15px;"><a href="../view/page">${page.series }화, ${page.pageTitle }</a><br>${page.pageDate }</p>
+                                                            <p class="text-xs text-secondary mb-0" style="font-size: 15px;"><a href="../view/page?pageNO=${page.pageNO }">${page.series }화, ${page.pageTitle }</a><br>${page.pageDate }</p>
                                                             <input type="hidden" name="bookNO"  value="${page.pageNO }">
                                                             <p class="text-xs text-secondary mb-0">댓글(개수)</p>
                                                          </div>

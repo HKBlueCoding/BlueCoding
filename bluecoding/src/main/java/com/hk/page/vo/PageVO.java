@@ -14,11 +14,9 @@ public class PageVO {
 	private String comment;
 	private int pViewCnt;
 	private String charge;
-	private String like;
+	private int like;
 	private String pageDelete;
 	private int bookNO;
-	
-	// Getter & Setter
 	public int getPageNO() {
 		return pageNO;
 	}
@@ -67,10 +65,10 @@ public class PageVO {
 	public void setCharge(String charge) {
 		this.charge = charge;
 	}
-	public String getLike() {
+	public int getLike() {
 		return like;
 	}
-	public void setLike(String like) {
+	public void setLike(int like) {
 		this.like = like;
 	}
 	public String getPageDelete() {
@@ -85,15 +83,11 @@ public class PageVO {
 	public void setBookNO(int bookNO) {
 		this.bookNO = bookNO;
 	}
-	
-	// toString()
 	@Override
 	public String toString() {
 		return "PageVO [pageNO=" + pageNO + ", series=" + series + ", pageTitle=" + pageTitle + ", pageText=" + pageText
 				+ ", pageDate=" + pageDate + ", comment=" + comment + ", pViewCnt=" + pViewCnt + ", charge=" + charge
 				+ ", like=" + like + ", pageDelete=" + pageDelete + ", bookNO=" + bookNO + "]";
 	}
-	
-	
 	
 }
