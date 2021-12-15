@@ -2,8 +2,6 @@ package com.hk.user.vo;
 
 import java.util.Date;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 public class UserVO {
 	
 	// private Attribute
@@ -22,6 +20,7 @@ public class UserVO {
 	private String profile;
 	private int prohibitLV;
 	private String admin;
+	
 	public String getId() {
 		return id;
 	}

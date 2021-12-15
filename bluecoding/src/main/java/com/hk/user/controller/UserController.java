@@ -1,13 +1,10 @@
 package com.hk.user.controller;
 
+import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -22,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.hk.user.service.UserService;
 import com.hk.user.vo.UserVO;
@@ -33,6 +31,7 @@ public class UserController {
 	UserService userService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
+	private static final String USER_FILE_PATH ="C:\\bluecoding\\user"; // 유저 파일은 이곳에
 	
 	@GetMapping(value="/user/register")
 	public String register() {
@@ -42,13 +41,44 @@ public class UserController {
 	
 	// [회원가입]
 	@PostMapping(value="/user/register")
-	public String registerDone(Model model, @ModelAttribute UserVO userVO, HttpServletResponse response) throws IOException {
+	public String registerDone(Model model, @ModelAttribute UserVO userVO, 
+							   @RequestParam("uploadFile")MultipartFile file) throws IOException {
+		// 디버깅..
 		logger.debug("[userVO]"+userVO);
+		logger.debug("[file]"+file.getOriginalFilename());
+		// [이미지 업로드]
+		// 0. 실제파일
+		String fileName = file.getOriginalFilename(); // 실제 파일 이름을 가져옴
+					
+		// 1. 혹시나 파일이 안들어왔나 체크..
+		if(!file.getOriginalFilename().isEmpty()) {
+			logger.debug("null 아님!!");
+			// 2.유저 ID의 폴더 설정
+			File Folder = new File(USER_FILE_PATH+"\\"+userVO.getId());
+			
+			// 3. 실제로 유저 ID의 폴더 생성
+			if (!Folder.exists()) {
+				try{
+				    Folder.mkdir(); //폴더 생성합니다.
+				    logger.debug("폴더가 생성됨!!");
+			        } 
+			        catch(Exception e){
+				    e.getStackTrace();
+				}        
+		    }else {
+		    	logger.debug("폴더가 이미 존재합니다!!");
+			}
+
+			// 4. 실제로 파일추가
+			file.transferTo(new File(USER_FILE_PATH+"\\"+userVO.getId(), fileName));
+			
+			// 5. 성공한 파일이름을 userVO에 저장
+			userVO.setProfile(fileName);
+		}
+		
+		// DB를 통해 값을 저장
 		int ret = userService.addUser(userVO);
 		model.addAttribute("ret", ret);
-		
-		response.setContentType("text/html; charset=UTF-8");
-		PrintWriter pw = response.getWriter();
 			
 		return "done/registerDone";
 	}

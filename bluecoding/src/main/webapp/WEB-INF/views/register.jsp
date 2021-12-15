@@ -127,7 +127,7 @@
     <div class="float-right" style="height: auto; width: 20%; color: white; background-color: rgba(0, 0, 0, 0.3);" align="center">
       <h3>회원가입</h3>
       <br>
-      <form method="post" action="register">
+      <form method="post" action="register" encType="multipart/form-data">
         <label for="id">아이디(영문+숫자)</label>
         <br />
         <input type="text" name="id" id="id" pattern="[A-Za-z0-9]{8,15}" title="영문자+숫자, 8~15글자" required/>
@@ -164,7 +164,9 @@
         <br />
         <input type="text" name="find" id="find" minlength="2" maxlength="10" title="2글자 이상 10글자 이하"/>
         <br />
-        <input type="hidden" name="profile" id="profile">
+        <label for="file">프로필 이미지 </label>
+        <input type="file" name="uploadFile" /> <!-- 파일을 넣어야 하니 다름 -->
+        <input type="hidden" name="profile">
         <br>
         <input type="submit" id="sumit" value="등록" />
       </form>

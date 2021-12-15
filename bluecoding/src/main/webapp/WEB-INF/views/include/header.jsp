@@ -71,7 +71,7 @@
                           				</c:if>
                           				<c:if test="${!empty login.profile }">
                           				 <div>
-                            				<img src="../../resources/material/assets/img/${login.profile }" width="36" height="36" class="avatar avatar-sm me-3 border-radius-lg" alt="user6" onload="gaugeSet('${login.gauge}')">
+                            				<img src="../../download?uploadFile=${login.profile }&inFolder=user&pk=${login.id}" width="36" height="36" class="avatar avatar-sm me-3 border-radius-lg" alt="user6" onload="gaugeSet('${login.gauge}')">
                           				 </div>                          				
                           				</c:if>                       				
                           				<div class="d-flex flex-column justify-content-center">
