@@ -82,8 +82,8 @@ public class BoardController {
 	@GetMapping(value="/board/delete")
 	public String boardDelete(Model model, @RequestParam("articleNO") int articleNO) {
 		
-		int articleNoList = boardService.removeArticle(articleNO);
-		model.addAttribute("article", articleNoList);
-		return "boardDeleteDone";
+		int rs= boardService.removeArticle(articleNO);
+		model.addAttribute("rs", rs);
+		return "done/boardDeleteDone";
 	}
 }

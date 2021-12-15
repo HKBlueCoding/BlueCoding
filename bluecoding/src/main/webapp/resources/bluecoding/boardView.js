@@ -33,10 +33,15 @@ function funbtn() {
 	}
 }
 
-function funok() {
+function funok(articleNO) {
 	if (confirm("글을 정말 삭제하시겠습니까??")) {
-		alert("정상적으로 삭제되었습니다.")
+	
+		location.href = '/board/delete?articleNO=' + articleNO;
+		
 	} else {
-		return;
+	
+		brake;
+		
 	}
+	
 }

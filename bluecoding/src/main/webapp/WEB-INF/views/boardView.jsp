@@ -99,7 +99,7 @@
 										<a onclick="fn_enable_b1(this.form)" class="btn">수정</a>
 									</div>
 									<div class="button header-button" id="tr_btn_b2">
-										<a onClick="funok()" class="btn">삭제</a>
+										<a onClick="funok('${board.articleNO}')" class="btn">삭제</a>
 									</div>
 									<div class="button header-button" id="tr_btn_b3">
 										<a href="javascript:void(0)" class="btn">신고하기</a>
@@ -316,15 +316,6 @@
 				}
 			}
 		});
-	</script>
-	<script>
-		function funok() {
-			if (confirm("글을 정말 삭제하시겠습니까??")) {
-				alert("정상적으로 삭제되었습니다.")
-			} else {
-				return;
-			}
-		}
 	</script>
 </body>
 </html>
