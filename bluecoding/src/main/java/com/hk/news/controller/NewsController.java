@@ -38,7 +38,7 @@ public class NewsController {
 
 	@PostMapping("/news/add")
 	public String newsAddDone(Model model, @ModelAttribute NewsVO newsVO,
-			@RequestParam("uploadFile") MultipartFile file) throws Exception {
+							  @RequestParam("uploadFile") MultipartFile file) throws Exception {
 		logger.debug("[newsVO] = " + newsVO);
 		logger.debug("[file]" + file.getOriginalFilename());
 
@@ -120,7 +120,8 @@ public class NewsController {
 
 		return "eventView";
 	}
-
+	
+	// [업데이트 view]
 	@GetMapping("/news/notice/update")
 	public String newsNoticeUpdate(Model model, @RequestParam("newsNO") int newsNO) {
 		logger.debug("[newsNO11] = " + newsNO);
@@ -131,11 +132,52 @@ public class NewsController {
 
 		return "noticeUpdate";
 	}
-
+	
+	// [업데이트 done]
 	@PostMapping("/news/notice/update")
-	public String newsNoticeUpdateDone(Model model, @ModelAttribute NewsVO newsVO) throws IOException {
+	public String newsNoticeUpdateDone(Model model, @ModelAttribute NewsVO newsVO, 
+									   @RequestParam("uploadFile") MultipartFile file) throws Exception {
 		logger.debug("[newsVO22] = " + newsVO);
+		// 받는건.. newsVO(기존의 이미지이름을 가진 newsImage), 
+		// (혹시나 선택 되었다면) uploadFile에 변경된 이미지파일
+		
+		// uploadFile이 null이 아니면 파일이 변경된 거니까 작동해야함
+		if (!file.getOriginalFilename().isEmpty()) {
+			logger.debug("null 아님!!");
+			String fileName = file.getOriginalFilename();
+			
+			// 추가전 이미지 파일을 삭제
+			// 기존에 이미지를 안넣었을 수도 있으니...
+			if(!newsVO.getNewsImage().isEmpty()) {
+				//			            C:\\bluecoding\\news\\(해당 newsNO)\\파일명.png
+				File fileDel = new File(NEWS_FILE_PATH+"\\"+"newsVO.getNewsNO()"+newsVO.getNewsImage());
+				if(fileDel.exists()) {
+					fileDel.delete();
+				}				
+			}
+			
+			// newsNO(PK)로 폴더 설정(이미지를 새로 추가할수도 있으니까..)
+			File folder = new File(NEWS_FILE_PATH + "\\" + newsVO.getNewsNO());
 
+			if (!folder.exists()) {
+				try {
+					folder.mkdir();
+					logger.debug("폴더가 생성됨!!");
+				} catch (Exception e) {
+					e.getStackTrace();
+				}
+			} else {
+				logger.debug("[뉴스 수정] 폴더가 이미 존재합니다!!");
+			}
+			
+			// 생성한 newsNO 폴더 안에 파일을 넣음
+			file.transferTo(new File(NEWS_FILE_PATH + "\\" +newsVO.getNewsNO(), fileName));
+			
+			// 넣은게 성공한거니, VO에 추가
+			newsVO.setNewsImage(fileName);
+		}		
+		
+		// 기존의 update 쿼리 실행
 		int ret = newsService.updateNews(newsVO);
 		model.addAttribute("ret", ret);
 		logger.debug("[ret] = " + ret);

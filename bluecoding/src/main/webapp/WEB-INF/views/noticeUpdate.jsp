@@ -57,7 +57,7 @@
          <c:when test="${!empty newsVO }">
             <!-- =================== 글쓰기 폼 ===================== -->
             <!-- Main Content-->
-            <form id="contactForm" data-sb-form-api-token="API_TOKEN" action="update" method="post">
+            <form id="contactForm" data-sb-form-api-token="API_TOKEN" action="update" method="post" encType="multipart/form-data">
                <main class="mb-4">
                   <div class="container px-4 px-lg-5">
                      <div class="row gx-4 gx-lg-5 justify-content-center">
@@ -69,7 +69,6 @@
                               <div class="row">
                                  <div class="col-lg-3 col-md-3 col-12 p-0">
                                     <div class="search-input">
-                                       <label for="category"></label>
                                        <select name="category" id="category" title="카테고리를 선택하세요" required>
                                           <option value="" >카테고리</option>
                                           <option value="notice">공지사항</option>
