@@ -23,7 +23,7 @@ public class NewsService {
 	
 	public int addNews(NewsVO newsVO) {
 		// TODO Auto-generated method stub
-		return newsDAO.addArticleNews(newsVO);
+		return newsDAO.newsAdd(newsVO);
 	}
 	
 	public List<NewsVO> listNewsNotice() {
@@ -60,7 +60,7 @@ public class NewsService {
 	public int updateNews(NewsVO newsVO) {
 		// TODO Auto-generated method stub
 		
-		return newsDAO.updateArticleNews(newsVO);
+		return newsDAO.newsUpdate(newsVO);
 	}
 
 }

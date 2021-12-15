@@ -26,4 +26,16 @@ public class BookDAO {
 		return ret;
 	}
 
+	public BookVO OneBook(int bookNO) {
+		// TODO Auto-generated method stub
+		BookVO bookVO = sqlSession.selectOne("mapper.book.selectOneBook", bookNO);
+		return bookVO;
+	}
+
+	public int BookUpdate(BookVO bookVO) {
+		// TODO Auto-generated method stub
+		int ret = sqlSession.update("mapper.book.updateBook", bookVO);
+		return ret;
+	}
+
 }

@@ -37,5 +37,18 @@
 	  (BOOKNO, BOOKTITLE, INTRO, THEME, BOOKIMAGE, NAME, ID, BOOKDATE, BVIEWCNT)
 	   VALUES( #{bookNO}, #{bookTitle}, #{intro}, #{theme}, #{bookImage}, '홍길동', 'abc12345', sysdate, 0)
 	 ]]>
-	</insert>	
+	</insert>
+	
+	<select id="selectOneBook" resultMap="bookResult">
+    <![CDATA[
+		SELECT * FROM B_BOOK WHERE bookNO=#{bookNO}
+    ]]>
+	</select>
+	
+	<update id="updateBook" parameterType="BookVO">
+    <![CDATA[
+		UPDATE B_BOOK SET BOOKTITLE=#{bookTitle}, INTRO=#{intro}, THEME=#{theme}, BOOKIMAGE=#{bookImage} 
+		WHERE BOOKNO=#{bookNO}
+    ]]>
+	</update>
 </mapper>

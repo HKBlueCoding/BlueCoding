@@ -47,7 +47,7 @@
     ]]>
 	</select>
 	
-	<select id="OneNews" resultType="NewsVO" parameterType="int">
+	<select id="selectOneNews" resultType="NewsVO" parameterType="int">
     <![CDATA[
     	SELECT * FROM B_NEWS WHERE newsNO=#{newsNO}
     ]]>

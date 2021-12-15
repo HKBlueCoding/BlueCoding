@@ -14,7 +14,7 @@ public class NewsDAO {
 	@Autowired
 	SqlSession sqlSession;
 
-	public int addArticleNews(NewsVO newsVO) {
+	public int newsAdd(NewsVO newsVO) {
 		// TODO Auto-generated method stub
 		int ret = sqlSession.insert("mapper.news.insertNews", newsVO);
 		return ret;
@@ -34,11 +34,11 @@ public class NewsDAO {
 
 	public NewsVO oneNews(int newsNO) {
 		// TODO Auto-generated method stub
-		NewsVO newsVO = sqlSession.selectOne("mapper.news.OneNews", newsNO);
+		NewsVO newsVO = sqlSession.selectOne("mapper.news.selectOneNews", newsNO);
 		return newsVO;
 	}
 
-	public int updateArticleNews(NewsVO newsVO) {
+	public int newsUpdate(NewsVO newsVO) {
 		// TODO Auto-generated method stub
 		int ret = sqlSession.update("mapper.news.updateNews", newsVO);
 		return ret;

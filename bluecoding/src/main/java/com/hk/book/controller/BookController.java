@@ -1,6 +1,7 @@
 package com.hk.book.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -12,9 +13,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.hk.book.service.BookService;
 import com.hk.book.vo.BookVO;
+import com.hk.news.vo.NewsVO;
 
 /**
  * Handles requests for the application home page.
@@ -62,16 +65,37 @@ public class BookController {
 	}	
 	
 	@GetMapping("/view")
-	public String bookView() {
+	public String bookView(Model model, @RequestParam("bookNO") int bookNO) {
+		BookVO bookVO = bookService.bookOne(bookNO);
+		logger.debug("[bookNO] = " + bookNO);
+		model.addAttribute("bookVO", bookVO);
 		
 		return "bookView";
 	}
 	
 	@GetMapping("/update")
-	public String bookUpdate() {
+	public String bookUpdate(Model model, @RequestParam("bookNO") int bookNO) {
+		logger.debug("[bookNO11] = " + bookNO);
+		
+		BookVO bookVO = bookService.bookOne(bookNO);
+		model.addAttribute("bookVO", bookVO);
+		logger.debug("[bookVO11] = " + bookVO);
 		
 		return "bookUpdate";
 	}
+	
+	@PostMapping("/update")
+	public String bookUpdateDone(Model model, @ModelAttribute BookVO bookVO) {
+		logger.debug("[bookVO22] = " + bookVO);
+
+		int ret = bookService.updateBook(bookVO);
+		model.addAttribute("ret", ret);
+		logger.debug("[ret] = " + ret);
+
+		model.addAttribute("theme", bookVO.getTheme());
+		
+		return "done/bookUpdateDone";
+	}	
 	
 	@GetMapping("/view/add")
 	public String bookViewAdd() {
