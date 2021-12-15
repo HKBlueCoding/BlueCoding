@@ -50,7 +50,7 @@
       <br><br><br><br><br><br><br><br>
       <!-- =================== 글쓰기 폼 ===================== -->
       <!-- Main Content-->
-      <form id="contactForm" data-sb-form-api-token="API_TOKEN" action="add" method="post">
+      <form id="contactForm" data-sb-form-api-token="API_TOKEN" action="add" method="post" encType="multipart/form-data">
          <main class="mb-4">
             <div class="container px-4 px-lg-5">
                <div class="row gx-4 gx-lg-5 justify-content-center">
@@ -63,8 +63,8 @@
                            <div class="col-lg-3 col-md-3 col-12 p-0">
                               <div class="search-input">
                                  <label for="category"></label>
-                                 <select name="category" id="category" required>
-                                    <option value="none"  selected disabled>카테고리</option>
+                                 <select name="category" id="category" title="카테고리를 선택하세요" required>
+                                    <option value=""  selected disabled>카테고리</option>
                                     <option value="notice">공지사항</option>
                                     <option value="event">이벤트</option>
                                  </select>
@@ -83,16 +83,15 @@
                         <!-- https://startbootstrap.com/solution/contact-forms-->
                         <!-- to get an API token!-->
                         <div class="form-floating">
-                           <input class="form-control" name="newsTitle"  id="name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
+                           <input type="hidden" name="id" value="${login.id }">
+                           <input type="hidden" name="nick" value="${login.nick }">
+                           <input class="form-control" name="newsTitle"  id="name" type="text" title="제목을 입력하세요" required />
                            <label for="name">제목</label>                          
-                           <div class="invalid-feedback" data-sb-feedback="name:required">제목을 입력하세요.</div>
                         </div>
                         <br>
                         <div class="form-floating" id="formMag">
-                           <textarea class="form-control" id="message" name="newsText" placeholder="Enter your message here..." style="height: 35rem" data-sb-validations="required"></textarea>
-                           <input type="hidden" name="newsImage">
+                           <textarea class="form-control" id="message" name="newsText" style="height: 35rem" title="내용을 입력하세요" required></textarea>
                            <label for="message">내용</label>
-                           <div class="invalid-feedback" data-sb-feedback="message:required">내용을 입력하세요.</div>
                         </div>
                         <br />
                         <!-- Submit success message-->
@@ -115,7 +114,8 @@
                            <div class="text-center text-danger mb-3">Error sending message!</div>
                         </div>
                         <!-- Submit Button-->
-                        <button class="btn btn-primary text-uppercase disabled"  id="submitButton" type="submit">사진 입력하기(바꿔야 됨)</button>
+                        이미지 선택: &nbsp;<input id="uploadFile" name="uploadFile" type="file">
+                        
                         <!-- ======================= 버튼 ========================== -->
                         <c:if test="${login.admin eq 'A'}">
                            <div class="button header-button">

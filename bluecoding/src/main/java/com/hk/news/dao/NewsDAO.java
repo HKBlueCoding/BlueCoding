@@ -43,5 +43,14 @@ public class NewsDAO {
 		int ret = sqlSession.update("mapper.news.updateNews", newsVO);
 		return ret;
 	}
-
+	
+	// [NewsNO 조회]
+	public NewsVO selectNewsNO(NewsVO newsVO) {
+		// TODO Auto-generated method stub
+		
+		// 작성한 정보(id, imageFile 등등으로 조회해서 중복방지)
+		newsVO = sqlSession.selectOne("mapper.news.selectNewsNO", newsVO);
+		
+		return newsVO;
+	}
 }

@@ -90,7 +90,7 @@
                               <table class="table align-items-center mb-0">
                                  <thead>
                                     <tr>
-                                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">작성자 : ${newsVO.id }</th>
+                                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">작성자 : ${newsVO.nick }</th>
                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">작성일 : ${newsVO.newsDate }</th>
                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">조회수 : ${newsVO.nViewCnt }</th>
                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">댓글 : 50건</th>
@@ -101,7 +101,12 @@
                                        <td>
                                           <div class="d-flex px-2 py-1" style="width: 200%;" >
                                              <div>
-                                                <img src="../../resources/assets/images/mainPage/board1.png" width="400" height="200" class="avatar avatar-sm me-3 border-radius-lg" alt="user1"  style="float: left">${newsVO.newsText }
+                                                  <c:if test="${empty newsVO.newsImage }">
+                                                   <img src="../../resources/assets/images/mainPage/board1.png" width="400" height="200" class="avatar avatar-sm me-3 border-radius-lg" alt="user1"  style="float: left">${newsVO.newsText }
+                                                  </c:if>
+                                                  <c:if test="${!empty newsVO.newsImage }">
+                                                   <img src="../../download?uploadFile=${newsVO.newsImage }&inFolder=news&pk=${newsVO.newsNO}" width="400" height="200" class="avatar avatar-sm me-3 border-radius-lg" alt="user1"  style="float: left">${newsVO.newsText }
+                                                  </c:if>                               
                                              </div>
                                           </div>
                                        </td>

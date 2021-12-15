@@ -91,15 +91,20 @@
                                     </tr>
                                  </c:when>
                                  <c:when test="${!empty newsList }">
-                                    <c:forEach var="news"  items="${newsList }">
+                                    <c:forEach var="news" items="${newsList }" varStatus="newsCnt">
                                        <tr>
                                           <td class="align-middle text-center">
-                                             <span class="text-secondary text-xs font-weight-bold">${news.newsNO }</span>
+                                             <span class="text-secondary text-xs font-weight-bold">${newsCnt.count }</span>
                                           </td>
                                           <td>
                                              <div class="d-flex px-2 py-1">
                                                 <div>
+                                                  <c:if test="${empty news.newsImage }">
                                                    <img src="../resources/assets/images/mainPage/board1.png" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
+                                                  </c:if>
+                                                  <c:if test="${!empty news.newsImage }">
+                                                   <img src="../../download?uploadFile=${news.newsImage }&inFolder=news&pk=${news.newsNO}" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
+                                                  </c:if>
                                                 </div>
                                                 <div class="d-flex flex-column justify-content-center">
                                                    <a href="/news/notice/view?newsNO=${news.newsNO }" class="mb-0 text-sm" style="color: black">${news.newsTitle }</a>
@@ -108,7 +113,7 @@
                                              </div>
                                           </td>
                                           <td class="align-middle">
-                                             <span class="text-secondary text-xs font-weight-bold">${news.id }</span>
+                                             <span class="text-secondary text-xs font-weight-bold">${news.nick }</span>
                                           </td>
                                           <td class="align-middle text-center text-sm">
                                              <span class="badge badge-sm bg-gradient-success" style="background-image: linear-gradient(180deg,#419cef 10%,#106ec3 100%);">${news.nViewCnt }</span>

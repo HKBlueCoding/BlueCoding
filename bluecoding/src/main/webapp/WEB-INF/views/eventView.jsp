@@ -90,7 +90,7 @@
                               <table class="table align-items-center mb-0">
                                  <thead>
                                     <tr>
-                                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">작성자 : ${newsVO.id }</th>
+                                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">작성자 : ${newsVO.nick }</th>
                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">작성일 : ${newsVO.newsDate }</th>
                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">조회수 : ${newsVO.nViewCnt }</th>
                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">댓글 : 50건</th>

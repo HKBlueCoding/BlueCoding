@@ -29,7 +29,7 @@
 	 <![CDATA[
 	  INSERT INTO B_NEWS
 	  (NEWSNO, CATEGORY, NEWSTITLE, NEWSTEXT, NEWSDATE, NEWSIMAGE, NVIEWCNT, ID,nick)
-	   VALUES( #{newsNO}, #{category}, #{newsTitle}, #{newsText}, sysdate, #{newsImage}, 0, 'abc12345', '홍길동')
+	   VALUES( #{newsNO}, #{category}, #{newsTitle}, #{newsText}, sysdate, #{newsImage}, 0, #{id}, #{nick})
 	 ]]>
 	</insert>
 	
@@ -59,5 +59,14 @@
 		WHERE NEWSNO=#{newsNO}
     ]]>
 	</update>
+	
+	<!-- [뉴스 PK조회] -->
+	<select id="selectNewsNO" resultType="NewsVO" parameterType="NewsVO">
+	  <![CDATA[
+		SELECT * FROM B_NEWS WHERE category = #{category} 
+		AND newsTitle = #{newsTitle}
+		AND newsImage = #{newsImage} AND id = #{id}
+	  ]]>
+	</select>
 	
 </mapper>

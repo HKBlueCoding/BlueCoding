@@ -16,7 +16,7 @@
    location.href="../../";
   </script>
 </c:if>
-<c:if test="${ret == 1}">
+<c:if test="${ret > 0}">
   <script>
    alert('정상적으로 등록되었습니다.');
    location.href="../../news/${category }";

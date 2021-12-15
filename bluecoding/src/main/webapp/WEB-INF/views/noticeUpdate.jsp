@@ -70,8 +70,8 @@
                                  <div class="col-lg-3 col-md-3 col-12 p-0">
                                     <div class="search-input">
                                        <label for="category"></label>
-                                       <select name="category" id="category" required>
-                                          <option value="none"  selected disabled>카테고리</option>
+                                       <select name="category" id="category" title="카테고리를 선택하세요" required>
+                                          <option value="" >카테고리</option>
                                           <option value="notice">공지사항</option>
                                           <option value="event">이벤트</option>
                                        </select>
@@ -90,40 +90,26 @@
                               <!-- https://startbootstrap.com/solution/contact-forms-->
                               <!-- to get an API token!-->
                               <div class="form-floating">
-                                 <input name="newsTitle" class="form-control" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required"  value="${newsVO.newsTitle }"/>
+                                 <input name="newsTitle" class="form-control" id="name" type="text" value="${newsVO.newsTitle }" title="제목을 입력하세요" required/>
                                  <label for="name">제목</label>  
                                  <input type="hidden" value="${newsVO.newsNO }" name="newsNO">           
-                                 <div class="invalid-feedback" data-sb-feedback="name:required">제목을 입력하세요.</div>
                               </div>
                               <br>
                               <div class="form-floating" id="formMag">
-                                 <textarea name="newsText" class="form-control" id="message" placeholder="Enter your message here..." style="height: 35rem" data-sb-validations="required">${newsVO.newsText }</textarea>
+                                 <textarea name="newsText" class="form-control" id="message" style="height: 35rem" title="내용을 입력하세요" required>${newsVO.newsText }</textarea>
                                  <label for="message">내용</label>
-                                 <input type="hidden" name="newsImage">
-                                 <div class="invalid-feedback" data-sb-feedback="message:required">내용을 입력하세요.</div>
                               </div>
-                              <br />
-                              <!-- Submit success message-->
-                              <!---->
-                              <!-- This is what your users will see when the form-->
-                              <!-- has successfully submitted-->
-                              <div class="d-none" id="submitSuccessMessage">
-                                 <div class="text-center mb-3">
-                                    <div class="fw-bolder">Form submission successful!</div>
-                                    To activate this form, sign up at
-                                    <br />
-                                    <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
-                                 </div>
-                              </div>
-                              <!-- Submit error message-->
-                              <!---->
-                              <!-- This is what your users will see when there is-->
-                              <!-- an error submitting the form-->
-                              <div class="d-none" id="submitErrorMessage">
-                                 <div class="text-center text-danger mb-3">Error sending message!</div>
-                              </div>
-                              <!-- Submit Button-->
-                              <button class="btn btn-primary text-uppercase disabled"  id="submitButton" type="submit">이미지 선택(바꿔야 됨)</button>
+                              <br>
+                              <!-- 이미지 미리보기 -->
+                              <div align="center">
+                              	<!-- 1. 기존에 이미지 이름을 저장 -->
+                 			  	<input type="hidden" name="newsImage" value="${newsVO.newsImage }" />
+							  	<!-- 2. 기존에 이미지 표시 or id를 preview로 해서 이미지 파일이 등록이되면 src를 변경함 -->
+							  	<img id="preview" src="../../download?uploadFile=${newsVO.newsImage }&inFolder=news&pk=${newsVO.newsNO}" width="400" height="200" class="avatar avatar-sm me-3 border-radius-lg" alt="user1" >
+					          </div>
+					          <!-- 이미지 미리보기 끝 -->   
+                              <br>
+                              이미지 선택: <input type="file" name="uploadFile" onchange="readURL(this);" />
                               <!-- ======================= 버튼 ========================== -->
                               <c:if test="${login.admin eq 'A'}">
                               <div class="button header-button">
@@ -200,6 +186,16 @@
            	return;
            }
          }
+         
+     	function readURL(input){
+    		if(input.files && input.files[0]){
+    			var reader = new FileReader();
+    			reader.onload = function (e){
+    				$('#preview').attr('src',e.target.result);
+    			}
+    			reader.readAsDataURL(input.files[0]);
+    		}
+    	}
       </script>
    </body>
 </html>

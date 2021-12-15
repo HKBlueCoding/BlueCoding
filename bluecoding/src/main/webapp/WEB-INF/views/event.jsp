@@ -91,10 +91,10 @@
                                     </tr>
                                  </c:when>
                                  <c:when test="${!empty newsList }">
-                                    <c:forEach var="news"  items="${newsList }">
+                                    <c:forEach var="news"  items="${newsList }" varStatus="newsCnt">
                                        <tr>
                                           <td class="align-middle text-center">
-                                             <span class="text-secondary text-xs font-weight-bold">${news.newsNO }</span>
+                                             <span class="text-secondary text-xs font-weight-bold">${newsCnt.count }</span>
                                           </td>
                                           <td>
                                              <div class="d-flex px-2 py-1">
@@ -108,7 +108,7 @@
                                              </div>
                                           </td>
                                           <td class="align-middle">
-                                             <span class="text-secondary text-xs font-weight-bold">${news.id }</span>
+                                             <span class="text-secondary text-xs font-weight-bold">${news.nick }</span>
                                           </td>
                                           <td class="align-middle text-center text-sm">
                                              <span class="badge badge-sm bg-gradient-success" style="background-image: linear-gradient(180deg,#419cef 10%,#106ec3 100%);">${news.nViewCnt }</span>
