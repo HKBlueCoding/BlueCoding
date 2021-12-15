@@ -84,6 +84,6 @@ public class BoardController {
 		
 		int articleNoList = boardService.removeArticle(articleNO);
 		model.addAttribute("article", articleNoList);
-		return "boardDelete";
+		return "boardDeleteDone";
 	}
 }

@@ -36,7 +36,7 @@ public class BoardService {
 
 	public int removeArticle(int articleNO) {
 		// TODO Auto-generated method stub
-		return 0;
+		return boardDAO.deleteArticle(articleNO);
 	}
 
 }
