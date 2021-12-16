@@ -1,5 +1,6 @@
 package com.hk.user.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -12,19 +13,17 @@ import com.hk.user.vo.UserVO;
 
 @Repository
 public class UserDAO {
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(UserDAO.class);
-	
+
 	@Autowired
 	SqlSession sqlSession;
 
-
-
 	public int addUser(UserVO userVO) {
 		// TODO Auto-generated method stub
-		logger.debug("[userVO]"+userVO);
-		int ret = sqlSession.insert("mapper.user.insertUser",userVO);
-		
+		logger.debug("[userVO]" + userVO);
+		int ret = sqlSession.insert("mapper.user.insertUser", userVO);
+
 		return ret;
 	}
 
@@ -36,9 +35,13 @@ public class UserDAO {
 
 	public UserVO dupId(String id) {
 		// TODO Auto-generated method stub
-		UserVO userVO = sqlSession.selectOne("mapper.user.dupId",id);
+		UserVO userVO = sqlSession.selectOne("mapper.user.dupId", id);
 		return userVO;
 	}
 
-	
+	public List<HashMap<String, String>> selectChest(HashMap param) {
+
+		return sqlSession.selectList("mapper.chest.selectChest", param);
+	}
+
 }

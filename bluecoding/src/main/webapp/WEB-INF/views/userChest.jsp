@@ -101,6 +101,7 @@
                                  </tr>
                               </thead>
                               <tbody>
+                              <c:forEach var="list" items="${list }" varStatus="listCnt">
                                  <tr>
                                     <td>
                                        <div class="d-flex px-2 py-1">
@@ -108,21 +109,22 @@
                                              <img src="../resources/assets/images/mainPage/board1.png" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
                                           </div>
                                           <div class="d-flex flex-column justify-content-center">
-                                             <a href="../view" class="mb-0 text-sm" style="color: black">${book.boardTitle}[${book.bViewCnt}]</a>
-                                             <p class="text-xs text-secondary mb-0">${book.theme}</p>
+                                             <a href="../view" class="mb-0 text-sm" style="color: black">${list.TITLE}</a>
+                                             <p class="text-xs text-secondary mb-0"></p>
                                           </div>
                                        </div>
                                     </td>
                                     <td class="align-middle">
-                                       <span class="text-secondary text-xs font-weight-bold">${book.name}</span>
+                                       <span class="text-secondary text-xs font-weight-bold">${list.ID}</span>
                                     </td>
                                     <td class="align-middle text-center text-sm">
                                        <span class="badge badge-sm bg-gradient-success" style="background-image: linear-gradient(180deg,#419cef 10%,#106ec3 100%);">100</span>
                                     </td>
                                     <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">${book.bookDate}</span>
+                                       <span class="text-secondary text-xs font-weight-bold">${list.BDATE}</span>
                                     </td>
                                  </tr>
+                                </c:forEach> 
                               </tbody>
                            </table>
                         </div>
@@ -485,6 +487,7 @@
       <script src="../resources/assets/js/glightbox.min.js"></script>
       <script src="../resources/assets/js/main.js"></script>
       <script type="text/javascript">
+      
          //========= Category Slider 
          tns({
          	container : '.category-slider',

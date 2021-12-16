@@ -2,71 +2,23 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-        
+
 <mapper namespace="mapper.chest">
 
-<!-- 	<resultMap id="chestResult" type="chestVO">
-	
-		<result property="bookNO" column="bookNO" />
-		<result property="bookTitle" column="bookTitle" />
-		<result property="intro" column="intro" />
-		<result property="theme" column="theme" />
-		<result property="bookImage" column="bookImage" />
-		<result property="bookDelete" column="bookDelete" />
-		<result property="name" column="name" />
-		<result property="id" column="id" />
-		<result property="bookDate" column="bookDate" />
-		<result property="bViewCnt" column="bViewCnt" />
-		
-		<result property="pageNO" column="pageNO" />
-		<result property="series" column="series" />
-		<result property="pageTitle" column="pageTitle" />
-		<result property="pageText" column="pageText" />
-		<result property="pageDate" column="pageDate" />
-		<result property="comment" column="comment" />
-		<result property="pViewCnt" column="pViewCnt" />
-		<result property="charge" column="charge" />
-		<result property="like" column="like" />
-		<result property="pageDelete" column="pageDelete" />
-		
-		<result property="pageBuy" column="pageBuy" />
-		<result property="pagePayDate" column="pagePayDate" />
-		<result property="plsRefund" column="plsRefund" />
-		
-		<result property="coinMethod" column="coinMethod" />
-		<result property="coinDate" column="coinDate" />
-		<result property="clsRefund" column="clsRefund" />
-		<result property="rechargeCoin" column="rechargeCoin" />
-		
-		<result property="isCommission" column="isCommission" />
-		<result property="commissionDate" column="commissionDate" />
-		<result property="admCommission" column="admCommission" />
-		
-		<result property="articleNO" column="articleNO" />
-		<result property="boardTitle" column="boardTitle" />
-		<result property="boardText" column="boardText" />
-		<result property="boardDate" column="boardDate" />
-		<result property="boardImage" column="boardImage" />
-		<result property="bdViewCnt" column="bdViewCnt" />
-		<result property="boardDelete" column="boardDelete" />
-		<result property="nick" column="nick" />
+   <select id="selectChest" parameterType="hashMap"  resultType="hashMap">
+    <![CDATA[
+    SELECT BOARDTITLE AS title
+      ,ID AS ID
+      ,to_char(BOARDDATE,'yyyy-mm-dd') AS bdate
+FROM B_BOARD bb
+WHERE  id =#{id}
+UNION ALL 
+SELECT QNATITLE AS TITLE
+     ,ID AS ID
+     ,to_char(QNADATE,'yyyy-mm-dd') AS bdate
+  FROM B_QNA bq
+WHERE  id = #{id}  
+        ]]>
+   </select>
 
-		<result property="qnaNO" column="qnaNO" />
-		<result property="qnaParentNO" column="qnaParentNO" />
-		<result property="qnaList" column="qnaList" />
-		<result property="qnaTitle" column="qnaTitle" />
-		<result property="qnaText" column="qnaText" />
-		<result property="qnaImage" column="qnaImage" />
-		<result property="isProcess" column="isProcess" />
-		<result property="qnaDate" column="qnaDate" />
-		<result property="finishDate" column="finishDate" />
-		
-	</resultMap>
-	
-	<select id="userList" resultType="ChestVO">
-	<![CDATA[
-	SELECT bb.BOOKIMAGE, bb.BOOKTITLE , bb.INTRO, bb.NAME FROM B_BOOK bb, B_FAVO bf
-	WHERE bb.id=bf.id
-	]]>
-	</select> -->
 </mapper>

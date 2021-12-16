@@ -1,11 +1,8 @@
 package com.hk.user.controller;
 
 import java.io.File;
-import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -103,24 +100,16 @@ public class UserController {
 		return "userInfo";
 	}
 
-	// [사용자 보관함]	
+	// [사용자 보관함]
 	@RequestMapping(value = "/user/chest", method = RequestMethod.GET)
-	public String userChest( Model model, @RequestParam("id") String id) {
-		
+	public String userChest(Model model, @RequestParam("id") String id) {
 
-		 Map<String, Object> map = userService.userArticleList(id);
-		 logger.debug("[map] = " + map); logger.debug("[id] = " + id);
-		 
-		 model.addAttribute("bookVO", map.get("bookVO"));
-		 model.addAttribute("pageVO", map.get("pageVO"));
-		 model.addAttribute("pageBuyVO", map.get("pageBuyVO"));
-		 model.addAttribute("coinHistoryVO", map.get("coinHistoryVO"));
-		 model.addAttribute("commissionVO", map.get("comssionVO"));
-		 model.addAttribute("favoVO", map.get("favoVO"));
-		 model.addAttribute("boardVO", map.get("boardVO"));
-		 model.addAttribute("qnaVO", map.get("qnaVO"));
+		HashMap param = new HashMap();
+		param.put("id", id);
 
-	
+		List<HashMap<String, String>> list = userService.selectChest(param);
+
+		model.addAttribute("list", list);
 		return "userChest";
 	}
 
