@@ -24,50 +24,6 @@
 		<result property="admin" column="admin" />
 	</resultMap>
 	
-	<resultMap id="bookResult" type="BookVO">	
-		<result property="bookNO" column="bookNO" />
-		<result property="bookTitle" column="bookTitle" />
-		<result property="intro" column="intro" />
-		<result property="theme" column="theme" />
-		<result property="bookImage" column="bookImage" />
-		<result property="bookDelete" column="bookDelete" />
-		<result property="name" column="name" />
-		<result property="id" column="id" />
-		<result property="bookDate" column="bookDate" />
-		<result property="bViewCnt" column="bViewCnt" />
-	</resultMap>
-	
-	<resultMap id="boardResult" type="BoardVO">	
-		<result property="articleNO" column="articleNO" />
-		<result property="boardTitle" column="boardTitle" />
-		<result property="boardText" column="boardText" />
-		<result property="boardDate" column="boardDate" />	
-		<result property="boardImage" column="boardImage" />
-		<result property="bViewCnt" column="bViewCnt" />
-		<result property="boardDelete" column="boardDelete" />
-		<result property="id" column="id" />
-		<result property="nick" column="nick" />		
-	</resultMap>
-	
-	<resultMap id="qnaResult" type="QnaVO">
-		<result property="qnaNO" column="qnaNO" />
-		<result property="qnaParentNO" column="qnaParentNO" />
-		<result property="qnaList" column="qnaList" />
-		<result property="qnaTitle" column="qnaTitle" />
-		<result property="qnaText" column="qnaText" />
-		<result property="qnaImage" column="qnaImage" />
-		<result property="isProcess" column="isProcess" />
-		<result property="qnaDate" column="qnaDate" />
-		<result property="finishDate" column="finishDate" />
-		<result property="id" column="id" />
-	</resultMap>
-	
-	<resultMap id="userMap" type="java.util.Map" >
-		<collection resultMap="bookResult" property="BookVO" />
-		<collection resultMap="boardResult" property="BoardVO" />
-		<collection resultMap="qnaResult" property="QnaVO"  />
-	</resultMap>
-	
 
 	<!-- [회원가입] -->
 	<insert id="insertUser" parameterType="UserVO">
