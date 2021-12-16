@@ -2,8 +2,10 @@ package com.hk.user.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -22,7 +24,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.hk.qna.vo.QnaVO;
 import com.hk.user.service.UserService;
 import com.hk.user.vo.UserVO;
 
@@ -176,4 +177,25 @@ public class UserController {
 
 		return "done/logoutDone";
 	}
+
+	@RequestMapping(value="/kakaopay", method=RequestMethod.POST)
+	public String kakaopay() throws MalformedURLException {
+		try {
+			URL url = new URL("https://kapi.kakao.com/v1/payment/ready");
+			// 1.kakaopay 서버와 연동(강제 형변환하여 안정적으로 서버연결을 함
+			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+			// 2.연결하는 서버에 POST로 요청
+			connection.setRequestMethod("POST");
+			// Authorization(입증)
+			/* connection. */
+		}catch(MalformedURLException e) {
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
 }

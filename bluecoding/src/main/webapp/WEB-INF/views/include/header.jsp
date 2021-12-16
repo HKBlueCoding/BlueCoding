@@ -40,7 +40,12 @@
                                         <li class="nav-item"><a href="../../news/event">이벤트</a></li>
                                     </ul>
                                 </li>
-                                <li class="nav-item"><a href="../../user/chest" aria-label="Toggle navigation">보관함</a></li>
+                                <c:if test="${empty login.id || login.id eq '' }">
+                                  <li class="nav-item"><a href="" aria-label="Toggle navigation" data-bs-toggle="modal" data-bs-target="#login">보관함</a></li>
+                                </c:if>
+                                <c:if test="${ !empty login.id && login.id ne ''}">
+                                  <li class="nav-item"><a href="../../user/chest?id=${login.id }" aria-label="Toggle navigation" >보관함</a></li>
+                                </c:if>
                                 <li class="nav-item"><a onclick="goQnaHome('${login.id }')" aria-label="Toggle navigation">고객센터</a></li>
                             </ul>
                         </div>

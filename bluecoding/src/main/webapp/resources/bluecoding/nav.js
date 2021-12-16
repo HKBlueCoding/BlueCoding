@@ -79,5 +79,15 @@ function goQnaHome(id){
 // [캐시 충전]
 
 function coinCharge(){
-
+	
+	$.ajax({
+		type: 'POST',
+		url:'user/kakaopay',
+		dataType: 'json',
+		success: function(data){
+		},
+		error: function(error){
+			alert('에러: '+error);
+		}
+	});
 }	
