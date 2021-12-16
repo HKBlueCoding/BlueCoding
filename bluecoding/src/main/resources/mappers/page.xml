@@ -41,4 +41,16 @@
 	 ]]>
 	</insert>
 	
+	<select id="selectOnePage" resultMap="pageResult">
+    <![CDATA[
+		SELECT * FROM B_PAGE WHERE pageNO=#{pageNO}
+    ]]>
+	</select>
+	
+	<update id="viewUpdateBook" parameterType="PageVO">
+    <![CDATA[
+		UPDATE B_PAGE SET SERIES=#{series}, PAGETITLE=#{pageTitle}, PAGETEXT=#{pageText}, "COMMENT"=#{comment}, CHARGE=#{charge}
+		WHERE PAGENO=#{pageNO}
+    ]]>
+	</update>
 </mapper>	

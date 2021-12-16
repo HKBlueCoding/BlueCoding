@@ -36,7 +36,7 @@
       <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
       <!-- Core theme CSS (includes Bootstrap)-->
       <link href="../resources/assets/css/styles.css" rel="stylesheet" />
-            <!-- SBAdmin2 CSS START -->
+      <!-- SBAdmin2 CSS START -->
       <!-- Custom fonts for this template -->
       <link href="../../resources/sbadmin2/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
       <link
@@ -57,12 +57,12 @@
       <!-- Core theme CSS (includes Bootstrap)-->
       <link href="../resources/assets/css/styles.css" rel="stylesheet" />
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" />
-            <!-- Material Icons -->
+      <!-- Material Icons -->
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
-            <!-- CSS Files -->
+      <!-- CSS Files -->
       <link id="pagestyle" href="../../resources/assets/css/material-dashboard.css?v=3.0.0" rel="stylesheet" />
       <!-- marerial CSS END -->  
-            	  <!-- ====================== 페이징 ====================== -->
+      <!-- ====================== 페이징 ====================== -->
       <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
       <!-- ====================== 페이징 끝 ====================== -->
       <style>
@@ -71,62 +71,52 @@
          }
       </style>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
-
    </head>
-   
    <body>
       <!-- header -->
       <jsp:include page="/WEB-INF/views/include/header.jsp"/>
       <br><br><br><br><br><br><br><br>
       <!-- =================== 글쓰기 폼 ===================== -->
       <!-- Main Content-->
-      <main class="mb-4">
-         <div class="container px-4 px-lg-5">
-            <div class="row gx-4 gx-lg-5 justify-content-center">
-               <div class="col-md-10 col-lg-8 col-xl-7" style="width: 85%;">
-                  <p id="title">회차 보기</p>
-                  <hr class="my-4">
-                  <p id="title2">&nbsp;&nbsp;제목</p>
-                  <div id="qna">
-                    <div class="button header-button">
-                        <a href="../view/update" class="btn">수정</a>
-                     </div>
-                    <div class="button header-button">
-						<a onClick="funok2()" class="btn" style="background-color: #30d8e0;">삭제</a>
-                     </div>    
-          			<div class="button header-button">
-                        <a onClick="funbtn()" class="btn">별점주기</a>
+      <form id="contactForm" data-sb-form-api-token="API_TOKEN">
+         <main class="mb-4">
+            <div class="container px-4 px-lg-5">
+               <div class="row gx-4 gx-lg-5 justify-content-center">
+                  <div class="col-md-10 col-lg-8 col-xl-7" style="width: 80%;">
+                     <p id="title">회차 보기</p>
+                     <hr class="my-4">
+                     <p id="title2">&nbsp;&nbsp;${pageVO.series }화, ${pageVO.pageTitle }</p>
+                     <div id="qna">
+                        <c:if test="${login.admin eq 'A' || login.admin eq 'C'}">
+                           <div class="button header-button">
+                              <a href="../view/update?pageNO=${pageVO.pageNO }" class="btn" style="background-color: #30d8e0;">수정</a>
+                           </div>
+                           <div class="button header-button">
+                              <a onClick="funok2()" class="btn">삭제</a>
+                           </div>
+                        </c:if>
+                        <br><br>
+                        <div class="my-5">
+                           <!-- * * * * * * * * * * * * * * *-->
+                           <!-- * * SB Forms Contact Form * *-->
+                           <!-- * * * * * * * * * * * * * * *-->
+                           <!-- This form is pre-integrated with SB Forms.-->
+                           <!-- To make this form functional, sign up at-->
+                           <!-- https://startbootstrap.com/solution/contact-forms-->
+                           <!-- to get an API token!-->
                         </div>
-                    <div class="button header-button">
-                        <a onClick="funbtn()" class="btn">신고하기</a>
-                    </div>
-
-                  <br><br>
-                  <div class="my-5">
-                     <!-- * * * * * * * * * * * * * * *-->
-                     <!-- * * SB Forms Contact Form * *-->
-                     <!-- * * * * * * * * * * * * * * *-->
-                     <!-- This form is pre-integrated with SB Forms.-->
-                     <!-- To make this form functional, sign up at-->
-                     <!-- https://startbootstrap.com/solution/contact-forms-->
-                     <!-- to get an API token!-->
-               		</div>
-                     <form id="contactForm" data-sb-form-api-token="API_TOKEN">
                         <div class="form-floating" style="width: 66.6%;">
-                           <input class="form-control" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
-                           <label for="name">1화 제목</label>                          
-                           <div class="invalid-feedback" data-sb-feedback="name:required">제목을 입력하세요.</div>
+                           <input class="form-control" name="pageTitle" id="name" type="text" style="padding-top: 9px;" value="${pageVO.series }화, ${pageVO.pageTitle }" data-sb-validations="required"  readonly/>
+                           <input type="hidden" value="${pageVO.pageNO }" name="pageNO">
                         </div>
                         <br>
                         <div class="form-floating" id="formMag" style="width: 66.6%;">
-                           <textarea class="form-control" id="message" placeholder="Enter your message here..." style="height: 35rem" data-sb-validations="required"></textarea>
-                           <label for="message">본문</label>
-                           <div class="invalid-feedback" data-sb-feedback="message:required">내용을 입력하세요.</div>
+                           <textarea class="form-control" name="pageText" id="message" style="height: 35rem" data-sb-validations="required" readonly>${pageVO.pageText }</textarea>
                            <br><br>
                            <div id="Writer">
                               &nbsp;작가의 말
                            </div>
-                           <textarea class="form-control" placeholder="Enter your message here..." style="height: 15rem"></textarea>
+                           <textarea class="form-control" name="comment" style="height: 15rem" readonly>${pageVO.comment }</textarea>
                         </div>
                         <br />
                         <!-- Submit success message-->
@@ -149,125 +139,124 @@
                            <div class="text-center text-danger mb-3">Error sending message!</div>
                         </div>
                         <!-- ======================= 버튼 ========================== -->
-
-                   		<div class="button header-button">
-                           <a onClick="funbtn()" class="btn">이전 화</a>
+                        <div class="button header-button">
+                           <a href="../view/page?pageNO=${pageVO.pageNO -1}" class="btn">이전 화</a>
                         </div>
-						<div class="button header-button">
-                           <a onClick="funbtn()" class="btn">다음 화</a>
+                        <div class="button header-button">
+                           <a href="../view/page?pageNO=${pageVO.pageNO +1}" class="btn">다음 화</a>
                         </div>
-                        
+                        <div class="button header-button">
+                           <a onClick="" class="btn">별점주기</a>
+                        </div>
                         <!-- ======================= 버튼 끝 ========================== -->
-                     </form>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </main>
-      <!-- =================== 글쓰기 폼 끝===================== -->
-        <!-- ====================== 리뷰(댓글) ====================== -->     
-       <div class="container-fluid py-4" style="height:75%; width:60%;">
-         <hr class="my-4" style="width: 100%;">
-         <div class="row">
-            <div class="col-12">
-               <div class="card my-4">
-                  <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                     <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                        <h6 class="text-white text-capitalize ps-3">댓글</h6>
-                     </div>
-                  </div>
-                  <div id="tbPadd" class="card-body px-0 pb-2">
-                     <div class="table-responsive p-0">
-                        <table class="table align-items-center mb-0">
-                           <tbody>
-                              <tr>
-                                 <td>
-                                    <div class="d-flex px-2 py-1">
-                                       <div class="d-flex flex-column justify-content-center">
-                                          <p class="text-xs text-secondary mb-0" style="font-size: 15px;">닉네임 : 홍길동<br>재밌게 잘 봤습니다.</p>
-                                          <p class="text-xs text-secondary mb-0">YYYY/MM/DD / hh:mm</p>
-                                       </div>
-                                    </div>
-                                 </td>
-                                 <!-- ======================= 버튼 ========================== -->
-                                 <td>
-                                    <div align="right"  style="width: 100%;">
-                                       <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">수정</a>
-                                       </div>
-                                       <div class="button header-button">
-                                          <a onClick="funok2()" class="btn" style="background-color: #30d8e0;">삭제</a>
-                                       </div>
-                                       <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">신고하기</a>
-                                       </div>
-                                    </div>
-                                    <!-- ======================= 버튼 끝 ========================== -->
-                                 </td>
-                              </tr>
-                              <tr>
-                                 <td>
-                                    <div class="d-flex px-2 py-1">
-                                       <div class="d-flex flex-column justify-content-center">
-                                          <p class="text-xs text-secondary mb-0" style="font-size: 15px;">닉네임 : 홍길동<br>재밌게 잘 봤습니다.</p>
-                                          <p class="text-xs text-secondary mb-0">YYYY/MM/DD / hh:mm</p>
-                                       </div>
-                                    </div>
-                                 </td>
-                                 <!-- ======================= 버튼 ========================== -->
-                                 <td>
-                                    <div align="right"  style="width: 100%;">
-                                       <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">수정</a>
-                                       </div>
-                                       <div class="button header-button">
-                                          <a onClick="funok2()" class="btn" style="background-color: #30d8e0;">삭제</a>
-                                       </div>
-                                       <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">신고하기</a>
-                                       </div>
-                                    </div>
-                                    <!-- ======================= 버튼 끝 ========================== -->
-                                 </td>
-                              </tr>
-							  <tr>
-                                 <td>
-                                    <div class="d-flex px-2 py-1">
-                                       <div class="d-flex flex-column justify-content-center">
-                                          <p class="text-xs text-secondary mb-0" style="font-size: 15px;">닉네임 : 홍길동<br>재밌게 잘 봤습니다.</p>
-                                          <p class="text-xs text-secondary mb-0">YYYY/MM/DD / hh:mm</p>
-                                       </div>
-                                    </div>
-                                 </td>
-                                 <!-- ======================= 버튼 ========================== -->
-                                 <td>
-                                    <div align="right"  style="width: 100%;">
-                                       <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">수정</a>
-                                       </div>
-                                       <div class="button header-button">
-                                          <a onClick="funok2()" class="btn" style="background-color: #30d8e0;">삭제</a>
-                                       </div>
-                                       <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">신고하기</a>
-                                       </div>
-                                    </div>
-                                    <!-- ======================= 버튼 끝 ========================== -->
-                                 </td>
-                              </tr>
-                              <!-- ========================== 답글 끝 ========================== -->
-                           </tbody>
-                        </table>
                      </div>
                   </div>
                </div>
             </div>
-         </div>
-         <form id="contactForm" data-sb-form-api-token="API_TOKEN">
+         </main>
+         <!-- =================== 글쓰기 폼 끝===================== -->
+         <!-- ====================== 리뷰(댓글) ====================== -->     
+         <div class="container-fluid py-4" style="height: auto; width:53%;">
+            <hr class="my-4" style="width: 100%;">
+            <div class="row">
+               <div class="col-12">
+                  <div class="card my-4">
+                     <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                        <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+                           <h6 class="text-white text-capitalize ps-3">댓글</h6>
+                        </div>
+                     </div>
+                     <c:forEach var="pageReply"  items="${pageReplyVO }">
+                        <div id="tbPadd" class="card-body px-0 pb-2">
+                           <div class="table-responsive p-0">
+                              <table class="table align-items-center mb-0">
+                                 <tbody>
+                                    <tr>
+                                       <td>
+                                          <div class="d-flex px-2 py-1">
+                                             <div class="d-flex flex-column justify-content-center">
+                                                <input type="hidden" name="pageReNO"  value="${pageReply.pageReNO }">
+                                                <input type="hidden" name="pageParentNO"  value="${pageReply.pageParentNO }">
+                                                <p class="text-xs text-secondary mb-0" style="font-size: 15px;">작성자명 : ${pageReply.nick }(${pageReply.id }),&nbsp;&nbsp;&nbsp;&nbsp; 작성일 : ${pageReply.pageReDate }</p>
+                                                <p class="text-xs text-secondary mb-0">${pageReply.pageReText }</p>
+                                             </div>
+                                          </div>
+                                       </td>
+                                       <!-- ======================= 버튼 ========================== -->
+                                       <td>
+                                          <div align="right"  style="width: 100%;">
+                                             <!-- [로그인시] -->
+                                             <c:if test="${!empty login.id && login.id ne '' }">
+                                                <div class="button header-button">
+                                                   <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">답글 쓰기</a>
+                                                </div>
+                                             </c:if>
+                                             <!-- [비 로그인시]] -->
+                                             <c:if test="${empty login.id || login.id  eq '' }">
+                                                <div class="button header-button">
+                                                   <a data-bs-toggle="modal"  data-bs-target="#login" class="btn" style="background-color: #30d8e0;">답글 쓰기</a>
+                                                </div>
+                                             </c:if>
+                                             <c:if test="${login.admin eq 'A' || login.admin eq 'C'}">
+                                                <div class="button header-button">
+                                                   <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">수정</a>
+                                                </div>
+                                                <div class="button header-button">
+                                                   <a onClick="funok2()" class="btn" style="background-color: #30d8e0;">삭제</a>
+                                                </div>
+                                             </c:if>
+                                          </div>
+                                          <!-- ======================= 버튼 끝 ========================== -->
+                                          <!-- ========================== 답글 ========================== -->
+                                    <tr>
+                                       <td>
+                                          <div class="d-flex px-2 py-1">
+                                             <div class="d-flex flex-column justify-content-center">
+                                                <input type="hidden" name="pageReNO"  value="${pageReply.pageReNO }">
+                                                <input type="hidden" name="pageParentNO"  value="${pageReply.pageParentNO }">
+                                                <p class="text-xs text-secondary mb-0" style="font-size: 15px;">&nbsp;&nbsp;&nbsp;&nbsp; ⤷ 작성자명 : ${pageReply.nick }(${pageReply.id }),&nbsp;&nbsp;&nbsp;&nbsp; 작성일 : ${pageReply.pageReDate }</p>
+                                                <p class="text-xs text-secondary mb-0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${pageReply.pageReText }</p>
+                                             </div>
+                                          </div>
+                                          <!-- ======================= 버튼 ========================== -->
+                                       <td>
+                                          <div align="right"  style="width: 100%;">
+                                             <!-- [로그인시] -->
+                                             <c:if test="${!empty login.id && login.id ne '' }">
+                                                <div class="button header-button">
+                                                   <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">답글 쓰기</a>
+                                                </div>
+                                             </c:if>
+                                             <!-- [비 로그인시]] -->
+                                             <c:if test="${empty login.id || login.id  eq '' }">
+                                                <div class="button header-button">
+                                                   <a data-bs-toggle="modal"  data-bs-target="#login" class="btn" style="background-color: #30d8e0;">답글 쓰기</a>
+                                                </div>
+                                             </c:if>
+                                             <c:if test="${login.admin eq 'A' || login.admin eq 'C'}">
+                                                <div class="button header-button">
+                                                   <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">수정</a>
+                                                </div>
+                                                <div class="button header-button">
+                                                   <a onClick="funok2()" class="btn" style="background-color: #30d8e0;">삭제</a>
+                                                </div>
+                                             </c:if>
+                                          </div>
+                                          <!-- ======================= 버튼 끝 ========================== -->
+                                       </td>
+                                    </tr>
+                                    <!-- ========================== 답글 끝 ========================== -->
+                                 </tbody>
+                              </table>
+                           </div>
+                        </div>
+                     </c:forEach>
+                  </div>
+               </div>
+            </div>
             <br>
-            <div class="form-floating" id="formMag">
-               <textarea class="form-control" id="message" placeholder="Enter your message here..." style="height: 15rem" data-sb-validations="required"></textarea>
-               <div class="invalid-feedback" data-sb-feedback="message:required">내용을 입력하세요.</div>
+            <div class="form-floating" id="formMag" style="width: 100%">
+               <textarea class="form-control" id="message" style="height: 15rem"></textarea>
                <br><br>
                <label for="message">댓글 쓰기</label>
             </div>
@@ -292,16 +281,25 @@
             </div>
             <!-- ======================= 버튼 ========================== -->
             <div align="center">
-               <div class="button header-button">
-                  <a onClick="funok3()"  id="submitButton"  class="btn">댓글 등록</a>
-               </div>
+               <!-- [로그인시] -->
+               <c:if test="${!empty login.id && login.id ne '' }">
+                  <div class="button header-button">
+                     <a onClick="funok3()" class="btn">댓글 등록</a>
+                  </div>
+               </c:if>
+               <!-- [비 로그인시]] -->
+               <c:if test="${empty login.id || login.id  eq '' }">
+                  <div class="button header-button">
+                     <a data-bs-toggle="modal"  data-bs-target="#login" class="btn">댓글 등록</a>
+                  </div>
+               </c:if>
                <div class="button header-button">
                   <a onClick="funbtn()" class="btn">돌아가기</a>
                </div>
             </div>
             <!-- ======================= 버튼 끝 ========================== -->
-         </form>
-      </div>
+         </div>
+      </form>
       <!-- ====================== 페이징 ====================== -->
       <div class="w3-center">
          <div class="w3-bar">
@@ -315,7 +313,7 @@
          </div>
       </div>
       <!-- ====================== 페이징 끝 ====================== -->
-	  <!-- ====================== 리뷰(댓글) 끝====================== -->        
+      <!-- ====================== 리뷰(댓글) 끝====================== -->        
       <!-- ==================== footer ====================== -->      
       <!-- footer -->
       <jsp:include page="/WEB-INF/views/include/footer.jsp"/>
@@ -369,15 +367,6 @@
          function funbtn() {
            if (confirm("이전 페이지로 돌아가시겠습니까??")) {
              javascript:history.back();
-           } else {
-           	return;
-           }
-         }
-      </script>  
-      <script>
-         function funok() {
-           if (confirm("글을 정말 삭제하시겠습니까??")) {
-            alert("정상적으로 삭제되었습니다.")
            } else {
            	return;
            }

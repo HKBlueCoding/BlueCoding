@@ -108,7 +108,7 @@
                            <!-- [로그인시] -->
                            <c:if test="${!empty login.id && login.id ne '' }">
                               <div class="button header-button">
-                                 <a href="" class="btn" style="background-color: #e3970e">찜하기</a>
+                                 <a href="------------------" class="btn" style="background-color: #e3970e">찜하기</a>
                               </div>
                            </c:if>
                            <!-- [비 로그인시]] -->
@@ -122,25 +122,13 @@
                            </div>
                            <br><br>
                            <div class="form-floating" id="formMag">
-                              <textarea class="form-control" id="message" name="intro" placeholder="Enter your message here..." style="height: 10rem; width: 45%" data-sb-validations="required" disabled></textarea>
+                              <textarea class="form-control" id="message" name="intro" style="height: 10rem; width: 45%" data-sb-validations="required" disabled></textarea>
                               <label for="message">${bookVO.intro}</label>
                               <div class="invalid-feedback" data-sb-feedback="message:required">줄거리을 입력하세요.</div>
                               <br>
                               <div class="button header-button">
-                                 <a href="javascript:void(0)" class="btn" style="background-color: #30e087">첫회보기</a>
+                                 <a href="../view/page?pageNO=${pageVO[0].pageNO }" class="btn" style="background-color: #30e087">첫회보기</a>
                               </div>
-                              <!-- [로그인시] -->
-                              <c:if test="${!empty login.id && login.id ne '' }">
-                                 <div class="button header-button">
-                                    <a href="javascript:void(0)" class="btn" style="background-color: #ff00eb;">신고하기</a>
-                                 </div>
-                              </c:if>
-                              <!-- [비 로그인시]] -->
-                              <c:if test="${empty login.id || login.id  eq '' }">
-                                 <div class="button header-button">
-                                    <a data-bs-toggle="modal"  data-bs-target="#login" class="btn" style="background-color: #ff00eb;">신고하기</a>
-                                 </div>
-                              </c:if>
                            </div>
                            <br><br>
                            <!-- ======================= 버튼 끝 ========================== -->                  
@@ -164,43 +152,43 @@
                                        </div>
                                     </div>
                                     <c:forEach var="page"  items="${pageVO }">
-                                    <div id="tbPadd" class="card-body px-0 pb-2">
-                                       <div class="table-responsive p-0">
-                                          <table class="table align-items-center mb-0">
-                                             <tbody>
-                                                <tr>
-                                                   <td>
-                                                      <div class="d-flex px-2 py-1">
-                                                         <div class="d-flex flex-column justify-content-center">
-                                                            <p class="text-xs text-secondary mb-0" style="font-size: 15px;"><a href="../view/page?pageNO=${page.pageNO }">${page.series }화, ${page.pageTitle }</a><br>${page.pageDate }</p>
-                                                            <input type="hidden" name="bookNO"  value="${page.pageNO }">
-                                                            <p class="text-xs text-secondary mb-0">댓글(개수)</p>
-                                                         </div>
-                                                      </div>
-                                                   </td>
-                                                   <!-- ======================= 버튼 ========================== -->
-                                                   <td>
-                                                      <div align="right"  style="width: 100%;">
-                                                         <div class="button header-button">
-                                                            <a href="" class="btn" style="background-color: #30e087">미리보기(유료)</a>
-                                                         </div>
-                                                         <c:if test="${login.admin eq 'A' || login.admin eq 'C'}">
-                                                            <div class="button header-button">
-                                                               <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">수정</a>
+                                       <div id="tbPadd" class="card-body px-0 pb-2">
+                                          <div class="table-responsive p-0">
+                                             <table class="table align-items-center mb-0">
+                                                <tbody>
+                                                   <tr>
+                                                      <td>
+                                                         <div class="d-flex px-2 py-1">
+                                                            <div class="d-flex flex-column justify-content-center">
+                                                               <p class="text-xs text-secondary mb-0" style="font-size: 15px;"><a href="../view/page?pageNO=${page.pageNO }">${page.series }화, ${page.pageTitle }</a><br>${page.pageDate }</p>
+                                                               <input type="hidden" name="bookNO"  value="${page.pageNO }">
+                                                               <p class="text-xs text-secondary mb-0">댓글(개수)</p>
                                                             </div>
+                                                         </div>
+                                                      </td>
+                                                      <!-- ======================= 버튼 ========================== -->
+                                                      <td>
+                                                         <div align="right"  style="width: 100%;">
                                                             <div class="button header-button">
-                                                               <a onClick="funok2()" class="btn" style="background-color: #30d8e0;">삭제</a>
+                                                               <a href="" class="btn" style="background-color: #30e087">미리보기(유료)</a>
                                                             </div>
-                                                         </c:if>
-                                                      </div>
-                                                      <!-- ======================= 버튼 끝 ========================== -->
-                                                   </td>
-                                                </tr>
-                                             </tbody>
-                                          </table>
+                                                            <c:if test="${login.admin eq 'A' || login.admin eq 'C'}">
+                                                               <div class="button header-button">
+                                                                  <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">수정</a>
+                                                               </div>
+                                                               <div class="button header-button">
+                                                                  <a onClick="funok2()" class="btn" style="background-color: #30d8e0;">삭제</a>
+                                                               </div>
+                                                            </c:if>
+                                                         </div>
+                                                         <!-- ======================= 버튼 끝 ========================== -->
+                                                      </td>
+                                                   </tr>
+                                                </tbody>
+                                             </table>
+                                          </div>
                                        </div>
-                                    </div>
-                                   </c:forEach> 
+                                    </c:forEach>
                                  </div>
                               </div>
                            </div>
@@ -261,7 +249,7 @@
                                                       <td>
                                                          <div class="d-flex px-2 py-1">
                                                             <div class="d-flex flex-column justify-content-center">
-                                                               <p class="text-xs text-secondary mb-0" style="font-size: 15px;">작성자명 : ${review.nick }(${review.id }),&nbsp;&nbsp;&nbsp;&nbsp;${review.revDate }</p>
+                                                               <p class="text-xs text-secondary mb-0" style="font-size: 15px;">작성자명 : ${review.nick }(${review.id }),&nbsp;&nbsp;&nbsp;&nbsp;작성일 : ${review.revDate }</p>
                                                                <p class="text-xs text-secondary mb-0">${review.revText }</p>
                                                             </div>
                                                          </div>
@@ -287,18 +275,6 @@
                                                                </div>
                                                                <div class="button header-button">
                                                                   <a onClick="funok2()" class="btn" style="background-color: #30d8e0;">삭제</a>
-                                                               </div>
-                                                            </c:if>
-                                                            <!-- [로그인시] -->
-                                                            <c:if test="${!empty login.id && login.id ne '' }">
-                                                               <div class="button header-button">
-                                                                  <a href="javascript:void(0)" class="btn" style="background-color: #ff00eb;">신고하기</a>
-                                                               </div>
-                                                            </c:if>
-                                                            <!-- [비 로그인시]] -->
-                                                            <c:if test="${empty login.id || login.id  eq '' }">
-                                                               <div class="button header-button">
-                                                                  <a data-bs-toggle="modal"  data-bs-target="#login" class="btn" style="background-color: #ff00eb;">신고하기</a>
                                                                </div>
                                                             </c:if>
                                                          </div>
@@ -339,18 +315,6 @@
                                                                   <a onClick="funok2()" class="btn" style="background-color: #30d8e0;">삭제</a>
                                                                </div>
                                                             </c:if>
-                                                            <!-- [로그인시] -->
-                                                            <c:if test="${!empty login.id && login.id ne '' }">
-                                                               <div class="button header-button">
-                                                                  <a href="javascript:void(0)" class="btn" style="background-color: #ff00eb;">신고하기</a>
-                                                               </div>
-                                                            </c:if>
-                                                            <!-- [비 로그인시]] -->
-                                                            <c:if test="${empty login.id || login.id  eq '' }">
-                                                               <div class="button header-button">
-                                                                  <a data-bs-toggle="modal"  data-bs-target="#login" class="btn" style="background-color: #ff00eb;">신고하기</a>
-                                                               </div>
-                                                            </c:if>
                                                          </div>
                                                          <!-- ======================= 버튼 끝 ========================== -->
                                                       </td>
@@ -367,7 +331,7 @@
                            <form id="contactForm" data-sb-form-api-token="API_TOKEN">
                               <br>
                               <div class="form-floating" id="formMag">
-                                 <textarea name="revText" class="form-control" id="message" placeholder="Enter your message here..." style="height: 15rem; width: 66.6%;" data-sb-validations="required"></textarea>
+                                 <textarea name="revText" class="form-control" id="message" style="height: 15rem; width: 66.6%;" data-sb-validations="required"></textarea>
                                  <div class="invalid-feedback" data-sb-feedback="message:required">내용을 입력하세요.</div>
                                  <br><br>
                                  <label for="message">리뷰 쓰기</label>

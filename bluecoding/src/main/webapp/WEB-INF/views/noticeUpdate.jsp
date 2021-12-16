@@ -61,13 +61,13 @@
                <main class="mb-4">
                   <div class="container px-4 px-lg-5">
                      <div class="row gx-4 gx-lg-5 justify-content-center">
-                        <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="col-md-10 col-lg-8 col-xl-7" style="width: 80%">
                            <p id="title">공지사항 수정</p>
                            <hr class="my-4">
                            <!-- ================== 카테고리 ======================= -->
                            <div class="categorise search-form wow fadeInUp">
                               <div class="row">
-                                 <div class="col-lg-3 col-md-3 col-12 p-0">
+                                 <div class="col-lg-3 col-md-3 col-12 p-0" style="width: 20%">
                                     <div class="search-input">
                                        <select name="category" id="category" title="카테고리를 선택하세요" required>
                                           <option value="" >카테고리</option>
@@ -94,7 +94,7 @@
                                  <input type="hidden" value="${newsVO.newsNO }" name="newsNO">           
                               </div>
                               <br>
-                              <div class="form-floating" id="formMag">
+                              <div class="form-floating" id="formMag" style="width: 100%">
                                  <textarea name="newsText" class="form-control" id="message" style="height: 35rem" title="내용을 입력하세요" required>${newsVO.newsText }</textarea>
                                  <label for="message">내용</label>
                               </div>

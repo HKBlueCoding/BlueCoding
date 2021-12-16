@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.pageReply">
+
+	<!-- 테이블 컬럼하고, VO하고 1:1로 맵핑했을때 이름이 다른경우 -->
+	<resultMap id="pageReplyResult" type="PageReplyVO">
+	
+		<result property="pageReNO" column="pageReNO" />
+		<result property="pageParentNO" column="pageParentNO" />
+		<result property="pageReText" column="pageReText" />
+		<result property="pageReDate" column="pageReDate" />
+		<result property="pageReDelete" column="pageReDelete" />
+		<result property="pageNO" column="pageNO" />
+		<result property="id" column="id" />
+		<result property="nick" column="nick" />
+
+	</resultMap>
+
+	<select id="selectAllPageReply" resultMap="pageReplyResult">
+    <![CDATA[
+		SELECT PAGERENO, PAGEPARENTNO, PAGERETEXT, PAGEREDATE, PAGEREDELETE, PAGENO, ID, NICK 
+		FROM B_PAGEREPLY WHERE pageNO=#{pageNO}
+    ]]>
+	</select>
+</mapper>	

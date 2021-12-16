@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.hk.book.vo.BookVO;
+import com.hk.page.vo.PageVO;
 
 @Repository
 public class BookDAO {

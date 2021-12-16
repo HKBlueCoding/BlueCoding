@@ -46,7 +46,7 @@
    <body>
       <!-- header -->
       <jsp:include page="/WEB-INF/views/include/header.jsp"/>
-      <br><br><br><br><br><br><br><br>
+      <br><br><br><br><br><br>
       <!-- =================== 글쓰기 폼 ===================== -->
       <!-- Main Content-->
       <form id="contactForm" data-sb-form-api-token="API_TOKEN" action="add" method="post">
@@ -77,7 +77,7 @@
                         <!-- https://startbootstrap.com/solution/contact-forms-->
                         <!-- to get an API token!-->
                         <div class="form-floating">
-                           <input class="form-control" id="name" name="pageTitle" type="text" placeholder="Enter your name..." data-sb-validations="required" />
+                           <input class="form-control" id="name" name="pageTitle" type="text" data-sb-validations="required" />
                            <label for="name">제목</label>
                            <input type="hidden" value="${bookVO.bookNO }" name="bookNO">
                            <input type="hidden" value="${pageVO.charge }" name="charge">
@@ -85,14 +85,14 @@
                         </div>
                         <br>
                         <div class="form-floating" id="formMag" style="width: 100%">
-                           <textarea class="form-control" id="message" name="pageText" placeholder="Enter your message here..." style="height: 35rem" data-sb-validations="required"></textarea>
+                           <textarea class="form-control" id="message" name="pageText" style="height: 35rem" data-sb-validations="required"></textarea>
                            <label for="message">본문</label>
                            <div class="invalid-feedback" data-sb-feedback="message:required">내용을 입력하세요.</div>
                            <br><br>
                            <div id="Writer">
                               &nbsp;작가의 말
                            </div>
-                           <textarea name="comment" class="form-control" placeholder="Enter your message here..." style="height: 15rem"></textarea>
+                           <textarea name="comment" class="form-control" style="height: 15rem"></textarea>
                         </div>
                         <br />
                         <!-- Submit success message-->

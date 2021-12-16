@@ -26,4 +26,17 @@ public class PageDAO {
 		int ret = sqlSession.insert("mapper.page.insertPage", pageVO);
 		return ret;
 	}
+
+	public PageVO pageList(int pageNO) {
+		// TODO Auto-generated method stub
+		PageVO pageVO = sqlSession.selectOne("mapper.page.selectOnePage", pageNO);
+		return pageVO;
+	}
+
+	public int bookViewUpdate(PageVO pageVO) {
+		// TODO Auto-generated method stub
+		int ret = sqlSession.update("mapper.page.viewUpdateBook", pageVO);
+		return ret;
+	}
+
 }

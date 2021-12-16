@@ -7,7 +7,7 @@
    <head>
       <meta charset="utf-8" />
       <meta http-equiv="x-ua-compatible" content="ie=edge" />
-      <title>회차 글보기</title>
+      <title>회차 글 수정하기</title>
       <meta name="description" content="" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <link rel="shortcut icon" type="image/x-icon"
@@ -36,7 +36,7 @@
       <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
       <!-- Core theme CSS (includes Bootstrap)-->
       <link href="../resources/assets/css/styles.css" rel="stylesheet" />
-            <!-- SBAdmin2 CSS START -->
+      <!-- SBAdmin2 CSS START -->
       <!-- Custom fonts for this template -->
       <link href="../../resources/sbadmin2/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
       <link
@@ -57,12 +57,12 @@
       <!-- Core theme CSS (includes Bootstrap)-->
       <link href="../resources/assets/css/styles.css" rel="stylesheet" />
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" />
-            <!-- Material Icons -->
+      <!-- Material Icons -->
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
-            <!-- CSS Files -->
+      <!-- CSS Files -->
       <link id="pagestyle" href="../../resources/assets/css/material-dashboard.css?v=3.0.0" rel="stylesheet" />
       <!-- marerial CSS END -->  
-            	  <!-- ====================== 페이징 ====================== -->
+      <!-- ====================== 페이징 ====================== -->
       <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
       <!-- ====================== 페이징 끝 ====================== -->
       <style>
@@ -71,57 +71,59 @@
          }
       </style>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
-
    </head>
-   
    <body>
       <!-- header -->
       <jsp:include page="/WEB-INF/views/include/header.jsp"/>
-      <br><br><br><br><br><br><br><br>
+      <br><br><br><br><br><br><br><br><br>
       <!-- =================== 글쓰기 폼 ===================== -->
       <!-- Main Content-->
-      <main class="mb-4">
-         <div class="container px-4 px-lg-5">
-            <div class="row gx-4 gx-lg-5 justify-content-center">
-               <div class="col-md-10 col-lg-8 col-xl-7">
-                  <p id="title">회차 수정하기</p>
-                    <div class="button header-button">
-                        <a href="../view/update" class="btn">수정</a>
-                     </div>
-                    <div class="button header-button">
-						<a onClick="funok2()" class="btn" style="background-color: #30d8e0;">삭제</a>
-                     </div>    
-          			<div class="button header-button">
-                        <a onClick="funbtn()" class="btn">별점주기</a>
+      <form id="contactForm" data-sb-form-api-token="API_TOKEN" action="update" method="post">
+         <main class="mb-4">
+            <div class="container px-4 px-lg-5">
+               <div class="row gx-4 gx-lg-5 justify-content-center">
+                  <div class="col-md-10 col-lg-8 col-xl-7" style="width: 80%">
+                     <p id="title">회차 수정하기</p>
+                     <hr class="my-4">
+                     <!-- ================== 카테고리 ======================= -->
+                     <div class="categorise search-form wow fadeInUp">
+                        <div class="row">
+                           <div class="col-lg-3 col-md-3 col-12 p-0">
+                              <div class="search-input" style="width: 50%">
+                                 <p>회차 : <input type="number" name="series" value="1" min="1" max="10" style="padding: 20px;" required></p>
+                              </div>
+                           </div>
                         </div>
-                    <div class="button header-button">
-                        <a onClick="funbtn()" class="btn">신고하기</a>
-                    </div>
-                  <br><br>
-                  <div class="my-5">
-                     <!-- * * * * * * * * * * * * * * *-->
-                     <!-- * * SB Forms Contact Form * *-->
-                     <!-- * * * * * * * * * * * * * * *-->
-                     <!-- This form is pre-integrated with SB Forms.-->
-                     <!-- To make this form functional, sign up at-->
-                     <!-- https://startbootstrap.com/solution/contact-forms-->
-                     <!-- to get an API token!-->
-                     <form id="contactForm" data-sb-form-api-token="API_TOKEN">
+                     </div>
+                     <br>
+                     <!-- ================== 카테고리 끝 ======================= -->
+                     <p id="title2">&nbsp;&nbsp;${pageVO.series }화, ${pageVO.pageTitle }</p>
+                     <br><br>
+                     <div class="my-5">
+                        <!-- * * * * * * * * * * * * * * *-->
+                        <!-- * * SB Forms Contact Form * *-->
+                        <!-- * * * * * * * * * * * * * * *-->
+                        <!-- This form is pre-integrated with SB Forms.-->
+                        <!-- To make this form functional, sign up at-->
+                        <!-- https://startbootstrap.com/solution/contact-forms-->
+                        <!-- to get an API token!-->
                         <div class="form-floating">
-                           <input class="form-control" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
-                           <label for="name">1화 제목</label>                          
+                           <input class="form-control" name="pageTitle" id="name" type="text" value="${pageVO.pageTitle }" data-sb-validations="required" />
+                           <label for="name">제목</label>
+                           <input type="hidden" value="${pageVO.pageNO }" name="pageNO">
+                           <input type="hidden" value="${pageVO.charge }" name="charge">
                            <div class="invalid-feedback" data-sb-feedback="name:required">제목을 입력하세요.</div>
                         </div>
                         <br>
-                        <div class="form-floating" id="formMag">
-                           <textarea class="form-control" id="message" placeholder="Enter your message here..." style="height: 35rem" data-sb-validations="required"></textarea>
+                        <div class="form-floating" id="formMag" style="width: 100%">
+                           <textarea class="form-control" name="pageText" id="message" style="height: 35rem" data-sb-validations="required">${pageVO.pageText }</textarea>
+                           <label for="name">본문</label>
                            <div class="invalid-feedback" data-sb-feedback="message:required">내용을 입력하세요.</div>
                            <br><br>
                            <div id="Writer">
                               &nbsp;작가의 말
                            </div>
-                           <textarea class="form-control" placeholder="Enter your message here..." style="height: 15rem"></textarea>
-                           <label for="message">본문</label>
+                           <textarea class="form-control" name="comment" style="height: 15rem">${pageVO.comment }</textarea>
                         </div>
                         <br />
                         <!-- Submit success message-->
@@ -144,23 +146,27 @@
                            <div class="text-center text-danger mb-3">Error sending message!</div>
                         </div>
                         <!-- ======================= 버튼 ========================== -->
-
-                   		<div class="button header-button">
-                           <a onClick="funbtn()" class="btn">수정하기</a>
+                        <div class="button header-button">
+                           <p>유료 여부 <input type="checkbox" name="charge"></p>
                         </div>
-						<div class="button header-button">
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <c:if test="${login.admin eq 'A' || login.admin eq 'C'}">
+                           <div class="button header-button">
+                              <input type="submit" value="수정하기" class="btn">
+                              <a onClick="funok2()" class="btn">삭제</a>
+                           </div>
+                        </c:if>
+                        <div class="button header-button">
                            <a onClick="funbtn()" class="btn">돌아가기</a>
                         </div>
-                        
                         <!-- ======================= 버튼 끝 ========================== -->
-                     </form>
+                     </div>
                   </div>
                </div>
             </div>
-         </div>
-      </main>
+         </main>
+      </form>
       <!-- =================== 글쓰기 폼 끝===================== -->
-
       <!-- ==================== footer ====================== -->      
       <!-- footer -->
       <jsp:include page="/WEB-INF/views/include/footer.jsp"/>
@@ -210,6 +216,23 @@
              }
          });
       </script>
-
+      <script>
+         function funbtn() {
+           if (confirm("이전 페이지로 돌아가시겠습니까??")) {
+             javascript:history.back();
+           } else {
+           	return;
+           }
+         }
+      </script>
+      <script>
+         function funok2() {
+           if (confirm("글을 정말 삭제하시겠습니까??")) {
+            alert("정상적으로 삭제되었습니다.")
+           } else {
+           	return;
+           }
+         }
+      </script>
    </body>
 </html>

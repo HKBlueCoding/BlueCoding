@@ -62,7 +62,7 @@ public class BookController {
 		model.addAttribute("ret", ret);
 		
 		return "done/bookAddDone";
-	}	
+	}
 	
 	@GetMapping("/view")
 	public String bookView(Model model, @RequestParam("bookNO") int bookNO) {
@@ -100,7 +100,7 @@ public class BookController {
 		model.addAttribute("bookNO", bookVO.getBookNO());
 		
 		return "done/bookUpdateDone";
-	}	
+	}
 	
 	@GetMapping("/view/add")
 	public String bookViewAdd(@RequestParam("bookNO")int bookNO, Model model) {
@@ -119,19 +119,57 @@ public class BookController {
 		model.addAttribute("ret", ret);
 		model.addAttribute("bookNO", pageVO.getBookNO());
 		return "done/bookViewAddDone";
-	}	
+	}
 	
 	@GetMapping("/view/page")
-	public String bookViewPage() {
+	public String bookViewPageDone(Model model, @RequestParam("pageNO") int pageNO) {
+		Map<String, Object> map = bookService.listPage(pageNO);
+		logger.debug("[map] = " + map);
+		logger.debug("[pageNO] = " + pageNO);
+		
+		model.addAttribute("pageVO", map.get("pageVO"));
+		model.addAttribute("pageReplyVO", map.get("pageReplyVO"));
 		
 		return "bookViewPage";
 	}
 	
 	@GetMapping("/view/update")
-	public String bookViewUpdate() {
+	public String bookViewUpdate(Model model, @RequestParam("pageNO") int pageNO) {
+		logger.debug("[pageNO11] = " + pageNO);
 		
+		PageVO pageVO = bookService.bookPageOne(pageNO);
+		model.addAttribute("pageVO", pageVO);
+		logger.debug("[pageVO11] = " + pageVO);
 		return "bookViewUpdate";
 	}
 	
+	@PostMapping("/view/update")
+	public String bookViewUpdateDone(Model model, @ModelAttribute PageVO pageVO) {
+		logger.debug("[pageVO22] = " + pageVO);
 
+		int ret = bookService.viewUpdateBook(pageVO);
+		model.addAttribute("ret", ret);
+		logger.debug("[ret] = " + ret);
+
+		model.addAttribute("pageNO", pageVO.getPageNO());
+		
+		return "done/bookViewUpdateDone";
+	}
+	
+//	@GetMapping("/add")
+//	public String favoAdd() {
+//		
+//		return "favoAdd";
+//	}
+//	
+//	@PostMapping("/add")
+//	public String favoAddDone(Model model, @ModelAttribute BookVO bookVO, HttpServletResponse response) {
+//		logger.debug("[bookVO] = " + bookVO);
+//		response.setContentType("text/html; charset=UTF-8");
+//
+//		int ret = bookService.addBook(bookVO);
+//		model.addAttribute("ret", ret);
+//		
+//		return "done/favoAddDone";
+//	}
 }

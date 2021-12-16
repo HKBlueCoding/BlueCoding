@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.favo">
+
+	<!-- 테이블 컬럼하고, VO하고 1:1로 맵핑했을때 이름이 다른경우 -->
+	<resultMap id="favoResult" type="FavoVO">
+
+		<result property="id" column="id" />
+		<result property="bookNO" column="bookNO" />
+
+	</resultMap>
+
+	<select id="selectAllFavo" resultMap="favoResult">
+    <![CDATA[
+		SELECT PAGENO, SERIES, PAGETITLE, PAGETEXT, PAGEDATE, "COMMENT", PVIEWCNT, CHARGE, "LIKE", PAGEDELETE, BOOKNO 
+		FROM B_PAGE WHERE bookNO = #{bookNO}
+		ORDER BY SERIES ASC
+    ]]>
+	</select>
+	
+	<insert id="insertFavo" parameterType="favoVO">
+	 <selectKey keyProperty="pageNO" resultType="int" order="BEFORE">
+	 	SELECT max(pageNO)+1 FROM B_PAGE
+	 </selectKey>
+	 <![CDATA[
+	  INSERT INTO B_PAGE 
+	  (PAGENO, SERIES, PAGETITLE, PAGETEXT, PAGEDATE, "COMMENT", PVIEWCNT, CHARGE, "LIKE", BOOKNO) 
+	  VALUES(#{pageNO}, #{series}, #{pageTitle}, #{pageText}, sysdate, #{comment}, 1, #{charge}, 1, #{bookNO})
+	 ]]>
+	</insert>
+</mapper>
