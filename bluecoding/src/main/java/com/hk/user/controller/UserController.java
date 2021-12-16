@@ -111,7 +111,7 @@ public class UserController {
 	      logger.debug("[map] = " + map);
 	      logger.debug("[id] = " + id);
 	      model.addAttribute("bookVO", map.get("bookVO"));
-	      model.addAttribute("bookVO", map.get("boardVO"));
+	      model.addAttribute("boardkVO", map.get("boardVO"));
 	      model.addAttribute("qnaVO", map.get("qnaVO"));
 	
 		return "userChest";
@@ -177,25 +177,4 @@ public class UserController {
 
 		return "done/logoutDone";
 	}
-
-	@RequestMapping(value="/kakaopay", method=RequestMethod.POST)
-	public String kakaopay() throws MalformedURLException {
-		try {
-			URL url = new URL("https://kapi.kakao.com/v1/payment/ready");
-			// 1.kakaopay 서버와 연동(강제 형변환하여 안정적으로 서버연결을 함
-			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-			// 2.연결하는 서버에 POST로 요청
-			connection.setRequestMethod("POST");
-			// Authorization(입증)
-			/* connection. */
-		}catch(MalformedURLException e) {
-			
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return null;
-	}
-	
 }
