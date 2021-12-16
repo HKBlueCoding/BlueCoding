@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -1140,6 +1144,13 @@
            Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
          }
       </script>
+      
+<%--             <c:if test="${empty login.id || login.id ne qnaList[0].id}">
+       <script>
+		  javascript:history.back();
+		</script>
+      </c:if> --%>
+            
       <!-- Github buttons -->
       <script async defer src="https://buttons.github.io/buttons.js"></script>
       <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->

@@ -1,5 +1,7 @@
 package com.hk.user.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +17,8 @@ public class UserDAO {
 	
 	@Autowired
 	SqlSession sqlSession;
+
+
 
 	public int addUser(UserVO userVO) {
 		// TODO Auto-generated method stub
@@ -35,5 +39,6 @@ public class UserDAO {
 		UserVO userVO = sqlSession.selectOne("mapper.user.dupId",id);
 		return userVO;
 	}
+
 	
 }

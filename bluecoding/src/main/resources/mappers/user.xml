@@ -6,27 +6,68 @@
 <mapper namespace="mapper.user">
 
 	<!-- 테이블 컬럼하고, VO하고 1:1로 맵핑했을때 이름이 다른경우 -->
-	<resultMap id="userResult" type="UserVO">
-	
+	<resultMap id="userResult" type="UserVO">	
 		<result property="id" column="id" />
 		<result property="pwd" column="pwd" />
 		<result property="find" column="find" />
 		<result property="name" column="name" />
-		<result property="coin" column="coin" />
-		
+		<result property="coin" column="coin" />	
 		<result property="nick" column="nick" />
 		<result property="email" column="email" />
 		<result property="birth" column="birth" />
 		<result property="joinDate" column="joinDate" />
-		<result property="pageNO" column="pageNO" />
-		
+		<result property="pageNO" column="pageNO" />	
 		<result property="phone" column="phone" />
 		<result property="gauge" column="gauge" />
 		<result property="profile" column="profile" />
 		<result property="prohibitLv" column="prohibitLv" />
 		<result property="admin" column="admin" />
-
 	</resultMap>
+	
+	<resultMap id="bookResult" type="BookVO">	
+		<result property="bookNO" column="bookNO" />
+		<result property="bookTitle" column="bookTitle" />
+		<result property="intro" column="intro" />
+		<result property="theme" column="theme" />
+		<result property="bookImage" column="bookImage" />
+		<result property="bookDelete" column="bookDelete" />
+		<result property="name" column="name" />
+		<result property="id" column="id" />
+		<result property="bookDate" column="bookDate" />
+		<result property="bViewCnt" column="bViewCnt" />
+	</resultMap>
+	
+	<resultMap id="boardResult" type="BoardVO">	
+		<result property="articleNO" column="articleNO" />
+		<result property="boardTitle" column="boardTitle" />
+		<result property="boardText" column="boardText" />
+		<result property="boardDate" column="boardDate" />	
+		<result property="boardImage" column="boardImage" />
+		<result property="bViewCnt" column="bViewCnt" />
+		<result property="boardDelete" column="boardDelete" />
+		<result property="id" column="id" />
+		<result property="nick" column="nick" />		
+	</resultMap>
+	
+	<resultMap id="qnaResult" type="QnaVO">
+		<result property="qnaNO" column="qnaNO" />
+		<result property="qnaParentNO" column="qnaParentNO" />
+		<result property="qnaList" column="qnaList" />
+		<result property="qnaTitle" column="qnaTitle" />
+		<result property="qnaText" column="qnaText" />
+		<result property="qnaImage" column="qnaImage" />
+		<result property="isProcess" column="isProcess" />
+		<result property="qnaDate" column="qnaDate" />
+		<result property="finishDate" column="finishDate" />
+		<result property="id" column="id" />
+	</resultMap>
+	
+	<resultMap id="userMap" type="java.util.Map" >
+		<collection resultMap="bookResult" property="BookVO" />
+		<collection resultMap="boardResult" property="BoardVO" />
+		<collection resultMap="qnaResult" property="QnaVO"  />
+	</resultMap>
+	
 
 	<!-- [회원가입] -->
 	<insert id="insertUser" parameterType="UserVO">
@@ -49,5 +90,12 @@
 	  SELECT * FROM b_user WHERE id = #{id} AND pwd=#{pwd}
 	 ]]>
 	</select>
+	
+	<!-- [보관함 조회] -->	
+<!-- 	<select id="chestOfId" resultMap="mapOfId">
+	 <![CDATA[
+	 SELECT * FROM 
+	 ]]>	
+	</select> -->
 	
 </mapper>

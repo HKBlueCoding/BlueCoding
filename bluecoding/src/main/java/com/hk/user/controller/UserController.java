@@ -3,6 +3,7 @@ package com.hk.user.controller;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.hk.qna.vo.QnaVO;
 import com.hk.user.service.UserService;
 import com.hk.user.vo.UserVO;
 
@@ -100,9 +102,17 @@ public class UserController {
 		return "userInfo";
 	}
 
+	// [사용자 보관함]	
 	@RequestMapping(value = "/user/chest", method = RequestMethod.GET)
-	public String userChest() {
-
+	public String userChest(Model model, @RequestParam("id") String id) {
+		
+		Map<String, Object> map = userService.userArticleList(id);
+	      logger.debug("[map] = " + map);
+	      logger.debug("[id] = " + id);
+	      model.addAttribute("bookVO", map.get("bookVO"));
+	      model.addAttribute("bookVO", map.get("boardVO"));
+	      model.addAttribute("qnaVO", map.get("qnaVO"));
+	
 		return "userChest";
 	}
 
