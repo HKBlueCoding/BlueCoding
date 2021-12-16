@@ -81,10 +81,12 @@ function goQnaHome(id){
 function coinCharge(){
 	
 	$.ajax({
-		type: 'POST',
-		url:'user/kakaopay',
+		
+		url:'/kakaopay/buy',
 		dataType: 'json',
 		success: function(data){
+			var box = data.next_redirect_pc_url;
+			window.open(box);
 		},
 		error: function(error){
 			alert('에러: '+error);
