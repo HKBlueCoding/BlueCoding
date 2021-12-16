@@ -1,6 +1,7 @@
 package com.hk.book.service;
 
 import java.util.HashMap;
+
 import java.util.List;
 import java.util.Map;
 
@@ -9,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import com.hk.book.dao.BookDAO;
 import com.hk.book.vo.BookVO;
-import com.hk.favo.dao.FavoDAO;
 import com.hk.favo.vo.FavoVO;
 import com.hk.page.dao.PageDAO;
 import com.hk.page.vo.PageVO;
@@ -33,8 +33,6 @@ public class BookService {
 	@Autowired
 	PageReplyDAO pageReplyDAO;
 	
-	@Autowired
-	FavoDAO favoDAO;
 	
 	public List<BookVO> listBook() {
 		// TODO Auto-generated method stub

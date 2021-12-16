@@ -5,7 +5,7 @@
         
 <mapper namespace="mapper.chest">
 
-	<resultMap id="chestResult" type="chestVO">
+<!-- 	<resultMap id="chestResult" type="chestVO">
 	
 		<result property="bookNO" column="bookNO" />
 		<result property="bookTitle" column="bookTitle" />
@@ -68,5 +68,5 @@
 	SELECT bb.BOOKIMAGE, bb.BOOKTITLE , bb.INTRO, bb.NAME FROM B_BOOK bb, B_FAVO bf
 	WHERE bb.id=bf.id
 	]]>
-	</select>
+	</select> -->
 </mapper>
