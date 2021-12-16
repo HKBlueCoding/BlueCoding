@@ -10,13 +10,10 @@ public class BoardVO {
 	private String boardText;
 	private Date boardDate;
 	private String boardImage;
-	private int bViewCnt;
+	private int bdViewCnt;
 	private String boardDelete;
 	private String id;
 	private String nick;
-	
-	
-	// Getter & Setter
 	public int getArticleNO() {
 		return articleNO;
 	}
@@ -47,11 +44,11 @@ public class BoardVO {
 	public void setBoardImage(String boardImage) {
 		this.boardImage = boardImage;
 	}
-	public int getbViewCnt() {
-		return bViewCnt;
+	public int getBdViewCnt() {
+		return bdViewCnt;
 	}
-	public void setbViewCnt(int bViewCnt) {
-		this.bViewCnt = bViewCnt;
+	public void setBdViewCnt(int bdViewCnt) {
+		this.bdViewCnt = bdViewCnt;
 	}
 	public String getBoardDelete() {
 		return boardDelete;
@@ -71,16 +68,11 @@ public class BoardVO {
 	public void setNick(String nick) {
 		this.nick = nick;
 	}
-	
-	// toString()
 	@Override
 	public String toString() {
 		return "BoardVO [articleNO=" + articleNO + ", boardTitle=" + boardTitle + ", boardText=" + boardText
-				+ ", boardDate=" + boardDate + ", boardImage=" + boardImage + ", bViewCnt=" + bViewCnt
+				+ ", boardDate=" + boardDate + ", boardImage=" + boardImage + ", bdViewCnt=" + bdViewCnt
 				+ ", boardDelete=" + boardDelete + ", id=" + id + ", nick=" + nick + "]";
 	}
 	
-	
-	
-
 }

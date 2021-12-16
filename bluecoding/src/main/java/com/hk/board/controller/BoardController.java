@@ -33,8 +33,9 @@ public class BoardController {
 	// SELECT
 	@RequestMapping(value="/board/list", method= {RequestMethod.GET, RequestMethod.POST})
 	public String boardList(Model model) {
-		
+		logger.debug("[리스트 실행됨]");
 		List<BoardVO> boardList = boardService.listArticles();
+		logger.debug("[리스트]"+boardList);
 		model.addAttribute("boardList", boardList);
 		
 		return "boardList";
