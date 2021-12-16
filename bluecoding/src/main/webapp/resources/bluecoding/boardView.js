@@ -6,6 +6,7 @@ function fn_enable_b1(obj) {
 	document.getElementById("boardContent").disabled = false;
 	document.getElementById("i_title_b1").disabled = false;
 	document.getElementById("tr_btn_modify_b1").style.display = "block";
+	document.getElementById("tr_btn_File").style.display = "block";
 	document.getElementById("tr_btn_b1").style.display = "none";
 	document.getElementById("tr_btn_b2").style.display = "none";
 	document.getElementById("tr_btn_b3").style.display = "none";

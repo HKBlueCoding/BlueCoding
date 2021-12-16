@@ -13,7 +13,7 @@
 		<result property="boardDate" column="boardDate" />
 		
 		<result property="boardImage" column="boardImage" />
-		<result property="bViewCnt" column="bViewCnt" />
+		<result property="bdViewCnt" column="bdViewCnt" />
 		<result property="boardDelete" column="boardDelete" />
 		<result property="id" column="id" />
 		<result property="nick" column="nick" />
@@ -37,7 +37,7 @@
   			<![CDATA[
 			INSERT INTO B_BOARD 
 			(ARTICLENO, BOARDTITLE, BOARDTEXT, BOARDDATE, BOARDIMAGE, BDVIEWCNT, ID, NICK) 
-			VALUES(#{articleNO}, #{boardTitle}, #{boardText}, sysdate, #{boardImage}, 0, 'sndlgudsla123', 'qkrwjdghks')
+			VALUES(#{articleNO}, #{boardTitle}, #{boardText}, sysdate, #{boardImage}, 0, #{id}, #{nick})
 			]]>
 	</insert>
 	
@@ -51,7 +51,7 @@
 	
 	<update id="updateArticle" parameterType="BoardVO">
 		<![CDATA[
-		UPDATE B_BOARD SET BOARDTITLE=#{boardTitle}, BOARDTEXT=#{boardText}
+		UPDATE B_BOARD SET BOARDTITLE=#{boardTitle}, BOARDTEXT=#{boardText}, BOARDIMAGE = #{boardImage}
 		WHERE ARTICLENO=#{articleNO}
 		]]>
 	</update>
@@ -63,5 +63,12 @@
 	WHERE ARTICLENO=#{ARTICLENO}
 		]]>	
 	</update>
+	
+	<select id="selectArticleNO" resultType="int" parameterType="BoardVO">
+	  <![CDATA[
+		SELECT articleNO FROM B_BOARD 
+		WHERE boardTitle = #{boardTitle} AND boardImage = #{boardImage} AND id=#{id}
+	  ]]>	
+	</select>
 	
 </mapper>

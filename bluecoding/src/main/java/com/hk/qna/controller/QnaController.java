@@ -51,7 +51,8 @@ public class QnaController {
 
 	// [실제로 DB에 게시글 추가]
 	@PostMapping("/qna/add")
-	public String qnaAddDone(Model model, @ModelAttribute QnaVO qnaVO, @RequestParam("uploadFile") MultipartFile file) throws Exception {
+	public String qnaAddDone(Model model, @ModelAttribute QnaVO qnaVO, @RequestParam("uploadFile") MultipartFile file)
+			throws Exception {
 
 		logger.debug("[qnaVO] = " + qnaVO);
 		logger.debug("[이미지 이름]" + file.getOriginalFilename());
@@ -79,11 +80,11 @@ public class QnaController {
 			} else {
 				logger.debug("[QNA 글쓰기]폴더가 이미 존재합니다!!");
 			}
-			//				 c:\\bluecoding\\qna\\해당 qnaNO\\파일명.png
-			file.transferTo(new File(QNA_FILE_PATH+"\\"+qnaNO, fileName));
+			// c:\\bluecoding\\qna\\해당 qnaNO\\파일명.png
+			file.transferTo(new File(QNA_FILE_PATH + "\\" + qnaNO, fileName));
 		}
-		
-		 model.addAttribute("ret", qnaNO);	 
+
+		model.addAttribute("ret", qnaNO);
 
 		return "done/qnaAddDone";
 	}
@@ -99,43 +100,44 @@ public class QnaController {
 
 	// 일반유저 게시글 수정
 	@PostMapping("/qna/update")
-	public String qnaUpdate(Model model, @ModelAttribute QnaVO qnaVO, @RequestParam("uploadFile") MultipartFile file) throws Exception {
+	public String qnaUpdate(Model model, @ModelAttribute QnaVO qnaVO, @RequestParam("uploadFile") MultipartFile file)
+			throws Exception {
 
 		logger.debug("Get Attribute [qnaVO] = " + qnaVO);
-		
-		// 새로운 파일이 추가 되었을때..
-		if(!file.getOriginalFilename().isEmpty()) {
-	         String fileName = file.getOriginalFilename();
-	         
-	         // 추가전, 이미지 삭제(처음부터 이미지가 없을수도 있으니 if로 걸러냄
-	         if(!qnaVO.getQnaImage().isEmpty()) {
-	             File fileDel = new File(QNA_FILE_PATH + "\\" + qnaVO.getQnaNO() + "\\" + qnaVO.getQnaImage());
-	             if (fileDel.exists()) {
-	                fileDel.delete();
-	             }	        	 
-	         }
-	         
-	         File folder = new File(QNA_FILE_PATH + "\\" + qnaVO.getQnaNO());
 
-	         if (!folder.exists()) {
-	            try {
-	               folder.mkdir();
-	               logger.debug("폴더가 생성됨!!");
-	            } catch (Exception e) {
-	               e.getStackTrace();
-	            }
-	         } else {
-	            logger.debug("[QNA 수정] 폴더가 이미 존재합니다!!");
-	         }
-	         // 생성한 newsNO 폴더 안에 파일을 넣음
-	         file.transferTo(new File(QNA_FILE_PATH + "\\" +  qnaVO.getQnaNO(), fileName));
-	         
-	         // 넣은게 성공한거니, VO에 추가
-	         qnaVO.setQnaImage(fileName);         
+		// 새로운 파일이 추가 되었을때..
+		if (!file.getOriginalFilename().isEmpty()) {
+			String fileName = file.getOriginalFilename();
+
+			// 추가전, 이미지 삭제(처음부터 이미지가 없을수도 있으니 if로 걸러냄
+			if (!qnaVO.getQnaImage().isEmpty()) {
+				File fileDel = new File(QNA_FILE_PATH + "\\" + qnaVO.getQnaNO() + "\\" + qnaVO.getQnaImage());
+				if (fileDel.exists()) {
+					fileDel.delete();
+				}
+			}
+
+			File folder = new File(QNA_FILE_PATH + "\\" + qnaVO.getQnaNO());
+
+			if (!folder.exists()) {
+				try {
+					folder.mkdir();
+					logger.debug("폴더가 생성됨!!");
+				} catch (Exception e) {
+					e.getStackTrace();
+				}
+			} else {
+				logger.debug("[QNA 수정] 폴더가 이미 존재합니다!!");
+			}
+			// 생성한 newsNO 폴더 안에 파일을 넣음
+			file.transferTo(new File(QNA_FILE_PATH + "\\" + qnaVO.getQnaNO(), fileName));
+
+			// 넣은게 성공한거니, VO에 추가
+			qnaVO.setQnaImage(fileName);
 		}
-		
+
 		int ret = qnaService.modQna(qnaVO);
-		
+
 		model.addAttribute("ret", ret);
 		model.addAttribute("qnaNO", qnaVO.getQnaNO());
 

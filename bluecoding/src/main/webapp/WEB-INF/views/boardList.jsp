@@ -112,7 +112,7 @@
                                     <span class="text-secondary text-xs font-weight-bold">${boardList.id }</span>
                                  </td>
                                  <td class="align-middle text-center text-sm">
-                                    <span class="badge badge-sm bg-gradient-success" style="background-image: linear-gradient(180deg,#419cef 10%,#106ec3 100%);">${boardList.bViewCnt }</span>
+                                    <span class="badge badge-sm bg-gradient-success" style="background-image: linear-gradient(180deg,#419cef 10%,#106ec3 100%);">${boardList.bdViewCnt }</span>
                                  </td>
                                  <td class="align-middle text-center">
                                     <span class="text-secondary text-xs font-weight-bold">${boardList.boardDate }</span>

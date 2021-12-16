@@ -49,4 +49,10 @@ public class BoardDAO {
 		return ret;
 	}
 
+	public int selectArticleNO(BoardVO boardVO) {
+		// TODO Auto-generated method stub
+		int articleNO = sqlSession.selectOne("mapper.board.selectArticleNO", boardVO);
+		return articleNO;
+	}
+
 }

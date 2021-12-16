@@ -9,7 +9,7 @@
       <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
       		  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
               crossorigin="anonymous"></script>
-      <script src="../../resources/bluecoding/login.js"></script>
+      <script src="../../resources/bluecoding/nav.js"></script>
 <!-- Start Header Area -->
 <header class="header navbar-area">
     <div class="container">
@@ -79,7 +79,7 @@
                             				<a class="text-xs text-secondary mb-0" onclick="loginMenu" style="font-size: 0.875em;" data-bs-toggle="collapse" data-bs-target="#loginMore">메뉴</a>
                           					<ul class="sub-menu collapse" id="loginMore" >
                                             	<li class="nav-item"><a id="loginInfo" href="">내 정보</a></li>
-                                            	<li class="nav-item"><a href="javascript:void(0)">캐시 충전</a></li>
+                                            	<li class="nav-item" onClick="coinCharge()" ><a href="#">캐시 충전</a></li>
                                             	<li id="loginCash" class="nav-item">보유 캐시: ${login.coin }</li>
                                         	</ul>
                           				</div>
@@ -102,7 +102,7 @@
 </header>
 <!-- End Header Area -->
 
-<!-- The Modal -->
+<!-- [로그인 Modal] -->
 <div class="modal fade" id="login">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -135,3 +135,4 @@
         </div>
     </div>
 </div>
+<!-- [로그인 Modal 끝] -->

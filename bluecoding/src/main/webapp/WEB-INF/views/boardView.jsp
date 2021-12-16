@@ -44,12 +44,7 @@
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css"
 	rel="stylesheet" />
-<style>
-.search-form {
-	/* all: unset; */
 	
-}
-</style>
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="../resources/bluecoding/boardView.js"></script>
@@ -68,7 +63,7 @@
 	<!-- =================== 글쓰기 폼 ===================== -->
 	<!-- Main Content-->
 	<form id="contactForm" data-sb-form-api-token="API_TOKEN"
-		name="frmArticle" method="post" action="update">
+		name="frmArticle" method="post" action="update" encType="multipart/form-data">
 		<main class="mb-4">
 			<div class="container px-4 px-lg-5">
 				<div class="row gx-4 gx-lg-5 justify-content-center">
@@ -119,28 +114,31 @@
 								<!-- to get an API token!-->
 
 								<br>
-								<div class="form-floating" id="formMag">
+								<div class="form-floating" id="formMag" style="width: 80%"">
 									<textarea class="form-control" id="boardContent" name="boardText" placeholder="Enter your message here..."
-										style="height: 15rem" data-sb-validations="required" disabled>${board.boardText }</textarea>
+										style="height: 15rem;""  data-sb-validations="required" disabled>${board.boardText }</textarea>
 									<label for="message">내용</label>
-									<input type="hidden" name="boardImage">
 									<div class="invalid-feedback" data-sb-feedback="message:required">내용을 입력하세요.</div>
 								</div>
 								<br />
+                                <div align="center" id="tr_btn_File" style="display: none;">
+                                                         이미지 선택: <input type="file" name="uploadFile" onchange="readURL(this)" > 																		
+									<input type="hidden" name="boardImage" value="${board.boardImage}">
+								</div>
+								<br>								
 								<!-- Submit success message-->
 								<!---->
 								<!-- This is what your users will see when the form-->
 								<!-- has successfully submitted-->
-								<div class="d-none" id="submitSuccessMessage">
-									<div class="text-center mb-3">
-										<div class="fw-bolder">Form submission successful!</div>
-										To activate this form, sign up at <br /> <a
-											href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
-									</div>
-								</div>
-							</div>
+								<c:if test="${empty board.boardImage }">
+                           	       <img src="../../resources/assets/images/mainPage/board1.png" width="979" height="500" class="avatar avatar-sm me-3 border-radius-lg" alt="user1" id="preview" style="float: left">
+                                </c:if>
+                                <c:if test="${!empty board.boardImage }">
+                                   <img src="../../download?uploadFile=${board.boardImage }&inFolder=board&pk=${board.articleNO}" width="979" height="500" class="avatar avatar-sm me-3 border-radius-lg" alt="user1" id="preview" style="float: left">
+                                </c:if>
 						</div>
 					</div>
+			</div>
 		</main>
 	</form>
 
@@ -317,5 +315,16 @@
 			}
 		});
 	</script>
+	<script>
+ 	function readURL(input){
+		if(input.files && input.files[0]){
+			var reader = new FileReader();
+			reader.onload = function (e){
+				$('#preview').attr('src',e.target.result);
+			}
+			reader.readAsDataURL(input.files[0]);
+		}
+	}	
+	</script>	
 </body>
 </html>

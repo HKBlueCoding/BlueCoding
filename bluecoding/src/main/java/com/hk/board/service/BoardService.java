@@ -21,7 +21,15 @@ public class BoardService {
 
 	public int addArticle(BoardVO boardVO) {
 		// TODO Auto-generated method stub
-		return boardDAO.addArticle(boardVO);
+		
+		int ret = boardDAO.addArticle(boardVO);
+		
+		int articleNO = 0;
+		if(ret > 0) {
+			articleNO = boardDAO.selectArticleNO(boardVO);
+		}
+		
+		return articleNO;
 	}
 
 	public BoardVO viewArticle(int articleNO) {

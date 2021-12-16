@@ -16,13 +16,13 @@ request.setCharacterEncoding("UTF-8");
 	<c:if test="${rs == 0}">
 		<script>
 			alert('삭제에 실패하였습니다.');
-			location.href = "../../board/view?boardNO=${boardNO }";
+			location.href = "../../board/list";
 		</script>
 	</c:if>
 	<c:if test="${rs == 1}">
 		<script>
 			alert('삭제되었습니다.');
-			location.href = "../../board/view";
+			location.href = "../../board/list";
 		</script>
 	</c:if>
 

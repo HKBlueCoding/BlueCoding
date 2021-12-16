@@ -61,6 +61,7 @@ function gaugeSet(gauge) {
 	}	
 }
 
+// [해당 유저의 QNA 이동]
 function goQnaHome(id){
 	
 	// 로그인을 안했을경우
@@ -74,4 +75,9 @@ function goQnaHome(id){
 	
 }
 
-	
+
+// [캐시 충전]
+
+function coinCharge(){
+
+}	
