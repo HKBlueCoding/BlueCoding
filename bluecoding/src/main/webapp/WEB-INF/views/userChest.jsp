@@ -63,7 +63,7 @@
 <body>
       <jsp:include page="/WEB-INF/views/include/header.jsp" />
       <br><br><br><br><br><br><br><br>
-      <!-- ========================= 관심 작품 끝 ========================= -->
+      <!-- ========================= 관심 작품 ========================= -->
       <div id="aa">
          <div class="container-fluid py-4" style="height:auto; width:60%;">
             <!-- ======================= 버튼 ========================== -->
@@ -108,181 +108,19 @@
                                              <img src="../resources/assets/images/mainPage/board1.png" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
                                           </div>
                                           <div class="d-flex flex-column justify-content-center">
-                                             <a href="../view" class="mb-0 text-sm" style="color: black">제목입니다[0]</a>
-                                             <p class="text-xs text-secondary mb-0">장르</p>
-                                             <p class="text-xs text-secondary mb-0">댓글(개수)</p>
+                                             <a href="../view" class="mb-0 text-sm" style="color: black">${book.boardTitle}[${book.bViewCnt}]</a>
+                                             <p class="text-xs text-secondary mb-0">${book.theme}</p>
                                           </div>
                                        </div>
                                     </td>
                                     <td class="align-middle">
-                                       <span class="text-secondary text-xs font-weight-bold">이름</span>
+                                       <span class="text-secondary text-xs font-weight-bold">${book.name}</span>
                                     </td>
                                     <td class="align-middle text-center text-sm">
                                        <span class="badge badge-sm bg-gradient-success" style="background-image: linear-gradient(180deg,#419cef 10%,#106ec3 100%);">100</span>
                                     </td>
                                     <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
-                                    </td>
-                                 </tr>
-                                 <tr>
-                                    <td>
-                                       <div class="d-flex px-2 py-1">
-                                          <div>
-                                             <img src="../resources/assets/images/mainPage/board1.png" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
-                                          </div>
-                                          <div class="d-flex flex-column justify-content-center">
-                                             <a href="../view" class="mb-0 text-sm" style="color: black">제목입니다[0]</a>
-                                             <p class="text-xs text-secondary mb-0">장르</p>
-                                             <p class="text-xs text-secondary mb-0">댓글(개수)</p>
-                                          </div>
-                                       </div>
-                                    </td>
-                                    <td class="align-middle">
-                                       <span class="text-secondary text-xs font-weight-bold">이름</span>
-                                    </td>
-                                    <td class="align-middle text-center text-sm">
-                                       <span class="badge badge-sm bg-gradient-success" style="background-image: linear-gradient(180deg,#419cef 10%,#106ec3 100%);">100</span>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
-                                    </td>
-                                 </tr>
-                                 <tr>
-                                    <td>
-                                       <div class="d-flex px-2 py-1">
-                                          <div>
-                                             <img src="../resources/assets/images/mainPage/board1.png" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
-                                          </div>
-                                          <div class="d-flex flex-column justify-content-center">
-                                             <a href="../view" class="mb-0 text-sm" style="color: black">제목입니다[0]</a>
-                                             <p class="text-xs text-secondary mb-0">장르</p>
-                                             <p class="text-xs text-secondary mb-0">댓글(개수)</p>
-                                          </div>
-                                       </div>
-                                    </td>
-                                    <td class="align-middle">
-                                       <span class="text-secondary text-xs font-weight-bold">이름</span>
-                                    </td>
-                                    <td class="align-middle text-center text-sm">
-                                       <span class="badge badge-sm bg-gradient-success" style="background-image: linear-gradient(180deg,#419cef 10%,#106ec3 100%);">100</span>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
-                                    </td>
-                                 </tr>
-                                 <tr>
-                                    <td>
-                                       <div class="d-flex px-2 py-1">
-                                          <div>
-                                             <img src="../resources/assets/images/mainPage/board1.png" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
-                                          </div>
-                                          <div class="d-flex flex-column justify-content-center">
-                                             <a href="../view" class="mb-0 text-sm" style="color: black">제목입니다[0]</a>
-                                             <p class="text-xs text-secondary mb-0">장르</p>
-                                             <p class="text-xs text-secondary mb-0">댓글(개수)</p>
-                                          </div>
-                                       </div>
-                                    </td>
-                                    <td class="align-middle">
-                                       <span class="text-secondary text-xs font-weight-bold">이름</span>
-                                    </td>
-                                    <td class="align-middle text-center text-sm">
-                                       <span class="badge badge-sm bg-gradient-success" style="background-image: linear-gradient(180deg,#419cef 10%,#106ec3 100%);">100</span>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
-                                    </td>
-                                 </tr>
-                                 <tr>
-                                    <td>
-                                       <div class="d-flex px-2 py-1">
-                                          <div>
-                                             <img src="../resources/assets/images/mainPage/board1.png" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
-                                          </div>
-                                          <div class="d-flex flex-column justify-content-center">
-                                             <a href="../view" class="mb-0 text-sm" style="color: black">제목입니다[0]</a>
-                                             <p class="text-xs text-secondary mb-0">장르</p>
-                                             <p class="text-xs text-secondary mb-0">댓글(개수)</p>
-                                          </div>
-                                       </div>
-                                    </td>
-                                    <td class="align-middle">
-                                       <span class="text-secondary text-xs font-weight-bold">이름</span>
-                                    </td>
-                                    <td class="align-middle text-center text-sm">
-                                       <span class="badge badge-sm bg-gradient-success" style="background-image: linear-gradient(180deg,#419cef 10%,#106ec3 100%);">100</span>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
-                                    </td>
-                                 </tr>
-                                 <tr>
-                                    <td>
-                                       <div class="d-flex px-2 py-1">
-                                          <div>
-                                             <img src="../resources/assets/images/mainPage/board1.png" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
-                                          </div>
-                                          <div class="d-flex flex-column justify-content-center">
-                                             <a href="../view" class="mb-0 text-sm" style="color: black">제목입니다[0]</a>
-                                             <p class="text-xs text-secondary mb-0">장르</p>
-                                             <p class="text-xs text-secondary mb-0">댓글(개수)</p>
-                                          </div>
-                                       </div>
-                                    </td>
-                                    <td class="align-middle">
-                                       <span class="text-secondary text-xs font-weight-bold">이름</span>
-                                    </td>
-                                    <td class="align-middle text-center text-sm">
-                                       <span class="badge badge-sm bg-gradient-success" style="background-image: linear-gradient(180deg,#419cef 10%,#106ec3 100%);">100</span>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
-                                    </td>
-                                 </tr>
-                                 <tr>
-                                    <td>
-                                       <div class="d-flex px-2 py-1">
-                                          <div>
-                                             <img src="../resources/assets/images/mainPage/board1.png" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
-                                          </div>
-                                          <div class="d-flex flex-column justify-content-center">
-                                             <a href="../view" class="mb-0 text-sm" style="color: black">제목입니다[0]</a>
-                                             <p class="text-xs text-secondary mb-0">장르</p>
-                                             <p class="text-xs text-secondary mb-0">댓글(개수)</p>
-                                          </div>
-                                       </div>
-                                    </td>
-                                    <td class="align-middle">
-                                       <span class="text-secondary text-xs font-weight-bold">이름</span>
-                                    </td>
-                                    <td class="align-middle text-center text-sm">
-                                       <span class="badge badge-sm bg-gradient-success" style="background-image: linear-gradient(180deg,#419cef 10%,#106ec3 100%);">100</span>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
-                                    </td>
-                                 </tr>
-                                 <tr>
-                                    <td>
-                                       <div class="d-flex px-2 py-1">
-                                          <div>
-                                             <img src="../resources/assets/images/mainPage/board1.png" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
-                                          </div>
-                                          <div class="d-flex flex-column justify-content-center">
-                                             <a href="../view" class="mb-0 text-sm" style="color: black">제목입니다[0]</a>
-                                             <p class="text-xs text-secondary mb-0">장르</p>
-                                             <p class="text-xs text-secondary mb-0">댓글(개수)</p>
-                                          </div>
-                                       </div>
-                                    </td>
-                                    <td class="align-middle">
-                                       <span class="text-secondary text-xs font-weight-bold">이름</span>
-                                    </td>
-                                    <td class="align-middle text-center text-sm">
-                                       <span class="badge badge-sm bg-gradient-success" style="background-image: linear-gradient(180deg,#419cef 10%,#106ec3 100%);">100</span>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
+                                       <span class="text-secondary text-xs font-weight-bold">${book.bookDate}</span>
                                     </td>
                                  </tr>
                               </tbody>
@@ -379,220 +217,23 @@
                                              <img src="../resources/assets/images/mainPage/board1.png" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
                                           </div>
                                           <div class="d-flex flex-column justify-content-center">
-                                             <a href="../view/page" class="mb-0 text-sm" style="color: black">제목입니다[0]</a>
-                                             <p class="text-xs text-secondary mb-0">장르</p>
-                                             <p class="text-xs text-secondary mb-0">작성자</p>
+                                             <a href="../view/page" class="mb-0 text-sm" style="color: black">${page.pageTitle}[${page.pViewCnt}]</a>
+                                             <p class="text-xs text-secondary mb-0">${book.name}</p>
                                           </div>
                                        </div>
                                     </td>
                                     <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">1화</span>
+                                       <span class="text-secondary text-xs font-weight-bold">${page.series}</span>
                                     </td>
                                     <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">-200코인</span>
+                                       <span class="text-secondary text-xs font-weight-bold">-${pageBuy.pagePay}</span>
                                     </td>
                                     <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
+                                       <span class="text-secondary text-xs font-weight-bold">${pageBuy.pagePayDate}</span>
                                     </td>
                                     <td class="align-middle text-center">
                                        <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #ab0dd7">환불하기</a>
-                                       </div>
-                                    </td>
-                                 </tr>
-                                 <tr>
-                                    <td>
-                                       <div class="d-flex px-2 py-1">
-                                          <div>
-                                             <img src="../resources/assets/images/mainPage/board1.png" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
-                                          </div>
-                                          <div class="d-flex flex-column justify-content-center">
-                                             <a href="../view/page" class="mb-0 text-sm" style="color: black">제목입니다[0]</a>
-                                             <p class="text-xs text-secondary mb-0">장르</p>
-                                             <p class="text-xs text-secondary mb-0">작성자</p>
-                                          </div>
-                                       </div>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">1화</span>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">-200코인</span>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                       <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #ab0dd7">환불하기</a>
-                                       </div>
-                                    </td>
-                                 </tr>
-                                 <tr>
-                                    <td>
-                                       <div class="d-flex px-2 py-1">
-                                          <div>
-                                             <img src="../resources/assets/images/mainPage/board1.png" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
-                                          </div>
-                                          <div class="d-flex flex-column justify-content-center">
-                                             <a href="../view/page" class="mb-0 text-sm" style="color: black">제목입니다[0]</a>
-                                             <p class="text-xs text-secondary mb-0">장르</p>
-                                             <p class="text-xs text-secondary mb-0">작성자</p>
-                                          </div>
-                                       </div>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">1화</span>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">-200코인</span>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                       <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #ab0dd7">환불하기</a>
-                                       </div>
-                                    </td>
-                                 </tr>
-                                 <tr>
-                                    <td>
-                                       <div class="d-flex px-2 py-1">
-                                          <div>
-                                             <img src="../resources/assets/images/mainPage/board1.png" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
-                                          </div>
-                                          <div class="d-flex flex-column justify-content-center">
-                                             <a href="../view/page" class="mb-0 text-sm" style="color: black">제목입니다[0]</a>
-                                             <p class="text-xs text-secondary mb-0">장르</p>
-                                             <p class="text-xs text-secondary mb-0">작성자</p>
-                                          </div>
-                                       </div>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">1화</span>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">-200코인</span>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                       <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #ab0dd7">환불하기</a>
-                                       </div>
-                                    </td>
-                                 </tr>
-                                 <tr>
-                                    <td>
-                                       <div class="d-flex px-2 py-1">
-                                          <div>
-                                             <img src="../resources/assets/images/mainPage/board1.png" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
-                                          </div>
-                                          <div class="d-flex flex-column justify-content-center">
-                                             <a href="../view/page" class="mb-0 text-sm" style="color: black">제목입니다[0]</a>
-                                             <p class="text-xs text-secondary mb-0">장르</p>
-                                             <p class="text-xs text-secondary mb-0">작성자</p>
-                                          </div>
-                                       </div>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">1화</span>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">-200코인</span>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                       <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #ab0dd7">환불하기</a>
-                                       </div>
-                                    </td>
-                                 </tr>
-                                 <tr>
-                                    <td>
-                                       <div class="d-flex px-2 py-1">
-                                          <div>
-                                             <img src="../resources/assets/images/mainPage/board1.png" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
-                                          </div>
-                                          <div class="d-flex flex-column justify-content-center">
-                                             <a href="../view/page" class="mb-0 text-sm" style="color: black">제목입니다[0]</a>
-                                             <p class="text-xs text-secondary mb-0">장르</p>
-                                             <p class="text-xs text-secondary mb-0">작성자</p>
-                                          </div>
-                                       </div>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">1화</span>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">-200코인</span>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                       <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #ab0dd7">환불하기</a>
-                                       </div>
-                                    </td>
-                                 </tr>
-                                 <tr>
-                                    <td>
-                                       <div class="d-flex px-2 py-1">
-                                          <div>
-                                             <img src="../resources/assets/images/mainPage/board1.png" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
-                                          </div>
-                                          <div class="d-flex flex-column justify-content-center">
-                                             <a href="../view/page" class="mb-0 text-sm" style="color: black">제목입니다[0]</a>
-                                             <p class="text-xs text-secondary mb-0">장르</p>
-                                             <p class="text-xs text-secondary mb-0">작성자</p>
-                                          </div>
-                                       </div>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">1화</span>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">-200코인</span>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                       <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #ab0dd7">환불하기</a>
-                                       </div>
-                                    </td>
-                                 </tr>
-                                 <tr>
-                                    <td>
-                                       <div class="d-flex px-2 py-1">
-                                          <div>
-                                             <img src="../resources/assets/images/mainPage/board1.png" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
-                                          </div>
-                                          <div class="d-flex flex-column justify-content-center">
-                                             <a href="../view/page" class="mb-0 text-sm" style="color: black">제목입니다[0]</a>
-                                             <p class="text-xs text-secondary mb-0">장르</p>
-                                             <p class="text-xs text-secondary mb-0">작성자</p>
-                                          </div>
-                                       </div>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">1화</span>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">-200코인</span>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                       <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #ab0dd7">환불하기</a>
+                                          <a href="javascript:void(0)" class="btn" style="background-color: #ab0dd7">${pageBuy.plsRefund}</a>
                                        </div>
                                     </td>
                                  </tr>
@@ -686,99 +327,19 @@
                                     <td class="align-middle text-center">
                                        <div>
                                           <div class="d-flex flex-column justify-content-center">
-                                             <span class="text-secondary text-xs font-weight-bold">카드 or 이벤트</span>
+                                             <span class="text-secondary text-xs font-weight-bold">${coinHistory.coinMethod}</span>
                                           </div>
                                        </div>
                                     </td>
                                     <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">+200코인</span>
+                                       <span class="text-secondary text-xs font-weight-bold">+${coinHistory.rechargeCoin}</span>
                                     </td>
                                     <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">21/12/10</span>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                       <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #ab0dd7">환불하기</a>
-                                       </div>
-                                    </td>
-                                 </tr>
-                                 <tr>
-                                    <td class="align-middle text-center">
-                                       <div>
-                                          <div class="d-flex flex-column justify-content-center">
-                                             <span class="text-secondary text-xs font-weight-bold">카드 or 이벤트</span>
-                                          </div>
-                                       </div>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">+200코인</span>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">21/12/10</span>
+                                       <span class="text-secondary text-xs font-weight-bold">${coinHistory.coinDate }</span>
                                     </td>
                                     <td class="align-middle text-center">
                                        <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #ab0dd7">환불하기</a>
-                                       </div>
-                                    </td>
-                                 </tr>
-                                 <tr>
-                                    <td class="align-middle text-center">
-                                       <div>
-                                          <div class="d-flex flex-column justify-content-center">
-                                             <span class="text-secondary text-xs font-weight-bold">카드 or 이벤트</span>
-                                          </div>
-                                       </div>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">+200코인</span>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">21/12/10</span>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                       <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #ab0dd7">환불하기</a>
-                                       </div>
-                                    </td>
-                                 </tr>
-                                 <tr>
-                                    <td class="align-middle text-center">
-                                       <div>
-                                          <div class="d-flex flex-column justify-content-center">
-                                             <span class="text-secondary text-xs font-weight-bold">카드 or 이벤트</span>
-                                          </div>
-                                       </div>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">+200코인</span>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">21/12/10</span>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                       <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #ab0dd7">환불하기</a>
-                                       </div>
-                                    </td>
-                                 </tr>
-                                 <tr>
-                                    <td class="align-middle text-center">
-                                       <div>
-                                          <div class="d-flex flex-column justify-content-center">
-                                             <span class="text-secondary text-xs font-weight-bold">카드 or 이벤트</span>
-                                          </div>
-                                       </div>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">+200코인</span>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">21/12/10</span>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                       <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #ab0dd7">환불하기</a>
+                                          <a href="javascript:void(0)" name="clsRefund" class="btn" style="background-color: #ab0dd7">환불하기</a>
                                        </div>
                                     </td>
                                  </tr>
@@ -858,183 +419,22 @@
                                              <img src="../resources/assets/images/mainPage/board1.png" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
                                           </div>
                                           <div class="d-flex flex-column justify-content-center">
-                                             <a href="../view/page" class="mb-0 text-sm" style="color: black">제목입니다[0]</a>
-                                             <p class="text-xs text-secondary mb-0">장르</p>
-                                             <p class="text-xs text-secondary mb-0">작성자</p>
+                                             <a href="../view/page" class="mb-0 text-sm" style="color: black">${book.bookNO}[${book.bViewCnt}]</a>
+                                             <p class="text-xs text-secondary mb-0">${book.theme}</p>
+                                             <p class="text-xs text-secondary mb-0">${book.name}</p>
                                           </div>
                                        </div>
                                     </td>
                                     <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">1화</span>
+                                       <span class="text-secondary text-xs font-weight-bold">${page.series}</span>
                                     </td>
                                     <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">+200코인</span>
+                                       <span class="text-secondary text-xs font-weight-bold">+${coinHistory.rechargeCoin}</span>
                                     </td>
                                     <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">21/12/10</span>
+                                       <span class="text-secondary text-xs font-weight-bold">${coinHistory.coinDate}</span>
                                     </td>
-                                 </tr>
-                                 <tr>
-                                    <td>
-                                       <div class="d-flex px-2 py-1">
-                                          <div>
-                                             <img src="../resources/assets/images/mainPage/board1.png" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
-                                          </div>
-                                          <div class="d-flex flex-column justify-content-center">
-                                             <a href="../view/page" class="mb-0 text-sm" style="color: black">제목입니다[0]</a>
-                                             <p class="text-xs text-secondary mb-0">장르</p>
-                                             <p class="text-xs text-secondary mb-0">작성자</p>
-                                          </div>
-                                       </div>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">1화</span>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">+200코인</span>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">21/12/10</span>
-                                    </td>
-                                 </tr>
-                                 <tr>
-                                    <td>
-                                       <div class="d-flex px-2 py-1">
-                                          <div>
-                                             <img src="../resources/assets/images/mainPage/board1.png" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
-                                          </div>
-                                          <div class="d-flex flex-column justify-content-center">
-                                             <a href="../view/page" class="mb-0 text-sm" style="color: black">제목입니다[0]</a>
-                                             <p class="text-xs text-secondary mb-0">장르</p>
-                                             <p class="text-xs text-secondary mb-0">작성자</p>
-                                          </div>
-                                       </div>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">1화</span>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">+200코인</span>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">21/12/10</span>
-                                    </td>
-                                 </tr>
-                                 <tr>
-                                    <td>
-                                       <div class="d-flex px-2 py-1">
-                                          <div>
-                                             <img src="../resources/assets/images/mainPage/board1.png" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
-                                          </div>
-                                          <div class="d-flex flex-column justify-content-center">
-                                             <a href="../view/page" class="mb-0 text-sm" style="color: black">제목입니다[0]</a>
-                                             <p class="text-xs text-secondary mb-0">장르</p>
-                                             <p class="text-xs text-secondary mb-0">작성자</p>
-                                          </div>
-                                       </div>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">1화</span>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">+200코인</span>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">21/12/10</span>
-                                    </td>
-                                 </tr>
-                                 <tr>
-                                    <td>
-                                       <div class="d-flex px-2 py-1">
-                                          <div>
-                                             <img src="../resources/assets/images/mainPage/board1.png" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
-                                          </div>
-                                          <div class="d-flex flex-column justify-content-center">
-                                             <a href="../view/page" class="mb-0 text-sm" style="color: black">제목입니다[0]</a>
-                                             <p class="text-xs text-secondary mb-0">장르</p>
-                                             <p class="text-xs text-secondary mb-0">작성자</p>
-                                          </div>
-                                       </div>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">1화</span>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">+200코인</span>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">21/12/10</span>
-                                    </td>
-                                 </tr>
-                                 <tr>
-                                    <td>
-                                       <div class="d-flex px-2 py-1">
-                                          <div>
-                                             <img src="../resources/assets/images/mainPage/board1.png" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
-                                          </div>
-                                          <div class="d-flex flex-column justify-content-center">
-                                             <a href="../view/page" class="mb-0 text-sm" style="color: black">제목입니다[0]</a>
-                                             <p class="text-xs text-secondary mb-0">장르</p>
-                                             <p class="text-xs text-secondary mb-0">작성자</p>
-                                          </div>
-                                       </div>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">1화</span>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">+200코인</span>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">21/12/10</span>
-                                    </td>
-                                 </tr>
-                                 <tr>
-                                    <td>
-                                       <div class="d-flex px-2 py-1">
-                                          <div>
-                                             <img src="../resources/assets/images/mainPage/board1.png" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
-                                          </div>
-                                          <div class="d-flex flex-column justify-content-center">
-                                             <a href="../view/page" class="mb-0 text-sm" style="color: black">제목입니다[0]</a>
-                                             <p class="text-xs text-secondary mb-0">장르</p>
-                                             <p class="text-xs text-secondary mb-0">작성자</p>
-                                          </div>
-                                       </div>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">1화</span>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">+200코인</span>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">21/12/10</span>
-                                    </td>
-                                 </tr>
-                                 <tr>
-                                    <td>
-                                       <div class="d-flex px-2 py-1">
-                                          <div>
-                                             <img src="../resources/assets/images/mainPage/board1.png" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
-                                          </div>
-                                          <div class="d-flex flex-column justify-content-center">
-                                             <a href="../view/page" class="mb-0 text-sm" style="color: black">제목입니다[0]</a>
-                                             <p class="text-xs text-secondary mb-0">장르</p>
-                                             <p class="text-xs text-secondary mb-0">작성자</p>
-                                          </div>
-                                       </div>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">1화</span>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">+200코인</span>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">21/12/10</span>
-                                    </td>
-                                 </tr>
+                                 </tr>  
                               </tbody>
                            </table>
                         </div>

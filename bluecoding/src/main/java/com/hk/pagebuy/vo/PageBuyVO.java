@@ -4,19 +4,19 @@ import java.util.Date;
 
 public class PageBuyVO {
 
-	// private Attribute
-	private int pageBuy;
+	// private PageBuy Attribute
+	private int pagePay;
 	private String id;
 	private int pageNO;
 	private Date pagePayDate;
 	private String pIsRefund;
 	
 	// Getter & Setter
-	public int getPageBuy() {
-		return pageBuy;
+	public int getPagePay() {
+		return pagePay;
 	}
-	public void setPageBuy(int pageBuy) {
-		this.pageBuy = pageBuy;
+	public void setPagePay(int pagePay) {
+		this.pagePay = pagePay;
 	}
 	public String getId() {
 		return id;
@@ -46,10 +46,9 @@ public class PageBuyVO {
 	// toString()
 	@Override
 	public String toString() {
-		return "PageBuyVO [pageBuy=" + pageBuy + ", id=" + id + ", pageNO=" + pageNO + ", pagePayDate=" + pagePayDate
+		return "PageBuyVO [pagePay=" + pagePay + ", id=" + id + ", pageNO=" + pageNO + ", pagePayDate=" + pagePayDate
 				+ ", pIsRefund=" + pIsRefund + "]";
 	}
-	
 	
 	
 }

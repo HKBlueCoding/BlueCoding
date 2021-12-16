@@ -105,14 +105,21 @@ public class UserController {
 
 	// [사용자 보관함]	
 	@RequestMapping(value = "/user/chest", method = RequestMethod.GET)
-	public String userChest(Model model, @RequestParam("id") String id) {
+	public String userChest( Model model, @RequestParam("id") String id) {
 		
-		Map<String, Object> map = userService.userArticleList(id);
-	      logger.debug("[map] = " + map);
-	      logger.debug("[id] = " + id);
-	      model.addAttribute("bookVO", map.get("bookVO"));
-	      model.addAttribute("boardkVO", map.get("boardVO"));
-	      model.addAttribute("qnaVO", map.get("qnaVO"));
+
+		 Map<String, Object> map = userService.userArticleList(id);
+		 logger.debug("[map] = " + map); logger.debug("[id] = " + id);
+		 
+		 model.addAttribute("bookVO", map.get("bookVO"));
+		 model.addAttribute("pageVO", map.get("pageVO"));
+		 model.addAttribute("pageBuyVO", map.get("pageBuyVO"));
+		 model.addAttribute("coinHistoryVO", map.get("coinHistoryVO"));
+		 model.addAttribute("commissionVO", map.get("comssionVO"));
+		 model.addAttribute("favoVO", map.get("favoVO"));
+		 model.addAttribute("boardVO", map.get("boardVO"));
+		 model.addAttribute("qnaVO", map.get("qnaVO"));
+
 	
 		return "userChest";
 	}

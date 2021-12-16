@@ -13,6 +13,8 @@ import com.hk.board.dao.BoardDAO;
 import com.hk.board.vo.BoardVO;
 import com.hk.book.dao.BookDAO;
 import com.hk.book.vo.BookVO;
+import com.hk.favo.service.FavoDAO;
+import com.hk.favo.vo.FavoVO;
 import com.hk.news.vo.NewsVO;
 import com.hk.newsreply.vo.NewsReplyVO;
 import com.hk.qna.dao.QnaDAO;
@@ -25,7 +27,7 @@ public class UserService {
 	
 	@Autowired
 	UserDAO userDAO;
-	BookDAO bookDAO;
+	FavoDAO favoDAO;
 	BoardDAO boardDAO;
 	QnaDAO qnaDAO;
 
@@ -48,13 +50,13 @@ public class UserService {
 	public Map<String, Object> userArticleList(String id) {
 		// TODO Auto-generated method stub
 		
-		List<BookVO> bookVO = bookDAO.bookList();
+		List<FavoVO> favoVO = favoDAO.viewAllFavo();
 		List<BoardVO> boardVO = boardDAO.selectAllArticles();
 		List<QnaVO> qnaVO = qnaDAO.selectAllQna(id);
 
 		Map<String, Object> map = new HashMap<String, Object>();
 
-		map.put("bookVO", bookVO);
+		map.put("favoVO", favoVO);
 		map.put("boardVO", boardVO);
 		map.put("qnaVO", qnaVO);
 		return map;
