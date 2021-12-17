@@ -31,6 +31,7 @@ import com.hk.coinhistory.service.CoinHistoryService;
 import com.hk.coinhistory.vo.CoinHistoryVO;
 import com.hk.kakaopayapproval.vo.KakaoPayApprovalVO;
 import com.hk.kakaopayreader.vo.KakaoPayReadyVO;
+import com.hk.user.vo.UserVO;
 
 @Controller
 public class CoinHistoryController {
@@ -156,6 +157,18 @@ public class CoinHistoryController {
 			
 			// id, 충전한 금액
 			rs = coinHistoryService.insertPayHistory(coinHistoryVO);
+			
+			// 세션의 값도 변경해야 사용자가 즉시 변경된 코인 값을 보니까...
+			UserVO userVO = (UserVO) session.getAttribute("login");
+			
+			// 만약 insert에 성공시, 유저의 세션정보를 업데이트
+			if(rs > 0) {
+				// 기존 코인 + 충전된코인
+				userVO.setCoin(userVO.getCoin()+amount.getTotal());
+				session.setAttribute("login", userVO);
+			}
+			
+			
 		} catch (RestClientException e) {
 			e.printStackTrace();
 			

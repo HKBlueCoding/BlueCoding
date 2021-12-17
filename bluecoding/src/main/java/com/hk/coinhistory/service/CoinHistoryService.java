@@ -1,14 +1,20 @@
 package com.hk.coinhistory.service;
 
+import org.slf4j.Logger;
+
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hk.coinhistory.dao.CoinHistoryDAO;
 import com.hk.coinhistory.vo.CoinHistoryVO;
+import com.hk.commission.dao.CommissionDAO;
 import com.hk.user.dao.UserDAO;
 
 @Service
 public class CoinHistoryService {
+	
+	private static final Logger logger = LoggerFactory.getLogger(CoinHistoryService.class);
 	
 	@Autowired
 	CoinHistoryDAO coinHistoryDAO;
@@ -16,18 +22,25 @@ public class CoinHistoryService {
 	@Autowired
 	UserDAO userDAO;
 	
+	@Autowired
+	CommissionDAO commissionDAO;
+	
 	public int insertPayHistory(CoinHistoryVO coinHistoryVO) {
 		// TODO Auto-generated method stub
 		
-		int retCharge = 0;
+		// 먼저 사용자의 코인을 충전 (어차피 결제완료 되서 여기 온거니까)
+		int retCharge = userDAO.updateCoin(coinHistoryVO);
 		
-		int retHis = coinHistoryDAO.insertPayHistory(coinHistoryVO);
-		
-		if(retHis > 0) {
-			
+		// 1. 만약 사용자의 코인을 충전했다면...
+		int retHis = 0;
+		if(retCharge > 0) {
+			// 코인 충전 기록을 DB에 insert
+			logger.debug("[유저에게 Coin 충전함]"+retCharge);
+			retHis = coinHistoryDAO.insertPayHistory(coinHistoryVO);
 		}
+		logger.debug("[기록 결과]"+retHis);
 		
-		return 0; 
+		return retHis; 
 	}
 
 }

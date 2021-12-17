@@ -47,6 +47,15 @@
 	 ]]>
 	</select>
 	
+	<!-- [코인 충전] (기존코인 + 충전할 코인) -->
+	<update id="updateCoin" parameterType="CoinHistoryVO">
+	 <![CDATA[
+	  UPDATE B_USER 
+	  SET COIN= (COIN + #{rechargeCoin}) 
+	  WHERE ID=#{id}
+	 ]]>
+	</update>
+	
 	<!-- [보관함 조회] -->	
 <!-- 	<select id="chestOfId" resultMap="mapOfId">
 	 <![CDATA[

@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.hk.coinhistory.vo.CoinHistoryVO;
 import com.hk.user.vo.ChestVO;
 import com.hk.user.vo.UserVO;
 
@@ -39,6 +40,16 @@ public class UserDAO {
 		UserVO userVO = sqlSession.selectOne("mapper.user.dupId", id);
 		return userVO;
 	}
+
+	public int updateCoin(CoinHistoryVO coinHistoryVO) {
+		// TODO Auto-generated method stub
+		
+		int ret = sqlSession.update("mapper.user.updateCoin", coinHistoryVO);
+		
+		return ret;
+	}
+	
+	
 
 	/*
 	 * // [ 로그인 사용자가 쓴 글 조회] public List<HashMap<String, String>>
