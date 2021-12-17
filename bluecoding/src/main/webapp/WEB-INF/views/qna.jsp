@@ -94,12 +94,12 @@
                 			<i class="material-icons opacity-10">person</i>
               			</div>
                       <div class="text-end pt-1">
-                        <h4 class="mb-0">상담원 접속수</h4>
+                        <h4 class="mb-0">상담원 페이지</h4>
                       </div>
                     </div>
                     <hr class="dark horizontal my-0">
                     <div class="card-footer p-3">
-                      <p class="mb-0" align="right">39명</p>
+                      <p class="mb-0" align="right"></p>
                     </div>
                   </div>
                 </div>

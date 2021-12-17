@@ -8,8 +8,8 @@
 </head>
 <body>
   <script>
-	alert(${total}'원 결제에 성공하였습니다. 리스로 이동합니다');
-	location.href= '../../../';
+	alert('${total}원 결제에 성공하였습니다.');
+	window.close();
   </script>
 </body>
 </html>

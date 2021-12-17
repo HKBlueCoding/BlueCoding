@@ -80,16 +80,6 @@ function goQnaHome(id){
 
 function coinCharge(){
 	
-	$.ajax({
-		
-		url:'/kakaopay/buy',
-		dataType: 'json',
-		success: function(data){
-			var box = data.next_redirect_pc_url;
-			window.open(box);
-		},
-		error: function(error){
-			alert('에러: '+error);
-		}
-	});
+	window.open("../../kakaopay/buy","캐시충전", "width=400, height=500, history=no, resizable=no, status=no, scrollbars=yes, menubar=no");
+	
 }	

@@ -96,12 +96,12 @@
                         <i class="material-icons opacity-10" align="left">weekend</i>
                       </div>
                       <div class="text-end pt-1">
-                        <h4 class="mb-0">관리자 접속수</h4>
+                        <h4 class="mb-0">관리자 페이지</h4>
                       </div>
                     </div>
                     <hr class="dark horizontal my-0">
                     <div class="card-footer p-3">
-                      <p class="mb-0" align="right">9999명</p>
+                      <p class="mb-0" align="right"></p>
                     </div>
                   </div>
                 </div>
@@ -143,7 +143,7 @@
           </div>
         </div>
         <div class="col-xl-3 col-sm-6" style="margin-left: 120px;">
-        	<button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#reportSelect">제재된 아이디 조회</button>
+        	<button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#reportSelect">아이디 제재 등급 설정</button>
         </div>
         <br>
         <!-- [1번째 줄] -->

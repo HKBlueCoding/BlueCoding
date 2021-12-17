@@ -8,8 +8,8 @@
 </head>
 <body>
   <script>
-	alert('결재에 실패하였습니다. 리스로 이동합니다');
-	location.href= '../../../';
+	alert('결제에 실패하였습니다.');
+	window.close();
   </script>
 </body>
 </html>

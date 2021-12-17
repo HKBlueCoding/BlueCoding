@@ -8,8 +8,8 @@
 </head>
 <body>
   <script>
-	alert('결재를 취소하였습니다. 리스로 이동합니다');
-	location.href= '../../../';
+	alert('결제를 취소하였습니다.');
+	window.close();
   </script>
 </body>
 </html>

@@ -10,8 +10,7 @@ public class CoinHistoryVO {
 	private Date coinDate;
 	private String cIsRefund;
 	private int rechargeCoin;
-	
-	// Getter & Setter
+	private String tid;
 	public String getCoinMethod() {
 		return coinMethod;
 	}
@@ -42,14 +41,16 @@ public class CoinHistoryVO {
 	public void setRechargeCoin(int rechargeCoin) {
 		this.rechargeCoin = rechargeCoin;
 	}
-	
-	// toString()
+	public String getTid() {
+		return tid;
+	}
+	public void setTid(String tid) {
+		this.tid = tid;
+	}
 	@Override
 	public String toString() {
 		return "CoinHistoryVO [coinMethod=" + coinMethod + ", id=" + id + ", coinDate=" + coinDate + ", cIsRefund="
-				+ cIsRefund + ", rechargeCoin=" + rechargeCoin + "]";
+				+ cIsRefund + ", rechargeCoin=" + rechargeCoin + ", tid=" + tid + "]";
 	}
-	
-
 	
 }

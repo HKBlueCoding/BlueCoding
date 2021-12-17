@@ -2,6 +2,8 @@ package com.hk.kakaopayapproval.vo;
 
 import java.sql.Date;
 
+import com.hk.amount.vo.AmountVO;
+
 public class KakaoPayApprovalVO {
 	
 	private String aid;
@@ -14,7 +16,7 @@ public class KakaoPayApprovalVO {
     private String item_name;
     private String item_code;
     private String payload;
-    private int total_amount;
+    private AmountVO amount;
     private Date created_at;
 	public String getAid() {
 		return aid;
@@ -76,11 +78,11 @@ public class KakaoPayApprovalVO {
 	public void setPayload(String payload) {
 		this.payload = payload;
 	}
-	public int getTotal_amount() {
-		return total_amount;
+	public AmountVO getAmount() {
+		return amount;
 	}
-	public void setTotal_amount(int total_amount) {
-		this.total_amount = total_amount;
+	public void setAmount(AmountVO amount) {
+		this.amount = amount;
 	}
 	public Date getCreated_at() {
 		return created_at;
@@ -93,8 +95,7 @@ public class KakaoPayApprovalVO {
 		return "KakaoPayApprovalVO [aid=" + aid + ", tid=" + tid + ", cid=" + cid + ", sid=" + sid
 				+ ", partner_order_id=" + partner_order_id + ", partner_user_id=" + partner_user_id
 				+ ", payment_method_type=" + payment_method_type + ", item_name=" + item_name + ", item_code="
-				+ item_code + ", payload=" + payload + ", total_amount=" + total_amount + ", created_at=" + created_at
-				+ "]";
+				+ item_code + ", payload=" + payload + ", amount=" + amount + ", created_at=" + created_at + "]";
 	}
     
 }
