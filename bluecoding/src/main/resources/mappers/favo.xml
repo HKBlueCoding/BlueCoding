@@ -12,14 +12,6 @@
 		<result property="bookNO" column="bookNO" />
 
 	</resultMap>
-
-	<select id="selectAllFavo" resultMap="favoResult">
-    <![CDATA[
-		SELECT PAGENO, SERIES, PAGETITLE, PAGETEXT, PAGEDATE, "COMMENT", PVIEWCNT, CHARGE, "LIKE", PAGEDELETE, BOOKNO 
-		FROM B_PAGE WHERE bookNO = #{bookNO}
-		ORDER BY SERIES ASC
-    ]]>
-	</select>
 	
 	<insert id="insertFavo" parameterType="FavoVO">
 	 <![CDATA[

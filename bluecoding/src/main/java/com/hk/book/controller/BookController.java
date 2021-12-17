@@ -165,9 +165,11 @@ public class BookController {
 	
 	@PostMapping("/view/favo/add")
 	public String favoAddDone(Model model, @ModelAttribute FavoVO favoVO) {
-		logger.debug("[favoVO] = " + favoVO);
+		logger.debug("[찜하기 favoVO] = " + favoVO);
 
 		int ret = bookService.addFavo(favoVO);
+		logger.debug("[ret] = " + ret);
+		
 		model.addAttribute("ret", ret);
 		model.addAttribute("id", favoVO.getId());
 		return "done/favoAddDone";

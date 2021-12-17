@@ -18,7 +18,7 @@
 </c:if>
 <c:if test="${ret == 1}">
   <script>
-   alert('정상적으로 등록되었습니다.');
+   alert('찜 완료!!!');
    location.href="../../user/chest?id=${id}";
   </script>
 </c:if>

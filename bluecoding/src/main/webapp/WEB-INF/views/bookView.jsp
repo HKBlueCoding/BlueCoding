@@ -93,7 +93,7 @@
                            <p id="title2">&nbsp;&nbsp;${bookVO.bookTitle }</p>
                            <div id="qna">
                               &nbsp;&nbsp; 작가 이름 : ${bookVO.name } &nbsp;&nbsp;&nbsp;&nbsp; ${bookVO.bookDate } &nbsp;&nbsp;&nbsp;&nbsp;<br><br>
-                              <input type="hidden" value="${favoVO.id }" name="id">
+                              <input type="hidden" value="${bookVO.id }" name="id">
                               <hr class="my-4" style="width: 66.6%">
                               <!-- ======================= 버튼 ========================== -->
                               <c:if test="${login.admin eq 'A' || login.admin eq 'C'}">
@@ -163,7 +163,7 @@
                                                             <div class="d-flex px-2 py-1">
                                                                <div class="d-flex flex-column justify-content-center">
                                                                   <p class="text-xs text-secondary mb-0" style="font-size: 15px;"><a href="../view/page?pageNO=${page.pageNO }">${page.series }화, ${page.pageTitle }</a><br>${page.pageDate }</p>
-                                                                  <input type="hidden" name="bookNO"  value="${page.pageNO }">
+                                                                  <input type="hidden" name="bookNO"  value="${bookVO.bookNO }">
                                                                   <p class="text-xs text-secondary mb-0">댓글(개수)</p>
                                                                </div>
                                                             </div>
