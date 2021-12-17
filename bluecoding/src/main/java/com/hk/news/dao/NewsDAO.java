@@ -1,6 +1,7 @@
 package com.hk.news.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +21,9 @@ public class NewsDAO {
 		return ret;
 	}
 
-	public List<NewsVO> listNoticeNews() {
+	public List<NewsVO> listNoticeNews(Map<String, Integer> pageMap) {
 		// TODO Auto-generated method stub
-		List<NewsVO> newsList = sqlSession.selectList("mapper.news.selectAllNoticeNews");
+		List<NewsVO> newsList = sqlSession.selectList("mapper.news.selectAllNoticeNews", pageMap);
 		return newsList;
 	}
 	

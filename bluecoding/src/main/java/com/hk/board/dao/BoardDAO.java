@@ -1,6 +1,7 @@
 package com.hk.board.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,12 +15,12 @@ public class BoardDAO {
 	@Autowired
 	SqlSession sqlSession;
 	
-	public List<BoardVO> selectAllArticles() {
+	public List<BoardVO> selectAllArticles(Map<String, Integer> pageMap) {
 		// TODO Auto-generated method stub
 		
-		List<BoardVO> articlesList = sqlSession.selectList("mapper.board.selectAllBoardList");
+		List<BoardVO> boardList = sqlSession.selectList("mapper.board.selectAllBoardList", pageMap);
 		
-		return articlesList;
+		return boardList;
 	}
 
 	public int addArticle(BoardVO boardVO) {
@@ -53,6 +54,12 @@ public class BoardDAO {
 		// TODO Auto-generated method stub
 		int articleNO = sqlSession.selectOne("mapper.board.selectArticleNO", boardVO);
 		return articleNO;
+	}
+
+	public int selectTotArticle() {
+		// TODO Auto-generated method stub
+		int totArticle = sqlSession.selectOne("mapper.board.selectTotArticle");
+		return totArticle;
 	}
 
 }

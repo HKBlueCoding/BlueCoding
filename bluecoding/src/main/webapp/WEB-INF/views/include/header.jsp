@@ -2,14 +2,10 @@
 	pageEncoding="UTF-8"%>
 	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-	<% 
-		Object userVO = (Object) session.getAttribute("login");
-	%>
-<c:set var="contextPath" value="${pageContext.request.contextPath}" />
-      <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
       		  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
               crossorigin="anonymous"></script>
-      <script src="../../resources/bluecoding/header.js"></script>
+    <script src="../../resources/bluecoding/header.js"></script>
 <!-- Start Header Area -->
 <header class="header navbar-area">
     <div class="container">

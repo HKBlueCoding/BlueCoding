@@ -42,9 +42,9 @@ public class QnaController {
       pageMap.put("pageNum", pageNum);
       
       // QNA 목록 전체 (에서 해당 페이지만) + 전체 글 갯수
-      Map<String, Object> qnaList = qnaService.adminSelectAllQna(pageMap);
-      model.addAttribute("qnaList",qnaList.get("qnaList"));
-      model.addAttribute("totQna",qnaList.get("totQna"));
+      Map<String, Object> map = qnaService.adminSelectAllQna(pageMap);
+      model.addAttribute("qnaList", map.get("qnaList"));
+      model.addAttribute("totQna", map.get("totQna"));
       //model.addAttribute("totQna",250);
       model.addAttribute("section",section);
       model.addAttribute("pageNum",pageNum);

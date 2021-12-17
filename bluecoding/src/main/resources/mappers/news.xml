@@ -33,7 +33,7 @@
 	 ]]>
 	</insert>
 	
-	<select id="selectAllNoticeNews" resultMap="newsResult">
+	<select id="selectAllNoticeNews" resultMap="newsResult" parameterType="hashMap">
     <![CDATA[
 		SELECT NEWSNO, CATEGORY, NEWSTITLE, NEWSTEXT, NEWSDATE, NEWSIMAGE, NVIEWCNT, NEWSDELETE, ID, NICK 
 		FROM B_NEWS WHERE category = 'notice'

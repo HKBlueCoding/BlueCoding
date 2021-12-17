@@ -3,7 +3,9 @@ package com.hk.board.controller;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -34,12 +36,25 @@ public class BoardController {
 
 	// SELECT
 	@RequestMapping(value = "/board/list", method = { RequestMethod.GET, RequestMethod.POST })
-	public String boardList(Model model) {
+	public String boardList(@RequestParam(value = "section", required = false, defaultValue = "1") Integer section,
+			@RequestParam(value = "pageNum", required = false, defaultValue = "1") Integer pageNum, Model model) {
 		logger.debug("[리스트 실행됨]");
-		List<BoardVO> boardList = boardService.listArticles();
-		logger.debug("[리스트]" + boardList);
-		model.addAttribute("boardList", boardList);
-
+		// section = 12345678910까지가 기본 섹션
+		// pageNum = 사용자가 보려하는 페이지 번호
+		// 혹여나 만약 0이하를 치면..
+		if (section <= 0) { ++section; }
+		if (pageNum <= 0) { ++pageNum; }
+		Map<String, Integer> pageMap = new HashMap<String, Integer>();
+		pageMap.put("section", section);
+		pageMap.put("pageNum", pageNum);
+	    
+	    Map<String, Object> map = boardService.listArticles(pageMap);
+		logger.debug("[리스트]" + map);
+		model.addAttribute("boardList", map.get("boardList"));
+		model.addAttribute("totArticle",map.get("totArticle"));
+	    model.addAttribute("section",section);
+	    model.addAttribute("pageNum",pageNum);
+	    
 		return "boardList";
 	}
 
@@ -103,7 +118,8 @@ public class BoardController {
 			String fileName = file.getOriginalFilename();
 
 			if (!boardVO.getBoardImage().isEmpty()) {
-				File fileDel = new File(BOARD_FILE_PATH + "\\" + boardVO.getArticleNO() + "\\" + boardVO.getBoardImage());
+				File fileDel = new File(
+						BOARD_FILE_PATH + "\\" + boardVO.getArticleNO() + "\\" + boardVO.getBoardImage());
 				if (fileDel.exists()) {
 					fileDel.delete();
 					logger.debug("[커뮤니티 기존 이미지 삭제]");
@@ -124,9 +140,9 @@ public class BoardController {
 			}
 			// 생성한 newsNO 폴더 안에 파일을 넣음
 			file.transferTo(new File(BOARD_FILE_PATH + "\\" + boardVO.getArticleNO(), fileName));
-			
+
 			boardVO.setBoardImage(fileName);
-			logger.debug("[커뮤니티에 이미지 이름 넣기]"+boardVO.getBoardImage());
+			logger.debug("[커뮤니티에 이미지 이름 넣기]" + boardVO.getBoardImage());
 		}
 
 		int ret = boardService.modArticle(boardVO);

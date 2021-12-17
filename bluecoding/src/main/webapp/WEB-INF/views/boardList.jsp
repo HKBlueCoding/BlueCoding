@@ -117,7 +117,7 @@
                                  <td class="align-middle text-center">
                                     <span class="text-secondary text-xs font-weight-bold">${boardList.boardDate }</span>
                                  </td>
-                              </tr>                           	   	 
+                              	 	</tr>                           	   	 
                            	     </c:forEach>
                            	 </c:when>
                            </c:choose>
@@ -130,7 +130,7 @@
             </div>
          </div>                  
                            
-   
+ 	  </div>  
          <!-- Start Search Form -->
          <div class="search-form wow fadeInUp" style="margin: 1px; padding: 1px;">
             <div class="row">
@@ -157,13 +157,52 @@
       <!-- ====================== 페이징 ====================== -->
       <div class="w3-center">
          <div class="w3-bar">
-            <a href="#" class="w3-button">«</a>
-            <a href="#" class="w3-button w3-blue">1</a>
-            <a href="#" class="w3-button">2</a>
-            <a href="#" class="w3-button">3</a>
-            <a href="#" class="w3-button">4</a>
-            <a href="#" class="w3-button">5</a>
-            <a href="#" class="w3-button">»</a>
+          <c:if test="${!empty totArticle }">
+           <c:choose>
+            <c:when test="${ totArticle > 100 }">
+             <c:forEach var="page" begin="1" end="10" step="1">
+              <c:if test="${ section >1 && page == 1 }">
+               <a href="list?section=${section-1 }&pageNum=10" class="w3-button">«</a>
+              </c:if>
+              <c:choose>
+               <c:when test="${page == pageNum }">
+                <a href="list?section=${section }&pageNum=${page}" class="w3-button w3-blue">${(section-1)*10+page }</a>
+               </c:when>
+               <c:otherwise>
+                <a href="list?section=${section }&pageNum=${page}" class="w3-button">${(section-1)*10+page }</a>
+               </c:otherwise>
+              </c:choose>
+              <c:if test="${page == 10 }">
+                <a href="list?section=${section+1 }&pageNum=1" class="w3-button">»</a>
+              </c:if>
+             </c:forEach>
+            </c:when>
+            <c:when test="${totArticle == 100 }">
+             <c:forEach var="page" begin="1" end="10" step="1">
+              <c:choose>
+               <c:when test="${page == pageNum}">
+                <a href="list?section=${section }&pageNum=${page }" class="w3-button w3-blue">${page }</a>
+               </c:when>
+               <c:otherwise>
+                <a href="list?section=${section }&pageNum=${page}" class="w3-button">${page }</a>
+               </c:otherwise>
+              </c:choose>
+             </c:forEach>
+            </c:when>
+            <c:when test="${totArticle < 100 }">
+             <c:forEach var="page" begin="1" end="${totArticle/10 +1 }" step="1">
+              <c:choose>
+               <c:when test="${page == pageNum }">
+               	<a href="list?section=${section }&pageNum=${page }" class="w3-button w3-blue">${page }</a>
+               </c:when>
+               <c:otherwise>
+                <a href="list?section=${section }&pageNum=${page }" class="w3-button">${page }</a>
+               </c:otherwise>
+              </c:choose>
+             </c:forEach>
+            </c:when>
+           </c:choose>
+          </c:if> 
          </div>
       </div>
       <!-- ====================== 페이징 끝 ====================== -->
@@ -248,6 +287,14 @@
            	return;
            }
          }
-      </script>      
+      </script>
+   <c:if test="${totArticle > 1 && empty boardList }">    
+    <script> 
+      window.onload = function(){
+    	alert('해당 페이지가 비어 있습니다.');
+    	javascript:history.back();
+      }
+    </script>
+   </c:if>             
    </body>
 </html>

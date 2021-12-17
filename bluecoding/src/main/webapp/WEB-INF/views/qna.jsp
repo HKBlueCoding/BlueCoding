@@ -183,14 +183,14 @@
                           	   <c:if test="${section >1 && page == 1 }">
                                 <li class="page-item"><a class="page-link" href="qna?section=${section-1 }&pageNum=10">이전</a></li>
                           	   </c:if>
-                          	    <c:choose>
+                          	   <c:choose>
                           	     <c:when test="${page == pageNum }">
                            		  <li class="page-item active"><a class="page-link" href="qna?section=${section }&pageNum=${page}">${(section-1)*10+page }</a></li>
                            		 </c:when>
                            		 <c:otherwise>
                            		  <li class="page-item"><a class="page-link" href="qna?section=${section }&pageNum=${page}">${(section-1)*10+page }</a></li>
                            		 </c:otherwise>
-                           		</c:choose>
+                           	   </c:choose>
                                <c:if test="${page == 10 }">
                            		<li class="page-item"><a class="page-link" href="qna?section=${section+1}&pageNum=1">다음</a></li>
                           	   </c:if>

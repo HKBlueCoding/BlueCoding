@@ -3,6 +3,7 @@ package com.hk.news.controller;
 import java.io.File;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -82,13 +83,25 @@ public class NewsController {
 
       return "done/newsAddDone";
    }
-
+   
+   // [공지시항 리스트]
    @RequestMapping(value = "/news/notice", method = RequestMethod.GET)
-   public String notice(Model model) {
-      // 리스트
-      List<NewsVO> newsList = newsService.listNewsNotice();
-      model.addAttribute("newsList", newsList);
-      logger.debug("[newsList] = " + newsList);
+   public String notice(@RequestParam(value="section", required=false, defaultValue = "1")Integer section, 
+		   				@RequestParam(value="pageNum", required=false, defaultValue = "1")Integer pageNum, Model model) {
+
+	  // section = 12345678910까지가 기본 섹션
+	  // pageNum = 사용자가 보려하는 페이지 번호
+	  // 혹여나 만약 0이하를 치면..
+	  if(section <= 0) { ++section; }
+      if(pageNum <= 0) { ++pageNum; }
+      Map<String, Integer> pageMap = new HashMap<String, Integer>();
+      pageMap.put("section", section);
+      pageMap.put("pageNum", pageNum);
+      
+	  // 리스트
+      Map<String, Object> map = newsService.listNewsNotice(pageMap);
+      model.addAttribute("newsList", map.get("newsList"));
+      logger.debug("[newsList] = " + map.get("totNotice"));
       return "notice";
    }
 

@@ -1,6 +1,8 @@
 package com.hk.board.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,9 +16,20 @@ public class BoardService {
 	@Autowired
 	BoardDAO boardDAO;
 	
-	public List<BoardVO> listArticles() {
+	public Map<String, Object> listArticles(Map<String, Integer> pageMap) {
 		// TODO Auto-generated method stub
-		return boardDAO.selectAllArticles();
+		Map<String, Object> map = new HashMap<String, Object>();		
+		
+		// 지정한 해당 페이지의 리스트
+		List<BoardVO> boardList = boardDAO.selectAllArticles(pageMap);
+		
+		// 현재 존재하는 모든 페이지의 리스트
+		int totArticle  = boardDAO.selectTotArticle();
+		
+		map.put("boardList", boardList);
+		map.put("totArticle", totArticle);
+		
+		return map;
 	}
 
 	public int addArticle(BoardVO boardVO) {

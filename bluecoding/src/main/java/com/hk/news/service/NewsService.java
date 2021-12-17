@@ -13,6 +13,7 @@ import com.hk.news.dao.NewsDAO;
 import com.hk.news.vo.NewsVO;
 import com.hk.newsreply.dao.NewsReplyDAO;
 import com.hk.newsreply.vo.NewsReplyVO;
+import com.hk.qna.vo.QnaVO;
 
 @Service
 public class NewsService {
@@ -31,20 +32,27 @@ public class NewsService {
 		// 1. 실제로 추가함
 		int ret = newsDAO.newsAdd(newsVO);
 		logger.debug("[뉴스 글쓰기 결과]===" + ret);
-		String image  = newsVO.getNewsImage();
-		
+		String image = newsVO.getNewsImage();
+
 		// 2. 만약 성공시, PK를 조회해서 받아옴
 		if (ret > 0 && !image.isEmpty()) {
-			logger.debug("[news VO]=="+newsVO);
+			logger.debug("[news VO]==" + newsVO);
 			newsVO = newsDAO.selectNewsNO(newsVO);
 		}
-		
+
 		return newsVO.getNewsNO();
 	}
 
-	public List<NewsVO> listNewsNotice() {
+	public Map<String, Object> listNewsNotice(Map<String, Integer> pageMap) {
 		// TODO Auto-generated method stub
-		return newsDAO.listNoticeNews();
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		// 모든 Notice의 글중에서 p
+		List<NewsVO> noticeList = newsDAO.listNoticeNews(pageMap);
+		
+		
+		
+		return map;
 	}
 
 	public List<NewsVO> listNewsEvent() {
