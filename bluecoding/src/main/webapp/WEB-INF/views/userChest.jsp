@@ -101,7 +101,7 @@
                                  </tr>
                               </thead>
                               <tbody>
-                              <c:forEach var="favoBooklist" items="${favoBooklist }" varStatus="favoBookListCnt">
+                              <c:forEach var="favoBook" items="${favoBookList }" varStatus="favoBookListCnt">
                                  <tr>
                                     <td>
                                        <div class="d-flex px-2 py-1">
@@ -109,19 +109,19 @@
                                              <img src="../resources/assets/images/mainPage/board1.png" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
                                           </div>
                                           <div class="d-flex flex-column justify-content-center">
-                                             <a href="/view?bookNO=${book.bookNO }" class="mb-0 text-sm" style="color: black">${favoBookList.bookTitle}</a>
+                                             <a href="/view?bookNO=${favoBook.bookNO }" class="mb-0 text-sm" style="color: black">${favoBook.bookTitle}</a>
                                              <p class="text-xs text-secondary mb-0"></p>
                                           </div>
                                        </div>
                                     </td>
                                     <td class="align-middle">
-                                       <span class="text-secondary text-xs font-weight-bold">${favoBookList.id}</span>
+                                       <span class="text-secondary text-xs font-weight-bold">${favoBook.id}</span>
                                     </td>
                                     <td class="align-middle text-center text-sm">
-                                       <span class="badge badge-sm bg-gradient-success" style="background-image: linear-gradient(180deg,#419cef 10%,#106ec3 100%);">${favoBookList.bViewCnt}</span>
+                                       <span class="badge badge-sm bg-gradient-success" style="background-image: linear-gradient(180deg,#419cef 10%,#106ec3 100%);">${favoBook.bViewCnt}</span>
                                     </td>
                                     <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">${favoBookList.bookDate}</span>
+                                       <span class="text-secondary text-xs font-weight-bold">${favoBook.bookDate}</span>
                                     </td>
                                  </tr>
                                 </c:forEach> 
@@ -212,6 +212,7 @@
                                  </tr>
                               </thead>
                               <tbody>
+                                <c:forEach var="favoBuylist" items="${favoBuyList }" varStatus="favoBuyListCnt">
                                  <tr>
                                     <td>
                                        <div class="d-flex px-2 py-1">
@@ -219,26 +220,27 @@
                                              <img src="../resources/assets/images/mainPage/board1.png" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
                                           </div>
                                           <div class="d-flex flex-column justify-content-center">
-                                             <a href="../view/page" class="mb-0 text-sm" style="color: black">${page.pageTitle}[${page.pViewCnt}]</a>
-                                             <p class="text-xs text-secondary mb-0">${book.name}</p>
+                                             <a href="../view/page?pageNO=${favoBuyList.pageNO }" class="mb-0 text-sm" style="color: black">${favoBuyList.pageTitle}[${favoBuyList.pViewCnt}]</a>
+                                             <p class="text-xs text-secondary mb-0">${favoBuyList.name}</p>
                                           </div>
                                        </div>
                                     </td>
                                     <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">${page.series}</span>
+                                       <span class="text-secondary text-xs font-weight-bold">${favoBuyList.series}</span>
                                     </td>
                                     <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">-${pageBuy.pagePay}</span>
+                                       <span class="text-secondary text-xs font-weight-bold">-${favoBuyList.pagePay}</span>
                                     </td>
                                     <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">${pageBuy.pagePayDate}</span>
+                                       <span class="text-secondary text-xs font-weight-bold">${favoBuyList.pagePayDate}</span>
                                     </td>
                                     <td class="align-middle text-center">
                                        <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #ab0dd7">${pageBuy.plsRefund}</a>
+                                          <a href="javascript:void(0)" class="btn" style="background-color: #ab0dd7">${favoBuyList.TID}</a>
                                        </div>
                                     </td>
                                  </tr>
+							 	 </c:forEach> 
                               </tbody>
                            </table>
                         </div>

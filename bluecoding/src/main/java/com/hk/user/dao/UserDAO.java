@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.hk.coinhistory.vo.CoinHistoryVO;
-import com.hk.user.vo.ChestVO;
 import com.hk.user.vo.UserVO;
 
 @Repository
@@ -49,14 +48,11 @@ public class UserDAO {
 		return ret;
 	}
 	
-	
-
 	/*
 	 * // [ 로그인 사용자가 쓴 글 조회] public List<HashMap<String, String>>
 	 * selectChest(HashMap param) {
 	 * 
 	 * return sqlSession.selectList("mapper.chest.selectChest", param); }
 	 */
-
 
 }

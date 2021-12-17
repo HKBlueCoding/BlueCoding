@@ -7,6 +7,7 @@
 
 	<resultMap id="chestResult" type="ChestVO">
 	
+		<!-- BookVO -->
 		<result property="bookNO" column="bookNO" />
 		<result property="bookTitle" column="bookTitle" />
 		<result property="intro" column="intro" />
@@ -17,6 +18,30 @@
 		<result property="id" column="id" />
 		<result property="bookDate" column="bookDate" />
 		<result property="bViewCnt" column="bViewCnt" />
+		
+		<!-- PageVO -->
+		<result property="pageNO" column="pageNO" />
+		<result property="series" column="series" />
+		<result property="pageTitle" column="pageTitle" />
+		<result property="pageText" column="pageText" />
+		<result property="pageDate" column="pageDate" />
+		<result property="comment" column="comment" />
+		<result property="pViewCnt" column="pViewCnt" />
+		<result property="charge" column="charge" />
+		<result property="like" column="like" />
+		<result property="pageDelete" column="pageDelete" />
+		
+		<!-- PageBuyVO -->
+		<result property="pagePay" column="pagePay" />
+		<result property="pagePayDate" column="pagePayDate" />
+		<result property="plsRefund" column="plsRefund" />
+		
+		<!-- CoinHistoryVO -->
+		<result property="coinMethod" column="coinMethod" />
+		<result property="coinDate" column="coinDate" />
+		<result property="clsRefund" column="clsRefund" />
+		<result property="rechargeCoin" column="rechargeCoin" />
+		<result property="tid" column="tid" />
 
 	</resultMap>
 
@@ -41,9 +66,17 @@ WHERE  id = #{id}
 <!-- [사용자가 즐겨찾기 등록한 책 조회] -->
 	<select id="selectFavoBookList" resultMap="chestResult">
     <![CDATA[
-    	SELECT bb.BOOKTITLE, bb.NAME, bb.BOOKDATE, bb.BVIEWCNT
+		SELECT bb.BOOKTITLE, bb.NAME, bb.BOOKDATE, bb.BVIEWCNT
 		FROM B_BOOK bb, B_FAVO bf 
-		WHERE bb.ID = bf.ID
+		WHERE bb.ID = bf.ID AND bf.ID =#{id}
+        ]]>
+	</select>
+	
+		<select id="selectFavoBuyList" resultMap="chestResult">
+    <![CDATA[
+SELECT bb.NAME, bb.BOOKTITLE, bp.PAGENO, bp2.PAGEPAY, bp2.PAGEPAYDATE, bc.TID
+FROM B_BOOK bb, B_PAGE bp, B_PAGEBUY bp2, B_COINHISTORY bc
+WHERE bb.BOOKNO=bp.BOOKNO AND bp2.ID=#{id}
         ]]>
 	</select>
 

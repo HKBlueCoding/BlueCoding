@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.hk.chest.vo.ChestVO;
 import com.hk.user.service.UserService;
 import com.hk.user.vo.UserVO;
 
@@ -101,16 +102,25 @@ public class UserController {
 	}
 
 	// [사용자 보관함]
-	
-	@RequestMapping(value="/user/chest", method=RequestMethod.GET)
-		public String userChest(Model model, @RequestParam("id") String id) {
+
+	@RequestMapping(value = "/user/chest", method = RequestMethod.GET)
+	public String userChest(Model model, @RequestParam("id") String id) {
+		
+		// 관심작품
+		Map<String, Object> map =   userService.userChestList(id);
+		
+		model.addAttribute("favoBookList", map.get("favoBookList"));
+		model.addAttribute("favoBuyList", map.get("favoBuyList"));
+		
+		logger.debug("favoBookList = " + map.get("favoBookList"));
+		logger.debug("favoBuyList = " + map.get("favoBuyList"));
 		
 		return "userChest";
 	}
-	
+
+	// [사용자 보관함]
+
 	/*
-	 * // [사용자 보관함]
-	 * 
 	 * @RequestMapping(value = "/user/chest", method = RequestMethod.GET) public
 	 * String userChest(Model model, @RequestParam("id") String id) {
 	 * 
@@ -118,9 +128,12 @@ public class UserController {
 	 * 
 	 * List<HashMap<String, String>> list = userService.selectChest(param);
 	 * 
-	 * model.addAttribute("list", list); return "userChest"; }
+	 * model.addAttribute("list", list); return "userChest";
+	 * 
+	 * }
 	 */
-
+	
+	
 	// [아이디 중복체크]
 	@RequestMapping(value = "/dupId", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
 	@ResponseBody

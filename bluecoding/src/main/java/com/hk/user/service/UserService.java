@@ -2,11 +2,14 @@ package com.hk.user.service;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hk.board.dao.BoardDAO;
+import com.hk.chest.dao.ChestDAO;
+import com.hk.chest.vo.ChestVO;
 import com.hk.qna.dao.QnaDAO;
 import com.hk.user.dao.UserDAO;
 import com.hk.user.vo.UserVO;
@@ -16,9 +19,12 @@ public class UserService {
    
    @Autowired
    UserDAO userDAO;
-
+   @Autowired
    BoardDAO boardDAO;
+   @Autowired
    QnaDAO qnaDAO;
+   @Autowired
+   ChestDAO chestDAO;
 
    public int addUser(UserVO userVO) {
       // TODO Auto-generated method stub
@@ -41,6 +47,22 @@ public class UserService {
 	 * param) {
 	 * 
 	 * return userDAO.selectChest(param); }
-	 */
+	 */		
+
+public Map<String, Object> userChestList(String id) {
+	// TODO Auto-generated method stub
+	Map<String, Object>  map = new HashMap<String, Object>();
+	
+	// 관심작품 
+	List<ChestVO> favoBookList = chestDAO.selectFavoBook(id);
+	// 구매내역 
+	List<ChestVO> favoBuyList = chestDAO.selectFavoBuy(id);
+	
+	map.put("favoBookList",  favoBookList);
+	map.put("favoBuyList",  favoBuyList);
+	
+	return map;
+}
+   
 
 }
