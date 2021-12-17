@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.hk.book.dao.BookDAO;
 import com.hk.book.vo.BookVO;
+import com.hk.favo.service.FavoDAO;
 import com.hk.favo.vo.FavoVO;
 import com.hk.page.dao.PageDAO;
 import com.hk.page.vo.PageVO;
@@ -33,6 +34,8 @@ public class BookService {
 	@Autowired
 	PageReplyDAO pageReplyDAO;
 	
+	@Autowired
+	FavoDAO favoDAO;
 	
 	public List<BookVO> listBook() {
 		// TODO Auto-generated method stub
@@ -107,8 +110,8 @@ public class BookService {
 		return pageDAO.bookViewUpdate(pageVO);
 	}
 	
-//	public int addFavo(FavoVO favoVO) {
-//		// TODO Auto-generated method stub
-//		return favoDAO.insertFavo(favoVO);
-//	}
+	public int addFavo(FavoVO favoVO) {
+		// TODO Auto-generated method stub
+		return favoDAO.insertFavo(favoVO);
+	}
 }

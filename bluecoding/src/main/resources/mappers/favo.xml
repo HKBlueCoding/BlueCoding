@@ -21,14 +21,10 @@
     ]]>
 	</select>
 	
-	<insert id="insertFavo" parameterType="favoVO">
-	 <selectKey keyProperty="pageNO" resultType="int" order="BEFORE">
-	 	SELECT max(pageNO)+1 FROM B_PAGE
-	 </selectKey>
+	<insert id="insertFavo" parameterType="FavoVO">
 	 <![CDATA[
-	  INSERT INTO B_PAGE 
-	  (PAGENO, SERIES, PAGETITLE, PAGETEXT, PAGEDATE, "COMMENT", PVIEWCNT, CHARGE, "LIKE", BOOKNO) 
-	  VALUES(#{pageNO}, #{series}, #{pageTitle}, #{pageText}, sysdate, #{comment}, 1, #{charge}, 1, #{bookNO})
+	  INSERT INTO B_FAVO (ID, BOOKNO) 
+	  VALUES(#{id}, #{bookNO})
 	 ]]>
 	</insert>
 </mapper>

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.hk.book.service.BookService;
 import com.hk.book.vo.BookVO;
+import com.hk.favo.vo.FavoVO;
 import com.hk.page.vo.PageVO;
 
 /**
@@ -156,20 +157,19 @@ public class BookController {
 		return "done/bookViewUpdateDone";
 	}
 	
-//	@GetMapping("/add")
-//	public String favoAdd() {
-//		
-//		return "favoAdd";
-//	}
-//	
-//	@PostMapping("/add")
-//	public String favoAddDone(Model model, @ModelAttribute BookVO bookVO, HttpServletResponse response) {
-//		logger.debug("[bookVO] = " + bookVO);
-//		response.setContentType("text/html; charset=UTF-8");
-//
-//		int ret = bookService.addBook(bookVO);
-//		model.addAttribute("ret", ret);
-//		
-//		return "done/favoAddDone";
-//	}
+	@GetMapping("/view/favo/add")
+	public String favoAdd() {
+		
+		return "favoAdd";
+	}
+	
+	@PostMapping("/view/favo/add")
+	public String favoAddDone(Model model, @ModelAttribute FavoVO favoVO) {
+		logger.debug("[favoVO] = " + favoVO);
+
+		int ret = bookService.addFavo(favoVO);
+		model.addAttribute("ret", ret);
+		model.addAttribute("id", favoVO.getId());
+		return "done/favoAddDone";
+	}
 }

@@ -20,4 +20,10 @@ public class FavoDAO {
 		return favoList;
 	}
 
+	public int insertFavo(FavoVO favoVO) {
+		// TODO Auto-generated method stub
+		int ret = sqlSession.insert("mapper.favo.insertFavo", favoVO);
+		return ret;
+	}
+
 }
