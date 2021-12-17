@@ -5,7 +5,24 @@
 
 <mapper namespace="mapper.chest">
 
-   <select id="selectChest" parameterType="hashMap"  resultType="hashMap">
+	<resultMap id="chestResult" type="ChestVO">
+	
+		<result property="bookNO" column="bookNO" />
+		<result property="bookTitle" column="bookTitle" />
+		<result property="intro" column="intro" />
+		<result property="theme" column="theme" />
+		<result property="bookImage" column="bookImage" />
+		<result property="bookDelete" column="bookDelete" />
+		<result property="name" column="name" />
+		<result property="id" column="id" />
+		<result property="bookDate" column="bookDate" />
+		<result property="bViewCnt" column="bViewCnt" />
+
+	</resultMap>
+
+
+<!-- [ 로그인 사용자가 쓴 글 조회] -->
+<!--    <select id="selectChest" parameterType="hashMap"  resultType="hashMap">
     <![CDATA[
     SELECT BOARDTITLE AS title
       ,ID AS ID
@@ -19,6 +36,15 @@ SELECT QNATITLE AS TITLE
   FROM B_QNA bq
 WHERE  id = #{id}  
         ]]>
-   </select>
+   </select> -->
+
+<!-- [사용자가 즐겨찾기 등록한 책 조회] -->
+	<select id="selectFavoBookList" resultMap="chestResult">
+    <![CDATA[
+    	SELECT bb.BOOKTITLE, bb.NAME, bb.BOOKDATE, bb.BVIEWCNT
+		FROM B_BOOK bb, B_FAVO bf 
+		WHERE bb.ID = bf.ID
+        ]]>
+	</select>
 
 </mapper>

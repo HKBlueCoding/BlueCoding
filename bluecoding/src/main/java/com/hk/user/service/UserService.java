@@ -36,9 +36,11 @@ public class UserService {
       return userDAO.dupId(id);
    }
    
-   public List<HashMap<String,String>> selectChest(HashMap param) {
-      
-      return userDAO.selectChest(param);
-   }
+	/*
+	 * // [ 로그인 사용자가 쓴 글 조회] public List<HashMap<String,String>> selectChest(HashMap
+	 * param) {
+	 * 
+	 * return userDAO.selectChest(param); }
+	 */
 
 }

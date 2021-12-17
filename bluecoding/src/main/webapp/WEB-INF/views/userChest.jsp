@@ -94,14 +94,14 @@
                            <table class="table align-items-center mb-0">
                               <thead>
                                  <tr>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">&nbsp;&nbsp;작성한 글</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">&nbsp;&nbsp;도서 제목</th>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">작성자</th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">조회수</th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">작성일</th>
                                  </tr>
                               </thead>
                               <tbody>
-                              <c:forEach var="list" items="${list }" varStatus="listCnt">
+                              <c:forEach var="favoBooklist" items="${favoBooklist }" varStatus="favoBookListCnt">
                                  <tr>
                                     <td>
                                        <div class="d-flex px-2 py-1">
@@ -109,19 +109,19 @@
                                              <img src="../resources/assets/images/mainPage/board1.png" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
                                           </div>
                                           <div class="d-flex flex-column justify-content-center">
-                                             <a href="../view" class="mb-0 text-sm" style="color: black">${list.TITLE}</a>
+                                             <a href="/view?bookNO=${book.bookNO }" class="mb-0 text-sm" style="color: black">${favoBookList.bookTitle}</a>
                                              <p class="text-xs text-secondary mb-0"></p>
                                           </div>
                                        </div>
                                     </td>
                                     <td class="align-middle">
-                                       <span class="text-secondary text-xs font-weight-bold">${list.ID}</span>
+                                       <span class="text-secondary text-xs font-weight-bold">${favoBookList.id}</span>
                                     </td>
                                     <td class="align-middle text-center text-sm">
-                                       <span class="badge badge-sm bg-gradient-success" style="background-image: linear-gradient(180deg,#419cef 10%,#106ec3 100%);">100</span>
+                                       <span class="badge badge-sm bg-gradient-success" style="background-image: linear-gradient(180deg,#419cef 10%,#106ec3 100%);">${favoBookList.bViewCnt}</span>
                                     </td>
                                     <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">${list.BDATE}</span>
+                                       <span class="text-secondary text-xs font-weight-bold">${favoBookList.bookDate}</span>
                                     </td>
                                  </tr>
                                 </c:forEach> 

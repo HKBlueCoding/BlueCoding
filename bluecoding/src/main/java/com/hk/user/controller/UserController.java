@@ -101,17 +101,25 @@ public class UserController {
 	}
 
 	// [사용자 보관함]
-	@RequestMapping(value = "/user/chest", method = RequestMethod.GET)
-	public String userChest(Model model, @RequestParam("id") String id) {
-
-		HashMap param = new HashMap();
-		param.put("id", id);
-
-		List<HashMap<String, String>> list = userService.selectChest(param);
-
-		model.addAttribute("list", list);
+	
+	@RequestMapping(value="/user/chest", method=RequestMethod.GET)
+		public String userChest(Model model, @RequestParam("id") String id) {
+		
 		return "userChest";
 	}
+	
+	/*
+	 * // [사용자 보관함]
+	 * 
+	 * @RequestMapping(value = "/user/chest", method = RequestMethod.GET) public
+	 * String userChest(Model model, @RequestParam("id") String id) {
+	 * 
+	 * HashMap param = new HashMap(); param.put("id", id);
+	 * 
+	 * List<HashMap<String, String>> list = userService.selectChest(param);
+	 * 
+	 * model.addAttribute("list", list); return "userChest"; }
+	 */
 
 	// [아이디 중복체크]
 	@RequestMapping(value = "/dupId", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
