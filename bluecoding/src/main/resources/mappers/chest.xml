@@ -72,12 +72,20 @@ WHERE  id = #{id}
         ]]>
 	</select>
 	
-		<select id="selectFavoBuyList" resultMap="chestResult">
+	<select id="selectFavoBuyList" resultMap="chestResult">
     <![CDATA[
-SELECT bb.NAME, bb.BOOKTITLE, bp.PAGENO, bp2.PAGEPAY, bp2.PAGEPAYDATE, bc.TID
-FROM B_BOOK bb, B_PAGE bp, B_PAGEBUY bp2, B_COINHISTORY bc
-WHERE bb.BOOKNO=bp.BOOKNO AND bp2.ID=#{id}
+		SELECT bb.NAME, bb.BOOKTITLE, bp.PAGENO, bp2.PAGEPAY, bp2.PAGEPAYDATE, bc.TID
+		FROM B_BOOK bb, B_PAGE bp, B_PAGEBUY bp2, B_COINHISTORY bc
+		WHERE bb.BOOKNO=bp.BOOKNO AND bp2.ID=#{id}
         ]]>
+	</select>
+	
+	<select id="selectFavoPayList" resultMap = "chestResult">
+    <![CDATA[
+    	SELECT bc.COINMETHOD, bc.RECHARGECOIN, bc.COINDATE, bc.TID
+		FROM B_COINHISTORY bc
+		WHERE id = #{id}  
+	    ]]>
 	</select>
 
 </mapper>

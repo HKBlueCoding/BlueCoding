@@ -327,26 +327,32 @@
                                  </tr>
                               </thead>
                               <tbody>
+                                <c:forEach var="favoPay" items="${favoPayList }" varStatus="favoBuyListCnt">
                                  <tr>
-                                    <td class="align-middle text-center">
-                                       <div>
+                                    <td>
+                                       <div class="d-flex px-2 py-1">
+                                          <div>
+                                             <img src="../resources/assets/images/mainPage/board1.png" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
+                                          </div>
                                           <div class="d-flex flex-column justify-content-center">
-                                             <span class="text-secondary text-xs font-weight-bold">${coinHistory.coinMethod}</span>
+                                             <a class="mb-0 text-sm" style="color: black">${favoPay.coinMethod}</a>
+<%--                                              <p class="text-xs text-secondary mb-0">${favoPay.coinMethod}</p> --%>
                                           </div>
                                        </div>
                                     </td>
                                     <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">+${coinHistory.rechargeCoin}</span>
+                                       <span class="text-secondary text-xs font-weight-bold">${favoPay.rechargeCoin}</span>
                                     </td>
                                     <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">${coinHistory.coinDate }</span>
+                                       <span class="text-secondary text-xs font-weight-bold">-${favoPay.coinDate}</span>
                                     </td>
                                     <td class="align-middle text-center">
                                        <div class="button header-button">
-                                          <a href="javascript:void(0)" name="clsRefund" class="btn" style="background-color: #ab0dd7">환불하기</a>
+                                          <a href="javascript:void(0)" class="btn" style="background-color: #ab0dd7">${favoBuyList.TID}</a>
                                        </div>
                                     </td>
                                  </tr>
+							 	 </c:forEach> 
                               </tbody>
                            </table>
                         </div>

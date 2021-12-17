@@ -57,9 +57,12 @@ public Map<String, Object> userChestList(String id) {
 	List<ChestVO> favoBookList = chestDAO.selectFavoBook(id);
 	// 구매내역 
 	List<ChestVO> favoBuyList = chestDAO.selectFavoBuy(id);
+	// 결제내역
+	List<ChestVO> favoPayList = chestDAO.selectFavoPay(id);
 	
 	map.put("favoBookList",  favoBookList);
 	map.put("favoBuyList",  favoBuyList);
+	map.put("favoPayList", favoPayList);
 	
 	return map;
 }

@@ -26,4 +26,10 @@ public class ChestDAO {
 		return favoBuyList;
 	}
 
+	public List<ChestVO> selectFavoPay(String id) {
+		// TODO Auto-generated method stub
+		List<ChestVO> favoPayList = sqlSession.selectList("mapper.chest.selectFavoPayList", id);
+		return favoPayList;
+	}
+
 }

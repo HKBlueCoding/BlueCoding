@@ -21,127 +21,137 @@ import com.hk.qna.vo.QnaVO;
 @Controller
 public class QnaController {
 
-	private static final Logger logger = LoggerFactory.getLogger(QnaController.class);
-	private static final String QNA_FILE_PATH = "C:\\bluecoding\\qna"; // QNA 파일은 이곳에
-	@Autowired
-	QnaService qnaService;
+   private static final Logger logger = LoggerFactory.getLogger(QnaController.class);
+   private static final String QNA_FILE_PATH = "C:\\bluecoding\\qna"; // QNA 파일은 이곳에
+   @Autowired
+   QnaService qnaService;
 
-	// 상담원 페이지
-	@GetMapping("/qna")
-	public String qna() {
+   // 상담원 페이지
+   @GetMapping("/qna")
+   public String qna(@RequestParam(value="section", required=false)int section, 
+         @RequestParam(value="pageNum", required=false)int pageNum, Model model) {
+   
+      // section
+      
+      
+      // QNA 목록 전체
+      List<QnaVO> qnaList = qnaService.adminSelectAllQna();
+      model.addAttribute("qnaList",qnaList);
+            
+      
+      // 신고 접수(만약 넣을거면)
+      return "qna";
+   }
 
-		return "qna";
-	}
+   // 일반유저 문의게시판
+   @GetMapping("/qna/home")
+   public String qnaList(@RequestParam("id") String id, Model model) {
 
-	// 일반유저 문의게시판
-	@GetMapping("/qna/home")
-	public String qnaList(@RequestParam("id") String id, Model model) {
+      List<QnaVO> qnaList = qnaService.listQna(id);
+      model.addAttribute("qnaList", qnaList);
+      return "qnaHome";
+   }
 
-		List<QnaVO> qnaList = qnaService.listQna(id);
-		model.addAttribute("qnaList", qnaList);
-		return "qnaHome";
-	}
+   // 일반유저 게시글 추가
+   @GetMapping("/qna/add")
+   public String qnaAdd() {
+      
+      return "qnaAdd";
+   }
 
-	// 일반유저 게시글 추가
-	@GetMapping("/qna/add")
-	public String qnaAdd() {
+   // [실제로 DB에 게시글 추가]
+   @PostMapping("/qna/add")
+   public String qnaAddDone(Model model, @ModelAttribute QnaVO qnaVO, @RequestParam("uploadFile") MultipartFile file)
+         throws Exception {
 
-		return "qnaAdd";
-	}
+      logger.debug("[qnaVO] = " + qnaVO);
+      logger.debug("[이미지 이름]" + file.getOriginalFilename());
 
-	// [실제로 DB에 게시글 추가]
-	@PostMapping("/qna/add")
-	public String qnaAddDone(Model model, @ModelAttribute QnaVO qnaVO, @RequestParam("uploadFile") MultipartFile file)
-			throws Exception {
+      // 미리 qnaImage이름을 받음
+      String fileName = file.getOriginalFilename();
+      qnaVO.setQnaImage(fileName);
 
-		logger.debug("[qnaVO] = " + qnaVO);
-		logger.debug("[이미지 이름]" + file.getOriginalFilename());
+      // DB에 게시글 추가 후, select 하여 해당 게시글 조회후 PK를 받음
+      int qnaNO = qnaService.addQna(qnaVO);
 
-		// 미리 qnaImage이름을 받음
-		String fileName = file.getOriginalFilename();
-		qnaVO.setQnaImage(fileName);
+      if (!file.getOriginalFilename().isEmpty()) {
+         logger.debug("null 아님!!");
 
-		// DB에 게시글 추가 후, select 하여 해당 게시글 조회후 PK를 받음
-		int qnaNO = qnaService.addQna(qnaVO);
+         // qnaNO(PK)로 폴더 설정
+         File folder = new File(QNA_FILE_PATH + "\\" + qnaNO);
 
-		if (!file.getOriginalFilename().isEmpty()) {
-			logger.debug("null 아님!!");
+         if (!folder.exists()) {
+            try {
+               folder.mkdir();
+               logger.debug("폴더가 생성됨!!");
+            } catch (Exception e) {
+               e.getStackTrace();
+            }
+         } else {
+            logger.debug("[QNA 글쓰기]폴더가 이미 존재합니다!!");
+         }
+         // c:\\bluecoding\\qna\\해당 qnaNO\\파일명.png
+         file.transferTo(new File(QNA_FILE_PATH + "\\" + qnaNO, fileName));
+      }
 
-			// qnaNO(PK)로 폴더 설정
-			File folder = new File(QNA_FILE_PATH + "\\" + qnaNO);
+      model.addAttribute("ret", qnaNO);
 
-			if (!folder.exists()) {
-				try {
-					folder.mkdir();
-					logger.debug("폴더가 생성됨!!");
-				} catch (Exception e) {
-					e.getStackTrace();
-				}
-			} else {
-				logger.debug("[QNA 글쓰기]폴더가 이미 존재합니다!!");
-			}
-			// c:\\bluecoding\\qna\\해당 qnaNO\\파일명.png
-			file.transferTo(new File(QNA_FILE_PATH + "\\" + qnaNO, fileName));
-		}
+      return "done/qnaAddDone";
+   }
 
-		model.addAttribute("ret", qnaNO);
+   // 일반유저 게시글 상세보기
+   @GetMapping("/qna/view")
+   public String qnaView(Model model, @RequestParam("qnaNO") int qnaNO) {
+      logger.debug("[qnaNO] = " + qnaNO);
+      QnaVO qnaVO = qnaService.viewQna(qnaNO);
+      model.addAttribute("qna", qnaVO);
+      return "qnaView";
+   }
 
-		return "done/qnaAddDone";
-	}
+   // 일반유저 게시글 수정
+   @PostMapping("/qna/update")
+   public String qnaUpdate(Model model, @ModelAttribute QnaVO qnaVO, @RequestParam("uploadFile") MultipartFile file)
+         throws Exception {
 
-	// 일반유저 게시글 상세보기
-	@GetMapping("/qna/view")
-	public String qnaView(Model model, @RequestParam("qnaNO") int qnaNO) {
-		logger.debug("[qnaNO] = " + qnaNO);
-		QnaVO qnaVO = qnaService.viewQna(qnaNO);
-		model.addAttribute("qna", qnaVO);
-		return "qnaView";
-	}
+      logger.debug("Get Attribute [qnaVO] = " + qnaVO);
 
-	// 일반유저 게시글 수정
-	@PostMapping("/qna/update")
-	public String qnaUpdate(Model model, @ModelAttribute QnaVO qnaVO, @RequestParam("uploadFile") MultipartFile file)
-			throws Exception {
+      // 새로운 파일이 추가 되었을때..
+      if (!file.getOriginalFilename().isEmpty()) {
+         String fileName = file.getOriginalFilename();
 
-		logger.debug("Get Attribute [qnaVO] = " + qnaVO);
+         // 추가전, 이미지 삭제(처음부터 이미지가 없을수도 있으니 if로 걸러냄
+         if (!qnaVO.getQnaImage().isEmpty()) {
+            File fileDel = new File(QNA_FILE_PATH + "\\" + qnaVO.getQnaNO() + "\\" + qnaVO.getQnaImage());
+            if (fileDel.exists()) {
+               fileDel.delete();
+            }
+         }
 
-		// 새로운 파일이 추가 되었을때..
-		if (!file.getOriginalFilename().isEmpty()) {
-			String fileName = file.getOriginalFilename();
+         File folder = new File(QNA_FILE_PATH + "\\" + qnaVO.getQnaNO());
 
-			// 추가전, 이미지 삭제(처음부터 이미지가 없을수도 있으니 if로 걸러냄
-			if (!qnaVO.getQnaImage().isEmpty()) {
-				File fileDel = new File(QNA_FILE_PATH + "\\" + qnaVO.getQnaNO() + "\\" + qnaVO.getQnaImage());
-				if (fileDel.exists()) {
-					fileDel.delete();
-				}
-			}
+         if (!folder.exists()) {
+            try {
+               folder.mkdir();
+               logger.debug("폴더가 생성됨!!");
+            } catch (Exception e) {
+               e.getStackTrace();
+            }
+         } else {
+            logger.debug("[QNA 수정] 폴더가 이미 존재합니다!!");
+         }
+         // 생성한 newsNO 폴더 안에 파일을 넣음
+         file.transferTo(new File(QNA_FILE_PATH + "\\" + qnaVO.getQnaNO(), fileName));
 
-			File folder = new File(QNA_FILE_PATH + "\\" + qnaVO.getQnaNO());
+         // 넣은게 성공한거니, VO에 추가
+         qnaVO.setQnaImage(fileName);
+      }
 
-			if (!folder.exists()) {
-				try {
-					folder.mkdir();
-					logger.debug("폴더가 생성됨!!");
-				} catch (Exception e) {
-					e.getStackTrace();
-				}
-			} else {
-				logger.debug("[QNA 수정] 폴더가 이미 존재합니다!!");
-			}
-			// 생성한 newsNO 폴더 안에 파일을 넣음
-			file.transferTo(new File(QNA_FILE_PATH + "\\" + qnaVO.getQnaNO(), fileName));
+      int ret = qnaService.modQna(qnaVO);
 
-			// 넣은게 성공한거니, VO에 추가
-			qnaVO.setQnaImage(fileName);
-		}
+      model.addAttribute("ret", ret);
+      model.addAttribute("qnaNO", qnaVO.getQnaNO());
 
-		int ret = qnaService.modQna(qnaVO);
-
-		model.addAttribute("ret", ret);
-		model.addAttribute("qnaNO", qnaVO.getQnaNO());
-
-		return "/done/qnaUpdateDone";
-	}
+      return "/done/qnaUpdateDone";
+   }
 
 }
