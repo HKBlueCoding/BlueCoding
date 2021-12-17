@@ -348,7 +348,12 @@
                                     </td>
                                     <td class="align-middle text-center">
                                        <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #ab0dd7">${favoBuyList.TID}</a>
+                                        <c:if test="${favoPay.clsRefund eq 'Y' }">
+                                          <a href="javascript:void(0)" class="btn" style="background-color: #ab0dd7">환불하기</a>
+                                        </c:if>
+                                        <c:if test="${favoPay.clsRefund ne 'Y' }">
+                                          <span class="text-secondary text-xs font-weight-bold">환불 불가</span>	
+                                        </c:if>
                                        </div>
                                     </td>
                                  </tr>
