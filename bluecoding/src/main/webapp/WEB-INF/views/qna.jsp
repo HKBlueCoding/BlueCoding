@@ -115,100 +115,8 @@
           </div>
         </div>
         <br>
-		<div class="row">
-            <div class="col-6">
-               <div class="card my-4">
-                  <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                     <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                        <h6 class="text-white text-capitalize ps-3">신고 접수</h6>
-                     </div>
-                  </div>
-                  <div id="tbPadd" class="card-body px-0 pb-2">
-                     <div class="table-responsive p-0">
-                        <table class="table align-items-center mb-0">
-                           <thead>
-                              <tr>
-                                 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">&nbsp;&nbsp;게시글 종류</th>
-                                 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">신고자 아이디</th>
-                                 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">접수일</th>
-                                 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">답변완료 여부</th>
-                              </tr>
-                           </thead>
-                           <tbody>
-                              <tr>
-                                 <td class="align-middle text-center">
-                                    <div>
-                                       <div class="d-flex flex-column justify-content-center">
-                                          <p class="mb-0 text-sm" style="color: black">커뮤니티</p>  
-                                       </div>
-                                    </div>
-                                 </td>
-                                 <td class="align-middle text-center">
-                                    <span class="text-secondary text-xs font-weight-bold">qwe123</span>
-                                 </td>
-                                 <td class="align-middle text-center">
-                                    <span class="text-secondary text-xs font-weight-bold">21/12/10</span>
-                                 </td>
-                                 <td class="align-middle text-center text-sm">
-                                    <span class="badge badge-sm bg-gradient-success" style="background-image: linear-gradient(180deg,#419cef 10%,#106ec3 100%);">답변 대기</span>
-                                 </td>
-                              </tr>
-                              <tr>
-                                 <td class="align-middle text-center">
-                                    <div>
-                                       <div class="d-flex flex-column justify-content-center">
-                                          <p class="mb-0 text-sm" style="color: black">도서 정보</p>  
-                                       </div>
-                                    </div>
-                                 </td>
-                                 <td class="align-middle text-center">
-                                    <span class="text-secondary text-xs font-weight-bold">q@EEE</span>
-                                 </td>
-                                 <td class="align-middle text-center">
-                                    <span class="text-secondary text-xs font-weight-bold">21/12/10</span>
-                                 </td>
-                                 <td class="align-middle text-center text-sm">
-                                    <span class="badge badge-sm bg-gradient-success" style="background-image: linear-gradient(180deg,#419cef 10%,#106ec3 100%);">답변 대기</span>
-                                 </td>
-                              </tr>
-                               <tr>
-                                 <td class="align-middle text-center">
-                                    <div>
-                                       <div class="d-flex flex-column justify-content-center">
-                                          <p class="mb-0 text-sm" style="color: black">공지사항</p>  
-                                       </div>
-                                    </div>
-                                 </td>
-                                 <td class="align-middle text-center">
-                                    <span class="text-secondary text-xs font-weight-bold">qwe123</span>
-                                 </td>
-                                 <td class="align-middle text-center">
-                                    <span class="text-secondary text-xs font-weight-bold">21/12/10</span>
-                                 </td>
-                                 <td class="align-middle text-center text-sm">
-                                    <span class="text-secondary text-xs font-weight-bold">답변 완료</span>
-                                 </td>
-                              </tr>
-                           </tbody>
-                        </table>
-                     </div>
-                  </div>
-               </div>
-			   <div class="row" >
-                <div class="col-lg-4 col-md-4 col-12 p-0" style="width: 30%;  margin-left: 100px;">
-                  <div class="search-input">
-                     <label for="keyword"><i class="lni lni-search-alt theme-color"></i></label>
-                     <input type="text" name="keyword" id="keyword" placeholder="검색하세요.">
-                  </div>
-                </div>
-                <div class="col-lg-2 col-md-2 col-12 p-0">
-                  <div class="search-btn button">
-                     <button class="btn"><i class="lni lni-search-alt"></i> 검색</button>
-                  </div>
-                </div>
-               </div>               
-            </div>
-            <div class="col-6">
+		<div class="row" style="margin-left:250px">
+            <div class="col-8" >
                <div class="card my-4">
                   <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                      <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
@@ -319,15 +227,11 @@
                   </div>
                </div>               
 			<div class="row">
-               <div class="col-lg-4 col-md-4 col-12 p-0" style="width: 30%;  margin-left: 100px;">
+               <div class="col-lg-4 col-md-4 col-12 p-0" style="width: 30%; margin-left: 100px;">
                   <div class="search-input">
                      <label for="keyword"><i class="lni lni-search-alt theme-color"></i></label>
                      <input type="text" name="keyword" id="keyword" placeholder="검색하세요.">
-                  </div>
-               </div>
-               <div class="col-lg-2 col-md-2 col-12 p-0">
-                  <div class="search-btn button">
-                     <button class="btn"><i class="lni lni-search-alt"></i> 검색</button>
+                     <button class="btn btn-primary"><i class="lni lni-search-alt"></i> 검색</button>
                   </div>
                </div>
             </div>               
