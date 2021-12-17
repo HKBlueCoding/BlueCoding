@@ -1,8 +1,9 @@
 package com.hk.qna.controller;
 
 import java.io.File;
-import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,17 +29,25 @@ public class QnaController {
 
    // 상담원 페이지
    @GetMapping("/qna")
-   public String qna(@RequestParam(value="section", required=false)int section, 
-         @RequestParam(value="pageNum", required=false)int pageNum, Model model) {
-   
-      // section
+   public String qna(@RequestParam(value="section", required=false, defaultValue = "1")Integer section, 
+		   			 @RequestParam(value="pageNum", required=false, defaultValue = "1")Integer pageNum, Model model) {
+	   
+      // section = 12345678910까지가 기본 섹션
+	  // pageNum = 사용자가 보려하는 페이지 번호
+	  // 혹여나 만약 0이하를 치면..
+	  if(section <= 0) { ++section; }
+	  if(pageNum <= 0) { ++pageNum; }
+      Map<String, Integer> pageMap = new HashMap<String, Integer>();
+      pageMap.put("section", section);
+      pageMap.put("pageNum", pageNum);
       
-      
-      // QNA 목록 전체
-      List<QnaVO> qnaList = qnaService.adminSelectAllQna();
-      model.addAttribute("qnaList",qnaList);
-            
-      
+      // QNA 목록 전체 (에서 해당 페이지만) + 전체 글 갯수
+      Map<String, Object> qnaList = qnaService.adminSelectAllQna(pageMap);
+      model.addAttribute("qnaList",qnaList.get("qnaList"));
+      model.addAttribute("totQna",qnaList.get("totQna"));
+      //model.addAttribute("totQna",250);
+      model.addAttribute("section",section);
+      model.addAttribute("pageNum",pageNum);
       // 신고 접수(만약 넣을거면)
       return "qna";
    }

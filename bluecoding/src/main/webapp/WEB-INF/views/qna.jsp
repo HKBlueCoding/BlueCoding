@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -113,7 +115,7 @@
           </div>
         </div>
         <br>
-<div class="row">
+		<div class="row">
             <div class="col-6">
                <div class="card my-4">
                   <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
@@ -226,74 +228,96 @@
                               </tr>
                            </thead>
                            <tbody>
+                           	<c:if test="${empty qnaList }">
+                           	  <tr>
+                           	  	<td class="align-middle text-center">등록된 게시글이 없습니다...</td>
+                           	  </tr>
+                           	</c:if>                          	
+                           	<c:if test="${!empty qnaList }">
+                           	 <c:forEach var="qna" items="${qnaList }">
                               <tr>
                                  <td class="align-middle text-center">
                                     <div>
                                        <div class="d-flex flex-column justify-content-center">
-                                          <p class="mb-0 text-sm" style="color: black">계정 관련</p>
+                                          <p class="mb-0 text-sm" style="color: black">${qna.qnaList }</p>
                                        </div>
                                     </div>
                                  </td>
                                  <td class="align-middle text-center">
-                                    <span class="text-secondary text-xs font-weight-bold">신고합니다 제목</span>
+                                    <span class="text-secondary text-xs font-weight-bold">${qna.qnaTitle }</span>
                                  </td>
                                  <td class="align-middle text-center">
-                                    <span class="text-secondary text-xs font-weight-bold">qwe123</span>
+                                    <span class="text-secondary text-xs font-weight-bold">${qna.id }</span>
                                  </td>                                 
                                  <td class="align-middle text-center">
-                                    <span class="text-secondary text-xs font-weight-bold">21/12/10</span>
+                                    <span class="text-secondary text-xs font-weight-bold">${qna.qnaDate }</span>
                                  </td>
+                                <c:if test="${qna.isProcess ne 'Y' }">
                                  <td class="align-middle text-center text-sm">
-                                    <span class="badge badge-sm bg-gradient-success" style="background-image: linear-gradient(180deg,#419cef 10%,#106ec3 100%);">답변 대기</span>
+                                   <span class="badge badge-sm bg-gradient-success" style="background-image: linear-gradient(180deg,#419cef 10%,#106ec3 100%);">답변 대기</span>
                                  </td>
-                              </tr>
-                               <tr>
-                                 <td class="align-middle text-center">
-                                    <div>
-                                       <div class="d-flex flex-column justify-content-center">
-                                          <p class="mb-0 text-sm" style="color: black">계정 관련</p>
-                                       </div>
-                                    </div>
-                                 </td>
-                                 <td class="align-middle text-center">
-                                    <span class="text-secondary text-xs font-weight-bold">신고합니다 제목</span>
-                                 </td>
-                                 <td class="align-middle text-center">
-                                    <span class="text-secondary text-xs font-weight-bold">qwe123</span>
-                                 </td>                                 
-                                 <td class="align-middle text-center">
-                                    <span class="text-secondary text-xs font-weight-bold">21/12/10</span>
-                                 </td>
+                                </c:if>
+                                <c:if test="${qna.isProcess eq 'Y' }">
                                  <td class="align-middle text-center text-sm">
-                                    <span class="badge badge-sm bg-gradient-success" style="background-image: linear-gradient(180deg,#419cef 10%,#106ec3 100%);">답변 대기</span>
+                                   <span class="text-secondary text-xs font-weight-bold">답변 완료</span>
                                  </td>
+                                </c:if>                                
                               </tr>
-                               <tr>
-                                 <td class="align-middle text-center">
-                                    <div>
-                                       <div class="d-flex flex-column justify-content-center">
-                                          <p class="mb-0 text-sm" style="color: black">계정 관련</p>
-                                       </div>
-                                    </div>
-                                 </td>
-                                 <td class="align-middle text-center">
-                                    <span class="text-secondary text-xs font-weight-bold">신고합니다 제목</span>
-                                 </td>
-                                 <td class="align-middle text-center">
-                                    <span class="text-secondary text-xs font-weight-bold">qwe123</span>
-                                 </td>                                 
-                                 <td class="align-middle text-center">
-                                    <span class="text-secondary text-xs font-weight-bold">21/12/10</span>
-                                 </td>
-                                 <td class="align-middle text-center text-sm">
-                                    <span class="text-secondary text-xs font-weight-bold">답변 완료</span>
-                                 </td>
-                              </tr>
+                             </c:forEach>
+                            </c:if>  
                            </tbody>
                         </table>
+                        <ul class="pagination justify-content-center">
+                         <c:if test="${!empty totQna }">
+                          <c:choose>
+                          	<c:when test="${ totQna > 100 }">
+                         	 <c:forEach var="page" begin="1" end="10" step="1">
+                          	   <c:if test="${section >1 && page == 1 }">
+                                <li class="page-item"><a class="page-link" href="qna?section=${section-1 }&pageNum=10">이전</a></li>
+                          	   </c:if>
+                          	    <c:choose>
+                          	     <c:when test="${page == pageNum }">
+                           		  <li class="page-item active"><a class="page-link" href="qna?section=${section }&pageNum=${page}">${(section-1)*10+page }</a></li>
+                           		 </c:when>
+                           		 <c:otherwise>
+                           		  <li class="page-item"><a class="page-link" href="qna?section=${section }&pageNum=${page}">${(section-1)*10+page }</a></li>
+                           		 </c:otherwise>
+                           		</c:choose>
+                               <c:if test="${page == 10 }">
+                           		<li class="page-item"><a class="page-link" href="qna?section=${section+1}&pageNum=1">다음</a></li>
+                          	   </c:if>
+                         	 </c:forEach>                          	
+                          	</c:when>
+                          	<c:when test="${totQna == 100 }">
+                          	 <c:forEach var="page" begin="1" end="10" step="1">
+                          	  <c:choose>
+                          	   <c:when test="${page == pageNum}">
+                          	    <li class="page-item active"><a class="page-link" href="qna?section=${section }&pageNum=${page}">${page}</a></li>
+                          	   </c:when>
+                          	   <c:otherwise>
+                          	    <li class="page-item"><a class="page-link" href="qna?section=${section }&pageNum=${page}">${page}</a></li>
+                          	   </c:otherwise>
+                          	  </c:choose>
+                          	 </c:forEach>
+                          	</c:when>
+                          	<c:when test="${totQna < 100 }">
+                          	 <c:forEach var="page" begin="1" end="${totQna/10 +1 }" step="1">
+                          	  <c:choose>
+                          	   <c:when test="${page == pageNum }">
+                          	    <li class="page-item active"><a class="page-link" href="qna?section=${section }&pageNum=${page}">${page }</a></li>
+                          	   </c:when>
+                          	   <c:otherwise>
+                          	    <li class="page-item"><a class="page-link" href="qna?section=${section }&pageNum=${page}">${page }</a></li>
+                          	   </c:otherwise>
+                          	  </c:choose>
+                          	 </c:forEach>
+                          	</c:when>
+                          </c:choose>
+                         </c:if>	
+  						</ul>        
                      </div>
                   </div>
-               </div>
+               </div>               
 			<div class="row">
                <div class="col-lg-4 col-md-4 col-12 p-0" style="width: 30%;  margin-left: 100px;">
                   <div class="search-input">
@@ -609,5 +633,13 @@
               }
             });
     </script>
+   <c:if test="${totQna > 1 && empty qnaList }">    
+    <script> 
+      window.onload = function(){
+    	alert('해당 페이지가 비어 있습니다.');
+    	javascript:history.back();
+      }
+    </script>
+   </c:if>    
 </body>
 </html>

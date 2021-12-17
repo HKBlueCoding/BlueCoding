@@ -63,5 +63,37 @@
 		WHERE qnaList=#{qnaList} AND qnaTitle=#{qnaTitle} AND id=#{id}
 	 ]]>
 	</select>
+	
+	<!-- [상담원 페이지 전체 조회] -->
+	<select id="adminSelectAllQna" resultMap="qnaResult" parameterType="hashmap">
+	 <![CDATA[
+		SELECT 
+		* 
+		FROM 
+			(
+				SELECT 
+					Q.*,
+					ROWNUM AS RNUM 
+				FROM
+					(
+						SELECT
+							*
+						FROM
+							B_QNA
+						ORDER BY
+							qnaNO DESC 
+					) Q
+			)
+		WHERE 
+			RNUM BETWEEN(#{section}-1)*100+(#{pageNum}-1)*10+1 AND (#{section}-1)*100+#{pageNum}*10
+	  
+	 ]]>
+	</select>
+	
+	<select id="selectTotQna" resultType="int" >
+	 <![CDATA[ 
+	  SELECT max(qnaNO) FROM b_qna 
+	 ]]>
+	</select>
 
 </mapper>

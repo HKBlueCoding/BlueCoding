@@ -1,6 +1,8 @@
 package com.hk.qna.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -46,9 +48,20 @@ public class QnaService {
       return qnaDAO.updateQna(qnaVO);
    }
 
-   public List<QnaVO> adminSelectAllQna() {
+   public Map<String, Object> adminSelectAllQna(Map<String, Integer> pageMap) {
       // TODO Auto-generated method stub
-      return qnaDAO.adminSelectAllQna();
+	  Map<String, Object> map = new HashMap<String, Object>();
+	   
+	  // 지정한 해당 페이지의 리스트
+	  List<QnaVO> qnaList = qnaDAO.adminSelectAllQna(pageMap);
+	  
+	  // 현재 존재하는 모든 페이지 수
+	  int totQna = qnaDAO.selectTotQna();
+	  
+	  map.put("qnaList", qnaList);
+	  map.put("totQna", totQna);
+	  
+      return map;
    }
 
 }
