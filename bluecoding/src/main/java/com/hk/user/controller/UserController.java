@@ -93,7 +93,7 @@ public class UserController {
 	// [아이디 찾기 결과]
 	@RequestMapping(value = "/user/find/id", method = RequestMethod.POST)
 	public String findIdResult(@ModelAttribute UserVO userVO, Model model) {
-
+		logger.debug("[아이디 찾기]=="+userVO);
 		List<UserVO> userList = userService.findId(userVO);
 		model.addAttribute("userList",userList);
 

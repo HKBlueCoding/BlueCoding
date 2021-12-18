@@ -50,8 +50,8 @@ public class UserDAO {
 	
 	public List<UserVO> findId(UserVO userVO) {
 		
-		List<UserVO> userId = sqlSession.selectOne("mapper.user.findId" , userVO);
-		return userId;
+		userVO = sqlSession.selectOne("mapper.user.findId" , userVO);
+		return null;
 	}
 	
 	/*

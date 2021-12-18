@@ -129,7 +129,7 @@
                style="max-width: 70%; height: auto;" />
          </div>
          <div class="card-body">
-            <form action="findId" class="form-signin" method="POST">
+            <form action="id" class="form-signin" method="POST">
                <p class="text2">아이디 찾기</p>
                <input type="text" name="name" id="name" class="form-control" placeholder="이름"  required autofocus><BR> 
                <input type="email" name="email" id="email" class="form-control" placeholder="이메일" required><br>
