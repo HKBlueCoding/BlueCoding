@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-   pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%><%@ taglib prefix="fmt"
+   uri="http://java.sun.com/jsp/jstl/fmt"%><%@ taglib prefix="c"
+   uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <HTML>
    <HEAD>
@@ -12,11 +14,14 @@
       <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap"
          rel="stylesheet">
       <!-- ========================= ClassiGrids CSS HERE ========================= -->
-      <link rel="stylesheet" href="../../resources/assets/css/bootstrap.min.css" />
-      <link rel="stylesheet" href="../../resources/assets/css/LineIcons.2.0.css" />
+      <link rel="stylesheet"
+         href="../../resources/assets/css/bootstrap.min.css" />
+      <link rel="stylesheet"
+         href="../../resources/assets/css/LineIcons.2.0.css" />
       <link rel="stylesheet" href="../../resources/assets/css/animate.css" />
       <link rel="stylesheet" href="../../resources/assets/css/tiny-slider.css" />
-      <link rel="stylesheet" href="../../resources/assets/css/glightbox.min.css" />
+      <link rel="stylesheet"
+         href="../../resources/assets/css/glightbox.min.css" />
       <link rel="stylesheet" href="../../resources/assets/css/main.css" />
       <!-- SBAdmin2 CSS START -->
       <!-- Custom fonts for this template -->
@@ -38,7 +43,8 @@
       <link rel="stylesheet" type="text/css"
          href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
       <!-- Nucleo Icons -->
-      <link href="../../resources/assets/css/nucleo-icons.css" rel="stylesheet" />
+      <link href="../../resources/assets/css/nucleo-icons.css"
+         rel="stylesheet" />
       <link href="../../resources/assets/css/nucleo-svg.css" rel="stylesheet" />
       <!-- Font Awesome Icons -->
       <!-- Material Icons -->
@@ -50,24 +56,27 @@
          href="../../resources/assets/css/material-dashboard.css?v=3.0.0"
          rel="stylesheet" />
       <!-- marerial CSS END -->
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" />     
+      <link
+         href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css"
+         rel="stylesheet" />
       <style>
          body {
-         background-image: url(../../main/resources/assets/images/here/noticeBG.jpg);
+         background-image:
+         url(../../main/resources/assets/images/here/noticeBG.jpg);
          }
          #tbPadd {
          padding-left: 1.5rem;
          padding-right: 1.5rem;
          }
-	  </style>
+      </style>
       <style>
          @import url("http://fonts.googleapis.com/earlyaccess/nanumgothic.css");
          html {
          height: 100%;
          }
          body {
-         width:100%;
-         height:100%;
+         width: 100%;
+         height: 100%;
          margin: 0;
          padding-top: 200px;
          padding-bottom: 40px;
@@ -79,7 +88,7 @@
          float: none; /* Added */
          margin-bottom: 10px; /* Added */
          }
-         #btn-Yes{
+         #btn-Yes {
          background-color: #e4932b;
          border: none;
          }
@@ -92,45 +101,49 @@
          padding: 10px;
          font-size: 16px;
          }
-         .card-title{
+         .card-title {
          margin-top: 30px;
          }
-         .links{
+         .links {
          text-align: center;
          margin-bottom: 10px;
          }
-         a{ 
-         color: #f58b34; text-decoration: none; 
+         a {
+         color: #f58b34;
+         text-decoration: none;
          }
-         .text2{
-         color : blue;
+         .text2 {
+         color: blue;
          }
       </style>
       <script src="https://kit.fontawesome.com/42d5adcbca.js"
-              crossorigin="anonymous"></script>      
-	  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>      
+         crossorigin="anonymous"></script>
+      <script
+         src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
    </head>
 <body>
       <jsp:include page="/WEB-INF/views/include/header.jsp" />
-         <div class="card align-middle" style="width:25rem;" align="center">
-            <div class="card-title" style="margin-top:30px;" align="center">
-               <img src="/resources/assets/images/logo/BlueNovel.png" style="max-width: 70%; height: auto;" /></h2>
-            </div>
-            <div class="card-body">
-               <form action="findId" class="form-signin" method="POST">
-                  <p class="text2"> ${findid2}</p>
-                  <input type="text" name="name" id="name" class="form-control" placeholder="이름" required autofocus><BR>
-                  <input type="email" name="email" id="email" class="form-control" placeholder="이메일" required><br>
-                  <p class="check" id="check">${check}</p>
-                  <br/>
-                  <button id="btn-Yes" class="btn btn-lg btn-primary btn-block" type="submit">아 이 디 찾 기</button>
-               </form>
-            </div>
-            <div class="links">
-               <a href="pwd">비밀번호 찾기</a> | <a href="memberLogin">로그인</a> | <a href="register">회원가입</a>
-            </div>
+      <div class="card align-middle" style="width: 25rem;" align="center">
+         <div class="card-title" style="margin-top: 30px;" align="center">
+            <img src="/resources/assets/images/logo/BlueNovel.png"
+               style="max-width: 70%; height: auto;" />
          </div>
-</body>
+         <div class="card-body">
+            <form action="findId" class="form-signin" method="POST">
+               <p class="text2">아이디 찾기</p>
+               <input type="text" name="name" id="name" class="form-control" placeholder="이름"  required autofocus><BR> 
+               <input type="email" name="email" id="email" class="form-control" placeholder="이메일" required><br>
+               <p class="check" id="check">${check}</p>
+               <br />
+               <button id="btn-Yes" class="btn btn-lg btn-primary btn-block" type="submit">아 이 디 찾 기</button>
+            </form>
+         </div>
+         <div class="links">
+            <a href="pwd">비밀번호 찾기</a> | <a href="memberLogin">로그인</a> | <a
+               href="register">회원가입</a>
+         </div>
+      </div>
+   </body>
    <script type="text/javascript">
       $("#name").focusout(function(){
       	
@@ -227,6 +240,7 @@
    <!-- Github buttons -->
    <script async defer src="https://buttons.github.io/buttons.js"></script>
    <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
-   <script src="../../resources/assets/js/material-dashboard.min.js?v=3.0.0"></script>
-   </body>
+   <script
+      src="../../resources/assets/js/material-dashboard.min.js?v=3.0.0"></script>
+</body>
 </html>

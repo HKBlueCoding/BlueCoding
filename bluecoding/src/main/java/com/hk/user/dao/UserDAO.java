@@ -48,6 +48,12 @@ public class UserDAO {
 		return ret;
 	}
 	
+	public List<UserVO> findId(UserVO userVO) {
+		
+		List<UserVO> userId = sqlSession.selectOne("mapper.user.findId" , userVO);
+		return userId;
+	}
+	
 	/*
 	 * // [ 로그인 사용자가 쓴 글 조회] public List<HashMap<String, String>>
 	 * selectChest(HashMap param) {

@@ -63,4 +63,14 @@
 	 ]]>	
 	</select> -->
 	
+	<!-- [아이디 찾기] -->
+	<select id="findId" parameterType="UserVO" resultType="UserVO">
+	<![CDATA[
+	SELECT ID
+	FROM B_USER
+	WHERE NAME=#{NAME} 
+	AND EMAIL=#{EMAIL}
+	 ]]>
+	</select>
+	
 </mapper>

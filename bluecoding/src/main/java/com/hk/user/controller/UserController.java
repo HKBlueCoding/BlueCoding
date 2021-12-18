@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -21,7 +22,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.hk.chest.vo.ChestVO;
 import com.hk.user.service.UserService;
 import com.hk.user.vo.UserVO;
 
@@ -83,11 +83,23 @@ public class UserController {
 		return "done/registerDone";
 	}
 
+	// [아이디 찾기]
 	@RequestMapping(value = "/user/find/id", method = RequestMethod.GET)
 	public String findId() {
 
 		return "id";
 	}
+	
+	// [아이디 찾기 결과]
+	@RequestMapping(value = "/user/find/id", method = RequestMethod.POST)
+	public String findIdResult(@ModelAttribute UserVO userVO, Model model) {
+
+		List<UserVO> userList = userService.findId(userVO);
+		model.addAttribute("userList",userList);
+
+		return "idResult";
+	}
+
 
 	@RequestMapping(value = "/user/find/pwd", method = RequestMethod.GET)
 	public String findPwd() {
@@ -120,6 +132,8 @@ public class UserController {
 		return "userChest";
 	}
 
+
+	
 	// [사용자 보관함]
 
 	/*
@@ -134,6 +148,8 @@ public class UserController {
 	 * 
 	 * }
 	 */
+	
+	
 	
 	
 	// [아이디 중복체크]
