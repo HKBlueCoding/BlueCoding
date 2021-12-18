@@ -22,7 +22,17 @@
 	<select id="selectAllReview" resultMap="reviewResult">
     <![CDATA[
 		SELECT REVNO, REVPARENTNO, REVTEXT, REVDATE, REVDELETE, BOOKNO, ID, NICK 
-		FROM B_REVIEW WHERE revNO=#{revNO}
+		FROM B_REVIEW WHERE bookNO=#{bookNO}
     ]]>
 	</select>
+	
+	<insert id="insertReview" parameterType="ReviewVO">
+	 <selectKey keyProperty="revNO" resultType="int" order="BEFORE">
+	 	SELECT max(revNO)+1 FROM B_REVIEW
+	 </selectKey>
+	 <![CDATA[
+	  INSERT INTO B_REVIEW (REVNO, REVPARENTNO, REVTEXT, REVDATE, REVDELETE, BOOKNO, ID, NICK) 
+	  VALUES(#{revNO},  #{revParentNO}, #{revText}, sysdate, '', #{bookNO}, #{id}, #{nick})
+	 ]]>
+	</insert>	
 </mapper>	

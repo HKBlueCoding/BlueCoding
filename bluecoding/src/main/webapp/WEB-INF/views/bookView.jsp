@@ -83,7 +83,7 @@
          <c:when test="${!empty bookVO }">
             <!-- =================== 글쓰기 폼 ===================== -->
             <!-- Main Content-->
-            <form id="favo"  name="favo" data-sb-form-api-token="API_TOKEN" action="" method="get">
+            <form id="favo"  name="favo" data-sb-form-api-token="API_TOKEN" action="../../view/review/add" method="post">
                <main class="mb-4">
                   <div class="container px-4 px-lg-5">
                      <div class="row gx-4 gx-lg-5 justify-content-center">
@@ -93,7 +93,6 @@
                            <p id="title2">&nbsp;&nbsp;${bookVO.bookTitle }</p>
                            <div id="qna">
                               &nbsp;&nbsp; 작가 이름 : ${bookVO.name } &nbsp;&nbsp;&nbsp;&nbsp; ${bookVO.bookDate } &nbsp;&nbsp;&nbsp;&nbsp;<br><br>
-                              <input type="hidden" value="${bookVO.id }" name="id">
                               <hr class="my-4" style="width: 66.6%">
                               <!-- ======================= 버튼 ========================== -->
                               <c:if test="${login.admin eq 'A' || login.admin eq 'C'}">
@@ -163,7 +162,7 @@
                                                             <div class="d-flex px-2 py-1">
                                                                <div class="d-flex flex-column justify-content-center">
                                                                   <p class="text-xs text-secondary mb-0" style="font-size: 15px;"><a href="../view/page?pageNO=${page.pageNO }">${page.series }화, ${page.pageTitle }</a><br>${page.pageDate }</p>
-                                                                  <input type="hidden" name="bookNO"  value="${bookVO.bookNO }">
+                                                                  <input type="hidden" name="bookNO"  value="${bookVO.bookNO }" id="bookNO">
                                                                   <p class="text-xs text-secondary mb-0">댓글(개수)</p>
                                                                </div>
                                                             </div>
@@ -176,7 +175,7 @@
                                                                </div>
                                                                <c:if test="${login.admin eq 'A' || login.admin eq 'C'}">
                                                                   <div class="button header-button">
-                                                                     <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">수정</a>
+                                                                     <a href="../view/update?pageNO=${page.pageNO}" class="btn" style="background-color: #30d8e0;">수정</a>
                                                                   </div>
                                                                   <div class="button header-button">
                                                                      <a onClick="funok2()" class="btn" style="background-color: #30d8e0;">삭제</a>
@@ -260,7 +259,7 @@
                                                                <!-- [로그인시] -->
                                                                <c:if test="${!empty login.id && login.id ne '' }">
                                                                   <div class="button header-button">
-                                                                     <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">답글 쓰기</a>
+                                                                     <a onclick="reviewReply('${review.revNO}','${bookVO.bookNO}')" class="btn" style="background-color: #30d8e0;">답글 쓰기</a>
                                                                   </div>
                                                                </c:if>
                                                                <!-- [비 로그인시]] -->
@@ -330,11 +329,12 @@
                               </div>
                               <br>
                               <div class="form-floating" id="formMag">
-                                 <textarea name="revText" class="form-control" id="message" style="height: 15rem; width: 66.6%;" data-sb-validations="required"></textarea>
+                                 <input type="hidden" value="${login.id }" name="id" id="id">
+                                 <input type="hidden" value="${login.nick }" name="nick" id="nick">
+                                 <textarea name="revText"  class="form-control" id="revText" style="height: 15rem; width: 66.6%;" data-sb-validations="required"></textarea>
                                  <div class="invalid-feedback" data-sb-feedback="message:required">내용을 입력하세요.</div>
                                  <br><br>
                                  <label for="message">리뷰 쓰기</label>
-                                 <input type="hidden" name="bookNO"  value="${bookVO.bookNO }">
                               </div>
                               <!-- Submit success message-->
                               <!---->
@@ -360,7 +360,7 @@
                                  <!-- [로그인시] -->
                                  <c:if test="${!empty login.id && login.id ne '' }">
                                     <div class="button header-button">
-                                       <a onClick="funok()"  id="submitButton"  class="btn">리뷰 등록</a>
+                                       <input type="button" onClick="" value="리뷰 등록" class="btn">
                                     </div>
                                  </c:if>
                                  <!-- [비 로그인시]] -->
@@ -465,6 +465,7 @@
              }
          });
       </script>
+      <script src="../../resources/bluecoding/bookView.js"></script>
       <script>
          function funbtn() {
            if (confirm("이전 페이지로 돌아가시겠습니까??")) {
@@ -503,5 +504,26 @@
          	}
          }
       </script>
+<script> 
+$(document).ready(function() {
+	
+    $('#revText').change(function() {
+        $.ajax({
+                type: 'POST',
+                url: '../view/review/add',
+                dataType: "json",
+                data: {"revText": $('#revText').val(), "id":$('#id').val(), "bookNO":$("#bookNO").val(),  "nick":$("#nick").val()},
+                success: function(data) {
+                   // data.server에서 보낸 map text
+                    alert('리뷰가 등록되었습니다.');
+                    $('#revText').val("");
+                    location.reload();
+                }, 
+                error: function(request,status,error) {
+                   alert('에러!! : ' + request.responseText + ":"+error);
+                }
+         }); //end ajax 
+    }); //end on 
+}); </script>
    </body>
 </html>

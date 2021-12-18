@@ -114,4 +114,9 @@ public class BookService {
 		// TODO Auto-generated method stub
 		return favoDAO.insertFavo(favoVO);
 	}
+	
+	public int addReview(ReviewVO reviewVO) {
+		// TODO Auto-generated method stub
+		return reviewDAO.insertReview(reviewVO);
+	}	
 }

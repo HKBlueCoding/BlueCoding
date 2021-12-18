@@ -12,7 +12,7 @@
 
 <c:if test="${ret == 0}">
   <script>
-   alert('등록에 실패하였습니다.');
+   alert('찜 실패...');
    location.href="../../";
   </script>
 </c:if>

@@ -1,5 +1,6 @@
 package com.hk.book.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -13,12 +14,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hk.book.service.BookService;
 import com.hk.book.vo.BookVO;
 import com.hk.favo.vo.FavoVO;
 import com.hk.page.vo.PageVO;
+import com.hk.review.vo.ReviewVO;
 
 /**
  * Handles requests for the application home page.
@@ -157,12 +162,6 @@ public class BookController {
 		return "done/bookViewUpdateDone";
 	}
 	
-	@GetMapping("/view/favo/add")
-	public String favoAdd() {
-		
-		return "favoAdd";
-	}
-	
 	@PostMapping("/view/favo/add")
 	public String favoAddDone(Model model, @ModelAttribute FavoVO favoVO) {
 		logger.debug("[찜하기 favoVO] = " + favoVO);
@@ -174,4 +173,30 @@ public class BookController {
 		model.addAttribute("id", favoVO.getId());
 		return "done/favoAddDone";
 	}
+
+	@RequestMapping(value = "/view/review/add", method = RequestMethod.POST, produces = "application/json; charset=utf8")
+	@ResponseBody // --> ajax 사용할 때 사용
+	public Map<String, Object> reviewAdd(@ModelAttribute ReviewVO reviewVO, Model model) { // --> ajax에서 보낸 data
+		logger.debug("[리뷰의 reviewVO] = " + reviewVO);
+		
+		int ret = bookService.addReview(reviewVO);
+		logger.debug("[ret] = " + ret);
+		
+		model.addAttribute("ret", ret);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("text", reviewVO.getRevText()); // 중복이면 true, 아니면 false라는 String반환
+		map.put("ret", ret);
+		return map;
+	}	
+	
+	// [리뷰의 답글쓰기]
+	@GetMapping("/view/review/reply/add")
+	public String reviewReply(@ModelAttribute ReviewVO reviewVO, Model model) {
+		
+		model.addAttribute("reviewVO", reviewVO);
+		return "reply/bookviewReply";
+	}
+	
+	
 }
