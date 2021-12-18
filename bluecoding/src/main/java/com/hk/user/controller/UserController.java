@@ -94,8 +94,8 @@ public class UserController {
 	@RequestMapping(value = "/user/find/id", method = RequestMethod.POST)
 	public String findIdResult(@ModelAttribute UserVO userVO, Model model) {
 		logger.debug("[아이디 찾기]=="+userVO);
-		List<UserVO> userList = userService.findId(userVO);
-		model.addAttribute("userList",userList);
+		userVO = userService.findId(userVO);
+		model.addAttribute("userVO",userVO);
 
 		return "idResult";
 	}

@@ -106,8 +106,8 @@
                                     <a onClick="funok2()" class="btn">삭제</a>
                                  </div>
                               </c:if>
-                              <!-- [로그인시] -->
-                              <c:if test="${!empty login.id && login.id ne '' }">
+                              <!-- [글 쓴 유저만 변경가능] -->
+                              <c:if test="${login.id eq bookVO.id}">
                                  <div class="button header-button">
                                     <input type="button" onClick="funFavo()" class="btn" value="찜하기" style="background-color: #e3970e">
                                  </div>
@@ -123,17 +123,28 @@
                               </div>
                               <br><br>
                               <div class="form-floating" id="formMag">
-                                 <textarea class="form-control" id="message" name="intro" style="height: 10rem; width: 45%" data-sb-validations="required" disabled></textarea>
-                                 <label for="message">${bookVO.intro}</label>
-                                 <div class="invalid-feedback" data-sb-feedback="message:required">줄거리을 입력하세요.</div>
-                                 <br>
-                                 <div class="button header-button">
+								<c:if test="${empty bookVO.bookImage }">
+                           	       <img src="../../resources/assets/images/mainPage/board1.png" width="210" height="300" class="avatar avatar-sm me-3 border-radius-lg" alt="user1" id="preview" style="float: left">
+                                   작품 소개:<br><br>
+                                   ${bookVO.intro}
+                                   <br><br>
+                                </c:if>
+                                <c:if test="${!empty bookVO.bookImage }">
+                                   <img src="../../download?uploadFile=${bookVO.bookImage }&inFolder=book&pk=${bookVO.bookNO}" width="160" height="250" class="avatar avatar-sm me-3 border-radius-lg" alt="user1" id="preview" style="float: left">
+                                   작품 소개:<br><br>
+                                   ${bookVO.intro}
+                                   <br><br>
+                                </c:if>                              
+                                 <div class="button header-button" align="bottom">
                                     <a href="../view/page?pageNO=${pageVO[0].pageNO }" class="btn" style="background-color: #30e087">첫회보기</a>
                                  </div>
                               </div>
+                               
+                              <br><br>
+                              <br><br>                             
                               <br><br>
                               <!-- ======================= 버튼 끝 ========================== -->                  
-                           </div>
+                           </div>                          
                            <br><br>
                            <!-- * * * * * * * * * * * * * * *-->
                            <!-- * * SB Forms Contact Form * *-->
@@ -170,9 +181,11 @@
                                                          <!-- ======================= 버튼 ========================== -->
                                                          <td>
                                                             <div align="right"  style="width: 100%;">
+                                                              <c:if test="${page.charge eq 'Y' }">
                                                                <div class="button header-button">
                                                                   <a href="" class="btn" style="background-color: #30e087">미리보기(유료)</a>
                                                                </div>
+                                                              </c:if>
                                                                <c:if test="${login.admin eq 'A' || login.admin eq 'C'}">
                                                                   <div class="button header-button">
                                                                      <a href="../view/update?pageNO=${page.pageNO}" class="btn" style="background-color: #30d8e0;">수정</a>

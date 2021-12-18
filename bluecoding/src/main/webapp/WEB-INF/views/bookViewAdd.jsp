@@ -80,7 +80,6 @@
                            <input class="form-control" id="name" name="pageTitle" type="text" data-sb-validations="required" />
                            <label for="name">제목</label>
                            <input type="hidden" value="${bookVO.bookNO }" name="bookNO">
-                           <input type="hidden" value="${pageVO.charge }" name="charge">
                            <div class="invalid-feedback" data-sb-feedback="name:required">제목을 입력하세요.</div>
                         </div>
                         <br>
@@ -116,7 +115,11 @@
                         </div>
                         <!-- ======================= 버튼 ========================== -->
                         <div class="button header-button">
-                           <p>유료 여부 <input type="checkbox" name="charge"></p>
+                           <p>유료화 여부:<select name="charge" id="charge">
+                            			 	<option value="">무료</option>
+                                         	<option value="Y">유료화</option>
+                           				  </select>
+                           </p>
                         </div>
                         &nbsp;&nbsp;&nbsp;&nbsp;
                         <div class="button header-button">

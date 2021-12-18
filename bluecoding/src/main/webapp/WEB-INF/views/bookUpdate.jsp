@@ -50,7 +50,7 @@
       <br><br><br><br><br><br><br><br>
       <!-- =================== 글쓰기 폼 ===================== -->
       <!-- Main Content-->
-      <form id="contactForm" data-sb-form-api-token="API_TOKEN" action="update" method="post">
+      <form id="contactForm" data-sb-form-api-token="API_TOKEN" action="update" method="post" encType="multipart/form-data">
          <main class="mb-4">
             <div class="container px-4 px-lg-5">
                <div class="row gx-4 gx-lg-5 justify-content-center">
@@ -63,16 +63,16 @@
                            <div class="col-lg-3 col-md-3 col-12 p-0" style="width: 20%">
                               <div class="search-input">
                                  <label for="category"></label>
-                                 <select name="theme" id="category"  required>
-                                    <option value="none" selected disabled>테마 선택</option>
-                                    <option value="none">판타지</option>
-                                    <option value="none">청소년</option>
-                                    <option value="none">고전</option>
-                                    <option value="none">공포/호러</option>
-                                    <option value="none">미스터리/스릴러</option>
-                                    <option value="none">로맨스</option>
-                                    <option value="none">SF/과학</option>
-                                    <option value="none">드라마/영화</option>
+                                 <select name="theme" id="category" required>
+                                    <option value="" selected disabled>테마 선택</option>
+                                    <option value="판타지">판타지</option>
+                                    <option value="청소년">청소년</option>
+                                    <option value="고전">고전</option>
+                                    <option value="공포/호러">공포/호러</option>
+                                    <option value="미스터리/스릴러">미스터리/스릴러</option>
+                                    <option value="로맨스">로맨스</option>
+                                    <option value="SF/과학">SF/과학</option>
+                                    <option value="드라마/영화">드라마/영화</option>
                                  </select>
                               </div>
                            </div>
@@ -99,11 +99,15 @@
                            <input class="form-control" id="name" value="${bookVO.name}" name="name" type="text" placeholder="Enter your name..." data-sb-validations="required"  readonly/>
                            <label for="name">작가명</label>                          
                            <div class="invalid-feedback" data-sb-feedback="name:required">작가명을 입력하세요.</div>
+                           <br>
+                           <!-- 1. 기존에 이미지 이름을 저장 -->    
+                           	<input type="hidden" name="bookImage" value="${bookVO.bookImage }" />
+						   <!-- 2. 기존에 이미지 표시 or id를 preview로 해서 이미지 파일이 등록이되면 src를 변경함 -->
+							<img id="preview" src="../../download?uploadFile=${bookVO.bookImage }&inFolder=book&pk=${bookVO.bookNO}" width="160" height="250" class="avatar avatar-sm me-3 border-radius-lg" alt="user1" >
                         </div>
-                        <br>   
+                        <br>                           
                         <div class="form-floating" id="formMag" style="width: 100%; ">
                            <textarea name="intro" class="form-control" id="message" placeholder="Enter your message here..." style="height: 10rem" data-sb-validations="required">${bookVO.intro}</textarea>
-                           <input type="hidden" name="bookImage">
                            <label for="message">줄거리</label>
                            <div class="invalid-feedback" data-sb-feedback="message:required">줄거리을 입력하세요.</div>
                         </div>
@@ -127,8 +131,8 @@
                         <div class="d-none" id="submitErrorMessage">
                            <div class="text-center text-danger mb-3">Error sending message!</div>
                         </div>
-                        <!-- Submit Button-->
-                        <button class="btn btn-primary text-uppercase disabled"  id="submitButton" type="submit">이미지 선택(바꿔야 됨)</button>
+                        
+                        이미지 선택: <input type="file" name="uploadFile" onchange="readURL(this)" />                      
                         <!-- ======================= 버튼 ========================== -->
                         <!-- [로그인시] -->
                         <c:if test="${!empty login.id && login.id ne '' }">
@@ -145,7 +149,7 @@
                         <div class="button header-button">
                            <a onClick="funbtn()" class="btn">돌아가기</a>
                         </div>
-                        <!-- ======================= 버튼 끝 ========================== -->
+                        <!-- ======================= 버튼 끝 ========================== -->                     
                      </div>
                   </div>
                </div>
@@ -220,6 +224,16 @@
            	   return;
            }
          }
+
+      	function readURL(input){
+    		if(input.files && input.files[0]){
+    			var reader = new FileReader();
+    			reader.onload = function (e){
+    				$('#preview').attr('src',e.target.result);
+    			}
+    			reader.readAsDataURL(input.files[0]);
+    		}
+    	}         
       </script>
    </body>
 </html>

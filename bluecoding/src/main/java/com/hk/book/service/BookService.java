@@ -44,7 +44,15 @@ public class BookService {
 
 	public int addBook(BookVO bookVO) {
 		// TODO Auto-generated method stub
-		return bookDAO.bookAdd(bookVO);
+		
+		int ret = bookDAO.bookAdd(bookVO);
+		
+		int bookNO = 0;
+		if(ret > 0) {
+			bookNO = bookDAO.selectBookNO(bookVO);
+		}
+		
+		return bookNO;
 	}
 
 	public BookVO bookOne(int bookNO) {

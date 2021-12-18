@@ -50,7 +50,7 @@
       <br><br><br><br><br><br><br><br>
       <!-- =================== 글쓰기 폼 ===================== -->
       <!-- Main Content-->
-      <form id="contactForm" method="post" action="add" data-sb-form-api-token="API_TOKEN">
+      <form id="contactForm" method="post" action="add" data-sb-form-api-token="API_TOKEN" encType="multipart/form-data">
          <main class="mb-4">
             <div class="container px-4 px-lg-5">
                <div class="row gx-4 gx-lg-5 justify-content-center">
@@ -64,15 +64,15 @@
                               <div class="search-input">
                                  <label for="category"></label>
                                  <select name="theme" id="category"  required>
-                                    <option value="none" selected disabled>테마 선택</option>
-                                    <option value="none">판타지</option>
-                                    <option value="none">청소년</option>
-                                    <option value="none">고전</option>
-                                    <option value="none">공포/호러</option>
-                                    <option value="none">미스터리/스릴러</option>
-                                    <option value="none">로맨스</option>
-                                    <option value="none">SF/과학</option>
-                                    <option value="none">드라마/영화</option>
+                                    <option value="" selected disabled>테마 선택</option>
+                                    <option value="판타지">판타지</option>
+                                    <option value="청소년">청소년</option>
+                                    <option value="고전">고전</option>
+                                    <option value="공포/호러">공포/호러</option>
+                                    <option value="미스터리/스릴러">미스터리/스릴러</option>
+                                    <option value="로맨스">로맨스</option>
+                                    <option value="SF/과학">SF/과학</option>
+                                    <option value="드라마/영화">드라마/영화</option>
                                  </select>
                               </div>
                            </div>
@@ -89,16 +89,13 @@
                         <!-- https://startbootstrap.com/solution/contact-forms-->
                         <!-- to get an API token!-->
                         <div class="form-floating" style="width: 80%">
+                           <input type="hidden" name="id" value="${login.id }">
+                           <input type="hidden" name="name" value="${login.name }">
                            <input class="form-control" id="name" name="bookTitle" type="text" placeholder="Enter your name..." data-sb-validations="required" size=53/>
                            <label for="name">제목</label>
                            <div class="invalid-feedback" data-sb-feedback="name:required">제목을 입력하세요.</div>
                         </div>
                         <br>
-                        <div class="form-floating" style="width: 30%">
-                           <input class="form-control" id="name" name="name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
-                           <label for="name">작가명</label>                          
-                           <div class="invalid-feedback" data-sb-feedback="name:required">작가명을 입력하세요.</div>
-                        </div>
                         <br>   
                         <div class="form-floating" id="formMag" style="width: 100%; ">
                            <textarea name="intro" class="form-control" id="message" style="height: 10rem;" data-sb-validations="required"></textarea>
@@ -127,7 +124,7 @@
                            <div class="text-center text-danger mb-3">Error sending message!</div>
                         </div>
                         <!-- Submit Button-->
-                        <button class="btn btn-primary text-uppercase disabled"  id="submitButton" type="submit">사진 입력하기(바꿔야 됨)</button>
+                        이미지 선택: &nbsp;<input id="uploadFile" name="uploadFile" type="file">
                         <!-- ======================= 버튼 ========================== -->
                         <!-- [로그인시] -->
                         <c:if test="${!empty login.id && login.id ne '' }">

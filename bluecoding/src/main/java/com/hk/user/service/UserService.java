@@ -71,7 +71,7 @@ public class UserService {
 	}
 	
 	// 아이디 찾기
-	public List<UserVO> findId(UserVO userVO) {
+	public UserVO findId(UserVO userVO) {
 		// TODO Auto-generated method stub
 		return userDAO.findId(userVO);
 	}

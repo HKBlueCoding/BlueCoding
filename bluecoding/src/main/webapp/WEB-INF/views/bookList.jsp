@@ -99,7 +99,12 @@
                                           <td>
                                              <div class="d-flex px-2 py-1">
                                                 <div>
-                                                   <img src="../resources/assets/images/mainPage/board1.png" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
+													<c:if test="${empty book.bookImage }">
+                           	       					 <img src="../../resources/assets/images/mainPage/board1.png" width="160" height="250" class="avatar avatar-sm me-3 border-radius-lg" alt="user1" id="preview" style="float: left">
+                                					</c:if>
+                                					<c:if test="${!empty book.bookImage }">
+                                   					 <img src="../../download?uploadFile=${book.bookImage }&inFolder=book&pk=${book.bookNO}" width="160" height="250" class="avatar avatar-sm me-3 border-radius-lg" alt="user1" id="preview" style="float: left">
+                                					</c:if>                                                
                                                 </div>
                                                 <div class="d-flex flex-column justify-content-center">
                                                    <a href="/view?bookNO=${book.bookNO }" class="mb-0 text-sm" style="color: black">${book.bookTitle }</a>

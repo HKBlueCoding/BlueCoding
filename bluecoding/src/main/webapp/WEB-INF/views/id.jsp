@@ -131,8 +131,8 @@
          <div class="card-body">
             <form action="id" class="form-signin" method="POST">
                <p class="text2">아이디 찾기</p>
-               <input type="text" name="name" id="name" class="form-control" placeholder="이름"  required autofocus><BR> 
-               <input type="email" name="email" id="email" class="form-control" placeholder="이메일" required><br>
+               <input type="text" name="name" id="name" class="form-control" placeholder="이름"  required autofocus><br> 
+               <input type="phone" name="phone" class="form-control" placeholder="전화번호" pattern="[0-9]{2,3}-[0-9]{3,4}-[0-9]{3,4}" title="형식 010-0000-0000"  required><br>
                <p class="check" id="check">${check}</p>
                <br />
                <button id="btn-Yes" class="btn btn-lg btn-primary btn-block" type="submit">아 이 디 찾 기</button>

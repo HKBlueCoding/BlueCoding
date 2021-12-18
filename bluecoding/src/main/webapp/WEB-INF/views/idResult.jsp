@@ -144,17 +144,15 @@ a {
 		</div>
 		<div class="card-body">
 			<c:choose>
-				<c:when test="${empty idResult }">
+				<c:when test="${empty userVO }">
 					<tr>
 						<td>해당되는 아이디가 없습니다.</td>
 					</tr>
 				</c:when>
-				<c:when test="${!empty idResult}">
-					<c:forEach var="idResult" items="${idResult }">
-						<tr>
-							<td>아이디는 ${idResult.id } 입니다.</td>
-						</tr>
-					</c:forEach>
+				<c:when test="${!empty userVO}">
+					<tr>
+						<td>아이디는 ${userVO.id } 입니다.</td>
+					</tr>
 				</c:when>
 			</c:choose>
 		</div>

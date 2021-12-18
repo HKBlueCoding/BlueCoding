@@ -35,7 +35,7 @@
 	 <![CDATA[
 	  INSERT INTO B_BOOK
 	  (BOOKNO, BOOKTITLE, INTRO, THEME, BOOKIMAGE, NAME, ID, BOOKDATE, BVIEWCNT)
-	   VALUES( #{bookNO}, #{bookTitle}, #{intro}, #{theme}, #{bookImage}, '홍길동', 'abc12345', sysdate, 0)
+	   VALUES( #{bookNO}, #{bookTitle}, #{intro}, #{theme}, #{bookImage}, #{name}, #{id}, sysdate, 0)
 	 ]]>
 	</insert>
 	
@@ -51,4 +51,12 @@
 		WHERE BOOKNO=#{bookNO}
     ]]>
 	</update>
+	
+	<!-- [책 번호 조회] -->
+	<select id="selectBookNO" resultType="int" parameterType="BookVO">
+	 <![CDATA[
+	  SELECT bookNO FROM B_BOOK
+	  WHERE bookTitle = #{bookTitle} AND bookImage = #{bookImage} AND id=#{id}
+	 ]]>
+	</select>
 </mapper>

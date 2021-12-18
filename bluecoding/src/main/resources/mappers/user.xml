@@ -69,7 +69,7 @@
 	SELECT ID
 	FROM B_USER
 	WHERE NAME=#{name} 
-	AND EMAIL=#{email}
+	AND PHONE=#{phone}
 	 ]]>
 	</select>
 	

@@ -158,7 +158,7 @@
         <br />
         <label for="phone">전화번호</label>
         <br />
-        <input type="phone" name="phone" pattern="[0-9]{2,3}-[0-9]{3,4}-[0-9]{3,4}" title="형식 010-0000-0000">
+        <input type="phone" name="phone" pattern="[0-9]{2,3}-[0-9]{3,4}-[0-9]{3,4}" title="형식 010-0000-0000" required>
         <br />
         <label for="find">비밀번호 찾기 질문(선택)</label>
         <br />

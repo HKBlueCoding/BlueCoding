@@ -48,10 +48,10 @@ public class UserDAO {
 		return ret;
 	}
 	
-	public List<UserVO> findId(UserVO userVO) {
+	public UserVO findId(UserVO userVO) {
 		
 		userVO = sqlSession.selectOne("mapper.user.findId" , userVO);
-		return null;
+		return userVO;
 	}
 	
 	/*
