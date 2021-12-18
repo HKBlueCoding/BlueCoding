@@ -17,6 +17,11 @@ public class AdminDAO {
 		return sqlSession.selectList("mapper.admin.selectDeleteBook");
 	}
 	
+	public List<HashMap> selectDeletePage() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("mapper.admin.selectDeletePage");
+	}
+	
 	public List<HashMap>  selectDeleteBoard() {
 		// TODO Auto-generated method stub		
 		return sqlSession.selectList("mapper.admin.selectDeleteBoard");

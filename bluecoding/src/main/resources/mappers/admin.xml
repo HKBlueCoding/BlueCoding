@@ -12,6 +12,13 @@
 		WHERE BOOKDELETE = 'Y'
 	</select>
 
+	<select id="selectDeletePage" resultType="hashMap">
+		SELECT bb.BOOKTITLE, bp.PAGENO, bp.PAGETITLE
+		FROM B_BOOK bb, B_PAGE bp
+		WHERE bb.BOOKNO = bp.BOOKNO
+		AND bp.PAGEDELETE = 'Y';
+	</select>
+
 	<select id="selectDeleteBoard" resultType="hashMap">
 		SELECT BOARDTITLE
 		,ID

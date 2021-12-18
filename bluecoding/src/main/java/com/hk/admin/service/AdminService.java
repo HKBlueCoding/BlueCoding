@@ -18,6 +18,11 @@ public class AdminService {
 		return adminDAO.selectDeleteBook();
 	}
 	
+	public List<HashMap> selectDeletePage() {
+		// TODO Auto-generated method stub
+		return adminDAO.selectDeletePage();
+	}
+	
 	public List<HashMap>  selectDeleteBoard() {
 		// TODO Auto-generated method stub
 		return adminDAO.selectDeleteBoard();

@@ -4,7 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <%
-  request.setCharacterEncoding("UTF-8");
+request.setCharacterEncoding("UTF-8");
 %>
 <!DOCTYPE html>
 <html>
@@ -228,11 +228,13 @@
 												</tr>
 											</c:when>
 											<c:when test="${!empty bookList}">
-												<c:forEach var="boardList" items="${bookList }">
+												<c:forEach var="bookList" items="${bookList }">
 													<tbody>
 														<tr>
-															<td align="center"><span class="txt_line text-xs font-weight-bold">${bookList.BOOKTITLE}</span></td>
-															<td align="center"><span class="txt_line text-xs font-weight-bold">${bookList.NAME}</span>
+															<td align="center"><span
+																class="txt_line text-xs font-weight-bold">${bookList.BOOKTITLE}</span></td>
+															<td align="center"><span
+																class="txt_line text-xs font-weight-bold">${bookList.NAME}</span>
 															</td>
 														</tr>
 													</tbody>
@@ -250,24 +252,32 @@
 											<tr>
 												<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">책이름</th>
 												<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">회차</th>
+												<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">회차제목</th>
 											</tr>
 										</thead>
-										<tbody>
-											<tr>
-												<td align="center"><span
-													class="txt_line text-xs font-weight-bold"> 마법천자문 </span></td>
-												<td align="center"><span
-													class="txt_line text-xs font-weight-bold"> 3회 비춰라 빛
-														광(光) </span></td>
-											</tr>
-											<tr align="center">
-												<td class="align-middle text-center text-sm"><span
-													class="txt_line text-xs font-weight-bold"> 데미안 </span></td>
-												<td class="align-middle text-center text-sm"><span
-													class="txt_line text-xs font-weight-bold"> 6화 야곱의 싸움
-												</span></td>
-											</tr>
-										</tbody>
+										<c:choose>
+											<c:when test="${empty pageList }">
+												<tr>
+													<td>null입니다.</td>
+												</tr>
+											</c:when>
+											<c:when test="${!empty pageList}">
+												<c:forEach var="pageList" items="${pageList }">
+													<tbody>
+														<tr>
+															<td align="center">
+															<span class="txt_line text-xs font-weight-bold">${pageList.BOOKTITLE }</span>
+															</td>
+															<td align="center">
+															<span class="txt_line text-xs font-weight-bold">${pageList.SERIES }회</span>
+															</td>
+															<td align="center">
+															<span class="txt_line text-xs font-weight-bold">${pageList.PAGETITLE }</span>
+															</td>
+													</tbody>
+												</c:forEach>
+											</c:when>
+										</c:choose>
 									</table>
 								</div>
 							</div>
@@ -303,22 +313,25 @@
 											</tr>
 										</thead>
 										<tbody>
-											<tr>
-												<td align="center"><span
-													class="txt_line text-xs font-weight-bold">%@#무료@충@전</span>
-												</td>
-												<td align="center"><span
-													class="txt_line text-xs font-weight-bold"> doback123
-												</span></td>
-											</tr>
-											<tr align="center">
-												<td class="align-middle text-center text-sm"><span
-													class="txt_line text-xs font-weight-bold">
-														도배도배도배도배도배도배도배도배도배도배도배도배도배도배도배도배도배도배도배도배도배도배도배도배 </span></td>
-												<td class="align-middle text-center text-sm"><span
-													class="txt_line text-xs font-weight-bold"> dovain123
-												</span></td>
-											</tr>
+											<c:choose>
+												<c:when test="${empty boardList }">
+													<tr>
+														<td>null입니다.</td>
+													</tr>
+												</c:when>
+												<c:when test="${!empty boardList}">
+													<c:forEach var="boardList" items="${boardList }">
+														<tr>
+															<td align="center"><span
+																class="txt_line text-xs font-weight-bold">${boardList.BOARDTITLE}</span>
+															</td>
+															<td align="center"><span
+																class="txt_line text-xs font-weight-bold">${boardList.ID}</span>
+															</td>
+														</tr>
+													</c:forEach>
+												</c:when>
+											</c:choose>
 										</tbody>
 									</table>
 								</div>
@@ -996,253 +1009,256 @@
 		src="../resources/material/assets/js/plugins/smooth-scrollbar.min.js"></script>
 	<script src="../resources/material/assets/js/plugins/chartjs.min.js"></script>
 	<script>
-      var ctx = document.getElementById("chart-bars").getContext("2d");
-      new Chart(ctx, {
-        type: "bar",
-        data: {
-          labels: ["M", "T", "W", "T", "F", "S", "S"],
-          datasets: [{
-            label: "Sales",
-            tension: 0.4,
-            borderWidth: 0,
-            borderRadius: 4,
-            borderSkipped: false,
-            backgroundColor: "rgba(255, 255, 255, .8)",
-            data: [50, 20, 10, 22, 50, 10, 40],
-            maxBarThickness: 6
-          }, ],
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-            legend: {
-              display: false,
-            }
-          },
-          interaction: {
-            intersect: false,
-            mode: 'index',
-          },
-          scales: {
-            y: {
-              grid: {
-                drawBorder: false,
-                display: true,
-                drawOnChartArea: true,
-                drawTicks: false,
-                borderDash: [5, 5],
-                color: 'rgba(255, 255, 255, .2)'
-              },
-              ticks: {
-                suggestedMin: 0,
-                suggestedMax: 500,
-                beginAtZero: true,
-                padding: 10,
-                font: {
-                  size: 14,
-                  weight: 300,
-                  family: "Roboto",
-                  style: 'normal',
-                  lineHeight: 2
-                },
-                color: "#fff"
-              },
-            },
-            x: {
-              grid: {
-                drawBorder: false,
-                display: true,
-                drawOnChartArea: true,
-                drawTicks: false,
-                borderDash: [5, 5],
-                color: 'rgba(255, 255, 255, .2)'
-              },
-              ticks: {
-                display: true,
-                color: '#f8f9fa',
-                padding: 10,
-                font: {
-                  size: 14,
-                  weight: 300,
-                  family: "Roboto",
-                  style: 'normal',
-                  lineHeight: 2
-                },
-              }
-            },
-          },
-        },
-      });
-      var ctx2 = document.getElementById("chart-line").getContext("2d");
-      new Chart(ctx2, {
-        type: "line",
-        data: {
-          labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-          datasets: [{
-            label: "Mobile apps",
-            tension: 0,
-            borderWidth: 0,
-            pointRadius: 5,
-            pointBackgroundColor: "rgba(255, 255, 255, .8)",
-            pointBorderColor: "transparent",
-            borderColor: "rgba(255, 255, 255, .8)",
-            borderColor: "rgba(255, 255, 255, .8)",
-            borderWidth: 4,
-            backgroundColor: "transparent",
-            fill: true,
-            data: [50, 40, 300, 320, 500, 350, 200, 230, 500],
-            maxBarThickness: 6
-          }],
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-            legend: {
-              display: false,
-            }
-          },
-          interaction: {
-            intersect: false,
-            mode: 'index',
-          },
-          scales: {
-            y: {
-              grid: {
-                drawBorder: false,
-                display: true,
-                drawOnChartArea: true,
-                drawTicks: false,
-                borderDash: [5, 5],
-                color: 'rgba(255, 255, 255, .2)'
-              },
-              ticks: {
-                display: true,
-                color: '#f8f9fa',
-                padding: 10,
-                font: {
-                  size: 14,
-                  weight: 300,
-                  family: "Roboto",
-                  style: 'normal',
-                  lineHeight: 2
-                },
-              }
-            },
-            x: {
-              grid: {
-                drawBorder: false,
-                display: false,
-                drawOnChartArea: false,
-                drawTicks: false,
-                borderDash: [5, 5]
-              },
-              ticks: {
-                display: true,
-                color: '#f8f9fa',
-                padding: 10,
-                font: {
-                  size: 14,
-                  weight: 300,
-                  family: "Roboto",
-                  style: 'normal',
-                  lineHeight: 2
-                },
-              }
-            },
-          },
-        },
-      });
-      var ctx3 = document.getElementById("chart-line-tasks").getContext("2d");
-      new Chart(ctx3, {
-        type: "line",
-        data: {
-          labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-          datasets: [{
-            label: "Mobile apps",
-            tension: 0,
-            borderWidth: 0,
-            pointRadius: 5,
-            pointBackgroundColor: "rgba(255, 255, 255, .8)",
-            pointBorderColor: "transparent",
-            borderColor: "rgba(255, 255, 255, .8)",
-            borderWidth: 4,
-            backgroundColor: "transparent",
-            fill: true,
-            data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
-            maxBarThickness: 6
-          }],
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-            legend: {
-              display: false,
-            }
-          },
-          interaction: {
-            intersect: false,
-            mode: 'index',
-          },
-          scales: {
-            y: {
-              grid: {
-                drawBorder: false,
-                display: true,
-                drawOnChartArea: true,
-                drawTicks: false,
-                borderDash: [5, 5],
-                color: 'rgba(255, 255, 255, .2)'
-              },
-              ticks: {
-                display: true,
-                padding: 10,
-                color: '#f8f9fa',
-                font: {
-                  size: 14,
-                  weight: 300,
-                  family: "Roboto",
-                  style: 'normal',
-                  lineHeight: 2
-                },
-              }
-            },
-            x: {
-              grid: {
-                drawBorder: false,
-                display: false,
-                drawOnChartArea: false,
-                drawTicks: false,
-                borderDash: [5, 5]
-              },
-              ticks: {
-                display: true,
-                color: '#f8f9fa',
-                padding: 10,
-                font: {
-                  size: 14,
-                  weight: 300,
-                  family: "Roboto",
-                  style: 'normal',
-                  lineHeight: 2
-                },
-              }
-            },
-          },
-        },
-      });
-    </script>
+		var ctx = document.getElementById("chart-bars").getContext("2d");
+		new Chart(ctx, {
+			type : "bar",
+			data : {
+				labels : [ "M", "T", "W", "T", "F", "S", "S" ],
+				datasets : [ {
+					label : "Sales",
+					tension : 0.4,
+					borderWidth : 0,
+					borderRadius : 4,
+					borderSkipped : false,
+					backgroundColor : "rgba(255, 255, 255, .8)",
+					data : [ 50, 20, 10, 22, 50, 10, 40 ],
+					maxBarThickness : 6
+				}, ],
+			},
+			options : {
+				responsive : true,
+				maintainAspectRatio : false,
+				plugins : {
+					legend : {
+						display : false,
+					}
+				},
+				interaction : {
+					intersect : false,
+					mode : 'index',
+				},
+				scales : {
+					y : {
+						grid : {
+							drawBorder : false,
+							display : true,
+							drawOnChartArea : true,
+							drawTicks : false,
+							borderDash : [ 5, 5 ],
+							color : 'rgba(255, 255, 255, .2)'
+						},
+						ticks : {
+							suggestedMin : 0,
+							suggestedMax : 500,
+							beginAtZero : true,
+							padding : 10,
+							font : {
+								size : 14,
+								weight : 300,
+								family : "Roboto",
+								style : 'normal',
+								lineHeight : 2
+							},
+							color : "#fff"
+						},
+					},
+					x : {
+						grid : {
+							drawBorder : false,
+							display : true,
+							drawOnChartArea : true,
+							drawTicks : false,
+							borderDash : [ 5, 5 ],
+							color : 'rgba(255, 255, 255, .2)'
+						},
+						ticks : {
+							display : true,
+							color : '#f8f9fa',
+							padding : 10,
+							font : {
+								size : 14,
+								weight : 300,
+								family : "Roboto",
+								style : 'normal',
+								lineHeight : 2
+							},
+						}
+					},
+				},
+			},
+		});
+		var ctx2 = document.getElementById("chart-line").getContext("2d");
+		new Chart(ctx2, {
+			type : "line",
+			data : {
+				labels : [ "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct",
+						"Nov", "Dec" ],
+				datasets : [ {
+					label : "Mobile apps",
+					tension : 0,
+					borderWidth : 0,
+					pointRadius : 5,
+					pointBackgroundColor : "rgba(255, 255, 255, .8)",
+					pointBorderColor : "transparent",
+					borderColor : "rgba(255, 255, 255, .8)",
+					borderColor : "rgba(255, 255, 255, .8)",
+					borderWidth : 4,
+					backgroundColor : "transparent",
+					fill : true,
+					data : [ 50, 40, 300, 320, 500, 350, 200, 230, 500 ],
+					maxBarThickness : 6
+				} ],
+			},
+			options : {
+				responsive : true,
+				maintainAspectRatio : false,
+				plugins : {
+					legend : {
+						display : false,
+					}
+				},
+				interaction : {
+					intersect : false,
+					mode : 'index',
+				},
+				scales : {
+					y : {
+						grid : {
+							drawBorder : false,
+							display : true,
+							drawOnChartArea : true,
+							drawTicks : false,
+							borderDash : [ 5, 5 ],
+							color : 'rgba(255, 255, 255, .2)'
+						},
+						ticks : {
+							display : true,
+							color : '#f8f9fa',
+							padding : 10,
+							font : {
+								size : 14,
+								weight : 300,
+								family : "Roboto",
+								style : 'normal',
+								lineHeight : 2
+							},
+						}
+					},
+					x : {
+						grid : {
+							drawBorder : false,
+							display : false,
+							drawOnChartArea : false,
+							drawTicks : false,
+							borderDash : [ 5, 5 ]
+						},
+						ticks : {
+							display : true,
+							color : '#f8f9fa',
+							padding : 10,
+							font : {
+								size : 14,
+								weight : 300,
+								family : "Roboto",
+								style : 'normal',
+								lineHeight : 2
+							},
+						}
+					},
+				},
+			},
+		});
+		var ctx3 = document.getElementById("chart-line-tasks").getContext("2d");
+		new Chart(ctx3, {
+			type : "line",
+			data : {
+				labels : [ "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct",
+						"Nov", "Dec" ],
+				datasets : [ {
+					label : "Mobile apps",
+					tension : 0,
+					borderWidth : 0,
+					pointRadius : 5,
+					pointBackgroundColor : "rgba(255, 255, 255, .8)",
+					pointBorderColor : "transparent",
+					borderColor : "rgba(255, 255, 255, .8)",
+					borderWidth : 4,
+					backgroundColor : "transparent",
+					fill : true,
+					data : [ 50, 40, 300, 220, 500, 250, 400, 230, 500 ],
+					maxBarThickness : 6
+				} ],
+			},
+			options : {
+				responsive : true,
+				maintainAspectRatio : false,
+				plugins : {
+					legend : {
+						display : false,
+					}
+				},
+				interaction : {
+					intersect : false,
+					mode : 'index',
+				},
+				scales : {
+					y : {
+						grid : {
+							drawBorder : false,
+							display : true,
+							drawOnChartArea : true,
+							drawTicks : false,
+							borderDash : [ 5, 5 ],
+							color : 'rgba(255, 255, 255, .2)'
+						},
+						ticks : {
+							display : true,
+							padding : 10,
+							color : '#f8f9fa',
+							font : {
+								size : 14,
+								weight : 300,
+								family : "Roboto",
+								style : 'normal',
+								lineHeight : 2
+							},
+						}
+					},
+					x : {
+						grid : {
+							drawBorder : false,
+							display : false,
+							drawOnChartArea : false,
+							drawTicks : false,
+							borderDash : [ 5, 5 ]
+						},
+						ticks : {
+							display : true,
+							color : '#f8f9fa',
+							padding : 10,
+							font : {
+								size : 14,
+								weight : 300,
+								family : "Roboto",
+								style : 'normal',
+								lineHeight : 2
+							},
+						}
+					},
+				},
+			},
+		});
+	</script>
 	<script>
-      var win = navigator.platform.indexOf('Win') > -1;
-      if (win && document.querySelector('#sidenav-scrollbar')) {
-        var options = {
-          damping: '0.5'
-        }
-        Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
-      }
-    </script>
+		var win = navigator.platform.indexOf('Win') > -1;
+		if (win && document.querySelector('#sidenav-scrollbar')) {
+			var options = {
+				damping : '0.5'
+			}
+			Scrollbar.init(document.querySelector('#sidenav-scrollbar'),
+					options);
+		}
+	</script>
 	<!-- Github buttons -->
 	<script async defer src="https://buttons.github.io/buttons.js"></script>
 	<!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
@@ -1250,35 +1266,36 @@
 		src="../resources/material/assets/js/material-dashboard.min.js?v=3.0.0"></script>
 	<script src="../resources/bluecoding/admin.js"></script>
 	<script type="text/javascript">
-      //========= Category Slider 
-      tns({
-            container: '.category-slider',
-            items: 3,
-            slideBy: 'page',
-            autoplay: false,
-            mouseDrag: true,
-            gutter: 0,
-            nav: false,
-            controls: true,
-            controlsText: [' < i class = "lni lni-chevron-left" > < /i>', ' < i class = "lni lni-chevron-right" > < /i>'],
-              responsive: {
-                0: {
-                  items: 1,
-                },
-                540: {
-                  items: 2,
-                },
-                768: {
-                  items: 4,
-                },
-                992: {
-                  items: 5,
-                },
-                1170: {
-                  items: 6,
-                }
-              }
-            });
-    </script>
+		//========= Category Slider 
+		tns({
+			container : '.category-slider',
+			items : 3,
+			slideBy : 'page',
+			autoplay : false,
+			mouseDrag : true,
+			gutter : 0,
+			nav : false,
+			controls : true,
+			controlsText : [ ' < i class = "lni lni-chevron-left" > < /i>',
+					' < i class = "lni lni-chevron-right" > < /i>' ],
+			responsive : {
+				0 : {
+					items : 1,
+				},
+				540 : {
+					items : 2,
+				},
+				768 : {
+					items : 4,
+				},
+				992 : {
+					items : 5,
+				},
+				1170 : {
+					items : 6,
+				}
+			}
+		});
+	</script>
 </body>
 </html>
