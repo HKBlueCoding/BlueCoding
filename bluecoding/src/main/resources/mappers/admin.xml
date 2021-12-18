@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.admin">
+
+	<select id="selectDeleteBook" resultType="hashMap">
+		SELECT BOOKTITLE
+		,NAME
+		FROM B_BOOK
+		WHERE BOOKDELETE = 'Y'
+	</select>
+
+	<select id="selectDeleteBoard" resultType="hashMap">
+		SELECT BOARDTITLE
+		,ID
+		FROM B_BOARD bb
+		WHERE BOARDDELETE = 'Y'
+	</select>
+
+</mapper>

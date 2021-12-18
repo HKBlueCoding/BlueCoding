@@ -1,14 +1,40 @@
 package com.hk.admin.controller;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import com.hk.admin.service.AdminService;
 
 @Controller
 public class AdminController {
+
+	@Autowired
+	AdminService adminService;
+	
+	private static final Logger logger = LoggerFactory.getLogger( AdminController.class);
 	
 	@GetMapping("/admin")
-	public String admin() {
+	public String admin(Model model) {
 		
-		return "admin";
+		// OracleDB는 HashMap을 jsp로 출력할 때, 대문자로 써야 한다.
+		// PostgreDB는 HashMap을 jsp로 출력할 때, 소문자로 써야 한다.
+	   List<HashMap> bookList = adminService.selectDeleteBook();
+	   List<HashMap> boardList = adminService.selectDeleteBoard();
+	   
+	   model.addAttribute("boardList",boardList);
+	   model.addAttribute("bookList", bookList);
+	   
+	   logger.debug("[boardList] = " + boardList);
+	   logger.debug("[boardList] = " + boardList);
+      
+	   return "admin";
 	}
 }
