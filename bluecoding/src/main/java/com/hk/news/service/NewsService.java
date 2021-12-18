@@ -47,17 +47,29 @@ public class NewsService {
 		// TODO Auto-generated method stub
 		Map<String, Object> map = new HashMap<String, Object>();
 		
-		// 모든 Notice의 글중에서 p
+		// 모든 Notice의 글중에서 해당 section의 페이지만
 		List<NewsVO> noticeList = newsDAO.listNoticeNews(pageMap);
 		
+		int totNoticeNO = newsDAO.selectTotNotice();
 		
+		map.put("noticeList", noticeList);
+		map.put("totNoticeNO",totNoticeNO);
 		
 		return map;
 	}
 
-	public List<NewsVO> listNewsEvent() {
+	public Map<String, Object> listNewsEvent(Map<String, Integer> pageMap) {
 		// TODO Auto-generated method stub
-		return newsDAO.listEventNews();
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		List<NewsVO> eventList = newsDAO.listEventNews(pageMap);
+		int totEventNO = newsDAO.selectTotEvent();
+		
+		map.put("eventList", eventList);
+		map.put("totEventNO", totEventNO);
+		
+		return map;
 	}
 
 	public NewsVO newsOne(int newsNO) {

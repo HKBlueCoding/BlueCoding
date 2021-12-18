@@ -23,14 +23,14 @@ public class NewsDAO {
 
 	public List<NewsVO> listNoticeNews(Map<String, Integer> pageMap) {
 		// TODO Auto-generated method stub
-		List<NewsVO> newsList = sqlSession.selectList("mapper.news.selectAllNoticeNews", pageMap);
-		return newsList;
+		List<NewsVO> noticeList = sqlSession.selectList("mapper.news.selectAllNoticeNews", pageMap);
+		return noticeList;
 	}
 	
-	public List<NewsVO> listEventNews() {
+	public List<NewsVO> listEventNews(Map<String, Integer> pageMap) {
 		// TODO Auto-generated method stub
-		List<NewsVO> newsList = sqlSession.selectList("mapper.news.selectAllEventNews");
-		return newsList;
+		List<NewsVO> evnetList = sqlSession.selectList("mapper.news.selectAllEventNews",pageMap);
+		return evnetList;
 	}	
 
 	public NewsVO oneNews(int newsNO) {
@@ -53,5 +53,15 @@ public class NewsDAO {
 		newsVO = sqlSession.selectOne("mapper.news.selectNewsNO", newsVO);
 		
 		return newsVO;
+	}
+
+	public int selectTotNotice() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("mapper.news.selectTotNotice");
+	}
+
+	public int selectTotEvent() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("mapper.news.selectTotEvent");
 	}
 }

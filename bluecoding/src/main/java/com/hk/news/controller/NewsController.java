@@ -100,16 +100,34 @@ public class NewsController {
       
 	  // 리스트
       Map<String, Object> map = newsService.listNewsNotice(pageMap);
-      model.addAttribute("newsList", map.get("newsList"));
-      logger.debug("[newsList] = " + map.get("totNotice"));
+      model.addAttribute("noticeList", map.get("noticeList"));
+      model.addAttribute("totNoticeNO",map.get("totNoticeNO"));
+      model.addAttribute("section",section);
+      model.addAttribute("pageNum",pageNum);
+      
+      logger.debug("[newsList] = " + map.get("noticeList"));
+      logger.debug("[newsList] = " + map.get("noticeList"));
       return "notice";
    }
 
    @RequestMapping(value = "/news/event", method = RequestMethod.GET)
-   public String event(Model model) {
-      List<NewsVO> newsList = newsService.listNewsEvent();
-      model.addAttribute("newsList", newsList);
-      logger.debug("[newsList] = " + newsList);
+   public String event(@RequestParam(value="section", required=false, defaultValue = "1")Integer section, 
+					   @RequestParam(value="pageNum", required=false, defaultValue = "1")Integer pageNum, Model model) {
+
+	  if(section <= 0) { ++section; }
+	  if(pageNum <= 0) { ++pageNum; }
+	   
+      Map<String, Integer> pageMap = new HashMap<String, Integer>();
+      pageMap.put("section", section);
+      pageMap.put("pageNum", pageNum);	  
+	  
+      Map<String, Object> map = newsService.listNewsEvent(pageMap);
+      
+      model.addAttribute("eventList", map.get("eventList"));
+      model.addAttribute("totEventNO", map.get("totEventNO"));
+      model.addAttribute("section",section);
+      model.addAttribute("pageNum",pageNum);      
+      logger.debug("[eventList] = " + map.get("eventList"));
       return "event";
    }
 

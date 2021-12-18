@@ -90,7 +90,7 @@
 	
 	<select id="selectTotArticle" resultType="int">
 	 <![CDATA[
-	  SELECT max(articleNO) FROM B_BOARD
+	  SELECT count(articleNO) FROM B_BOARD
 	 ]]>
 	</select>
 	

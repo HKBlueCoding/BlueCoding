@@ -85,14 +85,13 @@
 					) Q
 			)
 		WHERE 
-			RNUM BETWEEN(#{section}-1)*100+(#{pageNum}-1)*10+1 AND (#{section}-1)*100+#{pageNum}*10
-	  
+			RNUM BETWEEN(#{section}-1)*100+(#{pageNum}-1)*10+1 AND (#{section}-1)*100+#{pageNum}*10	  
 	 ]]>
 	</select>
 	
 	<select id="selectTotQna" resultType="int" >
 	 <![CDATA[ 
-	  SELECT max(qnaNO) FROM b_qna 
+	  SELECT count(qnaNO) FROM b_qna 
 	 ]]>
 	</select>
 
