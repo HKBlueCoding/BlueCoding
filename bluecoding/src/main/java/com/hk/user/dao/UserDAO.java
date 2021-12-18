@@ -2,6 +2,7 @@ package com.hk.user.dao;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
@@ -52,6 +53,12 @@ public class UserDAO {
 		
 		userVO = sqlSession.selectOne("mapper.user.findId" , userVO);
 		return userVO;
+	}
+
+	// 코인 지불
+	public int minusCoin(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("mapper.user.minusCoin", map);
 	}
 	
 	/*

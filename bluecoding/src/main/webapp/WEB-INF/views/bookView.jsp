@@ -183,7 +183,7 @@
                                                             <div align="right"  style="width: 100%;">
                                                               <c:if test="${page.charge eq 'Y' }">
                                                                <div class="button header-button">
-                                                                  <a href="" class="btn" style="background-color: #30e087">미리보기(유료)</a>
+                                                                  <a class="btn" style="background-color: #30e087" onClick="pageBuy('${page.pageNO}')">미리보기(유료)</a>
                                                                </div>
                                                               </c:if>
                                                                <c:if test="${login.admin eq 'A' || login.admin eq 'C'}">
@@ -428,7 +428,7 @@
                </main>
             </form>
          </c:when>
-      </c:choose>
+      </c:choose>    
       <!-- ==================== footer ====================== -->      
       <!-- footer -->
       <jsp:include page="/WEB-INF/views/include/footer.jsp"/>

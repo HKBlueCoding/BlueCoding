@@ -1,7 +1,6 @@
 package com.hk.book.controller;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,6 +25,7 @@ import com.hk.book.service.BookService;
 import com.hk.book.vo.BookVO;
 import com.hk.favo.vo.FavoVO;
 import com.hk.page.vo.PageVO;
+import com.hk.pagebuy.vo.PageBuyVO;
 import com.hk.review.vo.ReviewVO;
 
 /**
@@ -250,5 +250,20 @@ public class BookController {
 		model.addAttribute("reviewVO", reviewVO);
 		return "reply/bookviewReply";
 	}
+	
+	// [페이지 결제하기]
+	@RequestMapping(value="/page/buy",method= {RequestMethod.POST },produces = "application/json; charset=utf8")
+	@ResponseBody
+	public Map<String, Object> pageBuy(@ModelAttribute PageBuyVO pageBuyVO){
+		// id와 해당 페이지의 번호
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		int ret = bookService.buyPage(pageBuyVO);
+		
+		map.put("ret", ret);
+		
+		return map;
+	}	
 
 }

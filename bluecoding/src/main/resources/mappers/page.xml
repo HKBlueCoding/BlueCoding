@@ -53,4 +53,5 @@
 		WHERE PAGENO=#{pageNO}
     ]]>
 	</update>
+
 </mapper>	

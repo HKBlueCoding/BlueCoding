@@ -73,4 +73,17 @@
 	 ]]>
 	</select>
 	
+	<!-- [코인 지불] -->
+	<update id="minusCoin" parameterType="hashmap">
+	  <selectKey keyProperty="coin" resultType="int" order="BEFORE">
+			SELECT coin FROM B_USER WHERE id=#{id}
+	 </selectKey>
+	 <if test="coin gt 300">
+	  <![CDATA[
+		UPDATE B_USER 
+	  	SET COIN= (COIN - 300) 
+	  	WHERE ID=#{id}
+	  ]]>
+	 </if>
+	</update>
 </mapper>
