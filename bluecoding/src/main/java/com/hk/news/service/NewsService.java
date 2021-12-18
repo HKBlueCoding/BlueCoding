@@ -13,7 +13,6 @@ import com.hk.news.dao.NewsDAO;
 import com.hk.news.vo.NewsVO;
 import com.hk.newsreply.dao.NewsReplyDAO;
 import com.hk.newsreply.vo.NewsReplyVO;
-import com.hk.qna.vo.QnaVO;
 
 @Service
 public class NewsService {
@@ -98,4 +97,14 @@ public class NewsService {
 		return newsDAO.newsUpdate(newsVO);
 	}
 
+	public int addReply(NewsReplyVO newsReplyVO) {
+		// TODO Auto-generated method stub
+		return newsReplyDAO.insertReply(newsReplyVO);
+	}
+
+	public int updateReply(NewsReplyVO newsReplyVO) {
+		// TODO Auto-generated method stub
+
+		return newsReplyDAO.replyUpdate(newsReplyVO);
+	}
 }

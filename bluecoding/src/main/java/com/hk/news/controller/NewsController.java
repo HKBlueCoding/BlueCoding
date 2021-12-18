@@ -4,7 +4,6 @@ import java.io.File;
 
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -18,10 +17,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.hk.news.service.NewsService;
 import com.hk.news.vo.NewsVO;
+import com.hk.newsreply.vo.NewsReplyVO;
 
 @Controller
 public class NewsController {
@@ -277,4 +278,83 @@ public class NewsController {
       return "done/eventUpdateDone";
    }
 
+	@RequestMapping(value = "/news/notice/newsReply/add", method = RequestMethod.POST, produces = "application/json; charset=utf8")
+	@ResponseBody // --> ajax 사용할 때 사용
+	public Map<String, Object> noticeReplyAdd(@ModelAttribute NewsReplyVO newsReplyVO, Model model) { // --> ajax에서 보낸 data
+		logger.debug("[리뷰의 newsReplyVO] = " + newsReplyVO);
+		
+		int ret = newsService.addReply(newsReplyVO);
+		logger.debug("[ret] = " + ret);
+		
+		model.addAttribute("ret", ret);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("newsReText", newsReplyVO.getNewsReText()); // 중복이면 true, 아니면 false라는 String반환
+		map.put("ret", ret);
+		return map;
+	}
+	
+	@RequestMapping(value = "/news/event/newsReply/add", method = RequestMethod.POST, produces = "application/json; charset=utf8")
+	@ResponseBody // --> ajax 사용할 때 사용
+	public Map<String, Object> eventReplyAdd(@ModelAttribute NewsReplyVO newsReplyVO, Model model) { // --> ajax에서 보낸 data
+		logger.debug("[리뷰의 newsReplyVO] = " + newsReplyVO);
+		
+		int ret = newsService.addReply(newsReplyVO);
+		logger.debug("[ret] = " + ret);
+		
+		model.addAttribute("ret", ret);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("newsReText", newsReplyVO.getNewsReText()); // 중복이면 true, 아니면 false라는 String반환
+		map.put("ret", ret);
+		return map;
+	}
+	
+	@RequestMapping(value = "/news/notice/newsReply/update", method = RequestMethod.POST, produces = "application/json; charset=utf8")
+	@ResponseBody // --> ajax 사용할 때 사용
+	public Map<String, Object> noticeReplyUpdate(@ModelAttribute NewsReplyVO newsReplyVO, Model model) { // --> ajax에서 보낸 data
+		logger.debug("[댓글의 newsReplyVO] = " + newsReplyVO);
+		
+		int ret = newsService.updateReply(newsReplyVO);
+		logger.debug("[ret] = " + ret);
+		
+		model.addAttribute("ret", ret);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("newsReText", newsReplyVO.getNewsReText()); // 중복이면 true, 아니면 false라는 String반환
+		map.put("ret", ret);
+		return map;
+	}
+	
+	@RequestMapping(value = "/news/event/newsReply/update", method = RequestMethod.POST, produces = "application/json; charset=utf8")
+	@ResponseBody // --> ajax 사용할 때 사용
+	public Map<String, Object> eventReplyUpdate(@ModelAttribute NewsReplyVO newsReplyVO, Model model) { // --> ajax에서 보낸 data
+		logger.debug("[댓글의 newsReplyVO] = " + newsReplyVO);
+		
+		int ret = newsService.updateReply(newsReplyVO);
+		logger.debug("[ret] = " + ret);
+		
+		model.addAttribute("ret", ret);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("newsReText", newsReplyVO.getNewsReText()); // 중복이면 true, 아니면 false라는 String반환
+		map.put("ret", ret);
+		return map;
+	}
+	
+	@RequestMapping(value = "/news/notice/newsReplyRe/add", method = RequestMethod.POST, produces = "application/json; charset=utf8")
+	@ResponseBody // --> ajax 사용할 때 사용
+	public Map<String, Object> noticeReplyReAdd(@ModelAttribute NewsReplyVO newsReplyVO, Model model) { // --> ajax에서 보낸 data
+		logger.debug("[리뷰의 newsReplyVO] = " + newsReplyVO);
+		
+		int ret = newsService.addReply(newsReplyVO);
+		logger.debug("[ret] = " + ret);
+		
+		model.addAttribute("ret", ret);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("newsReText", newsReplyVO.getNewsReText()); // 중복이면 true, 아니면 false라는 String반환
+		map.put("ret", ret);
+		return map;
+	}
 }

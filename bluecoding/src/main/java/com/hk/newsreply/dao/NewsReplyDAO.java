@@ -20,4 +20,16 @@ public class NewsReplyDAO {
 		
 		return newsReplyVO;
 	}
+
+	public int insertReply(NewsReplyVO newsReplyVO) {
+		// TODO Auto-generated method stub
+		int ret = sqlSession.insert("mapper.newsReply.insertReply", newsReplyVO);
+		return ret;
+	}
+
+	public int replyUpdate(NewsReplyVO newsReplyVO) {
+		// TODO Auto-generated method stub
+		int ret = sqlSession.update("mapper.newsReply.updateReply", newsReplyVO);
+		return ret;
+	}
 }

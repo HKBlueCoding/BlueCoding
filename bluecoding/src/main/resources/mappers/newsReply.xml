@@ -25,4 +25,21 @@
 		FROM B_NEWSREPLY WHERE newsNO=#{newsNO}
     ]]>
 	</select>
+	
+	<insert id="insertReply" parameterType="NewsReplyVO">
+	 <selectKey keyProperty="newsReplyNO" resultType="int" order="BEFORE">
+	 	SELECT max(newsReplyNO)+1 FROM B_NEWSREPLY
+	 </selectKey>
+	 <![CDATA[
+	 INSERT INTO B_NEWSREPLY (NEWSREPLYNO, NREPARENTNO, NEWSRETEXT, NEWSREDATE, NEWSREDELETE, NEWSNO, ID, NICK)
+	  VALUES(#{newsReplyNO},  #{nReParentNO}, #{newsReText}, sysdate, '', #{newsNO}, #{id}, #{nick})
+	 ]]>
+	</insert>
+	
+	<update id="updateReply" parameterType="NewsReplyVO">
+    <![CDATA[
+		UPDATE B_NEWSREPLY SET NREPARENTNO=#{nReParentNO}, NEWSRETEXT=#{newsReText}, NEWSREDATE=sysdate, NEWSREDELETE='', NEWSNO=#{newsNO}, ID=#{id}, NICK=#{nick} 
+		WHERE NEWSREPLYNO=#{newsReplyNO}
+    ]]>
+	</update>	
 </mapper>	

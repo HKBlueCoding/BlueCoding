@@ -43,7 +43,7 @@
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
       <!-- CSS Files -->
       <link id="pagestyle" href="../../resources/assets/css/material-dashboard.css?v=3.0.0" rel="stylesheet" />
-      <!-- marerial CSS END -->       
+      <!-- marerial CSS END -->    	
       <!-- ====================== 페이징 ====================== -->
       <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
       <!-- ====================== 페이징 끝 ====================== -->
@@ -55,6 +55,9 @@
          #tbPadd{
          padding-left: 1.5rem;
          padding-right: 1.5rem;
+         }
+         .mod {
+         display: none;
          }
       </style>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>        
@@ -128,18 +131,6 @@
                         <a onClick="funok()" class="btn">삭제</a>
                      </div>
                   </c:if>
-                  <!-- [로그인시] -->
-                  <c:if test="${!empty login.id && login.id ne '' }">
-                     <div class="button header-button">
-                        <a href="javascript:void(0)" class="btn" style="background-color: #ff00eb;">신고하기</a>
-                     </div>
-                  </c:if>
-                  <!-- [비 로그인시]] -->
-                  <c:if test="${empty login.id || login.id  eq '' }">
-                     <div class="button header-button">
-                        <a data-bs-toggle="modal"  data-bs-target="#login" class="btn" style="background-color: #ff00eb;">신고하기</a>
-                     </div>
-                  </c:if>
                </div>
                <!-- ======================= 버튼 끝 ========================== -->
             </div>
@@ -153,7 +144,7 @@
                               <h6 class="text-white text-capitalize ps-3">댓글</h6>
                            </div>
                         </div>
-                        <c:forEach var="newsReply" items="${newsReplyVO }">
+                        <c:forEach var="newsReply"  items="${newsReplyVO }"  varStatus="replyCnt">
                            <div id="tbPadd" class="card-body px-0 pb-2">
                               <div class="table-responsive p-0">
                                  <table class="table align-items-center mb-0">
@@ -184,35 +175,54 @@
                                                 </c:if>
                                                 <c:if test="${login.admin eq 'A' || login.admin eq 'C'}">
                                                    <div class="button header-button">
-                                                      <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">수정</a>
+                                                      <button onClick="replyClick('${replyCnt.count}')"  id="modify" class="btn" style="background-color: #30d8e0;">수정</button>
                                                    </div>
                                                    <div class="button header-button">
                                                       <a onClick="funok2()" class="btn" style="background-color: #30d8e0;">삭제</a>
-                                                   </div>
-                                                </c:if>
-                                                <!-- [로그인시] -->
-                                                <c:if test="${!empty login.id && login.id ne '' }">
-                                                   <div class="button header-button">
-                                                      <a href="javascript:void(0)" class="btn" style="background-color: #ff00eb;">신고하기</a>
-                                                   </div>
-                                                </c:if>
-                                                <!-- [비 로그인시]] -->
-                                                <c:if test="${empty login.id || login.id  eq '' }">
-                                                   <div class="button header-button">
-                                                      <a data-bs-toggle="modal"  data-bs-target="#login" class="btn" style="background-color: #ff00eb;">신고하기</a>
                                                    </div>
                                                 </c:if>
                                              </div>
                                              <!-- ======================= 버튼 끝 ========================== -->
                                           </td>
                                        </tr>
+                                       <!-- ============================================ 답글 테스트 ======================================================================================================================= -->
+                                       <!-- ===================================================================================================================================================================== -->
+                                       <tr class="mod" >
+                                          <td>
+                                             <div class="form-floating" id="formMag" style="width: 607%;">
+                                                <textarea name="newsReText" class="form-control" id="ReText${replyCnt.count }" style="height: 7rem;" data-sb-validations="required">${newsReply.newsReText }</textarea>
+                                                <br>
+                                                <label for="message">댓글 쓰기</label>
+                                                <input type="hidden" name="newsNO"  value="${newsVO.newsNO }"  id="newsNO">
+                                                <input type="hidden" value="${login.id }" name="id" id="id">
+                                                <input type="hidden" value="${login.nick }" name="nick" id="nick">
+                                                <!-- ======================= 버튼 ========================== -->
+                                                <div align="center">
+                                                   <!-- [로그인시] -->
+                                                   <c:if test="${!empty login.id && login.id ne '' }">
+                                                      <div class="button header-button">
+                                                         <a id="modBtn" onClick="replyDone('${newsReply.newsReplyNO}','${replyCnt.count }')" class="btn">확인</a>
+                                                      </div>
+                                                   </c:if>
+                                                   <!-- [비 로그인시]] -->
+                                                   <c:if test="${empty login.id || login.id  eq '' }">
+                                                      <div class="button header-button">
+                                                         <a data-bs-toggle="modal"  data-bs-target="#login" class="btn">수정하기</a>
+                                                      </div>
+                                                   </c:if>
+                                                </div>
+                                             </div>
+                                          </td>
+                                       </tr>
+                                       <!-- ============================================ 답글 테스트 끝 ======================================================================================================================= -->
+                                       <!-- ===================================================================================================================================================================== -->
                                        <!-- ========================== 답글 ========================== -->
                                        <tr>
                                           <td>
                                              <div class="d-flex px-2 py-1">
                                                 <div class="d-flex flex-column justify-content-center">
-                                                   <input type="hidden" name="newsNO"  value="${newsReply.newsReplyNO }">
-                                                   <input type="hidden" name="newsNO"  value="${newsReply.nReParentNO }">
+                                                   <input type="hidden" name="newsReplyNO"  value="${newsReply.newsReplyNO }" id="newsReplyNO">
+                                                   <input type="hidden" name="nReParentNO"  value="${newsReply.nReParentNO }">
                                                    <p class="text-xs text-secondary mb-0" style="font-size: 15px;">&nbsp;&nbsp;&nbsp;&nbsp; ⤷ 작성자명 : ${newsReply.nick }(${newsReply.id }),&nbsp;&nbsp;&nbsp;&nbsp;${newsReply.newsReDate }</p>
                                                    <p class="text-xs text-secondary mb-0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${newsReply.newsReText }</p>
                                                 </div>
@@ -240,18 +250,6 @@
                                                       <a onClick="funok2()" class="btn" style="background-color: #30d8e0;">삭제</a>
                                                    </div>
                                                 </c:if>
-                                                <!-- [로그인시] -->
-                                                <c:if test="${!empty login.id && login.id ne '' }">
-                                                   <div class="button header-button">
-                                                      <a href="javascript:void(0)" class="btn" style="background-color: #ff00eb;">신고하기</a>
-                                                   </div>
-                                                </c:if>
-                                                <!-- [비 로그인시]] -->
-                                                <c:if test="${empty login.id || login.id  eq '' }">
-                                                   <div class="button header-button">
-                                                      <a data-bs-toggle="modal"  data-bs-target="#login" class="btn" style="background-color: #ff00eb;">신고하기</a>
-                                                   </div>
-                                                </c:if>
                                              </div>
                                              <!-- ======================= 버튼 끝 ========================== -->
                                           </td>
@@ -268,11 +266,13 @@
                <form id="contactForm"  data-sb-form-api-token="API_TOKEN">
                   <br>
                   <div class="form-floating" id="formMag">
-                     <textarea name="newsReText" class="form-control" id="message" placeholder="Enter your message here..." style="height: 15rem" data-sb-validations="required"></textarea>
+                     <textarea name="newsReText" class="form-control" id="newsReText" style="height: 15rem" data-sb-validations="required"></textarea>
                      <div class="invalid-feedback" data-sb-feedback="message:required">내용을 입력하세요.</div>
                      <br><br>
                      <label for="message">댓글 쓰기</label>
-                     <input type="hidden" name="newsNO"  value="${newsVO.newsNO }">
+                     <input type="hidden" name="newsNO"  value="${newsVO.newsNO }" id="newsNO">
+                     <input type="hidden" value="${login.id }" name="id" id="id">
+                     <input type="hidden" value="${login.nick }" name="nick" id="nick">
                   </div>
                   <!-- Submit success message-->
                   <!---->
@@ -298,7 +298,7 @@
                      <!-- [로그인시] -->
                      <c:if test="${!empty login.id && login.id ne '' }">
                         <div class="button header-button">
-                           <a onClick="funok3()"  id="submitButton"  class="btn">댓글 등록</a>
+                           <a id="repBtn" onClick="" class="btn">댓글 등록</a>
                         </div>
                      </c:if>
                      <!-- [비 로그인시]] -->
@@ -341,33 +341,33 @@
       <script type="text/javascript">
          //========= Category Slider 
          tns({
-            container : '.category-slider',
-            items : 3,
-            slideBy : 'page',
-            autoplay : false,
-            mouseDrag : true,
-            gutter : 0,
-            nav : false,
-            controls : true,
-            controlsText : [ '<i class="lni lni-chevron-left"></i>',
-                  '<i class="lni lni-chevron-right"></i>' ],
-            responsive : {
-               0 : {
-                  items : 1,
-               },
-               540 : {
-                  items : 2,
-               },
-               768 : {
-                  items : 4,
-               },
-               992 : {
-                  items : 5,
-               },
-               1170 : {
-                  items : 6,
-               }
-            }
+         	container : '.category-slider',
+         	items : 3,
+         	slideBy : 'page',
+         	autoplay : false,
+         	mouseDrag : true,
+         	gutter : 0,
+         	nav : false,
+         	controls : true,
+         	controlsText : [ '<i class="lni lni-chevron-left"></i>',
+         			'<i class="lni lni-chevron-right"></i>' ],
+         	responsive : {
+         		0 : {
+         			items : 1,
+         		},
+         		540 : {
+         			items : 2,
+         		},
+         		768 : {
+         			items : 4,
+         		},
+         		992 : {
+         			items : 5,
+         		},
+         		1170 : {
+         			items : 6,
+         		}
+         	}
          });
          </div>
          
@@ -386,33 +386,33 @@
       <script type="text/javascript">
          //========= Category Slider 
          tns({
-            container : '.category-slider',
-            items : 3,
-            slideBy : 'page',
-            autoplay : false,
-            mouseDrag : true,
-            gutter : 0,
-            nav : false,
-            controls : true,
-            controlsText : [ '<i class="lni lni-chevron-left"></i>',
-                  '<i class="lni lni-chevron-right"></i>' ],
-            responsive : {
-               0 : {
-                  items : 1,
-               },
-               540 : {
-                  items : 2,
-               },
-               768 : {
-                  items : 4,
-               },
-               992 : {
-                  items : 5,
-               },
-               1170 : {
-                  items : 6,
-               }
-            }
+         	container : '.category-slider',
+         	items : 3,
+         	slideBy : 'page',
+         	autoplay : false,
+         	mouseDrag : true,
+         	gutter : 0,
+         	nav : false,
+         	controls : true,
+         	controlsText : [ '<i class="lni lni-chevron-left"></i>',
+         			'<i class="lni lni-chevron-right"></i>' ],
+         	responsive : {
+         		0 : {
+         			items : 1,
+         		},
+         		540 : {
+         			items : 2,
+         		},
+         		768 : {
+         			items : 4,
+         		},
+         		992 : {
+         			items : 5,
+         		},
+         		1170 : {
+         			items : 6,
+         		}
+         	}
          });
       </script>
       <!-- SBAdmin2 JS START -->
@@ -452,7 +452,7 @@
            if (confirm("이전 페이지로 돌아가시겠습니까??")) {
              javascript:history.back();
            } else {
-              return;
+           	return;
            }
          }
       </script>  
@@ -461,7 +461,7 @@
            if (confirm("글을 정말 삭제하시겠습니까??")) {
             alert("정상적으로 삭제되었습니다.")
            } else {
-              return;
+           	return;
            }
          }
       </script>
@@ -470,7 +470,7 @@
            if (confirm("글을 정말 삭제하시겠습니까??")) {
             alert("정상적으로 삭제되었습니다.")
            } else {
-              return;
+           	return;
            }
          }
       </script>
@@ -480,8 +480,62 @@
             
            } else {
             alert("등록에 실패하였습니다.")
-                 return;
+           	   return;
            }
+         }
+      </script>
+      <script> 
+         $(document).ready(function() {
+         	
+             $('#repBtn').click(function() {
+                 $.ajax({
+                         type: 'POST',
+                         url: '/news/event/newsReply/add',
+                         dataType: "json",
+                         data: {"newsReText": $('#newsReText').val(), "id":$('#id').val(), "newsNO":$("#newsNO").val(),  "nick":$("#nick").val()},
+                         success: function(data) {
+                            // data.server에서 보낸 map text
+                             alert('댓글이 등록되었습니다.');
+                             $('#newsReText').val("");
+                             location.reload();
+                         }, 
+                         error: function(request,status,error) {
+                            alert('에러!! : ' + request.responseText + ":"+error);
+                         }
+                  }); //end ajax 
+             }); //end on 
+         }); 
+      </script>
+      <script>
+         function replyClick(replyCnt){
+          var modDisplay = document.getElementsByClassName("mod")[(replyCnt-1)].style.display;
+          if( modDisplay == "none"){
+          	document.getElementsByClassName("mod")[(replyCnt-1)].style.display = "block";
+          }else{
+         	 document.getElementsByClassName("mod")[(replyCnt-1)].style.display = "none";
+          } 
+          console.log('글번호'+mod);
+          
+         }
+         
+         function replyDone(replyNO, replyCnt){
+          
+             $.ajax({
+                 type: 'POST',
+                 url: '/news/event/newsReply/update',
+                 dataType: "json",
+                 data: {"newsReText": $('#ReText'+replyCnt).val(), "id":$('#id').val(), "newsNO":$("#newsNO").val(),  "nick":$("#nick").val(), "newsReplyNO": replyNO},
+                 success: function(data) {
+                    // data.server에서 보낸 map text
+                     alert('수정이 완료되었습니다.');
+                     $('#ReText').val("");
+                     location.reload();
+                 }, 
+                 error: function(request,status,error) {
+                    alert('에러!! : ' + request.responseText + ":"+error);
+                 }
+          	}); //end ajax        	 
+          
          }
       </script>
    </body>
