@@ -73,6 +73,17 @@
 	 ]]>
 	</select>
 	
+	<!-- [비밀번호 찾기] -->
+	<select id="findPwd" parameterType="UserVO"  resultType="UserVO">
+	<![CDATA[
+	SELECT PWD
+	FROM B_USER
+	WHERE ID=#{id} 
+	AND NAME=#{name}
+	AND PHONE=#{phone}
+	 ]]>
+	</select>
+	
 	<!-- [코인 지불] -->
 	<update id="minusCoin" parameterType="hashmap">
 	  <selectKey keyProperty="coin" resultType="int" order="BEFORE">

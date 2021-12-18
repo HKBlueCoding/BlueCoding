@@ -100,13 +100,23 @@ public class UserController {
 		return "idResult";
 	}
 
-
+	// [비밀번호 찾기]
 	@RequestMapping(value = "/user/find/pwd", method = RequestMethod.GET)
 	public String findPwd() {
 
 		return "pwd";
 	}
+	
+	// [비밀번호 찾기 결과]
+	@RequestMapping(value = "/user/find/pwd", method = RequestMethod.POST)
+	public String findPwdResult(@ModelAttribute UserVO userVO, Model model) {
+		logger.debug("[비밀번호 찾기]=="+userVO);
+		userVO = userService.findPwd(userVO);
+		model.addAttribute("userVO",userVO);
 
+		return "pwdResult";
+	}
+	
 	@RequestMapping(value = "/user/info", method = RequestMethod.GET)
 	public String userInfo() {
 

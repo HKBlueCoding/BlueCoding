@@ -49,9 +49,17 @@ public class UserDAO {
 		return ret;
 	}
 	
+	// 아이디 찾기
 	public UserVO findId(UserVO userVO) {
 		
 		userVO = sqlSession.selectOne("mapper.user.findId" , userVO);
+		return userVO;
+	}
+	
+	// 비밀번호 찾기
+	public UserVO findPwd(UserVO userVO) {
+		// TODO Auto-generated method stub
+		userVO = sqlSession.selectOne("mapper.user.findPwd" , userVO);
 		return userVO;
 	}
 
@@ -60,6 +68,7 @@ public class UserDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.update("mapper.user.minusCoin", map);
 	}
+
 	
 	/*
 	 * // [ 로그인 사용자가 쓴 글 조회] public List<HashMap<String, String>>

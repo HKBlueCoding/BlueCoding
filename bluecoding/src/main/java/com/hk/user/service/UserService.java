@@ -76,4 +76,10 @@ public class UserService {
 		return userDAO.findId(userVO);
 	}
 
+	// 비밀번호 찾기
+	public UserVO findPwd(UserVO userVO) {
+		// TODO Auto-generated method stub
+		return userDAO.findPwd(userVO);
+	}
+
 }
