@@ -108,7 +108,7 @@
                                                 </div>
                                                 <div class="d-flex flex-column justify-content-center">
                                                    <a href="/view?bookNO=${book.bookNO }" class="mb-0 text-sm" style="color: black">${book.bookTitle }</a>
-                                                   <p class="text-xs text-secondary mb-0">리뷰(개수)</p>
+                                                   <p class="text-xs text-secondary mb-0">${book.theme }</p>
                                                 </div>
                                              </div>
                                           </td>
@@ -137,8 +137,8 @@
             <div class="row">
                <!-- [로그인시] -->
                <c:if test="${!empty login.id && login.id ne '' }">
-                  <div class="button header-button" style="width: 13%; margin-left: 50px; padding: 1px;">
-                     <a href="add" class="btn">작품 올리기</a>
+                  <div class="button header-button" style="width: 15%; margin-left: 50px; padding: 1px;">
+                     <a href="add" class="btn">책쓰기</a>
                   </div>
                </c:if>
                <!-- [비 로그인시]] -->

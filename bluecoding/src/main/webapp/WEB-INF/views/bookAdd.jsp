@@ -99,7 +99,6 @@
                         <br>   
                         <div class="form-floating" id="formMag" style="width: 100%; ">
                            <textarea name="intro" class="form-control" id="message" style="height: 10rem;" data-sb-validations="required"></textarea>
-                           <input type="hidden" name="bookImage" >
                            <label for="message">줄거리</label>
                            <div class="invalid-feedback" data-sb-feedback="message:required">줄거리을 입력하세요.</div>
                         </div>

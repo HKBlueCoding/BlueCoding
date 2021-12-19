@@ -39,5 +39,10 @@ public class PageDAO {
 		return ret;
 	}
 
+	public Integer selectSeries(int bookNO) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("mapper.page.selectSeries", bookNO);
+	}
+
 
 }

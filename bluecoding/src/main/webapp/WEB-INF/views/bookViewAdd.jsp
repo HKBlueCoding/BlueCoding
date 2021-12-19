@@ -56,18 +56,7 @@
                   <div class="col-md-10 col-lg-8 col-xl-7" style="width: 80%">
                      <p id="title">회차 글쓰기</p>
                      <hr class="my-4">
-                     <!-- ================== 카테고리 ======================= -->
-                     <div class="categorise search-form wow fadeInUp">
-                        <div class="row">
-                           <div class="col-lg-3 col-md-3 col-12 p-0">
-                              <div class="search-input" style="width: 50%">
-                                 <p>회차 : <input type="number" name="series" value="1" min="1" max="10" style="padding: 20px;" required></p>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <br>
-                     <!-- ================== 카테고리 끝 ======================= -->
+					 <br>
                      <div class="my-5">
                         <!-- * * * * * * * * * * * * * * *-->
                         <!-- * * SB Forms Contact Form * *-->

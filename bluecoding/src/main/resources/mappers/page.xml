@@ -31,6 +31,16 @@
     ]]>
 	</select>	
 	
+	<!-- [해당 책의 시리즈 조회] -->
+	<select id="selectSeries" parameterType="int" resultType="java.lang.Integer">
+	 <![CDATA[
+	  SELECT max(bookNO)+1 
+	  FROM B_PAGE
+	  WHERE bookNO = #{bookNO} 
+	 ]]>
+	</select>
+	
+	<!-- [페이지 작성] -->
 	<insert id="insertPage" parameterType="PageVO">
 	 <selectKey keyProperty="pageNO" resultType="int" order="BEFORE">
 	 	SELECT max(pageNO)+1 FROM B_PAGE
@@ -38,7 +48,7 @@
 	 <![CDATA[
 	  INSERT INTO B_PAGE 
 	  (PAGENO, SERIES, PAGETITLE, PAGETEXT, PAGEDATE, "COMMENT", PVIEWCNT, CHARGE, "LIKE", BOOKNO) 
-	  VALUES(#{pageNO}, #{series}, #{pageTitle}, #{pageText}, sysdate, #{comment}, 1, #{charge}, 1, #{bookNO})
+	  VALUES(#{pageNO}, #{series}, #{pageTitle}, #{pageText}, #{pageDate}, #{comment}, 1, #{charge}, 1, #{bookNO})
 	 ]]>
 	</insert>
 	
@@ -54,5 +64,15 @@
 		WHERE PAGENO=#{pageNO}
     ]]>
 	</update>
+	
+	<!-- [회차 조회수 증가] -->
+	<update id="updatePageViewCnt" parameterType="int">
+	 <![CDATA[
+	  UPDATE B_PAGE 
+	  SET PVIEWCNT=(PVIEWCNT+1)
+	  WHERE PAGENO=#{pageNO}
+	 ]]>
+	</update>
+	
 
 </mapper>	

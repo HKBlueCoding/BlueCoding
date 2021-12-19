@@ -59,4 +59,13 @@
 	  WHERE bookTitle = #{bookTitle} AND bookImage = #{bookImage} AND id=#{id}
 	 ]]>
 	</select>
+	
+	<!-- [책 정보 조회수 증가] -->
+	<update id="updateBookViewCnt" parameterType="int">
+	 <![CDATA[
+	  UPDATE B_BOOK 
+	  SET BVIEWCNT=(BVIEWCNT+1)
+	  WHERE BOOKNO=#{bookNO}
+	 ]]>
+	</update>
 </mapper>

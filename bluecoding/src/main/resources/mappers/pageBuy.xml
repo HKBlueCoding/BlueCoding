@@ -13,6 +13,7 @@
 	 ]]>
 	</insert>
 	
+	<!-- [페이지를 구매 했는지 확인] -->
 	<update id="checkBuy" parameterType="hashmap">
 	 <![CDATA[
 	  	UPDATE B_PAGEBUY 
@@ -21,6 +22,7 @@
 	 ]]>
 	</update>
 	
+	<!-- [중복구매 방지 확인] -->
 	<select id="selectOneBuyPage" resultType="int" parameterType="hashmap">
 	 <![CDATA[
 	 	SELECT count(pageNO)
@@ -28,4 +30,17 @@
 	 	WHERE id=#{id} AND pageNO=#{pageNO}
 	 ]]>
 	</select>
+	
+	<!-- [저자가 유료화된 글을 볼 수 있게끔 구매기록 남김] -->
+	<insert id="mapper.pagebuy.insertAuthorPage" parameterType="pageVO">
+	 <selectKey keyProperty="pageNO" resultType="int" order="BEFORE">
+	  <![CDATA[
+	 	SELECT pageNO FROM b_page WHERE id=#{id} AND pageDate = #{pageDate}	
+	  ]]>
+	 </selectKey>
+	 <![CDATA[
+	    INSERT INTO B_PAGEBUY (PAGEPAY, ID, PAGENO, PAGEPAYDATE, PISREFUND) 
+		VALUES( 0, #{id}, #{pageNO}, #{pageDate}, '')
+	 ]]>
+	</insert>
 </mapper>

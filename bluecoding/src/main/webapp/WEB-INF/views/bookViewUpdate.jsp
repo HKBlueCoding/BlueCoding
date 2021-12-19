@@ -85,18 +85,7 @@
                   <div class="col-md-10 col-lg-8 col-xl-7" style="width: 80%">
                      <p id="title">회차 수정하기</p>
                      <hr class="my-4">
-                     <!-- ================== 카테고리 ======================= -->
-                     <div class="categorise search-form wow fadeInUp">
-                        <div class="row">
-                           <div class="col-lg-3 col-md-3 col-12 p-0">
-                              <div class="search-input" style="width: 50%">
-                                 <p>회차 : <input type="number" name="series" value="1" min="1" max="10" style="padding: 20px;" required></p>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <br>
-                     <!-- ================== 카테고리 끝 ======================= -->
+					 <br>
                      <p id="title2">&nbsp;&nbsp;${pageVO.series }화, ${pageVO.pageTitle }</p>
                      <br><br>
                      <div class="my-5">
@@ -111,7 +100,6 @@
                            <input class="form-control" name="pageTitle" id="name" type="text" value="${pageVO.pageTitle }" data-sb-validations="required" />
                            <label for="name">제목</label>
                            <input type="hidden" value="${pageVO.pageNO }" name="pageNO">
-                           <input type="hidden" value="${pageVO.charge }" name="charge">
                            <div class="invalid-feedback" data-sb-feedback="name:required">제목을 입력하세요.</div>
                         </div>
                         <br>
@@ -147,7 +135,11 @@
                         </div>
                         <!-- ======================= 버튼 ========================== -->
                         <div class="button header-button">
-                           <p>유료 여부 <input type="checkbox" name="charge"></p>
+                           <p>유료화 여부:<select name="charge" id="charge">
+                            			 	<option value="">무료</option>
+                                         	<option value="Y">유료화</option>
+                           				  </select>
+                           </p>
                         </div>
                         &nbsp;&nbsp;&nbsp;&nbsp;
                         <c:if test="${login.admin eq 'A' || login.admin eq 'C'}">

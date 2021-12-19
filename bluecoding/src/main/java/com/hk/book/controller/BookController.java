@@ -97,11 +97,14 @@ public class BookController {
 
 		return "done/bookAddDone";
 	}
-
+	
+	// [책 정보 보기]
 	@GetMapping("/view")
-	public String bookView(Model model, @RequestParam("bookNO") int bookNO) {
+	public String bookView(Model model, @RequestParam("bookNO") int bookNO, HttpSession session) {
 		
-		Map<String, Object> map = bookService.bookOneList(bookNO);
+		UserVO userVO = (UserVO) session.getAttribute("login");
+		
+		Map<String, Object> map = bookService.bookOneList(bookNO, userVO);
 		logger.debug("[map] = " + map);
 		logger.debug("[bookNO] = " + bookNO);
 
@@ -173,10 +176,9 @@ public class BookController {
 	}
 
 	@PostMapping("/view/add")
-	public String bookViewAddDone(Model model, @ModelAttribute PageVO pageVO, HttpServletResponse response) {
+	public String bookViewAddDone(Model model, @ModelAttribute PageVO pageVO) throws Exception {
 		logger.debug("[pageVO] = " + pageVO);
-		response.setContentType("text/html; charset=UTF-8");
-
+		
 		int ret = bookService.addPage(pageVO);
 		model.addAttribute("ret", ret);
 		model.addAttribute("bookNO", pageVO.getBookNO());

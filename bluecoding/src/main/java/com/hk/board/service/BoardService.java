@@ -38,7 +38,7 @@ public class BoardService {
 		int ret = boardDAO.addArticle(boardVO);
 		
 		int articleNO = 0;
-		if(ret > 0) {
+		if(ret > 0 && boardVO.getBoardImage() != null) {
 			articleNO = boardDAO.selectArticleNO(boardVO);
 		}
 		

@@ -34,31 +34,31 @@ import com.hk.user.vo.UserVO;
 public class BookService {
 
 	private static final Logger logger = LoggerFactory.getLogger(BookService.class);
-	
+
 	@Autowired
 	BookDAO bookDAO;
-	
+
 	@Autowired
 	ReviewDAO reviewDAO;
-	
+
 	@Autowired
 	PageDAO pageDAO;
-	
+
 	@Autowired
 	PageReplyDAO pageReplyDAO;
-	
+
 	@Autowired
 	FavoDAO favoDAO;
-	
+
 	@Autowired
 	PageBuyDAO pageBuyDAO;
-	
+
 	@Autowired
 	UserDAO userDAO;
-	
+
 	@Autowired
 	AuthorDAO authorDAO;
-	
+
 	public List<BookVO> listBook() {
 		// TODO Auto-generated method stub
 		return bookDAO.bookList();
@@ -66,14 +66,14 @@ public class BookService {
 
 	public int addBook(BookVO bookVO) {
 		// TODO Auto-generated method stub
-		
+		int bookNO = 0;
 		int ret = bookDAO.bookAdd(bookVO);
 		
-		int bookNO = 0;
-		if(ret > 0) {
+		
+		if (ret > 0 && !bookVO.getBookImage().isEmpty()) {
 			bookNO = bookDAO.selectBookNO(bookVO);
 		}
-		
+
 		return bookNO;
 	}
 
@@ -87,7 +87,7 @@ public class BookService {
 		return bookDAO.BookUpdate(bookVO);
 	}
 
-	public Map<String, Object> bookOneList(int bookNO) {
+	public Map<String, Object> bookOneList(int bookNO, UserVO userVO) {
 		// TODO Auto-generated method stub
 		Map<String, Object> map = new HashMap<String, Object>();
 		
@@ -96,68 +96,111 @@ public class BookService {
 		
 		// 페이지 조회
 		List<PageVO> pageVO = pageDAO.listPage(bookNO);
-		
+
 		// 그 게시글의 댓글
 		List<ReviewVO> reviewVO = reviewDAO.listReview(bookNO);
+
+		// 책 정보 조회수 기능
+		if(userVO != null) {
+			bookDAO.updateBookViewCnt(bookNO);
+			logger.debug("[책 조회수 업데이트]");
+		}		
 		
 		map.put("bookVO", bookVO);
 		map.put("reviewVO", reviewVO);
 		map.put("pageVO", pageVO);
-		
+
 		return map;
 	}
-	
-	public int addPage(PageVO pageVO) {
+
+	// [회차 작성]
+	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { Exception.class })
+	public int addPage(PageVO pageVO) throws Exception {
 		// TODO Auto-generated method stub
 		
-		return pageDAO.pageAdd(pageVO);
+		// 있다가 날짜로 저자에게 구매내역 넣을거니까..
+		Date date = new Date(Calendar.getInstance().getTimeInMillis());
+		logger.debug("[pageBuyVO] ==" + pageVO);
+		logger.debug("[date]==" + date);
+		pageVO.setPageDate(date);
+		
+		// series는 한책 정보에 같은 번호가 있으면 안됨
+		Integer series = pageDAO.selectSeries(pageVO.getBookNO());
+		logger.debug("[series]=="+series);
+		// Integer는 null 값을 받고, 만약 series에 null이 들가면 안되니 임의로 지정
+		if(series == null || series == 0) {
+			series = 1; // max해서 없으면 
+		}
+		
+		pageVO.setSeries(series);
+		
+		// insert 실행
+		int ret = pageDAO.pageAdd(pageVO);
+		
+		try {
+			// 만약 유료화로 회차 작성해도 저자가 봐야하니까 구매기록을 입력함
+			if (pageVO.getCharge().equals("Y") && ret > 0) {
+				ret = pageBuyDAO.insertAuthorPage(pageVO);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();			
+			ret = 0;
+		}
+
+		return ret;
 	}
 
 	public Map<String, Object> listPage(int pageNO, UserVO userVO) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		// 기본 ret 설정해서 페이지 이동여부 결정
 		map.put("ret", null);
-		
+
 		// 하나는 해당 게시글하나
 		PageVO pageVO = pageDAO.pageList(pageNO);
-		
+
 		// 만약 게시글이 유료화일 경우
-		if(pageVO.getCharge().equals("Y")) {
-			
+		if (pageVO.getCharge().equals("Y")) {
+
 			// 그러나 만약 아이디가 null이면 조회할것도 없으니.. ret = 0을 리턴시킴
-			if(userVO == null ) {
+			if (userVO == null) {
 				logger.debug("[로그인 안한 유저 감지]");
-				logger.debug("[ret 결과]=="+map.get("ret"));
-				return map;				
+				logger.debug("[ret 결과]==" + map.get("ret"));
+				return map;
 			}
 			// 유저의 정보를 담아서 dao에 select 요청
 			Map<String, Object> selectUser = new HashMap<String, Object>();
 			selectUser.put("id", userVO.getId());
 			selectUser.put("pageNO", pageNO);
-			
+
 			// update를 통해서 환불 가능 여부를 지움과 동시에
 			// 해당 페이지가 있는지 조회 가능
 			int ret = pageBuyDAO.checkBuy(selectUser);
-			
+
 			// 만약 페이지가 없다면 ret = 0을 리턴
-			if(ret == 0) {
-				logger.debug("[ret 결과]=="+map.get("ret"));
-				return map; 
-			}else {
+			if (ret == 0) {
+				logger.debug("[ret 결과]==" + map.get("ret"));
+				return map;
+			} else {
 				// 만약 ret이 1이상이면 이후의 기능을 수행
 				map.put("ret", ret);
-			}				
+			}
 		}
-		
 		// 그 게시글의 댓글
 		List<PageReplyVO> pageReplyVO = pageReplyDAO.listPageReply(pageNO);
 		
+		// 회차 조회수 기능
+		if(userVO != null) {
+			bookDAO.updatePageViewCnt(pageNO);
+			logger.debug("[회차 조회수 업데이트]");
+		}		
+
 		map.put("pageVO", pageVO);
 		map.put("pageReplyVO", pageReplyVO);
-		
+
 		return map;
 	}
-	
+
 	public PageVO bookPageOne(int pageNO) {
 		// TODO Auto-generated method stub
 		return pageDAO.pageList(pageNO);
@@ -167,59 +210,59 @@ public class BookService {
 		// TODO Auto-generated method stub
 		return pageDAO.bookViewUpdate(pageVO);
 	}
-	
+
 	public int addFavo(FavoVO favoVO) {
 		// TODO Auto-generated method stub
 		return favoDAO.insertFavo(favoVO);
 	}
-	
+
 	public int addReview(ReviewVO reviewVO) {
 		// TODO Auto-generated method stub
 		return reviewDAO.insertReview(reviewVO);
 	}
-	
+
 	// [회차 구매]
-	@Transactional(propagation=Propagation.REQUIRED, rollbackFor = {Exception.class})
+	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { Exception.class })
 	public int buyPage(PageBuyVO pageBuyVO) throws Exception {
 		// TODO Auto-generated method stub
-		
+
 		// 0.먼저 코인 결제시간을 설정
 		Date date = new Date(Calendar.getInstance().getTimeInMillis());
-		logger.debug("[pageBuyVO] =="+pageBuyVO);
-		logger.debug("[date]=="+date);
+		logger.debug("[pageBuyVO] ==" + pageBuyVO);
+		logger.debug("[date]==" + date);
 		pageBuyVO.setPagePayDate(date);
 		int ret = 0;
 		// 1-1. 유저의 코인 변수를 체크하기 위해서 select-key를 할건데
-		//      그럴려면 설정당할 프로퍼티가 있어야 하니 아래와 같이 설정
+		// 그럴려면 설정당할 프로퍼티가 있어야 하니 아래와 같이 설정
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("id",pageBuyVO.getId());
+		map.put("id", pageBuyVO.getId());
 		map.put("coin", 0);
-		
+
 		try {
-			
+
 			// 1-2. 넣은값을 토대로 insert
 			ret = userDAO.minusCoin(map);
-			logger.debug("[코인차감 결과]=="+ret);
-			
-			if(ret > 0) {
+			logger.debug("[코인차감 결과]==" + ret);
+
+			if (ret > 0) {
 				// 2. 저자에게 해당 회차에 대한 코인을 줌
 				ret = authorDAO.insertProfit(pageBuyVO);
-		
-				// 3. 회차 구매 내역을 작성		
+
+				// 3. 회차 구매 내역을 작성
 				ret = pageBuyDAO.insertBuyPage(pageBuyVO);
 			}
-		} catch(Exception e) {
+		} catch (Exception e) {
 			// try-catch 때문에 트렌잭션이 안먹히니까 메서드 호출 해야함
 			TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
 			e.printStackTrace();
 			ret = 0;
 		}
-		
+
 		return ret;
 	}
 
 	public int selectOneBuyPage(Map<String, Object> userMap) {
 		// TODO Auto-generated method stub
 		return pageBuyDAO.selectOneBuyPage(userMap);
-	}	
+	}
 }

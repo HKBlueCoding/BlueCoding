@@ -50,4 +50,14 @@ public class BookDAO {
 		return bookNO;
 	}
 
+	public void updateBookViewCnt(int bookNO) {
+		// TODO Auto-generated method stub
+		sqlSession.update("mapper.book.updateBookViewCnt", bookNO);
+	}
+
+	public void updatePageViewCnt(int pageNO) {
+		// TODO Auto-generated method stub
+		sqlSession.update("mapper.page.updatePageViewCnt", pageNO);
+	}
+
 }
