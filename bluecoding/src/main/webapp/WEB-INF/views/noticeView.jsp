@@ -155,12 +155,32 @@
                                     <tbody>
                                        <tr>
                                           <td>
-                                             <div class="d-flex px-2 py-1">
-                                                <div class="d-flex flex-column justify-content-center">
-                                                   <p class="text-xs text-secondary mb-0" style="font-size: 15px;">작성자명 : ${newsReply.nick }(${newsReply.id }),&nbsp;&nbsp;&nbsp;&nbsp;${newsReply.newsReDate }</p>
-                                                   <p class="text-xs text-secondary mb-0">${newsReply.newsReText }</p>
+                                             <c:if test='${newsReply.level > 1 }'>
+                                                <div class="d-flex px-2 py-1">
+                                                   <div class="d-flex flex-column justify-content-center">
+                                                      <p class="text-xs text-secondary mb-0" style="font-size: 15px;">
+                                                         <c:forEach begin="1" end="${newsReply.level }" step="1">
+                                                            &nbsp;&nbsp;&nbsp;&nbsp;
+                                                         </c:forEach>
+                                                         ⤷작성자명 : ${newsReply.nick }(${newsReply.id }),&nbsp;&nbsp;&nbsp;&nbsp;${newsReply.newsReDate }
+                                                      </p>
+                                                      <p class="text-xs text-secondary mb-0">
+                                                         <c:forEach begin="1" end="${newsReply.level }" step="1">
+                                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                         </c:forEach>
+                                                         &nbsp;&nbsp;${newsReply.newsReText }
+                                                      </p>
+                                                   </div>
                                                 </div>
-                                             </div>
+                                             </c:if>
+                                             <c:if test="${newsReply.level == 1 }">
+                                                <div class="d-flex px-2 py-1">
+                                                   <div class="d-flex flex-column justify-content-center">
+                                                      <p class="text-xs text-secondary mb-0" style="font-size: 15px;">작성자명 : ${newsReply.nick }(${newsReply.id }),&nbsp;&nbsp;&nbsp;&nbsp;${newsReply.newsReDate }</p>
+                                                      <p class="text-xs text-secondary mb-0">${newsReply.newsReText }</p>
+                                                   </div>
+                                                </div>
+                                             </c:if>
                                           </td>
                                           <!-- ======================= 버튼 ========================== -->
                                           <td>
@@ -168,7 +188,7 @@
                                                 <!-- [로그인시] -->
                                                 <c:if test="${!empty login.id && login.id ne '' }">
                                                    <div class="button header-button">
-                                                      <button onClick="replyReClick('${replyCnt.count}')" class="btn" style="background-color: #30d8e0;">답글</button>
+                                                      <button onClick="replyReClick('${replyCnt.count}')"  id="modify" class="btn" style="background-color: #30d8e0;">답글</button>
                                                    </div>
                                                 </c:if>
                                                 <!-- [비 로그인시]] -->
@@ -190,62 +210,6 @@
                                           </td>
                                        </tr>
                                        <!-- =========================== 댓글 끝 =========================== -->
-                                       
-                                       
-                                       
-                                       
-                                       
-                                       
-                                       
-                                       
-                                       
-
-									   <tr>
-                                          <td>
-                                             <div class="d-flex px-2 py-1">
-                                                <div class="d-flex flex-column justify-content-center">
-                                                   <p class="text-xs text-secondary mb-0" style="font-size: 15px;">작성자명 : ${newsReply.nick }(${newsReply.id }),&nbsp;&nbsp;&nbsp;&nbsp;${newsReply.newsReDate }</p>
-                                                   <p class="text-xs text-secondary mb-0">${newsReply.newsReText }</p>
-                                                </div>
-                                             </div>
-                                          </td>
-                                          <!-- ======================= 버튼 ========================== -->
-                                          <td>
-                                             <div align="right"  style="width: 100%;">
-                                                <!-- [로그인시] -->
-                                                <c:if test="${!empty login.id && login.id ne '' }">
-                                                   <div class="button header-button">
-                                                      <button onClick="replyReClick('${replyCnt.count}')" class="btn" style="background-color: #30d8e0;">답글</button>
-                                                   </div>
-                                                </c:if>
-                                                <!-- [비 로그인시]] -->
-                                                <c:if test="${empty login.id || login.id  eq '' }">
-                                                   <div class="button header-button">
-                                                      <a data-bs-toggle="modal"  data-bs-target="#login" class="btn" style="background-color: #30d8e0;">답글</a>
-                                                   </div>
-                                                </c:if>
-                                                <c:if test="${login.admin eq 'A' || login.admin eq 'C'}">
-                                                   <div class="button header-button">
-                                                      <button onClick="replyClick('${replyCnt.count}')"  id="modify" class="btn" style="background-color: #30d8e0;">수정</button>
-                                                   </div>
-                                                   <div class="button header-button">
-                                                      <a onClick="funok2()" class="btn" style="background-color: #30d8e0;">삭제</a>
-                                                   </div>
-                                                </c:if>
-                                             </div>
-                                             <!-- ======================= 버튼 끝 ========================== -->
-                                          </td>
-                                       </tr>
-                                       
-                                       
-                                       
-                                       
-                                       
-                                       
-                                       
-                                       
-                                       
-                                       
                                        <!-- =========================== 댓글 수정 =========================== -->
                                        <tr class="mod" >
                                           <td>
@@ -290,7 +254,7 @@
                                                    <!-- [로그인시] -->
                                                    <c:if test="${!empty login.id && login.id ne '' }">
                                                       <div class="button header-button">
-                                                         <a id="repReBtn" onClick="" class="btn">확인</a>
+                                                         <a id="repReBtn" onClick="replyInsert('${newsReply.newsReplyNO}','${replyCnt.count }')" class="btn">확인</a>
                                                       </div>
                                                    </c:if>
                                                    <!-- [비 로그인시]] -->
@@ -601,26 +565,29 @@
           
          }
          
-         // 확인을 눌렀을 때 실행
-         $(document).ready(function() {
-         	$('#repReBtn').click(function() {
-         	   $.ajax({
-                    type: 'POST',
-                    url: '/news/notice/newsReplyRe/add',
-                    dataType: "json",
-                    data: {"newsReText": $('#RepReText').val(), "id":$('#id').val(), "newsNO":$("#newsNO").val(),  "nick":$("#nick").val()},
-                    success: function(data) {
-                       // data.server에서 보낸 map text
-                        alert('댓글이 등록되었습니다.');
-                        $('#RepReText').val("");
-                        location.reload();
-                     }, 
-                     error: function(request,status,error) {
-                         alert('에러!! : ' + request.responseText + ":"+error);
-                     }
-               }); //end ajax 
-            }); //end on
-         });
+         function replyInsert(nReParentNO, replyCnt){
+           	$.ajax({
+               	type: 'POST',
+               	url: '../../news/notice/newsReplyRe/add',
+               	dataType: "json",
+               	data: {"newsReText": $('#RepReText'+replyCnt).val(), "id":$('#id').val(), "newsNO":$("#newsNO").val(),  "nick":$("#nick").val(), "nReParentNO":nReParentNO},
+               	success: function(data) {
+                  	// data.server에서 보낸 map text
+                  	if(data.ret == 0){
+                  		alert('댓글 등록에 실패하였습니다.');
+                  	}else{
+                       	alert('댓글이 등록되었습니다.');
+                       	$('#RepReText').val("");
+                      	 location.reload();                  		
+                  	}
+                 }, 
+                 error: function(request,status,error) {
+                     alert('에러!! : ' + request.responseText + ":"+error);
+                 }
+           }); //end ajax         	 
+         }
+         
+         
       </script>
       <!-- ================================ 답글 구현 끝====================================== -->      
    </body>

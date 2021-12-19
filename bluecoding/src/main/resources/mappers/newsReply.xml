@@ -16,13 +16,15 @@
 		<result property="newsNO" column="newsNO" />
 		<result property="id" column="id" />
 		<result property="nick" column="nick" />
+		<result property="level" column="level" />
 
 	</resultMap>
 
 	<select id="selectAllNewsReply" resultMap="newsReplyResult">
     <![CDATA[
-		SELECT NEWSREPLYNO, NREPARENTNO, NEWSRETEXT, NEWSREDATE, NEWSREDELETE, NEWSNO, ID, NICK
-		FROM B_NEWSREPLY WHERE newsNO=#{newsNO}
+		SELECT NEWSREPLYNO, NREPARENTNO, NEWSRETEXT, NEWSREDATE, NEWSREDELETE, NEWSNO, ID, NICK,  LEVEL FROM B_NEWSREPLY
+		START WITH nReParentNO=0 CONNECT BY PRIOR newsReplyNO=nReParentNO
+		ORDER SIBLINGS BY newsReplyNO ASC
     ]]>
 	</select>
 	
