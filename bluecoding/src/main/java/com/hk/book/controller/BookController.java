@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.hk.book.service.BookService;
@@ -27,6 +29,7 @@ import com.hk.favo.vo.FavoVO;
 import com.hk.page.vo.PageVO;
 import com.hk.pagebuy.vo.PageBuyVO;
 import com.hk.review.vo.ReviewVO;
+import com.hk.user.vo.UserVO;
 
 /**
  * Handles requests for the application home page.
@@ -97,7 +100,7 @@ public class BookController {
 
 	@GetMapping("/view")
 	public String bookView(Model model, @RequestParam("bookNO") int bookNO) {
-
+		
 		Map<String, Object> map = bookService.bookOneList(bookNO);
 		logger.debug("[map] = " + map);
 		logger.debug("[bookNO] = " + bookNO);
@@ -179,16 +182,29 @@ public class BookController {
 		model.addAttribute("bookNO", pageVO.getBookNO());
 		return "done/bookViewAddDone";
 	}
-
+	
+	// [회차 조회]
 	@GetMapping("/view/page")
-	public String bookViewPageDone(Model model, @RequestParam("pageNO") int pageNO) {
-		Map<String, Object> map = bookService.listPage(pageNO);
+	public String bookViewPageDone(Model model, @RequestParam("pageNO") int pageNO, HttpSession session) {
+		
+		
+		// 유료화 일수도 있으니 session의 userVO 값을 받아옴
+		UserVO userVO = (UserVO) session.getAttribute("login");
+		logger.debug("[userVO]=="+userVO);
+
+		// [해당 페이지 조회 & 유료화에 따라 값 설정]
+		Map<String, Object> map = bookService.listPage(pageNO, userVO);
 		logger.debug("[map] = " + map);
 		logger.debug("[pageNO] = " + pageNO);
-
+		
+		// 결과 확인
+		if(map.get("ret") == null) {
+			return "done/pageViewFail";
+		}
+		
 		model.addAttribute("pageVO", map.get("pageVO"));
 		model.addAttribute("pageReplyVO", map.get("pageReplyVO"));
-
+		
 		return "bookViewPage";
 	}
 
@@ -254,15 +270,38 @@ public class BookController {
 	// [페이지 결제하기]
 	@RequestMapping(value="/page/buy",method= {RequestMethod.POST },produces = "application/json; charset=utf8")
 	@ResponseBody
-	public Map<String, Object> pageBuy(@ModelAttribute PageBuyVO pageBuyVO){
+	public Map<String, Object> pageBuy(@ModelAttribute PageBuyVO pageBuyVO, HttpSession session) throws Exception{
 		// id와 해당 페이지의 번호
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		int ret = bookService.buyPage(pageBuyVO);
 		
+		// 결제에 성공 했으니까 유저의 코인 갯수 재설정
+		if(ret > 0) {
+			UserVO userVO = (UserVO) session.getAttribute("login");
+			userVO.setCoin(userVO.getCoin()-300);
+			session.setAttribute("login", userVO);
+		}
+		
 		map.put("ret", ret);
 		
+		return map;
+	}
+	
+	// [구매내역 확인]
+	@RequestMapping(value="/page/check",method= {RequestMethod.POST },produces = "application/json; charset=utf8")
+	@ResponseBody
+	public Map<String, Object> pageCheck(@RequestParam("id") String id,
+										 @RequestParam("pageNO") int pageNO, HttpSession session){
+		Map<String, Object> userMap = new HashMap<String, Object>();
+		userMap.put("id", id);
+		userMap.put("pageNO", pageNO);
+		
+		int rs = bookService.selectOneBuyPage(userMap);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("rs", rs);
 		return map;
 	}	
 

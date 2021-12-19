@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
 import com.hk.coinhistory.vo.CoinHistoryVO;
@@ -64,7 +65,7 @@ public class UserDAO {
 	}
 
 	// 코인 지불
-	public int minusCoin(Map<String, Object> map) {
+	public int minusCoin(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.update("mapper.user.minusCoin", map);
 	}

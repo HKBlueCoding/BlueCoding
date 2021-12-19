@@ -10,7 +10,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
 import com.hk.author.dao.AuthorDAO;
 import com.hk.book.dao.BookDAO;
@@ -26,6 +28,7 @@ import com.hk.pagereply.vo.PageReplyVO;
 import com.hk.review.dao.ReviewDAO;
 import com.hk.review.vo.ReviewVO;
 import com.hk.user.dao.UserDAO;
+import com.hk.user.vo.UserVO;
 
 @Service
 public class BookService {
@@ -86,6 +89,7 @@ public class BookService {
 
 	public Map<String, Object> bookOneList(int bookNO) {
 		// TODO Auto-generated method stub
+		Map<String, Object> map = new HashMap<String, Object>();
 		
 		// 하나는 해당 게시글하나
 		BookVO bookVO = bookDAO.oneBook(bookNO);
@@ -94,9 +98,7 @@ public class BookService {
 		List<PageVO> pageVO = pageDAO.listPage(bookNO);
 		
 		// 그 게시글의 댓글
-		List<ReviewVO> reviewVO = reviewDAO.listReview(bookNO); // bookNO
-		
-		Map<String, Object> map = new HashMap<String, Object>();
+		List<ReviewVO> reviewVO = reviewDAO.listReview(bookNO);
 		
 		map.put("bookVO", bookVO);
 		map.put("reviewVO", reviewVO);
@@ -111,15 +113,44 @@ public class BookService {
 		return pageDAO.pageAdd(pageVO);
 	}
 
-	public Map<String, Object> listPage(int pageNO) {
+	public Map<String, Object> listPage(int pageNO, UserVO userVO) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		// 기본 ret 설정해서 페이지 이동여부 결정
+		map.put("ret", null);
 		
 		// 하나는 해당 게시글하나
 		PageVO pageVO = pageDAO.pageList(pageNO);
 		
+		// 만약 게시글이 유료화일 경우
+		if(pageVO.getCharge().equals("Y")) {
+			
+			// 그러나 만약 아이디가 null이면 조회할것도 없으니.. ret = 0을 리턴시킴
+			if(userVO == null ) {
+				logger.debug("[로그인 안한 유저 감지]");
+				logger.debug("[ret 결과]=="+map.get("ret"));
+				return map;				
+			}
+			// 유저의 정보를 담아서 dao에 select 요청
+			Map<String, Object> selectUser = new HashMap<String, Object>();
+			selectUser.put("id", userVO.getId());
+			selectUser.put("pageNO", pageNO);
+			
+			// update를 통해서 환불 가능 여부를 지움과 동시에
+			// 해당 페이지가 있는지 조회 가능
+			int ret = pageBuyDAO.checkBuy(selectUser);
+			
+			// 만약 페이지가 없다면 ret = 0을 리턴
+			if(ret == 0) {
+				logger.debug("[ret 결과]=="+map.get("ret"));
+				return map; 
+			}else {
+				// 만약 ret이 1이상이면 이후의 기능을 수행
+				map.put("ret", ret);
+			}				
+		}
+		
 		// 그 게시글의 댓글
 		List<PageReplyVO> pageReplyVO = pageReplyDAO.listPageReply(pageNO);
-		
-		Map<String, Object> map = new HashMap<String, Object>();
 		
 		map.put("pageVO", pageVO);
 		map.put("pageReplyVO", pageReplyVO);
@@ -148,8 +179,8 @@ public class BookService {
 	}
 	
 	// [회차 구매]
-	@Transactional(rollbackFor = {RuntimeException.class, Exception.class})
-	public int buyPage(PageBuyVO pageBuyVO) {
+	@Transactional(propagation=Propagation.REQUIRED, rollbackFor = {Exception.class})
+	public int buyPage(PageBuyVO pageBuyVO) throws Exception {
 		// TODO Auto-generated method stub
 		
 		// 0.먼저 코인 결제시간을 설정
@@ -158,12 +189,13 @@ public class BookService {
 		logger.debug("[date]=="+date);
 		pageBuyVO.setPagePayDate(date);
 		int ret = 0;
+		// 1-1. 유저의 코인 변수를 체크하기 위해서 select-key를 할건데
+		//      그럴려면 설정당할 프로퍼티가 있어야 하니 아래와 같이 설정
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id",pageBuyVO.getId());
+		map.put("coin", 0);
+		
 		try {
-			// 1-1. 유저의 코인 변수를 체크하기 위해서 select-key를 할건데
-			//      그럴려면 설정당할 프로퍼티가 있어야 하니 아래와 같이 설정
-			Map<String, Object> map = new HashMap<String, Object>();
-			map.put("id",pageBuyVO.getId());
-			map.put("coin", 0);
 			
 			// 1-2. 넣은값을 토대로 insert
 			ret = userDAO.minusCoin(map);
@@ -177,9 +209,17 @@ public class BookService {
 				ret = pageBuyDAO.insertBuyPage(pageBuyVO);
 			}
 		} catch(Exception e) {
+			// try-catch 때문에 트렌잭션이 안먹히니까 메서드 호출 해야함
+			TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+			e.printStackTrace();
 			ret = 0;
 		}
 		
 		return ret;
+	}
+
+	public int selectOneBuyPage(Map<String, Object> userMap) {
+		// TODO Auto-generated method stub
+		return pageBuyDAO.selectOneBuyPage(userMap);
 	}	
 }

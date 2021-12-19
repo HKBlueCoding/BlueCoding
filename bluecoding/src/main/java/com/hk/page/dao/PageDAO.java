@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.hk.page.vo.PageVO;
-import com.hk.pagebuy.vo.PageBuyVO;
 
 @Repository
 public class PageDAO {

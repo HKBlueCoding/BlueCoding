@@ -12,7 +12,7 @@ public class AuthorDAO {
 	@Autowired
 	SqlSession sqlSession;
 	
-	public int insertProfit(PageBuyVO pageBuyVO) {
+	public int insertProfit(PageBuyVO pageBuyVO) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.insert("mapper.author.insertProfit",pageBuyVO);
 	}	

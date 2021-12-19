@@ -163,7 +163,8 @@
                                              <h6 class="text-white text-capitalize ps-3">작품 회차</h6>
                                           </div>
                                        </div>
-                                       <c:forEach var="page"  items="${pageVO }">
+                                       
+                                        <c:forEach var="page"  items="${pageVO }">
                                           <div id="tbPadd" class="card-body px-0 pb-2">
                                              <div class="table-responsive p-0">
                                                 <table class="table align-items-center mb-0">
@@ -181,11 +182,12 @@
                                                          <!-- ======================= 버튼 ========================== -->
                                                          <td>
                                                             <div align="right"  style="width: 100%;">
-                                                              <c:if test="${page.charge eq 'Y' }">
+
+                                                              <c:if test="${page.charge eq 'Y'}">
                                                                <div class="button header-button">
                                                                   <a class="btn" style="background-color: #30e087" onClick="pageBuy('${page.pageNO}')">미리보기(유료)</a>
                                                                </div>
-                                                              </c:if>
+                                                              </c:if>                                                           
                                                                <c:if test="${login.admin eq 'A' || login.admin eq 'C'}">
                                                                   <div class="button header-button">
                                                                      <a href="../view/update?pageNO=${page.pageNO}" class="btn" style="background-color: #30d8e0;">수정</a>
