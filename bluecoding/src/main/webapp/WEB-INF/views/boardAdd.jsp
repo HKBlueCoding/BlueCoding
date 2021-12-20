@@ -87,7 +87,6 @@
                         <br>
                         <div class="form-floating" id="formMag">
                            <textarea class="form-control" id="message" name="boardText" placeholder="Enter your message here..." style="height: 35rem" data-sb-validations="required" required></textarea>
-                           <input type="hidden" name="boardImage">
                            <label for="message">내용</label>
                            <div class="invalid-feedback" data-sb-feedback="message:required">내용을 입력하세요.</div>
                         </div>

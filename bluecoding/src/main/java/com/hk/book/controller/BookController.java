@@ -74,10 +74,13 @@ public class BookController {
 		// 받은 실제 이미지 파일이름
 		String fileName = file.getOriginalFilename();
 		bookVO.setBookImage(fileName);
-
-		int bookNO = bookService.addBook(bookVO);
-
-		if (!file.getOriginalFilename().isEmpty() && bookNO > 0) {
+		
+		// map
+		Map<String, Object> map = bookService.addBook(bookVO);
+		
+		int bookNO = (int) map.get("bookNO");
+		
+		if (!file.getOriginalFilename().isEmpty() && bookNO != 0) {
 			File folder = new File(BOOK_FILE_PATH + "\\" + bookNO);
 			if (!folder.exists()) {
 				try {
@@ -93,7 +96,7 @@ public class BookController {
 			file.transferTo(new File(BOOK_FILE_PATH + "\\" + bookNO, fileName));
 		}
 
-		model.addAttribute("ret", bookNO);
+		model.addAttribute("ret", map.get("ret"));
 
 		return "done/bookAddDone";
 	}

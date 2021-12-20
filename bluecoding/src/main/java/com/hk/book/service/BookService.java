@@ -64,17 +64,21 @@ public class BookService {
 		return bookDAO.bookList();
 	}
 
-	public int addBook(BookVO bookVO) {
+	public Map<String, Object> addBook(BookVO bookVO) {
 		// TODO Auto-generated method stub
+		Map<String, Object> map = new HashMap<String, Object>();
 		int bookNO = 0;
+		
 		int ret = bookDAO.bookAdd(bookVO);
-		
-		
-		if (ret > 0 && !bookVO.getBookImage().isEmpty()) {
+		if (ret > 0 && bookVO.getBookImage() != null) {
 			bookNO = bookDAO.selectBookNO(bookVO);
 		}
-
-		return bookNO;
+		
+		// bookNO와 ret을 넣음
+		map.put("bookNO", bookNO);
+		map.put("ret", ret);
+		
+		return map;
 	}
 
 	public BookVO bookOne(int bookNO) {
@@ -125,10 +129,11 @@ public class BookService {
 		pageVO.setPageDate(date);
 		
 		// series는 한책 정보에 같은 번호가 있으면 안됨
-		Integer series = pageDAO.selectSeries(pageVO.getBookNO());
+		int series = pageDAO.selectSeries(pageVO.getBookNO());
 		logger.debug("[series]=="+series);
+		
 		// Integer는 null 값을 받고, 만약 series에 null이 들가면 안되니 임의로 지정
-		if(series == null || series == 0) {
+		if( series == 0) {
 			series = 1; // max해서 없으면 
 		}
 		

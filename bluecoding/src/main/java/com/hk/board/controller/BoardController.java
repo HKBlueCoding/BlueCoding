@@ -72,11 +72,16 @@ public class BoardController {
 		logger.debug("[boardVO] = " + boardVO);
 
 		// 받은 실제 이미지 파일이름
-		String fileName = file.getOriginalFilename();
-		boardVO.setBoardImage(fileName);
+		String fileName = "";
 
-		int articleNO = boardService.addArticle(boardVO);
+			fileName = file.getOriginalFilename();
+			boardVO.setBoardImage(fileName);
 
+		logger.debug("[boardVO의 이미지 이름] = " + boardVO.getBoardImage());
+		Map<String, Object> map = boardService.addArticle(boardVO);
+		
+		int articleNO = (int) map.get("articleNO");
+		
 		if (!file.getOriginalFilename().isEmpty() && articleNO > 0) {
 			File folder = new File(BOARD_FILE_PATH + "\\" + articleNO);
 
@@ -94,7 +99,7 @@ public class BoardController {
 			file.transferTo(new File(BOARD_FILE_PATH + "\\" + articleNO, fileName));
 		}
 
-		model.addAttribute("ret", articleNO);
+		model.addAttribute("ret", map.get("ret"));
 
 		return "done/boardAddDone";
 	}

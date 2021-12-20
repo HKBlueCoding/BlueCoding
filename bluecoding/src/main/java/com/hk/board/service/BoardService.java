@@ -32,9 +32,9 @@ public class BoardService {
 		return map;
 	}
 
-	public int addArticle(BoardVO boardVO) {
+	public Map<String, Object> addArticle(BoardVO boardVO) {
 		// TODO Auto-generated method stub
-		
+		Map<String, Object> map = new HashMap<String, Object>();
 		int ret = boardDAO.addArticle(boardVO);
 		
 		int articleNO = 0;
@@ -42,7 +42,10 @@ public class BoardService {
 			articleNO = boardDAO.selectArticleNO(boardVO);
 		}
 		
-		return articleNO;
+		map.put("ret", ret);
+		map.put("articleNO", articleNO);
+		
+		return map;
 	}
 
 	public BoardVO viewArticle(int articleNO) {
