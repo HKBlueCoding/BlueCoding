@@ -78,7 +78,7 @@ public class BookService {
 		
 		int ret = bookDAO.bookAdd(bookVO);
 		
-		if (ret > 0 && bookVO.getBookImage() != null) {
+		if (ret > 0 && bookVO.getBookImage() != null && !bookVO.getBookImage().equals("")) {
 			bookNO = bookDAO.selectBookNO(bookVO);
 		}
 		
