@@ -58,6 +58,16 @@
 		FROM B_COINHISTORY BC
 		ORDER BY COINDATE DESC	
 	</select>
+	
+		<select id="selectAdminList" resultType="hashMap">
+		SELECT bu.ID AS ID
+		, bu.PWD AS PWD
+		, bu.JOINDATE AS JOINDATE
+		, bu.ADMIN AS ADMIN2, DECODE(ADMIN, 'A', '관리자', 'Q', '상담원') ADMIN 
+		FROM B_USER bu 
+		WHERE ADMIN = 'A'
+		OR ADMIN = 'Q'
+	</select>
 
 
 </mapper>

@@ -31,12 +31,15 @@ public class AdminController {
 	   List<HashMap<String, Object>> boardList = adminService.selectDeleteBoard();
 	   List<HashMap<String, Object>> pageBenefitList = adminService.selectPageBenefitList();
 	   List<HashMap<String, Object>> coinList = adminService.selectCoinList();
+	   List<HashMap<String, Object>> adminList = adminService.selectAdminList();
+	   
 	   
 	   model.addAttribute("bookList", bookList);
 	   model.addAttribute("pageList", pageList);
 	   model.addAttribute("boardList",boardList);
 	   model.addAttribute("pageBenefitList", pageBenefitList);
 	   model.addAttribute("coinList", coinList);
+	   model.addAttribute("adminList", adminList);
 	   
 	   
 	   logger.debug("[bookList] = " + bookList);
@@ -44,6 +47,7 @@ public class AdminController {
 	   logger.debug("[boardList] = " + boardList);
 	   logger.debug("[pageBenefitList] = " + pageBenefitList);
 	   logger.debug("[coinList] = " + coinList);
+	   logger.debug("[adminList] = " + adminList);
       
 	   return "admin";
 	}

@@ -42,4 +42,9 @@ public class AdminDAO {
 		return sqlSession.selectList("mapper.admin.selectCoinList");
 	}
 
+	public List<HashMap<String, Object>> selectAdminList() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("mapper.admin.selectAdminList");
+	}
+
 }

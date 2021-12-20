@@ -230,8 +230,9 @@ request.setCharacterEncoding("UTF-8");
 													end="9">
 													<tbody>
 														<tr>
-															<td align="center">
-															<a href="/view?bookNO=${bookList.BOOKNO }"><span class="txt_line text-xs font-weight-bold">${bookList.BOOKTITLE}</span></a></td>
+															<td align="center"><a
+																href="/view?bookNO=${bookList.BOOKNO }"><span
+																	class="txt_line text-xs font-weight-bold">${bookList.BOOKTITLE}</span></a></td>
 															<td align="center"><span
 																class="txt_line text-xs font-weight-bold">${bookList.NAME}</span>
 															</td>
@@ -268,8 +269,9 @@ request.setCharacterEncoding("UTF-8");
 													end="9">
 													<tbody>
 														<tr>
-															<td align="center">
-															<a href="/page/view?pageNO=${pageList.PAGENO }"><span class="txt_line text-xs font-weight-bold">${pageList.BOOKTITLE }</span></a>
+															<td align="center"><a
+																href="/page/view?pageNO=${pageList.PAGENO }"><span
+																	class="txt_line text-xs font-weight-bold">${pageList.BOOKTITLE }</span></a>
 															</td>
 															<td align="center"><span
 																class="txt_line text-xs font-weight-bold">${pageList.SERIES }회</span>
@@ -381,7 +383,8 @@ request.setCharacterEncoding("UTF-8");
 													</tr>
 												</c:when>
 												<c:when test="${!empty pageBenefitList }">
-													<c:forEach var="benefit" items="${pageBenefitList }" begin="0" end="9">
+													<c:forEach var="benefit" items="${pageBenefitList }"
+														begin="0" end="9">
 														<tr>
 															<td align="center"><span
 																class="text-xs font-weight-bold">${benefit.PAGEPAY }</span></td>
@@ -808,15 +811,26 @@ request.setCharacterEncoding("UTF-8");
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>관리자</td>
-								<td>Doe</td>
-								<td>johnexample</td>
-								<td>2021-03-30</td>
-								<td>
-									<button type="button" class="btn btn-outline-dark">삭제</button>
-								</td>
-							</tr>
+							<c:choose>
+								<c:when test="${empty adminList }">
+									<tr>
+										<td>null입니다.</td>
+									</tr>
+								</c:when>
+								<c:when test="${!empty adminList }">
+									<c:forEach var="admin" items="${adminList }">
+										<tr>
+											<td>${admin.ADMIN }</td>
+											<td>${admin.ID }</td>
+											<td>${admin.PWD }</td>
+											<td>${admin.JOINDATE }</td>
+											<td>
+												<button type="button" class="btn btn-outline-dark">삭제</button>
+											</td>
+										</tr>
+									</c:forEach>
+								</c:when>
+							</c:choose>
 						</tbody>
 					</table>
 				</div>
@@ -855,42 +869,48 @@ request.setCharacterEncoding("UTF-8");
 										<table class="table align-items-center mb-0">
 											<thead>
 												<tr>
-													<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">&nbsp;&nbsp;충전 방법</th>
-													<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">결제된 코인</th>
-													<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">결제일</th>
-													<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">아이디</th>
+													<th
+														class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">&nbsp;&nbsp;충전
+														방법</th>
+													<th
+														class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">결제된
+														코인</th>
+													<th
+														class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">결제일</th>
+													<th
+														class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">아이디</th>
 												</tr>
 											</thead>
 											<tbody>
-											<c:choose>
-												<c:when test="${empty coinList }">
-													<tr>
-														<td>null입니다.</td>
-													</tr>
-												</c:when>
-												<c:when test="${!empty coinList }">
-													<c:forEach var="coin" items="${coinList }">
-												<tr>
-													<td class="align-middle text-center">
-														<div>
-															<div class="d-flex flex-column justify-content-center">
-																<span class="text-secondary text-xs font-weight-bold">${coin.COINMETHOD}</span>
-															</div>
-														</div>
-													</td>
-													<td class="align-middle text-center">
-														<span class="text-secondary text-xs font-weight-bold">${coin.RECHARGECOIN }</span>
-													</td>
-													<td class="align-middle text-center">
-														<span class="text-secondary text-xs font-weight-bold">${coin.COINDATE }</span>
-													</td>
-													<td class="align-middle text-center">
-														<span class="text-secondary text-xs font-weight-bold">${coin.ID }</span>
-													</td>
-												</tr>
-												</c:forEach>
-												</c:when>
-											</c:choose>
+												<c:choose>
+													<c:when test="${empty coinList }">
+														<tr>
+															<td>null입니다.</td>
+														</tr>
+													</c:when>
+													<c:when test="${!empty coinList }">
+														<c:forEach var="coin" items="${coinList }">
+															<tr>
+																<td class="align-middle text-center">
+																	<div>
+																		<div class="d-flex flex-column justify-content-center">
+																			<span class="text-secondary text-xs font-weight-bold">${coin.COINMETHOD}</span>
+																		</div>
+																	</div>
+																</td>
+																<td class="align-middle text-center"><span
+																	class="text-secondary text-xs font-weight-bold">${coin.RECHARGECOIN }</span>
+																</td>
+																<td class="align-middle text-center"><span
+																	class="text-secondary text-xs font-weight-bold">${coin.COINDATE }</span>
+																</td>
+																<td class="align-middle text-center"><span
+																	class="text-secondary text-xs font-weight-bold">${coin.ID }</span>
+																</td>
+															</tr>
+														</c:forEach>
+													</c:when>
+												</c:choose>
 											</tbody>
 										</table>
 									</div>
