@@ -32,4 +32,10 @@ public class ChestDAO {
 		return favoPayList;
 	}
 
+	public List<ChestVO> selectBenefitManager(String id) {
+		// TODO Auto-generated method stub
+		List<ChestVO> benefitManager = sqlSession.selectList("mapper.chest.selectBenefitManager", id);
+		return benefitManager;
+	}
+
 }

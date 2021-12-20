@@ -8,9 +8,11 @@ public class CoinHistoryVO {
 	private String coinMethod;
 	private String id;
 	private Date coinDate;
-	private String cIsRefund;
+	private String cisRefund;
 	private int rechargeCoin;
 	private String tid;
+	
+	
 	public String getCoinMethod() {
 		return coinMethod;
 	}
@@ -29,11 +31,11 @@ public class CoinHistoryVO {
 	public void setCoinDate(Date coinDate) {
 		this.coinDate = coinDate;
 	}
-	public String getcIsRefund() {
-		return cIsRefund;
+	public String getCisRefund() {
+		return cisRefund;
 	}
-	public void setcIsRefund(String cIsRefund) {
-		this.cIsRefund = cIsRefund;
+	public void setCisRefund(String cisRefund) {
+		this.cisRefund = cisRefund;
 	}
 	public int getRechargeCoin() {
 		return rechargeCoin;
@@ -47,10 +49,13 @@ public class CoinHistoryVO {
 	public void setTid(String tid) {
 		this.tid = tid;
 	}
+	
+	
 	@Override
 	public String toString() {
-		return "CoinHistoryVO [coinMethod=" + coinMethod + ", id=" + id + ", coinDate=" + coinDate + ", cIsRefund="
-				+ cIsRefund + ", rechargeCoin=" + rechargeCoin + ", tid=" + tid + "]";
+		return "CoinHistoryVO [coinMethod=" + coinMethod + ", id=" + id + ", coinDate=" + coinDate + ", cisRefund="
+				+ cisRefund + ", rechargeCoin=" + rechargeCoin + ", tid=" + tid + "]";
 	}
+
 	
 }

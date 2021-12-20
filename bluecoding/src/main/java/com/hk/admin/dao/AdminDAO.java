@@ -1,4 +1,4 @@
-package com.hk.admin.service;
+package com.hk.admin.dao;
 
 import java.util.HashMap;
 import java.util.List;

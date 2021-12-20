@@ -134,10 +134,12 @@ public class UserController {
 		model.addAttribute("favoBookList", map.get("favoBookList"));
 		model.addAttribute("favoBuyList", map.get("favoBuyList"));
 		model.addAttribute("favoPayList", map.get("favoPayList"));
+		model.addAttribute("benefitManager", map.get("benefitManager"));
 		
 		logger.debug("favoBookList = " + map.get("favoBookList"));
 		logger.debug("favoPayList ==== " + map.get("favoBuyList"));
 		logger.debug("favoPayList === " + map.get("favoPayList"));
+		logger.debug("benefitManager === " + map.get("benefitManager"));
 		
 		return "userChest";
 	}

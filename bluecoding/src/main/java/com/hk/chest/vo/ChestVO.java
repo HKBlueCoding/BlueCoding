@@ -44,10 +44,9 @@ public class ChestVO {
 	private String coinMethod;
 	// private String id;
 	private Date coinDate;
-	private String cIsRefund;
+	private String cisRefund;
 	private int rechargeCoin;
 	private String tid;
-	
 	public int getBookNO() {
 		return bookNO;
 	}
@@ -198,11 +197,11 @@ public class ChestVO {
 	public void setCoinDate(Date coinDate) {
 		this.coinDate = coinDate;
 	}
-	public String getcIsRefund() {
-		return cIsRefund;
+	public String getCisRefund() {
+		return cisRefund;
 	}
-	public void setcIsRefund(String cIsRefund) {
-		this.cIsRefund = cIsRefund;
+	public void setCisRefund(String cisRefund) {
+		this.cisRefund = cisRefund;
 	}
 	public int getRechargeCoin() {
 		return rechargeCoin;
@@ -216,7 +215,6 @@ public class ChestVO {
 	public void setTid(String tid) {
 		this.tid = tid;
 	}
-	
 	@Override
 	public String toString() {
 		return "ChestVO [bookNO=" + bookNO + ", bookTitle=" + bookTitle + ", intro=" + intro + ", theme=" + theme
@@ -225,9 +223,10 @@ public class ChestVO {
 				+ ", pageTitle=" + pageTitle + ", pageText=" + pageText + ", pageDate=" + pageDate + ", comment="
 				+ comment + ", pViewCnt=" + pViewCnt + ", charge=" + charge + ", like=" + like + ", pageDelete="
 				+ pageDelete + ", pagePay=" + pagePay + ", pagePayDate=" + pagePayDate + ", pIsRefund=" + pIsRefund
-				+ ", coinMethod=" + coinMethod + ", coinDate=" + coinDate + ", cIsRefund=" + cIsRefund
+				+ ", coinMethod=" + coinMethod + ", coinDate=" + coinDate + ", cisRefund=" + cisRefund
 				+ ", rechargeCoin=" + rechargeCoin + ", tid=" + tid + "]";
-	}		
-
+	}
+	
+	
 	
 }

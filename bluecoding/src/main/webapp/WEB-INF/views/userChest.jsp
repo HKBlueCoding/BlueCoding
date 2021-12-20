@@ -236,7 +236,7 @@
                                     </td>
                                     <td class="align-middle text-center">
                                        <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #ab0dd7">${favoBuyList.TID}</a>
+                                          <a href="javascript:void(0)" class="btn" style="background-color: #ab0dd7">${favoBuyList.tid}</a>
                                        </div>
                                     </td>
                                  </tr>
@@ -327,7 +327,7 @@
                                  </tr>
                               </thead>
                               <tbody>
-                                <c:forEach var="favoPay" items="${favoPayList }" varStatus="favoBuyListCnt">
+                                <c:forEach var="favoPayList" items="${favoPayList }" varStatus="favoBuyListCnt">
                                  <tr>
                                     <td>
                                        <div class="d-flex px-2 py-1">
@@ -335,23 +335,23 @@
                                              <img src="../resources/assets/images/mainPage/board1.png" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
                                           </div>
                                           <div class="d-flex flex-column justify-content-center">
-                                             <a class="mb-0 text-sm" style="color: black">${favoPay.coinMethod}</a>
+                                             <a class="mb-0 text-sm" style="color: black">${favoPayList.coinMethod}</a>
 <%--                                              <p class="text-xs text-secondary mb-0">${favoPay.coinMethod}</p> --%>
                                           </div>
                                        </div>
                                     </td>
                                     <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">${favoPay.rechargeCoin}</span>
+                                       <span class="text-secondary text-xs font-weight-bold">${favoPayList.rechargeCoin}</span>
                                     </td>
                                     <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">-${favoPay.coinDate}</span>
+                                       <span class="text-secondary text-xs font-weight-bold">-${favoPayList.coinDate}</span>
                                     </td>
                                     <td class="align-middle text-center">
                                        <div class="button header-button">
-                                        <c:if test="${favoPay.clsRefund eq 'Y' }">
+                                        <c:if test="${favoPayList.cisRefund eq 'Y' }">
                                           <a href="javascript:void(0)" class="btn" style="background-color: #ab0dd7">환불하기</a>
                                         </c:if>
-                                        <c:if test="${favoPay.clsRefund ne 'Y' }">
+                                        <c:if test="${favoPayList.cisRefund ne 'Y' }">
                                           <span class="text-secondary text-xs font-weight-bold">환불 불가</span>	
                                         </c:if>
                                        </div>
@@ -427,6 +427,7 @@
                                  </tr>
                               </thead>
                               <tbody>
+                              <c:forEach var="benefitManager" items="${benefitManager }" varStatus="benefitManagerCnt">
                                  <tr>
                                     <td>
                                        <div class="d-flex px-2 py-1">
@@ -434,23 +435,24 @@
                                              <img src="../resources/assets/images/mainPage/board1.png" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
                                           </div>
                                           <div class="d-flex flex-column justify-content-center">
-                                             <a href="../view/page" class="mb-0 text-sm" style="color: black">${book.bookNO}[${book.bViewCnt}]</a>
-                                             <p class="text-xs text-secondary mb-0">${book.theme}</p>
-                                             <p class="text-xs text-secondary mb-0">${book.name}</p>
+                                             <a href="../view/page" class="mb-0 text-sm" style="color: black">${benefitManager.bookNO}</a>
+                                             <p class="text-xs text-secondary mb-0">${benefitManager.name}</p>
+                                             
                                           </div>
                                        </div>
                                     </td>
                                     <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">${page.series}</span>
+                                       <span class="text-secondary text-xs font-weight-bold">${benefitManager.series}</span>
                                     </td>
                                     <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">+${coinHistory.rechargeCoin}</span>
+                                       <span class="text-secondary text-xs font-weight-bold">+${benefitManager.isCommission}</span>
                                     </td>
                                     <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">${coinHistory.coinDate}</span>
+                                       <span class="text-secondary text-xs font-weight-bold">${benefitManager.coinDate}</span>
                                     </td>
                                  </tr>  
-                              </tbody>
+                              </c:forEach>    
+                              </tbody>                         
                            </table>
                         </div>
                      </div>

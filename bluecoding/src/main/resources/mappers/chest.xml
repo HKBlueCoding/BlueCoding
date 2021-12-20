@@ -34,14 +34,19 @@
 		<!-- PageBuyVO -->
 		<result property="pagePay" column="pagePay" />
 		<result property="pagePayDate" column="pagePayDate" />
-		<result property="plsRefund" column="plsRefund" />
+		<result property="pisRefund" column="pisRefund" />
 		
 		<!-- CoinHistoryVO -->
 		<result property="coinMethod" column="coinMethod" />
 		<result property="coinDate" column="coinDate" />
-		<result property="clsRefund" column="clsRefund" />
+		<result property="cisRefund" column="cisRefund" />
 		<result property="rechargeCoin" column="rechargeCoin" />
 		<result property="tid" column="tid" />
+		
+		<!-- CommissionVO -->
+		<result property="isCommission" column="isCommission" />
+		<result property="commissionDate" column="commissionDate" />
+		<result property="admCommission" column="admCommission" />
 
 	</resultMap>
 
@@ -85,6 +90,16 @@ WHERE  id = #{id}
     	SELECT bc.COINMETHOD, bc.RECHARGECOIN, bc.COINDATE, bc.TID
 		FROM B_COINHISTORY bc
 		WHERE id = #{id}  
+	    ]]>
+	</select>
+	
+	<select id="selectBenefitManager" resultMap = "chestResult">
+    <![CDATA[
+ 		SELECT bb.BOOKTITLE, bb.NAME, bp.PAGENO, bp.SERIES, bc.ISCOMMISSION, bc.COMMISSIONDATE
+ 		FROM B_BOOK bb, B_PAGE bp, B_COMMISSION bc
+		WHERE bc.ID = #{id}
+ 		AND bb.BOOKNO = bp.BOOKNO
+		AND bp.PAGENO = bc.PAGENO
 	    ]]>
 	</select>
 
