@@ -15,17 +15,17 @@ public class AdminService {
 	@Autowired
 	AdminDAO adminDAO;
 
-	public List<HashMap>  selectDeleteBook() {
+	public List<HashMap<String, Object>>  selectDeleteBook() {
 		// TODO Auto-generated method stub
 		return adminDAO.selectDeleteBook();
 	}
 	
-	public List<HashMap> selectDeletePage() {
+	public List<HashMap<String, Object>> selectDeletePage() {
 		// TODO Auto-generated method stub
 		return adminDAO.selectDeletePage();
 	}
 	
-	public List<HashMap>  selectDeleteBoard() {
+	public List<HashMap<String, Object>>  selectDeleteBoard() {
 		// TODO Auto-generated method stub
 		return adminDAO.selectDeleteBoard();
 	}

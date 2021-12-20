@@ -2,28 +2,33 @@ package com.hk.admin.dao;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public class AdminDAO {
 
+	@Autowired
 	SqlSession sqlSession;
-	
-	public List<HashMap>  selectDeleteBook() {
-		// TODO Auto-generated method stub			
+
+	private static final Logger logger = LoggerFactory.getLogger(AdminDAO.class);
+
+	public List<HashMap<String, Object>> selectDeleteBook() {
+		// TODO Auto-generated method stub
 		return sqlSession.selectList("mapper.admin.selectDeleteBook");
 	}
-	
-	public List<HashMap> selectDeletePage() {
+
+	public List<HashMap<String, Object>> selectDeletePage() {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("mapper.admin.selectDeletePage");
 	}
-	
-	public List<HashMap>  selectDeleteBoard() {
-		// TODO Auto-generated method stub		
+
+	public List<HashMap<String, Object>> selectDeleteBoard() {
+		// TODO Auto-generated method stub
 		return sqlSession.selectList("mapper.admin.selectDeleteBoard");
 	}
 

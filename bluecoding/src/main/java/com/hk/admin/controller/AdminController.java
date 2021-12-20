@@ -26,9 +26,9 @@ public class AdminController {
 		
 		// OracleDB는 HashMap을 jsp로 출력할 때, 대문자로 써야 한다.
 		// PostgreDB는 HashMap을 jsp로 출력할 때, 소문자로 써야 한다.
-	   List<HashMap> bookList = adminService.selectDeleteBook();
-	   List<HashMap> pageList = adminService.selectDeletePage();
-	   List<HashMap> boardList = adminService.selectDeleteBoard();
+	   List<HashMap<String, Object>> bookList = adminService.selectDeleteBook();
+	   List<HashMap<String, Object>> pageList = adminService.selectDeletePage();
+	   List<HashMap<String, Object>> boardList = adminService.selectDeleteBoard();
 	   
 	   model.addAttribute("bookList", bookList);
 	   model.addAttribute("pageList", pageList);

@@ -6,17 +6,19 @@
 <mapper namespace="mapper.admin">
 
 	<select id="selectDeleteBook" resultType="hashMap">
-		SELECT BOOKTITLE
-		,NAME
+	 <![CDATA[
+		SELECT BOOKTITLE AS BOOKTITLE
+		,NAME AS NAME
 		FROM B_BOOK
 		WHERE BOOKDELETE = 'Y'
+		]]>
 	</select>
 
 	<select id="selectDeletePage" resultType="hashMap">
 		SELECT bb.BOOKTITLE, bp.PAGENO, bp.PAGETITLE
 		FROM B_BOOK bb, B_PAGE bp
 		WHERE bb.BOOKNO = bp.BOOKNO
-		AND bp.PAGEDELETE = 'Y';
+		AND bp.PAGEDELETE = 'Y'
 	</select>
 
 	<select id="selectDeleteBoard" resultType="hashMap">
