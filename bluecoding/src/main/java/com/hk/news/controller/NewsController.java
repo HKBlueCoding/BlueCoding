@@ -289,7 +289,7 @@ public class NewsController {
 		model.addAttribute("ret", ret);
 		
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("newsReText", newsReplyVO.getNewsReText()); // 중복이면 true, 아니면 false라는 String반환
+		map.put("newsReText", newsReplyVO.getNewsReText());
 		map.put("ret", ret);
 		return map;
 	}
@@ -305,7 +305,7 @@ public class NewsController {
 		model.addAttribute("ret", ret);
 		
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("newsReText", newsReplyVO.getNewsReText()); // 중복이면 true, 아니면 false라는 String반환
+		map.put("newsReText", newsReplyVO.getNewsReText());
 		map.put("ret", ret);
 		return map;
 	}
@@ -321,7 +321,7 @@ public class NewsController {
 		model.addAttribute("ret", ret);
 		
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("newsReText", newsReplyVO.getNewsReText()); // 중복이면 true, 아니면 false라는 String반환
+		map.put("newsReText", newsReplyVO.getNewsReText());
 		map.put("ret", ret);
 		return map;
 	}
@@ -337,7 +337,7 @@ public class NewsController {
 		model.addAttribute("ret", ret);
 		
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("newsReText", newsReplyVO.getNewsReText()); // 중복이면 true, 아니면 false라는 String반환
+		map.put("newsReText", newsReplyVO.getNewsReText());
 		map.put("ret", ret);
 		return map;
 	}
@@ -353,7 +353,6 @@ public class NewsController {
 		model.addAttribute("ret", ret);
 		
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("newsReText", newsReplyVO.getNewsReText()); // 중복이면 true, 아니면 false라는 String반환
 		map.put("ret", ret);
 		return map;
 	}

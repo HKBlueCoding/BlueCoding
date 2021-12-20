@@ -43,5 +43,5 @@
 		UPDATE B_NEWSREPLY SET NREPARENTNO=#{nReParentNO}, NEWSRETEXT=#{newsReText}, NEWSREDATE=sysdate, NEWSREDELETE='', NEWSNO=#{newsNO}, ID=#{id}, NICK=#{nick} 
 		WHERE NEWSREPLYNO=#{newsReplyNO}
     ]]>
-	</update>	
+	</update>
 </mapper>	
