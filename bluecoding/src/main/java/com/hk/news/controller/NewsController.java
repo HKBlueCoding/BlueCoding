@@ -356,4 +356,19 @@ public class NewsController {
 		map.put("ret", ret);
 		return map;
 	}
+	
+	@RequestMapping(value = "/news/event/newsReplyRe/add", method = RequestMethod.POST, produces = "application/json; charset=utf8")
+	@ResponseBody // --> ajax 사용할 때 사용
+	public Map<String, Object> eventReplyReAdd(@ModelAttribute NewsReplyVO newsReplyVO, Model model) { // --> ajax에서 보낸 data
+		logger.debug("[리뷰의 newsReplyVO] = " + newsReplyVO);
+		
+		int ret = newsService.addReply(newsReplyVO);
+		logger.debug("[ret] = " + ret);
+		
+		model.addAttribute("ret", ret);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("ret", ret);
+		return map;
+	}	
 }

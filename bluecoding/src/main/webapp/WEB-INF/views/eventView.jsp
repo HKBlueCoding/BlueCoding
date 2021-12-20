@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:set var="contextPath" value="${pageContext.request.contextPath}" />
+<c:set var="contextPath" value="${pageContext.request.contextPath}" /> 
 <!DOCTYPE html>
 <html>
    <head>
@@ -59,12 +60,16 @@
          .mod {
          display: none;
          }
+         .replyRe {
+         display: none;
+         }
       </style>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>        
    </head>
    <body>
       <jsp:include page="/WEB-INF/views/include/header.jsp" />
       <br><br><br><br><br><br><br>
+      <input type="hidden" name="newsNO"  value="${newsVO.newsNO }"  id="newsNO">
       <c:choose>
          <c:when test="${empty newsVO }">
             <tr>
@@ -96,7 +101,7 @@
                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">작성자 : ${newsVO.nick }</th>
                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">작성일 : ${newsVO.newsDate }</th>
                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">조회수 : ${newsVO.nViewCnt }</th>
-                                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">댓글 : 50건</th>
+                                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">댓글 : ${fn:length(newsReplyVO)}</th>
                                     </tr>
                                  </thead>
                                  <tbody>
@@ -134,6 +139,7 @@
                </div>
                <!-- ======================= 버튼 끝 ========================== -->
             </div>
+            <!-- =========================== 댓글 =========================== -->
             <div class="container-fluid py-4" style="height:auto; width:60%;">
                <hr class="my-4" style="width: 100%;">
                <div class="row">
@@ -151,12 +157,32 @@
                                     <tbody>
                                        <tr>
                                           <td>
-                                             <div class="d-flex px-2 py-1">
-                                                <div class="d-flex flex-column justify-content-center">
-                                                   <p class="text-xs text-secondary mb-0" style="font-size: 15px;">작성자명 : ${newsReply.nick }(${newsReply.id }),&nbsp;&nbsp;&nbsp;&nbsp;${newsReply.newsReDate }</p>
-                                                   <p class="text-xs text-secondary mb-0">${newsReply.newsReText }</p>
+                                             <c:if test='${newsReply.level > 1 }'>
+                                                <div class="d-flex px-2 py-1">
+                                                   <div class="d-flex flex-column justify-content-center">
+                                                      <p class="text-xs text-secondary mb-0" style="font-size: 15px;">
+                                                         <c:forEach begin="1" end="${newsReply.level }" step="1">
+                                                            &nbsp;&nbsp;&nbsp;&nbsp;
+                                                         </c:forEach>
+                                                         ⤷작성자명 : ${newsReply.nick }(${newsReply.id }),&nbsp;&nbsp;&nbsp;&nbsp;${newsReply.newsReDate }
+                                                      </p>
+                                                      <p class="text-xs text-secondary mb-0">
+                                                         <c:forEach begin="1" end="${newsReply.level }" step="1">
+                                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                         </c:forEach>
+                                                         &nbsp;&nbsp;${newsReply.newsReText }
+                                                      </p>
+                                                   </div>
                                                 </div>
-                                             </div>
+                                             </c:if>
+                                             <c:if test="${newsReply.level == 1 }">
+                                                <div class="d-flex px-2 py-1">
+                                                   <div class="d-flex flex-column justify-content-center">
+                                                      <p class="text-xs text-secondary mb-0" style="font-size: 15px;">작성자명 : ${newsReply.nick }(${newsReply.id }),&nbsp;&nbsp;&nbsp;&nbsp;${newsReply.newsReDate }</p>
+                                                      <p class="text-xs text-secondary mb-0">${newsReply.newsReText }</p>
+                                                   </div>
+                                                </div>
+                                             </c:if>
                                           </td>
                                           <!-- ======================= 버튼 ========================== -->
                                           <td>
@@ -164,13 +190,13 @@
                                                 <!-- [로그인시] -->
                                                 <c:if test="${!empty login.id && login.id ne '' }">
                                                    <div class="button header-button">
-                                                      <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">답글 쓰기</a>
+                                                      <button onClick="replyReClick('${replyCnt.count}')"  id="modify" class="btn" style="background-color: #30d8e0;">답글</button>
                                                    </div>
                                                 </c:if>
                                                 <!-- [비 로그인시]] -->
                                                 <c:if test="${empty login.id || login.id  eq '' }">
                                                    <div class="button header-button">
-                                                      <a data-bs-toggle="modal"  data-bs-target="#login" class="btn" style="background-color: #30d8e0;">답글 쓰기</a>
+                                                      <a data-bs-toggle="modal"  data-bs-target="#login" class="btn" style="background-color: #30d8e0;">답글</a>
                                                    </div>
                                                 </c:if>
                                                 <c:if test="${login.admin eq 'A' || login.admin eq 'C'}">
@@ -185,15 +211,72 @@
                                              <!-- ======================= 버튼 끝 ========================== -->
                                           </td>
                                        </tr>
-                                       <!-- ============================================ 답글 테스트 ======================================================================================================================= -->
-                                       <!-- ===================================================================================================================================================================== -->
+                                       <!-- =========================== 댓글 끝 =========================== -->
+                                       <!-- =========================== 댓글 수정 =========================== -->
                                        <tr class="mod" >
+                                          <c:if test='${newsReply.level == 1 }'>
+                                             <td>
+                                                <div class="form-floating" id="formMag" style="width: 607%;">
+                                                   <textarea name="newsReText" class="form-control" id="ReText${replyCnt.count }" style="height: 7rem;" data-sb-validations="required">${newsReply.newsReText }</textarea>
+                                                   <br>
+                                                   <label for="message">댓글 수정</label>
+                                                   <input type="hidden" value="${newsReply.newsReplyNO }" id="newsReplyNO${replyCnt.count }">
+                                                   <input type="hidden" value="${login.id }" name="id" id="id">
+                                                   <input type="hidden" value="${login.nick }" name="nick" id="nick">
+                                                   <!-- ======================= 버튼 ========================== -->
+                                                   <div align="center">
+                                                      <!-- [로그인시] -->
+                                                      <c:if test="${!empty login.id && login.id ne '' }">
+                                                         <div class="button header-button">
+                                                            <a id="modBtn" onClick="replyDone('${newsReply.newsReplyNO}','${replyCnt.count }')" class="btn">확인</a>
+                                                         </div>
+                                                      </c:if>
+                                                      <!-- [비 로그인시]] -->
+                                                      <c:if test="${empty login.id || login.id  eq '' }">
+                                                         <div class="button header-button">
+                                                            <a data-bs-toggle="modal"  data-bs-target="#login" class="btn">확인</a>
+                                                         </div>
+                                                      </c:if>
+                                                   </div>
+                                                </div>
+                                             </td>
+                                          </c:if>
+                                          <c:if test='${newsReply.level > 1 }'>
+                                             <td>
+                                                <div class="form-floating" id="formMag" style="width: 607%;">
+                                                   <textarea name="newsReText" class="form-control" id="ReText${replyCnt.count }" style="height: 7rem;" data-sb-validations="required">${newsReply.newsReText }</textarea>
+                                                   <br>
+                                                   <label for="message">답글 수정</label>
+                                                   <input type="hidden" value="${newsReply.newsReplyNO }" id="newsReplyNO${replyCnt.count }">
+                                                   <input type="hidden" value="${login.id }" name="id" id="id">
+                                                   <input type="hidden" value="${login.nick }" name="nick" id="nick">
+                                                   <!-- ======================= 버튼 ========================== -->
+                                                   <div align="center">
+                                                      <!-- [로그인시] -->
+                                                      <c:if test="${!empty login.id && login.id ne '' }">
+                                                         <div class="button header-button">
+                                                            <a id="modBtn" onClick="replyReDone('${newsReply.nReParentNO}','${replyCnt.count }')" class="btn">확인</a>
+                                                         </div>
+                                                      </c:if>
+                                                      <!-- [비 로그인시]] -->
+                                                      <c:if test="${empty login.id || login.id  eq '' }">
+                                                         <div class="button header-button">
+                                                            <a data-bs-toggle="modal"  data-bs-target="#login" class="btn">확인</a>
+                                                         </div>
+                                                      </c:if>
+                                                   </div>
+                                                </div>
+                                             </td>
+                                          </c:if>
+                                       </tr>
+                                       <!-- =========================== 댓글 수정 끝 =========================== -->
+                                       <!-- ========================== 답글 ========================== -->
+                                       <tr class="replyRe" >
                                           <td>
                                              <div class="form-floating" id="formMag" style="width: 607%;">
-                                                <textarea name="newsReText" class="form-control" id="ReText${replyCnt.count }" style="height: 7rem;" data-sb-validations="required">${newsReply.newsReText }</textarea>
+                                                <textarea name="newsReText" class="form-control" id="RepReText${replyCnt.count }" style="height: 7rem;" data-sb-validations="required"></textarea>
                                                 <br>
-                                                <label for="message">댓글 쓰기</label>
-                                                <input type="hidden" name="newsNO"  value="${newsVO.newsNO }"  id="newsNO">
+                                                <label for="message">답글 쓰기</label>
                                                 <input type="hidden" value="${login.id }" name="id" id="id">
                                                 <input type="hidden" value="${login.nick }" name="nick" id="nick">
                                                 <!-- ======================= 버튼 ========================== -->
@@ -201,57 +284,17 @@
                                                    <!-- [로그인시] -->
                                                    <c:if test="${!empty login.id && login.id ne '' }">
                                                       <div class="button header-button">
-                                                         <a id="modBtn" onClick="replyDone('${newsReply.newsReplyNO}','${replyCnt.count }')" class="btn">확인</a>
+                                                         <a id="repReBtn" onClick="replyInsert('${newsReply.newsReplyNO}','${replyCnt.count }')" class="btn">확인</a>
                                                       </div>
                                                    </c:if>
                                                    <!-- [비 로그인시]] -->
                                                    <c:if test="${empty login.id || login.id  eq '' }">
                                                       <div class="button header-button">
-                                                         <a data-bs-toggle="modal"  data-bs-target="#login" class="btn">수정하기</a>
+                                                         <a data-bs-toggle="modal"  data-bs-target="#login" class="btn">확인</a>
                                                       </div>
                                                    </c:if>
                                                 </div>
                                              </div>
-                                          </td>
-                                       </tr>
-                                       <!-- ============================================ 답글 테스트 끝 ======================================================================================================================= -->
-                                       <!-- ===================================================================================================================================================================== -->
-                                       <!-- ========================== 답글 ========================== -->
-                                       <tr>
-                                          <td>
-                                             <div class="d-flex px-2 py-1">
-                                                <div class="d-flex flex-column justify-content-center">
-                                                   <input type="hidden" name="newsReplyNO"  value="${newsReply.newsReplyNO }" id="newsReplyNO">
-                                                   <input type="hidden" name="nReParentNO"  value="${newsReply.nReParentNO }">
-                                                   <p class="text-xs text-secondary mb-0" style="font-size: 15px;">&nbsp;&nbsp;&nbsp;&nbsp; ⤷ 작성자명 : ${newsReply.nick }(${newsReply.id }),&nbsp;&nbsp;&nbsp;&nbsp;${newsReply.newsReDate }</p>
-                                                   <p class="text-xs text-secondary mb-0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${newsReply.newsReText }</p>
-                                                </div>
-                                             </div>
-                                             <!-- ======================= 버튼 ========================== -->
-                                          <td>
-                                             <div align="right"  style="width: 100%;">
-                                                <!-- [로그인시] -->
-                                                <c:if test="${!empty login.id && login.id ne '' }">
-                                                   <div class="button header-button">
-                                                      <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">답글 쓰기</a>
-                                                   </div>
-                                                </c:if>
-                                                <!-- [비 로그인시]] -->
-                                                <c:if test="${empty login.id || login.id  eq '' }">
-                                                   <div class="button header-button">
-                                                      <a data-bs-toggle="modal"  data-bs-target="#login" class="btn" style="background-color: #30d8e0;">답글 쓰기</a>
-                                                   </div>
-                                                </c:if>
-                                                <c:if test="${login.admin eq 'A' || login.admin eq 'C'}">
-                                                   <div class="button header-button">
-                                                      <a href="javascript:void(0)" class="btn" style="background-color: #30d8e0;">수정</a>
-                                                   </div>
-                                                   <div class="button header-button">
-                                                      <a onClick="funok2()" class="btn" style="background-color: #30d8e0;">삭제</a>
-                                                   </div>
-                                                </c:if>
-                                             </div>
-                                             <!-- ======================= 버튼 끝 ========================== -->
                                           </td>
                                        </tr>
                                        <!-- ========================== 답글 끝 ========================== -->
@@ -484,9 +527,9 @@
            }
          }
       </script>
+      <!-- ================================ 댓글 구현 ====================================== -->            
       <script> 
          $(document).ready(function() {
-         	
              $('#repBtn').click(function() {
                  $.ajax({
                          type: 'POST',
@@ -506,6 +549,8 @@
              }); //end on 
          }); 
       </script>
+      <!-- ================================ 댓글 구현 끝====================================== -->      
+      <!-- ================================ 댓글 수정 ====================================== -->
       <script>
          function replyClick(replyCnt){
           var modDisplay = document.getElementsByClassName("mod")[(replyCnt-1)].style.display;
@@ -519,7 +564,6 @@
          }
          
          function replyDone(replyNO, replyCnt){
-          
              $.ajax({
                  type: 'POST',
                  url: '/news/event/newsReply/update',
@@ -534,9 +578,77 @@
                  error: function(request,status,error) {
                     alert('에러!! : ' + request.responseText + ":"+error);
                  }
-          	}); //end ajax        	 
-          
+          	}); //end ajax
          }
       </script>
+      <!-- ================================ 댓글 수정 끝====================================== -->      
+      <!-- ================================ 답글 구현 ====================================== -->
+      <script>
+         function replyReClick(replyCnt){
+          var reDisplay = document.getElementsByClassName("replyRe")[(replyCnt-1)].style.display;
+          if(reDisplay == "none"){
+          	document.getElementsByClassName("replyRe")[(replyCnt-1)].style.display = "block";
+          } else{
+         	  document.getElementsByClassName("replyRe")[(replyCnt-1)].style.display = "none";
+          }
+          console.log('글번호'+replyRe);
+          
+         }
+         
+         function replyInsert(nReParentNO, replyCnt){
+           	$.ajax({
+               	type: 'POST',
+               	url: '../../news/event/newsReplyRe/add',
+               	dataType: "json",
+               	data: {"newsReText": $('#RepReText'+replyCnt).val(), "id":$('#id').val(), "newsNO":$("#newsNO").val(),  "nick":$("#nick").val(), "nReParentNO":nReParentNO, "newsReplyNO":$("#newsReplyNO").val()},
+               	success: function(data) {
+                  	// data.server에서 보낸 map text
+                  	if(data.ret == 0){
+                  		alert('답글 등록에 실패하였습니다.');
+                  	}else{
+                       	alert('답글이 등록되었습니다.');
+                       	$('#RepReText').val("");
+                      	 location.reload();                  		
+                  	}
+                 }, 
+                 error: function(request,status,error) {
+                     alert('에러!! : ' + request.responseText + ":"+error);
+                 }
+           }); //end ajax         	 
+         }
+      </script>
+      <!-- ================================ 답글 구현 끝 ====================================== -->      
+      <!-- ================================ 답글 수정 ====================================== -->
+      <script>
+         function replyClick(replyCnt){
+          var modDisplay = document.getElementsByClassName("mod")[(replyCnt-1)].style.display;
+          if( modDisplay == "none"){
+          	document.getElementsByClassName("mod")[(replyCnt-1)].style.display = "block";
+          }else{
+         	 document.getElementsByClassName("mod")[(replyCnt-1)].style.display = "none";
+          } 
+          console.log('글번호'+mod);
+          
+         }
+         
+         function replyReDone(nReParentNO, replyCnt){
+             $.ajax({
+                 type: 'POST',
+                 url: '/news/event/newsReply/update',
+                 dataType: "json",
+                 data: {"newsReText": $('#ReText'+replyCnt).val(), "id":$('#id').val(), "newsNO": $("#newsNO").val(),  "nick":$("#nick").val(), "newsReplyNO":$("#newsReplyNO"+replyCnt).val(), "nReParentNO": nReParentNO},
+                 success: function(data) {
+                    // data.server에서 보낸 map text
+                     alert('수정이 완료되었습니다.');
+                     $('#ReText').val("");
+                     location.reload();
+                 }, 
+                 error: function(request,status,error) {
+                    alert('에러!! : ' + request.responseText + ":"+error);
+                 }
+          	}); //end ajax
+         }
+      </script>
+      <!-- ================================ 답글 수정 끝 ====================================== -->
    </body>
 </html>

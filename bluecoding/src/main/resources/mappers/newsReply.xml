@@ -20,9 +20,10 @@
 
 	</resultMap>
 
-	<select id="selectAllNewsReply" resultMap="newsReplyResult">
+	<select id="selectAllNewsReply"  parameterType="int" resultMap="newsReplyResult">
     <![CDATA[
 		SELECT NEWSREPLYNO, NREPARENTNO, NEWSRETEXT, NEWSREDATE, NEWSREDELETE, NEWSNO, ID, NICK,  LEVEL FROM B_NEWSREPLY
+		WHERE newsNO = #{newsNO}
 		START WITH nReParentNO=0 CONNECT BY PRIOR newsReplyNO=nReParentNO
 		ORDER SIBLINGS BY newsReplyNO ASC
     ]]>
