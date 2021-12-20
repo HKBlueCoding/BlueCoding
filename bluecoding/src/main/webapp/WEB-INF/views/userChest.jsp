@@ -334,7 +334,7 @@
                                  </tr>
                               </thead>
                               <tbody>
-<%--                                 <c:forEach var="favoPayList" items="${favoBookList }" varStatus="favoBuyListCnt">
+                                <c:forEach var="favoPay" items="${favoPayList }" varStatus="favoBuyListCnt">
                                  <tr>
                                     <td>
                                        <div class="d-flex px-2 py-1">
@@ -342,29 +342,29 @@
                                              <img src="../resources/assets/images/mainPage/board1.png" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
                                           </div>
                                           <div class="d-flex flex-column justify-content-center">
-                                             <a class="mb-0 text-sm" style="color: black">${favoPayList.coinMethod}</a>
-                                             <p class="text-xs text-secondary mb-0">${favoPay.coinMethod}</p>
+                                             <a class="mb-0 text-sm" style="color: black">${favoPay.METHOD}</a>
+                                             <p class="text-xs text-secondary mb-0">${favoPay.METHOD}</p>
                                           </div>
                                        </div>
                                     </td>
                                     <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">${favoPayList.rechargeCoin}</span>
+                                       <span class="text-secondary text-xs font-weight-bold">${favoPay.COIN}</span>
                                     </td>
                                     <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">-${favoPayList.coinDate}</span>
+                                       <span class="text-secondary text-xs font-weight-bold">${favoPay.CDATE}</span>
                                     </td>
                                     <td class="align-middle text-center">
                                        <div class="button header-button">
-                                        <c:if test="${favoPayList.cisRefund eq 'Y' }">
+                                        <c:if test="${favoPay.REFUND eq 'Y' }">
                                           <a href="javascript:void(0)" class="btn" style="background-color: #ab0dd7">환불하기</a>
                                         </c:if>
-                                        <c:if test="${favoPayList.cisRefund ne 'Y' }">
+                                        <c:if test="${favoPay.REFUND ne 'Y' }">
                                           <span class="text-secondary text-xs font-weight-bold">환불 불가</span>	
                                         </c:if>
                                        </div>
                                     </td>
                                  </tr>
-							 	 </c:forEach>  --%>
+							 	 </c:forEach> 
                               </tbody>
                            </table>
                         </div>
@@ -407,7 +407,7 @@
                <a class="btn" style="background-color: #30c8e0" onclick="chest4()" id="show4">수익 관리</a>
             </div>
             <div class="button header-button" style="margin-left: 200px;">
-               <p style=" border-width:3px; border-style:inset; font-family: 돋움; font-weight: bold; color: #546699;">받은 수익 : 100원</p>
+               <p style=" border-width:3px; border-style:inset; font-family: 돋움; font-weight: bold; color: #546699;">현금와 가능 : ${benefitAll }원</p>
             </div>
             <div class="button header-button">
                <a class="btn" style="background-color: #6e707e">현금화 하기</a>
@@ -434,7 +434,7 @@
                                  </tr>
                               </thead>
                               <tbody>
-<%--                               <c:forEach var="benefitManager" items="${benefitManager }" varStatus="benefitManagerCnt">
+                              <c:forEach var="benefit" items="${benefitManager }" varStatus="benefitManagerCnt">
                                  <tr>
                                     <td>
                                        <div class="d-flex px-2 py-1">
@@ -442,23 +442,23 @@
                                              <img src="../resources/assets/images/mainPage/board1.png" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
                                           </div>
                                           <div class="d-flex flex-column justify-content-center">
-                                             <a href="../view/page" class="mb-0 text-sm" style="color: black">${benefitManager.bookNO}</a>
-                                             <p class="text-xs text-secondary mb-0">${benefitManager.name}</p>
+                                             <a href="../view/page" class="mb-0 text-sm" style="color: black">${benefit.BOOKNO}</a>
+                                             <p class="text-xs text-secondary mb-0">${benefit.TITLE}</p>
                                              
                                           </div>
                                        </div>
                                     </td>
                                     <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">${benefitManager.series}</span>
+                                       <span class="text-secondary text-xs font-weight-bold">${benefit.SERIES}</span>
                                     </td>
                                     <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">+${benefitManager.isCommission}</span>
+                                       <span class="text-secondary text-xs font-weight-bold">+${benefit.PROFIT}</span>
                                     </td>
                                     <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">${benefitManager.coinDate}</span>
+                                       <span class="text-secondary text-xs font-weight-bold">${benefit.PPDATE}</span>
                                     </td>
                                  </tr>  
-                              </c:forEach> --%>    
+                              </c:forEach>    
                               </tbody>                         
                            </table>
                         </div>

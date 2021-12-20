@@ -5,52 +5,6 @@
 
 <mapper namespace="mapper.chest">
 
-<!-- 	<resultMap id="chestResult" type="ChestVO">
-	
-		BookVO
-		<result property="bookNO" column="bookNO" />
-		<result property="bookTitle" column="bookTitle" />
-		<result property="intro" column="intro" />
-		<result property="theme" column="theme" />
-		<result property="bookImage" column="bookImage" />
-		<result property="bookDelete" column="bookDelete" />
-		<result property="name" column="name" />
-		<result property="id" column="id" />
-		<result property="bookDate" column="bookDate" />
-		<result property="bViewCnt" column="bViewCnt" />
-		
-		PageVO
-		<result property="pageNO" column="pageNO" />
-		<result property="series" column="series" />
-		<result property="pageTitle" column="pageTitle" />
-		<result property="pageText" column="pageText" />
-		<result property="pageDate" column="pageDate" />
-		<result property="comment" column="comment" />
-		<result property="pViewCnt" column="pViewCnt" />
-		<result property="charge" column="charge" />
-		<result property="like" column="like" />
-		<result property="pageDelete" column="pageDelete" />
-		
-		PageBuyVO
-		<result property="pagePay" column="pagePay" />
-		<result property="pagePayDate" column="pagePayDate" />
-		<result property="pisRefund" column="pisRefund" />
-		
-		CoinHistoryVO
-		<result property="coinMethod" column="coinMethod" />
-		<result property="coinDate" column="coinDate" />
-		<result property="cisRefund" column="cisRefund" />
-		<result property="rechargeCoin" column="rechargeCoin" />
-		<result property="tid" column="tid" />
-		
-		CommissionVO
-		<result property="isCommission" column="isCommission" />
-		<result property="commissionDate" column="commissionDate" />
-		<result property="admCommission" column="admCommission" />
-
-	</resultMap>
- -->
-
 <!-- [ 로그인 사용자가 쓴 글 조회] -->
 <!--    <select id="selectChest" parameterType="hashMap"  resultType="hashMap">
     <![CDATA[
@@ -68,9 +22,9 @@ WHERE  id = #{id}
         ]]>
    </select> -->
 
-<!-- [사용자가 즐겨찾기 등록한 책 조회] -->
+    <!-- [해당 사용자의 즐겨찾기] -->
 	<select id="selectFavoBookList" resultType="hashmap" parameterType="java.lang.String">
-    <![CDATA[
+     <![CDATA[
 		SELECT 
 		 bb.bookNO AS BOOKNO,
 		 bb.BOOKTITLE AS TITLE, 
@@ -82,11 +36,12 @@ WHERE  id = #{id}
 		 B_BOOK bb, B_FAVO bf 
 		WHERE 
 		 bb.BOOKNO = bf.BOOKNO AND bf.ID =#{id}
-        ]]>
+     ]]>
 	</select>
 	
+	<!-- [해당 사용자의 페이지 구매내역] -->
 	<select id="selectFavoBuyList" resultType="hashmap" parameterType="java.lang.String">
-    <![CDATA[
+     <![CDATA[
 		 SELECT 
 		  pb.PAGEPAY AS PAGEPAY, 
 		  pb.PAGENO AS PAGENO,  
@@ -98,25 +53,36 @@ WHERE  id = #{id}
 		  p.PAGEDATE AS PDATE
 		 FROM B_PAGEBUY pb, B_PAGE p
 		 WHERE pb.PAGENO = p.PAGENO AND pb.ID = #{id}
-        ]]>
+     ]]>
 	</select>
 	
-<!-- 	<select id="selectFavoPayList" resultMap = "chestResult">
-    <![CDATA[
-    	SELECT bc.COINMETHOD, bc.RECHARGECOIN, bc.COINDATE, bc.TID
+	<!-- [해당 사용자의 코인 결제 내역] -->
+	<select id="selectFavoPayList" resultType="hashmap" parameterType="java.lang.String">
+     <![CDATA[
+    	SELECT 
+    	 bc.COINMETHOD AS METHOD, 
+    	 bc.RECHARGECOIN AS COIN, 
+    	 bc.COINDATE AS CDATE,
+    	 bc.CISREFUND AS REFUND
 		FROM B_COINHISTORY bc
 		WHERE id = #{id}  
-	    ]]>
+	 ]]>
 	</select>
 	
-	<select id="selectBenefitManager" resultMap = "chestResult">
-    <![CDATA[
- 		SELECT bb.BOOKTITLE, bb.NAME, bp.PAGENO, bp.SERIES, bc.ISCOMMISSION, bc.COMMISSIONDATE
- 		FROM B_BOOK bb, B_PAGE bp, B_COMMISSION bc
-		WHERE bc.ID = #{id}
- 		AND bb.BOOKNO = bp.BOOKNO
-		AND bp.PAGENO = bc.PAGENO
-	    ]]>
-	</select> -->
+	<select id="selectBenefitManager" resultType = "hashmap" parameterType="java.lang.String">
+     <![CDATA[
+		SELECT 
+ 			p.PAGENO AS PAGENO, 
+			p.SERIES AS SERIES, 
+ 			p.PAGETITLE AS TITLE,
+ 			p.BOOKNO AS BOOKNO,   
+ 			ba.AUTHORPROFIT AS PROFIT,
+ 			ba.ISREALIZATION AS ISREALIZATION,
+ 			ba.PAGEPAYDATE AS PPDATE
+		FROM B_PAGE p, B_AUTHOR ba 
+		WHERE p.PAGENO = ba.PAGENO
+		AND ba.ID = #{id}
+	 ]]>
+	</select>
 
 </mapper>

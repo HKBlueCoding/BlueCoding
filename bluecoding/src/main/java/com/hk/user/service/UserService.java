@@ -61,14 +61,14 @@ public class UserService {
 		// 구매내역
 		List<HashMap<String, Object>> favoBuyList = chestDAO.selectFavoBuy(id);
 		// 결제내역
-		//List<HashMap<String, Object>> favoPayList = chestDAO.selectFavoPay(id);
+		List<HashMap<String, Object>> favoPayList = chestDAO.selectFavoPay(id);
 		// 수익관리
-		//List<ChestVO> benefitManager = chestDAO.selectBenefitManager(id);
+		List<HashMap<String, Object>> benefitManager = chestDAO.selectBenefitManager(id);
 
 		map.put("favoBookList", favoBookList);
 		map.put("favoBuyList", favoBuyList);
-		//map.put("favoPayList", favoPayList);
-		//map.put("benefitManager", benefitManager);
+		map.put("favoPayList", favoPayList);
+		map.put("benefitManager", benefitManager);
 
 		return map;
 	}

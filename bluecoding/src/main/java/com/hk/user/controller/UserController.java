@@ -131,10 +131,25 @@ public class UserController {
 		// 관심작품
 		Map<String, Object> map = userService.userChestList(id);
 		
+		// 향상된 for문으로 benefit의 총 값을 뽑음
+		Integer benefitAll = 0;
+		List<HashMap<String, Object>> benefitManager = (List<HashMap<String, Object>>) map.get("benefitManager");
+		for(HashMap<String, Object> benefit: benefitManager) {
+			
+			// 현급화 가능한 것만 뽑음
+			if(benefit.get("ISREALIZATION") == "Y" && benefitManager.size() > 0) {
+				benefitAll = (Integer) benefit.get("PROFIT");
+			}
+			
+		}
+		
+		logger.debug("[현금화 가능한 금액] =="+benefitAll);
+		
 		model.addAttribute("favoBookList", map.get("favoBookList"));
 		model.addAttribute("favoBuyList", map.get("favoBuyList"));
-		//model.addAttribute("favoPayList", map.get("favoPayList"));
-		//model.addAttribute("benefitManager", map.get("benefitManager"));
+		model.addAttribute("favoPayList", map.get("favoPayList"));
+		model.addAttribute("benefitManager", map.get("benefitManager"));
+		model.addAttribute("benefitAll", benefitAll);
 		
 		logger.debug("favoBookList = " + map.get("favoBookList"));
 		//.debug("favoPayList ==== " + map.get("favoBuyList"));

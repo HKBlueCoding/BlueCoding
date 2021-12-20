@@ -27,16 +27,14 @@ public class ChestDAO {
 		return favoBuyList;
 	}
 
-	/*
-	 * public List<HashMap<String, Object>> selectFavoPay(String id) { // TODO
-	 * Auto-generated method stub List<HashMap<String, Object>> favoPayList =
-	 * sqlSession.selectList("mapper.chest.selectFavoPayList", id); return
-	 * favoPayList; }
-	 * 
-	 * public List<ChestVO> selectBenefitManager(String id) { // TODO Auto-generated
-	 * method stub List<ChestVO> benefitManager =
-	 * sqlSession.selectList("mapper.chest.selectBenefitManager", id); return
-	 * benefitManager; }
-	 */
+	public List<HashMap<String, Object>> selectFavoPay(String id) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("selectFavoPayList", id);
+	}
+
+	public List<HashMap<String, Object>> selectBenefitManager(String id) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("selectBenefitManager", id);
+	}
 
 }
