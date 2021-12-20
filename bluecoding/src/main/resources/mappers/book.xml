@@ -21,11 +21,36 @@
 
 	</resultMap>
 	
-	<select id="selectAllBook" resultMap="bookResult">
+	<select id="selectAllBook" resultMap="bookResult" parameterType="hashmap">
     <![CDATA[
-		SELECT BOOKNO, BOOKTITLE, INTRO, THEME, BOOKIMAGE, BOOKDELETE, NAME, ID, BOOKDATE, BVIEWCNT 
-		FROM B_BOOK
+		SELECT 
+		*
+		FROM
+			(
+				SELECT
+					B.*,
+					ROWNUM AS RNUM
+				FROM
+					(
+						SELECT
+							*
+						FROM
+							B_BOOK
+						ORDER BY
+							bookNO DESC
+					) B
+		
+			)
+		WHERE 
+			RNUM BETWEEN(#{section}-1)*100+(#{pageNum}-1)*10+1 AND (#{section}-1)*100+#{pageNum}*10			
+		
     ]]>
+	</select>
+	
+	<select id="selectTotBook" resultType="int">
+	 <![CDATA[
+	  SELECT count(bookNO) FROM b_book
+	 ]]> 
 	</select>
 
 	<insert id="insertBook" parameterType="BookVO">

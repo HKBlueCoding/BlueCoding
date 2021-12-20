@@ -23,18 +23,35 @@
 	</resultMap>
 	
 	<!-- [모든 페이지 조회] -->
-	<select id="selectAllPage" resultMap="pageResult">
+	<select id="selectAllPage" resultMap="pageResult" parameterType="hashmap">
     <![CDATA[
-		SELECT PAGENO, SERIES, PAGETITLE, PAGETEXT, PAGEDATE, "COMMENT", PVIEWCNT, CHARGE, "LIKE", PAGEDELETE, BOOKNO 
-		FROM B_PAGE WHERE bookNO = #{bookNO}
-		ORDER BY SERIES ASC
+    	SELECT
+    	*
+    	FROM
+    		(
+    			SELECT
+    				P.*,
+    				ROWNUM AS RNUM
+    			FROM
+    				(
+    					SELECT
+    						 *
+    					FROM
+    						B_PAGE
+    					WHERE BOOKNO= #{bookNO}
+    					ORDER BY
+    						pageNO DESC	
+    				) P
+    		)
+    	WHERE 
+    		RNUM BETWEEN(#{section}-1)*100+(#{pageNum}-1)*10+1 AND (#{section}-1)*100+#{pageNum}*10
     ]]>
 	</select>	
 	
 	<!-- [해당 책의 시리즈 조회] -->
 	<select id="selectSeries" parameterType="int" resultType="java.lang.Integer">
 	 <![CDATA[
-	  SELECT max(bookNO)+1 
+	  SELECT max(pageNO)+1 
 	  FROM B_PAGE
 	  WHERE bookNO = #{bookNO} 
 	 ]]>
@@ -74,5 +91,11 @@
 	 ]]>
 	</update>
 	
+	<!-- [해당 책의 페이지 토탈] -->
+	<select id="selectTotPage" resultType="int" parameterType="int">
+	 <![CDATA[
+	  SELECT count(pageNO) FROM b_page WHERE bookNO = #{bookNO}
+	 ]]>
+	</select>
 
 </mapper>	

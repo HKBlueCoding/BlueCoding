@@ -1,7 +1,7 @@
 package com.hk.book.dao;
 
 import java.util.List;
-
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
@@ -19,9 +19,9 @@ public class BookDAO {
 
 	private static final Logger logger = LoggerFactory.getLogger(BookDAO.class);	
 	
-	public List<BookVO> bookList() {
+	public List<BookVO> bookList(Map<String, Integer> pageMap) {
 		// TODO Auto-generated method stub
-		List<BookVO> bookList = sqlSession.selectList("mapper.book.selectAllBook");
+		List<BookVO> bookList = sqlSession.selectList("mapper.book.selectAllBook", pageMap);
 		return bookList;
 	}
 
@@ -48,7 +48,12 @@ public class BookDAO {
 		logger.debug("[DAO의 bookVO]=="+bookVO);
 		int bookNO = sqlSession.selectOne("mapper.book.selectBookNO", bookVO);
 		return bookNO;
-	}
+	}	
+	// book 전체 게시글 total 조회
+	public int selectTotBook() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("mapper.book.selectTotBook");
+	}		
 
 	public void updateBookViewCnt(int bookNO) {
 		// TODO Auto-generated method stub

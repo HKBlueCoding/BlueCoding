@@ -57,18 +57,18 @@ public class UserService {
 		Map<String, Object> map = new HashMap<String, Object>();
 
 		// 관심작품
-		List<ChestVO> favoBookList = chestDAO.selectFavoBook(id);
+		List<HashMap<String, Object>> favoBookList = chestDAO.selectFavoBook(id);
 		// 구매내역
-		List<ChestVO> favoBuyList = chestDAO.selectFavoBuy(id);
+		List<HashMap<String, Object>> favoBuyList = chestDAO.selectFavoBuy(id);
 		// 결제내역
-		List<ChestVO> favoPayList = chestDAO.selectFavoPay(id);
+		//List<HashMap<String, Object>> favoPayList = chestDAO.selectFavoPay(id);
 		// 수익관리
-		List<ChestVO> benefitManager = chestDAO.selectBenefitManager(id);
+		//List<ChestVO> benefitManager = chestDAO.selectBenefitManager(id);
 
 		map.put("favoBookList", favoBookList);
 		map.put("favoBuyList", favoBuyList);
-		map.put("favoPayList", favoPayList);
-		map.put("benefitManager", benefitManager);
+		//map.put("favoPayList", favoPayList);
+		//map.put("benefitManager", benefitManager);
 
 		return map;
 	}

@@ -1,6 +1,7 @@
 package com.hk.page.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +15,9 @@ public class PageDAO {
 	@Autowired
 	SqlSession sqlSession;
 
-	public List<PageVO> listPage(int bookNO) {
+	public List<PageVO> listPage(Map<String, Integer> pageMap) {
 		// TODO Auto-generated method stub
-		List<PageVO> pageVO = sqlSession.selectList("mapper.page.selectAllPage", bookNO);
+		List<PageVO> pageVO = sqlSession.selectList("mapper.page.selectAllPage", pageMap);
 		
 		return pageVO;
 	}
@@ -42,6 +43,11 @@ public class PageDAO {
 	public Integer selectSeries(int bookNO) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("mapper.page.selectSeries", bookNO);
+	}
+
+	public int selectTotPage(int bookNO) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("mapper.page.selectTotPage", bookNO);
 	}
 
 

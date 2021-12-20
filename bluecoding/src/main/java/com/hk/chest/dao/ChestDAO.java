@@ -1,5 +1,6 @@
 package com.hk.chest.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -14,28 +15,28 @@ public class ChestDAO {
 	@Autowired
 	SqlSession sqlSession;
 
-	public List<ChestVO> selectFavoBook(String id) {
+	public List<HashMap<String, Object>> selectFavoBook(String id) {
 		// TODO Auto-generated method stub
-		List<ChestVO> favoBookList = sqlSession.selectList("mapper.chest.selectFavoBookList" ,id); 		
+		List<HashMap<String, Object>> favoBookList = sqlSession.selectList("mapper.chest.selectFavoBookList" ,id); 		
 		return favoBookList;
 	}
 
-	public List<ChestVO> selectFavoBuy(String id) {
+	public List<HashMap<String, Object>> selectFavoBuy(String id) {
 		// TODO Auto-generated method stub
-		List<ChestVO> favoBuyList = sqlSession.selectList("mapper.chest.selectFavoBuyList", id);
+		List<HashMap<String, Object>> favoBuyList = sqlSession.selectList("mapper.chest.selectFavoBuyList", id);
 		return favoBuyList;
 	}
 
-	public List<ChestVO> selectFavoPay(String id) {
-		// TODO Auto-generated method stub
-		List<ChestVO> favoPayList = sqlSession.selectList("mapper.chest.selectFavoPayList", id);
-		return favoPayList;
-	}
-
-	public List<ChestVO> selectBenefitManager(String id) {
-		// TODO Auto-generated method stub
-		List<ChestVO> benefitManager = sqlSession.selectList("mapper.chest.selectBenefitManager", id);
-		return benefitManager;
-	}
+	/*
+	 * public List<HashMap<String, Object>> selectFavoPay(String id) { // TODO
+	 * Auto-generated method stub List<HashMap<String, Object>> favoPayList =
+	 * sqlSession.selectList("mapper.chest.selectFavoPayList", id); return
+	 * favoPayList; }
+	 * 
+	 * public List<ChestVO> selectBenefitManager(String id) { // TODO Auto-generated
+	 * method stub List<ChestVO> benefitManager =
+	 * sqlSession.selectList("mapper.chest.selectBenefitManager", id); return
+	 * benefitManager; }
+	 */
 
 }

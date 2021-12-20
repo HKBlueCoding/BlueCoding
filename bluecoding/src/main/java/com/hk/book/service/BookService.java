@@ -59,9 +59,16 @@ public class BookService {
 	@Autowired
 	AuthorDAO authorDAO;
 
-	public List<BookVO> listBook() {
+	public  Map<String, Object> listBook(Map<String, Integer> pageMap) {
 		// TODO Auto-generated method stub
-		return bookDAO.bookList();
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		List<BookVO> list =  bookDAO.bookList(pageMap);
+		
+		int totBook = bookDAO.selectTotBook();
+		map.put("list", list);
+		map.put("totBook", totBook);		
+		return map;
 	}
 
 	public Map<String, Object> addBook(BookVO bookVO) {
@@ -92,17 +99,21 @@ public class BookService {
 		return bookDAO.BookUpdate(bookVO);
 	}
 
-	public Map<String, Object> bookOneList(int bookNO, UserVO userVO) {
+	public Map<String, Object> bookOneList(int bookNO, UserVO userVO, Map<String, Integer> pageMap) {
 		// TODO Auto-generated method stub
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		// 하나는 해당 게시글하나
 		BookVO bookVO = bookDAO.oneBook(bookNO);
 		
-		// 페이지 조회
-		List<PageVO> pageVO = pageDAO.listPage(bookNO);
-
-		// 그 게시글의 댓글
+		// 페이지 리스트 조회+ 페이징
+		pageMap.put("bookNO", bookNO);
+		List<PageVO> pageVO = pageDAO.listPage(pageMap);
+		
+		// 현재 책의 토탈 페이지 갯수
+		int totPage = pageDAO.selectTotPage(bookNO);
+		
+		// 그 게시글의 리뷰
 		List<ReviewVO> reviewVO = reviewDAO.listReview(bookNO);
 
 		// 책 정보 조회수 기능
@@ -112,15 +123,16 @@ public class BookService {
 		}		
 		
 		map.put("bookVO", bookVO);
-		map.put("reviewVO", reviewVO);
 		map.put("pageVO", pageVO);
+		map.put("totPage", totPage);
+		map.put("reviewVO", reviewVO);
 
 		return map;
 	}
 
 	// [회차 작성]
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { Exception.class })
-	public int addPage(PageVO pageVO) throws Exception {
+	public int addPage(PageVO pageVO, UserVO userVO) throws Exception {
 		// TODO Auto-generated method stub
 		
 		// 있다가 날짜로 저자에게 구매내역 넣을거니까..
@@ -130,11 +142,11 @@ public class BookService {
 		pageVO.setPageDate(date);
 		
 		// series는 한책 정보에 같은 번호가 있으면 안됨
-		int series = pageDAO.selectSeries(pageVO.getBookNO());
+		Integer series = pageDAO.selectSeries(pageVO.getBookNO());
 		logger.debug("[series]=="+series);
 		
 		// Integer는 null 값을 받고, 만약 series에 null이 들가면 안되니 임의로 지정
-		if( series == 0) {
+		if( series == null) {
 			series = 1; // max해서 없으면 
 		}
 		
@@ -146,7 +158,11 @@ public class BookService {
 		try {
 			// 만약 유료화로 회차 작성해도 저자가 봐야하니까 구매기록을 입력함
 			if (pageVO.getCharge().equals("Y") && ret > 0) {
-				ret = pageBuyDAO.insertAuthorPage(pageVO);
+				Map<String, Object> map = new HashMap<String, Object>();
+				map.put("id", userVO.getId());
+				map.put("pageDate", date);
+				map.put("pageNO", 0);
+				ret = pageBuyDAO.insertAuthorPage(map);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

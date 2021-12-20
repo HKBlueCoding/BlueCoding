@@ -5,9 +5,9 @@
 
 <mapper namespace="mapper.chest">
 
-	<resultMap id="chestResult" type="ChestVO">
+<!-- 	<resultMap id="chestResult" type="ChestVO">
 	
-		<!-- BookVO -->
+		BookVO
 		<result property="bookNO" column="bookNO" />
 		<result property="bookTitle" column="bookTitle" />
 		<result property="intro" column="intro" />
@@ -19,7 +19,7 @@
 		<result property="bookDate" column="bookDate" />
 		<result property="bViewCnt" column="bViewCnt" />
 		
-		<!-- PageVO -->
+		PageVO
 		<result property="pageNO" column="pageNO" />
 		<result property="series" column="series" />
 		<result property="pageTitle" column="pageTitle" />
@@ -31,25 +31,25 @@
 		<result property="like" column="like" />
 		<result property="pageDelete" column="pageDelete" />
 		
-		<!-- PageBuyVO -->
+		PageBuyVO
 		<result property="pagePay" column="pagePay" />
 		<result property="pagePayDate" column="pagePayDate" />
 		<result property="pisRefund" column="pisRefund" />
 		
-		<!-- CoinHistoryVO -->
+		CoinHistoryVO
 		<result property="coinMethod" column="coinMethod" />
 		<result property="coinDate" column="coinDate" />
 		<result property="cisRefund" column="cisRefund" />
 		<result property="rechargeCoin" column="rechargeCoin" />
 		<result property="tid" column="tid" />
 		
-		<!-- CommissionVO -->
+		CommissionVO
 		<result property="isCommission" column="isCommission" />
 		<result property="commissionDate" column="commissionDate" />
 		<result property="admCommission" column="admCommission" />
 
 	</resultMap>
-
+ -->
 
 <!-- [ 로그인 사용자가 쓴 글 조회] -->
 <!--    <select id="selectChest" parameterType="hashMap"  resultType="hashMap">
@@ -69,23 +69,39 @@ WHERE  id = #{id}
    </select> -->
 
 <!-- [사용자가 즐겨찾기 등록한 책 조회] -->
-	<select id="selectFavoBookList" resultMap="chestResult">
+	<select id="selectFavoBookList" resultType="hashmap" parameterType="java.lang.String">
     <![CDATA[
-		SELECT bb.BOOKTITLE, bb.NAME, bb.BOOKDATE, bb.BVIEWCNT
-		FROM B_BOOK bb, B_FAVO bf 
-		WHERE bb.ID = bf.ID AND bf.ID =#{id}
+		SELECT 
+		 bb.bookNO AS BOOKNO,
+		 bb.BOOKTITLE AS TITLE, 
+		 bb.NAME AS NAME, 
+		 bb.BOOKDATE AS BDATE, 
+		 bb.BVIEWCNT AS VIEWCNT,
+		 bf.ID 
+		FROM 
+		 B_BOOK bb, B_FAVO bf 
+		WHERE 
+		 bb.BOOKNO = bf.BOOKNO AND bf.ID =#{id}
         ]]>
 	</select>
 	
-	<select id="selectFavoBuyList" resultMap="chestResult">
+	<select id="selectFavoBuyList" resultType="hashmap" parameterType="java.lang.String">
     <![CDATA[
-		SELECT bb.NAME, bb.BOOKTITLE, bp.PAGENO, bp2.PAGEPAY, bp2.PAGEPAYDATE, bc.TID
-		FROM B_BOOK bb, B_PAGE bp, B_PAGEBUY bp2, B_COINHISTORY bc
-		WHERE bb.BOOKNO=bp.BOOKNO AND bp2.ID=#{id}
+		 SELECT 
+		  pb.PAGEPAY AS PAGEPAY, 
+		  pb.PAGENO AS PAGENO,  
+		  pb.PAGEPAYDATE AS PBDATE, 
+		  pb.PISREFUND AS REFUND,
+		  p.PVIEWCNT AS VIEWCNT,
+		  p.PAGETITLE AS TITLE,
+		  p.SERIES AS SERIES,
+		  p.PAGEDATE AS PDATE
+		 FROM B_PAGEBUY pb, B_PAGE p
+		 WHERE pb.PAGENO = p.PAGENO AND pb.ID = #{id}
         ]]>
 	</select>
 	
-	<select id="selectFavoPayList" resultMap = "chestResult">
+<!-- 	<select id="selectFavoPayList" resultMap = "chestResult">
     <![CDATA[
     	SELECT bc.COINMETHOD, bc.RECHARGECOIN, bc.COINDATE, bc.TID
 		FROM B_COINHISTORY bc
@@ -101,6 +117,6 @@ WHERE  id = #{id}
  		AND bb.BOOKNO = bp.BOOKNO
 		AND bp.PAGENO = bc.PAGENO
 	    ]]>
-	</select>
+	</select> -->
 
 </mapper>

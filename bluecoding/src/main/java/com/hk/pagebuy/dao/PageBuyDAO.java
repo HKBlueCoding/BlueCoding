@@ -3,9 +3,12 @@ package com.hk.pagebuy.dao;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.hk.book.service.BookService;
 import com.hk.page.vo.PageVO;
 import com.hk.pagebuy.vo.PageBuyVO;
 
@@ -14,6 +17,8 @@ public class PageBuyDAO {
 	
 	@Autowired
 	SqlSession sqlSession;
+	
+	private static final Logger logger = LoggerFactory.getLogger(PageBuyDAO.class);
 
 	public int insertBuyPage(PageBuyVO pageBuyVO) {
 		// TODO Auto-generated method stub
@@ -31,9 +36,10 @@ public class PageBuyDAO {
 		return sqlSession.selectOne("mapper.pagebuy.selectOneBuyPage",userMap);
 	}
 
-	public int insertAuthorPage(PageVO pageVO) {
+	public int insertAuthorPage(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		return sqlSession.insert("mapper.pagebuy.insertAuthorPage",pageVO);
+		logger.debug("[저자 페이지]=="+map.get("id"));
+		return sqlSession.insert("mapper.pagebuy.insertAuthorPage", map);
 	}
 	
 }

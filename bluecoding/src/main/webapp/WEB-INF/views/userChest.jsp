@@ -109,19 +109,19 @@
                                              <img src="../resources/assets/images/mainPage/board1.png" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
                                           </div>
                                           <div class="d-flex flex-column justify-content-center">
-                                             <a href="/view?bookNO=${favoBook.bookNO }" class="mb-0 text-sm" style="color: black">${favoBook.bookTitle}</a>
+                                             <a href="/view?bookNO=${favoBook.BOOKNO }" class="mb-0 text-sm" style="color: black">${favoBook.TITLE}</a>
                                              <p class="text-xs text-secondary mb-0"></p>
                                           </div>
                                        </div>
                                     </td>
                                     <td class="align-middle">
-                                       <span class="text-secondary text-xs font-weight-bold">${favoBook.id}</span>
+                                       <span class="text-secondary text-xs font-weight-bold">${favoBook.ID}</span>
                                     </td>
                                     <td class="align-middle text-center text-sm">
-                                       <span class="badge badge-sm bg-gradient-success" style="background-image: linear-gradient(180deg,#419cef 10%,#106ec3 100%);">${favoBook.bViewCnt}</span>
+                                       <span class="badge badge-sm bg-gradient-success" style="background-image: linear-gradient(180deg,#419cef 10%,#106ec3 100%);">${favoBook.VIEWCNT}</span>
                                     </td>
                                     <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">${favoBook.bookDate}</span>
+                                       <span class="text-secondary text-xs font-weight-bold">${favoBook.BDATE}</span>
                                     </td>
                                  </tr>
                                 </c:forEach> 
@@ -184,10 +184,10 @@
                <a class="btn" style="background-color: #30c8e0" onclick="chest4()" id="show4">수익 관리</a>
             </div>
             <div class="button header-button" style="margin-left: 200px;">
-               <p style=" border-width:3px; border-style:inset; font-family: 돋움; font-weight: bold; color: #546699;">현재 코인 : 100개</p>
+               <p style=" border-width:3px; border-style:inset; font-family: 돋움; font-weight: bold; color: #546699;">현재 코인 : ${login.coin }</p>
             </div>
             <div class="button header-button">
-               <a class="btn" style="background-color: #6e707e">충전하기</a>
+               <a class="btn" onclick="coinCharge()" style="background-color: #6e707e">충전하기</a>
             </div>
             <!-- ======================= 버튼 끝 ========================== -->
             <br><br>
@@ -212,7 +212,7 @@
                                  </tr>
                               </thead>
                               <tbody>
-                                <c:forEach var="favoBuylist" items="${favoBuyList }" varStatus="favoBuyListCnt">
+                                <c:forEach var="favoBuy" items="${favoBuyList }" varStatus="favoBuyListCnt">
                                  <tr>
                                     <td>
                                        <div class="d-flex px-2 py-1">
@@ -220,24 +220,31 @@
                                              <img src="../resources/assets/images/mainPage/board1.png" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
                                           </div>
                                           <div class="d-flex flex-column justify-content-center">
-                                             <a href="../view/page?pageNO=${favoBuyList.pageNO }" class="mb-0 text-sm" style="color: black">${favoBuyList.pageTitle}[${favoBuyList.pViewCnt}]</a>
-                                             <p class="text-xs text-secondary mb-0">${favoBuyList.name}</p>
+                                             <a href="../view/page?pageNO=${favoBuy.PAGENO }" class="mb-0 text-sm" style="color: black">${favoBuy.TITLE }[${favoBuy.VIEWCNT }]</a>
+                                             <p class="text-xs text-secondary mb-0">${favoBuy.PBDATE}</p>
                                           </div>
                                        </div>
                                     </td>
                                     <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">${favoBuyList.series}</span>
+                                       <span class="text-secondary text-xs font-weight-bold">${favoBuy.SERIES }</span>
                                     </td>
                                     <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">-${favoBuyList.pagePay}</span>
+                                       <span class="text-secondary text-xs font-weight-bold">-${favoBuy.PAGEPAY }</span>
                                     </td>
                                     <td class="align-middle text-center">
-                                       <span class="text-secondary text-xs font-weight-bold">${favoBuyList.pagePayDate}</span>
+                                       <span class="text-secondary text-xs font-weight-bold">${favoBuy.PDATE }</span>
                                     </td>
                                     <td class="align-middle text-center">
+                                     <c:if test="${favoBuy.REFUND eq 'Y' }">
                                        <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #ab0dd7">${favoBuyList.tid}</a>
+                                          <a href="javascript:void(0)" class="btn" style="background-color: #ab0dd7">환불하기</a>
                                        </div>
+                                     </c:if>
+                                     <c:if test="${favoBuy.REFUND ne 'Y' }">
+                                       <div class="button header-button">
+                                          <span class="text-secondary text-xs font-weight-bold">환불 불가</span>
+                                       </div>
+                                     </c:if>
                                     </td>
                                  </tr>
 							 	 </c:forEach> 
@@ -327,7 +334,7 @@
                                  </tr>
                               </thead>
                               <tbody>
-                                <c:forEach var="favoPayList" items="${favoPayList }" varStatus="favoBuyListCnt">
+<%--                                 <c:forEach var="favoPayList" items="${favoBookList }" varStatus="favoBuyListCnt">
                                  <tr>
                                     <td>
                                        <div class="d-flex px-2 py-1">
@@ -336,7 +343,7 @@
                                           </div>
                                           <div class="d-flex flex-column justify-content-center">
                                              <a class="mb-0 text-sm" style="color: black">${favoPayList.coinMethod}</a>
-<%--                                              <p class="text-xs text-secondary mb-0">${favoPay.coinMethod}</p> --%>
+                                             <p class="text-xs text-secondary mb-0">${favoPay.coinMethod}</p>
                                           </div>
                                        </div>
                                     </td>
@@ -357,7 +364,7 @@
                                        </div>
                                     </td>
                                  </tr>
-							 	 </c:forEach> 
+							 	 </c:forEach>  --%>
                               </tbody>
                            </table>
                         </div>
@@ -400,7 +407,7 @@
                <a class="btn" style="background-color: #30c8e0" onclick="chest4()" id="show4">수익 관리</a>
             </div>
             <div class="button header-button" style="margin-left: 200px;">
-               <p style=" border-width:3px; border-style:inset; font-family: 돋움; font-weight: bold; color: #546699;">현재 코인 : 100개</p>
+               <p style=" border-width:3px; border-style:inset; font-family: 돋움; font-weight: bold; color: #546699;">받은 수익 : 100원</p>
             </div>
             <div class="button header-button">
                <a class="btn" style="background-color: #6e707e">현금화 하기</a>
@@ -427,7 +434,7 @@
                                  </tr>
                               </thead>
                               <tbody>
-                              <c:forEach var="benefitManager" items="${benefitManager }" varStatus="benefitManagerCnt">
+<%--                               <c:forEach var="benefitManager" items="${benefitManager }" varStatus="benefitManagerCnt">
                                  <tr>
                                     <td>
                                        <div class="d-flex px-2 py-1">
@@ -451,7 +458,7 @@
                                        <span class="text-secondary text-xs font-weight-bold">${benefitManager.coinDate}</span>
                                     </td>
                                  </tr>  
-                              </c:forEach>    
+                              </c:forEach> --%>    
                               </tbody>                         
                            </table>
                         </div>

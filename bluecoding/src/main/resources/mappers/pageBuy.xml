@@ -32,10 +32,10 @@
 	</select>
 	
 	<!-- [저자가 유료화된 글을 볼 수 있게끔 구매기록 남김] -->
-	<insert id="mapper.pagebuy.insertAuthorPage" parameterType="pageVO">
-	 <selectKey keyProperty="pageNO" resultType="int" order="BEFORE">
+	<insert id="insertAuthorPage" parameterType="hashmap">
+	 <selectKey keyProperty="pageNO" resultType="java.lang.String" order="BEFORE">
 	  <![CDATA[
-	 	SELECT pageNO FROM b_page WHERE id=#{id} AND pageDate = #{pageDate}	
+	 	SELECT pageNO FROM b_page WHERE pageDate = #{pageDate}	
 	  ]]>
 	 </selectKey>
 	 <![CDATA[

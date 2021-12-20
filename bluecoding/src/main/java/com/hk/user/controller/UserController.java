@@ -129,17 +129,17 @@ public class UserController {
 	public String userChest(Model model, @RequestParam("id") String id) {
 		
 		// 관심작품
-		Map<String, Object> map =   userService.userChestList(id);
+		Map<String, Object> map = userService.userChestList(id);
 		
 		model.addAttribute("favoBookList", map.get("favoBookList"));
 		model.addAttribute("favoBuyList", map.get("favoBuyList"));
-		model.addAttribute("favoPayList", map.get("favoPayList"));
-		model.addAttribute("benefitManager", map.get("benefitManager"));
+		//model.addAttribute("favoPayList", map.get("favoPayList"));
+		//model.addAttribute("benefitManager", map.get("benefitManager"));
 		
 		logger.debug("favoBookList = " + map.get("favoBookList"));
-		logger.debug("favoPayList ==== " + map.get("favoBuyList"));
-		logger.debug("favoPayList === " + map.get("favoPayList"));
-		logger.debug("benefitManager === " + map.get("benefitManager"));
+		//.debug("favoPayList ==== " + map.get("favoBuyList"));
+		//logger.debug("favoPayList === " + map.get("favoPayList"));
+		//logger.debug("benefitManager === " + map.get("benefitManager"));
 		
 		return "userChest";
 	}

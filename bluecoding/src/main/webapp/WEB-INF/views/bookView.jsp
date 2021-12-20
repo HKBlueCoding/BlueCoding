@@ -91,6 +91,7 @@
                 <div class="col-md-10 col-lg-8 col-xl-7" style="width: 85%;">
                   <p id="title">도서 상세 보기</p>
                   <hr class="my-4">
+                  <input type="hidden" name="bookNO" value="${bookVO.bookNO }" id="bookNO">
                   <p id="title2">&nbsp;&nbsp;${bookVO.bookTitle }</p>
                   <div id="qna"> &nbsp;&nbsp; 작가 이름 : ${bookVO.name } &nbsp;&nbsp;&nbsp;&nbsp; ${bookVO.bookDate } &nbsp;&nbsp;&nbsp;&nbsp; <br>
                     <br>
@@ -164,7 +165,7 @@
                               <h6 class="text-white text-capitalize ps-3">작품 회차</h6>
                             </div>
                           </div>
-                          <c:forEach var="page" items="${pageVO }">
+                          <c:forEach var="pageList" items="${pageVO }">
                             <div id="tbPadd" class="card-body px-0 pb-2">
                               <div class="table-responsive p-0">
                                 <table class="table align-items-center mb-0">
@@ -174,25 +175,24 @@
                                         <div class="d-flex px-2 py-1">
                                           <div class="d-flex flex-column justify-content-center">
                                             <p class="text-xs text-secondary mb-0" style="font-size: 15px;">
-                                              <a href="../view/page?pageNO=${page.pageNO }">${page.series }화, ${page.pageTitle }</a>
-                                              <br>${page.pageDate }
+                                              <a href="../view/page?pageNO=${pageList.pageNO }">${pageList.series }화, ${pageList.pageTitle }</a>
+                                              <br>${pageList.pageDate }
                                             </p>
-                                            <input type="hidden" name="bookNO" value="${bookVO.bookNO }" id="bookNO">
-                                            <p class="text-xs text-secondary mb-0">조회수: ${page.pViewCnt }</p>
+                                            <p class="text-xs text-secondary mb-0">조회수: ${pageList.pViewCnt }</p>
                                           </div>
                                         </div>
                                       </td>
                                       <!-- ======================= 버튼 ========================== -->
                                       <td>
                                         <div align="right" style="width: 100%;">
-                                          <c:if test="${page.charge eq 'Y'}">
+                                          <c:if test="${pageList.charge eq 'Y'}">
                                             <div class="button header-button">
-                                              <a class="btn" style="background-color: #30e087" onClick="pageBuy('${page.pageNO}')">미리보기(유료)</a>
+                                              <a class="btn" style="background-color: #30e087" onClick="pageBuy('${pageList.pageNO}')">미리보기(유료)</a>
                                             </div>
                                           </c:if>
                                           <c:if test="${login.admin eq 'A' || login.admin eq 'C'}">
                                             <div class="button header-button">
-                                              <a href="../view/update?pageNO=${page.pageNO}" class="btn" style="background-color: #30d8e0;">수정</a>
+                                              <a href="../view/update?pageNO=${pageList.pageNO}" class="btn" style="background-color: #30d8e0;">수정</a>
                                             </div>
                                             <div class="button header-button">
                                               <a onClick="funok2()" class="btn" style="background-color: #30d8e0;">삭제</a>
@@ -229,19 +229,58 @@
                     </div>
                   </div>
                   <br>
-                  <!-- ====================== 페이징 ====================== -->
-                  <div class="w3-center">
-                    <div class="w3-bar">
-                      <a href="#" class="w3-button">«</a>
-                      <a href="#" class="w3-button w3-blue">1</a>
-                      <a href="#" class="w3-button">2</a>
-                      <a href="#" class="w3-button">3</a>
-                      <a href="#" class="w3-button">4</a>
-                      <a href="#" class="w3-button">5</a>
-                      <a href="#" class="w3-button">»</a>
+                    <!-- ====================== 페이징 ====================== -->
+                    <div class="w3-center">
+                      <div class="w3-bar">
+                        <c:if test="${!empty totPage }">
+                          <c:choose>
+                            <c:when test="${totPage > 100 }">
+                              <c:forEach var="page" begin="1" end="10" step="1">
+                                <c:if test="${section >1 && page == 1 }">
+                                  <a href="view?bookNO=${bookVO.bookNO }&section=${section-1 }&pageNum=10" class="w3-button">«</a>
+                                </c:if>
+                                <c:choose>
+                                  <c:when test="${page == pageNum }">
+                                    <a href="view?bookNO=${bookVO.bookNO }&section=${section }&pageNum=${page}" class="w3-button w3-blue">${(section-1)*10+page }</a>
+                                  </c:when>
+                                  <c:otherwise>
+                                    <a href="view?bookNO=${bookVO.bookNO }&section=${section }&pageNum=${page}" class="w3-button">${(section-1)*10+page }</a>
+                                  </c:otherwise>
+                                </c:choose>
+                                <c:if test="${page == 10 }">
+                                  <a href="view?bookNO=${bookVO.bookNO }&section=${section+ 1}&pageNum=1" class="w3-button">»</a>
+                                </c:if>
+                              </c:forEach>
+                            </c:when>
+                            <c:when test="${totPage == 100 }">
+                              <c:forEach var="page" begin="1" end="10" step="1">
+                                <c:choose>
+                                  <c:when test="${page == pageNum}">
+                                    <a href="view?bookNO=${bookVO.bookNO }&section=${section }&pageNum=${page}" class="w3-button w3-blue">${page }</a>
+                                  </c:when>
+                                  <c:otherwise>
+                                    <a href="view?bookNO=${bookVO.bookNO }&section=${section }&pageNum=${page}" class="w3-button">${page }</a>
+                                  </c:otherwise>
+                                </c:choose>
+                              </c:forEach>
+                            </c:when>
+                            <c:when test="${totPage < 100 }">
+                              <c:forEach var="page" begin="1" end="${totPage/10 +1 }" step="1">
+                                <c:choose>
+                                  <c:when test="${page == pageNum}">
+                                    <a href="view?bookNO=${bookVO.bookNO }&section=${section }&pageNum=${page}" class="w3-button w3-blue">${page }</a>
+                                  </c:when>
+                                  <c:otherwise>
+                                    <a href="view?bookNO=${bookVO.bookNO }&section=${section }&pageNum=${page}" class="w3-button">${page }</a>
+                                  </c:otherwise>
+                                </c:choose>
+                              </c:forEach>
+                            </c:when>
+                          </c:choose>
+                        </c:if>
+                      </div>
                     </div>
-                  </div>
-                  <!-- ====================== 페이징 끝 ====================== -->
+                    <!-- ====================== 페이징 끝 ====================== -->
                   <br>
                   <br>
                   <br>
@@ -394,19 +433,6 @@
                     <!-- ======================= 버튼 끝 ========================== -->
                     <br>
                     <br>
-                    <!-- ====================== 페이징 ====================== -->
-                    <div class="w3-center">
-                      <div class="w3-bar">
-                        <a href="#" class="w3-button">«</a>
-                        <a href="#" class="w3-button w3-blue">1</a>
-                        <a href="#" class="w3-button">2</a>
-                        <a href="#" class="w3-button">3</a>
-                        <a href="#" class="w3-button">4</a>
-                        <a href="#" class="w3-button">5</a>
-                        <a href="#" class="w3-button">»</a>
-                      </div>
-                    </div>
-                    <!-- ====================== 페이징 끝 ====================== -->
                   </div>
                   <!-- ====================== 리뷰(댓글) 끝====================== -->
                   <!-- Submit success message-->
@@ -454,33 +480,33 @@
     <script type="text/javascript">
       //========= Category Slider 
       tns({
-            container: '.category-slider',
-            items: 3,
-            slideBy: 'page',
-            autoplay: false,
-            mouseDrag: true,
-            gutter: 0,
-            nav: false,
-            controls: true,
-            controlsText: [' < i class = "lni lni-chevron-left" > < /i>', ' < i class = "lni lni-chevron-right" > < /i>'],
-              responsive: {
-                0: {
-                  items: 1,
-                },
-                540: {
-                  items: 2,
-                },
-                768: {
-                  items: 4,
-                },
-                992: {
-                  items: 5,
-                },
-                1170: {
-                  items: 6,
-                }
-              }
-            });
+        container: '.category-slider',
+        items: 3,
+        slideBy: 'page',
+        autoplay: false,
+        mouseDrag: true,
+        gutter: 0,
+        nav: false,
+        controls: true,
+        controlsText: [' < i class = "lni lni-chevron-left" >< /i>', ' < i class = "lni lni-chevron-right" >< /i>'],
+        responsive: {
+          0: {
+            items: 1,
+          },
+          540: {
+            items: 2,
+          },
+          768: {
+            items: 4,
+          },
+          992: {
+            items: 5,
+          },
+          1170: {
+            items: 6,
+          }
+        }
+      });
     </script>
     <script src="../../resources/bluecoding/bookView.js"></script>
     <script>
