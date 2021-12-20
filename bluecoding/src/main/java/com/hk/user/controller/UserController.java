@@ -132,15 +132,14 @@ public class UserController {
 		Map<String, Object> map = userService.userChestList(id);
 		
 		// 향상된 for문으로 benefit의 총 값을 뽑음
-		Integer benefitAll = 0;
+		int benefitAll = 0;
 		List<HashMap<String, Object>> benefitManager = (List<HashMap<String, Object>>) map.get("benefitManager");
 		for(HashMap<String, Object> benefit: benefitManager) {
 			
 			// 현급화 가능한 것만 뽑음
-			if(benefit.get("ISREALIZATION") == "Y" && benefitManager.size() > 0) {
-				benefitAll = (Integer) benefit.get("PROFIT");
+			if(benefit.get("ISREALIZATION").equals("Y") && benefitManager.size() > 0) {
+				benefitAll = benefitAll+300;
 			}
-			
 		}
 		
 		logger.debug("[현금화 가능한 금액] =="+benefitAll);

@@ -106,7 +106,12 @@
                                     <td>
                                        <div class="d-flex px-2 py-1">
                                           <div>
-                                             <img src="../resources/assets/images/mainPage/board1.png" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
+                                  			<c:if test="${empty favoBook.IMAGE }">
+                                    		 <img src="../../resources/assets/images/mainPage/board1.png" width="160" height="250" class="avatar avatar-sm me-3 border-radius-lg" alt="user1" id="preview" style="float: left">
+                                  		 	</c:if>
+                                  			<c:if test="${!empty favoBook.IMAGE }">
+                                    		 <img src="../../download?uploadFile=${favoBook.IMAGE }&inFolder=book&pk=${favoBook.BOOKNO }" width="160" height="250" class="avatar avatar-sm me-3 border-radius-lg" alt="user1" id="preview" style="float: left">
+                                  			</c:if>
                                           </div>
                                           <div class="d-flex flex-column justify-content-center">
                                              <a href="/view?bookNO=${favoBook.BOOKNO }" class="mb-0 text-sm" style="color: black">${favoBook.TITLE}</a>
@@ -183,12 +188,6 @@
             <div class="button header-button">
                <a class="btn" style="background-color: #30c8e0" onclick="chest4()" id="show4">수익 관리</a>
             </div>
-            <div class="button header-button" style="margin-left: 200px;">
-               <p style=" border-width:3px; border-style:inset; font-family: 돋움; font-weight: bold; color: #546699;">현재 코인 : ${login.coin }</p>
-            </div>
-            <div class="button header-button">
-               <a class="btn" onclick="coinCharge()" style="background-color: #6e707e">충전하기</a>
-            </div>
             <!-- ======================= 버튼 끝 ========================== -->
             <br><br>
             <div class="row">
@@ -216,8 +215,8 @@
                                  <tr>
                                     <td>
                                        <div class="d-flex px-2 py-1">
-                                          <div>
-                                             <img src="../resources/assets/images/mainPage/board1.png" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
+                                          <div>                                        
+                                             <img src="../resources/assets/images/chestPage/page.jpg" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
                                           </div>
                                           <div class="d-flex flex-column justify-content-center">
                                              <a href="../view/page?pageNO=${favoBuy.PAGENO }" class="mb-0 text-sm" style="color: black">${favoBuy.TITLE }[${favoBuy.VIEWCNT }]</a>
@@ -306,12 +305,6 @@
             <div class="button header-button">
                <a class="btn" style="background-color: #30c8e0" onclick="chest4()" id="show4">수익 관리</a>
             </div>
-            <div class="button header-button" style="margin-left: 200px;">
-               <p style=" border-width:3px; border-style:inset; font-family: 돋움; font-weight: bold; color: #546699;">현재 코인 : 100개</p>
-            </div>
-            <div class="button header-button">
-               <a href="javascript:void(0)" class="btn" style="background-color: #6e707e">충전하기</a>
-            </div>
             <!-- ======================= 버튼 끝 ========================== -->
             <br><br>
             <div class="row">
@@ -338,12 +331,11 @@
                                  <tr>
                                     <td>
                                        <div class="d-flex px-2 py-1">
-                                          <div>
-                                             <img src="../resources/assets/images/mainPage/board1.png" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
+                                          <div>                              
+                                             <img src="../resources/assets/images/chestPage/coin.jpg" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
                                           </div>
                                           <div class="d-flex flex-column justify-content-center">
                                              <a class="mb-0 text-sm" style="color: black">${favoPay.METHOD}</a>
-                                             <p class="text-xs text-secondary mb-0">${favoPay.METHOD}</p>
                                           </div>
                                        </div>
                                     </td>
@@ -363,8 +355,8 @@
                                         </c:if>
                                        </div>
                                     </td>
-                                 </tr>
-							 	 </c:forEach> 
+                                  </tr>
+							 	</c:forEach> 
                               </tbody>
                            </table>
                         </div>
@@ -410,7 +402,7 @@
                <p style=" border-width:3px; border-style:inset; font-family: 돋움; font-weight: bold; color: #546699;">현금와 가능 : ${benefitAll }원</p>
             </div>
             <div class="button header-button">
-               <a class="btn" style="background-color: #6e707e">현금화 하기</a>
+               <a class="btn" onclick="withdraw('${benefitAll }')" style="background-color: #6e707e">현금화 하기</a>
             </div>
             <!-- ======================= 버튼 끝 ========================== -->
             <br><br>
@@ -439,10 +431,15 @@
                                     <td>
                                        <div class="d-flex px-2 py-1">
                                           <div>
-                                             <img src="../resources/assets/images/mainPage/board1.png" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
+                                            <c:if test="${benefit.ISREALIZATION eq 'Y' }">
+                                             <img src="../resources/assets/images/chestPage/money.jpg" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
+                                            </c:if>
+                                            <c:if test="${benefit.ISREALIZATION ne 'Y' }">
+                                             <img src="../resources/assets/images/chestPage/done.png" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
+                                            </c:if>                                            
                                           </div>
                                           <div class="d-flex flex-column justify-content-center">
-                                             <a href="../view/page" class="mb-0 text-sm" style="color: black">${benefit.BOOKNO}</a>
+                                             <a href="../view/page?pageNO=${benefit.PAGENO }" class="mb-0 text-sm" style="color: black">${benefit.BOOKNO}</a>
                                              <p class="text-xs text-secondary mb-0">${benefit.TITLE}</p>
                                              
                                           </div>

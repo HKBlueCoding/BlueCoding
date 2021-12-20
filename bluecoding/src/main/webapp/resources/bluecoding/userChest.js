@@ -43,6 +43,19 @@ function chest4(){
 	 
 }
 
+function withdraw(benefit){
+	
+	// 만약 benefit이 0이면
+	if(benefit == 0){ 
+		alert('수익이 없습니다.'); 
+		return;
+	}else{
+		// 아닐 경우... newwindow로 
+		window.open("../../openbanking/withdraw","현금화 하기", "width=1500, height=500, history=no, resizable=no, status=no, scrollbars=yes, menubar=no");
+	}
+		
+}
+
 window.onload = function (){
 
 	bChest.style.display = "none";

@@ -27,7 +27,8 @@ WHERE  id = #{id}
      <![CDATA[
 		SELECT 
 		 bb.bookNO AS BOOKNO,
-		 bb.BOOKTITLE AS TITLE, 
+		 bb.BOOKTITLE AS TITLE,
+		 bb.BOOKIMAGE AS IMAGE, 
 		 bb.NAME AS NAME, 
 		 bb.BOOKDATE AS BDATE, 
 		 bb.BVIEWCNT AS VIEWCNT,
