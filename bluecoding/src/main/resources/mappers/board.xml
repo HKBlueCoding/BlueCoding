@@ -37,7 +37,7 @@
 						FROM
 							B_BOARD
 						ORDER BY
-							articleNO DESC 
+							articleNO ASC
 					) BD
 			)
 		WHERE 
@@ -59,10 +59,9 @@
 	</insert>
 	
 	<!-- [커뮤니티 게시글 수정] -->	
-	<select id="selectOneArticle" resultType="BoardVO">
+	<select id="selectOneArticle" resultType="BoardVO" parameterType="int">
 		<![CDATA[
-		SELECT ARTICLENO, BOARDTITLE, BOARDTEXT, BOARDDATE, BOARDIMAGE, BDVIEWCNT, BOARDDELETE, ID, NICK
-		FROM B_BOARD WHERE ARTICLENO=#{ARTICLENO}
+		SELECT * FROM B_BOARD WHERE articleNO=#{articleNO}
 		]]>
 	</select>
 	

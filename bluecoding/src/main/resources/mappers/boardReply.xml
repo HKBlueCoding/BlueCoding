@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.boardReply">
+
+	<!-- 테이블 컬럼하고, VO하고 1:1로 맵핑했을때 이름이 다른경우 -->
+	<resultMap id="boardReplyResult" type="BoardReplyVO">
+	
+		<result property="replyNO" column="replyNO" />
+		<result property="reParentNO" column="reParentNO" />
+		<result property="boardReText" column="boardReText" />
+		<result property="boardReDate" column="boardReDate" />
+		<result property="boardReDelete" column="boardReDelete" />
+		<result property="articleNO" column="articleNO" />
+		<result property="id" column="id" />
+		<result property="nick" column="nick" />
+		<result property="level" column="level" />
+
+	</resultMap>
+
+	<select id="selectAllBoardReply"  parameterType="int" resultMap="boardReplyResult">
+    <![CDATA[
+		SELECT REPLYNO, REPARENTNO, BOARDRETEXT, BOARDREDATE, BOARDREDELETE, ARTICLENO, ID, NICK, LEVEL  FROM B_BOARDREPLY
+		WHERE articleNO = #{articleNO}
+		START WITH reParentNO=0 CONNECT BY PRIOR replyNO=reParentNO
+		ORDER SIBLINGS BY replyNO ASC
+    ]]>
+	</select>
+	
+	<insert id="insertReply" parameterType="BoardReplyVO">
+	 <selectKey keyProperty="replyNO" resultType="int" order="BEFORE">
+	 	SELECT max(replyNO)+1 FROM B_BOARDREPLY
+	 </selectKey>
+	 <![CDATA[
+	 	INSERT INTO B_BOARDREPLY (REPLYNO, REPARENTNO, BOARDRETEXT, BOARDREDATE, BOARDREDELETE, ARTICLENO, ID, NICK)
+	 	VALUES(#{replyNO}, #{reParentNO}, #{boardReText}, sysdate, '', #{articleNO}, #{id}, #{nick})
+	 ]]>
+	</insert>
+	
+	<update id="updateReply" parameterType="BoardReplyVO">
+    <![CDATA[
+		UPDATE B_BOARDREPLY SET REPARENTNO=#{reParentNO}, BOARDRETEXT=#{boardReText}, BOARDREDATE=sysdate, BOARDREDELETE='', ARTICLENO=#{articleNO}, ID=#{id}, NICK=#{nick}
+		WHERE REPLYNO=#{replyNO}
+    ]]>
+	</update>
+</mapper>	

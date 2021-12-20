@@ -130,7 +130,7 @@
             </div>
          </div>                  
                            
- 	  </div>  
+  
          <!-- Start Search Form -->
          <div class="search-form wow fadeInUp" style="margin: 1px; padding: 1px;">
             <div class="row">
@@ -153,6 +153,7 @@
                </div>
             </div>
          </div>
+ 	  </div>         
          <!-- End Search Form -->
       <!-- ====================== 페이징 ====================== -->
       <div class="w3-center">

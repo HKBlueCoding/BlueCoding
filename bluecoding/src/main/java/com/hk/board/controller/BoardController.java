@@ -1,13 +1,8 @@
 package com.hk.board.controller;
 
 import java.io.File;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-
-import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,10 +15,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.hk.board.service.BoardService;
 import com.hk.board.vo.BoardVO;
+import com.hk.boardreply.vo.BoardReplyVO;
 import com.hk.book.controller.BookController;
 
 @Controller
@@ -42,30 +39,34 @@ public class BoardController {
 		// section = 12345678910까지가 기본 섹션
 		// pageNum = 사용자가 보려하는 페이지 번호
 		// 혹여나 만약 0이하를 치면..
-		if (section <= 0) { ++section; }
-		if (pageNum <= 0) { ++pageNum; }
+		if (section <= 0) {
+			++section;
+		}
+		if (pageNum <= 0) {
+			++pageNum;
+		}
 		Map<String, Integer> pageMap = new HashMap<String, Integer>();
 		pageMap.put("section", section);
 		pageMap.put("pageNum", pageNum);
-	    
-	    Map<String, Object> map = boardService.listArticles(pageMap);
+
+		Map<String, Object> map = boardService.listArticles(pageMap);
 		logger.debug("[리스트]" + map);
 		model.addAttribute("boardList", map.get("boardList"));
-		model.addAttribute("totArticle",map.get("totArticle"));
-	    model.addAttribute("section",section);
-	    model.addAttribute("pageNum",pageNum);
-	    
+		model.addAttribute("totArticle", map.get("totArticle"));
+		model.addAttribute("section", section);
+		model.addAttribute("pageNum", pageNum);
+
 		return "boardList";
 	}
 
 	// ADD
-	@GetMapping(value = "/board/add")
+	@GetMapping("/board/add")
 	public String boardAdd() {
 
 		return "boardAdd";
 	}
 
-	@PostMapping(value = "/board/add")
+	@PostMapping("/board/add")
 	public String boardAddDone(Model model, @ModelAttribute BoardVO boardVO,
 			@RequestParam("uploadFile") MultipartFile file) throws Exception {
 
@@ -74,14 +75,14 @@ public class BoardController {
 		// 받은 실제 이미지 파일이름
 		String fileName = "";
 
-			fileName = file.getOriginalFilename();
-			boardVO.setBoardImage(fileName);
+		fileName = file.getOriginalFilename();
+		boardVO.setBoardImage(fileName);
 
 		logger.debug("[boardVO의 이미지 이름] = " + boardVO.getBoardImage());
 		Map<String, Object> map = boardService.addArticle(boardVO);
-		
+
 		int articleNO = (int) map.get("articleNO");
-		
+
 		if (!file.getOriginalFilename().isEmpty() && articleNO > 0) {
 			File folder = new File(BOARD_FILE_PATH + "\\" + articleNO);
 
@@ -104,17 +105,31 @@ public class BoardController {
 		return "done/boardAddDone";
 	}
 
-	// UPDATE
-	@GetMapping(value = "/board/view")
+	@GetMapping("/board/view")
 	public String boardView(Model model, @RequestParam("articleNO") int articleNO) {
 
-		BoardVO boardVO = boardService.viewArticle(articleNO);
-		model.addAttribute("board", boardVO);
+		Map<String, Object> map = boardService.viewArticle(articleNO);
+		logger.debug("[map] = " + map);
+		logger.debug("[articleNO] = " + articleNO);
+		model.addAttribute("boardVO", map.get("boardVO"));
+		model.addAttribute("boardReplyVO", map.get("boardReplyVO"));
+
 		return "boardView";
 	}
 
-	@PostMapping(value = "/board/update")
-	public String boardUpdate2(Model model, @ModelAttribute BoardVO boardVO,
+	@GetMapping("/board/update")
+	public String boardUpdate(Model model, @RequestParam("articleNO") int articleNO) {
+		logger.debug("[boardNO11] = " + articleNO);
+
+		BoardVO boardVO = boardService.boardOne(articleNO);
+		model.addAttribute("boardVO", boardVO);
+		logger.debug("[boardVO11] = " + boardVO);
+
+		return "boardUpdate";
+	}
+
+	@PostMapping("/board/update")
+	public String boardUpdateDone(Model model, @ModelAttribute BoardVO boardVO,
 			@RequestParam("uploadFile") MultipartFile file) throws Exception {
 		// 여기서 수정된 값 들어오고
 		logger.debug("[boardVO] 업데이트로 들어온 값 = " + boardVO);
@@ -164,4 +179,55 @@ public class BoardController {
 		model.addAttribute("rs", rs);
 		return "done/boardDeleteDone";
 	}
+
+	@RequestMapping(value = "/board/boardReply/add", method = RequestMethod.POST, produces = "application/json; charset=utf8")
+	@ResponseBody // --> ajax 사용할 때 사용
+	public Map<String, Object> boardReplyAdd(@ModelAttribute BoardReplyVO boardReplyVO, Model model) { // --> ajax에서 보낸
+																										// data
+		logger.debug("[리뷰의 boardReplyVO] = " + boardReplyVO);
+
+		int ret = boardService.addReply(boardReplyVO);
+		logger.debug("[ret] = " + ret);
+
+		model.addAttribute("ret", ret);
+
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("boardReText", boardReplyVO.getBoardReText());
+		map.put("ret", ret);
+		return map;
+	}
+
+	@RequestMapping(value = "/board/boardReply/update", method = RequestMethod.POST, produces = "application/json; charset=utf8")
+	@ResponseBody // --> ajax 사용할 때 사용
+	public Map<String, Object> boardReplyUpdate(@ModelAttribute BoardReplyVO boardReplyVO, Model model) { // --> ajax에서
+																											// 보낸 data
+		logger.debug("[댓글의 boardReplyVO] = " + boardReplyVO);
+
+		int ret = boardService.updateReply(boardReplyVO);
+		logger.debug("[ret] = " + ret);
+
+		model.addAttribute("ret", ret);
+
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("boardReText", boardReplyVO.getBoardReText());
+		map.put("ret", ret);
+		return map;
+	}
+
+	@RequestMapping(value = "/board/bpardReplyRe/add", method = RequestMethod.POST, produces = "application/json; charset=utf8")
+	@ResponseBody // --> ajax 사용할 때 사용
+	public Map<String, Object> boardReplyReAdd(@ModelAttribute BoardReplyVO boardReplyVO, Model model) { // --> ajax에서
+																											// 보낸 data
+		logger.debug("[리뷰의 boardReplyVO] = " + boardReplyVO);
+
+		int ret = boardService.addReply(boardReplyVO);
+		logger.debug("[ret] = " + ret);
+
+		model.addAttribute("ret", ret);
+
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("ret", ret);
+		return map;
+	}
+
 }

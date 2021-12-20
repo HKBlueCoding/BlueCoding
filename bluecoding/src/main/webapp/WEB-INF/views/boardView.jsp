@@ -1,330 +1,654 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" isELIgnored="false"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+   pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="utf-8" />
-<meta http-equiv="x-ua-compatible" content="ie=edge" />
-<title>커뮤니티글 상세 보기</title>
-<meta name="description" content="" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="shortcut icon" type="image/x-icon"
-	href="../assets/images/favicon.svg" />
-<!-- Place favicon.ico in the root directory -->
-<!-- 1  -->
-<!-- Web Font -->
-<link
-	href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-	rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Lato&display=swap"
-	rel="stylesheet">
-<!-- ========================= CSS here ========================= -->
-<link rel="stylesheet" href="../resources/assets/css/bootstrap.min.css" />
-<link rel="stylesheet" href="../resources/assets/css/LineIcons.2.0.css" />
-<link rel="stylesheet" href="../resources/assets/css/animate.css" />
-<link rel="stylesheet" href="../resources/assets/css/tiny-slider.css" />
-<link rel="stylesheet" href="../resources/assets/css/glightbox.min.css" />
-<link rel="stylesheet" href="../resources/assets/css/main.css" />
-<!-- ============================== 글쓰기(startbootstrap-clean-blog-gh-pages) ============================== -->
-<link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-<!-- Font Awesome icons (free version)-->
-<script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"
-	crossorigin="anonymous"></script>
-<!-- Google fonts-->
-<link
-	href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic"
-	rel="stylesheet" type="text/css" />
-<link
-	href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"
-	rel="stylesheet" type="text/css" />
-<!-- Core theme CSS (includes Bootstrap)-->
-<link href="../resources/assets/css/styles.css" rel="stylesheet" />
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css"
-	rel="stylesheet" />
-	
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
-<script src="../resources/bluecoding/boardView.js"></script>
-</head>
-<body>
-	<!-- header -->
-	<jsp:include page="/WEB-INF/views/include/header.jsp" />
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<!-- =================== 글쓰기 폼 ===================== -->
-	<!-- Main Content-->
-	<form id="contactForm" data-sb-form-api-token="API_TOKEN"
-		name="frmArticle" method="post" action="update" encType="multipart/form-data">
-		<main class="mb-4">
-			<div class="container px-4 px-lg-5">
-				<div class="row gx-4 gx-lg-5 justify-content-center">
-					<div class="col-md-10 col-lg-8 col-xl-7">
-						<p id="title">커뮤니티글 상세 보기</p>
-						<hr class="my-4">
-						<input type="hidden" name="articleNO" value="${board.articleNO}" />
-						<br> <input type="hidden" name="id" value="${qna.id }" readonly>
-
-						<p id="title2">
-							<input type=text name="boardTitle" id="i_title_b1"  value="${board.boardTitle }"  disabled />
-						</p>
-
-						<div id="board">
-								<input type="hidden" name="articleNO" value="${board.articleNO}">
-								<input type="hidden" name="id" value="${board.id }" readonly>
-								<input type="hidden" name="nick" value="${board.nick }" readonly>
-								<p>작성자: ${board.nick } / 작성일: ${board.boardDate}</p>
-								<br>
-
-								<!-- ======================= 버튼 ========================== -->
-									<div class="button header-button" id="tr_btn_modify_b1"
-										style="display: none;">
-										<button type="submit" class="btn">수정반영</button>
-										<a onClick="funbtn(this.form)" class="btn">취소</a>
-									</div>
-									<div class="button header-button" id="tr_btn_b1">
-										<a onclick="fn_enable_b1(this.form)" class="btn">수정</a>
-									</div>
-									<div class="button header-button" id="tr_btn_b2">
-										<a onClick="funok('${board.articleNO}')" class="btn">삭제</a>
-									</div>
-									<div class="button header-button" id="tr_btn_b3">
-										<a href="javascript:void(0)" class="btn">신고하기</a>
-									</div>
-								</div>
-
-								<br> <br>
-								<!-- ======================= 버튼 끝 ========================== -->
-							</div>
-							<div class="my-5">
-								<!-- * * * * * * * * * * * * * * *-->
-								<!-- * * SB Forms Contact Form * *-->
-								<!-- * * * * * * * * * * * * * * *-->
-								<!-- This form is pre-integrated with SB Forms.-->
-								<!-- To make this form functional, sign up at-->
-								<!-- https://startbootstrap.com/solution/contact-forms-->
-								<!-- to get an API token!-->
-
-								<br>
-								<div class="form-floating" id="formMag" style="width: 80%"">
-									<textarea class="form-control" id="boardContent" name="boardText" placeholder="Enter your message here..."
-										style="height: 15rem;""  data-sb-validations="required" disabled>${board.boardText }</textarea>
-									<label for="message">내용</label>
-									<div class="invalid-feedback" data-sb-feedback="message:required">내용을 입력하세요.</div>
-								</div>
-								<br />
-                                <div align="center" id="tr_btn_File" style="display: none;">
-                                                         이미지 선택: <input type="file" name="uploadFile" onchange="readURL(this)" > 																		
-									<input type="hidden" name="boardImage" value="${board.boardImage}">
-								</div>
-								<br>								
-								<!-- Submit success message-->
-								<!---->
-								<!-- This is what your users will see when the form-->
-								<!-- has successfully submitted-->
-								<c:if test="${empty board.boardImage }">
-                           	       <img src="../../resources/assets/images/mainPage/board1.png" width="979" height="500" class="avatar avatar-sm me-3 border-radius-lg" alt="user1" id="preview" style="float: left">
-                                </c:if>
-                                <c:if test="${!empty board.boardImage }">
-                                   <img src="../../download?uploadFile=${board.boardImage }&inFolder=board&pk=${board.articleNO}" width="979" height="500" class="avatar avatar-sm me-3 border-radius-lg" alt="user1" id="preview" style="float: left">
-                                </c:if>
-						</div>
-					</div>
-			</div>
-		</main>
-	</form>
-
-	<!-- ====================== 리뷰(댓글) ====================== -->
-	<div class="container-fluid py-4"
-		style="height: auto; width: 100%; padding: 1px;">
-		<hr class="my-4" style="width: 100%;">
-		<div class="row">
-			<div class="col-12">
-				<div class="card my-4">
-					<div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-						<div
-							class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-							<h6 class="text-white text-capitalize ps-3">댓글</h6>
-						</div>
-					</div>
-					<div id="tbPadd" class="card-body px-0 pb-2">
-						<div class="table-responsive p-0">
-							<table class="table align-items-center mb-0">
-								<tbody>
-									<tr>
-										<td>
-											<div class="d-flex px-2 py-1">
-												<div class="d-flex flex-column justify-content-center">
-													<p class="text-xs text-secondary mb-0"
-														style="font-size: 15px;">
-														닉네임 : ${board.nick }<br> <br>
-													</p>
-													<p class="text-xs text-secondary mb-0"
-														style="font-size: 15px;"><%-- ${boardReply.boardReText} --%><br>
-														<br>
-													</p>
-													<p class="text-xs text-secondary mb-0">YYYY/MM/DD /
-														hh:mm</p>
-												</div>
-											</div>
-										</td>
-										<!-- ======================= 버튼 ========================== -->
-										<td>
-											<div align="right" style="width: 100%;">
-												<div class="button header-button">
-													<a href="javascript:void(0)" class="btn"
-														style="background-color: #30d8e0;">수정</a>
-												</div>
-												<div class="button header-button">
-													<a onClick="funok2()" class="btn"
-														style="background-color: #30d8e0;">삭제</a>
-												</div>
-												<div class="button header-button">
-													<a href="javascript:void(0)" class="btn"
-														style="background-color: #ff00eb;">신고하기</a>
-												</div>
-											</div> <!-- ======================= 버튼 끝 ========================== -->
-										</td>
-									</tr>
-									<!-- ======================= 답글 끝 ========================== -->
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<form id="contactForm" data-sb-form-api-token="API_TOKEN">
-			<br>
-			<div class="form-floating" id="formMag">
-				<textarea class="form-control" id="message"
-					placeholder="Enter your message here..."
-					style="height: 15rem; width: 66.6%;" data-sb-validations="required"></textarea>
-				<div class="invalid-feedback" data-sb-feedback="message:required">내용을
-					입력하세요.</div>
-				<br> <br> <label for="message">댓글 쓰기</label>
-			</div>
-			<!-- Submit success message-->
-			<!---->
-			<!-- This is what your users will see when the form-->
-			<!-- has successfully submitted-->
-			<div class="d-none" id="submitSuccessMessage">
-				<div class="text-center mb-3">
-					<div class="fw-bolder">Form submission successful!</div>
-					To activate this form, sign up at <br /> <a
-						href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
-				</div>
-			</div>
-			<!-- Submit error message-->
-			<!---->
-			<!-- This is what your users will see when there is-->
-			<!-- an error submitting the form-->
-			<div class="d-none" id="submitErrorMessage">
-				<div class="text-center text-danger mb-3">Error sending
-					message!</div>
-			</div>
-			<!-- ======================= 버튼 ========================== -->
-			<div align="center">
-				<div class="button header-button">
-					<a onClick="funok()" id="submitButton" class="btn">리뷰 등록</a>
-				</div>
-				<div class="button header-button">
-					<a onClick="funbtn()" class="btn">돌아가기</a>
-				</div>
-			</div>
-			<!-- ======================= 버튼 끝 ========================== -->
-		</form>
-		<br> <br>
-		<!-- ====================== 페이징 ====================== -->
-		<div class="w3-center">
-			<div class="w3-bar">
-				<a href="#" class="w3-button">«</a> <a href="#"
-					class="w3-button w3-blue">1</a> <a href="#" class="w3-button">2</a>
-				<a href="#" class="w3-button">3</a> <a href="#" class="w3-button">4</a>
-				<a href="#" class="w3-button">5</a> <a href="#" class="w3-button">»</a>
-			</div>
-		</div>
-		<!-- ====================== 페이징 끝 ====================== -->
-	</div>
-	<!-- ====================== 리뷰(댓글) 끝====================== -->
-
-	<!-- Submit error message-->
-	<!---->
-	<!-- This is what your users will see when there is-->
-	<!-- an error submitting the form-->
-	<div class="d-none" id="submitErrorMessage">
-		<div class="text-center text-danger mb-3">Error sending message!</div>
-	</div>
-	<!-- ==================== footer ====================== -->
-	<!-- footer -->
-	<jsp:include page="/WEB-INF/views/include/footer.jsp" />
-	<!-- Bootstrap core JS-->
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-	<!-- Core theme JS-->
-	<script src="../resources/assets/js/scripts.js"></script>
-
-	<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-	<!-- * *                               SB Forms JS                               * *-->
-	<!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
-	<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-	<script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-	<!-- ========================= JS here ========================= -->
-	<script src="../resources/assets/js/bootstrap.min.js"></script>
-	<script src="../resources/assets/js/wow.min.js"></script>
-	<script src="../resources/assets/js/tiny-slider.js"></script>
-	<script src="../resources/assets/js/glightbox.min.js"></script>
-	<script src="../resources/assets/js/main.js"></script>
-	<script type="text/javascript">
-		//========= Category Slider 
-		tns({
-			container : '.category-slider',
-			items : 3,
-			slideBy : 'page',
-			autoplay : false,
-			mouseDrag : true,
-			gutter : 0,
-			nav : false,
-			controls : true,
-			controlsText : [ '<i class="lni lni-chevron-left"></i>',
-					'<i class="lni lni-chevron-right"></i>' ],
-			responsive : {
-				0 : {
-					items : 1,
-				},
-				540 : {
-					items : 2,
-				},
-				768 : {
-					items : 4,
-				},
-				992 : {
-					items : 5,
-				},
-				1170 : {
-					items : 6,
-				}
-			}
-		});
-	</script>
-	<script>
- 	function readURL(input){
-		if(input.files && input.files[0]){
-			var reader = new FileReader();
-			reader.onload = function (e){
-				$('#preview').attr('src',e.target.result);
-			}
-			reader.readAsDataURL(input.files[0]);
-		}
-	}	
-	</script>	
-</body>
+   <head>
+      <meta charset="UTF-8">
+      <title>커뮤니티 상세 보기</title>
+      <!-- Web Font -->
+      <link
+         href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+         rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap"
+         rel="stylesheet">
+      <!-- ========================= ClassiGrids CSS HERE ========================= -->
+      <link rel="stylesheet" href="../../resources/assets/css/bootstrap.min.css" />
+      <link rel="stylesheet" href="../../resources/assets/css/LineIcons.2.0.css" />
+      <link rel="stylesheet" href="../../resources/assets/css/animate.css" />
+      <link rel="stylesheet" href="../../resources/assets/css/tiny-slider.css" />
+      <link rel="stylesheet" href="../../resources/assets/css/glightbox.min.css" />
+      <link rel="stylesheet" href="../../resources/assets/css/main.css" />
+      <!-- SBAdmin2 CSS START -->
+      <!-- Custom fonts for this template -->
+      <link href="../../resources/sbadmin2/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+      <link
+         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+         rel="stylesheet">
+      <!-- Custom styles for this template -->
+      <link href="../../resources/sbadmin2/css/sb-admin-2.min.css" rel="stylesheet">
+      <!-- Custom styles for this page -->
+      <link href="../../resources/sbadmin2/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+      <!-- SBAdmin2 CSS END -->
+      <!--     Fonts and icons     -->
+      <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
+      <!-- Nucleo Icons -->
+      <link href="../../resources/assets/css/nucleo-icons.css" rel="stylesheet" />
+      <link href="../../resources/assets/css/nucleo-svg.css" rel="stylesheet" />
+      <!-- Font Awesome Icons -->
+      <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+      <!-- Material Icons -->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+      <!-- CSS Files -->
+      <link id="pagestyle" href="../../resources/assets/css/material-dashboard.css?v=3.0.0" rel="stylesheet" />
+      <!-- marerial CSS END -->    	
+      <!-- ====================== 페이징 ====================== -->
+      <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+      <!-- ====================== 페이징 끝 ====================== -->
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+      <style>
+         body{
+         background-image: url(../../resources/assets/images/here/noticeBG.jpg);
+         }
+         #tbPadd{
+         padding-left: 1.5rem;
+         padding-right: 1.5rem;
+         }
+         .mod {
+         display: none;
+         }
+         .replyRe {
+         display: none;
+         }
+      </style>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>        
+   </head>
+   <body>
+      <jsp:include page="/WEB-INF/views/include/header.jsp" />
+      <br><br><br><br><br><br><br>
+      <input type="hidden" name="articleNO"  value="${boardVO.articleNO }"  id="articleNO">
+      <c:choose>
+         <c:when test="${empty boardVO }">
+            <tr>
+               <td>null입니다.</td>
+            </tr>
+         </c:when>
+         <c:when test="${!empty boardVO }">
+            <div class="container-fluid py-4" style="height:auto; width:60%;">
+               <div class="row">
+                  <div class="col-12">
+                     <!-- Main Content-->
+                     <main class="mb-4" style="width: 100%; padding: 1px;">
+                        <div style="width: 100%; padding: 1px;">
+                           <div style="width: 100%; padding: 1px;">
+                              <div style="width: 100%; padding: 1px;">
+                                 <p id="title" style="font-size: 40px;">커뮤니티 상세 보기</p>
+                                 <hr class="my-4" style="width: 70%;">
+                                 <p id="title2" style="font-size: 30px;">&nbsp;&nbsp;${boardVO.boardTitle }</p>
+                              </div>
+                           </div>
+                        </div>
+                     </main>
+                     <div class="card my-4">
+                        <div id="tbPadd" class="card-body px-0 pb-2">
+                           <div class="table-responsive p-0">
+                              <table class="table align-items-center mb-0">
+                                 <thead>
+                                    <tr>
+                                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">작성자 : ${boardVO.nick }</th>
+                                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">작성일 : ${boardVO.boardDate }</th>
+                                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">조회수 : ${boardVO.bdViewCnt }</th>
+                                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">댓글 : ${fn:length(boardReplyVO)}</th>
+                                    </tr>
+                                 </thead>
+                                 <tbody>
+                                    <tr>
+                                       <td>
+                                          <div class="d-flex px-2 py-1" style="width: 200%;" >
+                                             <div>
+                                                <c:if test="${empty boardVO.boardImage }">
+                                                   <img src="../../resources/assets/images/mainPage/board1.png" width="400" height="200" class="avatar avatar-sm me-3 border-radius-lg" alt="user1"  style="float: left">${boardVO.boardText }
+                                                </c:if>
+                                                <c:if test="${!empty boardVO.boardImage }">
+                                                   <img src="../../download?uploadFile=${boardVO.boardImage }&inFolder=board&pk=${boardVO.articleNO}" width="400" height="200" class="avatar avatar-sm me-3 border-radius-lg" alt="user1"  style="float: left">${boardVO.boardText }
+                                                </c:if>
+                                             </div>
+                                          </div>
+                                       </td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <!-- ======================= 버튼 ========================== -->
+               <div align="right" style="width: 100%;">
+                  <c:if test="${login.admin eq 'A'}">
+                     <div class="button header-button">
+                        <a href="../board/update?articleNO=${boardVO.articleNO }" class="btn">수정</a>
+                     </div>
+                     <div class="button header-button">
+                        <a onClick="funok()" class="btn">삭제</a>
+                     </div>
+                  </c:if>
+               </div>
+               <!-- ======================= 버튼 끝 ========================== -->
+            </div>
+            <!-- =========================== 댓글 =========================== -->
+            <div class="container-fluid py-4" style="height:auto; width:60%;">
+               <hr class="my-4" style="width: 100%;">
+               <div class="row">
+                  <div class="col-12">
+                     <div class="card my-4">
+                        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                           <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+                              <h6 class="text-white text-capitalize ps-3">댓글</h6>
+                           </div>
+                        </div>
+                        <c:forEach var="boardReply"  items="${boardReplyVO }"  varStatus="replyCnt">
+                           <div id="tbPadd" class="card-body px-0 pb-2">
+                              <div class="table-responsive p-0">
+                                 <table class="table align-items-center mb-0">
+                                    <tbody>
+                                       <tr>
+                                          <td>
+                                             <c:if test='${boardReply.level > 1 }'>
+                                                <div class="d-flex px-2 py-1">
+                                                   <div class="d-flex flex-column justify-content-center">
+                                                      <p class="text-xs text-secondary mb-0" style="font-size: 15px;">
+                                                         <c:forEach begin="1" end="${boardReply.level }" step="1">
+                                                            &nbsp;&nbsp;&nbsp;&nbsp;
+                                                         </c:forEach>
+                                                         ⤷작성자명 : ${boardReply.nick }(${boardReply.id }),&nbsp;&nbsp;&nbsp;&nbsp;${boardReply.boardReDate }
+                                                      </p>
+                                                      <p class="text-xs text-secondary mb-0">
+                                                         <c:forEach begin="1" end="${boardReply.level }" step="1">
+                                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                         </c:forEach>
+                                                         &nbsp;&nbsp;${boardReply.boardReText }
+                                                      </p>
+                                                   </div>
+                                                </div>
+                                             </c:if>
+                                             <c:if test="${boardReply.level == 1 }">
+                                                <div class="d-flex px-2 py-1">
+                                                   <div class="d-flex flex-column justify-content-center">
+                                                      <p class="text-xs text-secondary mb-0" style="font-size: 15px;">작성자명 : ${boardReply.nick }(${boardReply.id }),&nbsp;&nbsp;&nbsp;&nbsp;${boardReply.boardReDate }</p>
+                                                      <p class="text-xs text-secondary mb-0">${boardReply.boardReText }</p>
+                                                   </div>
+                                                </div>
+                                             </c:if>
+                                          </td>
+                                          <!-- ======================= 버튼 ========================== -->
+                                          <td>
+                                             <div align="right"  style="width: 100%;">
+                                                <!-- [로그인시] -->
+                                                <c:if test="${!empty login.id && login.id ne '' }">
+                                                   <div class="button header-button">
+                                                      <button onClick="replyReClick('${replyCnt.count}')"  id="modify" class="btn" style="background-color: #30d8e0;">답글</button>
+                                                   </div>
+                                                </c:if>
+                                                <!-- [비 로그인시]] -->
+                                                <c:if test="${empty login.id || login.id  eq '' }">
+                                                   <div class="button header-button">
+                                                      <a data-bs-toggle="modal"  data-bs-target="#login" class="btn" style="background-color: #30d8e0;">답글</a>
+                                                   </div>
+                                                </c:if>
+                                                <c:if test="${login.admin eq 'A' || login.admin eq 'C'}">
+                                                   <div class="button header-button">
+                                                      <button onClick="replyClick('${replyCnt.count}')"  id="modify" class="btn" style="background-color: #30d8e0;">수정</button>
+                                                   </div>
+                                                   <div class="button header-button">
+                                                      <a onClick="funok2()" class="btn" style="background-color: #30d8e0;">삭제</a>
+                                                   </div>
+                                                </c:if>
+                                             </div>
+                                             <!-- ======================= 버튼 끝 ========================== -->
+                                          </td>
+                                       </tr>
+                                       <!-- =========================== 댓글 끝 =========================== -->
+                                       <!-- =========================== 댓글 수정 =========================== -->
+                                       <tr class="mod" >
+                                          <c:if test='${boardReply.level == 1 }'>
+                                             <td>
+                                                <div class="form-floating" id="formMag" style="width: 607%;">
+                                                   <textarea name="boardReText" class="form-control" id="ReText${replyCnt.count }" style="height: 7rem;" data-sb-validations="required">${boardReply.boardReText }</textarea>
+                                                   <br>
+                                                   <label for="message">댓글 수정</label>
+                                                   <input type="hidden" value="${boardReply.replyNO }" id="replyNO${replyCnt.count }">
+                                                   <input type="hidden" value="${login.id }" name="id" id="id">
+                                                   <input type="hidden" value="${login.nick }" name="nick" id="nick">
+                                                   <!-- ======================= 버튼 ========================== -->
+                                                   <div align="center">
+                                                      <!-- [로그인시] -->
+                                                      <c:if test="${!empty login.id && login.id ne '' }">
+                                                         <div class="button header-button">
+                                                            <a id="modBtn" onClick="replyDone('${boardReply.replyNO}','${replyCnt.count }')" class="btn">확인</a>
+                                                         </div>
+                                                      </c:if>
+                                                      <!-- [비 로그인시]] -->
+                                                      <c:if test="${empty login.id || login.id  eq '' }">
+                                                         <div class="button header-button">
+                                                            <a data-bs-toggle="modal"  data-bs-target="#login" class="btn">확인</a>
+                                                         </div>
+                                                      </c:if>
+                                                   </div>
+                                                </div>
+                                             </td>
+                                          </c:if>
+                                          <c:if test='${boardReply.level > 1 }'>
+                                             <td>
+                                                <div class="form-floating" id="formMag" style="width: 607%;">
+                                                   <textarea name="boardReText" class="form-control" id="ReText${replyCnt.count }" style="height: 7rem;" data-sb-validations="required">${boardReply.boardReText }</textarea>
+                                                   <br>
+                                                   <label for="message">답글 수정</label>
+                                                   <input type="hidden" value="${boardReply.replyNO }" id="replyNO${replyCnt.count }">
+                                                   <input type="hidden" value="${login.id }" name="id" id="id">
+                                                   <input type="hidden" value="${login.nick }" name="nick" id="nick">
+                                                   <!-- ======================= 버튼 ========================== -->
+                                                   <div align="center">
+                                                      <!-- [로그인시] -->
+                                                      <c:if test="${!empty login.id && login.id ne '' }">
+                                                         <div class="button header-button">
+                                                            <a id="modBtn" onClick="replyReDone('${boardReply.reParentNO}','${replyCnt.count }')" class="btn">확인</a>
+                                                         </div>
+                                                      </c:if>
+                                                      <!-- [비 로그인시]] -->
+                                                      <c:if test="${empty login.id || login.id  eq '' }">
+                                                         <div class="button header-button">
+                                                            <a data-bs-toggle="modal"  data-bs-target="#login" class="btn">확인</a>
+                                                         </div>
+                                                      </c:if>
+                                                   </div>
+                                                </div>
+                                             </td>
+                                          </c:if>
+                                       </tr>
+                                       <!-- =========================== 댓글 수정 끝 =========================== -->
+                                       <!-- ========================== 답글 ========================== -->
+                                       <tr class="replyRe" >
+                                          <td>
+                                             <div class="form-floating" id="formMag" style="width: 607%;">
+                                                <textarea name="boardReText" class="form-control" id="RepReText${replyCnt.count }" style="height: 7rem;" data-sb-validations="required"></textarea>
+                                                <br>
+                                                <label for="message">답글 쓰기</label>
+                                                <input type="hidden" value="${login.id }" name="id" id="id">
+                                                <input type="hidden" value="${login.nick }" name="nick" id="nick">
+                                                <!-- ======================= 버튼 ========================== -->
+                                                <div align="center">
+                                                   <!-- [로그인시] -->
+                                                   <c:if test="${!empty login.id && login.id ne '' }">
+                                                      <div class="button header-button">
+                                                         <a id="repReBtn" onClick="replyInsert('${boardReply.replyNO}','${replyCnt.count }')" class="btn">확인</a>
+                                                      </div>
+                                                   </c:if>
+                                                   <!-- [비 로그인시]] -->
+                                                   <c:if test="${empty login.id || login.id  eq '' }">
+                                                      <div class="button header-button">
+                                                         <a data-bs-toggle="modal"  data-bs-target="#login" class="btn">확인</a>
+                                                      </div>
+                                                   </c:if>
+                                                </div>
+                                             </div>
+                                          </td>
+                                       </tr>
+                                       <!-- ========================== 답글 끝 ========================== -->
+                                    </tbody>
+                                 </table>
+                              </div>
+                           </div>
+                        </c:forEach>
+                     </div>
+                  </div>
+               </div>
+               <form id="contactForm"  data-sb-form-api-token="API_TOKEN">
+                  <br>
+                  <div class="form-floating" id="formMag">
+                     <textarea name="boardReText" class="form-control" id="boardReText" style="height: 15rem" data-sb-validations="required"></textarea>
+                     <div class="invalid-feedback" data-sb-feedback="message:required">내용을 입력하세요.</div>
+                     <br><br>
+                     <label for="message">댓글 쓰기</label>
+                     <input type="hidden" name="articleNO"  value="${boardVO.articleNO }" id="articleNO">
+                     <input type="hidden" value="${login.id }" name="id" id="id">
+                     <input type="hidden" value="${login.nick }" name="nick" id="nick">
+                  </div>
+                  <!-- Submit success message-->
+                  <!---->
+                  <!-- This is what your users will see when the form-->
+                  <!-- has successfully submitted-->
+                  <div class="d-none" id="submitSuccessMessage">
+                     <div class="text-center mb-3">
+                        <div class="fw-bolder">Form submission successful!</div>
+                        To activate this form, sign up at
+                        <br />
+                        <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
+                     </div>
+                  </div>
+                  <!-- Submit error message-->
+                  <!---->
+                  <!-- This is what your users will see when there is-->
+                  <!-- an error submitting the form-->
+                  <div class="d-none" id="submitErrorMessage">
+                     <div class="text-center text-danger mb-3">Error sending message!</div>
+                  </div>
+                  <!-- ======================= 버튼 ========================== -->
+                  <div align="center">
+                     <!-- [로그인시] -->
+                     <c:if test="${!empty login.id && login.id ne '' }">
+                        <div class="button header-button">
+                           <a id="repBtn" onClick="" class="btn">댓글 등록</a>
+                        </div>
+                     </c:if>
+                     <!-- [비 로그인시]] -->
+                     <c:if test="${empty login.id || login.id  eq '' }">
+                        <div class="button header-button">
+                           <a data-bs-toggle="modal"  data-bs-target="#login" class="btn">댓글 등록</a>
+                        </div>
+                     </c:if>
+                     <div class="button header-button">
+                        <a onClick="funbtn()" class="btn">돌아가기</a>
+                     </div>
+                  </div>
+                  <!-- ======================= 버튼 끝 ========================== -->
+               </form>
+            </div>
+         </c:when>
+      </c:choose>
+      <!-- ====================== 페이징 ====================== -->
+      <div class="w3-center">
+         <div class="w3-bar">
+            <a href="#" class="w3-button">«</a>
+            <a href="#" class="w3-button w3-blue">1</a>
+            <a href="#" class="w3-button">2</a>
+            <a href="#" class="w3-button">3</a>
+            <a href="#" class="w3-button">4</a>
+            <a href="#" class="w3-button">5</a>
+            <a href="#" class="w3-button">»</a>
+         </div>
+      </div>
+      <!-- ====================== 페이징 끝 ====================== -->
+      <br>
+      <br>
+      <jsp:include page="/WEB-INF/views/include/footer.jsp" />
+      <!-- ========================= ClassiGrids JS HERE ========================= -->
+      <script src="../../resources/assets/js/bootstrap.min.js"></script>
+      <script src="../../resources/assets/js/wow.min.js"></script>
+      <script src="../../resources/assets/js/tiny-slider.js"></script>
+      <script src="../../resources/assets/js/glightbox.min.js"></script>
+      <script src="../../resources/assets/js/main.js"></script>
+      <script type="text/javascript">
+         //========= Category Slider 
+         tns({
+         	container : '.category-slider',
+         	items : 3,
+         	slideBy : 'page',
+         	autoplay : false,
+         	mouseDrag : true,
+         	gutter : 0,
+         	nav : false,
+         	controls : true,
+         	controlsText : [ '<i class="lni lni-chevron-left"></i>',
+         			'<i class="lni lni-chevron-right"></i>' ],
+         	responsive : {
+         		0 : {
+         			items : 1,
+         		},
+         		540 : {
+         			items : 2,
+         		},
+         		768 : {
+         			items : 4,
+         		},
+         		992 : {
+         			items : 5,
+         		},
+         		1170 : {
+         			items : 6,
+         		}
+         	}
+         });
+         </div>
+         
+         
+         <div align="center"><a align="center">1</a>&nbsp;&nbsp;<a align="center">2</a>&nbsp;&nbsp;<a align="center">3</a>&nbsp;&nbsp;<a align="center">4</a>&nbsp;&nbsp;<a align="center">5</a></div>
+         <br>
+         <br>
+         <jsp:include page="/WEB-INF/views/include/footer.jsp" />
+         <!-- ========================= ClassiGrids JS HERE ========================= -->
+         <script src="../../resources/assets/js/bootstrap.min.js">
+      </script>
+      <script src="../../resources/assets/js/wow.min.js"></script>
+      <script src="../../resources/assets/js/tiny-slider.js"></script>
+      <script src="../../resources/assets/js/glightbox.min.js"></script>
+      <script src="../../resources/assets/js/main.js"></script>
+      <script type="text/javascript">
+         //========= Category Slider 
+         tns({
+         	container : '.category-slider',
+         	items : 3,
+         	slideBy : 'page',
+         	autoplay : false,
+         	mouseDrag : true,
+         	gutter : 0,
+         	nav : false,
+         	controls : true,
+         	controlsText : [ '<i class="lni lni-chevron-left"></i>',
+         			'<i class="lni lni-chevron-right"></i>' ],
+         	responsive : {
+         		0 : {
+         			items : 1,
+         		},
+         		540 : {
+         			items : 2,
+         		},
+         		768 : {
+         			items : 4,
+         		},
+         		992 : {
+         			items : 5,
+         		},
+         		1170 : {
+         			items : 6,
+         		}
+         	}
+         });
+      </script>
+      <!-- SBAdmin2 JS START -->
+      <!-- Bootstrap core JavaScript-->
+      <script src="../../resources/sbadmin2/vendor/jquery/jquery.min.js"></script>
+      <script src="../../resources/sbadmin2/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+      <!-- Core plugin JavaScript-->
+      <script src="../../resources/sbadmin2/vendor/jquery-easing/jquery.easing.min.js"></script>
+      <!-- Custom scripts for all pages-->
+      <script src="../../resources/sbadmin2/js/sb-admin-2.min.js"></script>
+      <!-- Page level plugins -->
+      <script src="../../resources/sbadmin2/vendor/datatables/jquery.dataTables.min.js"></script>
+      <script src="../../resources/sbadmin2/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+      <!-- Page level custom scripts -->
+      <script src="../../resources/sbadmin2/js/demo/datatables-demo.js"></script>
+      <!-- SBAdmin2 JS END -->
+      <!--   Core JS Files   -->
+      <script src="../../resources/assets/js/core/popper.min.js"></script>
+      <script src="../../resources/assets/js/core/bootstrap.min.js"></script>
+      <script src="../../resources/assets/js/plugins/perfect-scrollbar.min.js"></script>
+      <script src="../../resources/assets/js/plugins/smooth-scrollbar.min.js"></script>
+      <script>
+         var win = navigator.platform.indexOf('Win') > -1;
+         if (win && document.querySelector('#sidenav-scrollbar')) {
+           var options = {
+             damping: '0.5'
+           }
+           Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+         }
+      </script>
+      <!-- Github buttons -->
+      <script async defer src="https://buttons.github.io/buttons.js"></script>
+      <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+      <script src="../../resources/assets/js/material-dashboard.min.js?v=3.0.0"></script>
+      <script>
+         function funbtn() {
+           if (confirm("이전 페이지로 돌아가시겠습니까??")) {
+             javascript:history.back();
+           } else {
+           	return;
+           }
+         }
+      </script>  
+      <script>
+         function funok() {
+           if (confirm("글을 정말 삭제하시겠습니까??")) {
+            alert("정상적으로 삭제되었습니다.")
+           } else {
+           	return;
+           }
+         }
+      </script>
+      <script>
+         function funok2() {
+           if (confirm("글을 정말 삭제하시겠습니까??")) {
+            alert("정상적으로 삭제되었습니다.")
+           } else {
+           	return;
+           }
+         }
+      </script>
+      <script>
+         function funok3() {
+           if (alert("정상적으로 등록되었습니다.") == true) {
+            
+           } else {
+            alert("등록에 실패하였습니다.")
+           	   return;
+           }
+         }
+      </script>
+      <!-- ================================ 댓글 구현 ====================================== -->            
+      <script> 
+         $(document).ready(function() {
+             $('#repBtn').click(function() {
+                 $.ajax({
+                         type: 'POST',
+                         url: '/board/boardReply/add',
+                         dataType: "json",
+                         data: {"boardReText": $('#boardReText').val(), "id":$('#id').val(), "articleNO":$("#articleNO").val(),  "nick":$("#nick").val()},
+                         success: function(data) {
+                            // data.server에서 보낸 map text
+                             alert('댓글이 등록되었습니다.');
+                             $('#boardReText').val("");
+                             location.reload();
+                         }, 
+                         error: function(request,status,error) {
+                            alert('에러!! : ' + request.responseText + ":"+error);
+                         }
+                  }); //end ajax 
+             }); //end on 
+         }); 
+      </script>
+      <!-- ================================ 댓글 구현 끝====================================== -->      
+      <!-- ================================ 댓글 수정 ====================================== -->
+      <script>
+         function replyClick(replyCnt){
+          var modDisplay = document.getElementsByClassName("mod")[(replyCnt-1)].style.display;
+          if( modDisplay == "none"){
+          	document.getElementsByClassName("mod")[(replyCnt-1)].style.display = "block";
+          }else{
+         	 document.getElementsByClassName("mod")[(replyCnt-1)].style.display = "none";
+          } 
+          console.log('글번호'+mod);
+          
+         }
+         
+         function replyDone(replyNO, replyCnt){
+             $.ajax({
+                 type: 'POST',
+                 url: '/board/boardReply/update',
+                 dataType: "json",
+                 data: {"boardReText": $('#ReText'+replyCnt).val(), "id":$('#id').val(), "articleNO":$("#articleNO").val(),  "nick":$("#nick").val(), "replyNO": replyNO},
+                 success: function(data) {
+                    // data.server에서 보낸 map text
+                     alert('수정이 완료되었습니다.');
+                     $('#ReText').val("");
+                     location.reload();
+                 }, 
+                 error: function(request,status,error) {
+                    alert('에러!! : ' + request.responseText + ":"+error);
+                 }
+          	}); //end ajax
+         }
+      </script>
+      <!-- ================================ 댓글 수정 끝====================================== -->      
+      <!-- ================================ 답글 구현 ====================================== -->
+      <script>
+         function replyReClick(replyCnt){
+          var reDisplay = document.getElementsByClassName("replyRe")[(replyCnt-1)].style.display;
+          if(reDisplay == "none"){
+          	document.getElementsByClassName("replyRe")[(replyCnt-1)].style.display = "block";
+          } else{
+         	  document.getElementsByClassName("replyRe")[(replyCnt-1)].style.display = "none";
+          }
+          console.log('글번호'+replyRe);
+          
+         }
+         
+         function replyInsert(reParentNO, replyCnt){
+           	$.ajax({
+               	type: 'POST',
+               	url: '/board/bpardReplyRe/add',
+               	dataType: "json",
+               	data: {"boardReText": $('#RepReText'+replyCnt).val(), "id":$('#id').val(), "articleNO":$("#articleNO").val(),  "nick":$("#nick").val(), "reParentNO":reParentNO, "replyNO":$("#replyNO").val()},
+               	success: function(data) {
+                  	// data.server에서 보낸 map text
+                  	if(data.ret == 0){
+                  		alert('답글 등록에 실패하였습니다.');
+                  	}else{
+                       	alert('답글이 등록되었습니다.');
+                       	$('#RepReText').val("");
+                      	 location.reload();                  		
+                  	}
+                 }, 
+                 error: function(request,status,error) {
+                     alert('에러!! : ' + request.responseText + ":"+error);
+                 }
+           }); //end ajax         	 
+         }
+      </script>
+      <!-- ================================ 답글 구현 끝 ====================================== -->      
+      <!-- ================================ 답글 수정 ====================================== -->
+      <script>
+         function replyClick(replyCnt){
+          var modDisplay = document.getElementsByClassName("mod")[(replyCnt-1)].style.display;
+          if( modDisplay == "none"){
+          	document.getElementsByClassName("mod")[(replyCnt-1)].style.display = "block";
+          }else{
+         	 document.getElementsByClassName("mod")[(replyCnt-1)].style.display = "none";
+          } 
+          console.log('글번호'+mod);
+          
+         }
+         
+         function replyReDone(reParentNO, replyCnt){
+             $.ajax({
+                 type: 'POST',
+                 url: '/board/boardReply/update',
+                 dataType: "json",
+                 data: {"boardReText": $('#ReText'+replyCnt).val(), "id":$('#id').val(), "articleNO": $("#articleNO").val(),  "nick":$("#nick").val(), "replyNO":$("#replyNO"+replyCnt).val(), "reParentNO": reParentNO},
+                 success: function(data) {
+                    // data.server에서 보낸 map text
+                     alert('수정이 완료되었습니다.');
+                     $('#ReText').val("");
+                     location.reload();
+                 }, 
+                 error: function(request,status,error) {
+                    alert('에러!! : ' + request.responseText + ":"+error);
+                 }
+          	}); //end ajax
+         }
+      </script>
+      <!-- ================================ 답글 수정 끝 ====================================== -->
+   </body>
 </html>

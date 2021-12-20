@@ -50,33 +50,44 @@
       <br><br><br><br><br><br><br><br>
       <!-- =================== 글쓰기 폼 ===================== -->
       <!-- Main Content-->
-      <main class="mb-4">
-         <div class="container px-4 px-lg-5">
-            <div class="row gx-4 gx-lg-5 justify-content-center">
-               <div class="col-md-10 col-lg-8 col-xl-7">
-                  <p id="title">커뮤니티글 수정</p>
-                  <hr class="my-4">
-                  <div class="my-5">
-                     <!-- * * * * * * * * * * * * * * *-->
-                     <!-- * * SB Forms Contact Form * *-->
-                     <!-- * * * * * * * * * * * * * * *-->
-                     <!-- This form is pre-integrated with SB Forms.-->
-                     <!-- To make this form functional, sign up at-->
-                     <!-- https://startbootstrap.com/solution/contact-forms-->
-                     <!-- to get an API token!-->
-                     <form id="contactForm" data-sb-form-api-token="API_TOKEN">
+      <form id="contactForm" data-sb-form-api-token="API_TOKEN" action="update" method="post" enctype="multipart/form-data">
+         <main class="mb-4">
+            <div class="container px-4 px-lg-5">
+               <div class="row gx-4 gx-lg-5 justify-content-center">
+                  <div class="col-md-10 col-lg-8 col-xl-7">
+                     <p id="title">커뮤니티글 수정</p>
+                     <hr class="my-4">
+                     <div class="my-5">
+                        <!-- * * * * * * * * * * * * * * *-->
+                        <!-- * * SB Forms Contact Form * *-->
+                        <!-- * * * * * * * * * * * * * * *-->
+                        <!-- This form is pre-integrated with SB Forms.-->
+                        <!-- To make this form functional, sign up at-->
+                        <!-- https://startbootstrap.com/solution/contact-forms-->
+                        <!-- to get an API token!-->
                         <div class="form-floating">
-                           <input class="form-control" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
-                           <label for="name">제목</label>                          
+                           <input class="form-control" id="boardTitle" name="boardTitle" type="text" value="${boardVO.boardTitle }" data-sb-validations="required" />
+                           <label for="name">제목</label>
+                           <input type="hidden" value="${boardVO.articleNO }" name="articleNO">  
                            <div class="invalid-feedback" data-sb-feedback="name:required">제목을 입력하세요.</div>
                         </div>
                         <br>
                         <div class="form-floating" id="formMag">
-                           <textarea class="form-control" id="message" placeholder="Enter your message here..." style="height: 35rem" data-sb-validations="required"></textarea>
+                           <textarea class="form-control" id="boardText" name="boardText" style="height: 35rem" data-sb-validations="required">${boardVO.boardText }</textarea>
                            <label for="message">내용</label>
                            <div class="invalid-feedback" data-sb-feedback="message:required">내용을 입력하세요.</div>
                         </div>
                         <br />
+                              <!-- 이미지 미리보기 -->
+                              <div align="center">
+                                 <!-- 1. 기존에 이미지 이름을 저장 -->
+                               <input type="hidden" name="boardImage" value="${boardVO.boardImage }" />
+                          <!-- 2. 기존에 이미지 표시 or id를 preview로 해서 이미지 파일이 등록이되면 src를 변경함 -->
+                          <img id="preview" src="../../download?uploadFile=${boardVO.boardImage }&inFolder=board&pk=${boardVO.articleNO}" width="400" height="200" class="avatar avatar-sm me-3 border-radius-lg" alt="user1" >
+                         </div>
+                         <!-- 이미지 미리보기 끝 -->   
+                              <br>
+                              이미지 선택: <input type="file" name="uploadFile" onchange="readURL(this)" />
                         <!-- Submit success message-->
                         <!---->
                         <!-- This is what your users will see when the form-->
@@ -89,29 +100,32 @@
                               <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
                            </div>
                         </div>
-                        <!-- Submit error message-->
-                        <!---->
-                        <!-- This is what your users will see when there is-->
-                        <!-- an error submitting the form-->
                         <div class="d-none" id="submitErrorMessage">
                            <div class="text-center text-danger mb-3">Error sending message!</div>
                         </div>
-                        <!-- Submit Button-->
-                        <button class="btn btn-primary text-uppercase disabled"  id="submitButton" type="submit">이미지 선택(바꿔야 됨)</button>
                         <!-- ======================= 버튼 ========================== -->
-                        <div class="button header-button">
-                           <a onClick="funok()" class="btn">수정</a>
-                        </div>
+                        <!-- [로그인시] -->
+                        <c:if test="${!empty login.id && login.id ne '' }">
+                           <div class="button header-button">
+                              <input type="submit" class="btn" value="수정">
+                           </div>
+                        </c:if>
+                        <!-- [비 로그인시]] -->
+                        <c:if test="${empty login.id || login.id  eq '' }">
+                           <div class="button header-button">
+                              <a data-bs-toggle="modal"  data-bs-target="#login" class="btn">수정</a>
+                           </div>
+                        </c:if>
                         <div class="button header-button">
                            <a onClick="funbtn()" class="btn">돌아가기</a>
                         </div>
                         <!-- ======================= 버튼 끝 ========================== -->
-                     </form>
+                     </div>
                   </div>
                </div>
             </div>
-         </div>
-      </main>
+         </main>
+      </form>
       <!-- =================== 글쓰기 폼 끝===================== -->
       <!-- ==================== footer ====================== -->      
       <!-- footer -->
@@ -180,6 +194,16 @@
            	   return;
            }
          }
+         
+         function readURL(input){
+             if(input.files && input.files[0]){
+                var reader = new FileReader();
+                reader.onload = function (e){
+                   $('#preview').attr('src',e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+             }
+          }         
       </script>
    </body>
 </html>

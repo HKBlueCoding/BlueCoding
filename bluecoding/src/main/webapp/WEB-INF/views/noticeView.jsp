@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
@@ -100,7 +101,7 @@
                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">작성자 : ${newsVO.nick }</th>
                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">작성일 : ${newsVO.newsDate }</th>
                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">조회수 : ${newsVO.nViewCnt }</th>
-                                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">댓글 : 50건</th>
+                                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">댓글 : ${fn:length(newsReplyVO)}</th>
                                     </tr>
                                  </thead>
                                  <tbody>

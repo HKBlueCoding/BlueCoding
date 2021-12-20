@@ -12,12 +12,17 @@ import org.springframework.stereotype.Service;
 
 import com.hk.board.dao.BoardDAO;
 import com.hk.board.vo.BoardVO;
+import com.hk.boardreply.dao.BoardReplyDAO;
+import com.hk.boardreply.vo.BoardReplyVO;
 
 @Service
 public class BoardService {
 
 	@Autowired
 	BoardDAO boardDAO;
+	
+	@Autowired
+	BoardReplyDAO boardReplyDAO;
 	
 	private static final Logger logger = LoggerFactory.getLogger(BoardService.class);
 	
@@ -55,9 +60,23 @@ public class BoardService {
 		return map;
 	}
 
-	public BoardVO viewArticle(int articleNO) {
-		// TODO Auto-generated method stub
+	public BoardVO boardOne(int articleNO) {
+		
 		return boardDAO.selectArticle(articleNO);
+	}
+	
+	public Map<String, Object> viewArticle(int articleNO) {
+		// TODO Auto-generated method stub
+		
+		BoardVO boardVO = boardDAO.selectArticle(articleNO);
+		// 그 게시글의 댓글
+		List<BoardReplyVO> boardReplyVO = boardReplyDAO.listBoardReply(articleNO);
+		Map<String, Object> map = new HashMap<String, Object>();
+
+		map.put("boardVO", boardVO);
+		map.put("boardReplyVO", boardReplyVO);
+
+		return map;
 	}
 
 	public int modArticle(BoardVO boardVO) {
@@ -69,5 +88,16 @@ public class BoardService {
 		// TODO Auto-generated method stub
 		return boardDAO.deleteArticle(articleNO);
 	}
+
+	public int addReply(BoardReplyVO boardReplyVO) {
+		// TODO Auto-generated method stub
+		return boardReplyDAO.insertReply(boardReplyVO);
+	}
+
+	public int updateReply(BoardReplyVO boardReplyVO) {
+		// TODO Auto-generated method stub
+		return boardReplyDAO.replyUpdate(boardReplyVO);
+	}
+
 
 }
