@@ -1,9 +1,12 @@
 package com.hk.board.service;
 
 import java.util.HashMap;
+
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +18,8 @@ public class BoardService {
 
 	@Autowired
 	BoardDAO boardDAO;
+	
+	private static final Logger logger = LoggerFactory.getLogger(BoardService.class);
 	
 	public Map<String, Object> listArticles(Map<String, Integer> pageMap) {
 		// TODO Auto-generated method stub
@@ -37,8 +42,10 @@ public class BoardService {
 		Map<String, Object> map = new HashMap<String, Object>();
 		int ret = boardDAO.addArticle(boardVO);
 		
+		logger.debug("[service의 이미지]"+boardVO.getBoardImage());
+		
 		int articleNO = 0;
-		if(ret > 0 && boardVO.getBoardImage() != null) {
+		if(ret > 0 && boardVO.getBoardImage() != null & !boardVO.getBoardImage().equals("")) {
 			articleNO = boardDAO.selectArticleNO(boardVO);
 		}
 		
