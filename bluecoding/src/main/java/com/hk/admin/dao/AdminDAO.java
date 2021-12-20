@@ -37,4 +37,9 @@ public class AdminDAO {
 		return sqlSession.selectList("mapper.admin.selectPageBenefitList");
 	}
 
+	public List<HashMap<String, Object>> selectCoinList() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("mapper.admin.selectCoinList");
+	}
+
 }

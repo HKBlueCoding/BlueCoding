@@ -11,8 +11,7 @@ request.setCharacterEncoding("UTF-8");
 <head>
 <meta charset="utf-8" />
 <meta http-equiv="x-ua-compatible" content="ie=edge" />
-<title>ClassiGrids - Classified Ads and Listing Website
-	Template.</title>
+<title>관리자 페이지</title>
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="shortcut icon" type="image/x-icon"
@@ -164,7 +163,7 @@ request.setCharacterEncoding("UTF-8");
 									<div class="card-header p-3 pt-2">
 										<button type="button" class="btn btn-secondary"
 											style="height: auto; width: 100%;" data-bs-toggle="modal"
-											data-bs-target="#coinHistory">&nbsp;결제 내역&nbsp;</button>
+											data-bs-target="#coinHistory">&nbsp;코인 결제 내역&nbsp;</button>
 										<button type="button" class="btn btn-secondary"
 											style="height: auto; width: 100%;" onclick="monthComm()">&nbsp;이달의
 											수익&nbsp;</button>
@@ -227,12 +226,12 @@ request.setCharacterEncoding("UTF-8");
 												</tr>
 											</c:when>
 											<c:when test="${!empty bookList}">
-												<c:forEach var="bookList" items="${bookList }" begin="1"
-													end="10">
+												<c:forEach var="bookList" items="${bookList }" begin="0"
+													end="9">
 													<tbody>
 														<tr>
-															<td align="center"><span
-																class="txt_line text-xs font-weight-bold">${bookList.BOOKTITLE}</span></td>
+															<td align="center">
+															<a href="/view?bookNO=${bookList.BOOKNO }"><span class="txt_line text-xs font-weight-bold">${bookList.BOOKTITLE}</span></a></td>
 															<td align="center"><span
 																class="txt_line text-xs font-weight-bold">${bookList.NAME}</span>
 															</td>
@@ -265,12 +264,12 @@ request.setCharacterEncoding("UTF-8");
 												</tr>
 											</c:when>
 											<c:when test="${!empty pageList}">
-												<c:forEach var="pageList" items="${pageList }" begin="1"
-													end="10">
+												<c:forEach var="pageList" items="${pageList }" begin="0"
+													end="9">
 													<tbody>
 														<tr>
-															<td align="center"><span
-																class="txt_line text-xs font-weight-bold">${pageList.BOOKTITLE }</span>
+															<td align="center">
+															<a href="/page/view?pageNO=${pageList.PAGENO }"><span class="txt_line text-xs font-weight-bold">${pageList.BOOKTITLE }</span></a>
 															</td>
 															<td align="center"><span
 																class="txt_line text-xs font-weight-bold">${pageList.SERIES }회</span>
@@ -324,8 +323,8 @@ request.setCharacterEncoding("UTF-8");
 													</tr>
 												</c:when>
 												<c:when test="${!empty boardList}">
-													<c:forEach var="board" items="${boardList }" begin="1"
-														end="10">
+													<c:forEach var="board" items="${boardList }" begin="0"
+														end="9">
 														<tr>
 															<td align="center"><a
 																href="/board/view?articleNO=${board.ARTICLENO }"><span
@@ -381,14 +380,13 @@ request.setCharacterEncoding("UTF-8");
 														<td>null입니다.</td>
 													</tr>
 												</c:when>
-												<c:when test="${!empty pageBenefitList}">
-													<c:forEach var="board" items="${pageBenefitList }" begin="1"
-														end="10">
+												<c:when test="${!empty pageBenefitList }">
+													<c:forEach var="benefit" items="${pageBenefitList }" begin="0" end="9">
 														<tr>
 															<td align="center"><span
-																class="text-xs font-weight-bold">${pageBenefit.PAGEPAY }</span></td>
+																class="text-xs font-weight-bold">${benefit.PAGEPAY }</span></td>
 															<td align="center"><span
-																class="text-xs font-weight-bold">${pageBenefit.PAGEPAYDATE }</span></td>
+																class="text-xs font-weight-bold">${benefit.PAGEPAYDATE }</span></td>
 														</tr>
 													</c:forEach>
 												</c:when>
@@ -739,26 +737,26 @@ request.setCharacterEncoding("UTF-8");
 														</tr>
 													</c:when>
 													<c:when test="${!empty pageBenefitList }">
-														<c:forEach var="pageBenefit" items="${pageBenefitList }">
+														<c:forEach var="benefit" items="${pageBenefitList }">
 															<tr>
 																<td>
 																	<div class="d-flex px-2 py-1">
 																		<div class="d-flex flex-column justify-content-center">
-																			<span class="text-secondary text-xs font-weight-bold">${pageBenefit.PAGEPAY }</span>
+																			<span class="text-secondary text-xs font-weight-bold">${benefit.PAGEPAY }</span>
 																		</div>
 																	</div>
 																</td>
 																<td class="align-middle"><span
-																	class="text-secondary text-xs font-weight-bold">${pageBenefit.ID }</span>
+																	class="text-secondary text-xs font-weight-bold">${benefit.ID }</span>
 																</td>
 																<td class="align-middle text-center text-sm"><span
-																	class="text-secondary text-xs font-weight-bold">${pageBenefit.BOOKTITLE }</span>
+																	class="text-secondary text-xs font-weight-bold">${benefit.BOOKTITLE }</span>
 																</td>
 																<td class="align-middle text-center text-sm"><span
-																	class="text-secondary text-xs font-weight-bold">${pageBenefit.SERIES }화
-																		: ${pageBenefit.PAGETITLE }</span></td>
+																	class="text-secondary text-xs font-weight-bold">${benefit.SERIES }화
+																		: ${benefit.PAGETITLE }</span></td>
 																<td class="align-middle text-center"><span
-																	class="text-secondary text-xs font-weight-bold">${pageBenefit.PAGEPAYDATE }</span>
+																	class="text-secondary text-xs font-weight-bold">${benefit.PAGEPAYDATE }</span>
 																</td>
 															</tr>
 														</c:forEach>
@@ -837,7 +835,7 @@ request.setCharacterEncoding("UTF-8");
 			<div class="modal-content">
 				<!-- Modal Header -->
 				<div class="modal-header">
-					<h4 class="modal-title">결제 내역</h4>
+					<h4 class="modal-title">코인 결제 내역</h4>
 					<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
 				</div>
 				<!-- Modal body -->
@@ -849,7 +847,7 @@ request.setCharacterEncoding("UTF-8");
 									class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
 									<div
 										class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-										<h6 class="text-white text-capitalize ps-3">결제 내역</h6>
+										<h6 class="text-white text-capitalize ps-3">코인 결제 내역</h6>
 									</div>
 								</div>
 								<div id="tbPadd" class="card-body px-0 pb-2">
@@ -857,46 +855,42 @@ request.setCharacterEncoding("UTF-8");
 										<table class="table align-items-center mb-0">
 											<thead>
 												<tr>
-													<th
-														class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">&nbsp;&nbsp;처리
-														결과</th>
-													<th
-														class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">결제된
-														코인</th>
-													<th
-														class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">결제일</th>
-													<th
-														class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">아이디</th>
-													<th
-														class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">환불</th>
+													<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">&nbsp;&nbsp;충전 방법</th>
+													<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">결제된 코인</th>
+													<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">결제일</th>
+													<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">아이디</th>
 												</tr>
 											</thead>
 											<tbody>
+											<c:choose>
+												<c:when test="${empty coinList }">
+													<tr>
+														<td>null입니다.</td>
+													</tr>
+												</c:when>
+												<c:when test="${!empty coinList }">
+													<c:forEach var="coin" items="${coinList }">
 												<tr>
 													<td class="align-middle text-center">
 														<div>
 															<div class="d-flex flex-column justify-content-center">
-																<span class="text-secondary text-xs font-weight-bold">카드
-																	or 이벤트 or 환불</span>
+																<span class="text-secondary text-xs font-weight-bold">${coin.COINMETHOD}</span>
 															</div>
 														</div>
 													</td>
-													<td class="align-middle text-center"><span
-														class="text-secondary text-xs font-weight-bold">-200코인</span>
-													</td>
-													<td class="align-middle text-center"><span
-														class="text-secondary text-xs font-weight-bold">21/12/10</span>
-													</td>
-													<td class="align-middle text-center"><span
-														class="text-secondary text-xs font-weight-bold">qwer123</span>
+													<td class="align-middle text-center">
+														<span class="text-secondary text-xs font-weight-bold">${coin.RECHARGECOIN }</span>
 													</td>
 													<td class="align-middle text-center">
-														<div class="button header-button">
-															<a href="javascript:void(0)" class="btn"
-																style="background-color: #ab0dd7">청약철회</a>
-														</div>
+														<span class="text-secondary text-xs font-weight-bold">${coin.COINDATE }</span>
+													</td>
+													<td class="align-middle text-center">
+														<span class="text-secondary text-xs font-weight-bold">${coin.ID }</span>
 													</td>
 												</tr>
+												</c:forEach>
+												</c:when>
+											</c:choose>
 											</tbody>
 										</table>
 									</div>

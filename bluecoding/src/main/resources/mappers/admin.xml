@@ -53,6 +53,11 @@
 		ORDER BY PAGEPAYDATE DESC
 	</select>
 	
+	<select id="selectCoinList" resultType="hashMap">
+		SELECT COINMETHOD, RECHARGECOIN, COINDATE, ID
+		FROM B_COINHISTORY BC
+		ORDER BY COINDATE DESC	
+	</select>
 
 
 </mapper>

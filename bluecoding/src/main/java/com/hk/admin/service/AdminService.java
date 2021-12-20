@@ -35,5 +35,10 @@ public class AdminService {
 		return adminDAO.selectPageBenefitList();
 	}
 
+	public List<HashMap<String, Object>> selectCoinList() {
+		// TODO Auto-generated method stub
+		return adminDAO.selectCoinList();
+	}
+
 
 }

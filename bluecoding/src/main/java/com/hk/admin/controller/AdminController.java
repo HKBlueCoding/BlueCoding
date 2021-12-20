@@ -30,17 +30,20 @@ public class AdminController {
 	   List<HashMap<String, Object>> pageList = adminService.selectDeletePage();
 	   List<HashMap<String, Object>> boardList = adminService.selectDeleteBoard();
 	   List<HashMap<String, Object>> pageBenefitList = adminService.selectPageBenefitList();
+	   List<HashMap<String, Object>> coinList = adminService.selectCoinList();
 	   
 	   model.addAttribute("bookList", bookList);
 	   model.addAttribute("pageList", pageList);
 	   model.addAttribute("boardList",boardList);
 	   model.addAttribute("pageBenefitList", pageBenefitList);
+	   model.addAttribute("coinList", coinList);
 	   
 	   
 	   logger.debug("[bookList] = " + bookList);
 	   logger.debug("[pageList] = " + pageList);
 	   logger.debug("[boardList] = " + boardList);
 	   logger.debug("[pageBenefitList] = " + pageBenefitList);
+	   logger.debug("[coinList] = " + coinList);
       
 	   return "admin";
 	}
