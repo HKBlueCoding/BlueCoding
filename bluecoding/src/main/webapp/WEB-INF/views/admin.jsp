@@ -158,7 +158,7 @@ request.setCharacterEncoding("UTF-8");
 								</div>
 							</div>
 							<!-- *결제내역*
-        	 *이달의 수익* -->
+                           *이달의 수익* -->
 							<div class="col-xl-3 col-sm-6">
 								<div class="card">
 									<div class="card-header p-3 pt-2">
@@ -220,7 +220,6 @@ request.setCharacterEncoding("UTF-8");
 													class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">저자</th>
 											</tr>
 										</thead>
-
 										<c:choose>
 											<c:when test="${empty bookList }">
 												<tr>
@@ -228,7 +227,8 @@ request.setCharacterEncoding("UTF-8");
 												</tr>
 											</c:when>
 											<c:when test="${!empty bookList}">
-												<c:forEach var="bookList" items="${bookList }">
+												<c:forEach var="bookList" items="${bookList }" begin="1"
+													end="10">
 													<tbody>
 														<tr>
 															<td align="center"><span
@@ -250,9 +250,12 @@ request.setCharacterEncoding("UTF-8");
 									<table class="table align-items-center mb-0">
 										<thead>
 											<tr>
-												<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">책이름</th>
-												<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">회차</th>
-												<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">회차제목</th>
+												<th
+													class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">책이름</th>
+												<th
+													class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">회차</th>
+												<th
+													class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">회차제목</th>
 											</tr>
 										</thead>
 										<c:choose>
@@ -262,17 +265,18 @@ request.setCharacterEncoding("UTF-8");
 												</tr>
 											</c:when>
 											<c:when test="${!empty pageList}">
-												<c:forEach var="pageList" items="${pageList }">
+												<c:forEach var="pageList" items="${pageList }" begin="1"
+													end="10">
 													<tbody>
 														<tr>
-															<td align="center">
-															<span class="txt_line text-xs font-weight-bold">${pageList.BOOKTITLE }</span>
+															<td align="center"><span
+																class="txt_line text-xs font-weight-bold">${pageList.BOOKTITLE }</span>
 															</td>
-															<td align="center">
-															<span class="txt_line text-xs font-weight-bold">${pageList.SERIES }회</span>
+															<td align="center"><span
+																class="txt_line text-xs font-weight-bold">${pageList.SERIES }회</span>
 															</td>
-															<td align="center">
-															<span class="txt_line text-xs font-weight-bold">${pageList.PAGETITLE }</span>
+															<td align="center"><span
+																class="txt_line text-xs font-weight-bold">${pageList.PAGETITLE }</span>
 															</td>
 													</tbody>
 												</c:forEach>
@@ -320,13 +324,16 @@ request.setCharacterEncoding("UTF-8");
 													</tr>
 												</c:when>
 												<c:when test="${!empty boardList}">
-													<c:forEach var="boardList" items="${boardList }">
+													<c:forEach var="board" items="${boardList }" begin="1"
+														end="10">
 														<tr>
-															<td align="center"><span
-																class="txt_line text-xs font-weight-bold">${boardList.BOARDTITLE}</span>
+															<td align="center"><a
+																href="/board/view?articleNO=${board.ARTICLENO }"><span
+																	class="txt_line text-xs font-weight-bold">${board.BOARDTITLE}</span></a>
+
 															</td>
 															<td align="center"><span
-																class="txt_line text-xs font-weight-bold">${boardList.ID}</span>
+																class="txt_line text-xs font-weight-bold">${board.ID}</span>
 															</td>
 														</tr>
 													</c:forEach>
@@ -346,7 +353,7 @@ request.setCharacterEncoding("UTF-8");
 							<div class="card-header pb-0">
 								<div class="row">
 									<div class="col-lg-6 col-7">
-										<h6>수수료 내역</h6>
+										<h6>페이지 구매 내역</h6>
 										<br>
 									</div>
 									<div class="col-lg-6 col-4 my-auto text-end">
@@ -368,18 +375,24 @@ request.setCharacterEncoding("UTF-8");
 											</tr>
 										</thead>
 										<tbody>
-											<tr>
-												<td align="center"><span
-													class="text-xs font-weight-bold">-300</span></td>
-												<td align="center"><span
-													class="text-xs font-weight-bold">2021-05-19</span></td>
-											</tr>
-											<tr align="center">
-												<td class="align-middle text-center text-sm"><span
-													class="text-xs font-weight-bold">+300</span></td>
-												<td class="align-middle text-center text-sm"><span
-													class="text-xs font-weight-bold">2021-03-12</span></td>
-											</tr>
+											<c:choose>
+												<c:when test="${empty pageBenefitList }">
+													<tr>
+														<td>null입니다.</td>
+													</tr>
+												</c:when>
+												<c:when test="${!empty pageBenefitList}">
+													<c:forEach var="board" items="${pageBenefitList }" begin="1"
+														end="10">
+														<tr>
+															<td align="center"><span
+																class="text-xs font-weight-bold">${pageBenefit.PAGEPAY }</span></td>
+															<td align="center"><span
+																class="text-xs font-weight-bold">${pageBenefit.PAGEPAYDATE }</span></td>
+														</tr>
+													</c:forEach>
+												</c:when>
+											</c:choose>
 										</tbody>
 									</table>
 								</div>
@@ -393,7 +406,6 @@ request.setCharacterEncoding("UTF-8");
 		</div>
 	</section>
 	<!-- css modal -->
-
 	<!-- [삭제된 책 정보&회차 Modal] -->
 	<!-- The Modal -->
 	<div class="modal" id="bookDel">
@@ -430,7 +442,7 @@ request.setCharacterEncoding("UTF-8");
 													<tr>
 														<th
 															class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">&nbsp;&nbsp;작성한
-															글</th>
+															책</th>
 														<th
 															class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">작성자</th>
 														<th
@@ -440,90 +452,47 @@ request.setCharacterEncoding("UTF-8");
 													</tr>
 												</thead>
 												<tbody>
-													<tr>
-														<td>
-															<div class="d-flex px-2 py-1">
-																<div>
-																	<img
-																		src="../resources/assets/images/mainPage/board1.png"
-																		width="100" height="70"
-																		class="avatar avatar-sm me-3 border-radius-lg"
-																		alt="user1">
-																</div>
-																<div class="d-flex flex-column justify-content-center">
-																	<a href="add" class="mb-0 text-sm" style="color: black">제목입니다[0]</a>
-																	<p class="text-xs text-secondary mb-0">장르</p>
-																	<p class="text-xs text-secondary mb-0">댓글(개수)</p>
-																</div>
-															</div>
-														</td>
-														<td class="align-middle"><span
-															class="text-secondary text-xs font-weight-bold">이름</span>
-														</td>
-														<td class="align-middle text-center text-sm"><span
-															class="badge badge-sm bg-gradient-success"
-															style="background-image: linear-gradient(180deg, #419cef 10%, #106ec3 100%);">100</span>
-														</td>
-														<td class="align-middle text-center"><span
-															class="text-secondary text-xs font-weight-bold">23/04/18</span>
-														</td>
-													</tr>
-													<tr>
-														<td>
-															<div class="d-flex px-2 py-1">
-																<div>
-																	<img
-																		src="../resources/assets/images/mainPage/board1.png"
-																		width="100" height="70"
-																		class="avatar avatar-sm me-3 border-radius-lg"
-																		alt="user1">
-																</div>
-																<div class="d-flex flex-column justify-content-center">
-																	<a href="add" class="mb-0 text-sm" style="color: black">제목입니다[0]</a>
-																	<p class="text-xs text-secondary mb-0">장르</p>
-																	<p class="text-xs text-secondary mb-0">댓글(개수)</p>
-																</div>
-															</div>
-														</td>
-														<td class="align-middle"><span
-															class="text-secondary text-xs font-weight-bold">이름</span>
-														</td>
-														<td class="align-middle text-center text-sm"><span
-															class="badge badge-sm bg-gradient-success"
-															style="background-image: linear-gradient(180deg, #419cef 10%, #106ec3 100%);">100</span>
-														</td>
-														<td class="align-middle text-center"><span
-															class="text-secondary text-xs font-weight-bold">23/04/18</span>
-														</td>
-													</tr>
-													<tr>
-														<td>
-															<div class="d-flex px-2 py-1">
-																<div>
-																	<img
-																		src="../resources/assets/images/mainPage/board1.png"
-																		width="100" height="70"
-																		class="avatar avatar-sm me-3 border-radius-lg"
-																		alt="user1">
-																</div>
-																<div class="d-flex flex-column justify-content-center">
-																	<a href="add" class="mb-0 text-sm" style="color: black">제목입니다[0]</a>
-																	<p class="text-xs text-secondary mb-0">장르</p>
-																	<p class="text-xs text-secondary mb-0">댓글(개수)</p>
-																</div>
-															</div>
-														</td>
-														<td class="align-middle"><span
-															class="text-secondary text-xs font-weight-bold">이름</span>
-														</td>
-														<td class="align-middle text-center text-sm"><span
-															class="badge badge-sm bg-gradient-success"
-															style="background-image: linear-gradient(180deg, #419cef 10%, #106ec3 100%);">100</span>
-														</td>
-														<td class="align-middle text-center"><span
-															class="text-secondary text-xs font-weight-bold">23/04/18</span>
-														</td>
-													</tr>
+													<c:choose>
+														<c:when test="${empty bookList }">
+															<tr>
+																<td>null입니다.</td>
+															</tr>
+														</c:when>
+														<c:when test="${!empty bookList }">
+															<c:forEach var="book" items="${bookList }">
+																<tr>
+																	<td>
+																		<div class="d-flex px-2 py-1">
+																			<div>
+																				<img
+																					src="../resources/assets/images/mainPage/board1.png"
+																					width="100" height="70"
+																					class="avatar avatar-sm me-3 border-radius-lg"
+																					alt="user1">
+																			</div>
+																			<div
+																				class="d-flex flex-column justify-content-center">
+																				<a href="/view?bookNO=${book.BOOKNO }"
+																					class="mb-0 text-sm" style="color: black">${book.BOOKTITLE }</a>
+																				<p class="text-xs text-secondary mb-0">장르</p>
+																				<p class="text-xs text-secondary mb-0">댓글(개수)</p>
+																			</div>
+																		</div>
+																	</td>
+																	<td class="align-middle"><span
+																		class="text-secondary text-xs font-weight-bold">${book.NAME }</span>
+																	</td>
+																	<td class="align-middle text-center text-sm"><span
+																		class="badge badge-sm bg-gradient-success"
+																		style="background-image: linear-gradient(180deg, #419cef 10%, #106ec3 100%);">${book.BVIEWCNT }</span>
+																	</td>
+																	<td class="align-middle text-center"><span
+																		class="text-secondary text-xs font-weight-bold">${book.BOOKDATE }</span>
+																	</td>
+																</tr>
+															</c:forEach>
+														</c:when>
+													</c:choose>
 												</tbody>
 											</table>
 										</div>
@@ -566,40 +535,32 @@ request.setCharacterEncoding("UTF-8");
 														<th
 															class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">회차</th>
 														<th
-															class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">아이디</th>
-														<th
 															class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">작성일</th>
 													</tr>
 												</thead>
 												<tbody>
-													<tr>
-														<td class="align-middle text-center text-sm"><span
-															class="text-secondary text-xs font-weight-bold">마법천자문</span>
-														</td>
-														<td class="align-middle text-center text-sm"><span
-															class="text-secondary text-xs font-weight-bold">3회
-																비춰라 빛 광(光)</span></td>
-														<td class="align-middle text-center text-sm"><span
-															class="text-secondary text-xs font-weight-bold">도굴꾼</span>
-														</td>
-														<td class="align-middle text-center"><span
-															class="text-secondary text-xs font-weight-bold">2021-11-05</span>
-														</td>
-													</tr>
-													<tr>
-														<td class="align-middle text-center text-sm"><span
-															class="text-secondary text-xs font-weight-bold">이상한
-																나라의 엘리스</span></td>
-														<td class="align-middle text-center text-sm"><span
-															class="text-secondary text-xs font-weight-bold">3회
-																모자장수</span></td>
-														<td class="align-middle text-center text-sm"><span
-															class="text-secondary text-xs font-weight-bold">루이스
-																캐럴</span></td>
-														<td class="align-middle text-center"><span
-															class="text-secondary text-xs font-weight-bold">1903-11-1</span>
-														</td>
-													</tr>
+													<c:choose>
+														<c:when test="${empty pageList }">
+															<tr>
+																<td>null입니다.</td>
+															</tr>
+														</c:when>
+														<c:when test="${!empty pageList }">
+															<c:forEach var="page" items="${pageList }">
+																<tr>
+																	<td class="align-middle text-center text-sm"><span
+																		class="text-secondary text-xs font-weight-bold">${page.BOOKTITLE }</span>
+																	</td>
+																	<td class="align-middle text-center text-sm"><span
+																		class="text-secondary text-xs font-weight-bold">${page.PAGENO }회
+																			: ${page.PAGETITLE }</span></td>
+																	<td class="align-middle text-center"><span
+																		class="text-secondary text-xs font-weight-bold">${page.PAGEDATE }</span>
+																	</td>
+																</tr>
+															</c:forEach>
+														</c:when>
+													</c:choose>
 												</tbody>
 											</table>
 										</div>
@@ -665,33 +626,45 @@ request.setCharacterEncoding("UTF-8");
 												</tr>
 											</thead>
 											<tbody>
-												<tr>
-													<td>
-														<div class="d-flex px-2 py-1">
-															<div>
-																<img
-																	src="../resources/assets/images/mainPage/board1.png"
-																	width="100" height="70"
-																	class="avatar avatar-sm me-3 border-radius-lg"
-																	alt="user1">
-															</div>
-															<div class="d-flex flex-column justify-content-center">
-																<a href="add" class="mb-0 text-sm" style="color: black">제목입니다[0]</a>
-																<p class="text-xs text-secondary mb-0">댓글(개수)</p>
-															</div>
-														</div>
-													</td>
-													<td class="align-middle"><span
-														class="text-secondary text-xs font-weight-bold">이름</span>
-													</td>
-													<td class="align-middle text-center text-sm"><span
-														class="badge badge-sm bg-gradient-success"
-														style="background-image: linear-gradient(180deg, #419cef 10%, #106ec3 100%);">100</span>
-													</td>
-													<td class="align-middle text-center"><span
-														class="text-secondary text-xs font-weight-bold">23/04/18</span>
-													</td>
-												</tr>
+												<c:choose>
+													<c:when test="${empty boardList }">
+														<tr>
+															<td>null입니다.</td>
+														</tr>
+													</c:when>
+													<c:when test="${!empty boardList }">
+														<c:forEach var="board" items="${boardList }">
+															<tr>
+																<td>
+																	<div class="d-flex px-2 py-1">
+																		<div>
+																			<img
+																				src="../resources/assets/images/mainPage/board1.png"
+																				width="100" height="70"
+																				class="avatar avatar-sm me-3 border-radius-lg"
+																				alt="user1">
+																		</div>
+																		<div class="d-flex flex-column justify-content-center">
+																			<a href="/board/view?articleNO=${board.ARTICLENO }"
+																				class="mb-0 text-sm" style="color: black">${board.BOARDTITLE }</a>
+																			<p class="text-xs text-secondary mb-0">댓글(개수)</p>
+																		</div>
+																	</div>
+																</td>
+																<td class="align-middle"><span
+																	class="text-secondary text-xs font-weight-bold">${board.ID }</span>
+																</td>
+																<td class="align-middle text-center text-sm"><span
+																	class="badge badge-sm bg-gradient-success"
+																	style="background-image: linear-gradient(180deg, #419cef 10%, #106ec3 100%);">${board.BDVIEWCNT }</span>
+																</td>
+																<td class="align-middle text-center"><span
+																	class="text-secondary text-xs font-weight-bold">${board.BOARDDATE }</span>
+																</td>
+															</tr>
+														</c:forEach>
+													</c:when>
+												</c:choose>
 											</tbody>
 										</table>
 									</div>
@@ -752,29 +725,45 @@ request.setCharacterEncoding("UTF-8");
 														class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">책
 														이름</th>
 													<th
-														class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">처리
-														시간</th>
+														class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">책
+														회차</th>
+													<th
+														class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">처리시간</th>
 												</tr>
 											</thead>
 											<tbody>
-												<tr>
-													<td>
-														<div class="d-flex px-2 py-1">
-															<div class="d-flex flex-column justify-content-center">
-																<span class="text-secondary text-xs font-weight-bold">-300</span>
-															</div>
-														</div>
-													</td>
-													<td class="align-middle"><span
-														class="text-secondary text-xs font-weight-bold">이름</span>
-													</td>
-													<td class="align-middle text-center text-sm"><span
-														class="text-secondary text-xs font-weight-bold">도굴꾼</span>
-													</td>
-													<td class="align-middle text-center"><span
-														class="text-secondary text-xs font-weight-bold">2021-11-05</span>
-													</td>
-												</tr>
+												<c:choose>
+													<c:when test="${empty pageBenefitList }">
+														<tr>
+															<td>null입니다.</td>
+														</tr>
+													</c:when>
+													<c:when test="${!empty pageBenefitList }">
+														<c:forEach var="pageBenefit" items="${pageBenefitList }">
+															<tr>
+																<td>
+																	<div class="d-flex px-2 py-1">
+																		<div class="d-flex flex-column justify-content-center">
+																			<span class="text-secondary text-xs font-weight-bold">${pageBenefit.PAGEPAY }</span>
+																		</div>
+																	</div>
+																</td>
+																<td class="align-middle"><span
+																	class="text-secondary text-xs font-weight-bold">${pageBenefit.ID }</span>
+																</td>
+																<td class="align-middle text-center text-sm"><span
+																	class="text-secondary text-xs font-weight-bold">${pageBenefit.BOOKTITLE }</span>
+																</td>
+																<td class="align-middle text-center text-sm"><span
+																	class="text-secondary text-xs font-weight-bold">${pageBenefit.SERIES }화
+																		: ${pageBenefit.PAGETITLE }</span></td>
+																<td class="align-middle text-center"><span
+																	class="text-secondary text-xs font-weight-bold">${pageBenefit.PAGEPAYDATE }</span>
+																</td>
+															</tr>
+														</c:forEach>
+													</c:when>
+												</c:choose>
 											</tbody>
 										</table>
 									</div>
@@ -941,7 +930,6 @@ request.setCharacterEncoding("UTF-8");
 		</div>
 	</div>
 	<!-- [결제 내역 by Modal 끝] -->
-
 	<!-- [제재된 아이디 조회 by Model] -->
 	<!-- The Modal -->
 	<div class="modal" id="reportSelect">
@@ -991,7 +979,6 @@ request.setCharacterEncoding("UTF-8");
 		</div>
 	</div>
 	<!-- [제재된 아이디 조회 by Model 끝] -->
-
 	<!-- css modal -->
 	<jsp:include page="/WEB-INF/views/include/footer.jsp" />
 	<!-- ========================= JS here ========================= -->
