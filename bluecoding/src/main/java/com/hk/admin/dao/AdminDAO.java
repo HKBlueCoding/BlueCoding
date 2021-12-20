@@ -32,4 +32,9 @@ public class AdminDAO {
 		return sqlSession.selectList("mapper.admin.selectDeleteBoard");
 	}
 
+	public List<HashMap<String, Object>> selectPageBenefitList() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("mapper.admin.selectPageBenefitList");
+	}
+
 }

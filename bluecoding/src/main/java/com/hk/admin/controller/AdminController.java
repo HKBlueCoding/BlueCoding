@@ -29,15 +29,18 @@ public class AdminController {
 	   List<HashMap<String, Object>> bookList = adminService.selectDeleteBook();
 	   List<HashMap<String, Object>> pageList = adminService.selectDeletePage();
 	   List<HashMap<String, Object>> boardList = adminService.selectDeleteBoard();
+	   List<HashMap<String, Object>> pageBenefitList = adminService.selectPageBenefitList();
 	   
 	   model.addAttribute("bookList", bookList);
 	   model.addAttribute("pageList", pageList);
 	   model.addAttribute("boardList",boardList);
+	   model.addAttribute("pageBenefitList", pageBenefitList);
 	   
 	   
 	   logger.debug("[bookList] = " + bookList);
 	   logger.debug("[pageList] = " + pageList);
 	   logger.debug("[boardList] = " + boardList);
+	   logger.debug("[pageBenefitList] = " + pageBenefitList);
       
 	   return "admin";
 	}

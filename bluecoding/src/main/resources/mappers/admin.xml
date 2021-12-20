@@ -7,25 +7,52 @@
 
 	<select id="selectDeleteBook" resultType="hashMap">
 	 <![CDATA[
-		SELECT BOOKTITLE AS BOOKTITLE
-		,NAME AS NAME
-		FROM B_BOOK
+	 SELECT bb.BOOKNO AS BOOKNO
+	 , bb.BOOKTITLE AS BOOKTITLE
+	 , bb.NAME AS NAME
+	 , bb.BVIEWCNT AS BVIEWCNT
+	 , bb.BOOKDATE AS BOOKDATE
+		FROM B_BOOK bb 
 		WHERE BOOKDELETE = 'Y'
+		ORDER BY BOOKNO DESC
 		]]>
 	</select>
 
 	<select id="selectDeletePage" resultType="hashMap">
-		SELECT bb.BOOKTITLE, bp.PAGENO, bp.PAGETITLE
+	SELECT bb.BOOKTITLE AS BOOKTITLE
+	, bp.PAGENO AS PAGENO
+	, bp.PAGETITLE AS PAGETITLE
+	, bp.PAGEDATE AS PAGEDATE
 		FROM B_BOOK bb, B_PAGE bp
 		WHERE bb.BOOKNO = bp.BOOKNO
 		AND bp.PAGEDELETE = 'Y'
+		ORDER BY PAGEDATE DESC
 	</select>
 
 	<select id="selectDeleteBoard" resultType="hashMap">
-		SELECT BOARDTITLE
-		,ID
+		SELECT bb.ARTICLENO AS ARTICLENO
+		, bb.BOARDTITLE AS BOARDTITLE
+		, bb.ID AS ID
+		, bb.BDVIEWCNT AS BDVIEWCNT
+		, bb.BOARDDATE AS BOARDDATE
 		FROM B_BOARD bb
 		WHERE BOARDDELETE = 'Y'
+		ORDER BY ARTICLENO DESC
 	</select>
+	
+		<select id="selectPageBenefitList" resultType="hashMap">
+		SELECT bb.BOOKTITLE AS BOOKTITLE
+		, bp.SERIES AS SERIES
+		, bp.PAGETITLE AS PAGETITLE
+		, bp2.PAGEPAY AS PAGEPAY
+		, bp2.ID AS ID
+		, bp2.PAGEPAYDATE AS PAGEPAYDATE
+		FROM B_BOOK bb, B_PAGE bp, B_PAGEBUY bp2
+		WHERE bb.BOOKNO = bp.BOOKNO
+		AND bp.PAGENO =bp2.PAGENO
+		ORDER BY PAGEPAYDATE DESC
+	</select>
+	
+
 
 </mapper>

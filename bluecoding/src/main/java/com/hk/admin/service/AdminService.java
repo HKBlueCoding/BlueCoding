@@ -30,5 +30,10 @@ public class AdminService {
 		return adminDAO.selectDeleteBoard();
 	}
 
+	public List<HashMap<String, Object>> selectPageBenefitList() {
+		// TODO Auto-generated method stub
+		return adminDAO.selectPageBenefitList();
+	}
+
 
 }
