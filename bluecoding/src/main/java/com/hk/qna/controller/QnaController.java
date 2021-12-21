@@ -58,6 +58,7 @@ public class QnaController {
 
       List<QnaVO> qnaList = qnaService.listQna(id);
       model.addAttribute("qnaList", qnaList);
+      model.addAttribute("id",id);
       return "qnaHome";
    }
 

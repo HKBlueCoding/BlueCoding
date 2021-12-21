@@ -110,6 +110,7 @@
 									<p>작성자: ${qna.id } / 작성일: ${qna.qnaDate}</p>
 									<br>
 									<!-- ======================= 버튼 ========================== -->
+								   <c:if test="${login.id == qna.id }">
 									<div class="button header-button" id="tr_btn_modify"
 										style="display: none;">
 										<button type="submit" class="btn">수정반영</button>
@@ -119,10 +120,12 @@
 									<div class="button header-button" id="tr_btn_one">
 										<a onclick="fn_enable(this.form)" class="btn">수정</a>
 									</div>
-									
-									<div class="button header-button" id="tr_btn_two">
-										<a href="" class="btn">신고하기</a>
-									</div>
+								   </c:if>
+								   <c:if test="${login.admin eq 'A' || login.admin eq 'Q' }">
+								    <div class="button header-button" id="tr_btn_one">
+								   		<a onclick="fn_enable(this.form)" class="btn">답변하기</a>
+								   	</div>	
+								   </c:if>
 								</div>
 
 								<br> <br>

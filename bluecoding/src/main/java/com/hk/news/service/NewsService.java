@@ -13,6 +13,7 @@ import com.hk.news.dao.NewsDAO;
 import com.hk.news.vo.NewsVO;
 import com.hk.newsreply.dao.NewsReplyDAO;
 import com.hk.newsreply.vo.NewsReplyVO;
+import com.hk.user.vo.UserVO;
 
 @Service
 public class NewsService {
@@ -50,7 +51,7 @@ public class NewsService {
 		List<NewsVO> noticeList = newsDAO.listNoticeNews(pageMap);
 		
 		int totNoticeNO = newsDAO.selectTotNotice();
-		
+	
 		map.put("noticeList", noticeList);
 		map.put("totNoticeNO",totNoticeNO);
 		

@@ -1,10 +1,11 @@
 package com.hk.news.controller;
 
 import java.io.File;
-
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,6 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.hk.news.service.NewsService;
 import com.hk.news.vo.NewsVO;
 import com.hk.newsreply.vo.NewsReplyVO;
+import com.hk.user.vo.UserVO;
 
 @Controller
 public class NewsController {
@@ -89,7 +91,7 @@ public class NewsController {
    @RequestMapping(value = "/news/notice", method = RequestMethod.GET)
    public String notice(@RequestParam(value="section", required=false, defaultValue = "1")Integer section, 
 		   				@RequestParam(value="pageNum", required=false, defaultValue = "1")Integer pageNum, Model model) {
-
+	   
 	  // section = 12345678910까지가 기본 섹션
 	  // pageNum = 사용자가 보려하는 페이지 번호
 	  // 혹여나 만약 0이하를 치면..
