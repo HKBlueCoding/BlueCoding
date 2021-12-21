@@ -133,7 +133,7 @@
                         <a href="../board/update?articleNO=${boardVO.articleNO }" class="btn">수정</a>
                      </div>
                      <div class="button header-button">
-                        <a onClick="funok()" class="btn">삭제</a>
+                        <a onclick="del('${boardVO.articleNO }')" class="btn">삭제</a>
                      </div>
                   </c:if>
                </div>
@@ -499,15 +499,14 @@
            }
          }
       </script>  
-      <script>
-         function funok() {
-           if (confirm("글을 정말 삭제하시겠습니까??")) {
-            alert("정상적으로 삭제되었습니다.")
-           } else {
-           	return;
-           }
-         }
-      </script>
+	<script>
+		function del(articleNO) {
+			var chk = confirm("정말 삭제하시겠습니까?");
+			if (chk) {
+				location.href = '/board/delete?articleNO=' + articleNO;
+			}
+		}
+	</script>
       <script>
          function funok2() {
            if (confirm("글을 정말 삭제하시겠습니까??")) {

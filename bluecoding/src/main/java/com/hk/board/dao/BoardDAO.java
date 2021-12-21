@@ -46,7 +46,7 @@ public class BoardDAO {
 	
 	public int deleteArticle(int articleNO) {
 		
-		int ret = sqlSession.update("mapper.board.DeleteArticle", articleNO);
+		int ret = sqlSession.update("mapper.board.deleteArticle", articleNO);
 		return ret;
 	}
 

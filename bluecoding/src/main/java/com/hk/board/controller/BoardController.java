@@ -175,9 +175,9 @@ public class BoardController {
 	@GetMapping(value = "/board/delete")
 	public String boardDelete(Model model, @RequestParam("articleNO") int articleNO) {
 
-		int rs = boardService.removeArticle(articleNO);
-		model.addAttribute("rs", rs);
-		return "done/boardDeleteDone";
+		int articleNoList = boardService.removeArticle(articleNO);
+		model.addAttribute("rs", articleNoList);
+		return "redirect: /board/list";
 	}
 
 	@RequestMapping(value = "/board/boardReply/add", method = RequestMethod.POST, produces = "application/json; charset=utf8")

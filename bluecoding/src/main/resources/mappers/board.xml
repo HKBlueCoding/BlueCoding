@@ -74,7 +74,7 @@
 	</update>
 
 	<!-- [커뮤니티 게시글 삭제표시] -->		
-	<update id="DeleteArticle">
+	<update id="deleteArticle">
 		<![CDATA[
 	UPDATE B_BOARD SET BOARDDELETE='Y'
 	WHERE ARTICLENO=#{ARTICLENO}
