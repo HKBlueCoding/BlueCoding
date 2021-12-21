@@ -135,12 +135,11 @@ request.setCharacterEncoding("UTF-8");
 								<div class="card">
 									<div class="card-footer p-3" align="center">
 										<button type="button" class="btn btn-secondary"
-											onclick="adRegister()">관리자/상담원 아이디 생성</button>
+											onclick="adRegister()"><a href="#">운영계정 생성</a></button>
 										<button type="button" class="btn btn-secondary"
-											data-bs-toggle="modal" data-bs-target="#adSelect">관리자/상담원
-											아이디 조회</button>
+											data-bs-toggle="modal" data-bs-target="#adSelect">운영계정 조회</button>
 									</div>
-								</div>
+								</div> 
 							</div>
 							<!-- *뉴스쓰기* -->
 							<div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
@@ -1305,6 +1304,17 @@ request.setCharacterEncoding("UTF-8");
 			if (chk) {
 				location.href = '/admin/deleteAcc?id=' + id;
 			}
+		}
+	</script>
+	<script>
+		function adRegister() {
+
+			window
+					.open(
+							"../admin/addAcc",
+							"관리자 계정 추가",
+							"width=500, height=700, history=no, resizable=no, status=no, scrollbars=yes, menubar=no");
+
 		}
 	</script>
 </body>

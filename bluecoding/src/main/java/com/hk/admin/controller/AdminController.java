@@ -11,10 +11,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.hk.admin.service.AdminService;
+import com.hk.user.vo.UserVO;
 
 @Controller
 public class AdminController {
@@ -55,6 +57,24 @@ public class AdminController {
 	   return "admin";
 	}
 	
+	// 관리자 계정 생성
+	@GetMapping("/admin/addAcc")
+	public String addAcc() {
+		
+		return "addAcc";
+	}
+	
+	// 관리자 계정 생성 제출
+	@PostMapping("/admin/addAcc")
+	public String addAccDone(Model model, @ModelAttribute UserVO userVO) {
+		
+		int ret = adminService.addAdminAcc(userVO);
+		model.addAttribute("ret", ret);
+		return "done/addAccDone";
+	}
+
+
+	// 관리자 계정 삭제
 	@GetMapping("/admin/deleteAcc")
 	public String deleteAcc(@RequestParam("id") String id, Model model) {
 			
@@ -63,4 +83,7 @@ public class AdminController {
 		
 		return "redirect: /admin";
 	}
+	
+
+
 }

@@ -5,6 +5,24 @@
 
 <mapper namespace="mapper.admin">
 
+	<resultMap id="userResult" type="UserVO">	
+		<result property="id" column="id" />
+		<result property="pwd" column="pwd" />
+		<result property="find" column="find" />
+		<result property="name" column="name" />
+		<result property="coin" column="coin" />	
+		<result property="nick" column="nick" />
+		<result property="email" column="email" />
+		<result property="birth" column="birth" />
+		<result property="joinDate" column="joinDate" />
+		<result property="pageNO" column="pageNO" />	
+		<result property="phone" column="phone" />
+		<result property="gauge" column="gauge" />
+		<result property="profile" column="profile" />
+		<result property="prohibitLv" column="prohibitLv" />
+		<result property="admin" column="admin" />
+	</resultMap>
+
 	<select id="selectDeleteBook" resultType="hashMap">
 	 <![CDATA[
 	 SELECT bb.BOOKNO AS BOOKNO
@@ -19,60 +37,81 @@
 	</select>
 
 	<select id="selectDeletePage" resultType="hashMap">
-	SELECT bb.BOOKTITLE AS BOOKTITLE
-	, bp.PAGENO AS PAGENO
-	, bp.PAGETITLE AS PAGETITLE
-	, bp.PAGEDATE AS PAGEDATE
+		SELECT bb.BOOKTITLE AS BOOKTITLE
+		, bp.PAGENO AS PAGENO
+		, bp.PAGETITLE AS PAGETITLE
+		, bp.PAGEDATE AS PAGEDATE
 		FROM B_BOOK bb, B_PAGE bp
-		WHERE bb.BOOKNO = bp.BOOKNO
+		WHERE bb.BOOKNO =
+		bp.BOOKNO
 		AND bp.PAGEDELETE = 'Y'
 		ORDER BY PAGEDATE DESC
 	</select>
 
 	<select id="selectDeleteBoard" resultType="hashMap">
-		SELECT bb.ARTICLENO AS ARTICLENO
+		SELECT bb.ARTICLENO AS
+		ARTICLENO
 		, bb.BOARDTITLE AS BOARDTITLE
 		, bb.ID AS ID
-		, bb.BDVIEWCNT AS BDVIEWCNT
+		, bb.BDVIEWCNT AS
+		BDVIEWCNT
 		, bb.BOARDDATE AS BOARDDATE
 		FROM B_BOARD bb
-		WHERE BOARDDELETE = 'Y'
+		WHERE BOARDDELETE =
+		'Y'
 		ORDER BY ARTICLENO DESC
 	</select>
-	
-		<select id="selectPageBenefitList" resultType="hashMap">
-		SELECT bb.BOOKTITLE AS BOOKTITLE
+
+	<select id="selectPageBenefitList" resultType="hashMap">
+		SELECT
+		bb.BOOKTITLE AS BOOKTITLE
 		, bp.SERIES AS SERIES
-		, bp.PAGETITLE AS PAGETITLE
+		, bp.PAGETITLE AS
+		PAGETITLE
 		, bp2.PAGEPAY AS PAGEPAY
 		, bp2.ID AS ID
-		, bp2.PAGEPAYDATE AS PAGEPAYDATE
+		, bp2.PAGEPAYDATE AS
+		PAGEPAYDATE
 		FROM B_BOOK bb, B_PAGE bp, B_PAGEBUY bp2
-		WHERE bb.BOOKNO = bp.BOOKNO
+		WHERE bb.BOOKNO =
+		bp.BOOKNO
 		AND bp.PAGENO =bp2.PAGENO
 		ORDER BY PAGEPAYDATE DESC
 	</select>
-	
+
 	<select id="selectCoinList" resultType="hashMap">
-		SELECT COINMETHOD, RECHARGECOIN, COINDATE, ID
+		SELECT COINMETHOD,
+		RECHARGECOIN, COINDATE, ID
 		FROM B_COINHISTORY BC
-		ORDER BY COINDATE DESC	
+		ORDER BY COINDATE DESC
 	</select>
-	
-		<select id="selectAdminList" resultType="hashMap">
+
+	<select id="selectAdminList" resultType="hashMap">
 		SELECT bu.ID AS ID
-		, bu.PWD AS PWD
+		,
+		bu.PWD AS PWD
 		, bu.JOINDATE AS JOINDATE
-		, bu.ADMIN AS ADMIN2, DECODE(ADMIN, 'A', '관리자', 'Q', '상담원') ADMIN 
-		FROM B_USER bu 
+		, bu.ADMIN AS ADMIN2,
+		DECODE(ADMIN, 'A', '관리자', 'Q', '상담원') ADMIN
+		FROM B_USER bu
 		WHERE ADMIN = 'A'
 		OR ADMIN = 'Q'
 	</select>
-	
-		<delete id="deleteAdminAcc">
+
+	<insert id="addAdminAcc" parameterType="UserVO">
+	<![CDATA[
+		INSERT INTO STUDY.B_USER
+		(ID, PWD, NAME, COIN, NICK, EMAIL, BIRTH, JOINDATE, PHONE, GAUGE, PROHIBITLV, ADMIN)
+		VALUES(#{id}, #{pwd}, #{name}, 0, #{nick}, #{email}, #{birth} ,sysdate, #{phone}, 0, 0, #{admin})
+	]]>
+	</insert>
+
+	<delete id="deleteAdminAcc">
 		DELETE FROM B_USER bu
 		WHERE ID=#{id}
-		</delete>
+	</delete>
+
+
 
 
 </mapper>

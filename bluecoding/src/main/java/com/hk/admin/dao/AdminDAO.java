@@ -10,6 +10,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.hk.user.vo.UserVO;
+
 @Repository
 public class AdminDAO {
 
@@ -54,6 +56,13 @@ public class AdminDAO {
 		// TODO Auto-generated method stub
 		int rs = sqlSession.delete("mapper.admin.deleteAdminAcc", id);
 		return rs;
+	}
+
+	public int addAdminAcc(UserVO userVO) {
+		// TODO Auto-generated method stub
+		
+		int ret = sqlSession.insert("mapper.admin.addAdminAcc", userVO);
+		return ret;
 	}
 
 }

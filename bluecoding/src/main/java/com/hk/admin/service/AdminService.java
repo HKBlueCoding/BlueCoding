@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hk.admin.dao.AdminDAO;
+import com.hk.user.vo.UserVO;
 
 @Service
 public class AdminService {
@@ -48,6 +49,11 @@ public class AdminService {
 	public int deleteAdminAcc(String id) {
 		// TODO Auto-generated method stub
 		return adminDAO.deleteAdminAcc(id);
+	}
+
+	public int addAdminAcc(UserVO userVO) {
+		// TODO Auto-generated method stub
+		return adminDAO.addAdminAcc(userVO);
 	}
 
 
