@@ -45,5 +45,10 @@ public class AdminService {
 		return adminDAO.selectAdminList();
 	}
 
+	public int deleteAdminAcc(String id) {
+		// TODO Auto-generated method stub
+		return adminDAO.deleteAdminAcc(id);
+	}
+
 
 }

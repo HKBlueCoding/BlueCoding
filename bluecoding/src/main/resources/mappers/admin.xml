@@ -68,6 +68,11 @@
 		WHERE ADMIN = 'A'
 		OR ADMIN = 'Q'
 	</select>
+	
+		<delete id="deleteAdminAcc">
+		DELETE FROM B_USER bu
+		WHERE ID=#{id}
+		</delete>
 
 
 </mapper>

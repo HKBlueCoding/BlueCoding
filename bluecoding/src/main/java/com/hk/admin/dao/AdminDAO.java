@@ -1,5 +1,6 @@
 package com.hk.admin.dao;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -44,7 +45,15 @@ public class AdminDAO {
 
 	public List<HashMap<String, Object>> selectAdminList() {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList("mapper.admin.selectAdminList");
+		List<HashMap<String, Object>> list = new ArrayList<HashMap<String, Object>>();
+		list = sqlSession.selectList("mapper.admin.selectAdminList");
+		return list;
+	}
+
+	public int deleteAdminAcc(String id) {
+		// TODO Auto-generated method stub
+		int rs = sqlSession.delete("mapper.admin.deleteAdminAcc", id);
+		return rs;
 	}
 
 }

@@ -825,7 +825,8 @@ request.setCharacterEncoding("UTF-8");
 											<td>${admin.PWD }</td>
 											<td>${admin.JOINDATE }</td>
 											<td>
-												<button type="button" class="btn btn-outline-dark">삭제</button>
+												<button type="button" class="btn btn-outline-dark"
+													onclick="del('${admin.ID }')">삭제</button>
 											</td>
 										</tr>
 									</c:forEach>
@@ -1297,6 +1298,14 @@ request.setCharacterEncoding("UTF-8");
 				}
 			}
 		});
+	</script>
+	<script>
+		function del(id) {
+			var chk = confirm("정말 삭제하시겠습니까?");
+			if (chk) {
+				location.href = '/admin/deleteAcc?id=' + id;
+			}
+		}
 	</script>
 </body>
 </html>
