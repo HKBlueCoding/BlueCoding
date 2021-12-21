@@ -56,6 +56,11 @@ function withdraw(benefit){
 		
 }
 
+// 환불버튼
+function payRefund(coin){
+	
+}
+
 window.onload = function (){
 
 	bChest.style.display = "none";

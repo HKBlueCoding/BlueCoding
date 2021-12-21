@@ -51,7 +51,7 @@
 	<!-- [해당 책의 시리즈 조회] -->
 	<select id="selectSeries" parameterType="int" resultType="java.lang.Integer">
 	 <![CDATA[
-	  SELECT max(pageNO)+1 
+	  SELECT count(pageNO)+1 
 	  FROM B_PAGE
 	  WHERE bookNO = #{bookNO} 
 	 ]]>

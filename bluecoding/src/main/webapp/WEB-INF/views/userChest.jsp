@@ -236,7 +236,7 @@
                                     <td class="align-middle text-center">
                                      <c:if test="${favoBuy.REFUND eq 'Y' }">
                                        <div class="button header-button">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #ab0dd7">환불하기</a>
+                                          <a onclick="" class="btn" style="background-color: #ab0dd7">환불하기</a>
                                        </div>
                                      </c:if>
                                      <c:if test="${favoBuy.REFUND ne 'Y' }">
@@ -348,7 +348,7 @@
                                     <td class="align-middle text-center">
                                        <div class="button header-button">
                                         <c:if test="${favoPay.REFUND eq 'Y' }">
-                                          <a href="javascript:void(0)" class="btn" style="background-color: #ab0dd7">환불하기</a>
+                                          <a href="payRefund('${favoPay.COIN}')" class="btn" style="background-color: #ab0dd7">환불하기</a>
                                         </c:if>
                                         <c:if test="${favoPay.REFUND ne 'Y' }">
                                           <span class="text-secondary text-xs font-weight-bold">환불 불가</span>	
