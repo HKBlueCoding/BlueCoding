@@ -223,8 +223,13 @@ public class BookService {
 			logger.debug("[회차 조회수 업데이트]");
 		}		
 		
+		// DB에서 select count 사용해서 최대값을 lastSeries에 담아서 보내기
+		int lastSeries = pageDAO.selectLastSeries(pageNO);
+		
+		
 		map.put("pageVO", pageVO);
 		map.put("pageReplyVO", pageReplyVO);
+		map.put("lastSeries", lastSeries);
 		return map;
 	}
 
@@ -296,5 +301,15 @@ public class BookService {
 	public int updateReview(ReviewVO reviewVO) {
 		// TODO Auto-generated method stub
 		return reviewDAO.reviewUpdate(reviewVO);
+	}
+
+	public int addPageReply(PageReplyVO pageReplyVO) {
+		// TODO Auto-generated method stub
+		return pageReplyDAO.insertPageReply(pageReplyVO);
+	}
+
+	public int updatePageReply(PageReplyVO pageReplyVO) {
+		// TODO Auto-generated method stub
+		return pageReplyDAO.PageReplyUpdate(pageReplyVO);
 	}
 }

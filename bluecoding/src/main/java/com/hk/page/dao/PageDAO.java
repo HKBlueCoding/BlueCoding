@@ -50,5 +50,11 @@ public class PageDAO {
 		return sqlSession.selectOne("mapper.page.selectTotPage", bookNO);
 	}
 
+	// lastSeries 불러오기
+	public int selectLastSeries(int pageNO) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("mapper.page.selectLastSeries", pageNO);
+	}
+
 
 }

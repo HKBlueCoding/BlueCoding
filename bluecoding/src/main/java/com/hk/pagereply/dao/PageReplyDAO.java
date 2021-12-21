@@ -20,4 +20,15 @@ public class PageReplyDAO {
 		
 		return pageReplyVO;
 	}
+
+	public int insertPageReply(PageReplyVO pageReplyVO) {
+		// TODO Auto-generated method stub
+		int ret = sqlSession.insert("mapper.pageReply.insertPageReply", pageReplyVO);
+		return ret;
+	}
+
+	public int PageReplyUpdate(PageReplyVO pageReplyVO) {
+		int ret = sqlSession.update("mapper.pageReply.updatePageReply", pageReplyVO);
+		return ret;
+	}
 }

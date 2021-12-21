@@ -16,13 +16,33 @@
 		<result property="pageNO" column="pageNO" />
 		<result property="id" column="id" />
 		<result property="nick" column="nick" />
+		<result property="level" column="level" />
 
 	</resultMap>
 
 	<select id="selectAllPageReply" resultMap="pageReplyResult">
     <![CDATA[
-		SELECT PAGERENO, PAGEPARENTNO, PAGERETEXT, PAGEREDATE, PAGEREDELETE, PAGENO, ID, NICK 
-		FROM B_PAGEREPLY WHERE pageNO=#{pageNO}
+		SELECT PAGERENO, PAGEPARENTNO, PAGERETEXT, PAGEREDATE, PAGEREDELETE, PAGENO, ID, NICK, LEVEL FROM B_PAGEREPLY 
+		WHERE pageNO=#{pageNO}
+		START WITH pageParentNO=0 CONNECT BY PRIOR pageReNO=pageParentNO
+		ORDER SIBLINGS BY pageReNO ASC	
     ]]>
 	</select>
+	
+	<insert id="insertPageReply" parameterType="PageReplyVO">
+	 <selectKey keyProperty="pageReNO" resultType="int" order="BEFORE">
+	 	SELECT max(pageReNO)+1 FROM B_PAGEREPLY
+	 </selectKey>
+	 <![CDATA[
+	  INSERT INTO B_PAGEREPLY (PAGERENO, PAGEPARENTNO, PAGERETEXT, PAGEREDATE, PAGEREDELETE, PAGENO, ID, NICK) 
+	  VALUES(#{pageReNO}, #{pageParentNO}, #{pageReText}, sysdate, '', #{pageNO}, #{id}, #{nick})
+	 ]]>
+	</insert>
+	
+	<update id="updatePageReply" parameterType="PageReplyVO">
+    <![CDATA[
+		UPDATE B_PAGEREPLY SET PAGEPARENTNO=#{pageParentNO}, PAGERETEXT=#{pageReText}, PAGEREDATE=sysdate, PAGEREDELETE='', PAGENO=#{pageNO}, ID= #{id}, NICK=#{nick} 
+		WHERE PAGERENO=#{pageReNO}
+    ]]>
+	</update>
 </mapper>	
