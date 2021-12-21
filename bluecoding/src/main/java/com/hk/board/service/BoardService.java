@@ -14,6 +14,7 @@ import com.hk.board.dao.BoardDAO;
 import com.hk.board.vo.BoardVO;
 import com.hk.boardreply.dao.BoardReplyDAO;
 import com.hk.boardreply.vo.BoardReplyVO;
+import com.hk.user.vo.UserVO;
 
 @Service
 public class BoardService {
@@ -65,14 +66,19 @@ public class BoardService {
 		return boardDAO.selectArticle(articleNO);
 	}
 	
-	public Map<String, Object> viewArticle(int articleNO) {
+	public Map<String, Object> viewArticle(int articleNO, UserVO userVO) {
 		// TODO Auto-generated method stub
 		
 		BoardVO boardVO = boardDAO.selectArticle(articleNO);
 		// 그 게시글의 댓글
 		List<BoardReplyVO> boardReplyVO = boardReplyDAO.listBoardReply(articleNO);
 		Map<String, Object> map = new HashMap<String, Object>();
-
+		
+		// 조회수 기능
+		if(userVO !=null) {
+			boardDAO.updateViewCnt(articleNO);
+		}
+		
 		map.put("boardVO", boardVO);
 		map.put("boardReplyVO", boardReplyVO);
 

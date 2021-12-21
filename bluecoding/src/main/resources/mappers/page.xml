@@ -60,7 +60,7 @@
 	<!-- [페이지 작성] -->
 	<insert id="insertPage" parameterType="PageVO">
 	 <selectKey keyProperty="pageNO" resultType="int" order="BEFORE">
-	 	SELECT max(pageNO)+1 FROM B_PAGE
+	 	SELECT count(pageNO)+1 FROM B_PAGE
 	 </selectKey>
 	 <![CDATA[
 	  INSERT INTO B_PAGE 

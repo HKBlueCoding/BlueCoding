@@ -55,7 +55,7 @@
 
 	<insert id="insertBook" parameterType="BookVO">
 	 <selectKey keyProperty="bookNO" resultType="int" order="BEFORE">
-	 	SELECT max(bookNO)+1 FROM B_BOOK
+	 	SELECT count(bookNO)+1 FROM B_BOOK
 	 </selectKey>
 	 <![CDATA[
 	  INSERT INTO B_BOOK

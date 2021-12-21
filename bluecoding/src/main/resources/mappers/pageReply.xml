@@ -31,7 +31,7 @@
 	
 	<insert id="insertPageReply" parameterType="PageReplyVO">
 	 <selectKey keyProperty="pageReNO" resultType="int" order="BEFORE">
-	 	SELECT max(pageReNO)+1 FROM B_PAGEREPLY
+	 	SELECT count(pageReNO)+1 FROM B_PAGEREPLY
 	 </selectKey>
 	 <![CDATA[
 	  INSERT INTO B_PAGEREPLY (PAGERENO, PAGEPARENTNO, PAGERETEXT, PAGEREDATE, PAGEREDELETE, PAGENO, ID, NICK) 

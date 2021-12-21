@@ -62,4 +62,18 @@
 		</beans:property>
 	</beans:bean>
 
+	<!-- [Interceptor] -->
+	<beans:bean id="LoginInterceptor"
+		class="com.hk.access.interceptor.AccessInterceptor" />
+
+	<interceptors>
+		<interceptor>
+			<mapping path="/*" />
+			<exclude-mapping path="/login" />
+			<exclude-mapping path="/logout" />
+			<beans:ref bean="LoginInterceptor" />
+		</interceptor>
+	</interceptors>
+
+
 </beans:beans>

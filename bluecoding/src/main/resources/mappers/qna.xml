@@ -33,7 +33,7 @@
 	<insert id="insertQna" parameterType="QnaVO">
 		<selectKey keyProperty="qnaNO" resultType="int"
 			order="BEFORE">
-			SELECT MAX(QNANO)+1 FROM B_QNA
+			SELECT COUNT(QNANO)+1 FROM B_QNA
 		</selectKey>
 	 <![CDATA[
 		INSERT INTO B_QNA

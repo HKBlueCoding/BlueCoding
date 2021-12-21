@@ -62,4 +62,9 @@ public class BoardDAO {
 		return totArticle;
 	}
 
+	public void updateViewCnt(int articleNO) {
+		// TODO Auto-generated method stub
+		sqlSession.update("mapper.board.updateViewCnt", articleNO);
+	}
+
 }

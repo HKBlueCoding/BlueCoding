@@ -31,7 +31,7 @@
 	
 	<insert id="insertReply" parameterType="NewsReplyVO">
 	 <selectKey keyProperty="newsReplyNO" resultType="int" order="BEFORE">
-	 	SELECT max(newsReplyNO)+1 FROM B_NEWSREPLY
+	 	SELECT count(newsReplyNO)+1 FROM B_NEWSREPLY
 	 </selectKey>
 	 <![CDATA[
 	 INSERT INTO B_NEWSREPLY (NEWSREPLYNO, NREPARENTNO, NEWSRETEXT, NEWSREDATE, NEWSREDELETE, NEWSNO, ID, NICK)

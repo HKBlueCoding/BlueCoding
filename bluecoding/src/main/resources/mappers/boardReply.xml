@@ -31,7 +31,7 @@
 	
 	<insert id="insertReply" parameterType="BoardReplyVO">
 	 <selectKey keyProperty="replyNO" resultType="int" order="BEFORE">
-	 	SELECT max(replyNO)+1 FROM B_BOARDREPLY
+	 	SELECT COUNT(replyNO)+1 FROM B_BOARDREPLY
 	 </selectKey>
 	 <![CDATA[
 	 	INSERT INTO B_BOARDREPLY (REPLYNO, REPARENTNO, BOARDRETEXT, BOARDREDATE, BOARDREDELETE, ARTICLENO, ID, NICK)

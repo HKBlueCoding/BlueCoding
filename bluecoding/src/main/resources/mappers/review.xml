@@ -31,7 +31,7 @@
 	
 	<insert id="insertReview" parameterType="ReviewVO">
 	 <selectKey keyProperty="revNO" resultType="int" order="BEFORE">
-	 	SELECT max(revNO)+1 FROM B_REVIEW
+	 	SELECT COUNT(revNO)+1 FROM B_REVIEW
 	 </selectKey>
 	 <![CDATA[
 	  INSERT INTO B_REVIEW (REVNO, REVPARENTNO, REVTEXT, REVDATE, REVDELETE, BOOKNO, ID, NICK) 

@@ -24,7 +24,7 @@
 	<!-- [뉴스 글쓰기] -->
 	<insert id="insertNews" parameterType="NewsVO">
 	 <selectKey keyProperty="newsNO" resultType="int" order="BEFORE">
-	 	SELECT max(newsNO)+1 FROM B_NEWS
+	 	SELECT COUNT(newsNO)+1 FROM B_NEWS
 	 </selectKey>
 	 <![CDATA[
 	  INSERT INTO B_NEWS

@@ -49,14 +49,14 @@
 
 	<!-- [커뮤니티 게시글 추가] -->
 	<insert id="insertArticle" parameterType="BoardVO">
-	 <selectKey keyProperty="articleNO" resultType="int" order="BEFORE">
-	 		SELECT MAX(ARTICLENO)+1 FROM B_BOARD
-	 		</selectKey>
-  			<![CDATA[
-			INSERT INTO B_BOARD 
-			(ARTICLENO, BOARDTITLE, BOARDTEXT, BOARDDATE, BOARDIMAGE, BDVIEWCNT, ID, NICK) 
-			VALUES(#{articleNO}, #{boardTitle}, #{boardText}, sysdate, #{boardImage}, 0, #{id}, #{nick})
-			]]>
+	  <selectKey keyProperty="articleNO" resultType="int" order="BEFORE">
+	 	SELECT COUNT(ARTICLENO)+1 FROM B_BOARD
+	  </selectKey>
+  	  <![CDATA[
+		INSERT INTO B_BOARD 
+		(ARTICLENO, BOARDTITLE, BOARDTEXT, BOARDDATE, BOARDIMAGE, BDVIEWCNT, ID, NICK) 
+		VALUES(#{articleNO}, #{boardTitle}, #{boardText}, sysdate, #{boardImage}, 0, #{id}, #{nick})
+	  ]]>
 	</insert>
 	
 	<!-- [커뮤니티 게시글 수정] -->	
@@ -93,5 +93,13 @@
 	  SELECT count(articleNO) FROM B_BOARD
 	 ]]>
 	</select>
+	
+	<!-- [조회수 증가] -->
+	<update id="updateViewCnt" parameterType="int">
+	 UPDATE 
+	  B_BOARD 
+	 SET BDVIEWCNT=(BDVIEWCNT+1)
+	 WHERE ARTICLENO=#{articleNO}	 
+	</update>
 	
 </mapper>
