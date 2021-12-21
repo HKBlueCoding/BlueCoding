@@ -5,17 +5,17 @@
 
 <mapper namespace="mapper.admin">
 
-	<resultMap id="userResult" type="UserVO">	
+	<resultMap id="userResult" type="UserVO">
 		<result property="id" column="id" />
 		<result property="pwd" column="pwd" />
 		<result property="find" column="find" />
 		<result property="name" column="name" />
-		<result property="coin" column="coin" />	
+		<result property="coin" column="coin" />
 		<result property="nick" column="nick" />
 		<result property="email" column="email" />
 		<result property="birth" column="birth" />
 		<result property="joinDate" column="joinDate" />
-		<result property="pageNO" column="pageNO" />	
+		<result property="pageNO" column="pageNO" />
 		<result property="phone" column="phone" />
 		<result property="gauge" column="gauge" />
 		<result property="profile" column="profile" />
@@ -37,14 +37,17 @@
 	</select>
 
 	<select id="selectDeletePage" resultType="hashMap">
-		SELECT bb.BOOKTITLE AS BOOKTITLE
+		SELECT bb.BOOKTITLE AS
+		BOOKTITLE
 		, bp.PAGENO AS PAGENO
 		, bp.PAGETITLE AS PAGETITLE
-		, bp.PAGEDATE AS PAGEDATE
+		, bp.PAGEDATE
+		AS PAGEDATE
 		FROM B_BOOK bb, B_PAGE bp
 		WHERE bb.BOOKNO =
 		bp.BOOKNO
-		AND bp.PAGEDELETE = 'Y'
+		AND
+		bp.PAGEDELETE = 'Y'
 		ORDER BY PAGEDATE DESC
 	</select>
 
@@ -87,6 +90,7 @@
 	</select>
 
 	<select id="selectAdminList" resultType="hashMap">
+		<![CDATA[
 		SELECT bu.ID AS ID
 		,
 		bu.PWD AS PWD
@@ -94,8 +98,10 @@
 		, bu.ADMIN AS ADMIN2,
 		DECODE(ADMIN, 'A', '관리자', 'Q', '상담원') ADMIN
 		FROM B_USER bu
-		WHERE ADMIN = 'A'
+		WHERE ADMIN =
+		'A'
 		OR ADMIN = 'Q'
+		]]>
 	</select>
 
 	<insert id="addAdminAcc" parameterType="UserVO">
@@ -105,6 +111,14 @@
 		VALUES(#{id}, #{pwd}, #{name}, 0, #{nick}, #{email}, #{birth} ,sysdate, #{phone}, 0, 0, #{admin})
 	]]>
 	</insert>
+
+	<!-- [아이디 중복체크] -->
+	<select id="dupId" parameterType="java.lang.String"
+		resultType="UserVO">
+	 <![CDATA[
+		select * from b_user where id = #{id}
+	 ]]>
+	</select>
 
 	<delete id="deleteAdminAcc">
 		DELETE FROM B_USER bu

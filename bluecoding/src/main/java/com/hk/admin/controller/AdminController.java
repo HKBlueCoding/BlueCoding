@@ -13,7 +13,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hk.admin.service.AdminService;
 import com.hk.user.vo.UserVO;
@@ -62,6 +65,26 @@ public class AdminController {
 	public String addAcc() {
 		
 		return "addAcc";
+	}
+	
+	// [관리자 아이디 중복체크]
+	@RequestMapping(value = "/admin/dupId", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public Map<String, Integer> dupId(@RequestParam("id") String id) {
+		logger.debug("아이디 ==" + id);
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		// 아이디 있는지 체크
+		UserVO userVO = adminService.checkId(id);
+
+		if (userVO == null) {
+			// null이면 성공
+			map.put("rs", 1);
+		} else {
+			// 같은 아이디가 있으면 실패
+			map.put("rs", 0);
+		}
+
+		return map;
 	}
 	
 	// 관리자 계정 생성 제출

@@ -56,5 +56,10 @@ public class AdminService {
 		return adminDAO.addAdminAcc(userVO);
 	}
 
+	public UserVO checkId(String id) {
+		// TODO Auto-generated method stub
+		return adminDAO.dupId(id);
+	}
+
 
 }

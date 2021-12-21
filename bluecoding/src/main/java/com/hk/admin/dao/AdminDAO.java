@@ -65,4 +65,10 @@ public class AdminDAO {
 		return ret;
 	}
 
+	public UserVO dupId(String id) {
+		// TODO Auto-generated method stub
+		UserVO userVO = sqlSession.selectOne("mapper.admin.dupId", id);
+		return userVO;
+	}
+
 }

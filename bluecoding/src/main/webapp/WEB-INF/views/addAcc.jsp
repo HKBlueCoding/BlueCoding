@@ -2,11 +2,17 @@
 	pageEncoding="UTF-8"%>
 	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+	<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>운영계정 생성</title>
+
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
+      		integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
+            crossorigin="anonymous"></script>
 </head>
 <body>
 
@@ -56,6 +62,6 @@
         
       </form>
       
-      <script src="../../resources/bluecoding/register.js"></script>
+      <script src="../../resources/bluecoding/addAcc.js"></script>
 </body>
 </html>
