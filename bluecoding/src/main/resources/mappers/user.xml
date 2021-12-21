@@ -89,7 +89,7 @@
 	  <selectKey keyProperty="coin" resultType="int" order="BEFORE">
 			SELECT coin FROM B_USER WHERE id=#{id}
 	 </selectKey>
-	 <if test="coin gt 300">
+	 <if test="coin gte 300">
 	  <![CDATA[
 		UPDATE B_USER 
 	  	SET COIN= (COIN - 300) 

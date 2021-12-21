@@ -51,7 +51,7 @@ function withdraw(benefit){
 		return;
 	}else{
 		// 아닐 경우... newwindow로 
-		window.open("../../openbanking/withdraw","현금화 하기", "width=1500, height=500, history=no, resizable=no, status=no, scrollbars=yes, menubar=no");
+		window.open("../../ahthor/email","현금화 하기", "width=1500, height=500, history=no, resizable=no, status=no, scrollbars=yes, menubar=no");
 	}
 		
 }

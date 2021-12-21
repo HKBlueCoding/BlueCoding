@@ -11,5 +11,28 @@
 	  VALUES(300, 'Y', #{pagePayDate}, '', #{pageNO}, #{id})
 	 ]]>
 	</insert>
-
+	
+	<select id="selectOneProfit" parameterType="java.lang.String" resultType="java.lang.Integer">
+	 <![CDATA[
+	  SELECT
+	   max(AUTHORPROFIT) 
+	  FROM B_AUTHOR
+	  WHERE id=#{id}
+	 ]]>
+	</select>
+	
+	<update id="pressProfit" parameterType="hashmap">
+	 <selectKey keyProperty="AUTHORPROFIT" resultType="int" order="BEFORE">
+	  SELECT max(AUTHORPROFIT) FROM B_AUTHOR WHERE id=#{id}
+	 </selectKey>
+	 <if test="AUTHORPROFIT gte 300">
+	 <![CDATA[
+	  UPDATE 
+	   B_AUTHOR 
+	  SET ISREALIZATION=''
+	  WHERE id=#{id} AND ISREALIZATION='Y'
+	 ]]>
+	 </if>
+	</update>
+	
 </mapper>

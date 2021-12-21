@@ -89,13 +89,13 @@ public class UserController {
 
 		return "id";
 	}
-	
+
 	// [아이디 찾기 결과]
 	@RequestMapping(value = "/user/find/id", method = RequestMethod.POST)
 	public String findIdResult(@ModelAttribute UserVO userVO, Model model) {
-		logger.debug("[아이디 찾기]=="+userVO);
+		logger.debug("[아이디 찾기]==" + userVO);
 		userVO = userService.findId(userVO);
-		model.addAttribute("userVO",userVO);
+		model.addAttribute("userVO", userVO);
 
 		return "idResult";
 	}
@@ -106,17 +106,17 @@ public class UserController {
 
 		return "pwd";
 	}
-	
+
 	// [비밀번호 찾기 결과]
 	@RequestMapping(value = "/user/find/pwd", method = RequestMethod.POST)
 	public String findPwdResult(@ModelAttribute UserVO userVO, Model model) {
-		logger.debug("[비밀번호 찾기]=="+userVO);
+		logger.debug("[비밀번호 찾기]==" + userVO);
 		userVO = userService.findPwd(userVO);
-		model.addAttribute("userVO",userVO);
+		model.addAttribute("userVO", userVO);
 
 		return "pwdResult";
 	}
-	
+
 	@RequestMapping(value = "/user/info", method = RequestMethod.GET)
 	public String userInfo() {
 
@@ -127,39 +127,41 @@ public class UserController {
 
 	@RequestMapping(value = "/user/chest", method = RequestMethod.GET)
 	public String userChest(Model model, @RequestParam("id") String id) {
-		
+
 		// 관심작품
 		Map<String, Object> map = userService.userChestList(id);
-		
+
 		// 향상된 for문으로 benefit의 총 값을 뽑음
 		int benefitAll = 0;
 		List<HashMap<String, Object>> benefitManager = (List<HashMap<String, Object>>) map.get("benefitManager");
-		for(HashMap<String, Object> benefit: benefitManager) {
-			
-			// 현급화 가능한 것만 뽑음
-			if(benefit.get("ISREALIZATION").equals("Y") && benefitManager.size() > 0) {
-				benefitAll = benefitAll+300;
+
+		for (HashMap<String, Object> benefit : benefitManager) {
+			if (benefit.get("ISREALIZATION") == null) {
+
+			} else {
+				// 현급화 가능한 것만 뽑음
+				if (benefit.get("ISREALIZATION").equals("Y") && benefitManager.size() > 0) {
+					benefitAll = benefitAll + 300;
+				}
 			}
 		}
-		
-		logger.debug("[현금화 가능한 금액] =="+benefitAll);
-		
+
+		logger.debug("[현금화 가능한 금액] ==" + benefitAll);
+
 		model.addAttribute("favoBookList", map.get("favoBookList"));
 		model.addAttribute("favoBuyList", map.get("favoBuyList"));
 		model.addAttribute("favoPayList", map.get("favoPayList"));
 		model.addAttribute("benefitManager", map.get("benefitManager"));
 		model.addAttribute("benefitAll", benefitAll);
-		
+
 		logger.debug("favoBookList = " + map.get("favoBookList"));
-		//.debug("favoPayList ==== " + map.get("favoBuyList"));
-		//logger.debug("favoPayList === " + map.get("favoPayList"));
-		//logger.debug("benefitManager === " + map.get("benefitManager"));
-		
+		// .debug("favoPayList ==== " + map.get("favoBuyList"));
+		// logger.debug("favoPayList === " + map.get("favoPayList"));
+		// logger.debug("benefitManager === " + map.get("benefitManager"));
+
 		return "userChest";
 	}
 
-
-	
 	// [사용자 보관함]
 
 	/*
@@ -174,10 +176,7 @@ public class UserController {
 	 * 
 	 * }
 	 */
-	
-	
-	
-	
+
 	// [아이디 중복체크]
 	@RequestMapping(value = "/dupId", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
 	@ResponseBody
