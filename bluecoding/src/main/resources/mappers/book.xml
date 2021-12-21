@@ -37,7 +37,7 @@
 						FROM
 							B_BOOK
 						ORDER BY
-							bookNO DESC
+							bookNO ASC
 					) B
 		
 			)

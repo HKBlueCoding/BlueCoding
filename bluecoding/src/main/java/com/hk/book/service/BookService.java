@@ -182,7 +182,7 @@ public class BookService {
 		PageVO pageVO = pageDAO.pageList(pageNO);
 
 		// 만약 게시글이 유료화일 경우
-		if (pageVO.getCharge().equals("Y")) {
+		if (pageVO.getCharge() != null) {
 
 			// 그러나 만약 아이디가 null이면 조회할것도 없으니.. ret = 0을 리턴시킴
 			if (userVO == null) {
@@ -207,6 +207,12 @@ public class BookService {
 				// 만약 ret이 1이상이면 이후의 기능을 수행
 				map.put("ret", ret);
 			}
+		}else {
+			// 만약 유료화가 아닐경우 성공시 ret 1을 리턴
+			if(pageVO != null) {
+				map.put("ret", "1");
+			}
+			
 		}
 		// 그 게시글의 댓글
 		List<PageReplyVO> pageReplyVO = pageReplyDAO.listPageReply(pageNO);
@@ -216,10 +222,9 @@ public class BookService {
 			bookDAO.updatePageViewCnt(pageNO);
 			logger.debug("[회차 조회수 업데이트]");
 		}		
-
+		
 		map.put("pageVO", pageVO);
 		map.put("pageReplyVO", pageReplyVO);
-
 		return map;
 	}
 
@@ -286,5 +291,10 @@ public class BookService {
 	public int selectOneBuyPage(Map<String, Object> userMap) {
 		// TODO Auto-generated method stub
 		return pageBuyDAO.selectOneBuyPage(userMap);
+	}
+
+	public int updateReview(ReviewVO reviewVO) {
+		// TODO Auto-generated method stub
+		return reviewDAO.reviewUpdate(reviewVO);
 	}
 }

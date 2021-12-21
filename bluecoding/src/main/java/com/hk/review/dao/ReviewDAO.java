@@ -6,7 +6,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.hk.favo.vo.FavoVO;
 import com.hk.review.vo.ReviewVO;
 
 @Repository
@@ -25,6 +24,12 @@ public class ReviewDAO {
 	public int insertReview(ReviewVO reviewVO) {
 		// TODO Auto-generated method stub
 		int ret = sqlSession.insert("mapper.review.insertReview", reviewVO);
+		return ret;
+	}
+
+	public int reviewUpdate(ReviewVO reviewVO) {
+		// TODO Auto-generated method stub
+		int ret = sqlSession.update("mapper.review.updateReview", reviewVO);
 		return ret;
 	}
 }

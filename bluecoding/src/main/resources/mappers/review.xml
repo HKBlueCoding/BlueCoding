@@ -16,13 +16,16 @@
 		<result property="bookNO" column="bookNO" />
 		<result property="id" column="id" />
 		<result property="nick" column="nick" />
+		<result property="level" column="level" />
 
 	</resultMap>
 
 	<select id="selectAllReview" resultMap="reviewResult">
     <![CDATA[
-		SELECT REVNO, REVPARENTNO, REVTEXT, REVDATE, REVDELETE, BOOKNO, ID, NICK 
-		FROM B_REVIEW WHERE bookNO=#{bookNO}
+		SELECT REVNO, REVPARENTNO, REVTEXT, REVDATE, REVDELETE, BOOKNO, ID, NICK, LEVEL  FROM B_REVIEW 
+		WHERE bookNO=#{bookNO}
+		START WITH revParentNO=0 CONNECT BY PRIOR revNO=revParentNO
+		ORDER SIBLINGS BY revNO ASC	
     ]]>
 	</select>
 	
@@ -34,5 +37,12 @@
 	  INSERT INTO B_REVIEW (REVNO, REVPARENTNO, REVTEXT, REVDATE, REVDELETE, BOOKNO, ID, NICK) 
 	  VALUES(#{revNO},  #{revParentNO}, #{revText}, sysdate, '', #{bookNO}, #{id}, #{nick})
 	 ]]>
-	</insert>	
+	</insert>
+	
+	<update id="updateReview" parameterType="ReviewVO">
+    <![CDATA[
+		UPDATE B_REVIEW SET REVPARENTNO=#{revParentNO}, REVTEXT=#{revText}, REVDATE=sysdate, REVDELETE='', BOOKNO=#{bookNO}, ID=#{id}, NICK=#{nick}
+		WHERE REVNO=#{revNO}
+    ]]>
+	</update>		
 </mapper>	

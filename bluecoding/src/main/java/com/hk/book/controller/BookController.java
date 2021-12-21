@@ -2,10 +2,8 @@ package com.hk.book.controller;
 
 import java.io.File;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -20,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.hk.book.service.BookService;
@@ -226,7 +223,7 @@ public class BookController {
 		// 유료화 일수도 있으니 session의 userVO 값을 받아옴
 		UserVO userVO = (UserVO) session.getAttribute("login");
 		logger.debug("[userVO]==" + userVO);
-
+		
 		// [해당 페이지 조회 & 유료화에 따라 값 설정]
 		Map<String, Object> map = bookService.listPage(pageNO, userVO);
 		logger.debug("[map] = " + map);
@@ -278,30 +275,6 @@ public class BookController {
 		return "done/favoAddDone";
 	}
 
-	@RequestMapping(value = "/view/review/add", method = RequestMethod.POST, produces = "application/json; charset=utf8")
-	@ResponseBody // --> ajax 사용할 때 사용
-	public Map<String, Object> reviewAdd(@ModelAttribute ReviewVO reviewVO, Model model) { // --> ajax에서 보낸 data
-		logger.debug("[리뷰의 reviewVO] = " + reviewVO);
-
-		int ret = bookService.addReview(reviewVO);
-		logger.debug("[ret] = " + ret);
-
-		model.addAttribute("ret", ret);
-
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("text", reviewVO.getRevText()); // 중복이면 true, 아니면 false라는 String반환
-		map.put("ret", ret);
-		return map;
-	}
-
-	// [리뷰의 답글쓰기]
-	@GetMapping("/view/review/reply/add")
-	public String reviewReply(@ModelAttribute ReviewVO reviewVO, Model model) {
-
-		model.addAttribute("reviewVO", reviewVO);
-		return "reply/bookviewReply";
-	}
-
 	// [페이지 결제하기]
 	@RequestMapping(value = "/page/buy", method = { RequestMethod.POST }, produces = "application/json; charset=utf8")
 	@ResponseBody
@@ -340,4 +313,53 @@ public class BookController {
 		return map;
 	}
 
+	@RequestMapping(value = "/view/review/add", method = RequestMethod.POST, produces = "application/json; charset=utf8")
+	@ResponseBody // --> ajax 사용할 때 사용
+	public Map<String, Object> reviewAdd(@ModelAttribute ReviewVO reviewVO, Model model) { // --> ajax에서 보낸
+																										// data
+		logger.debug("[리뷰의 reviewVO] = " + reviewVO);
+
+		int ret = bookService.addReview(reviewVO);
+		logger.debug("[ret] = " + ret);
+
+		model.addAttribute("ret", ret);
+
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("revText", reviewVO.getRevText());
+		map.put("ret", ret);
+		return map;
+	}
+
+	@RequestMapping(value = "/view/review/update", method = RequestMethod.POST, produces = "application/json; charset=utf8")
+	@ResponseBody // --> ajax 사용할 때 사용
+	public Map<String, Object> reviewUpdate(@ModelAttribute ReviewVO reviewVO, Model model) { // --> ajax에서
+																											// 보낸 data
+		logger.debug("[댓글의 reviewVO] = " + reviewVO);
+
+		int ret = bookService.updateReview(reviewVO);
+		logger.debug("[ret] = " + ret);
+
+		model.addAttribute("ret", ret);
+
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("revText", reviewVO.getRevText());
+		map.put("ret", ret);
+		return map;
+	}
+
+	@RequestMapping(value = "/view/reviewRe/add", method = RequestMethod.POST, produces = "application/json; charset=utf8")
+	@ResponseBody // --> ajax 사용할 때 사용
+	public Map<String, Object> reviewReAdd(@ModelAttribute ReviewVO reviewVO, Model model) { // --> ajax에서
+																											// 보낸 data
+		logger.debug("[리뷰의 reviewVO] = " + reviewVO);
+
+		int ret = bookService.addReview(reviewVO);
+		logger.debug("[ret] = " + ret);
+
+		model.addAttribute("ret", ret);
+
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("ret", ret);
+		return map;
+	}
 }

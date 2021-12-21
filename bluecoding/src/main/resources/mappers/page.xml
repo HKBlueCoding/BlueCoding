@@ -40,7 +40,7 @@
     						B_PAGE
     					WHERE BOOKNO= #{bookNO}
     					ORDER BY
-    						pageNO DESC	
+    						pageNO ASC	
     				) P
     		)
     	WHERE 
