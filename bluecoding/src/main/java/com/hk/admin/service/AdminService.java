@@ -61,5 +61,15 @@ public class AdminService {
 		return adminDAO.dupId(id);
 	}
 
+	public List<HashMap<String, Object>> selectUserList() {
+		// TODO Auto-generated method stub
+		return adminDAO.selectUserList();
+	}
+
+	public int modProhibit(UserVO userVO) {
+		// TODO Auto-generated method stub
+		return adminDAO.updateProhibit(userVO);
+	}
+
 
 }

@@ -135,11 +135,14 @@ request.setCharacterEncoding("UTF-8");
 								<div class="card">
 									<div class="card-footer p-3" align="center">
 										<button type="button" class="btn btn-secondary"
-											onclick="adRegister()"><a href="#">운영계정 생성</a></button>
+											onclick="adRegister()">
+											<a href="#">운영계정 생성</a>
+										</button>
 										<button type="button" class="btn btn-secondary"
-											data-bs-toggle="modal" data-bs-target="#adSelect">운영계정 조회</button>
+											data-bs-toggle="modal" data-bs-target="#adSelect">운영계정
+											조회</button>
 									</div>
-								</div> 
+								</div>
 							</div>
 							<!-- *뉴스쓰기* -->
 							<div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
@@ -961,20 +964,29 @@ request.setCharacterEncoding("UTF-8");
 							<tr>
 								<td>단계</td>
 								<td>아이디</td>
-								<td>사유</td>
-								<td>제재 기간</td>
 								<td align="center">설정</td>
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>3단계</td>
-								<td>Doe</td>
-								<td>도배 및 악성 게시글</td>
-								<td>2021-03-30</td>
-								<td align="center"><button type="button"
-										class="btn btn-dark">단계 변경</button></td>
-							</tr>
+							<c:choose>
+								<c:when test="${empty userList }">
+									<tr>
+										<td>null입니다.</td>
+									</tr>
+								</c:when>
+								<c:when test="${!empty userList }">
+									<c:forEach var="user" items="${userList }">
+										<tr>
+											<td>${user.PROHIBITLV }</td>
+											<td>${user.ID }</td>
+											<td align="center">
+												<button type="button" class="btn btn-dark"
+													onclick="setProhibit('${user.ID }')">단계 변경</button>
+											</td>
+										</tr>
+									</c:forEach>
+								</c:when>
+							</c:choose>
 						</tbody>
 					</table>
 					<div class="search-input">
@@ -1315,6 +1327,15 @@ request.setCharacterEncoding("UTF-8");
 							"관리자 계정 추가",
 							"width=500, height=700, history=no, resizable=no, status=no, scrollbars=yes, menubar=no");
 
+		}
+	</script>
+	<script>
+		function setProhibit(id) {
+			window
+					.open(
+							"../admin/setProhibit?id="+ id,
+							"제재 수준 설정",
+							"width=500, height=150, history=no, resizable=no, status=no, scrollbars=yes, menubar=no");
 		}
 	</script>
 </body>

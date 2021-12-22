@@ -104,6 +104,17 @@
 		]]>
 	</select>
 
+	<select id="selectUserList" resultType="hashMap">
+		SELECT * FROM B_USER
+		WHERE ADMIN IS NULL
+	</select>
+
+	<update id="updateProhibit" parameterType="UserVO">
+		UPDATE STUDY.B_USER
+		SET PROHIBITLV=#{prohibitLV}
+		WHERE ID=#{id}
+	</update>
+
 	<insert id="addAdminAcc" parameterType="UserVO">
 	<![CDATA[
 		INSERT INTO STUDY.B_USER

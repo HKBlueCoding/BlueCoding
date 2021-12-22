@@ -51,6 +51,12 @@ public class AdminDAO {
 		list = sqlSession.selectList("mapper.admin.selectAdminList");
 		return list;
 	}
+	
+	public List<HashMap<String, Object>> selectUserList() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("mapper.admin.selectUserList");
+	}
+	
 
 	public int deleteAdminAcc(String id) {
 		// TODO Auto-generated method stub
@@ -70,5 +76,11 @@ public class AdminDAO {
 		UserVO userVO = sqlSession.selectOne("mapper.admin.dupId", id);
 		return userVO;
 	}
+
+	public int updateProhibit(UserVO userVO) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("mapper.admin.updateProhibit", userVO);
+	}
+
 
 }

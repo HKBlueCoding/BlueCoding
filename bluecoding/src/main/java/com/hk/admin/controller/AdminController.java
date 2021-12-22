@@ -40,6 +40,7 @@ public class AdminController {
 	   List<HashMap<String, Object>> pageBenefitList = adminService.selectPageBenefitList();
 	   List<HashMap<String, Object>> coinList = adminService.selectCoinList();
 	   List<HashMap<String, Object>> adminList = adminService.selectAdminList();
+	   List<HashMap<String, Object>> userList = adminService.selectUserList();
 	   
 	   
 	   model.addAttribute("bookList", bookList);
@@ -48,6 +49,7 @@ public class AdminController {
 	   model.addAttribute("pageBenefitList", pageBenefitList);
 	   model.addAttribute("coinList", coinList);
 	   model.addAttribute("adminList", adminList);
+	   model.addAttribute("userList", userList);
 	   
 	   
 	   logger.debug("[bookList] = " + bookList);
@@ -56,6 +58,7 @@ public class AdminController {
 	   logger.debug("[pageBenefitList] = " + pageBenefitList);
 	   logger.debug("[coinList] = " + coinList);
 	   logger.debug("[adminList] = " + adminList);
+	   logger.debug("[userList] = " + userList);
       
 	   return "admin";
 	}
@@ -107,6 +110,20 @@ public class AdminController {
 		return "redirect: /admin";
 	}
 	
+	// 제재 수준 설정
+	@GetMapping("/admin/setProhibit")
+	public String setProhibit(Model model, @RequestParam("id") String id) {
+		
+		model.addAttribute("id", id);
+		return "setProhibit";
+	}
+	@RequestMapping(value = "/admin/setProhibit", method = RequestMethod.POST)
 
+	public String updateProhibit(Model model, @ModelAttribute UserVO userVO) {
+
+		int ret = adminService.modProhibit(userVO);
+		model.addAttribute("ret", ret);
+		return "done/setProhibitDone";
+	}
 
 }
