@@ -67,4 +67,9 @@ public class BoardDAO {
 		sqlSession.update("mapper.board.updateViewCnt", articleNO);
 	}
 
+	public int removeReplyArticle(int replyNO) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

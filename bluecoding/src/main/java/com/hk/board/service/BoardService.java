@@ -105,5 +105,10 @@ public class BoardService {
 		return boardReplyDAO.replyUpdate(boardReplyVO);
 	}
 
+	public int deleteReply(int replyNO) {
+		// TODO Auto-generated method stub
+		return boardReplyDAO.deleteReply(replyNO);
+	}
+
 
 }
