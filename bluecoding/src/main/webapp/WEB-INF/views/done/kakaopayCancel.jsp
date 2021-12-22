@@ -9,6 +9,7 @@
 <body>
   <script>
 	alert('결제를 취소하였습니다.');
+	window.opener.location.reload();
 	window.close();
   </script>
 </body>

@@ -38,9 +38,9 @@
     						 *
     					FROM
     						B_PAGE
-    					WHERE BOOKNO= #{bookNO}
+    					WHERE BOOKNO= #{bookNO} AND PAGEDELETE IS NUll
     					ORDER BY
-    						pageNO ASC	
+    						pageNO DESC	
     				) P
     		)
     	WHERE 
@@ -82,6 +82,14 @@
     ]]>
 	</update>
 	
+	<!-- [자식 페이지 삭제] -->
+	<update id="deleteChildPage" parameterType="int">
+	 UPDATE 
+	  B_PAGE 
+	 SET 
+	  PAGEDELETE='Y'
+	 WHERE BOOKNO = #{bookNO}
+	</update>
 	<!-- [회차 조회수 증가] -->
 	<update id="updatePageViewCnt" parameterType="int">
 	 <![CDATA[
@@ -102,7 +110,18 @@
 	<select id="selectLastSeries" resultType="int" parameterType="int">
 	 <![CDATA[
 	  SELECT count(pageNO) FROM b_page WHERE bookNO = #{bookNO}
-	  
 	 ]]>
 	</select>
+	
+	<!-- [페이지 하나 삭제] -->
+	<update id="deleteOnePage" parameterType="int">
+	 <![CDATA[
+	  UPDATE 
+	   B_PAGE 
+	  SET 
+	   PAGEDELETE='Y' 
+	  WHERE 
+	   PAGENO=#{pageNO}
+	 ]]>
+	</update>
 </mapper>	

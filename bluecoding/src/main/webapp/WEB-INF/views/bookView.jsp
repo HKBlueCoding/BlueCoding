@@ -102,7 +102,7 @@
                                     <a href="../update?bookNO=${bookVO.bookNO }" class="btn">수정</a>
                                  </div>
                                  <div class="button header-button">
-                                    <a onClick="funok2()" class="btn">삭제</a>
+                                    <a onClick="bookViewDelte('${bookVO.bookNO}')" class="btn">삭제</a>
                                  </div>
                               </c:if>
                               <!-- [글 쓴 유저만 변경가능] -->
@@ -172,7 +172,7 @@
                                                          <div class="d-flex px-2 py-1">
                                                             <div class="d-flex flex-column justify-content-center">
                                                                <p class="text-xs text-secondary mb-0" style="font-size: 15px;">
-                                                                  <a href="../view/page?pageNO=${pageList.pageNO }">${pageList.series }화, ${pageList.pageTitle }</a>
+                                                                  <a href="../view/page?pageNO=${pageList.pageNO }">${pageList.pageTitle }</a>
                                                                   <br>${pageList.pageDate }
                                                                </p>
                                                                <p class="text-xs text-secondary mb-0">조회수: ${pageList.pViewCnt }</p>
@@ -192,7 +192,7 @@
                                                                   <a href="../view/update?pageNO=${pageList.pageNO}" class="btn" style="background-color: #30d8e0;">수정</a>
                                                                </div>
                                                                <div class="button header-button">
-                                                                  <a onClick="funok2()" class="btn" style="background-color: #30d8e0;">삭제</a>
+                                                                  <a onClick="pageDelete('${pageList.pageNO}')" class="btn" style="background-color: #30d8e0;">삭제</a>
                                                                </div>
                                                             </c:if>
                                                          </div>
@@ -315,7 +315,12 @@
                                                                      <c:forEach begin="1" end="${review.level }" step="1">
                                                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                                      </c:forEach>
+                                                                     <c:if test="${review.revDelete eq 'Y' }">
+                                                                     <strike>&nbsp;&nbsp;[삭제된 게시글입니다]</strike>
+                                                                     </c:if>
+                                                                     <c:if test="${review.revDelete ne 'Y' }">
                                                                      &nbsp;&nbsp;${review.revText }
+                                                                     </c:if>                                                                     
                                                                   </p>
                                                                </div>
                                                             </div>
@@ -324,7 +329,12 @@
                                                             <div class="d-flex px-2 py-1">
                                                                <div class="d-flex flex-column justify-content-center">
                                                                   <p class="text-xs text-secondary mb-0" style="font-size: 15px;">작성자명 : ${review.nick }(${review.id }),&nbsp;&nbsp;&nbsp;&nbsp;${Description.revDate }</p>
-                                                                  <p class="text-xs text-secondary mb-0">${review.revText }</p>
+                                                                  <c:if test="${review.revDelete eq 'Y' }">
+                                                                   <strike class="text-xs text-secondary mb-0">[삭제된 게시글입니다]</strike>
+                                                                  </c:if>
+                                                                  <c:if test="${review.revDelete ne 'Y' }">
+                                                                   <p class="text-xs text-secondary mb-0">${review.revText }</p>
+                                                                  </c:if>
                                                                </div>
                                                             </div>
                                                          </c:if>
@@ -349,7 +359,7 @@
                                                                   <button onClick="replyClick('${replyCnt.count}')"  id="modify" class="btn" style="background-color: #30d8e0;">수정</button>
                                                                </div>
                                                                <div class="button header-button">
-                                                                  <a onClick="funok2()" class="btn" style="background-color: #30d8e0;">삭제</a>
+                                                                  <a onClick="deleteReview('${review.revNO }')" class="btn" style="background-color: #30d8e0;">삭제</a>
                                                                </div>
                                                             </c:if>
                                                          </div>
@@ -362,7 +372,9 @@
                                                       <c:if test='${review.level == 1 }'>
                                                          <td>
                                                             <div class="form-floating" id="formMag" style="width: 460%;">
+                                                              <c:if test="${review.revDelete ne 'Y' }">
                                                                <textarea name="revText" class="form-control" id="ReText${replyCnt.count }" style="height: 7rem;" data-sb-validations="required">${review.revText }</textarea>
+                                                              </c:if>
                                                                <br>
                                                                <label for="message">댓글 수정</label>
                                                                <input type="hidden" value="${review.revNO }" id="revNO${replyCnt.count }" name="revNO">
@@ -387,7 +399,9 @@
                                                       <c:if test='${review.level > 1 }'>
                                                          <td>
                                                             <div class="form-floating" id="formMag" style="width: 460%;">
+                                                              <c:if test="${review.revDelete ne 'Y' }">
                                                                <textarea name="revText" class="form-control" id="ReText${replyCnt.count }" style="height: 7rem;" data-sb-validations="required">${review.revText }</textarea>
+                                                              </c:if>                                                               
                                                                <br>
                                                                <label for="message">답글 수정</label>
                                                                <input type="hidden" value="${review.revNO }" id="revNO${replyCnt.count }" name="revNO">
@@ -396,13 +410,13 @@
                                                                <!-- ======================= 버튼 ========================== -->
                                                                <div align="center">
                                                                   <!-- [로그인시] -->
-                                                                  <c:if test="${!empty login.id && login.id ne '' }">
+                                                                  <c:if test="${!empty login.id && login.id ne '' || review.revDelete ne 'Y' }">
                                                                      <div class="button header-button">
                                                                         <a id="modBtn" onClick="replyReDone('${review.revParentNO}','${replyCnt.count }')" class="btn">확인</a>
                                                                      </div>
                                                                   </c:if>
                                                                   <!-- [비 로그인시]] -->
-                                                                  <c:if test="${empty login.id || login.id  eq '' }">
+                                                                  <c:if test="${empty login.id || login.id  eq '' || review.revDelete ne 'Y' }">
                                                                      <div class="button header-button">
                                                                         <a data-bs-toggle="modal"  data-bs-target="#login" class="btn">확인</a>
                                                                      </div>
@@ -591,15 +605,6 @@
          function funok() {
            if (alert("정상적으로 등록되었습니다.") == true) {} else {
              alert("등록에 실패하였습니다.")
-             return;
-           }
-         }
-      </script>
-      <script>
-         function funok2() {
-           if (confirm("글을 정말 삭제하시겠습니까??")) {
-             alert("정상적으로 삭제되었습니다.")
-           } else {
              return;
            }
          }

@@ -197,6 +197,36 @@ public class BookController {
 
 		return "done/bookUpdateDone";
 	}
+	
+	// [책 삭제하기+ 페이지도]
+	@RequestMapping(value = "/delete", method = { RequestMethod.POST }, produces = "application/json; charset=utf8")
+	@ResponseBody
+	public Map<String, Object> bookDelete(HttpSession session, @RequestParam("bookNO") int bookNO) throws Exception {
+		// id와 해당 페이지의 번호
+		
+		// 실패시 0
+		// 성공시 1
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("ret", 0);
+		
+		UserVO userVO = (UserVO) session.getAttribute("login");
+		if(userVO == null) {
+			return map;
+		}
+		
+		// 해당 책의 NO와 id(혹시 모르니까)를 보내서 삭제 표시 후
+		// 해당 bookNO의 자식 페이지들도 전부 삭제 표시로 바꿈
+		Map<String, Object> userMap = new HashMap<String, Object>();
+		userMap.put("id", userVO.getId());
+		userMap.put("bookNO", bookNO);
+		
+		// update로 삭제 표시만...
+		int ret = bookService.deleteBook(userMap);
+		
+		map.put("ret", ret);
+		
+		return map;
+	}	
 
 	@GetMapping("/view/add")
 	public String bookViewAdd(@RequestParam("bookNO") int bookNO, Model model) {
@@ -263,6 +293,30 @@ public class BookController {
 
 		return "done/bookViewUpdateDone";
 	}
+	
+	// [페이지 삭제하기]
+	@RequestMapping(value = "/view/delete", method = { RequestMethod.POST }, produces = "application/json; charset=utf8")
+	@ResponseBody
+	public Map<String, Object> pageDelete(HttpSession session, @RequestParam("pageNO") int pageNO) throws Exception {
+		// id와 해당 페이지의 번호
+		
+		// 실패시 0
+		// 성공시 1
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("ret", 0);
+		
+		UserVO userVO = (UserVO) session.getAttribute("login");
+		if(userVO == null) {
+			return map;
+		}
+		
+		// update로 삭제 표시만...
+		int ret = bookService.deletePage(pageNO);
+		
+		map.put("ret", ret);
+		
+		return map;
+	}	
 
 	@PostMapping("/view/favo/add")
 	public String favoAddDone(Model model, @ModelAttribute FavoVO favoVO) {
@@ -313,51 +367,62 @@ public class BookController {
 		map.put("rs", rs);
 		return map;
 	}
-
+	
+	// [책 정보 리뷰쓰기]
 	@RequestMapping(value = "/view/review/add", method = RequestMethod.POST, produces = "application/json; charset=utf8")
 	@ResponseBody // --> ajax 사용할 때 사용
-	public Map<String, Object> reviewAdd(@ModelAttribute ReviewVO reviewVO, Model model) { // --> ajax에서 보낸
+	public Map<String, Object> reviewAdd(@ModelAttribute ReviewVO reviewVO) { // --> ajax에서 보낸
 																										// data
 		logger.debug("[리뷰의 reviewVO] = " + reviewVO);
 
 		int ret = bookService.addReview(reviewVO);
 		logger.debug("[ret] = " + ret);
 
-		model.addAttribute("ret", ret);
-
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("revText", reviewVO.getRevText());
 		map.put("ret", ret);
 		return map;
 	}
-
+	
+	// [리뷰 수정]
 	@RequestMapping(value = "/view/review/update", method = RequestMethod.POST, produces = "application/json; charset=utf8")
 	@ResponseBody // --> ajax 사용할 때 사용
-	public Map<String, Object> reviewUpdate(@ModelAttribute ReviewVO reviewVO, Model model) { // --> ajax에서
+	public Map<String, Object> reviewUpdate(@ModelAttribute ReviewVO reviewVO) { // --> ajax에서
 																											// 보낸 data
 		logger.debug("[리뷰 수정의 reviewVO] = " + reviewVO);
 
 		int ret = bookService.updateReview(reviewVO);
 		logger.debug("[ret] = " + ret);
 
-		model.addAttribute("ret", ret);
-
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("revText", reviewVO.getRevText());
 		map.put("ret", ret);
 		return map;
 	}
+	
+	// [리뷰 삭제]
+	@RequestMapping(value = "/view/review/delete", method = RequestMethod.POST, produces = "application/json; charset=utf8")
+	@ResponseBody // --> ajax 사용할 때 사용
+	public Map<String, Object> reviewDelete(@RequestParam("revNO") int revNO) { // --> ajax에서
 
+
+		int ret = bookService.reviewDelete(revNO);
+		logger.debug("[ret] = " + ret);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("ret", ret);
+		return map;
+	}		
+	
+	// [답글 추가]
 	@RequestMapping(value = "/view/reviewRe/add", method = RequestMethod.POST, produces = "application/json; charset=utf8")
 	@ResponseBody // --> ajax 사용할 때 사용
-	public Map<String, Object> reviewReAdd(@ModelAttribute ReviewVO reviewVO, Model model) { // --> ajax에서
+	public Map<String, Object> reviewReAdd(@ModelAttribute ReviewVO reviewVO) { // --> ajax에서
 																											// 보낸 data
 		logger.debug("[리뷰 답글의 reviewVO] = " + reviewVO);
 
 		int ret = bookService.addReview(reviewVO);
 		logger.debug("[ret] = " + ret);
-
-		model.addAttribute("ret", ret);
 
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("ret", ret);
@@ -366,14 +431,12 @@ public class BookController {
 	
 	@RequestMapping(value = "/view/page/pageReply/add", method = RequestMethod.POST, produces = "application/json; charset=utf8")
 	@ResponseBody // --> ajax 사용할 때 사용
-	public Map<String, Object> pageReplyAdd(@ModelAttribute PageReplyVO pageReplyVO, Model model) { // --> ajax에서 보낸
+	public Map<String, Object> pageReplyAdd(@ModelAttribute PageReplyVO pageReplyVO) { // --> ajax에서 보낸
 																										// data
 		logger.debug("[page 댓글의 pageReplyVO] = " + pageReplyVO);
 
 		int ret = bookService.addPageReply(pageReplyVO);
-		logger.debug("[page 댓글의 ret] = " + ret);
-
-		model.addAttribute("ret", ret);
+		logger.debug("[page 댓글의 ret] = " + ret);;
 
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("pageReText", pageReplyVO.getPageReText());
@@ -383,14 +446,12 @@ public class BookController {
 
 	@RequestMapping(value = "/view/page/pageReply/update", method = RequestMethod.POST, produces = "application/json; charset=utf8")
 	@ResponseBody // --> ajax 사용할 때 사용
-	public Map<String, Object> pageReplyUpdate(@ModelAttribute PageReplyVO pageReplyVO, Model model) { // --> ajax에서
+	public Map<String, Object> pageReplyUpdate(@ModelAttribute PageReplyVO pageReplyVO) { // --> ajax에서
 																											// 보낸 data
 		logger.debug("[page 댓글 수정의 pageReplyVO] = " + pageReplyVO);
 
 		int ret = bookService.updatePageReply(pageReplyVO);
 		logger.debug("[page 댓글 수정의 ret] = " + ret);
-
-		model.addAttribute("ret", ret);
 
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("revText", pageReplyVO.getPageReText());
@@ -400,14 +461,12 @@ public class BookController {
 
 	@RequestMapping(value = "/view/page/pageReplyRe/add", method = RequestMethod.POST, produces = "application/json; charset=utf8")
 	@ResponseBody // --> ajax 사용할 때 사용
-	public Map<String, Object> pageReplyReAdd(@ModelAttribute PageReplyVO pageReplyVO, Model model) { // --> ajax에서
+	public Map<String, Object> pageReplyReAdd(@ModelAttribute PageReplyVO pageReplyVO) { // --> ajax에서
 																											// 보낸 data
 		logger.debug("[page 답글의 reviewVO] = " + pageReplyVO);
 
 		int ret = bookService.addPageReply(pageReplyVO);
 		logger.debug("[page 답글의 ret] = " + ret);
-
-		model.addAttribute("ret", ret);
 
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("ret", ret);

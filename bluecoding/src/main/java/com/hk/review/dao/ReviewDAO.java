@@ -32,4 +32,9 @@ public class ReviewDAO {
 		int ret = sqlSession.update("mapper.review.updateReview", reviewVO);
 		return ret;
 	}
+
+	public int reviewDelete(int revNO) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("mapper.review.deleteReview",revNO);
+	}
 }

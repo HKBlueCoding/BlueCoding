@@ -17,6 +17,7 @@ import org.springframework.transaction.interceptor.TransactionAspectSupport;
 import com.hk.author.dao.AuthorDAO;
 import com.hk.book.dao.BookDAO;
 import com.hk.book.vo.BookVO;
+import com.hk.coinhistory.dao.CoinHistoryDAO;
 import com.hk.favo.service.FavoDAO;
 import com.hk.favo.vo.FavoVO;
 import com.hk.page.dao.PageDAO;
@@ -58,6 +59,9 @@ public class BookService {
 
 	@Autowired
 	AuthorDAO authorDAO;
+	
+	@Autowired
+	CoinHistoryDAO coinHistoryDAO;
 
 	public  Map<String, Object> listBook(Map<String, Integer> pageMap) {
 		// TODO Auto-generated method stub
@@ -272,11 +276,14 @@ public class BookService {
 
 		try {
 
-			// 1-2. 넣은값을 토대로 insert
+			// 1-2. 넣은값을 토대로 update
 			ret = userDAO.minusCoin(map);
 			logger.debug("[코인차감 결과]==" + ret);
 
 			if (ret > 0) {
+				// 1-3 코인을 지불했으니까... 환불을 하면 안되니..
+				ret = coinHistoryDAO.updateNotRefund(pageBuyVO.getId());
+				
 				// 2. 저자에게 해당 회차에 대한 코인을 줌
 				ret = authorDAO.insertProfit(pageBuyVO);
 
@@ -311,5 +318,30 @@ public class BookService {
 	public int updatePageReply(PageReplyVO pageReplyVO) {
 		// TODO Auto-generated method stub
 		return pageReplyDAO.PageReplyUpdate(pageReplyVO);
+	}
+
+	public int deleteBook(Map<String, Object> userMap) {
+		// TODO Auto-generated method stub
+		
+		// 먼저 해당 책을 삭제
+		int ret = bookDAO.deleteBook(userMap);
+		
+		// 그리고 자식 페이지를 모두 삭제
+		if(ret > 0) {
+			pageDAO.deleteChildPage((int)userMap.get("bookNO"));
+		}
+		
+		return ret;
+	}
+
+	public int deletePage(int pageNO) {
+		// TODO Auto-generated method stub
+		
+		return pageDAO.deleteOnePage(pageNO);
+	}
+
+	public int reviewDelete(int revNO) {
+		// TODO Auto-generated method stub
+		return reviewDAO.reviewDelete(revNO);
 	}
 }

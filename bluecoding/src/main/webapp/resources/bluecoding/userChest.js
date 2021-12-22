@@ -57,9 +57,13 @@ function withdraw(benefit){
 }
 
 // 환불버튼
-function payRefund(coin){
+function payRefund(cDate){
 	
-}
+	var acc = confirm('환불 하시겠습니까?');
+	if(acc ==true){
+		window.open("../../kakaopay/refund?cDate="+cDate,"환불 하기", "width=1500, height=500, history=no, resizable=no, status=no, scrollbars=yes, menubar=no");
+	}
+} // 펑션 끝
 
 window.onload = function (){
 

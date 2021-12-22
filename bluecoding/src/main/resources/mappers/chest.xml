@@ -63,7 +63,7 @@ WHERE  id = #{id}
     	SELECT 
     	 bc.COINMETHOD AS METHOD, 
     	 bc.RECHARGECOIN AS COIN, 
-    	 bc.COINDATE AS CDATE,
+    	 TO_CHAR(bc.COINDATE, 'yyyy-MM-dd HH24:MI:SS') AS CDATE,
     	 bc.CISREFUND AS REFUND
 		FROM B_COINHISTORY bc
 		WHERE id = #{id}  

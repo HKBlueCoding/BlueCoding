@@ -29,6 +29,11 @@ public class CoinHistoryDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.delete("mapper.coinhistory.deleteOneHistory",coinHistoryVO); 
 	}
+
+	public int updateNotRefund(String id) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("mapper.coinhistory.updateNotRefund", id);
+	}
 	
 	
 	

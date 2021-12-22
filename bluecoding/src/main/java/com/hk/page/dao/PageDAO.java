@@ -56,5 +56,15 @@ public class PageDAO {
 		return sqlSession.selectOne("mapper.page.selectLastSeries", pageNO);
 	}
 
+	public int deleteChildPage(int bookNO) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("mapper.page.deleteChildPage" , bookNO);
+	}
+
+	public int deleteOnePage(int pageNO) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("mapper.page.deleteOnePage", pageNO);
+	}
+
 
 }

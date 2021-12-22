@@ -70,6 +70,11 @@ public class UserDAO {
 		return sqlSession.update("mapper.user.minusCoin", map);
 	}
 
+	public int updateRefund(CoinHistoryVO coinHistoryVO) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("mapper.user.updateRefund", coinHistoryVO);
+	}
+
 	
 	/*
 	 * // [ 로그인 사용자가 쓴 글 조회] public List<HashMap<String, String>>

@@ -65,4 +65,9 @@ public class BookDAO {
 		sqlSession.update("mapper.page.updatePageViewCnt", pageNO);
 	}
 
+	public int deleteBook(Map<String, Object> userMap) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("mapper.book.deleteBook", userMap);
+	}
+
 }

@@ -7,6 +7,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
 import com.hk.coinhistory.dao.CoinHistoryDAO;
 import com.hk.coinhistory.vo.CoinHistoryVO;
@@ -44,15 +47,29 @@ public class CoinHistoryService {
 		
 		return retHis; 
 	}
-
-	public CoinHistoryVO selectOneHistory(Map<String, Object> map) {
+	
+	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { Exception.class })
+	public CoinHistoryVO selectOneHistory(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
-		CoinHistoryVO coinHistoryVO = coinHistoryDAO.selectOneHistory(map);
-		// 만약 값이 잘 있으면 해당 값을 지움
-		int ret = 0;
-		if(coinHistoryVO != null) {
-			ret = coinHistoryDAO.deleteOneHistory(coinHistoryVO);
-			
+		
+		CoinHistoryVO coinHistoryVO = null;
+		try {
+			coinHistoryVO = coinHistoryDAO.selectOneHistory(map);
+			// 만약 값이 잘 있으면 해당 값을 지움
+			int ret = 0;
+			if(coinHistoryVO != null) {
+				ret = coinHistoryDAO.deleteOneHistory(coinHistoryVO);
+				if (ret > 0) {
+					logger.debug("[차감할 금액]=="+coinHistoryVO.getRechargeCoin());
+					ret = userDAO.updateRefund(coinHistoryVO);
+				}else {
+					// 실패하면 그냥 null
+					coinHistoryVO = null;
+				}
+			}
+		}catch (Exception e){
+			TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+			e.printStackTrace();
 		}
 		
 		return coinHistoryVO;

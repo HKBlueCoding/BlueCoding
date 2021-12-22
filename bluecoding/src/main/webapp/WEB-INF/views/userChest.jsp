@@ -207,7 +207,6 @@
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">회차</th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">사용한 코인</th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">구매일</th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">환불</th>
                                  </tr>
                               </thead>
                               <tbody>
@@ -232,18 +231,6 @@
                                     </td>
                                     <td class="align-middle text-center">
                                        <span class="text-secondary text-xs font-weight-bold">${favoBuy.PDATE }</span>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                     <c:if test="${favoBuy.REFUND eq 'Y' }">
-                                       <div class="button header-button">
-                                          <a onclick="" class="btn" style="background-color: #ab0dd7">환불하기</a>
-                                       </div>
-                                     </c:if>
-                                     <c:if test="${favoBuy.REFUND ne 'Y' }">
-                                       <div class="button header-button">
-                                          <span class="text-secondary text-xs font-weight-bold">환불 불가</span>
-                                       </div>
-                                     </c:if>
                                     </td>
                                  </tr>
 							 	 </c:forEach> 
@@ -348,7 +335,7 @@
                                     <td class="align-middle text-center">
                                        <div class="button header-button">
                                         <c:if test="${favoPay.REFUND eq 'Y' }">
-                                          <a href="payRefund('${favoPay.COIN}')" class="btn" style="background-color: #ab0dd7">환불하기</a>
+                                          <a onclick="payRefund('${favoPay.CDATE }')" class="btn" style="background-color: #ab0dd7">환불하기</a>
                                         </c:if>
                                         <c:if test="${favoPay.REFUND ne 'Y' }">
                                           <span class="text-secondary text-xs font-weight-bold">환불 불가</span>	

@@ -17,6 +17,7 @@
 
 	</resultMap>
 	
+	<!-- [코인 구매내역 작성] -->
 	<insert id="insertPayHistory" parameterType="CoinHistoryVO">
 	 <![CDATA[
 		INSERT INTO B_COINHISTORY (COINMETHOD, ID, COINDATE, CISREFUND, RECHARGECOIN, TID) 
@@ -24,6 +25,7 @@
 	 ]]>
 	</insert>
 	
+	<!-- [해당 기록이 있는지 확인] -->
 	<select id="selectOneHistory" resultType="CoinHistoryVO" parameterType="hashmap">
 	 <![CDATA[
 	 	SELECT 
@@ -34,10 +36,11 @@
 	 	  RECHARGECOIN, 
 	 	  TID 
 	 	FROM B_COINHISTORY
-	 	WHERE id=#{id} AND COINDATE=#{cDate}
+	 	WHERE id=#{id} AND TO_CHAR(COINDATE ,'yyyy-MM-dd HH24:MI:SS') = #{cDate}
 	 ]]>	 
 	</select>
 	
+	<!-- [코인 환불해서 기록삭제] -->
 	<delete id="deleteOneHistory" parameterType="CoinHistoryVO">
 	 <![CDATA[
 	  DELETE 
@@ -46,4 +49,13 @@
 	  TID=#{tid}
 	 ]]>
 	</delete>
+	
+	<!-- [코인 사용해서 환불여부 X (해당 유저의 전체 코인 환불여부를 null로 만듬)] -->
+	<update id="updateNotRefund" parameterType="java.lang.String">
+	 UPDATE 
+ 	  B_COINHISTORY 
+	 SET CISREFUND=''
+	 WHERE id=#{id}
+	</update>
+	
 </mapper>

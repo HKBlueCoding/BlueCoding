@@ -36,8 +36,9 @@
 							*
 						FROM
 							B_BOOK
+						WHERE BOOKDELETE IS NULL
 						ORDER BY
-							bookNO ASC
+							bookNO DESC
 					) B
 		
 			)
@@ -47,12 +48,14 @@
     ]]>
 	</select>
 	
+	<!-- [책 토탈] -->
 	<select id="selectTotBook" resultType="int">
 	 <![CDATA[
 	  SELECT count(bookNO) FROM b_book
 	 ]]> 
 	</select>
 
+	<!-- [책 추가] -->
 	<insert id="insertBook" parameterType="BookVO">
 	 <selectKey keyProperty="bookNO" resultType="int" order="BEFORE">
 	 	SELECT count(bookNO)+1 FROM B_BOOK
@@ -64,17 +67,29 @@
 	 ]]>
 	</insert>
 	
+	<!-- [책 하나만 조회] -->
 	<select id="selectOneBook" resultMap="bookResult">
     <![CDATA[
 		SELECT * FROM B_BOOK WHERE bookNO=#{bookNO}
     ]]>
 	</select>
 	
+	<!-- [책 수정] -->
 	<update id="updateBook" parameterType="BookVO">
     <![CDATA[
 		UPDATE B_BOOK SET BOOKTITLE=#{bookTitle}, INTRO=#{intro}, THEME=#{theme}, BOOKIMAGE=#{bookImage} 
 		WHERE BOOKNO=#{bookNO}
     ]]>
+	</update>
+	
+	<!-- [책 삭제] -->
+	<update id="deleteBook" parameterType="hashmap">
+	 UPDATE 
+	  B_BOOK 
+	 SET 
+	  BOOKDELETE = 'Y'
+	 WHERE 
+	  BOOKNO=#{bookNO} AND id=#{id}
 	</update>
 	
 	<!-- [책 번호 조회] -->

@@ -97,4 +97,14 @@
 	  ]]>
 	 </if>
 	</update>
+	
+	<!-- [코인 환불] -->
+	<update id="updateRefund" parameterType="CoinHistoryVO">
+	<if test='cisRefund == "Y" '>
+		UPDATE B_USER 
+	  	SET COIN= (COIN - #{rechargeCoin}) 
+	  	WHERE ID=#{id}
+	</if>
+	</update>
+	
 </mapper>

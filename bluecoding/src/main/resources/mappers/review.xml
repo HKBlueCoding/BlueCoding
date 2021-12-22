@@ -44,5 +44,13 @@
 		UPDATE B_REVIEW SET REVPARENTNO=#{revParentNO}, REVTEXT=#{revText}, REVDATE=sysdate, REVDELETE='', BOOKNO=#{bookNO}, ID=#{id}, NICK=#{nick}
 		WHERE REVNO=#{revNO}
     ]]>
+	</update>
+	
+	<update id="deleteReview" parameterType="int">
+	 UPDATE 
+	  B_REVIEW 
+	 SET 
+	 REVDELETE='Y'
+	 WHERE REVNO=#{revNO}
 	</update>		
 </mapper>	

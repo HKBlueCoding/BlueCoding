@@ -203,7 +203,7 @@ public class CoinHistoryController {
 	// [환불 URL]
 	@GetMapping("/kakaopay/refund")
 	public String kakaoPayRefund(@RequestParam("cDate") String cDate,
-									 HttpSession session, Model model) throws RestClientException, URISyntaxException {
+									 HttpSession session, Model model) throws Exception {
 		logger.debug("[cDate]=="+cDate);
 		
 		UserVO userVO = (UserVO) session.getAttribute("login");
@@ -218,6 +218,10 @@ public class CoinHistoryController {
 		if(coinHistoryVO == null) {
 			return "done/kakaopayFail";
 		}
+		
+		// userVO의 값을 새로 업데이트...
+		userVO.setCoin(userVO.getCoin()-coinHistoryVO.getRechargeCoin());
+		session.setAttribute("login", userVO);
 		
 		// 서버로 요청할 header
 		HttpHeaders headers = new HttpHeaders();
