@@ -88,11 +88,11 @@
       <br><br><br><br><br><br><br><br>
       <!-- =================== 글쓰기 폼 ===================== -->
       <!-- Main Content-->
-         <main class="mb-4">
-            <div class="container px-4 px-lg-5">
-               <div class="row gx-4 gx-lg-5 justify-content-center">
-                  <div class="col-md-10 col-lg-8 col-xl-7" style="width: 80%;">
-                  	<form id="contactForm" data-sb-form-api-token="API_TOKEN">
+      <main class="mb-4">
+         <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+               <div class="col-md-10 col-lg-8 col-xl-7" style="width: 80%;">
+                  <form id="contactForm" data-sb-form-api-token="API_TOKEN">
                      <p id="title">회차 보기</p>
                      <hr class="my-4">
                      <input type="hidden" name="pageNO" value="${pageVO.pageNO }" id="pageNO">
@@ -151,201 +151,202 @@
                            <div class="text-center text-danger mb-3">Error sending message!</div>
                         </div>
                         <!-- ======================= 버튼 ========================== -->
-							<div class="button header-button">
-							 <c:if test="${pageVO.series eq 1 }">
-									<a onclick="alert('첫화입니다.')" class="btn">이전 화</a>
-							 </c:if>
-							  <c:if test="${pageVO.series ne 1 }">
-							  		<a href="../view/page?pageNO=${pageVO.series -1}" class="btn">이전 화</a>
-							  </c:if>
-							</div>
-
-
-							<div class="button header-button">
-							<c:if test="${ lastSeries eq series }">
-                           		<a href="../view/page?pageNO=${pageVO.series +1}" class="btn">다음 화</a>
-                       		</c:if>
+                        <div class="button header-button">
+                           <c:if test="${pageVO.series eq 1 }">
+                              <a onclick="alert('첫화입니다.')" class="btn">이전 화</a>
+                           </c:if>
+                           <c:if test="${pageVO.series ne 1 }">
+                              <a href="../view/page?pageNO=${pageVO.series -1}" class="btn">이전 화</a>
+                           </c:if>
+                        </div>
+                        <div class="button header-button">
+                           <c:if test="${ lastSeries eq pageVO.series }">
+                              <a onclick="alert('마지막 화입니다.')" class="btn">다음 화</a>
+                           </c:if>
+                           <c:if test="${ lastSeries ne pageVO.series }">
+                              <a href="../view/page?pageNO=${pageVO.series +1}" class="btn">다음 화</a>
+                           </c:if>
                         </div>
                         <div class="button header-button">
                            <a onClick="" class="btn">별점주기</a>
                         </div>
                         <!-- ======================= 버튼 끝 ========================== -->
                      </div>
-                     </form>
-                  </div>
+                  </form>
                </div>
             </div>
-         </main>
-         <!-- =================== 글쓰기 폼 끝===================== -->
-            <!-- =========================== 댓글 =========================== -->
-            <div class="container-fluid py-4" style="height:auto; width:53%;">
-               <hr class="my-4" style="width: 100%;">
-               <div class="row">
-                  <div class="col-12">
-                     <div class="card my-4">
-                        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                           <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                              <h6 class="text-white text-capitalize ps-3">댓글</h6>
-                           </div>
-                        </div>
-                        <c:forEach var="pageReply"  items="${pageReplyVO }"  varStatus="replyCnt">
-                           <div id="tbPadd" class="card-body px-0 pb-2">
-                              <div class="table-responsive p-0">
-                                 <table class="table align-items-center mb-0">
-                                    <tbody>
-                                       <tr>
-                                          <td>
-                                             <c:if test='${pageReply.level > 1 }'>
-                                                <div class="d-flex px-2 py-1">
-                                                   <div class="d-flex flex-column justify-content-center">
-                                                      <p class="text-xs text-secondary mb-0" style="font-size: 15px;">
-                                                         <c:forEach begin="1" end="${pageReply.level }" step="1">
-                                                            &nbsp;&nbsp;&nbsp;&nbsp;
-                                                         </c:forEach>
-                                                         ⤷작성자명 : ${pageReply.nick }(${pageReply.id }),&nbsp;&nbsp;&nbsp;&nbsp;${pageReply.pageReDate }
-                                                      </p>
-                                                      <p class="text-xs text-secondary mb-0">
-                                                         <c:forEach begin="1" end="${pageReply.level }" step="1">
-                                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                         </c:forEach>
-                                                         &nbsp;&nbsp;${pageReply.pageReText }
-                                                      </p>
-                                                   </div>
-                                                </div>
-                                             </c:if>
-                                             <c:if test="${pageReply.level == 1 }">
-                                                <div class="d-flex px-2 py-1">
-                                                   <div class="d-flex flex-column justify-content-center">
-                                                      <p class="text-xs text-secondary mb-0" style="font-size: 15px;">작성자명 : ${pageReply.nick }(${pageReply.id }),&nbsp;&nbsp;&nbsp;&nbsp;${pageReply.pageReDate }</p>
-                                                      <p class="text-xs text-secondary mb-0">${pageReply.pageReText }</p>
-                                                   </div>
-                                                </div>
-                                             </c:if>
-                                          </td>
-                                          <!-- ======================= 버튼 ========================== -->
-                                          <td>
-                                             <div align="right"  style="width: 100%;">
+         </div>
+      </main>
+      <!-- =================== 글쓰기 폼 끝===================== -->
+      <!-- =========================== 댓글 =========================== -->
+      <div class="container-fluid py-4" style="height:auto; width:53%;">
+         <hr class="my-4" style="width: 100%;">
+         <div class="row">
+            <div class="col-12">
+               <div class="card my-4">
+                  <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                     <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+                        <h6 class="text-white text-capitalize ps-3">댓글</h6>
+                     </div>
+                  </div>
+                  <c:forEach var="pageReply"  items="${pageReplyVO }"  varStatus="replyCnt">
+                     <div id="tbPadd" class="card-body px-0 pb-2">
+                        <div class="table-responsive p-0">
+                           <table class="table align-items-center mb-0">
+                              <tbody>
+                                 <tr>
+                                    <td>
+                                       <c:if test='${pageReply.level > 1 }'>
+                                          <div class="d-flex px-2 py-1">
+                                             <div class="d-flex flex-column justify-content-center">
+                                                <p class="text-xs text-secondary mb-0" style="font-size: 15px;">
+                                                   <c:forEach begin="1" end="${pageReply.level }" step="1">
+                                                      &nbsp;&nbsp;&nbsp;&nbsp;
+                                                   </c:forEach>
+                                                   ⤷작성자명 : ${pageReply.nick }(${pageReply.id }),&nbsp;&nbsp;&nbsp;&nbsp;${pageReply.pageReDate }
+                                                </p>
+                                                <p class="text-xs text-secondary mb-0">
+                                                   <c:forEach begin="1" end="${pageReply.level }" step="1">
+                                                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                   </c:forEach>
+                                                   &nbsp;&nbsp;${pageReply.pageReText }
+                                                </p>
+                                             </div>
+                                          </div>
+                                       </c:if>
+                                       <c:if test="${pageReply.level == 1 }">
+                                          <div class="d-flex px-2 py-1">
+                                             <div class="d-flex flex-column justify-content-center">
+                                                <p class="text-xs text-secondary mb-0" style="font-size: 15px;">작성자명 : ${pageReply.nick }(${pageReply.id }),&nbsp;&nbsp;&nbsp;&nbsp;${pageReply.pageReDate }</p>
+                                                <p class="text-xs text-secondary mb-0">${pageReply.pageReText }</p>
+                                             </div>
+                                          </div>
+                                       </c:if>
+                                    </td>
+                                    <!-- ======================= 버튼 ========================== -->
+                                    <td>
+                                       <div align="right"  style="width: 100%;">
+                                          <!-- [로그인시] -->
+                                          <c:if test="${!empty login.id && login.id ne '' }">
+                                             <div class="button header-button">
+                                                <button onClick="replyReClick('${replyCnt.count}')"  id="modify" class="btn" style="background-color: #30d8e0;">답글</button>
+                                             </div>
+                                          </c:if>
+                                          <!-- [비 로그인시]] -->
+                                          <c:if test="${empty login.id || login.id  eq '' }">
+                                             <div class="button header-button">
+                                                <a data-bs-toggle="modal"  data-bs-target="#login" class="btn" style="background-color: #30d8e0;">답글</a>
+                                             </div>
+                                          </c:if>
+                                          <c:if test="${login.admin eq 'A' || login.admin eq 'C'}">
+                                             <div class="button header-button">
+                                                <button onClick="replyClick('${replyCnt.count}')"  id="modify" class="btn" style="background-color: #30d8e0;">수정</button>
+                                             </div>
+                                             <div class="button header-button">
+                                                <a onClick="funok2()" class="btn" style="background-color: #30d8e0;">삭제</a>
+                                             </div>
+                                          </c:if>
+                                       </div>
+                                       <!-- ======================= 버튼 끝 ========================== -->
+                                    </td>
+                                 </tr>
+                                 <!-- =========================== 댓글 끝 =========================== -->
+                                 <!-- =========================== 댓글 수정 =========================== -->
+                                 <tr class="mod" >
+                                    <c:if test='${pageReply.level == 1 }'>
+                                       <td>
+                                          <div class="form-floating" id="formMag" style="width: 437%;">
+                                             <textarea name="pageReText" class="form-control" id="ReText${replyCnt.count }" style="height: 7rem;" data-sb-validations="required">${pageReply.pageReText }</textarea>
+                                             <br>
+                                             <label for="message">댓글 수정</label>
+                                             <input type="hidden" value="${pageReply.pageReNO }" id="pageReNO${replyCnt.count }">
+                                             <input type="hidden" value="${pageVO.pageNO }" name="pageNO" id="pageNO">
+                                             <input type="hidden" value="${login.id }" name="id" id="id">
+                                             <input type="hidden" value="${login.nick }" name="nick" id="nick">
+                                             <!-- ======================= 버튼 ========================== -->
+                                             <div align="center">
                                                 <!-- [로그인시] -->
                                                 <c:if test="${!empty login.id && login.id ne '' }">
                                                    <div class="button header-button">
-                                                      <button onClick="replyReClick('${replyCnt.count}')"  id="modify" class="btn" style="background-color: #30d8e0;">답글</button>
+                                                      <a id="modBtn" onClick="replyDone('${pageReply.pageReNO}','${replyCnt.count }')" class="btn">확인</a>
                                                    </div>
                                                 </c:if>
                                                 <!-- [비 로그인시]] -->
                                                 <c:if test="${empty login.id || login.id  eq '' }">
                                                    <div class="button header-button">
-                                                      <a data-bs-toggle="modal"  data-bs-target="#login" class="btn" style="background-color: #30d8e0;">답글</a>
-                                                   </div>
-                                                </c:if>
-                                                <c:if test="${login.admin eq 'A' || login.admin eq 'C'}">
-                                                   <div class="button header-button">
-                                                      <button onClick="replyClick('${replyCnt.count}')"  id="modify" class="btn" style="background-color: #30d8e0;">수정</button>
-                                                   </div>
-                                                   <div class="button header-button">
-                                                      <a onClick="funok2()" class="btn" style="background-color: #30d8e0;">삭제</a>
+                                                      <a data-bs-toggle="modal"  data-bs-target="#login" class="btn">확인</a>
                                                    </div>
                                                 </c:if>
                                              </div>
-                                             <!-- ======================= 버튼 끝 ========================== -->
-                                          </td>
-                                       </tr>
-                                       <!-- =========================== 댓글 끝 =========================== -->
-                                       <!-- =========================== 댓글 수정 =========================== -->
-                                       <tr class="mod" >
-                                          <c:if test='${pageReply.level == 1 }'>
-                                             <td>
-                                                <div class="form-floating" id="formMag" style="width: 437%;">
-                                                   <textarea name="pageReText" class="form-control" id="ReText${replyCnt.count }" style="height: 7rem;" data-sb-validations="required">${pageReply.pageReText }</textarea>
-                                                   <br>
-                                                   <label for="message">댓글 수정</label>
-                                                   <input type="hidden" value="${pageReply.pageReNO }" id="pageReNO${replyCnt.count }">
-                                                   <input type="hidden" value="${pageVO.pageNO }" name="pageNO" id="pageNO">
-                                                   <input type="hidden" value="${login.id }" name="id" id="id">
-                                                   <input type="hidden" value="${login.nick }" name="nick" id="nick">
-                                                   <!-- ======================= 버튼 ========================== -->
-                                                   <div align="center">
-                                                      <!-- [로그인시] -->
-                                                      <c:if test="${!empty login.id && login.id ne '' }">
-                                                         <div class="button header-button">
-                                                            <a id="modBtn" onClick="replyDone('${pageReply.pageReNO}','${replyCnt.count }')" class="btn">확인</a>
-                                                         </div>
-                                                      </c:if>
-                                                      <!-- [비 로그인시]] -->
-                                                      <c:if test="${empty login.id || login.id  eq '' }">
-                                                         <div class="button header-button">
-                                                            <a data-bs-toggle="modal"  data-bs-target="#login" class="btn">확인</a>
-                                                         </div>
-                                                      </c:if>
+                                          </div>
+                                       </td>
+                                    </c:if>
+                                    <c:if test='${pageReply.level > 1 }'>
+                                       <td>
+                                          <div class="form-floating" id="formMag" style="width: 437%;">
+                                             <textarea name="pageReText" class="form-control" id="ReText${replyCnt.count }" style="height: 7rem;" data-sb-validations="required">${pageReply.pageReText }</textarea>
+                                             <br>
+                                             <label for="message">답글 수정</label>
+                                             <input type="hidden" value="${pageReply.pageReNO }" id="pageReNO${replyCnt.count }" name="pageReNO">
+                                             <input type="hidden" value="${login.id }" name="id" id="id">
+                                             <input type="hidden" value="${login.nick }" name="nick" id="nick">
+                                             <!-- ======================= 버튼 ========================== -->
+                                             <div align="center">
+                                                <!-- [로그인시] -->
+                                                <c:if test="${!empty login.id && login.id ne '' }">
+                                                   <div class="button header-button">
+                                                      <a id="modBtn" onClick="replyReDone('${pageReply.pageParentNO}','${replyCnt.count }')" class="btn">확인</a>
                                                    </div>
-                                                </div>
-                                             </td>
-                                          </c:if>
-                                          <c:if test='${pageReply.level > 1 }'>
-                                             <td>
-                                                <div class="form-floating" id="formMag" style="width: 437%;">
-                                                   <textarea name="pageReText" class="form-control" id="ReText${replyCnt.count }" style="height: 7rem;" data-sb-validations="required">${pageReply.pageReText }</textarea>
-                                                   <br>
-                                                   <label for="message">답글 수정</label>
-                                                   <input type="hidden" value="${pageReply.pageReNO }" id="pageReNO${replyCnt.count }" name="pageReNO">
-                                                   <input type="hidden" value="${login.id }" name="id" id="id">
-                                                   <input type="hidden" value="${login.nick }" name="nick" id="nick">
-                                                   <!-- ======================= 버튼 ========================== -->
-                                                   <div align="center">
-                                                      <!-- [로그인시] -->
-                                                      <c:if test="${!empty login.id && login.id ne '' }">
-                                                         <div class="button header-button">
-                                                            <a id="modBtn" onClick="replyReDone('${pageReply.pageParentNO}','${replyCnt.count }')" class="btn">확인</a>
-                                                         </div>
-                                                      </c:if>
-                                                      <!-- [비 로그인시]] -->
-                                                      <c:if test="${empty login.id || login.id  eq '' }">
-                                                         <div class="button header-button">
-                                                            <a data-bs-toggle="modal"  data-bs-target="#login" class="btn">확인</a>
-                                                         </div>
-                                                      </c:if>
+                                                </c:if>
+                                                <!-- [비 로그인시]] -->
+                                                <c:if test="${empty login.id || login.id  eq '' }">
+                                                   <div class="button header-button">
+                                                      <a data-bs-toggle="modal"  data-bs-target="#login" class="btn">확인</a>
                                                    </div>
-                                                </div>
-                                             </td>
-                                          </c:if>
-                                       </tr>
-                                       <!-- =========================== 댓글 수정 끝 =========================== -->
-                                       <!-- ========================== 답글 ========================== -->
-                                       <tr class="replyRe" >
-                                          <td>
-                                             <div class="form-floating" id="formMag" style="width: 437%;">
-                                                <textarea name="pageReText" class="form-control" id="RepReText${replyCnt.count }" style="height: 7rem;" data-sb-validations="required"></textarea>
-                                                <br>
-                                                <label for="message">답글 쓰기</label>
-                                                <input type="hidden" value="${login.id }" name="id" id="id">
-                                                <input type="hidden" value="${login.nick }" name="nick" id="nick">
-                                                <!-- ======================= 버튼 ========================== -->
-                                                <div align="center">
-                                                   <!-- [로그인시] -->
-                                                   <c:if test="${!empty login.id && login.id ne '' }">
-                                                      <div class="button header-button">
-                                                         <a id="repReBtn" onClick="replyInsert('${pageReply.pageReNO}','${replyCnt.count }')" class="btn">확인</a>
-                                                      </div>
-                                                   </c:if>
-                                                   <!-- [비 로그인시]] -->
-                                                   <c:if test="${empty login.id || login.id  eq '' }">
-                                                      <div class="button header-button">
-                                                         <a data-bs-toggle="modal"  data-bs-target="#login" class="btn">확인</a>
-                                                      </div>
-                                                   </c:if>
-                                                </div>
+                                                </c:if>
                                              </div>
-                                          </td>
-                                       </tr>
-                                       <!-- ========================== 답글 끝 ========================== -->
-                                 </tbody>
-                              </table>
-                           </div>
+                                          </div>
+                                       </td>
+                                    </c:if>
+                                 </tr>
+                                 <!-- =========================== 댓글 수정 끝 =========================== -->
+                                 <!-- ========================== 답글 ========================== -->
+                                 <tr class="replyRe" >
+                                    <td>
+                                       <div class="form-floating" id="formMag" style="width: 437%;">
+                                          <textarea name="pageReText" class="form-control" id="RepReText${replyCnt.count }" style="height: 7rem;" data-sb-validations="required"></textarea>
+                                          <br>
+                                          <label for="message">답글 쓰기</label>
+                                          <input type="hidden" value="${login.id }" name="id" id="id">
+                                          <input type="hidden" value="${login.nick }" name="nick" id="nick">
+                                          <!-- ======================= 버튼 ========================== -->
+                                          <div align="center">
+                                             <!-- [로그인시] -->
+                                             <c:if test="${!empty login.id && login.id ne '' }">
+                                                <div class="button header-button">
+                                                   <a id="repReBtn" onClick="replyInsert('${pageReply.pageReNO}','${replyCnt.count }')" class="btn">확인</a>
+                                                </div>
+                                             </c:if>
+                                             <!-- [비 로그인시]] -->
+                                             <c:if test="${empty login.id || login.id  eq '' }">
+                                                <div class="button header-button">
+                                                   <a data-bs-toggle="modal"  data-bs-target="#login" class="btn">확인</a>
+                                                </div>
+                                             </c:if>
+                                          </div>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <!-- ========================== 답글 끝 ========================== -->
+                              </tbody>
+                           </table>
                         </div>
-                     </c:forEach>
-                  </div>
+                     </div>
+                  </c:forEach>
                </div>
             </div>
-            <form id="contactForm"  data-sb-form-api-token="API_TOKEN">
+         </div>
+         <form id="contactForm"  data-sb-form-api-token="API_TOKEN">
             <br>
             <div class="form-floating" id="formMag" style="width: 100%">
                <textarea name="pageReText" id="pageReText" class="form-control" id="message" style="height: 15rem"></textarea>
@@ -389,9 +390,9 @@
                   <a onClick="funbtn()" class="btn">돌아가기</a>
                </div>
             </div>
-      </form>
-            <!-- ======================= 버튼 끝 ========================== -->
-         </div>
+         </form>
+         <!-- ======================= 버튼 끝 ========================== -->
+      </div>
       <!-- ====================== 페이징 ====================== -->
       <div class="w3-center">
          <div class="w3-bar">
@@ -605,52 +606,6 @@
           	}); //end ajax
          }
       </script>
-      <!-- ================================ 답글 수정 끝 ====================================== -->      
-      
-      
-      <!-- ================================ 이전 화 ====================================== -->
-<!--       location.reload();
-      <script>
-      $(document).ready(function() {
-          $('#back').click(function() {
-      		if (${pageVO.series} > 0) {
-    	  		// series가 0보다 클 때는 series-1 이동 
-         		window.location = '../view/page?pageNO=${pageVO.series -1}';
-      		} else {
-    	  		// series가 0이거나 작을 때는 alert 창으로 "첫 페이지입니다." 띄우기
-    	  		alert("첫 페이지입니다.");
-      		}
-      	}
-      }
-      </script>
-       -->
-      <!-- ================================ 이전 화 끝 ====================================== -->
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <!-- ================================ 다음 화 ====================================== -->
-<!--       
-      <script>
-      $(document).ready(function() {
-          $('#front').click(function() {
-      		if (${pageVO.series} > 0) {
-    	  		// series가 0보다 클 때는 series+1 이동 
-         		<a href="../view/page?pageNO=${pageVO.series -1}" class="btn">이전 화</a>
-      		} else {
-    	  		// series가 0이거나 작을 때는 alert 창으로 "첫 페이지입니다." 띄우기
-    	  		alert("첫 페이지입니다.");
-      		}
-      	}
-      }    
-      </script>
-       -->
-      <!-- ================================ 다음 화 끝 ====================================== -->
+      <!-- ================================ 답글 수정 끝 ====================================== -->
    </body>
 </html>

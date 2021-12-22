@@ -106,7 +106,7 @@
                                  </div>
                               </c:if>
                               <!-- [글 쓴 유저만 변경가능] -->
-                              <c:if test="${login.id eq bookVO.id}">
+                              <c:if test="${!empty login.id}">
                                  <div class="button header-button">
                                     <input type="button" onClick="funFavo()" class="btn" value="찜하기" style="background-color: #e3970e">
                                  </div>
