@@ -46,10 +46,13 @@ public class AuthorController {
 		logger.debug(userVO.getId() + "의[유저의 수익]==" + profit);
 
 		// 5000원 이하는 보내버림 (테스트 할때는 300원부터)
-		if (profit == null && profit == 0 || profit < 300) {
+		if (profit == null && profit == 0 || profit < 1) {
 			model.addAttribute("ret", 0);
 			return "done/authorMailFail";
 		}
+		
+		// 전체값 조회
+		profit = (300*profit);
 
 		// 이상일 경우 이메일 입력 창으로 보냄
 		model.addAttribute("id", userVO.getId());
@@ -76,8 +79,9 @@ public class AuthorController {
 			// [유저에게 메일을 보냄]
 			message.setTo(profitEmail); // 유저에게 받은 이메일을 수신자로 설정
 			message.setSubject("[블루코딩] 환영합니다. 현금화 결제가 접수중입니다.");// 제목 설정
-			message.setText("[블루코딩] 현금화가 접수되었습니다. 당신의 접수번호는 "+proessCode+"입니다." // 내용 설정
-							 + "(flenion10@gamil.com이외에는 모두 사칭 이메일입니다. 개인정보를 주지 마세요)"); 
+			message.setText("[블루코딩] 현금화가 접수되었습니다. 당신의 접수번호는 "+proessCode+"입니다."
+							 +"\n 입금될 금액:"+profit+"원"// 내용 설정
+							 + "\n(flenion10@gamil.com이외에는 모두 사칭 이메일입니다. 개인정보를 주지 마세요)"); 
 			message.setFrom("flenion1@gamil.com"); // 발신자 설정
 			
 			mailSender.send(message);
@@ -88,8 +92,9 @@ public class AuthorController {
 			message.setText(holder+"님의 거래가 접수 되었습니다. \n"+"계좌번호:"+account
 							 +"\n 예금주:"+holder
 							 +"\n 은행:"+bank// 내용 설정
-							 +"\n 입금할 금액:"+profit
+							 +"\n 입금할 금액:"+profit+"원"
 							 +"\n pressCode:"+proessCode
+							 +"\n 보낸 이메일:"+profitEmail
 							 +"\n (flenion10@gamil.com이외에는 모두 사칭 이메일입니다. 개인정보를 주지 마세요)"); 
 			message.setFrom("flenion1@gamil.com"); // 발신자 설정
 			
