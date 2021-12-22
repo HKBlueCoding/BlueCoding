@@ -2,6 +2,7 @@ package com.hk.book.controller;
 
 import java.io.File;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -44,7 +45,12 @@ public class BookController {
 	// 메인 페이지
 	@GetMapping("/")
 	public String home(Model model) {
-
+		
+		Map<String, Object> map = bookService.selectMenuList();
+		
+		model.addAttribute("menuList", map.get("menuList"));
+		model.addAttribute("popBList", map.get("popBList"));
+		
 		return "main";
 	}
 

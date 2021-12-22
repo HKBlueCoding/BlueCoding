@@ -21,6 +21,42 @@
 
 	</resultMap>
 	
+	<!-- (메뉴)[랜덤으로 책 30개] -->
+	<select id="selectMenuBook" resultMap="bookResult">
+	 SELECT 
+	 * 
+	 FROM  
+	  	 (
+	  	 	SELECT 
+	  	 		* 
+	  	 	FROM 
+	  	 		B_BOOK 
+	  	 	ORDER BY 
+	  	 		dbms_random.value
+	  	 )
+	 <![CDATA[
+	 WHERE rownum <= 30
+	 ]]>
+	</select>
+	
+	<!-- (메뉴)[인기책 3개] -->
+	<select id="selectPopBook" resultMap="bookResult">
+	 select 
+	 * 
+	 from  
+		 (
+			select 
+				* 
+			from 
+				B_BOOK 
+			order by 
+				BVIEWCNT DESC
+		 )	
+	 <![CDATA[
+	 WHERE rownum <= 3
+	 ]]>
+	</select>
+	
 	<select id="selectAllBook" resultMap="bookResult" parameterType="hashmap">
     <![CDATA[
 		SELECT 

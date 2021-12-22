@@ -70,4 +70,14 @@ public class BookDAO {
 		return sqlSession.update("mapper.book.deleteBook", userMap);
 	}
 
+	public List<BookVO> selectMenuBook() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("mapper.book.selectMenuBook");
+	}
+
+	public List<BookVO> selectPopBook() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("mapper.book.selectPopBook");
+	}
+
 }

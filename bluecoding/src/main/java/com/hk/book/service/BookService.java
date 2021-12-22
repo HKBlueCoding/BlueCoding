@@ -1,6 +1,7 @@
 package com.hk.book.service;
 
 import java.sql.Date;
+
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
@@ -343,5 +344,23 @@ public class BookService {
 	public int reviewDelete(int revNO) {
 		// TODO Auto-generated method stub
 		return reviewDAO.reviewDelete(revNO);
+	}
+
+	public Map<String, Object> selectMenuList() {
+		// TODO Auto-generated method stub
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		//앞에서 움직일 책 30개만
+		List<BookVO> menuList = bookDAO.selectMenuBook();
+		
+		// 베스트책 3개
+		List<BookVO> popBList = bookDAO.selectPopBook();
+		
+		// 베스트글 3개
+		
+		map.put("menuList", menuList);
+		map.put("popBList", popBList);
+		
+		return null;
 	}
 }
