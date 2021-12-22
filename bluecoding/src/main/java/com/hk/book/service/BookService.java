@@ -361,6 +361,6 @@ public class BookService {
 		map.put("menuList", menuList);
 		map.put("popBList", popBList);
 		
-		return null;
+		return map;
 	}
 }
