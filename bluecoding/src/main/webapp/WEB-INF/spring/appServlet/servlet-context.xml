@@ -62,18 +62,42 @@
 		</beans:property>
 	</beans:bean>
 
-	<!-- [Interceptor] -->
-	<beans:bean id="LoginInterceptor"
+	<!-- [Interceptor 1단계 제재] -->
+	<beans:bean id="WarringInterceptor"
+		class="com.hk.Warring.interceptor.WarringInterceptor" />
+
+	<!-- [Interceptor 2단계 제재] -->
+	<beans:bean id="AccessInterceptor"
 		class="com.hk.access.interceptor.AccessInterceptor" />
 
+	<!-- [Interceptor 3단계 제재] -->
+	<beans:bean id="StopInterceptor"
+		class="com.hk.stop.interceptor.StopInterceptor" />
+
 	<interceptors>
+		<!-- 1번째 순위 -->
 		<interceptor>
-			<mapping path="/*" />
-			<exclude-mapping path="/login" />
-			<exclude-mapping path="/logout" />
-			<beans:ref bean="LoginInterceptor" />
+			<mapping path="/**" />
+			<beans:ref bean="StopInterceptor" />
+		</interceptor>
+
+		<!-- 2번째 순위 -->
+		<interceptor>
+			<mapping path="/add" />
+			<mapping path="/**/add" />
+			<mapping path="/**/**/add" />
+			<mapping path="/update" />
+			<mapping path="/**/update" />
+			<mapping path="/**/**/update" />
+			<beans:ref bean="AccessInterceptor" />
+		</interceptor>
+
+		<!-- 3번째 순위 -->
+		<interceptor>
+			<mapping path="/add" />
+			<mapping path="/view/add" />
+			<beans:ref bean="WarringInterceptor" />
 		</interceptor>
 	</interceptors>
-
 
 </beans:beans>
