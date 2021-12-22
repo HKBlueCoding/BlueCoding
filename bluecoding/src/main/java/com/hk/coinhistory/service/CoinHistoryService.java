@@ -1,5 +1,7 @@
 package com.hk.coinhistory.service;
 
+import java.util.Map;
+
 import org.slf4j.Logger;
 
 import org.slf4j.LoggerFactory;
@@ -41,6 +43,19 @@ public class CoinHistoryService {
 		logger.debug("[기록 결과]"+retHis);
 		
 		return retHis; 
+	}
+
+	public CoinHistoryVO selectOneHistory(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		CoinHistoryVO coinHistoryVO = coinHistoryDAO.selectOneHistory(map);
+		// 만약 값이 잘 있으면 해당 값을 지움
+		int ret = 0;
+		if(coinHistoryVO != null) {
+			ret = coinHistoryDAO.deleteOneHistory(coinHistoryVO);
+			
+		}
+		
+		return coinHistoryVO;
 	}
 
 }

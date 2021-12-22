@@ -23,4 +23,27 @@
 		VALUES('결제', #{id}, #{coinDate}, 'Y', #{rechargeCoin}, #{tid})
 	 ]]>
 	</insert>
+	
+	<select id="selectOneHistory" resultType="CoinHistoryVO" parameterType="hashmap">
+	 <![CDATA[
+	 	SELECT 
+	 	  COINMETHOD, 
+	 	  ID, 
+	 	  COINDATE, 
+	 	  CISREFUND, 
+	 	  RECHARGECOIN, 
+	 	  TID 
+	 	FROM B_COINHISTORY
+	 	WHERE id=#{id} AND COINDATE=#{cDate}
+	 ]]>	 
+	</select>
+	
+	<delete id="deleteOneHistory" parameterType="CoinHistoryVO">
+	 <![CDATA[
+	  DELETE 
+	  FROM B_COINHISTORY 
+	  WHERE 
+	  TID=#{tid}
+	 ]]>
+	</delete>
 </mapper>

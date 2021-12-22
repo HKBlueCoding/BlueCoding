@@ -31,16 +31,17 @@ import com.hk.coinhistory.service.CoinHistoryService;
 import com.hk.coinhistory.vo.CoinHistoryVO;
 import com.hk.kakaopayapproval.vo.KakaoPayApprovalVO;
 import com.hk.kakaopayreader.vo.KakaoPayReadyVO;
+import com.hk.kakaopayrefund.vo.KakaoPayRefundVO;
 import com.hk.user.vo.UserVO;
 
 @Controller
 public class CoinHistoryController {
 
 	private static final Logger logger = LoggerFactory.getLogger(CoinHistoryController.class);
-	
+
 	@Autowired
 	CoinHistoryService coinHistoryService;
-	
+
 	// [결제금액을 입력받는 form]
 	@RequestMapping(value = "/kakaopay/buy", method = RequestMethod.GET)
 	public String kakaopayForm() {
@@ -52,7 +53,7 @@ public class CoinHistoryController {
 	@RequestMapping(value = "/kakaopay/buy", method = { RequestMethod.POST })
 	public RedirectView kakaopayBuy(@ModelAttribute CoinHistoryVO coinHistoryVO, HttpSession session) {
 		RestTemplate restTemplate = new RestTemplate();
-		
+
 		// 다되면 외부 URL로 이동해야 하니.. // 혹시나 실패할지 모르니 미리 실패 URL 지정
 		RedirectView redirectView = new RedirectView();
 		redirectView.setUrl("http://localhost:8888/kakaopay/fail");
@@ -63,7 +64,7 @@ public class CoinHistoryController {
 		headers.add("Authorization", "KakaoAK 6e7f56c4944064ee7b694227d4b2e459");
 		headers.add("Accept", MediaType.APPLICATION_JSON_UTF8_VALUE);
 		headers.add("Content-Type", MediaType.APPLICATION_FORM_URLENCODED_VALUE + ";charset=UTF-8");
-		
+
 		// 꼭 넣어야 하는 값들을 넣어서 kakaopay한테 전달
 		MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
 		params.add("cid", "TC0ONETIME");
@@ -79,8 +80,9 @@ public class CoinHistoryController {
 
 		HttpEntity<MultiValueMap<String, String>> body = new HttpEntity<MultiValueMap<String, String>>(params, headers);
 
-		try { // 해당 정보들을 보내서, 값을 받아옴... 
-			KakaoPayReadyVO kakaoPayReadyVO = restTemplate.postForObject(new URI("https://kapi.kakao.com/v1/payment/ready"), body, KakaoPayReadyVO.class);
+		try { // 해당 정보들을 보내서, 값을 받아옴...
+			KakaoPayReadyVO kakaoPayReadyVO = restTemplate
+					.postForObject(new URI("https://kapi.kakao.com/v1/payment/ready"), body, KakaoPayReadyVO.class);
 			logger.debug("next_redirect_pc_url==" + kakaoPayReadyVO.getNext_redirect_pc_url());
 			logger.debug("tid==" + kakaoPayReadyVO.getTid());
 
@@ -106,15 +108,15 @@ public class CoinHistoryController {
 	@GetMapping("/kakaopay/done")
 	public String kakaopayDone(@RequestParam("pg_token") String pg_token, Model model, HttpSession session) {
 		RestTemplate restTemplate = new RestTemplate();
-		
+
 		// map에 담겨진 정보를 받음
 		Map<String, Object> map = (Map<String, Object>) session.getAttribute("coin");
-		
+
 		// 받은 데이터를 변수에 옮겨 넣음
-		KakaoPayReadyVO kakaoPayReadyVO= (KakaoPayReadyVO) map.get("kakaoPayReadyVO");
+		KakaoPayReadyVO kakaoPayReadyVO = (KakaoPayReadyVO) map.get("kakaoPayReadyVO");
 		// 사용자의 id와 입력받은 결제금액이 들어있음
 		CoinHistoryVO coinHistoryVO = (CoinHistoryVO) map.get("coinHistoryVO");
-		
+
 		logger.debug("[결제 성공 페이지!!]");
 		logger.debug("[pg_token]=" + pg_token);
 		logger.debug("[tid]=" + kakaoPayReadyVO.getTid());
@@ -124,7 +126,7 @@ public class CoinHistoryController {
 		headers.add("Authorization", "KakaoAK 6e7f56c4944064ee7b694227d4b2e459");
 		headers.add("Accept", MediaType.APPLICATION_JSON_UTF8_VALUE);
 		headers.add("Content-Type", MediaType.APPLICATION_FORM_URLENCODED_VALUE + ";charset=UTF-8");
-		
+
 		// 서버에 보낼 param 설정
 		MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
 		params.add("cid", "TC0ONETIME");
@@ -133,52 +135,52 @@ public class CoinHistoryController {
 		params.add("partner_user_id", "partner_user_id");
 		params.add("pg_token", pg_token);
 		params.add("total_amount", Integer.toString(coinHistoryVO.getRechargeCoin()));
-		
+
 		// 서버에 보냄
 		HttpEntity<MultiValueMap<String, String>> body = new HttpEntity<MultiValueMap<String, String>>(params, headers);
-		
+
 		// 서버에 데이터를 VO로 받을 예정
 		KakaoPayApprovalVO kakaoPayApprovalVO = null;
 		int rs = 0;
 		try {
 			// kakao 서버에서 받은 결제완료 정보들을 VO로 받음
-			kakaoPayApprovalVO = restTemplate.postForObject(new URI("https://kapi.kakao.com/v1/payment/approve"), body, KakaoPayApprovalVO.class);
-			
+			kakaoPayApprovalVO = restTemplate.postForObject(new URI("https://kapi.kakao.com/v1/payment/approve"), body,
+					KakaoPayApprovalVO.class);
+
 			// 이미 VO에는 id와 rechargeCoin이 들어있음
 			// 허나 혹시 모르니 결제된 금액 다시 설정
 			// AmountVO: 결제금액과 관련된 정보가 들어있음
-			AmountVO amount= (AmountVO) kakaoPayApprovalVO.getAmount();
+			AmountVO amount = (AmountVO) kakaoPayApprovalVO.getAmount();
 			// 그중에 총금액을 충전한 금액으로 설정
 			coinHistoryVO.setRechargeCoin(amount.getTotal());
 			// 가장 중요한 tid(고유번호)를 설정 / 코인 충전 날짜 설정(결제 승인 날짜로 지정)
 			coinHistoryVO.setTid(kakaoPayApprovalVO.getTid());
-			
+
 			coinHistoryVO.setCoinDate(kakaoPayApprovalVO.getCreated_at());
-			
+
 			// id, 충전한 금액
 			rs = coinHistoryService.insertPayHistory(coinHistoryVO);
-			
+
 			// 세션의 값도 변경해야 사용자가 즉시 변경된 코인 값을 보니까...
 			UserVO userVO = (UserVO) session.getAttribute("login");
-			
+
 			// 만약 insert에 성공시, 유저의 세션정보를 업데이트
-			if(rs > 0) {
+			if (rs > 0) {
 				// 기존 코인 + 충전된코인
-				userVO.setCoin(userVO.getCoin()+amount.getTotal());
+				userVO.setCoin(userVO.getCoin() + amount.getTotal());
 				session.setAttribute("login", userVO);
 			}
-			
-			
+
 		} catch (RestClientException e) {
 			e.printStackTrace();
-			
+
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
-			
+
 		}
-		
-		logger.debug("전체 결제 금액=="+kakaoPayApprovalVO.getAmount());
-		model.addAttribute("rs",rs);
+
+		logger.debug("전체 결제 금액==" + kakaoPayApprovalVO.getAmount());
+		model.addAttribute("rs", rs);
 		model.addAttribute("total", coinHistoryVO.getRechargeCoin());
 
 		return "done/kakaopayDone";
@@ -197,8 +199,60 @@ public class CoinHistoryController {
 
 		return "done/kakaopayFail";
 	}
-	
-	
+
 	// [환불 URL]
+	@GetMapping("/kakaopay/refund")
+	public String kakaoPayRefund(@RequestParam("cDate") String cDate,
+									 HttpSession session, Model model) throws RestClientException, URISyntaxException {
+		logger.debug("[cDate]=="+cDate);
+		
+		UserVO userVO = (UserVO) session.getAttribute("login");
+		if(userVO == null) {
+			return "done/kakaopayFail";
+		}
+		Map<String, Object> map = new HashMap<String, Object>();
+		// 받은 데이터를 토대로 DB에서 select 후 맞으면 kakao 환불 페이지를 표시할 거임
+		map.put("id", userVO.getId());
+		map.put("cDate", cDate);
+		CoinHistoryVO coinHistoryVO = coinHistoryService.selectOneHistory(map);
+		if(coinHistoryVO == null) {
+			return "done/kakaopayFail";
+		}
+		
+		// 서버로 요청할 header
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("Authorization", "KakaoAK 6e7f56c4944064ee7b694227d4b2e459");
+		headers.add("Accept", MediaType.APPLICATION_JSON_UTF8_VALUE);
+		headers.add("Content-Type", "application/x-www-form-urlencoded;charset=utf-8");
+		
+		// String 변수로 설정
+		String coin = Integer.toString(coinHistoryVO.getRechargeCoin());
+		
+		// 서버에 보낼 param 설정
+		MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
+		params.add("cid", "TC0ONETIME");
+		params.add("tid", coinHistoryVO.getTid()); // 결제 했을때의 TID
+		params.add("cancel_amount", coin); // 취소 금액
+		params.add("cancel_tax_free_amount", "0");
+		
+		// 서버에 전송
+		RestTemplate restTemplate = new RestTemplate();
+		HttpEntity<MultiValueMap<String, String>> body = new HttpEntity<MultiValueMap<String, String>>(params, headers);
+		KakaoPayRefundVO kakaoPayRefundVO = null;
+		
+		// response를 받아옴
+		try {
+			kakaoPayRefundVO = restTemplate.postForObject(new URI("https://kapi.kakao.com/v1/payment/cancel"), body, KakaoPayRefundVO.class);
+		
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		logger.debug("[결제 취소 성공]=="+ kakaoPayRefundVO.getApproved_cancel_amount());
+		
+		model.addAttribute("cancel_amount", kakaoPayRefundVO.getApproved_cancel_amount());
+		
+		return "done/kakaoPayRefundDone";
+	}
 
 }
