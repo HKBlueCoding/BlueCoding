@@ -30,7 +30,9 @@
 	  	 	SELECT 
 	  	 		* 
 	  	 	FROM 
-	  	 		B_BOOK 
+	  	 		B_BOOK
+	  	 	WHERE 
+	  	 	 BOOKDELETE IS NULL 
 	  	 	ORDER BY 
 	  	 		dbms_random.value
 	  	 )
@@ -48,7 +50,9 @@
 			select 
 				* 
 			from 
-				B_BOOK 
+				B_BOOK
+			WHERE 
+	  	 	 BOOKDELETE IS NULL 	 
 			order by 
 				BVIEWCNT DESC
 		 )	

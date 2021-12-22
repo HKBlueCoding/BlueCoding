@@ -1,7 +1,6 @@
 package com.hk.book.service;
 
 import java.sql.Date;
-
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
@@ -16,6 +15,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
 import com.hk.author.dao.AuthorDAO;
+import com.hk.board.dao.BoardDAO;
+import com.hk.board.vo.BoardVO;
 import com.hk.book.dao.BookDAO;
 import com.hk.book.vo.BookVO;
 import com.hk.coinhistory.dao.CoinHistoryDAO;
@@ -39,6 +40,9 @@ public class BookService {
 
 	@Autowired
 	BookDAO bookDAO;
+	
+	@Autowired
+	BoardDAO boardDAO;
 
 	@Autowired
 	ReviewDAO reviewDAO;
@@ -357,9 +361,11 @@ public class BookService {
 		List<BookVO> popBList = bookDAO.selectPopBook();
 		
 		// 베스트글 3개
+		List<BoardVO> popBDList = boardDAO.selectPopBoard();
 		
 		map.put("menuList", menuList);
 		map.put("popBList", popBList);
+		map.put("popBDList", popBDList);
 		
 		return map;
 	}

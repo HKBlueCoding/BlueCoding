@@ -50,6 +50,7 @@ public class BookController {
 		
 		model.addAttribute("menuList", map.get("menuList"));
 		model.addAttribute("popBList", map.get("popBList"));
+		model.addAttribute("popBDList", map.get("popBDList"));
 		
 		return "main";
 	}

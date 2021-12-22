@@ -19,6 +19,26 @@
 		<result property="nick" column="nick" />
 		
 	</resultMap>
+	
+	<!-- [메뉴화면 top3 게시글] -->
+	<select id="selectPopBoard" resultMap="boardResult" >
+	 select 
+	 * 
+	 from  
+		 (
+			select 
+				* 
+			from 
+				B_BOARD
+			WHERE 
+	  	 	 BOARDDELETE IS NULL 	 
+			order by 
+				BDVIEWCNT DESC
+		 )	
+	 <![CDATA[
+	 WHERE rownum <= 3
+	 ]]>
+	</select>
 
 	<!-- [커뮤니티 게시글 조회]+페이징 -->
 	<select id="selectAllBoardList" resultMap="boardResult" parameterType="hashMap">

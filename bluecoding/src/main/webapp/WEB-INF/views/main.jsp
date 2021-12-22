@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
 <!DOCTYPE html>
 <html>
    <head>
@@ -65,14 +68,14 @@
                         <div class="row">
                            <div class="col-lg-12">
                               <!-- 버튼 fade -->
-                              <button type="button" class="btn btn-outline-primary">판타지</button>
-                              <button type="button" class="btn btn-outline-primary">청소년</button>    								    								
-                              <button type="button" class="btn btn-outline-secondary">고전</button>
-                              <button type="button" class="btn btn-outline-dark">공포/호러</button>
-                              <button type="button" class="btn btn-outline-dark">미스터리/스릴러</button>
-                              <button type="button" class="btn btn-outline-danger">로맨스</button>
-                              <button type="button" class="btn btn-outline-info">SF/과학</button>  									
-                              <button type="button" class="btn btn-outline-primary">드라마/영화</button>
+                              <button type="button" onClick="filterTheme('판타지')" class="btn btn-outline-primary">판타지</button>
+                              <button type="button" onClick="filterTheme('청소년')" class="btn btn-outline-primary">청소년</button>    								    								
+                              <button type="button" onClick="filterTheme('고전')" class="btn btn-outline-secondary">고전</button>
+                              <button type="button" onClick="filterTheme('공포/호러')" class="btn btn-outline-dark">공포/호러</button>
+                              <button type="button" onClick="filterTheme('미스터리/스릴러')" class="btn btn-outline-dark">미스터리/스릴러</button>
+                              <button type="button" onClick="filterTheme('로맨스')" class="btn btn-outline-danger">로맨스</button>
+                              <button type="button" onClick="filterTheme('SF/과학')" class="btn btn-outline-info">SF/과학</button>  									
+                              <button type="button" onClick="filterTheme('드라마/영화')" class="btn btn-outline-primary">드라마/영화</button>
                            </div>
                            <!-- End Search Form -->
                         </div>
@@ -84,21 +87,45 @@
                   <div id="demo2" class="carousel slide" data-wow-delay=".10s" style="visibility: visible; animation-delay: 0.10s; animation-name: fadeInUp;">
                      <!-- 책 list -->
                      <div class="carousel-inner">
-                        <div class="carousel-item active"align="center">
-                           <img src="resources/assets/images/mainPage/book1.jfif" alt="Los Angeles" width="221" height="300">
-                           <img src="resources/assets/images/mainPage/book2.jfif" alt="Los Angeles" width="221" height="300">
-                           <img src="resources/assets/images/mainPage/book3.jfif" alt="Los Angeles" width="221" height="300">
+                      <c:forEach var="i" begin="0" end="${fn:length(menuList)}" step="3">
+                      
+                       <c:if test="${i eq 0}"> 
+                       	<div class="carousel-item active"align="center">
+                       	 <c:forEach var="two" begin="0" end="2">
+                       	 
+                       	  <c:if test="${empty menuList[i+two].bookImage }">
+                       	   <a href="/view?bookNO=${menuList[i+two].bookNO }">
+                       	    <img src="../../resources/assets/images/mainPage/board1.png"  alt="기본 책사진" width="221" height="300">
+                       	   </a>
+                       	  </c:if>
+                       	  
+                       	  <c:if test="${!empty menuList[i+two].bookImage}">
+                       	   <a href="/view?bookNO=${menuList[i+two].bookNO }">
+                            <img src="../../download?uploadFile=${menuList[i+two].bookImage }&inFolder=book&pk=${menuList[i+two].bookNO}" alt="${menuList[i+two].bookTitle }책의 커버사진" width="221" height="300">
+                           </a>
+                          </c:if>                       	 
+                       	 </c:forEach> 
                         </div>
-                        <div class="carousel-item"align="center">
-                           <img src="resources/assets/images/mainPage/book4.jfif" alt="Los Angeles" width="221" height="300">
-                           <img src="resources/assets/images/mainPage/book5.png" alt="Los Angeles" width="221" height="300">
-                           <img src="resources/assets/images/mainPage/book6.jpg" alt="Los Angeles" width="221" height="300">
+                       </c:if>
+                       
+                       <c:if test="${i ne 0 }"> 
+                       	<div class="carousel-item"align="center">
+                       	 <c:forEach var="two" begin="0" end="2">
+                       	  <c:if test="${empty menuList[i+two].bookImage }">
+                       	   <a href="/view?bookNO=${menuList[i+two].bookNO }">
+                       	    <img src="../../resources/assets/images/mainPage/board1.png" alt="기본 책사진" width="221" height="300">
+                       	   </a>
+                       	  </c:if>
+                       	  <c:if test="${!empty menuList[i+two].bookImage}">
+                       	   <a href="/view?bookNO=${menuList[i+two].bookNO }">
+                            <img src="../../download?uploadFile=${menuList[i+two].bookImage }&inFolder=book&pk=${menuList[i+two].bookNO}" alt="${menuList[i+two].bookTitle }책의 커버사진" width="221" height="300">
+                           </a>
+                          </c:if>                       	 
+                       	 </c:forEach>
                         </div>
-                        <div class="carousel-item" align="center">
-                           <img src="resources/assets/images/mainPage/book4.jfif" alt="Los Angeles" width="221" height="300">
-                           <img src="resources/assets/images/mainPage/book2.jfif" alt="Los Angeles" width="221" height="300">
-                           <img src="resources/assets/images/mainPage/book7.jpg" alt="Los Angeles" width="221" height="300">
-                        </div>
+                       </c:if>                       
+                       
+                      </c:forEach>
                         <button class="carousel-control-prev" type="button" data-bs-target="#demo2" data-bs-slide="prev">
                         <span class="carousel-control-prev-icon"></span>
                         </button>
@@ -116,91 +143,48 @@
                   </button>
                </div>
                <hr>
-               <!-- [Content 책] -->  
+               <!-- [인기 종류 2개] -->  
                <section class="how-works section" style="background-color: #fff;">
                   <div class="container">
+                   <c:forEach var="bookPop" items="${popBList }" end="2" varStatus="popCnt">
                      <div class="row">
                         <div class="col-lg-8 col-md-8 col-12">
-                           <!-- Start Single Work -->
                            <div class="single-work wow fadeInUp" data-wow-delay=".2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
                               <span class="serial">인기</span>
-                              <br>                       		
-                              <img src="resources/assets/images/mainPage/board1.png" alt="Los Angeles" width="175" height="150" >
+                              <br>
+                              <a href="board/view?articleNO=${popBDList[popCnt.index].articleNO }">
+                               <c:if test="${empty popBDList[popCnt.index].boardImage }">
+                                <img src="resources/assets/images/mainPage/board1.png" alt="기본 이미지" width="175" height="150" >
+                               </c:if>
+                               <c:if test="${!empty popBDList[popCnt.index].boardImage }">
+                                <img src="../../download?uploadFile=${popBDList[popCnt.index].boardImage }&inFolder=board&pk=${popBDList[popCnt.index].articleNO}" alt="${popBDList[popCnt.index].boardTitle }게시글 이미지" width="175" height="150" >
+                               </c:if>		
+                              </a>
                               <h3>게시글 제목</h3>
                               <br>
-                              <p class="txt_line">느리고 흐물흐물하지만 덕분에 절대로 부러지지 않는, 무심한 듯 씩씩하게 살아온 김필영 씨의 삶과 결혼 이야기.
-                                 백 명의 사람에겐 백 가지의 사정이 있듯, 김필영 씨에게도 자신만의 사연이 있다. 휴대폰 가게와 성형외과와 아파트 분양 사무실에서 일했을 때도, 경찰 공무원 수험생으로 3년을 보내고 낙방했을 때도, 만난 지 두 달이 안 된 남자와 결혼하고 두 아이를 낳은 후에도, 필영의 삶은 오롯이 그 자신의 이야기만으로 채워졌다.
-                                 에세이가 범람하는 이 시대에도 그의 이야기는 선명한 개성을 갖고 있다. 대부분의 독자가 만나 보지 못했을 풍경이 담겨 있기 때문이다. 이 책에는 많은 독자가 ‘닮고 싶은’ 삶을 사는 롤 모델이 등장하지 않는다. 똑똑하고 당찬 사람도 없고, 상처 입은 자기 자신을 오래도록 위로하는 섬세한 영혼도 없다. 대신에 실패로 물든 시간 속을 무심히 거닐던 사람이 마주했던 독특한 광경들이 독립영화의 한 장면처럼 펼쳐진다.
+                              <p class="txt_line">${popBDList[popCnt.index].boardText }
                               </p>
                            </div>
-                           <!-- End Single Work -->
                         </div>
+                        
                         <div class="col-lg-4 col-md-4 col-12">
-                           <!-- Start Single Work -->
                            <div class="single-work wow fadeInUp" data-wow-delay=".4s" style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInUp;">
-                              <span class="serial">1위</span><br>
-                              <img src="resources/assets/images/mainPage/book7.jpg" alt="Los Angeles" width="180" height="220">
-                              <h3>언스크립티드</h3>
+                              <span class="serial">${popCnt.count }위</span><br>
+                             <a href="view?bookNO=${bookPop.bookNO }">
+                              <c:if test="${empty bookPop.bookImage }">
+                               <img src="../../resources/assets/images/mainPage/board1.png" alt="기본 이미지" width="180" height="220">
+                              </c:if>
+                              <c:if test="${!empty bookPop.bookImage }">
+                               <img src="../../download?uploadFile=${bookPop.bookImage }&inFolder=book&pk=${bookPop.bookNO}" alt="${bookPop.bookTitle }의 책" width="180" height="220">
+                              </c:if> 
+                             </a>                                                         
+                              <h3>${bookPop.bookTitle }</h3>
                            </div>
                            <!-- End Single Work -->
                         </div>
                      </div>
-                     <!-- 2 순위 -->
                      <br>
-                     <div class="row">
-                        <div class="col-lg-8 col-md-8 col-12">
-                           <!-- Start Single Work -->
-                           <div class="single-work wow fadeInUp" data-wow-delay=".2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
-                              <span class="serial">인기</span>
-                              <br>                       		
-                              <img src="resources/assets/images/mainPage/board1.png" alt="Los Angeles" width="175" height="150" >
-                              <h3>게시글 제목</h3>
-                              <br>
-                              <p class="txt_line">느리고 흐물흐물하지만 덕분에 절대로 부러지지 않는, 무심한 듯 씩씩하게 살아온 김필영 씨의 삶과 결혼 이야기.
-                                 백 명의 사람에겐 백 가지의 사정이 있듯, 김필영 씨에게도 자신만의 사연이 있다. 휴대폰 가게와 성형외과와 아파트 분양 사무실에서 일했을 때도, 경찰 공무원 수험생으로 3년을 보내고 낙방했을 때도, 만난 지 두 달이 안 된 남자와 결혼하고 두 아이를 낳은 후에도, 필영의 삶은 오롯이 그 자신의 이야기만으로 채워졌다.
-                                 에세이가 범람하는 이 시대에도 그의 이야기는 선명한 개성을 갖고 있다. 대부분의 독자가 만나 보지 못했을 풍경이 담겨 있기 때문이다. 이 책에는 많은 독자가 ‘닮고 싶은’ 삶을 사는 롤 모델이 등장하지 않는다. 똑똑하고 당찬 사람도 없고, 상처 입은 자기 자신을 오래도록 위로하는 섬세한 영혼도 없다. 대신에 실패로 물든 시간 속을 무심히 거닐던 사람이 마주했던 독특한 광경들이 독립영화의 한 장면처럼 펼쳐진다.
-                              </p>
-                           </div>
-                           <!-- End Single Work -->
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-12">
-                           <!-- Start Single Work -->
-                           <div class="single-work wow fadeInUp" data-wow-delay=".4s" style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInUp;">
-                              <span class="serial">2위</span><br>
-                              <img src="resources/assets/images/mainPage/book5.png" alt="Los Angeles" width="180" height="220">
-                              <h3>비밀의 화원</h3>
-                           </div>
-                           <!-- End Single Work -->
-                        </div>
-                     </div>
-                     <!-- 3순위 -->
-                     <br>
-                     <div class="row">
-                        <div class="col-lg-8 col-md-8 col-12">
-                           <!-- Start Single Work -->
-                           <div class="single-work wow fadeInUp" data-wow-delay=".2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
-                              <span class="serial">인기</span>
-                              <br>                       		
-                              <img src="resources/assets/images/mainPage/board1.png" alt="Los Angeles" width="175" height="150" >
-                              <h3>게시글 제목</h3>
-                              <br>
-                              <p class="txt_line">느리고 흐물흐물하지만 덕분에 절대로 부러지지 않는, 무심한 듯 씩씩하게 살아온 김필영 씨의 삶과 결혼 이야기.
-                                 백 명의 사람에겐 백 가지의 사정이 있듯, 김필영 씨에게도 자신만의 사연이 있다. 휴대폰 가게와 성형외과와 아파트 분양 사무실에서 일했을 때도, 경찰 공무원 수험생으로 3년을 보내고 낙방했을 때도, 만난 지 두 달이 안 된 남자와 결혼하고 두 아이를 낳은 후에도, 필영의 삶은 오롯이 그 자신의 이야기만으로 채워졌다.
-                                 에세이가 범람하는 이 시대에도 그의 이야기는 선명한 개성을 갖고 있다. 대부분의 독자가 만나 보지 못했을 풍경이 담겨 있기 때문이다. 이 책에는 많은 독자가 ‘닮고 싶은’ 삶을 사는 롤 모델이 등장하지 않는다. 똑똑하고 당찬 사람도 없고, 상처 입은 자기 자신을 오래도록 위로하는 섬세한 영혼도 없다. 대신에 실패로 물든 시간 속을 무심히 거닐던 사람이 마주했던 독특한 광경들이 독립영화의 한 장면처럼 펼쳐진다.
-                              </p>
-                           </div>
-                           <!-- End Single Work -->
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-12">
-                           <!-- Start Single Work -->
-                           <div class="single-work wow fadeInUp" data-wow-delay=".4s" style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInUp;">
-                              <span class="serial">3위</span><br>
-                              <img src="resources/assets/images/mainPage/book1.jfif" alt="Los Angeles" width="180" height="220">
-                              <h3>위대한 개츠비</h3>
-                           </div>
-                           <!-- End Single Work -->
-                        </div>
-                     </div>
+         			</c:forEach>
                   </div>
                </section>
             </div>

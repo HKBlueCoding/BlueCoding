@@ -72,4 +72,9 @@ public class BoardDAO {
 		return 0;
 	}
 
+	public List<BoardVO> selectPopBoard() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("mapper.board.selectPopBoard");
+	}
+
 }
