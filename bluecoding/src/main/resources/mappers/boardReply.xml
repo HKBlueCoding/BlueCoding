@@ -45,4 +45,12 @@
 		WHERE REPLYNO=#{replyNO}
     ]]>
 	</update>
+	
+	<update id="deleteReply">
+	 <![CDATA[
+		UPDATE B_BOARDREPLY SET BOARDREDELETE='Y'
+		WHERE REPLYNO=#{replyNO}
+	]]>	
+	</update>
+	
 </mapper>	

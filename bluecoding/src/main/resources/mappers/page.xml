@@ -109,7 +109,11 @@
 	<!-- [series(회차) 값] -->
 	<select id="selectLastSeries" resultType="int" parameterType="int">
 	 <![CDATA[
+<<<<<<< HEAD
 	  SELECT count(pageNO) FROM b_page WHERE bookNO = #{bookNO}
+=======
+	  SELECT count(SERIES) FROM B_PAGE WHERE bookNO=#{booNO}
+>>>>>>> branch 'main' of https://github.com/HKBlueCoding/bluecoding.git
 	 ]]>
 	</select>
 	

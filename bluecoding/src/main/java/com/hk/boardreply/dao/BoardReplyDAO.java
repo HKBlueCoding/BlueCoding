@@ -33,4 +33,10 @@ public class BoardReplyDAO {
 		return ret;
 	}
 
+	public int deleteReply(int replyNO) {
+		// TODO Auto-generated method stub
+		int ret = sqlSession.update("mapper.boardReply.deleteReply", replyNO);
+		return ret;
+	}
+
 }

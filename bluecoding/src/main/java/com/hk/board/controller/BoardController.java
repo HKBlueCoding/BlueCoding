@@ -110,7 +110,7 @@ public class BoardController {
 
 	@GetMapping("/board/view")
 	public String boardView(Model model, @RequestParam("articleNO") int articleNO, HttpSession session) {
-		
+
 		UserVO userVO = (UserVO) session.getAttribute("login");
 		Map<String, Object> map = boardService.viewArticle(articleNO, userVO);
 		logger.debug("[map] = " + map);
@@ -229,6 +229,21 @@ public class BoardController {
 
 		model.addAttribute("ret", ret);
 
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("ret", ret);
+		return map;
+	}
+
+	// 게시판 상세보기 댓글 삭제(boardReDelete - 'Y'표시)
+	@RequestMapping(value = "board/boardReply/delete", method = RequestMethod.POST, produces = "application/json; charset=utf8")
+	@ResponseBody
+	public Map<String, Object> boardReplyDelete(@RequestParam("replyNO") int replyNO ) {
+
+		logger.debug("[삭제할 ReplyNO = " + replyNO);
+
+		int ret = boardService.deleteReply(replyNO);
+		logger.debug("[ret] = " + ret);
+		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("ret", ret);
 		return map;

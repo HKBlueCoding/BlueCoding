@@ -264,7 +264,7 @@ public class BookController {
 		if (map.get("ret") == null) {
 			return "done/pageViewFail";
 		}
-
+		model.addAttribute("lastSeries", map.get("lastSeries"));
 		model.addAttribute("pageVO", map.get("pageVO"));
 		model.addAttribute("pageReplyVO", map.get("pageReplyVO"));
 
