@@ -6,6 +6,17 @@
 
 $(document).ready(function() {
 	$('#repBtn').click(function() {
+	
+   		if($.trim($("#newsReText").val())==''){
+      		alert("내용을 입력해주세요." );
+      		return false;
+    	}
+
+   		if($.trim($("#newsReText").val().length) > 300 ){
+      		alert("댓글은 300글자를 초과할 수 없습니다.");
+      		return false;
+    	}
+
 		$.ajax({
 			type: 'POST',
 			url: '/news/notice/newsReply/add',

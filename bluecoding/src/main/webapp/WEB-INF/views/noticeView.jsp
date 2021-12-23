@@ -293,7 +293,7 @@
                                                    style="width: 607%;">
                                                    <textarea name="newsReText" class="form-control"
                                                       id="ReText${replyCnt.count }" style="height: 7rem;"
-                                                      data-sb-validations="required">${newsReply.newsReText }</textarea>
+                                                      required>${newsReply.newsReText }</textarea>
                                                    <br> <label for="message">댓글 수정</label> <input
                                                       type="hidden" value="${newsReply.newsReplyNO }"
                                                       id="newsReplyNO${replyCnt.count }"> <input
