@@ -45,4 +45,11 @@
 		WHERE NEWSREPLYNO=#{newsReplyNO}
     ]]>
 	</update>
+	
+		<update id="deleteNewsReply">
+		<![CDATA[
+		UPDATE B_NEWSREPLY SET NEWSREDELETE='Y'
+		WHERE NEWSREPLYNO=#{newsReplyNO}
+		]]>
+	</update>
 </mapper>	

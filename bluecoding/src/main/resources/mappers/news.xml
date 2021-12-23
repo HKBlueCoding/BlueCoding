@@ -7,7 +7,7 @@
 
 	<!-- 테이블 컬럼하고, VO하고 1:1로 맵핑했을때 이름이 다른경우 -->
 	<resultMap id="newsResult" type="NewsVO">
-	
+
 		<result property="newsNO" column="newsNO" />
 		<result property="category" column="category" />
 		<result property="newsTitle" column="newsTitle" />
@@ -23,18 +23,20 @@
 
 	<!-- [뉴스 글쓰기] -->
 	<insert id="insertNews" parameterType="NewsVO">
-	 <selectKey keyProperty="newsNO" resultType="int" order="BEFORE">
-	 	SELECT COUNT(newsNO)+1 FROM B_NEWS
-	 </selectKey>
+		<selectKey keyProperty="newsNO" resultType="int"
+			order="BEFORE">
+			SELECT COUNT(newsNO)+1 FROM B_NEWS
+		</selectKey>
 	 <![CDATA[
 	  INSERT INTO B_NEWS
 	  (NEWSNO, CATEGORY, NEWSTITLE, NEWSTEXT, NEWSDATE, NEWSIMAGE, NVIEWCNT, ID,nick)
 	   VALUES( #{newsNO}, #{category}, #{newsTitle}, #{newsText}, sysdate, #{newsImage}, 0, #{id}, #{nick})
 	 ]]>
 	</insert>
-	
+
 	<!-- [공지사항 리스트 조회+페이징] -->
-	<select id="selectAllNoticeNews" resultMap="newsResult" parameterType="hashmap">
+	<select id="selectAllNoticeNews" resultMap="newsResult"
+		parameterType="hashmap">
     <![CDATA[
 		SELECT 
 		*
@@ -50,6 +52,7 @@
 						FROM
 				   	 		B_NEWS 
 						WHERE CATEGORY = 'notice'
+						AND NEWSDELETE IS NULL
 						ORDER BY
 							newsNO DESC
 					) N 
@@ -58,16 +61,17 @@
 			RNUM BETWEEN(#{section}-1)*100+(#{pageNum}-1)*10+1 AND (#{section}-1)*100+#{pageNum}*10
     ]]>
 	</select>
-	
+
 	<!-- [공지사항의 모든 글 갯수] -->
-	<select id="selectTotNotice" resultType="int" >
+	<select id="selectTotNotice" resultType="int">
 	 <![CDATA[
 	   SELECT count(newsNO) FROM b_news WHERE category = 'notice'
 	 ]]>
-	</select>	
-	
+	</select>
+
 	<!-- [이벤트 리스트+페이징] -->
-	<select id="selectAllEventNews" resultMap="newsResult" parameterType="hashmap">
+	<select id="selectAllEventNews" resultMap="newsResult"
+		parameterType="hashmap">
     <![CDATA[
 		SELECT 
 		*
@@ -83,6 +87,7 @@
 						FROM
 				   	 		B_NEWS 
 						WHERE CATEGORY = 'event'
+						AND NEWSDELETE IS NULL
 						ORDER BY
 							newsNO DESC
 					) N 
@@ -91,27 +96,28 @@
 			RNUM BETWEEN(#{section}-1)*100+(#{pageNum}-1)*10+1 AND (#{section}-1)*100+#{pageNum}*10
     ]]>
 	</select>
-	
+
 	<!-- [이벤트의 모든 글 갯수] -->
 	<select id="selectTotEvent" resultType="int">
 	 <![CDATA[
 	   SELECT count(newsNO) FROM b_news WHERE category= 'event'
 	 ]]>
 	</select>
-	
-	<select id="selectOneNews" resultType="NewsVO" parameterType="int">
+
+	<select id="selectOneNews" resultType="NewsVO"
+		parameterType="int">
     <![CDATA[
     	SELECT * FROM B_NEWS WHERE newsNO=#{newsNO}
     ]]>
 	</select>
-	
+
 	<update id="updateNews" parameterType="NewsVO">
     <![CDATA[
 		UPDATE B_NEWS SET CATEGORY=#{category}, NEWSTITLE=#{newsTitle}, NEWSTEXT=#{newsText}, NEWSIMAGE=#{newsImage}
 		WHERE NEWSNO=#{newsNO}
     ]]>
 	</update>
-	
+
 	<!-- [뉴스 PK조회] -->
 	<select id="selectNewsNO" resultType="NewsVO" parameterType="NewsVO">
 	  <![CDATA[
@@ -120,5 +126,12 @@
 		AND newsImage = #{newsImage} AND id = #{id}
 	  ]]>
 	</select>
-	
+
+	<update id="deleteNews">
+		<![CDATA[
+		UPDATE B_NEWS SET NEWSDELETE='Y'
+		WHERE NEWSNO=#{newsNO}
+		]]>
+	</update>
+
 </mapper>

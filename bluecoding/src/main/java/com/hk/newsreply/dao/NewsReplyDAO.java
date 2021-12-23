@@ -32,4 +32,10 @@ public class NewsReplyDAO {
 		int ret = sqlSession.update("mapper.newsReply.updateReply", newsReplyVO);
 		return ret;
 	}
+
+	public int deleteReply(int newsReplyNO) {
+		// TODO Auto-generated method stub
+		int ret = sqlSession.update("mapper.newsReply.deleteNewsReply", newsReplyNO);
+		return ret;
+	}
 }

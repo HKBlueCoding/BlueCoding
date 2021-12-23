@@ -64,4 +64,10 @@ public class NewsDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("mapper.news.selectTotEvent");
 	}
+
+	public int deleteNews(int newsNO) {
+		// TODO Auto-generated method stub
+		int ret = sqlSession.update("mapper.news.deleteNews", newsNO);
+		return ret;
+	}
 }

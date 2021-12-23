@@ -29,348 +29,393 @@ import com.hk.user.vo.UserVO;
 @Controller
 public class NewsController {
 
-   private static final Logger logger = LoggerFactory.getLogger(NewsController.class);
-   private static final String NEWS_FILE_PATH = "C:\\bluecoding\\news"; // 뉴스 파일은 이곳에
+	private static final Logger logger = LoggerFactory.getLogger(NewsController.class);
+	private static final String NEWS_FILE_PATH = "C:\\bluecoding\\news"; // 뉴스 파일은 이곳에
 
-   @Autowired
-   NewsService newsService;
+	@Autowired
+	NewsService newsService;
 
-   @GetMapping("/news/add")
-   public String newsAdd() {
-      // 11
-      return "newsAdd";
-   }
+	@GetMapping("/news/add")
+	public String newsAdd() {
+		// 11
+		return "newsAdd";
+	}
 
-   @PostMapping("/news/add")
-   public String newsAddDone(Model model, @ModelAttribute NewsVO newsVO,
-         @RequestParam("uploadFile") MultipartFile file) throws Exception {
-      logger.debug("[newsVO] = " + newsVO);
-      logger.debug("[file]" + file.getOriginalFilename());
+	@PostMapping("/news/add")
+	public String newsAddDone(Model model, @ModelAttribute NewsVO newsVO,
+			@RequestParam("uploadFile") MultipartFile file) throws Exception {
+		logger.debug("[newsVO] = " + newsVO);
+		logger.debug("[file]" + file.getOriginalFilename());
 
-      // 먼저 newsImage파일명을 미리 받음
-      String fileName = file.getOriginalFilename();
-      newsVO.setNewsImage(fileName);
+		// 먼저 newsImage파일명을 미리 받음
+		String fileName = file.getOriginalFilename();
+		newsVO.setNewsImage(fileName);
 
-      // 기존 mybatis 활용 DB에 글쓰기 넣기
-      // 추가된 newsNO를 받고, insert된 결과 값도 받고
-      int newsNO = newsService.addNews(newsVO);
+		// 기존 mybatis 활용 DB에 글쓰기 넣기
+		// 추가된 newsNO를 받고, insert된 결과 값도 받고
+		int newsNO = newsService.addNews(newsVO);
 
-      // [이미지 파일 업로드]... pk 값을 뽑아야 해서 정상적으로 추가 됫을때 실행됨..
-      // 파일삭제는 안해도 되고...(어차피 게시글 삭제는 안하고 표시만하니..)
-      // + newsNO가 있어서 제대로 조회되었을때만..
-      if (!file.getOriginalFilename().isEmpty() && newsNO > 0) {
-         logger.debug("null 아님!!");
-         // newsNO(PK)로 폴더 설정
-         File folder = new File(NEWS_FILE_PATH + "\\" + newsNO);
+		// [이미지 파일 업로드]... pk 값을 뽑아야 해서 정상적으로 추가 됫을때 실행됨..
+		// 파일삭제는 안해도 되고...(어차피 게시글 삭제는 안하고 표시만하니..)
+		// + newsNO가 있어서 제대로 조회되었을때만..
+		if (!file.getOriginalFilename().isEmpty() && newsNO > 0) {
+			logger.debug("null 아님!!");
+			// newsNO(PK)로 폴더 설정
+			File folder = new File(NEWS_FILE_PATH + "\\" + newsNO);
 
-         if (!folder.exists()) {
-            try {
-               folder.mkdir();
-               logger.debug("폴더가 생성됨!!");
-            } catch (Exception e) {
-               e.getStackTrace();
-            }
-         } else {
-            logger.debug("[뉴스 글쓰기]폴더가 이미 존재합니다!!");
-         }
-         // 생성한 newsNO 폴더 안에 파일을 넣음
-         file.transferTo(new File(NEWS_FILE_PATH + "\\" + newsNO, fileName));
-      }
+			if (!folder.exists()) {
+				try {
+					folder.mkdir();
+					logger.debug("폴더가 생성됨!!");
+				} catch (Exception e) {
+					e.getStackTrace();
+				}
+			} else {
+				logger.debug("[뉴스 글쓰기]폴더가 이미 존재합니다!!");
+			}
+			// 생성한 newsNO 폴더 안에 파일을 넣음
+			file.transferTo(new File(NEWS_FILE_PATH + "\\" + newsNO, fileName));
+		}
 
-      // 어차피 성공결과는 1이상이면 되는거니...
-      model.addAttribute("ret", newsVO.getNewsNO());
+		// 어차피 성공결과는 1이상이면 되는거니...
+		model.addAttribute("ret", newsVO.getNewsNO());
 
-      // 해당 게시판으로 이동하려면
-      model.addAttribute("category", newsVO.getCategory());
-      logger.debug("[ret] = " + newsVO.getNewsNO());
+		// 해당 게시판으로 이동하려면
+		model.addAttribute("category", newsVO.getCategory());
+		logger.debug("[ret] = " + newsVO.getNewsNO());
 
-      return "done/newsAddDone";
-   }
-   
-   // [공지시항 리스트]
-   @RequestMapping(value = "/news/notice", method = RequestMethod.GET)
-   public String notice(@RequestParam(value="section", required=false, defaultValue = "1")Integer section, 
-		   				@RequestParam(value="pageNum", required=false, defaultValue = "1")Integer pageNum, Model model) {
-	   
-	  // section = 12345678910까지가 기본 섹션
-	  // pageNum = 사용자가 보려하는 페이지 번호
-	  // 혹여나 만약 0이하를 치면..
-	  if(section <= 0) { ++section; }
-      if(pageNum <= 0) { ++pageNum; }
-      Map<String, Integer> pageMap = new HashMap<String, Integer>();
-      pageMap.put("section", section);
-      pageMap.put("pageNum", pageNum);
-      
-	  // 리스트
-      Map<String, Object> map = newsService.listNewsNotice(pageMap);
-      model.addAttribute("noticeList", map.get("noticeList"));
-      model.addAttribute("totNoticeNO",map.get("totNoticeNO"));
-      model.addAttribute("section",section);
-      model.addAttribute("pageNum",pageNum);
-      
-      logger.debug("[newsList] = " + map.get("noticeList"));
-      logger.debug("[newsList] = " + map.get("noticeList"));
-      return "notice";
-   }
+		return "done/newsAddDone";
+	}
 
-   @RequestMapping(value = "/news/event", method = RequestMethod.GET)
-   public String event(@RequestParam(value="section", required=false, defaultValue = "1")Integer section, 
-					   @RequestParam(value="pageNum", required=false, defaultValue = "1")Integer pageNum, Model model) {
+	// [공지시항 리스트]
+	@RequestMapping(value = "/news/notice", method = RequestMethod.GET)
+	public String notice(@RequestParam(value = "section", required = false, defaultValue = "1") Integer section,
+			@RequestParam(value = "pageNum", required = false, defaultValue = "1") Integer pageNum, Model model) {
 
-	  if(section <= 0) { ++section; }
-	  if(pageNum <= 0) { ++pageNum; }
-	   
-      Map<String, Integer> pageMap = new HashMap<String, Integer>();
-      pageMap.put("section", section);
-      pageMap.put("pageNum", pageNum);	  
-	  
-      Map<String, Object> map = newsService.listNewsEvent(pageMap);
-      
-      model.addAttribute("eventList", map.get("eventList"));
-      model.addAttribute("totEventNO", map.get("totEventNO"));
-      model.addAttribute("section",section);
-      model.addAttribute("pageNum",pageNum);      
-      logger.debug("[eventList] = " + map.get("eventList"));
-      return "event";
-   }
+		// section = 12345678910까지가 기본 섹션
+		// pageNum = 사용자가 보려하는 페이지 번호
+		// 혹여나 만약 0이하를 치면..
+		if (section <= 0) {
+			++section;
+		}
+		if (pageNum <= 0) {
+			++pageNum;
+		}
+		Map<String, Integer> pageMap = new HashMap<String, Integer>();
+		pageMap.put("section", section);
+		pageMap.put("pageNum", pageNum);
 
-   @GetMapping("/news/notice/view")
-   public String noticeView(Model model, @RequestParam("newsNO") int newsNO) {
-      Map<String, Object> map = newsService.newsList(newsNO);
-      logger.debug("[map] = " + map);
-      logger.debug("[newsNO] = " + newsNO);
-      model.addAttribute("newsVO", map.get("newsVO"));
-      model.addAttribute("newsReplyVO", map.get("newsReplyVO"));
+		// 리스트
+		Map<String, Object> map = newsService.listNewsNotice(pageMap);
+		model.addAttribute("noticeList", map.get("noticeList"));
+		model.addAttribute("totNoticeNO", map.get("totNoticeNO"));
+		model.addAttribute("section", section);
+		model.addAttribute("pageNum", pageNum);
 
-      return "noticeView";
-   }
+		logger.debug("[newsList] = " + map.get("noticeList"));
+		logger.debug("[newsList] = " + map.get("noticeList"));
+		return "notice";
+	}
 
-   @GetMapping("/news/event/view")
-   public String eventView(Model model, @RequestParam("newsNO") int newsNO) {
-      Map<String, Object> map = newsService.newsList(newsNO);
-      logger.debug("[map] = " + map);
-      logger.debug("[newsNO] = " + newsNO);
-      model.addAttribute("newsVO", map.get("newsVO"));
-      model.addAttribute("newsReplyVO", map.get("newsReplyVO"));
+	@RequestMapping(value = "/news/event", method = RequestMethod.GET)
+	public String event(@RequestParam(value = "section", required = false, defaultValue = "1") Integer section,
+			@RequestParam(value = "pageNum", required = false, defaultValue = "1") Integer pageNum, Model model) {
 
-      return "eventView";
-   }
+		if (section <= 0) {
+			++section;
+		}
+		if (pageNum <= 0) {
+			++pageNum;
+		}
 
-   // [업데이트 view]
-   @GetMapping("/news/notice/update")
-   public String newsNoticeUpdate(Model model, @RequestParam("newsNO") int newsNO) {
-      logger.debug("[newsNO11] = " + newsNO);
+		Map<String, Integer> pageMap = new HashMap<String, Integer>();
+		pageMap.put("section", section);
+		pageMap.put("pageNum", pageNum);
 
-      NewsVO newsVO = newsService.newsOne(newsNO);
-      model.addAttribute("newsVO", newsVO);
-      logger.debug("[newsVO11] = " + newsVO);
+		Map<String, Object> map = newsService.listNewsEvent(pageMap);
 
-      return "noticeUpdate";
-   }
+		model.addAttribute("eventList", map.get("eventList"));
+		model.addAttribute("totEventNO", map.get("totEventNO"));
+		model.addAttribute("section", section);
+		model.addAttribute("pageNum", pageNum);
+		logger.debug("[eventList] = " + map.get("eventList"));
+		return "event";
+	}
 
-   // [업데이트 done]
-   @PostMapping("/news/notice/update")
-   public String newsNoticeUpdateDone(Model model, @ModelAttribute NewsVO newsVO,
-         @RequestParam("uploadFile") MultipartFile file) throws Exception {
-      logger.debug("[추가의 VO] = " + newsVO);
-      logger.debug("[이미지 이름]" + file.getOriginalFilename());
-      // 받는건.. newsVO(기존의 이미지이름을 가진 newsImage),
-      // (혹시나 선택 되었다면) uploadFile에 변경된 이미지파일
+	@GetMapping("/news/notice/view")
+	public String noticeView(Model model, @RequestParam("newsNO") int newsNO) {
+		Map<String, Object> map = newsService.newsList(newsNO);
+		logger.debug("[map] = " + map);
+		logger.debug("[newsNO] = " + newsNO);
+		model.addAttribute("newsVO", map.get("newsVO"));
+		model.addAttribute("newsReplyVO", map.get("newsReplyVO"));
 
-      // uploadFile이 null이 아니면 파일이 변경된 거니까 작동해야함
-      if (!file.getOriginalFilename().isEmpty()) {
-         logger.debug("null 아님!!");
-         String fileName = file.getOriginalFilename();
+		return "noticeView";
+	}
 
-         // 추가전 이미지 파일을 삭제
-         // 기존에 이미지를 안넣었을 수도 있으니...
-         if (!newsVO.getNewsImage().isEmpty()) {
-            // C:\\bluecoding\\news\\(해당 newsNO)\\파일명.png
-            File fileDel = new File(NEWS_FILE_PATH + "\\" + newsVO.getNewsNO() + "\\" + newsVO.getNewsImage());
-            if (fileDel.exists()) {
-               fileDel.delete();
-            }
-         }
+	@GetMapping("/news/event/view")
+	public String eventView(Model model, @RequestParam("newsNO") int newsNO) {
+		Map<String, Object> map = newsService.newsList(newsNO);
+		logger.debug("[map] = " + map);
+		logger.debug("[newsNO] = " + newsNO);
+		model.addAttribute("newsVO", map.get("newsVO"));
+		model.addAttribute("newsReplyVO", map.get("newsReplyVO"));
 
-         // newsNO(PK)로 폴더 설정(이미지를 새로 추가할수도 있으니까..)
-         File folder = new File(NEWS_FILE_PATH + "\\" + newsVO.getNewsNO());
+		return "eventView";
+	}
 
-         if (!folder.exists()) {
-            try {
-               folder.mkdir();
-               logger.debug("폴더가 생성됨!!");
-            } catch (Exception e) {
-               e.getStackTrace();
-            }
-         } else {
-            logger.debug("[뉴스 수정] 폴더가 이미 존재합니다!!");
-         }
+	// [업데이트 view]
+	@GetMapping("/news/notice/update")
+	public String newsNoticeUpdate(Model model, @RequestParam("newsNO") int newsNO) {
+		logger.debug("[newsNO11] = " + newsNO);
 
-         // 생성한 newsNO 폴더 안에 파일을 넣음
-         file.transferTo(new File(NEWS_FILE_PATH + "\\" + newsVO.getNewsNO(), fileName));
+		NewsVO newsVO = newsService.newsOne(newsNO);
+		model.addAttribute("newsVO", newsVO);
+		logger.debug("[newsVO11] = " + newsVO);
 
-         // 넣은게 성공한거니, VO에 추가
-         newsVO.setNewsImage(fileName);
-      }
+		return "noticeUpdate";
+	}
 
-      // 기존의 update 쿼리 실행
-      int ret = newsService.updateNews(newsVO);
-      model.addAttribute("ret", ret);
-      logger.debug("[ret] = " + ret);
+	// [업데이트 done]
+	@PostMapping("/news/notice/update")
+	public String newsNoticeUpdateDone(Model model, @ModelAttribute NewsVO newsVO,
+			@RequestParam("uploadFile") MultipartFile file) throws Exception {
+		logger.debug("[추가의 VO] = " + newsVO);
+		logger.debug("[이미지 이름]" + file.getOriginalFilename());
+		// 받는건.. newsVO(기존의 이미지이름을 가진 newsImage),
+		// (혹시나 선택 되었다면) uploadFile에 변경된 이미지파일
 
-      model.addAttribute("category", newsVO.getCategory());
-      return "done/noticeUpdateDone";
-   }
+		// uploadFile이 null이 아니면 파일이 변경된 거니까 작동해야함
+		if (!file.getOriginalFilename().isEmpty()) {
+			logger.debug("null 아님!!");
+			String fileName = file.getOriginalFilename();
 
-   @GetMapping("/news/event/update")
-   public String newsEventUpdate(Model model, @RequestParam("newsNO") int newsNO) {
-      logger.debug("[newsNO11] = " + newsNO);
+			// 추가전 이미지 파일을 삭제
+			// 기존에 이미지를 안넣었을 수도 있으니...
+			if (!newsVO.getNewsImage().isEmpty()) {
+				// C:\\bluecoding\\news\\(해당 newsNO)\\파일명.png
+				File fileDel = new File(NEWS_FILE_PATH + "\\" + newsVO.getNewsNO() + "\\" + newsVO.getNewsImage());
+				if (fileDel.exists()) {
+					fileDel.delete();
+				}
+			}
 
-      NewsVO newsVO = newsService.newsOne(newsNO);
-      model.addAttribute("newsVO", newsVO);
-      logger.debug("[newsVO11] = " + newsVO);
+			// newsNO(PK)로 폴더 설정(이미지를 새로 추가할수도 있으니까..)
+			File folder = new File(NEWS_FILE_PATH + "\\" + newsVO.getNewsNO());
 
-      return "eventUpdate";
-   }
+			if (!folder.exists()) {
+				try {
+					folder.mkdir();
+					logger.debug("폴더가 생성됨!!");
+				} catch (Exception e) {
+					e.getStackTrace();
+				}
+			} else {
+				logger.debug("[뉴스 수정] 폴더가 이미 존재합니다!!");
+			}
 
-   @PostMapping("/news/event/update")
-   public String newsEventUpdateDone(Model model, @ModelAttribute NewsVO newsVO,
-         @RequestParam("uploadFile") MultipartFile file) throws IOException {
-      logger.debug("[newsVO22] = " + newsVO);
-      logger.debug("[이미지 이름]" + file.getOriginalFilename());
-      if (!file.getOriginalFilename().isEmpty()) {
-         logger.debug("null 아님!!");
-         String fileName = file.getOriginalFilename();
+			// 생성한 newsNO 폴더 안에 파일을 넣음
+			file.transferTo(new File(NEWS_FILE_PATH + "\\" + newsVO.getNewsNO(), fileName));
 
-         // 추가전 이미지 파일을 삭제
-         // 기존에 이미지를 안넣었을 수도 있으니...
-         if (!newsVO.getNewsImage().isEmpty()) {
-            // C:\\bluecoding\\news\\(해당 newsNO)\\파일명.png
-            File fileDel = new File(NEWS_FILE_PATH + "\\" + newsVO.getNewsNO() + "\\" + newsVO.getNewsImage());
-            if (fileDel.exists()) {
-               fileDel.delete();
-            }
-         }
+			// 넣은게 성공한거니, VO에 추가
+			newsVO.setNewsImage(fileName);
+		}
 
-         // newsNO(PK)로 폴더 설정(이미지를 새로 추가할수도 있으니까..)
-         File folder = new File(NEWS_FILE_PATH + "\\" + newsVO.getNewsNO());
+		// 기존의 update 쿼리 실행
+		int ret = newsService.updateNews(newsVO);
+		model.addAttribute("ret", ret);
+		logger.debug("[ret] = " + ret);
 
-         if (!folder.exists()) {
-            try {
-               folder.mkdir();
-               logger.debug("폴더가 생성됨!!");
-            } catch (Exception e) {
-               e.getStackTrace();
-            }
-         } else {
-            logger.debug("[뉴스 수정] 폴더가 이미 존재합니다!!");
-         }
+		model.addAttribute("category", newsVO.getCategory());
+		return "done/noticeUpdateDone";
+	}
 
-         // 생성한 newsNO 폴더 안에 파일을 넣음
-         file.transferTo(new File(NEWS_FILE_PATH + "\\" + newsVO.getNewsNO(), fileName));
+	@GetMapping("/news/event/update")
+	public String newsEventUpdate(Model model, @RequestParam("newsNO") int newsNO) {
+		logger.debug("[newsNO11] = " + newsNO);
 
-         // 넣은게 성공한거니, VO에 추가
-         newsVO.setNewsImage(fileName);
-      }
-      int ret = newsService.updateNews(newsVO);
-      model.addAttribute("ret", ret);
-      logger.debug("[ret] = " + ret);
+		NewsVO newsVO = newsService.newsOne(newsNO);
+		model.addAttribute("newsVO", newsVO);
+		logger.debug("[newsVO11] = " + newsVO);
 
-      model.addAttribute("category", newsVO.getCategory());
-      return "done/eventUpdateDone";
-   }
+		return "eventUpdate";
+	}
+
+	@PostMapping("/news/event/update")
+	public String newsEventUpdateDone(Model model, @ModelAttribute NewsVO newsVO,
+			@RequestParam("uploadFile") MultipartFile file) throws IOException {
+		logger.debug("[newsVO22] = " + newsVO);
+		logger.debug("[이미지 이름]" + file.getOriginalFilename());
+		if (!file.getOriginalFilename().isEmpty()) {
+			logger.debug("null 아님!!");
+			String fileName = file.getOriginalFilename();
+
+			// 추가전 이미지 파일을 삭제
+			// 기존에 이미지를 안넣었을 수도 있으니...
+			if (!newsVO.getNewsImage().isEmpty()) {
+				// C:\\bluecoding\\news\\(해당 newsNO)\\파일명.png
+				File fileDel = new File(NEWS_FILE_PATH + "\\" + newsVO.getNewsNO() + "\\" + newsVO.getNewsImage());
+				if (fileDel.exists()) {
+					fileDel.delete();
+				}
+			}
+
+			// newsNO(PK)로 폴더 설정(이미지를 새로 추가할수도 있으니까..)
+			File folder = new File(NEWS_FILE_PATH + "\\" + newsVO.getNewsNO());
+
+			if (!folder.exists()) {
+				try {
+					folder.mkdir();
+					logger.debug("폴더가 생성됨!!");
+				} catch (Exception e) {
+					e.getStackTrace();
+				}
+			} else {
+				logger.debug("[뉴스 수정] 폴더가 이미 존재합니다!!");
+			}
+
+			// 생성한 newsNO 폴더 안에 파일을 넣음
+			file.transferTo(new File(NEWS_FILE_PATH + "\\" + newsVO.getNewsNO(), fileName));
+
+			// 넣은게 성공한거니, VO에 추가
+			newsVO.setNewsImage(fileName);
+		}
+		int ret = newsService.updateNews(newsVO);
+		model.addAttribute("ret", ret);
+		logger.debug("[ret] = " + ret);
+
+		model.addAttribute("category", newsVO.getCategory());
+		return "done/eventUpdateDone";
+	}
 
 	@RequestMapping(value = "/news/notice/newsReply/add", method = RequestMethod.POST, produces = "application/json; charset=utf8")
 	@ResponseBody // --> ajax 사용할 때 사용
-	public Map<String, Object> noticeReplyAdd(@ModelAttribute NewsReplyVO newsReplyVO, Model model) { // --> ajax에서 보낸 data
+	public Map<String, Object> noticeReplyAdd(@ModelAttribute NewsReplyVO newsReplyVO, Model model) { // --> ajax에서 보낸
+																										// data
 		logger.debug("[리뷰의 newsReplyVO] = " + newsReplyVO);
-		
+
 		int ret = newsService.addReply(newsReplyVO);
 		logger.debug("[ret] = " + ret);
-		
+
 		model.addAttribute("ret", ret);
-		
+
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("newsReText", newsReplyVO.getNewsReText());
 		map.put("ret", ret);
 		return map;
 	}
-	
+
 	@RequestMapping(value = "/news/event/newsReply/add", method = RequestMethod.POST, produces = "application/json; charset=utf8")
 	@ResponseBody // --> ajax 사용할 때 사용
-	public Map<String, Object> eventReplyAdd(@ModelAttribute NewsReplyVO newsReplyVO, Model model) { // --> ajax에서 보낸 data
+	public Map<String, Object> eventReplyAdd(@ModelAttribute NewsReplyVO newsReplyVO, Model model) { // --> ajax에서 보낸
+																										// data
 		logger.debug("[리뷰의 newsReplyVO] = " + newsReplyVO);
-		
+
 		int ret = newsService.addReply(newsReplyVO);
 		logger.debug("[ret] = " + ret);
-		
+
 		model.addAttribute("ret", ret);
-		
+
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("newsReText", newsReplyVO.getNewsReText());
 		map.put("ret", ret);
 		return map;
 	}
-	
+
 	@RequestMapping(value = "/news/notice/newsReply/update", method = RequestMethod.POST, produces = "application/json; charset=utf8")
 	@ResponseBody // --> ajax 사용할 때 사용
-	public Map<String, Object> noticeReplyUpdate(@ModelAttribute NewsReplyVO newsReplyVO, Model model) { // --> ajax에서 보낸 data
+	public Map<String, Object> noticeReplyUpdate(@ModelAttribute NewsReplyVO newsReplyVO, Model model) { // --> ajax에서
+																											// 보낸 data
 		logger.debug("[댓글의 newsReplyVO] = " + newsReplyVO);
-		
+
 		int ret = newsService.updateReply(newsReplyVO);
 		logger.debug("[ret] = " + ret);
-		
+
 		model.addAttribute("ret", ret);
-		
+
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("newsReText", newsReplyVO.getNewsReText());
 		map.put("ret", ret);
 		return map;
 	}
-	
+
 	@RequestMapping(value = "/news/event/newsReply/update", method = RequestMethod.POST, produces = "application/json; charset=utf8")
 	@ResponseBody // --> ajax 사용할 때 사용
-	public Map<String, Object> eventReplyUpdate(@ModelAttribute NewsReplyVO newsReplyVO, Model model) { // --> ajax에서 보낸 data
+	public Map<String, Object> eventReplyUpdate(@ModelAttribute NewsReplyVO newsReplyVO, Model model) { // --> ajax에서 보낸
+																										// data
 		logger.debug("[댓글의 newsReplyVO] = " + newsReplyVO);
-		
+
 		int ret = newsService.updateReply(newsReplyVO);
 		logger.debug("[ret] = " + ret);
-		
+
 		model.addAttribute("ret", ret);
-		
+
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("newsReText", newsReplyVO.getNewsReText());
 		map.put("ret", ret);
 		return map;
 	}
-	
+
 	@RequestMapping(value = "/news/notice/newsReplyRe/add", method = RequestMethod.POST, produces = "application/json; charset=utf8")
 	@ResponseBody // --> ajax 사용할 때 사용
-	public Map<String, Object> noticeReplyReAdd(@ModelAttribute NewsReplyVO newsReplyVO, Model model) { // --> ajax에서 보낸 data
+	public Map<String, Object> noticeReplyReAdd(@ModelAttribute NewsReplyVO newsReplyVO, Model model) { // --> ajax에서 보낸
+																										// data
 		logger.debug("[리뷰의 newsReplyVO] = " + newsReplyVO);
-		
+
 		int ret = newsService.addReply(newsReplyVO);
 		logger.debug("[ret] = " + ret);
-		
+
 		model.addAttribute("ret", ret);
-		
+
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("ret", ret);
 		return map;
 	}
-	
+
 	@RequestMapping(value = "/news/event/newsReplyRe/add", method = RequestMethod.POST, produces = "application/json; charset=utf8")
 	@ResponseBody // --> ajax 사용할 때 사용
-	public Map<String, Object> eventReplyReAdd(@ModelAttribute NewsReplyVO newsReplyVO, Model model) { // --> ajax에서 보낸 data
+	public Map<String, Object> eventReplyReAdd(@ModelAttribute NewsReplyVO newsReplyVO, Model model) { // --> ajax에서 보낸
+																										// data
 		logger.debug("[리뷰의 newsReplyVO] = " + newsReplyVO);
-		
+
 		int ret = newsService.addReply(newsReplyVO);
 		logger.debug("[ret] = " + ret);
-		
+
 		model.addAttribute("ret", ret);
-		
+
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("ret", ret);
 		return map;
-	}	
+	}
+
+	// 뉴스 본문 삭제
+	@RequestMapping(value = { "/news/notice/delete", "/news/event/delete" }, method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> newsDelete(@RequestParam("newsNO") int newsNO) {
+
+		logger.debug("[삭제할 newsNO] = " + newsNO);
+
+		int ret = newsService.deleteNews(newsNO);
+		logger.debug("[ret] = " + ret);
+
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("ret", ret);
+		return map;
+	}
+
+//  뉴스 댓글 삭제
+	@RequestMapping(value = { "/news/notice/view/delete", "/news/event/view/delete" }, method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> newsReDelete(@RequestParam("newsReplyNO") int newsReplyNO) {
+
+		logger.debug("[삭제할 newsReplyNO] = " + newsReplyNO);
+
+		int ret = newsService.deleteReplyNews(newsReplyNO);
+		logger.debug("[ret] = " + ret);
+
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("ret", ret);
+		return map;
+	}
+
 }

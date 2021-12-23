@@ -46,29 +46,29 @@ public class NewsService {
 	public Map<String, Object> listNewsNotice(Map<String, Integer> pageMap) {
 		// TODO Auto-generated method stub
 		Map<String, Object> map = new HashMap<String, Object>();
-		
+
 		// 모든 Notice의 글중에서 해당 section의 페이지만
 		List<NewsVO> noticeList = newsDAO.listNoticeNews(pageMap);
-		
+
 		int totNoticeNO = newsDAO.selectTotNotice();
-	
+
 		map.put("noticeList", noticeList);
-		map.put("totNoticeNO",totNoticeNO);
-		
+		map.put("totNoticeNO", totNoticeNO);
+
 		return map;
 	}
 
 	public Map<String, Object> listNewsEvent(Map<String, Integer> pageMap) {
 		// TODO Auto-generated method stub
-		
+
 		Map<String, Object> map = new HashMap<String, Object>();
-		
+
 		List<NewsVO> eventList = newsDAO.listEventNews(pageMap);
 		int totEventNO = newsDAO.selectTotEvent();
-		
+
 		map.put("eventList", eventList);
 		map.put("totEventNO", totEventNO);
-		
+
 		return map;
 	}
 
@@ -92,9 +92,13 @@ public class NewsService {
 		return map;
 	}
 
+	public int deleteNews(int newsNO) {
+		// TODO Auto-generated method stub
+		return newsDAO.deleteNews(newsNO);
+	}
+
 	public int updateNews(NewsVO newsVO) {
 		// TODO Auto-generated method stub
-
 		return newsDAO.newsUpdate(newsVO);
 	}
 
@@ -105,7 +109,12 @@ public class NewsService {
 
 	public int updateReply(NewsReplyVO newsReplyVO) {
 		// TODO Auto-generated method stub
-
 		return newsReplyDAO.replyUpdate(newsReplyVO);
 	}
+
+	public int deleteReplyNews(int newsReplyNO) {
+		// TODO Auto-generated method stub
+		return newsReplyDAO.deleteReply(newsReplyNO);
+	}
+
 }
