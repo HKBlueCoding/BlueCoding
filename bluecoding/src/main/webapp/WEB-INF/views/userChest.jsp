@@ -386,7 +386,7 @@
                <a class="btn" style="background-color: #30c8e0" onclick="chest4()" id="show4">수익 관리</a>
             </div>
             <div class="button header-button" style="margin-left: 200px;">
-               <p style=" border-width:3px; border-style:inset; font-family: 돋움; font-weight: bold; color: #546699;">현금와 가능 : ${benefitAll }원</p>
+               <p style=" border-width:3px; border-style:inset; font-family: 돋움; font-weight: bold; color: #546699;">현금화 가능 : ${benefitAll }원</p>
             </div>
             <div class="button header-button">
                <a class="btn" onclick="withdraw('${benefitAll }')" style="background-color: #6e707e">현금화 하기</a>
