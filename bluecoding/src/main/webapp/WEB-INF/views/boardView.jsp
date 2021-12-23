@@ -209,6 +209,10 @@
                                              <c:if test='${boardReply.level > 1 }'>
                                                 <div class="d-flex px-2 py-1">
                                                    <div class="d-flex flex-column justify-content-center">
+                                                   		<c:if test="${boardReply.boardReDelete eq 'Y'}">
+                                                         <strike>&nbsp;&nbsp;[삭제된 게시글입니다]</strike>
+                                                         </c:if>
+                                                         <c:if test="${boardReply.boardReDelete ne 'Y'}">
                                                       <p class="text-xs text-secondary mb-0"
                                                          style="font-size: 15px;">
                                                          <c:forEach begin="1" end="${boardReply.level }"
@@ -221,12 +225,8 @@
                                                          <c:forEach begin="1" end="${boardReply.level }"
                                                             step="1">
                                                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                         </c:forEach>
-                                                         <c:if test="${boardReply.boardReDelete eq 'Y'}">
-                                                            <strike>[삭제된 게시글입니다]</strike>
-                                                         </c:if>
-                                                         <c:if test="${boardReply.boardReDelete ne 'Y'}">
-                                                      <p>${boardReply.boardReText}</p>
+                                                         </c:forEach>  
+                                                      <p>&nbsp;&nbsp;${boardReply.boardReText}</p>
                                                       </c:if>
                                                    </div>
                                                 </div>
@@ -234,13 +234,13 @@
                                              <c:if test="${boardReply.level == 1 }">
                                                 <div class="d-flex px-2 py-1">
                                                    <div class="d-flex flex-column justify-content-center">
-                                                      <p class="text-xs text-secondary mb-0"
-                                                         style="font-size: 15px;">작성자명 : ${boardReply.nick }(${boardReply.id }),&nbsp;&nbsp;&nbsp;&nbsp;${boardReply.boardReDate }
-                                                      </p>
                                                       <c:if test="${boardReply.boardReDelete eq 'Y'}">
                                                          <strike>[삭제된 게시글입니다]</strike>
                                                       </c:if>
                                                       <c:if test="${boardReply.boardReDelete ne 'Y'}">
+                                                      <p class="text-xs text-secondary mb-0"
+                                                         style="font-size: 15px;">작성자명 : ${boardReply.nick }(${boardReply.id }),&nbsp;&nbsp;&nbsp;&nbsp;${boardReply.boardReDate }
+                                                      </p>            
                                                          <p>${boardReply.boardReText }</p>
                                                       </c:if>
                                                    </div>
