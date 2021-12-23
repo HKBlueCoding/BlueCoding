@@ -85,6 +85,11 @@ public class NewsService {
 		// 그 게시글의 댓글
 		List<NewsReplyVO> newsReplyVO = newsReplyDAO.listNewsReply(newsNO); // newsNO
 		Map<String, Object> map = new HashMap<String, Object>();
+		
+		// 조회수 기능
+		if(newsVO !=null) {
+			newsDAO.updateViewCnt(newsNO);
+		}
 
 		map.put("newsVO", newsVO);
 		map.put("newsReplyVO", newsReplyVO);

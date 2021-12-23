@@ -104,6 +104,14 @@
 	 ]]>
 	</select>
 
+	<!-- [조회수 증가] -->
+	<update id="updateViewCnt" parameterType="int">
+		UPDATE
+		B_NEWS
+		SET NVIEWCNT=(NVIEWCNT+1)
+		WHERE NEWSNO=#{newsNO}
+	</update>
+
 	<select id="selectOneNews" resultType="NewsVO"
 		parameterType="int">
     <![CDATA[
@@ -119,7 +127,8 @@
 	</update>
 
 	<!-- [뉴스 PK조회] -->
-	<select id="selectNewsNO" resultType="NewsVO" parameterType="NewsVO">
+	<select id="selectNewsNO" resultType="NewsVO"
+		parameterType="NewsVO">
 	  <![CDATA[
 		SELECT * FROM B_NEWS WHERE category = #{category} 
 		AND newsTitle = #{newsTitle}

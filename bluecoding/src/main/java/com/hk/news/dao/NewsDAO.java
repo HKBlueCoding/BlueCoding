@@ -70,4 +70,9 @@ public class NewsDAO {
 		int ret = sqlSession.update("mapper.news.deleteNews", newsNO);
 		return ret;
 	}
+
+	public void updateViewCnt(int newsNO) {
+		// TODO Auto-generated method stub
+		sqlSession.update("mapper.news.updateViewCnt", newsNO);
+	}
 }
