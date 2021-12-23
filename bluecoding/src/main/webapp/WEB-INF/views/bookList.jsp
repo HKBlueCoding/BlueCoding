@@ -6,6 +6,9 @@
   <head>
     <meta charset="UTF-8">
     <title>도서 정보</title>
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- Web Font -->
     <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
@@ -50,6 +53,13 @@
         padding-left: 1.5rem;
         padding-right: 1.5rem;
       }
+      @media all and (max-width: 768px){
+      
+      	.boardImage-img{
+      		width: 80px;
+      		height: 150px;
+      	}
+      }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
   </head>
@@ -62,7 +72,7 @@
     <br>
     <br>
     <br>
-    <div class="container-fluid py-4" style="height:auto; width:60%;">
+    <div class="container-fluid py-4" style="height:auto; width:80%;">
       <div class="row">
         <div class="col-12">
           <div class="card my-4">
@@ -100,10 +110,10 @@
                               <div class="d-flex px-2 py-1">
                                 <div>
                                   <c:if test="${empty book.bookImage }">
-                                    <img src="../../resources/assets/images/mainPage/board1.png" width="160" height="250" class="avatar avatar-sm me-3 border-radius-lg" alt="user1" id="preview" style="float: left">
+                                    <img src="../../resources/assets/images/mainPage/board1.png" width="160" height="250" class="avatar avatar-sm me-3 border-radius-lg boardImage-img" alt="기본 이미지" id="preview" style="float: left">
                                   </c:if>
                                   <c:if test="${!empty book.bookImage }">
-                                    <img src="../../download?uploadFile=${book.bookImage }&inFolder=book&pk=${book.bookNO}" width="160" height="250" class="avatar avatar-sm me-3 border-radius-lg" alt="user1" id="preview" style="float: left">
+                                    <img src="../../download?uploadFile=${book.bookImage }&inFolder=book&pk=${book.bookNO}" width="160" height="250" class="avatar avatar-sm me-3 border-radius-lg boardImage-img" alt="${book.bookTitle }책의 커버사진" id="preview" style="float: left">
                                   </c:if>
                                 </div>
                                 <div class="d-flex flex-column justify-content-center">
@@ -132,41 +142,21 @@
           </div>
         </div>
       </div>
-      <!-- Start Search Form -->
+      <!-- ======버튼====== -->
       <div class="search-form wow fadeInUp" style="margin: 1px; padding: 1px;">
         <div class="row">
-          <!-- [로그인시] -->
-          <c:if test="${!empty login.id && login.id ne '' }">
+          
             <div class="button header-button" style="width: 15%; margin-left: 50px; padding: 1px;">
-              <a href="add" class="btn">책쓰기</a>
-            </div>
-          </c:if>
-          <!-- [비 로그인시]] -->
-          <c:if test="${empty login.id || login.id  eq '' }">
-            <div class="button header-button" style="width: 13%; margin-left: 50px; padding: 1px;">
-              <a data-bs-toggle="modal" data-bs-target="#login" class="btn">작품 올리기</a>
-            </div>
-          </c:if>
-          <div class="button header-button" style="width: 20%; margin-left: 1px; padding: 1px;">
-            <a onClick="funbtn()" class="btn">돌아가기</a>
-          </div>
-          <div class="col-lg-4 col-md-4 col-12 p-0" style="width: 30%;  margin-left: 100px;">
-            <div class="search-input">
-              <label for="keyword">
-                <i class="lni lni-search-alt theme-color"></i>
-              </label>
-              <input type="text" name="keyword" id="keyword" placeholder="검색하세요.">
-            </div>
-          </div>
-          <div class="col-lg-2 col-md-2 col-12 p-0">
-            <div class="search-btn button">
-              <button class="btn">
-                <i class="lni lni-search-alt"></i> 검색 </button>
-            </div>
-          </div>
+             <c:if test="${!empty login.id && login.id ne '' }">
+              <a href="add" class="btn">작성</a>
+             </c:if>
+             <c:if test="${empty login.id || login.id  eq '' }">
+              <a data-bs-toggle="modal" data-bs-target="#login" class="btn">작성</a>
+             </c:if>
+            </div>  
         </div>
       </div>
-      <!-- End Search Form -->
+     <!-- ======버튼====== -->  
     </div>
     <!-- ====================== 페이징 ====================== -->
     <div class="w3-center">

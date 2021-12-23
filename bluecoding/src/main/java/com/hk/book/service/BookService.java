@@ -350,12 +350,18 @@ public class BookService {
 		return reviewDAO.reviewDelete(revNO);
 	}
 
-	public Map<String, Object> selectMenuList() {
+	public Map<String, Object> selectMenuList(String theme) {
 		// TODO Auto-generated method stub
 		Map<String, Object> map = new HashMap<String, Object>();
-		
+		List<BookVO> menuList = null;
 		//앞에서 움직일 책 30개만
-		List<BookVO> menuList = bookDAO.selectMenuBook();
+		if(theme == "") {
+			menuList = bookDAO.selectMenuBook();
+		}else {
+			// 만약 테마 선택하면 선택한 장르의 책 30개
+			menuList = bookDAO.selectFilter(theme);
+		}
+		
 		
 		// 베스트책 3개
 		List<BookVO> popBList = bookDAO.selectPopBook();
@@ -369,4 +375,5 @@ public class BookService {
 		
 		return map;
 	}
+
 }

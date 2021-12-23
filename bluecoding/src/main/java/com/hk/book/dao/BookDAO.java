@@ -1,5 +1,6 @@
 package com.hk.book.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -78,6 +79,11 @@ public class BookDAO {
 	public List<BookVO> selectPopBook() {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("mapper.book.selectPopBook");
+	}
+
+	public List<BookVO> selectFilter(String theme) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("mapper.book.selectFilter", theme);
 	}
 
 }

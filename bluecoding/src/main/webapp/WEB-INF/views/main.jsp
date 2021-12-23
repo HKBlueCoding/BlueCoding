@@ -49,7 +49,16 @@
          text-overflow:ellipsis;
          white-space:nowrap;  
          }
+         @media all and (max-width: 768px){
+
+         	.popBoard_div{
+         		display: none;
+         	}
+         }
       </style>
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
+      		  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
+              crossorigin="anonymous"></script>
    </head>
    <body>
       <jsp:include page="/WEB-INF/views/include/header.jsp"/>
@@ -84,44 +93,46 @@
                   </div>
                   <br>
                   <!-- [Content 책] -->
-                  <div id="demo2" class="carousel slide" data-wow-delay=".10s" style="visibility: visible; animation-delay: 0.10s; animation-name: fadeInUp;">
+                  <div id="demo2" class="carousel slide cat-inner" data-wow-delay=".10s" style="visibility: visible; animation-delay: 0.10s; animation-name: fadeInUp;">
                      <!-- 책 list -->
                      <div class="carousel-inner">
-                      <c:forEach var="i" begin="0" end="${fn:length(menuList)}" step="3">
+                      <c:forEach var="i" begin="0" end="${fn:length(menuList)}">
                       
                        <c:if test="${i eq 0}"> 
                        	<div class="carousel-item active"align="center">
-                       	 <c:forEach var="two" begin="0" end="2">
-                       	 
-                       	  <c:if test="${empty menuList[i+two].bookImage }">
-                       	   <a href="/view?bookNO=${menuList[i+two].bookNO }">
-                       	    <img src="../../resources/assets/images/mainPage/board1.png"  alt="기본 책사진" width="221" height="300">
-                       	   </a>
-                       	  </c:if>
+                       	    <c:if test="${empty menuList[i].bookNO }">
+                       	     <img src="../../resources/assets/images/mainPage/null.jpg" alt="책이 없음" width="221" height="300">
+                       	    </c:if>
+                       	    <c:if test="${empty menuList[i].bookImage && !empty menuList[i+two].bookNO}">
+                       	     <a href="/view?bookNO=${menuList[i].bookNO }">
+                       	      <img src="../../resources/assets/images/mainPage/board1.png" alt="기본 책사진" width="221" height="300">
+                       	     </a>
+                       	    </c:if>
                        	  
-                       	  <c:if test="${!empty menuList[i+two].bookImage}">
-                       	   <a href="/view?bookNO=${menuList[i+two].bookNO }">
-                            <img src="../../download?uploadFile=${menuList[i+two].bookImage }&inFolder=book&pk=${menuList[i+two].bookNO}" alt="${menuList[i+two].bookTitle }책의 커버사진" width="221" height="300">
-                           </a>
-                          </c:if>                       	 
-                       	 </c:forEach> 
+                       	    <c:if test="${!empty menuList[i].bookImage}">
+                       	     <a href="/view?bookNO=${menuList[i].bookNO }" class="menuBook">
+                              <img src="../../download?uploadFile=${menuList[i].bookImage }&inFolder=book&pk=${menuList[i].bookNO}" alt="${menuList[i].bookTitle }책의 커버사진" width="221" height="300">
+                             </a>
+                            </c:if>                        		
                         </div>
                        </c:if>
                        
                        <c:if test="${i ne 0 }"> 
-                       	<div class="carousel-item"align="center">
-                       	 <c:forEach var="two" begin="0" end="2">
-                       	  <c:if test="${empty menuList[i+two].bookImage }">
-                       	   <a href="/view?bookNO=${menuList[i+two].bookNO }">
-                       	    <img src="../../resources/assets/images/mainPage/board1.png" alt="기본 책사진" width="221" height="300">
-                       	   </a>
-                       	  </c:if>
-                       	  <c:if test="${!empty menuList[i+two].bookImage}">
-                       	   <a href="/view?bookNO=${menuList[i+two].bookNO }">
-                            <img src="../../download?uploadFile=${menuList[i+two].bookImage }&inFolder=book&pk=${menuList[i+two].bookNO}" alt="${menuList[i+two].bookTitle }책의 커버사진" width="221" height="300">
-                           </a>
-                          </c:if>                       	 
-                       	 </c:forEach>
+                       	<div class="carousel-item"align="center" >
+                       	    <c:if test="${empty menuList[i].bookNO }">
+                       	     <img src="../../resources/assets/images/mainPage/null.jpg" alt="책이 없음" width="221" height="300">
+                       	    </c:if>
+                       	    <c:if test="${empty menuList[i].bookImage && !empty menuList[i].bookNO}">
+                       	     <a href="/view?bookNO=${menuList[i].bookNO }">
+                       	      <img src="../../resources/assets/images/mainPage/board1.png" alt="기본 책사진" width="221" height="300">
+                       	     </a>
+                       	    </c:if>
+                       	  
+                       	    <c:if test="${!empty menuList[i].bookImage}">
+                       	     <a href="/view?bookNO=${menuList[i].bookNO }" class="menuBook">
+                              <img src="../../download?uploadFile=${menuList[i].bookImage }&inFolder=book&pk=${menuList[i].bookNO}" alt="${menuList[i].bookTitle }책의 커버사진" width="221" height="300">
+                             </a>
+                            </c:if>                        	
                         </div>
                        </c:if>                       
                        
@@ -148,7 +159,7 @@
                   <div class="container">
                    <c:forEach var="bookPop" items="${popBList }" end="2" varStatus="popCnt">
                      <div class="row">
-                        <div class="col-lg-8 col-md-8 col-12">
+                        <div class="col-lg-8 col-md-8 col-12 popBoard_div">
                            <div class="single-work wow fadeInUp" data-wow-delay=".2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
                               <span class="serial">인기</span>
                               <br>
@@ -197,9 +208,7 @@
       <script src="../resources/assets/js/tiny-slider.js"></script>
       <script src="../resources/assets/js/glightbox.min.js"></script>
       <script src="../resources/assets/js/main.js"></script>
-      <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
-      		  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
-              crossorigin="anonymous"></script>
+      <script src="../../resources/bluecoding/header.js"></script>
       <script type="text/javascript">
          //========= Category Slider 
          tns({
@@ -232,5 +241,6 @@
          });
       </script>
       <script src="../../resources/bluecoding/login.js"></script>
+      <script src="../../resources/bluecoding/menu.js"></script>
    </body>
 </html>

@@ -28,7 +28,6 @@
       <link rel="stylesheet" href="../resources/assets/css/glightbox.min.css" />
       <link rel="stylesheet" href="../resources/assets/css/main.css" />
       <!-- ============================== 글쓰기(startbootstrap-clean-blog-gh-pages) ============================== -->
-      <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
       <!-- Font Awesome icons (free version)-->
       <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" crossorigin="anonymous"></script>
       <!-- Google fonts-->
@@ -37,12 +36,10 @@
       <!-- Core theme CSS (includes Bootstrap)-->
       <link href="../resources/assets/css/styles.css" rel="stylesheet" />
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" />
-      <style>
-         .search-form{
-         /* all: unset; */
-         }
-      </style>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
+      		  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
+              crossorigin="anonymous"></script>
    </head>
    <body>
       <!-- header -->
@@ -135,6 +132,8 @@
                         이미지 선택: <input type="file" name="uploadFile" onchange="readURL(this)" />                      
                         <!-- ======================= 버튼 ========================== -->
                         <!-- [로그인시] -->
+                        <br>
+                        <br>
                         <c:if test="${!empty login.id && login.id ne '' }">
                            <div class="button header-button">
                               <input type="submit" class="btn" value="수정">
@@ -175,6 +174,7 @@
       <script src="../resources/assets/js/tiny-slider.js"></script>
       <script src="../resources/assets/js/glightbox.min.js"></script>
       <script src="../resources/assets/js/main.js"></script>
+      <script src="../../resources/bluecoding/header.js"></script>
       <script type="text/javascript">
          //========= Category Slider 
          tns({

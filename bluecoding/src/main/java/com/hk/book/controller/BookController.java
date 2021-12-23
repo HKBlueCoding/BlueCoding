@@ -44,9 +44,14 @@ public class BookController {
 
 	// 메인 페이지
 	@GetMapping("/")
-	public String home(Model model) {
+	public String home(Model model, @RequestParam(value="theme", required=false) String theme) {
 		
-		Map<String, Object> map = bookService.selectMenuList();
+		// null 체크
+		if(theme == null) {
+			theme ="";
+		}
+		
+		Map<String, Object> map = bookService.selectMenuList(theme);
 		
 		model.addAttribute("menuList", map.get("menuList"));
 		model.addAttribute("popBList", map.get("popBList"));

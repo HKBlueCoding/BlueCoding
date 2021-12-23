@@ -61,6 +61,28 @@
 	 ]]>
 	</select>
 	
+	<!-- [장르선택으로 거른책 랜덤 30개 ]  -->
+	<select id="selectFilter" resultMap="bookResult" parameterType="java.lang.String">
+	 SELECT 
+	 * 
+	 FROM  
+	  	 (
+	  	 	SELECT 
+	  	 		*
+	  	 	FROM 
+	  	 		B_BOOK
+	  	 	WHERE 
+	  	 	 BOOKDELETE IS NULL 
+	  	 	AND
+	  	 	 theme = #{theme}
+	  	 	ORDER BY 
+	  	 		dbms_random.value
+	  	 )
+	 <![CDATA[
+	 WHERE rownum <= 30
+	 ]]>
+	</select>
+	
 	<select id="selectAllBook" resultMap="bookResult" parameterType="hashmap">
     <![CDATA[
 		SELECT 

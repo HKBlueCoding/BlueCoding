@@ -61,7 +61,7 @@
                      <div class="categorise search-form wow fadeInUp">
                         <div class="row">
                            <div class="col-lg-3 col-md-3 col-12 p-0" style="width: 20%">
-                              <div class="search-input">
+                              <div class="">
                                  <label for="category"></label>
                                  <select name="theme" id="category"  required>
                                     <option value="" selected disabled>테마 선택</option>
@@ -126,6 +126,8 @@
                         이미지 선택: &nbsp;<input id="uploadFile" name="uploadFile" type="file">
                         <!-- ======================= 버튼 ========================== -->
                         <!-- [로그인시] -->
+                        <br>
+                        <br>
                         <c:if test="${!empty login.id && login.id ne '' }">
                            <div class="button header-button">
                               <input type="submit" class="btn" value="등록">
