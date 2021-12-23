@@ -592,43 +592,6 @@
       <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
       <script
          src="../../resources/assets/js/material-dashboard.min.js?v=3.0.0"></script>
-      <script>
-         function funbtn() {
-           if (confirm("이전 페이지로 돌아가시겠습니까??")) {
-             javascript:history.back();
-           } else {
-           	return;
-           }
-         }
-      </script>
-      <script>
-         function funok() {
-           if (confirm("글을 정말 삭제하시겠습니까??")) {
-            alert("정상적으로 삭제되었습니다.")
-           } else {
-           	return;
-           }
-         }
-      </script>
-      <script>
-         function funok2() {
-           if (confirm("글을 정말 삭제하시겠습니까??")) {
-            alert("정상적으로 삭제되었습니다.")
-           } else {
-           	return;
-           }
-         }
-      </script>
-      <script>
-         function funok3() {
-           if (alert("정상적으로 등록되었습니다.") == true) {
-            
-           } else {
-            alert("등록에 실패하였습니다.")
-           	   return;
-           }
-         }
-      </script>
       <script src="../../resources/bluecoding/eventView.js"></script>
    </body>
 </html>

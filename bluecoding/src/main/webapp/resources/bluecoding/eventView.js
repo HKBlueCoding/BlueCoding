@@ -1,6 +1,18 @@
 /**
  * 
  */
+// 이전 페이지 돌아가기
+
+function funbtn() {
+	if (confirm("이전 페이지로 돌아가시겠습니까??")) {
+		javascript: history.back();
+	} else {
+		return;
+	}
+}
+
+
+
 // 댓글 구현
 
 $(document).ready(function() {
