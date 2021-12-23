@@ -29,8 +29,6 @@
       <link rel="stylesheet" href="../resources/assets/css/main.css" />
       <!-- ============================== 글쓰기(startbootstrap-clean-blog-gh-pages) ============================== -->
       <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-      <!-- Font Awesome icons (free version)-->
-      <script src="https://use.fontawesome.com/releases/v5.15.4 /js/all.js" crossorigin="anonymous"></script>
       <!-- Google fonts-->
       <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
       <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
@@ -38,11 +36,10 @@
       <link href="../resources/assets/css/styles.css" rel="stylesheet" />
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" />
       <style>
-         .search-form{
-         /* all: unset; */
-         }
-      </style>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
+      	#message{
+      		height: 10rem;
+      	}
+      </style>    
    </head>
    <body>
       <!-- header -->
@@ -63,7 +60,7 @@
                            <div class="col-lg-3 col-md-3 col-12 p-0" style="width: 20%">
                               <div class="">
                                  <label for="category"></label>
-                                 <select name="theme" id="category"  required>
+                                 <select name="theme" id="category" title="테마를 선택하세요" required>
                                     <option value="" selected disabled>테마 선택</option>
                                     <option value="판타지">판타지</option>
                                     <option value="청소년">청소년</option>
@@ -91,37 +88,17 @@
                         <div class="form-floating" style="width: 80%">
                            <input type="hidden" name="id" value="${login.id }">
                            <input type="hidden" name="name" value="${login.name }">
-                           <input class="form-control" id="name" name="bookTitle" type="text" placeholder="Enter your name..." data-sb-validations="required" size=53/>
+                           <input class="form-control" id="name" name="bookTitle" type="text" data-sb-validations="required" size=53 minlength="1" maxlength="50" title="책 제목를 입력하세요(1자부터 50자까지)" required/>
                            <label for="name">제목</label>
                            <div class="invalid-feedback" data-sb-feedback="name:required">제목을 입력하세요.</div>
                         </div>
                         <br>
                         <br>   
                         <div class="form-floating" id="formMag" style="width: 100%; ">
-                           <textarea name="intro" class="form-control" id="message" style="height: 10rem;" data-sb-validations="required"></textarea>
+                           <textarea name="intro" class="form-control" id="message" minlength="10" maxlength="240" title="줄거리를 입력하세요(10자부터 240자까지)" required></textarea>
                            <label for="message">줄거리</label>
-                           <div class="invalid-feedback" data-sb-feedback="message:required">줄거리을 입력하세요.</div>
                         </div>
                         <br />
-                        <!-- Submit success message-->
-                        <!---->
-                        <!-- This is what your users will see when the form-->
-                        <!-- has successfully submitted-->
-                        <div class="d-none" id="submitSuccessMessage">
-                           <div class="text-center mb-3">
-                              <div class="fw-bolder">Form submission successful!</div>
-                              To activate this form, sign up at
-                              <br />
-                              <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
-                           </div>
-                        </div>
-                        <!-- Submit error message-->
-                        <!---->
-                        <!-- This is what your users will see when there is-->
-                        <!-- an error submitting the form-->
-                        <div class="d-none" id="submitErrorMessage">
-                           <div class="text-center text-danger mb-3">Error sending message!</div>
-                        </div>
                         <!-- Submit Button-->
                         이미지 선택: &nbsp;<input id="uploadFile" name="uploadFile" type="file">
                         <!-- ======================= 버튼 ========================== -->
@@ -153,15 +130,12 @@
       <!-- ==================== footer ====================== -->      
       <!-- footer -->
       <jsp:include page="/WEB-INF/views/include/footer.jsp"/>
-      <!-- Bootstrap core JS-->
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-      <!-- Core theme JS-->
-      <script src="../resources/assets/js/scripts.js"></script>
+
       <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
       <!-- * *                               SB Forms JS                               * *-->
       <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
       <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-      <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+
       <!-- ========================= JS here ========================= -->
       <script src="../resources/assets/js/bootstrap.min.js"></script>
       <script src="../resources/assets/js/wow.min.js"></script>
@@ -218,6 +192,7 @@
            	   return;
            }
          }
-      </script>      
+      </script>
+      <script src="../../resources/bluecoding/header.js"></script>      
    </body>
 </html>

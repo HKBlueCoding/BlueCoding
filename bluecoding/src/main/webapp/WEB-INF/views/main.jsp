@@ -240,7 +240,6 @@
              }
          });
       </script>
-      <script src="../../resources/bluecoding/login.js"></script>
       <script src="../../resources/bluecoding/menu.js"></script>
    </body>
 </html>

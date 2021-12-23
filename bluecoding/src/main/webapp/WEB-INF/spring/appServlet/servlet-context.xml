@@ -62,9 +62,13 @@
 		</beans:property>
 	</beans:bean>
 
+	<!-- [상담원 접근제한] -->
+	<beans:bean id="QnaInterceptor"
+		class="com.hk.qna.interceptor.QnaInterceptor" />
+
 	<!-- [Interceptor 1단계 제재] -->
 	<beans:bean id="WarringInterceptor"
-		class="com.hk.Warring.interceptor.WarringInterceptor" />
+		class="com.hk.warring.interceptor.WarringInterceptor" />
 
 	<!-- [Interceptor 2단계 제재] -->
 	<beans:bean id="AccessInterceptor"
@@ -97,6 +101,12 @@
 			<mapping path="/add" />
 			<mapping path="/view/add" />
 			<beans:ref bean="WarringInterceptor" />
+		</interceptor>
+		
+		<!-- 상담원 접근 제한 -->
+		<interceptor>
+			<mapping path="/qna" />
+			<beans:ref bean="QnaInterceptor" />
 		</interceptor>
 	</interceptors>
 

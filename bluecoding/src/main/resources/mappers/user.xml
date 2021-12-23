@@ -107,4 +107,12 @@
 	</if>
 	</update>
 	
+	<!-- [도서 게이지 증가] -->
+	<update id="updateGauge" parameterType="java.lang.String">
+	 UPDATE
+	  B_USER 
+	 SET GAUGE=(GAUGE+1)
+	 WHERE ID=#{id}
+	</update>
+	
 </mapper>

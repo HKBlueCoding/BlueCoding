@@ -1,6 +1,4 @@
-package com.hk.Warring.interceptor;
-
-import java.io.PrintWriter;
+package com.hk.warring.interceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

@@ -271,11 +271,17 @@ public class BookController {
 		Map<String, Object> map = bookService.listPage(pageNO, userVO);
 		logger.debug("[map] = " + map);
 		logger.debug("[pageNO] = " + pageNO);
-
+		
+		if(map.get("gaugeRet") != null) {
+			userVO.setGauge(userVO.getGauge()+(int)map.get("gaugeRet"));
+			session.setAttribute("login", userVO);
+		}
+		
 		// 결과 확인
 		if (map.get("ret") == null) {
 			return "done/pageViewFail";
 		}
+		
 		model.addAttribute("lastSeries", map.get("lastSeries"));
 		model.addAttribute("pageVO", map.get("pageVO"));
 		model.addAttribute("pageReplyVO", map.get("pageReplyVO"));

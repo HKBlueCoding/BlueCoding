@@ -29,14 +29,12 @@
       <link rel="stylesheet" href="../resources/assets/css/main.css" />
       <!-- ============================== 글쓰기(startbootstrap-clean-blog-gh-pages) ============================== -->
       <!-- Font Awesome icons (free version)-->
-      <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" crossorigin="anonymous"></script>
       <!-- Google fonts-->
       <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
       <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
       <!-- Core theme CSS (includes Bootstrap)-->
       <link href="../resources/assets/css/styles.css" rel="stylesheet" />
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" />
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
       <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
       		  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
               crossorigin="anonymous"></script>
@@ -58,11 +56,14 @@
                      <div class="categorise search-form wow fadeInUp">
                         <div class="row">
                            <div class="col-lg-3 col-md-3 col-12 p-0" style="width: 20%">
-                              <div class="search-input">
+                              <div >
                                  <label for="category"></label>
                                  <select name="theme" id="category" required>
-                                    <option value="" selected disabled>테마 선택</option>
-                                    <option value="판타지">판타지</option>
+                                    <option value="" disabled>테마 선택</option>
+                                   <c:if test="${!empty bookVO.theme }">
+                                 	<option value="${bookVO.theme }" selected>${bookVO.theme }</option>
+                                   </c:if>
+                                    <option value="판타지" >판타지</option>
                                     <option value="청소년">청소년</option>
                                     <option value="고전">고전</option>
                                     <option value="공포/호러">공포/호러</option>
@@ -86,7 +87,7 @@
                         <!-- https://startbootstrap.com/solution/contact-forms-->
                         <!-- to get an API token!-->
                         <div class="form-floating" style="width: 80%">
-                           <input class="form-control" id="name"  value="${ bookVO.bookTitle}" name="bookTitle" type="text" placeholder="Enter your name..." data-sb-validations="required" />
+                           <input class="form-control" id="name"  value="${ bookVO.bookTitle}" name="bookTitle" type="text" minlength="1" maxlength="50" title="책 제목를 입력하세요(1자부터 50자까지)" required />
                            <label for="name">제목</label>
                            <input type="hidden" value="${bookVO.bookNO }" name="bookNO">
                            <div class="invalid-feedback" data-sb-feedback="name:required">제목을 입력하세요.</div>
@@ -100,34 +101,15 @@
                            <!-- 1. 기존에 이미지 이름을 저장 -->    
                            	<input type="hidden" name="bookImage" value="${bookVO.bookImage }" />
 						   <!-- 2. 기존에 이미지 표시 or id를 preview로 해서 이미지 파일이 등록이되면 src를 변경함 -->
-							<img id="preview" src="../../download?uploadFile=${bookVO.bookImage }&inFolder=book&pk=${bookVO.bookNO}" width="160" height="250" class="avatar avatar-sm me-3 border-radius-lg" alt="user1" >
+							<img id="preview" src="../../download?uploadFile=${bookVO.bookImage }&inFolder=book&pk=${bookVO.bookNO}" width="160" height="250" class="avatar avatar-sm me-3 border-radius-lg" alt="${bookVO.bookTitle}책의 커버사진" >
                         </div>
                         <br>                           
                         <div class="form-floating" id="formMag" style="width: 100%; ">
-                           <textarea name="intro" class="form-control" id="message" placeholder="Enter your message here..." style="height: 10rem" data-sb-validations="required">${bookVO.intro}</textarea>
+                           <textarea name="intro" class="form-control" id="message" placeholder="Enter your message here..." style="height: 10rem"  minlength="10" maxlength="240" title="줄거리를 입력하세요(10자부터 240자까지)" required>${bookVO.intro}</textarea>
                            <label for="message">줄거리</label>
                            <div class="invalid-feedback" data-sb-feedback="message:required">줄거리을 입력하세요.</div>
                         </div>
                         <br />
-                        <!-- Submit success message-->
-                        <!---->
-                        <!-- This is what your users will see when the form-->
-                        <!-- has successfully submitted-->
-                        <div class="d-none" id="submitSuccessMessage">
-                           <div class="text-center mb-3">
-                              <div class="fw-bolder">Form submission successful!</div>
-                              To activate this form, sign up at
-                              <br />
-                              <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
-                           </div>
-                        </div>
-                        <!-- Submit error message-->
-                        <!---->
-                        <!-- This is what your users will see when there is-->
-                        <!-- an error submitting the form-->
-                        <div class="d-none" id="submitErrorMessage">
-                           <div class="text-center text-danger mb-3">Error sending message!</div>
-                        </div>
                         
                         이미지 선택: <input type="file" name="uploadFile" onchange="readURL(this)" />                      
                         <!-- ======================= 버튼 ========================== -->
@@ -159,15 +141,6 @@
       <!-- ==================== footer ====================== -->      
       <!-- footer -->
       <jsp:include page="/WEB-INF/views/include/footer.jsp"/>
-      <!-- Bootstrap core JS-->
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-      <!-- Core theme JS-->
-      <script src="../resources/assets/js/scripts.js"></script>
-      <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-      <!-- * *                               SB Forms JS                               * *-->
-      <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
-      <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-      <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
       <!-- ========================= JS here ========================= -->
       <script src="../resources/assets/js/bootstrap.min.js"></script>
       <script src="../resources/assets/js/wow.min.js"></script>

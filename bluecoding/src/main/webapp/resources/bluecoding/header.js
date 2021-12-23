@@ -82,4 +82,6 @@ function coinCharge(){
 	
 	window.open("../../kakaopay/buy","캐시충전", "width=1500, height=500, history=no, resizable=no, status=no, scrollbars=yes, menubar=no");
 	
-}	
+}
+
+	

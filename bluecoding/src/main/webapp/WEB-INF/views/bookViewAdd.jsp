@@ -30,7 +30,6 @@
       <!-- ============================== 글쓰기(startbootstrap-clean-blog-gh-pages) ============================== -->
       <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
       <!-- Font Awesome icons (free version)-->
-      <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" crossorigin="anonymous"></script>
       <!-- Google fonts-->
       <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
       <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
@@ -40,8 +39,7 @@
          .search-form{
          /* all: unset; */
          }
-      </style>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>      
+      </style>    
    </head>
    <body>
       <!-- header -->
@@ -128,15 +126,6 @@
       <!-- ==================== footer ====================== -->      
       <!-- footer -->
       <jsp:include page="/WEB-INF/views/include/footer.jsp"/>
-      <!-- Bootstrap core JS-->
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-      <!-- Core theme JS-->
-      <script src="../resources/assets/js/scripts.js"></script>
-      <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-      <!-- * *                               SB Forms JS                               * *-->
-      <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
-      <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-      <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
       <!-- ========================= JS here ========================= -->
       <script src="../resources/assets/js/bootstrap.min.js"></script>
       <script src="../resources/assets/js/wow.min.js"></script>

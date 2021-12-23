@@ -15,6 +15,7 @@
                     <nav class="navbar navbar-expand-lg">
                         <a class="navbar-brand" href="../../"> <img src="../../resources/assets/images/logo/BlueNovel.png" width="190" height="105" alt="Logo" /> </a>
                         <button
+                        	id="navBtn"
                             class="navbar-toggler mobile-menu-btn"
                             type="button"
                             data-bs-toggle="collapse"

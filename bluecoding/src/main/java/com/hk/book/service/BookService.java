@@ -229,6 +229,8 @@ public class BookService {
 		// 회차 조회수 기능
 		if(userVO != null) {
 			bookDAO.updatePageViewCnt(pageNO);
+			int gaugeRet = userDAO.updateGauge(userVO.getId());
+			map.put("gaugeRet", gaugeRet);
 			logger.debug("[회차 조회수 업데이트]");
 		}		
 		

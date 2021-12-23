@@ -42,7 +42,6 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <!-- ====================== 페이징 끝 ====================== -->
     <!-- Font Awesome Icons -->
-    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" />
     <style>
       body {
@@ -54,14 +53,12 @@
         padding-right: 1.5rem;
       }
       @media all and (max-width: 768px){
-      
       	.boardImage-img{
       		width: 80px;
       		height: 150px;
       	}
       }
     </style>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
   </head>
   <body>
     <jsp:include page="/WEB-INF/views/include/header.jsp" />
@@ -253,17 +250,7 @@
     </script>
     <!-- SBAdmin2 JS START -->
     <!-- Bootstrap core JavaScript-->
-    <script src="../resources/sbadmin2/vendor/jquery/jquery.min.js"></script>
-    <script src="../resources/sbadmin2/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- Core plugin JavaScript-->
-    <script src="../resources/sbadmin2/vendor/jquery-easing/jquery.easing.min.js"></script>
-    <!-- Custom scripts for all pages-->
-    <script src="../resources/sbadmin2/js/sb-admin-2.min.js"></script>
-    <!-- Page level plugins -->
-    <script src="../resources/sbadmin2/vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="../resources/sbadmin2/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-    <!-- Page level custom scripts -->
-    <script src="../resources/sbadmin2/js/demo/datatables-demo.js"></script>
+
     <!-- SBAdmin2 JS END -->
     <!--   Core JS Files   -->
     <script src="../resources/assets/js/core/popper.min.js"></script>
@@ -280,9 +267,7 @@
       }
     </script>
     <!-- Github buttons -->
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
-    <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
-    <script src="../resources/assets/js/material-dashboard.min.js?v=3.0.0"></script>
+
     <script>
       function funbtn() {
         if (confirm("이전 페이지로 돌아가시겠습니까??")) {
