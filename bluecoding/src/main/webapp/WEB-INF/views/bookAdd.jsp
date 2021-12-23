@@ -91,7 +91,7 @@
                         <div class="form-floating" >
                            <input type="hidden" name="id" value="${login.id }">
                            <input type="hidden" name="name" value="${login.name }">
-                           <input class="form-control" id="name" name="bookTitle" type="text" data-sb-validations="required" size=53 minlength="1" maxlength="50" title="책 제목를 입력하세요(1자부터 50자까지)" required/>
+                           <input class="form-control" id="name" name="bookTitle" type="text" minlength="1" maxlength="50" title="책 제목를 입력하세요(1자부터 50자까지)" required/>
                            <label for="name">제목</label>
                            <div class="invalid-feedback" data-sb-feedback="name:required">제목을 입력하세요.</div>
                         </div>

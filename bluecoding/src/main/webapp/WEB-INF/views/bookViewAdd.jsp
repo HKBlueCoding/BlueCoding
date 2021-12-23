@@ -64,21 +64,21 @@
                         <!-- https://startbootstrap.com/solution/contact-forms-->
                         <!-- to get an API token!-->
                         <div class="form-floating">
-                           <input class="form-control" id="name" name="pageTitle" type="text" data-sb-validations="required" />
+                           <input class="form-control" id="name" name="pageTitle" type="text" maxlength="50" title="제목를 입력하세요(1자부터 50자까지)" required />
                            <label for="name">제목</label>
-                           <input type="hidden" value="${bookVO.bookNO }" name="bookNO">
+                           <input type="hidden" value="${bookVO.bookNO }" name="bookNO" >
                            <div class="invalid-feedback" data-sb-feedback="name:required">제목을 입력하세요.</div>
                         </div>
                         <br>
                         <div class="form-floating" id="formMag" style="width: 100%">
-                           <textarea class="form-control" id="message" name="pageText" style="height: 35rem" data-sb-validations="required"></textarea>
+                           <textarea class="form-control" id="message" name="pageText" style="height: 35rem" maxlength="10000" title="내용을 입력하세요(1자부터 10000자까지)" required></textarea>
                            <label for="message">본문</label>
                            <div class="invalid-feedback" data-sb-feedback="message:required">내용을 입력하세요.</div>
                            <br><br>
                            <div id="Writer">
                               &nbsp;작가의 말
                            </div>
-                           <textarea name="comment" class="form-control" style="height: 15rem"></textarea>
+                           <textarea name="comment" class="form-control" style="height: 15rem" maxlength="300" title="작가의 말을 입력하세요(1자부터 300자까지)" required></textarea>
                         </div>
                         <br />
                         <!-- Submit success message-->

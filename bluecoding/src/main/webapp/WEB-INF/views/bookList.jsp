@@ -72,14 +72,16 @@
       		display: none;
       	}
       	
-      	.boardImage_img{
+      	.bookImage_img{
       		width: 60px;
       		height: 100px;
       	}
+      	
       	.all_div_size{
       		margin-top:50px;
       		width:100%;
       	}
+      	
       }      
     </style>
   </head>
@@ -130,10 +132,10 @@
                               <div class="d-flex px-2 py-1">
                                 <div>
                                   <c:if test="${empty book.bookImage }">
-                                    <img src="../../resources/assets/images/mainPage/board1.png" width="160" height="250" class="avatar avatar-sm me-3 border-radius-lg boardImage_img" alt="기본 이미지" id="preview" style="float: left">
+                                    <img src="../../resources/assets/images/mainPage/board1.png" width="160" height="250" class="avatar avatar-sm me-3 border-radius-lg bookImage_img" alt="기본 이미지" id="preview" style="float: left">
                                   </c:if>
                                   <c:if test="${!empty book.bookImage }">
-                                    <img src="../../download?uploadFile=${book.bookImage }&inFolder=book&pk=${book.bookNO}" width="160" height="250" class="avatar avatar-sm me-3 border-radius-lg boardImage_img" alt="${book.bookTitle }책의 커버사진" id="preview" style="float: left">
+                                    <img src="../../download?uploadFile=${book.bookImage }&inFolder=book&pk=${book.bookNO}" width="160" height="250" class="avatar avatar-sm me-3 border-radius-lg bookImage_img" alt="${book.bookTitle }책의 커버사진" id="preview" style="float: left">
                                   </c:if>
                                 </div>
                                 <div class="d-flex flex-column justify-content-center">
