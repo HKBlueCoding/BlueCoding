@@ -73,73 +73,65 @@
                   <div class="col-md-10 col-lg-8 col-xl-7" style="width: 80%;">
                      <p id="title">문의 내역</p>
                      <hr class="my-4">
-                     <!-- ================== 카테고리 ======================= -->
-                     <div class="categorise search-form wow fadeInUp">
-                        <div class="row">
-                           <div class="col-lg-3 col-md-3 col-12 p-0">
-                              <div class="search-input">
-                                 <label for="category"></label> 
-                                 <select name="qnaList"
-                                    id="qnaListLimit" disabled>
-                                    <option value="목록 선택" selected>${qna.qnaList }</option>
-                                    <option value="계정 관련">계정 관련</option>
-                                    <option value="책 관련">책 관련</option>
-                                    <option value="충전 관련">충전 관련</option>
-                                    <option value="신고 관련">신고 관련</option>
-                                    <option value="기타">기타</option>
-                                 </select>
+                     <div>
+                        <!-- ================== 카테고리 ======================= -->
+                        <div class="categorise search-form wow fadeInUp">
+                           <div class="row">
+                              <div class="col-lg-3 col-md-3 col-12 p-0">
+                                 <div class="search-input">
+                                    <label for="category"></label>
+                                    <select name="qnaList"
+                                       id="qnaListLimit" disabled>
+                                       <option selected>${qna.qnaList }</option>
+                                       <option value="계정 관련">계정 관련</option>
+                                       <option value="책 관련">책 관련</option>
+                                       <option value="충전 관련">충전 관련</option>
+                                       <option value="신고 관련">신고 관련</option>
+                                       <option value="기타">기타</option>
+                                    </select>
+                                 </div>
                               </div>
                            </div>
                         </div>
-                     </div>
-                     <br>
-                     <!-- ================== 카테고리 끝 ======================= -->
-                     <p>
-                     </p>
-                     <br>
-                     <h3>제목</h3>
-                     <br>
-                     <p id="title2">
-                        <input type=text  value="${qna.qnaTitle }" name="qnaTitle"
-                           id="qnaContent" class="form-control" size=53 style="width: 70%;"  disabled />
-                     </p>
-                     <div id="qna">
-                        <input type="hidden" name="qnaNO" value="${qna.qnaNO}">
-                        <input type="hidden" name="id" value="${qna.id }">
-                        <p>작성자: ${qna.id } / 작성일: ${qna.qnaDate}</p>
                         <br>
-                        <!-- ======================= 버튼 ========================== -->
-                        <c:if test="${login.id == qna.id }">
-                           <div class="button header-button" id="tr_btn_modify"
-                              style="display: none;">
-                              <button type="submit" class="btn">수정반영</button>
-                              <a onClick="funbtn(this.form)" class="btn">취소</a>
-                           </div>
-                           <div class="button header-button" id="tr_btn_one">
-                              <a onclick="fn_enable(this.form)" class="btn">수정</a>
-                           </div>
-                        </c:if>
-                        <!-- 답변반영 바꿔줘야 함(insert 사용) -->
-                        <c:if test="${login.admin eq 'A' || login.admin eq 'Q' }">
-                           <div class="button header-button" id="tr_btn_modify2"
-                              style="display: none;">
-                              <button type="submit" class="btn">답변반영</button>
-                              <a onClick="funbtn(this.form)" class="btn">취소</a>
-                           </div>
-                           <div class="button header-button" id="tr_btn_two">
-                              <a onclick="fn_enableRe(this.form)" class="btn">답변하기</a>
-                           </div>
-                        </c:if>
-                        <c:if test="${login.admin eq 'A' || login.admin eq 'Q' }">
-                           <div class="button header-button" id="tr_btn_modify3"
-                              style="display: none;">
-                              <button type="submit" class="btn">답변수정반영</button>
-                              <a onClick="funbtn(this.form)" class="btn">취소</a>
-                           </div>
-                           <div class="button header-button" id="tr_btn_Three">
-                              <a onclick="fn_enableReUp(this.form)" class="btn">답변수정</a>
-                           </div>
-                        </c:if>
+                        <!-- ================== 카테고리 끝 ======================= -->
+                        <p>
+                        </p>
+                        <br>
+                        <h3>제목</h3>
+                        <br>
+                        <p id="title2">
+                           <input type=text  value="${qna.qnaTitle }" name="qnaTitle"
+                              id="qnaContent" class="form-control" size=53 style="width: 70%;"  disabled />
+                        </p>
+                        <div id="qna">
+                           <input type="hidden" name="qnaNO" id="qnaNO" value="${qna.qnaNO}">
+                           <input type="hidden" name="id" value="${qna.id }">
+                           <p>작성자: ${qna.id } / 작성일: ${qna.qnaDate}</p>
+                           <br>
+                           <!-- ======================= 버튼 ========================== -->
+                           <c:if test="${login.id == qna.id }">
+                              <div class="button header-button" id="tr_btn_modify"
+                                 style="display: none;">
+                                 <button type="submit" class="btn">수정반영</button>
+                                 <a onClick="funbtn(this.form)" class="btn">취소</a>
+                              </div>
+                              <div class="button header-button" id="tr_btn_one">
+                                 <a onclick="fn_enable(this.form)" class="btn">수정</a>
+                              </div>
+                           </c:if>
+                           <!-- 답변반영 바꿔줘야 함(insert 사용) -->
+                           <c:if test="${login.admin eq 'A' || login.admin eq 'Q' }">
+                              <div class="button header-button" id="tr_btn_modify2"
+                                 style="display: none;">
+                                 <a id="repBtn" class="btn">답변반영</a>
+                                 <a onClick="funbtn(this.form)" class="btn">취소</a>
+                              </div>
+                              <div class="button header-button" id="tr_btn_two">
+                                 <a onclick="fn_enableRe(this.form)" class="btn">답변하기</a>
+                              </div>
+                           </c:if>
+                        </div>
                      </div>
                      <br> <br>
                      <!-- ======================= 버튼 끝 ========================== -->
@@ -162,7 +154,7 @@
                                        <img src="../../resources/assets/images/mainPage/board1.png" width="300" height="200" class="avatar avatar-sm me-3 border-radius-lg" alt="user1" id="preview" style="float: left; margin-left : 16px;">
                                     </c:if>
                                     <c:if test="${!empty qna.qnaImage }">
-                                       <img src="../../download?uploadFile=${qna.qnaImage }&inFolder=qna&pk=${qna.qnaNO}" width="300" height="200" class="avatar avatar-sm me-3 border-radius-lg" alt="user1" id="preview" style="float: left">
+                                       <img src="../../download?uploadFile=${qna.qnaImage }&inFolder=qna&pk=${qna.qnaNO}" width="300" height="200" class="avatar avatar-sm me-3 border-radius-lg" alt="user1" id="preview" style="float: left; margin-left : 16px;">
                                     </c:if>
                                  </td>
                                  <td style="border: 3px solid #e9ecef; border-width: 2px; ">
@@ -171,34 +163,28 @@
                                  </td>
                               </tr>
                            </table>
+                           <input type="hidden" value="${qna.qnaList }" name="qnaList" id="qnaList">                           
                            <table>
-                              <tr style="border-top: 1px solid #dfe2e5;" id="tr_btn_text">
+                              <tr style="border-top: 1px solid #dfe2e5;" id="tr_btn_image">
                                  <td style="border: 3px solid #e9ecef; border-width: 2px;">
-                                    <c:if test="${empty qna.qnaImage }">
-                                       <img src="../../resources/assets/images/mainPage/board1.png" width="300" height="200" class="avatar avatar-sm me-3 border-radius-lg" alt="user1" id="preview" style="float: left; margin-left : 16px;">
-                                    </c:if>
-                                    <c:if test="${!empty qna.qnaImage }">
-                                       <img src="../../download?uploadFile=${qna.qnaImage }&inFolder=qna&pk=${qna.qnaNO}" width="300" height="200" class="avatar avatar-sm me-3 border-radius-lg" alt="user1" id="preview" style="float: left">
-                                    </c:if>
-                                 </td>
-                                 <td style="border: 3px solid #e9ecef; border-width: 2px; ">
-                                 <div class="form-floating" id="formMag">
-                                    <textarea id="qnaReContent" name="qnaText"
-                                       rows="15" cols="90" disabled></textarea>
-                                       <c:if test="${qna.qnaParentNO == 0}">
-                                    <label for="message" id="tr_btn_label">- 답변 대기중입니다 -</label>
-                                    </c:if>
-                                  </div>  
+                                    <div class="form-floating" id="formMag">
+                                       <c:if test="${empty qnaReply}">
+                                          <label for="message" id="tr_btn_label">- 답변 대기중입니다 -</label>
+                                          <textarea id="qnaReContent" name="qnaText"
+                                             rows="15" cols="135" disabled></textarea>
+                                       </c:if>
+                                       <c:if test="${!empty qnaReply }">
+                                          <c:forEach var="reply" items="${qnaReply }">
+                                             <textarea id="qnaReContent" name="qnaText" rows="15" cols="135" disabled>${reply.qnaText }</textarea>
+                                          </c:forEach>
+                                       </c:if>
+                                    </div>
                                  </td>
                               </tr>
                            </table>
                            <br>
                            <br>
                            <div id="tr_btn_File" style="display: none;">
-                              이미지 선택: <input type="file" name="uploadFile" onchange="readURL(this)" > 																		
-                              <input type="hidden" name="qnaImage" value="${qna.qnaImage}">
-                           </div>
-                           <div id="tr_btn_FileRe" style="display: none;">
                               이미지 선택: <input type="file" name="uploadFile" onchange="readURL(this)" > 																		
                               <input type="hidden" name="qnaImage" value="${qna.qnaImage}">
                            </div>
@@ -272,5 +258,29 @@
          }
          }	
       </script>
+      <!-- ================================ 문의 답변 테스트 ====================================== -->
+      <script> 
+         $(document).ready(function() {
+             $('#repBtn').click(function() {
+                 $.ajax({
+                         type: 'POST',
+                         url: '../qna/reply/add',
+                         dataType: "json",
+                         data: {"qnaText": $('#qnaReContent').val(), "id":$('#id').val(), "qnaParentNO":$("#qnaNO").val(), "qnaList":$("#qnaList").val(), "qnaTitle":$("#qnaTitle").val()},
+                         success: function(data) {
+                            // data.server에서 보낸 map text
+                             alert('답변이 등록되었습니다.');
+                             $('#qnaReContent').val("");
+                             location.reload();
+                         }, 
+                         error: function(request,status,error) {
+                        	 alert($("#qnaNO").val());
+                        	 alert('에러!! : ' + request.responseText + ":"+error);
+                         }
+                  }); //end ajax 
+             }); //end on 
+         });  
+      </script>
+      <!-- ================================ 문의 답변 테스트 끝====================================== -->      
    </body>
 </html>

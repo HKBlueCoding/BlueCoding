@@ -25,7 +25,8 @@
 	<select id="selectAllQnaList" resultMap="qnaResult" parameterType="java.lang.String">
 	<![CDATA[
 		SELECT QNANO, QNAPARENTNO, QNALIST, QNATITLE, QNATEXT, QNAIMAGE, ISPROCESS, QNADATE, FINISHDATE, ID
-		FROM B_QNA WHERE ID = #{id}
+		FROM B_QNA WHERE ID = #{id} AND QNAPARENTNO = 0 
+		ORDER BY qnaNO DESC
 	]]>
 	</select>
 
@@ -80,6 +81,7 @@
 							*
 						FROM
 							B_QNA
+						WHERE QNAPARENTNO = 0
 						ORDER BY
 							qnaNO DESC 
 					) Q
@@ -95,4 +97,29 @@
 	 ]]>
 	</select>
 
+	<insert id="insertReply" parameterType="QnaVO">
+	 <selectKey keyProperty="qnaNO" resultType="int" order="BEFORE">
+	 	SELECT nvl2(max(qnaNO),max(qnaNO)+1,1 ) FROM B_QNA
+	 </selectKey>
+	 <![CDATA[
+	 	INSERT INTO B_QNA (QNANO, QNAPARENTNO, QNALIST, QNATITLE, QNATEXT, ID)
+	 	VALUES (#{qnaNO}, #{qnaParentNO}, #{qnaList}, '[답변입니다.]', #{qnaText},  #{id})
+	 ]]>
+	</insert>
+	
+	<select id="selectQnaReply" resultMap="qnaResult" parameterType="int">
+	<![CDATA[
+		SELECT QNANO, QNAPARENTNO, QNALIST, QNATITLE, QNATEXT, QNAIMAGE, ISPROCESS, QNADATE, FINISHDATE, ID
+		FROM B_QNA WHERE QNAPARENTNO = #{qnaNO}
+	]]>
+	</select>
+	
+	<!-- [qna 답글을 작성한 유저의 완료여부 체크] -->
+	<update id="updateIsProcess" parameterType="int" >
+	 UPDATE 
+	  B_QNA 
+	 SET 
+	  ISPROCESS='Y'
+	  WHERE QNANO=#{qnaParentNO}
+	</update>
 </mapper>

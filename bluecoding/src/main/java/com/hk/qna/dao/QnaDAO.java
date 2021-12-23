@@ -66,4 +66,21 @@ public class QnaDAO {
 		return totQna;
 	}
 
+	public int insertReply(QnaVO qnaVO) {
+		// TODO Auto-generated method stub
+		int ret = sqlSession.insert("mapper.qna.insertReply", qnaVO);
+		return ret;
+	}
+
+	public List<QnaVO> listQnaReply(int qnaNO) {
+		// TODO Auto-generated method stub
+		List<QnaVO> qnaVO = sqlSession.selectList("mapper.qna.selectQnaReply", qnaNO);
+		return qnaVO;
+	}
+
+	public int updateIsProcess(int qnaParentNO) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("mapper.qna.updateIsProcess", qnaParentNO);
+	}
+
 }

@@ -15,22 +15,8 @@ function fn_enable(obj) {
 function fn_enableRe(obj) {
 	document.getElementById("qnaReContent").disabled = false;
 	document.getElementById("tr_btn_modify2").style.display = "block";
-	document.getElementById("tr_btn_text").style.display = "block";
-	document.getElementById("tr_btn_FileRe").style.display = "block";
+	document.getElementById("tr_btn_image").style.display = "block";
 	document.getElementById("tr_btn_two").style.display = "none";
-	document.getElementById("tr_btn_Three").style.display = "none";
-	document.getElementById("tr_btn_File").style.display = "none";
-	document.getElementById("tr_btn_label").style.display = "none";
-}
-
-function fn_enableReUp(obj) {
-	document.getElementById("qnaReContent").disabled = false;
-	document.getElementById("tr_btn_modify3").style.display = "block";
-	document.getElementById("tr_btn_text").style.display = "block";
-	document.getElementById("tr_btn_FileRe").style.display = "block";
-	document.getElementById("tr_btn_two").style.display = "none";
-	document.getElementById("tr_btn_Three").style.display = "none";
-	document.getElementById("tr_btn_File").style.display = "none";
 	document.getElementById("tr_btn_label").style.display = "none";
 }
 
