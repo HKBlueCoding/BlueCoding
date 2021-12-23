@@ -33,12 +33,18 @@
       <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
       <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
       <!-- Core theme CSS (includes Bootstrap)-->
-      <link href="../resources/assets/css/styles.css" rel="stylesheet" />
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+      <link href="../resources/assets/css/styles.css" rel="stylesheet" />
       <style>
       	#message{
       		height: 10rem;
       	}
+      	@media all and (max-width: 450px){
+      		.all_main{
+      			margin-top: 50px;
+      		}
+      	}
+      	
       </style>    
    </head>
    <body>
@@ -48,17 +54,16 @@
       <!-- =================== 글쓰기 폼 ===================== -->
       <!-- Main Content-->
       <form id="contactForm" method="post" action="add" data-sb-form-api-token="API_TOKEN" encType="multipart/form-data">
-         <main class="mb-4">
+         <main class="mb-4 all_main">
             <div class="container px-4 px-lg-5">
                <div class="row gx-4 gx-lg-5 justify-content-center">
-                  <div class="col-md-10 col-lg-8 col-xl-7" style="width: 80%">
+                  <div class="col-md-10 col-lg-8 col-xl-7" >
                      <p id="title">작품 글쓰기</p>
                      <hr class="my-4">
                      <!-- ================== 카테고리 ======================= -->
-                     <div class="categorise search-form wow fadeInUp">
+                     <div class="categorise">
                         <div class="row">
-                           <div class="col-lg-3 col-md-3 col-12 p-0" style="width: 20%">
-                              <div class="">
+                              <div class="category_div">
                                  <label for="category"></label>
                                  <select name="theme" id="category" title="테마를 선택하세요" required>
                                     <option value="" selected disabled>테마 선택</option>
@@ -72,10 +77,8 @@
                                     <option value="드라마/영화">드라마/영화</option>
                                  </select>
                               </div>
-                           </div>
                         </div>
                      </div>
-                     <br>
                      <!-- ================== 카테고리 끝 ======================= -->
                      <div class="my-5">
                         <!-- * * * * * * * * * * * * * * *-->
@@ -85,7 +88,7 @@
                         <!-- To make this form functional, sign up at-->
                         <!-- https://startbootstrap.com/solution/contact-forms-->
                         <!-- to get an API token!-->
-                        <div class="form-floating" style="width: 80%">
+                        <div class="form-floating" >
                            <input type="hidden" name="id" value="${login.id }">
                            <input type="hidden" name="name" value="${login.name }">
                            <input class="form-control" id="name" name="bookTitle" type="text" data-sb-validations="required" size=53 minlength="1" maxlength="50" title="책 제목를 입력하세요(1자부터 50자까지)" required/>
@@ -100,25 +103,23 @@
                         </div>
                         <br />
                         <!-- Submit Button-->
-                        이미지 선택: &nbsp;<input id="uploadFile" name="uploadFile" type="file">
+                        <input id="uploadFile" name="uploadFile" type="file">
                         <!-- ======================= 버튼 ========================== -->
                         <!-- [로그인시] -->
                         <br>
                         <br>
-                        <c:if test="${!empty login.id && login.id ne '' }">
-                           <div class="button header-button">
-                              <input type="submit" class="btn" value="등록">
-                           </div>
-                        </c:if>
                         <!-- [비 로그인시]] -->
-                        <c:if test="${empty login.id || login.id  eq '' }">
-                           <div class="button header-button">
+                        
+                           <div class="button" >
+                             <c:if test="${!empty login.id && login.id ne '' }">
+                              <input type="submit" class="btn" value="등록">
+                             </c:if>
+                             <c:if test="${empty login.id || login.id  eq '' }">
                               <a data-bs-toggle="modal"  data-bs-target="#login" class="btn">등록</a>
+                           	 </c:if> 
+                           	  <a onClick="funbtn()" class="btn">돌아가기</a>
                            </div>
-                        </c:if>
-                        <div class="button header-button">
-                           <a onClick="funbtn()" class="btn">돌아가기</a>
-                        </div>
+                        
                         <!-- ======================= 버튼 끝 ========================== -->
                      </div>
                   </div>

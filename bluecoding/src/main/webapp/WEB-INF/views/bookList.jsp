@@ -43,9 +43,15 @@
     <!-- ====================== 페이징 끝 ====================== -->
     <!-- Font Awesome Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../resources/assets/css/styles.css" rel="stylesheet" />
     <style>
       body {
         background-image: url(../resources/assets/images/here/noticeBG.jpg);
+      }
+      
+      .all_div_size{
+      	height:auto; 
+      	width:65%;
       }
 
       #tbPadd {
@@ -53,11 +59,28 @@
         padding-right: 1.5rem;
       }
       @media all and (max-width: 768px){
-      	.boardImage-img{
+      	.boardImage_img{
       		width: 80px;
       		height: 150px;
       	}
       }
+      @media all and (max-width: 450px){
+      	.bookNO_thr{
+      		display: none;
+      	}
+      	.bookDate_thr{
+      		display: none;
+      	}
+      	
+      	.boardImage_img{
+      		width: 60px;
+      		height: 100px;
+      	}
+      	.all_div_size{
+      		margin-top:50px;
+      		width:100%;
+      	}
+      }      
     </style>
   </head>
   <body>
@@ -69,7 +92,7 @@
     <br>
     <br>
     <br>
-    <div class="container-fluid py-4" style="height:auto; width:80%;">
+    <div class="container-fluid py-4 all_div_size" style="">
       <div class="row">
         <div class="col-12">
           <div class="card my-4">
@@ -83,11 +106,11 @@
                 <table class="table align-items-center mb-0">
                   <thead>
                     <tr>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" style="width: 10%">번호</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 bookNO_thr">번호</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">&nbsp;&nbsp;작성한 글</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">작성자</th>
                       <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">조회수</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">작성일</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 bookDate_thr">작성일</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -100,17 +123,17 @@
                       <c:when test="${!empty bookList }">
                         <c:forEach var="book" items="${bookList }">
                           <tr>
-                            <td class="align-middle text-center">
-                              <span class="text-secondary text-xs font-weight-bold">${book.bookNO }</span>
+                            <td class="align-middle text-center bookNO_thr">
+                              <span class="text-secondary text-xs font-weight-bold .bookNO_thr" >${book.bookNO }</span>
                             </td>
                             <td>
                               <div class="d-flex px-2 py-1">
                                 <div>
                                   <c:if test="${empty book.bookImage }">
-                                    <img src="../../resources/assets/images/mainPage/board1.png" width="160" height="250" class="avatar avatar-sm me-3 border-radius-lg boardImage-img" alt="기본 이미지" id="preview" style="float: left">
+                                    <img src="../../resources/assets/images/mainPage/board1.png" width="160" height="250" class="avatar avatar-sm me-3 border-radius-lg boardImage_img" alt="기본 이미지" id="preview" style="float: left">
                                   </c:if>
                                   <c:if test="${!empty book.bookImage }">
-                                    <img src="../../download?uploadFile=${book.bookImage }&inFolder=book&pk=${book.bookNO}" width="160" height="250" class="avatar avatar-sm me-3 border-radius-lg boardImage-img" alt="${book.bookTitle }책의 커버사진" id="preview" style="float: left">
+                                    <img src="../../download?uploadFile=${book.bookImage }&inFolder=book&pk=${book.bookNO}" width="160" height="250" class="avatar avatar-sm me-3 border-radius-lg boardImage_img" alt="${book.bookTitle }책의 커버사진" id="preview" style="float: left">
                                   </c:if>
                                 </div>
                                 <div class="d-flex flex-column justify-content-center">
@@ -125,8 +148,8 @@
                             <td class="align-middle text-center text-sm">
                               <span class="badge badge-sm bg-gradient-success" style="background-image: linear-gradient(180deg,#419cef 10%,#106ec3 100%);">${book.bViewCnt }</span>
                             </td>
-                            <td class="align-middle text-center">
-                              <span class="text-secondary text-xs font-weight-bold">${book.bookDate }</span>
+                            <td class="align-middle text-center bookDate_thr"">
+                              <span class="text-secondary text-xs font-weight-bold bookDate_thr">${book.bookDate }</span>
                             </td>
                           </tr>
                         </c:forEach>
@@ -143,7 +166,7 @@
       <div class="search-form wow fadeInUp" style="margin: 1px; padding: 1px;">
         <div class="row">
           
-            <div class="button header-button" style="width: 15%; margin-left: 50px; padding: 1px;">
+            <div class="button header-button" >
              <c:if test="${!empty login.id && login.id ne '' }">
               <a href="add" class="btn">작성</a>
              </c:if>

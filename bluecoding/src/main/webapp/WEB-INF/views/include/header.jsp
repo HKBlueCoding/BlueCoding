@@ -48,24 +48,25 @@
                         </div>
                         <!-- [비로그인시] -->
                         <c:if test="${empty login.id || login.id eq '' }">
-                         <div id="notLogin" class="login-button" >
+                         <div id="notLogin login-button" >
                             <ul>
-                                <li>
+                                <li id="login_li">
                                     <a id="loginClick" data-bs-toggle="modal" data-bs-target="#login"><i class="lni lni-enter"></i> Login</a>
                                 </li>
-                                <li>
-                                    <a href="../../user/register"><i class="lni lni-user"></i> Register</a>
+                                <li id="register_li">
+                                    <a href="../../user/register"><i class="lni lni-user notLogin_li"></i> Register</a>
                                 </li>
                             </ul>
                           </div>
                          </c:if>
                         <!-- [로그인 성공시] -->
                         <c:if test="${ !empty login.id && login.id ne ''}">
-                          <div id="successLogin" class="login-button" >
+                          <div id="successLogin" >
                             <ul>
                                 <li>
-									<div class="d-flex px-2 py-1">
-										
+                                  <div id="on_login" class="login-button">
+									<div class="d-flex px-2 py-1 ">
+									  
 										<c:if test="${empty login.profile }">
                           				 <div>
                             				<img src="../../resources/material/assets/img/team-4.jpg" width="36" height="36" class="avatar avatar-sm me-3 border-radius-lg" alt="user6" onload="gaugeSet('${login.gauge}')">
@@ -78,7 +79,7 @@
                           				</c:if>                       				
                           				<div class="d-flex flex-column justify-content-center">
                             				<h6 id="loginNick" class="mb-0 text-sm">${login.nick }<a class="text-xs text-secondary mb-0" href="../../logout" style="font-size: 0.875em;">&nbsp;(로그아웃)</a></h6>
-                            				<a class="text-xs text-secondary mb-0" onclick="loginMenu" style="font-size: 0.875em;" data-bs-toggle="collapse" data-bs-target="#loginMore">메뉴</a>
+                            				<a class="text-xs text-secondary mb-0" style="font-size: 0.875em;" data-bs-toggle="collapse" data-bs-target="#loginMore">메뉴</a>
                           					<ul class="sub-menu collapse" id="loginMore" >
                                             	<li class="nav-item"><a id="loginInfo" href="">내 정보</a></li>
                                             	<li class="nav-item" onClick="coinCharge()" ><a href="#">캐시 충전</a></li>
@@ -86,6 +87,7 @@
                                         	</ul>
                           				</div>
                         			</div>
+                        		  </div>	
                                 </li>
                             </ul>
                           </div>

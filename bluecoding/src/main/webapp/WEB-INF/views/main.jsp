@@ -23,12 +23,14 @@
       <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap"
          rel="stylesheet">
       <!-- ========================= CSS here ========================= -->
-      <link rel="stylesheet" href="../resources/assets/css/bootstrap.min.css" />
+      <link rel="stylesheet" href="../../assets/css/bootstrap.min.css" />
       <link rel="stylesheet" href="../resources/assets/css/LineIcons.2.0.css" />
       <link rel="stylesheet" href="../resources/assets/css/animate.css" />
       <link rel="stylesheet" href="../resources/assets/css/tiny-slider.css" />
       <link rel="stylesheet" href="../resources/assets/css/glightbox.min.css" />
       <link rel="stylesheet" href="../resources/assets/css/main.css" />
+      <link href="../resources/assets/css/styles.css" rel="stylesheet" />
+      <link href="../../resources/bluecoding/css/header.css" rel="stylesheet" />
       <style type="text/css">
          .hero-area.overlay::before {
          all: unset;
@@ -92,6 +94,7 @@
                      <!-- 끝 -->   
                   </div>
                   <br>
+				  <!-- display를 설정하자... -->
                   <!-- [Content 책] -->
                   <div id="demo2" class="carousel slide cat-inner" data-wow-delay=".10s" style="visibility: visible; animation-delay: 0.10s; animation-name: fadeInUp;">
                      <!-- 책 list -->
