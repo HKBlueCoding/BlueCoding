@@ -39,6 +39,12 @@
       	#message{
       		height: 10rem;
       	}
+      	.line_td {
+   			width: 400px;
+   			overflow:hidden; 
+  			text-overflow:ellipsis;
+   			white-space:nowrap;  
+		}
       	@media all and (max-width: 450px){
       		.all_main{
       			margin-top: 50px;

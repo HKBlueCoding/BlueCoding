@@ -59,9 +59,22 @@
          padding-left: 1.5rem;
          padding-right: 1.5rem;
          }
+         .line_td {
+   			width: 400px;
+   			overflow:hidden; 
+  			text-overflow:ellipsis;
+   			white-space:nowrap;  
+		 }
+		.nick_td{
+   			width: 80px;
+   			overflow:hidden; 
+  			text-overflow:ellipsis;
+   			white-space:nowrap;		
+		}
+         
       </style>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
-      
+
    </head>
    <body>
       <jsp:include page="/WEB-INF/views/include/header.jsp" />
@@ -103,13 +116,13 @@
                                  		<td>
                                     		<div class="d-flex px-2 py-1">
                                        			<div class="d-flex flex-column justify-content-center">
-                                          			<a href="view?articleNO=${boardList.articleNO}" class="mb-0 text-sm" style="color: black">${boardList.boardTitle }</a>
-                                          			<p class="text-xs text-secondary mb-0">${boardList.boardText }</p>
+                                          			<a href="view?articleNO=${boardList.articleNO}" class="mb-0 text-sm line_td" style="color: black">${boardList.boardTitle }</a>
+                                          			<p class="text-xs text-secondary mb-0 line_td">${boardList.boardText }</p>
                                        			</div>
                                     		</div>
                                  		</td>
                                  <td class="align-middle">
-                                    <span class="text-secondary text-xs font-weight-bold">${boardList.id }</span>
+                                    <span class="text-secondary text-xs font-weight-bold nick_td">${boardList.nick }</span>
                                  </td>
                                  <td class="align-middle text-center text-sm">
                                     <span class="badge badge-sm bg-gradient-success" style="background-image: linear-gradient(180deg,#419cef 10%,#106ec3 100%);">${boardList.bdViewCnt }</span>
@@ -139,17 +152,6 @@
                </div>
                <div class="button header-button" style="width: 20%; margin-left: 1px; padding: 1px;">
                   <a onClick="funbtn()" class="btn">돌아가기</a>
-               </div>
-               <div class="col-lg-4 col-md-4 col-12 p-0"  style="width: 30%;  margin-left: 100px;">
-                  <div class="search-input">
-                     <label for="keyword"><i class="lni lni-search-alt theme-color"></i></label>
-                     <input type="text" name="keyword" id="keyword" placeholder="검색하세요.">
-                  </div>
-               </div>
-               <div class="col-lg-2 col-md-2 col-12 p-0">
-                  <div class="search-btn button">
-                     <button class="btn"><i class="lni lni-search-alt"></i> 검색</button>
-                  </div>
                </div>
             </div>
          </div>
@@ -280,6 +282,7 @@
       <script async defer src="https://buttons.github.io/buttons.js"></script>
       <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
       <script src="../resources/assets/js/material-dashboard.min.js?v=3.0.0"></script>
+      <script src="../../resources/bluecoding/header.js"></script>
       <script>
          function funbtn() {
            if (confirm("이전 페이지로 돌아가시겠습니까??")) {
