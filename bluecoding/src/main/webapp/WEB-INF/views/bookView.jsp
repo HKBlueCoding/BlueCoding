@@ -428,7 +428,7 @@ body {
 																	<td>
 																		<div align="right" style="width: 100%;">
 																			<!-- [로그인시] -->
-																			<c:if test="${!empty login.id && login.id ne '' }">
+																			<c:if test="${!empty login.id && login.id ne '' && review.revDelete ne 'Y' }">
 																				<div class="button header-button">
 																					<button onClick="replyReClick('${replyCnt.count}')" id="modify" class="btn" style="background-color: #30d8e0;">답글</button>
 																				</div>
