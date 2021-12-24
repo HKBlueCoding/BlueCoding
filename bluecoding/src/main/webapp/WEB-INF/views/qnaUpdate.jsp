@@ -98,7 +98,7 @@
                         </div>
                         <br>
                         <div class="form-floating" id="formMag">
-                           <textarea class="form-control" id="message" style="height: 35rem" maxlength="800" required></textarea>
+                           <textarea class="form-control3" id="message" maxlength="800" required></textarea>
                            <label for="message">내용</label>
                         </div>
                         <br />

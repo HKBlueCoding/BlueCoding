@@ -185,7 +185,7 @@
                            <br>
                            <br>
                            <div id="tr_btn_File" style="display: none;">
-                              이미지 선택: <input type="file" name="uploadFile" onchange="readURL(this)" > 																		
+                              이미지 선택: <input type="file" name="uploadFile" onchange="readURL(this)" >                                                       
                               <input type="hidden" name="qnaImage" value="${qna.qnaImage}">
                            </div>
                            <br />
@@ -218,54 +218,54 @@
       <script type="text/javascript">
          //========= Category Slider 
          tns({
-         	container : '.category-slider',
-         	items : 3,
-         	slideBy : 'page',
-         	autoplay : false,
-         	mouseDrag : true,
-         	gutter : 0,
-         	nav : false,
-         	controls : true,
-         	controlsText : [ '<i class="lni lni-chevron-left"></i>',
-         			'<i class="lni lni-chevron-right"></i>' ],
-         	responsive : {
-         		0 : {
-         			items : 1,
-         		},
-         		540 : {
-         			items : 2,
-         		},
-         		768 : {
-         			items : 4,
-         		},
-         		992 : {
-         			items : 5,
-         		},
-         		1170 : {
-         			items : 6,
-         		}
-         	}
+            container : '.category-slider',
+            items : 3,
+            slideBy : 'page',
+            autoplay : false,
+            mouseDrag : true,
+            gutter : 0,
+            nav : false,
+            controls : true,
+            controlsText : [ '<i class="lni lni-chevron-left"></i>',
+                  '<i class="lni lni-chevron-right"></i>' ],
+            responsive : {
+               0 : {
+                  items : 1,
+               },
+               540 : {
+                  items : 2,
+               },
+               768 : {
+                  items : 4,
+               },
+               992 : {
+                  items : 5,
+               },
+               1170 : {
+                  items : 6,
+               }
+            }
          });
       </script>
       <script>
          function readURL(input){
          if(input.files && input.files[0]){
-         	var reader = new FileReader();
-         	reader.onload = function (e){
-         		$('#preview').attr('src',e.target.result);
-         	}
-         	reader.readAsDataURL(input.files[0]);
+            var reader = new FileReader();
+            reader.onload = function (e){
+               $('#preview').attr('src',e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
          }
-         }	
+         }   
       </script>
       <!-- ================================ 문의 답변 테스트 ====================================== -->
       <script> 
          $(document).ready(function() {
              $('#repBtn').click(function() {
-         		if ($.trim($('#qnaReContent').val()) == '') {
-         		alert("내용을 입력해주세요.");
-         		return false;
-         	}
+               if ($.trim($('#qnaReContent').val()) == '') {
+               alert("내용을 입력해주세요.");
+               return false;
+            }
                  $.ajax({
                          type: 'POST',
                          url: '../qna/reply/add',
@@ -278,8 +278,8 @@
                              location.reload();
                          }, 
                          error: function(request,status,error) {
-                        	 alert($("#qnaNO").val());
-                        	 alert('에러!! : ' + request.responseText + ":"+error);
+                            alert($("#qnaNO").val());
+                            alert('에러!! : ' + request.responseText + ":"+error);
                          }
                   }); //end ajax 
              }); //end on 
