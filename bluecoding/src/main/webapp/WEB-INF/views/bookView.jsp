@@ -137,7 +137,8 @@ body {
 									${bookVO.bookDate } &nbsp;&nbsp;&nbsp;&nbsp; <br> <br>
 									<hr class="my-4" style="width: 66.6%">
 									<!-- ======================= 버튼 ========================== -->
-									<c:if test="${login.admin eq 'A' || login.admin eq 'C' || login.id eq bookVO.id }">
+									<c:if
+										test="${login.admin eq 'A' || login.admin eq 'C' || login.id eq bookVO.id }">
 										<div class="button header-button">
 											<a href="../view/add?bookNO=${bookVO.bookNO }" class="btn">회차
 												글쓰기</a>
@@ -199,12 +200,7 @@ body {
 									</div>
 								</div>
 							</form>
-							<br>
-							<br>
-							<br>
-							<br>
-							<br>
-							<br>
+							<br> <br> <br> <br> <br> <br>
 							<!-- * * * * * * * * * * * * * * * -->
 							<!-- * * SB Forms Contact Form * * -->
 							<!-- * * * * * * * * * * * * * * * -->
@@ -394,37 +390,35 @@ body {
 																					class="d-flex flex-column justify-content-center">
 																					<p class="text-xs text-secondary mb-0"
 																						style="font-size: 15px;">
-																						<c:forEach begin="1" end="${review.level }"
-																							step="1">
+																						<c:forEach begin="1" end="${review.level }" step="1">
                                                                         &nbsp;&nbsp;&nbsp;&nbsp;
                                                                      </c:forEach>
 																						⤷작성자명 : ${review.nick }(${review.id }),&nbsp;&nbsp;&nbsp;&nbsp;${review.revDate }
 																					</p>
 																					<p class="text-xs text-secondary mb-0">
-																						<c:forEach begin="1" end="${review.level }"
-																							step="1">
+																						<c:forEach begin="1" end="${review.level }" step="1">
                                                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                                      </c:forEach>
-																						<c:if test="${review.revDelete eq 'Y' }">
-																							<strike>&nbsp;&nbsp;[삭제된 게시글입니다]</strike>
-																						</c:if>
-																						<c:if test="${review.revDelete ne 'Y' }">
+																	 <c:if test="${review.revDelete eq 'Y' }">
+																	 	<strike>&nbsp;&nbsp;[삭제된 게시글입니다]</strike>
+																	</c:if>
+																	<c:if test="${review.revDelete ne 'Y' }">
                                                                      &nbsp;&nbsp;${review.revText }
                                                                      </c:if>
 																					</p>
 																				</div>
 																			</div>
-																		</c:if> <c:if test="${review.level == 1 }">
+																		</c:if>
+																		<c:if test="${review.level == 1 }">
 																			<div class="d-flex px-2 py-1">
 																				<div
 																					class="d-flex flex-column justify-content-center">
-																					<p class="text-xs text-secondary mb-0"
-																						style="font-size: 15px;">작성자명 : ${review.nick }(${review.id }),&nbsp;&nbsp;&nbsp;&nbsp;${Description.revDate }</p>
 																					<c:if test="${review.revDelete eq 'Y' }">
-																						<strike class="text-xs text-secondary mb-0">[삭제된
-																							게시글입니다]</strike>
+																						<strike class="text-xs text-secondary mb-0">[삭제된 게시글입니다]</strike>
 																					</c:if>
 																					<c:if test="${review.revDelete ne 'Y' }">
+																						<p class="text-xs text-secondary mb-0"
+																							style="font-size: 15px;">작성자명 : ${review.nick }(${review.id }),&nbsp;&nbsp;&nbsp;&nbsp;${Description.revDate }</p>
 																						<p class="text-xs text-secondary mb-0">${review.revText }</p>
 																					</c:if>
 																				</div>
@@ -436,10 +430,18 @@ body {
 																			<!-- [로그인시] -->
 																			<c:if test="${!empty login.id && login.id ne '' }">
 																				<div class="button header-button">
-																					<button onClick="replyReClick('${replyCnt.count}')"
-																						id="modify" class="btn"
-																						style="background-color: #30d8e0;">답글</button>
+																					<button onClick="replyReClick('${replyCnt.count}')" id="modify" class="btn" style="background-color: #30d8e0;">답글</button>
 																				</div>
+																				<c:choose>
+																					<c:when test="${login.id eq review.id || login.admin eq 'A' || login.admin eq 'C'}">
+																						<div class="button header-button">
+																							<button onClick="replyClick('${replyCnt.count}')" id="modify" class="btn" style="background-color: #30d8e0;">수정</button>
+																						</div>
+																						<div class="button header-button">
+																							<a onClick="deleteReview('${review.revNO }')" class="btn" style="background-color: #30d8e0;">삭제</a>
+																						</div>
+																					</c:when>
+																				</c:choose>
 																			</c:if>
 																			<!-- [비 로그인시]] -->
 																			<c:if test="${empty login.id || login.id  eq '' }">
@@ -448,18 +450,7 @@ body {
 																						class="btn" style="background-color: #30d8e0;">답글</a>
 																				</div>
 																			</c:if>
-																			<c:if
-																				test="${login.admin eq 'A' || login.admin eq 'C'}">
-																				<div class="button header-button">
-																					<button onClick="replyClick('${replyCnt.count}')"
-																						id="modify" class="btn"
-																						style="background-color: #30d8e0;">수정</button>
-																				</div>
-																				<div class="button header-button">
-																					<a onClick="deleteReview('${review.revNO }')"
-																						class="btn" style="background-color: #30d8e0;">삭제</a>
-																				</div>
-																			</c:if>
+
 																		</div> <!-- ======================= 버튼 끝 ========================== -->
 																	</td>
 																</tr>
@@ -706,6 +697,7 @@ body {
            }
          });
       </script>
+    <script src="../../resources/bluecoding/header.js"></script>
 	<script src="../../resources/bluecoding/bookView.js"></script>
 </body>
 </html>
