@@ -59,6 +59,26 @@
         padding-right: 1.5rem;
       }
       
+      .txt_line {
+		width: 400px;
+		overflow:hidden; 
+		text-overflow:ellipsis;
+		white-space:nowrap;  
+	  }
+	  
+	  .name_td{
+	  	width: 30px;
+      	overflow:hidden; 
+		text-overflow:ellipsis;
+		white-space:nowrap;
+		margin-left: 20px;
+      }
+      
+      .view_td{
+      	overflow:hidden; 
+		text-overflow:ellipsis;
+		white-space:nowrap;      	
+      }
       @media all and (max-width: 768px){
       	.boardImage_img{
       		width: 80px;
@@ -82,9 +102,20 @@
       		margin-top:50px;
       		width:100%;
       	}
-      	
+      	.txt_line {
+      		width: 100px;
+      	}
+      	.name_td{
+      		width: 80px;
+      		margin-left: 1px;
+      	}
+      	.view_td{
+      		width: 30px;
+      	}
+   
       }      
     </style>
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
       		  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
               crossorigin="anonymous"></script>
@@ -130,7 +161,7 @@
                         <c:forEach var="book" items="${bookList }">
                           <tr>
                             <td class="align-middle text-center bookNO_thr">
-                              <span class="text-secondary text-xs font-weight-bold .bookNO_thr" >${book.bookNO }</span>
+                              <span class="text-secondary text-xs font-weight-bold bookNO_thr" >${book.bookNO }</span>
                             </td>
                             <td>
                               <div class="d-flex px-2 py-1">
@@ -143,16 +174,16 @@
                                   </c:if>
                                 </div>
                                 <div class="d-flex flex-column justify-content-center">
-                                  <a href="/view?bookNO=${book.bookNO }" class="mb-0 text-sm" style="color: black">${book.bookTitle }</a>
+                                  <a href="/view?bookNO=${book.bookNO }" class="mb-0 text-sm txt_line" style="color: black">${book.bookTitle }</a>
                                   <p class="text-xs text-secondary mb-0">${book.theme }</p>
                                 </div>
                               </div>
                             </td>
                             <td class="align-middle">
-                              <span class="text-secondary text-xs font-weight-bold">${book.id }</span>
+                              <span class="text-secondary text-xs font-weight-bold name_td" >${book.name }</span>
                             </td>
                             <td class="align-middle text-center text-sm">
-                              <span class="badge badge-sm bg-gradient-success" style="background-image: linear-gradient(180deg,#419cef 10%,#106ec3 100%);">${book.bViewCnt }</span>
+                              <span class="badge badge-sm bg-gradient-success view_td" style="background-image: linear-gradient(180deg,#419cef 10%,#106ec3 100%);">${book.bViewCnt }</span>
                             </td>
                             <td class="align-middle text-center bookDate_thr"">
                               <span class="text-secondary text-xs font-weight-bold bookDate_thr">${book.bookDate }</span>
