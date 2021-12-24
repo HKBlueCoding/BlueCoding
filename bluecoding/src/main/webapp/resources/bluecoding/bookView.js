@@ -160,7 +160,7 @@ function deleteReview(revNO) {
 			success: function(data) {
 				if (data.ret > 0) {
 					alert('댓글 삭제에 성공하였습니다.');
-					location.href = "../../list";
+					location.reload();
 				}
 
 				if (data.ret == 0) {

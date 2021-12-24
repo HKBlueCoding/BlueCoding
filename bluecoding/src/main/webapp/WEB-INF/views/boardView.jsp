@@ -80,6 +80,10 @@
          .replyRe {
          display: none;
          }
+         #text_div {
+         	margin-right: 50px;
+			word-wrap: break-word; 
+		 }
       </style>
       <script
          src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
@@ -144,14 +148,14 @@
                                  <tbody>
                                     <tr>
                                        <td>
-                                          <div class="d-flex px-2 py-1" style="width: 200%;">
+                                          <div id="text_div" class="d-flex px-2 py-1" style="width: 200%;">
                                              <div>
                                                 <c:if test="${empty boardVO.boardImage }">
                                                    <img
                                                       src="../../resources/assets/images/mainPage/board1.png"
                                                       width="400" height="200"
                                                       class="avatar avatar-sm me-3 border-radius-lg"
-                                                      alt="user1" style="float: left">${boardVO.boardText }
+                                                      alt="user1" style="float: left"><p>${boardVO.boardText }</p>
                                                 </c:if>
                                                 <c:if test="${!empty boardVO.boardImage }">
                                                    <img
