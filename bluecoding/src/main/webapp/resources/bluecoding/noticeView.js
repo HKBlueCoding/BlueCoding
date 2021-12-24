@@ -6,16 +6,16 @@
 
 $(document).ready(function() {
 	$('#repBtn').click(function() {
-	
-   		if($.trim($("#newsReText").val())==''){
-      		alert("내용을 입력해주세요." );
-      		return false;
-    	}
 
-   		if($.trim($("#newsReText").val().length) > 300 ){
-      		alert("댓글은 300글자를 초과할 수 없습니다.");
-      		return false;
-    	}
+		if ($.trim($("#newsReText").val()) == '') {
+			alert("내용을 입력해주세요.");
+			return false;
+		}
+
+		if ($.trim($("#newsReText").val().length) > 300) {
+			alert("댓글은 300글자를 초과할 수 없습니다.");
+			return false;
+		}
 
 		$.ajax({
 			type: 'POST',
@@ -51,6 +51,15 @@ function replyClick(replyCnt) {
 }
 
 function replyDone(replyNO, replyCnt) {
+	if ($.trim($('#ReText' + replyCnt).val()) == '') {
+		alert("내용을 입력해주세요.");
+		return false;
+	}
+
+	if ($.trim($('#ReText' + replyCnt).val().length) > 300) {
+		alert("댓글은 300글자를 초과할 수 없습니다.");
+		return false;
+	}
 	$.ajax({
 		type: 'POST',
 		url: '/news/notice/newsReply/update',
@@ -84,6 +93,15 @@ function replyReClick(replyCnt) {
 }
 
 function replyInsert(nReParentNO, replyCnt) {
+	if ($.trim($('#RepReText' + replyCnt).val()) == '') {
+		alert("내용을 입력해주세요.");
+		return false;
+	}
+
+	if ($.trim($('#RepReText' + replyCnt).val().length) > 300) {
+		alert("답글은 300글자를 초과할 수 없습니다.");
+		return false;
+	}
 	$.ajax({
 		type: 'POST',
 		url: '../../news/notice/newsReplyRe/add',
@@ -121,6 +139,15 @@ function replyClick(replyCnt) {
 }
 
 function replyReDone(nReParentNO, replyCnt) {
+	if ($.trim($('#ReText' + replyCnt).val()) == '') {
+		alert("내용을 입력해주세요.");
+		return false;
+	}
+
+	if ($.trim($('#ReText' + replyCnt).val().length) > 300) {
+		alert("답글은 300글자를 초과할 수 없습니다.");
+		return false;
+	}
 	$.ajax({
 		type: 'POST',
 		url: '/news/notice/newsReply/update',
@@ -170,7 +197,7 @@ function delNotice(newsNO) {
 
 				} else {
 					alert('삭제되었습니다.');
-					location.href='../notice';
+					location.href = '../notice';
 				}
 			},
 			error: function(error) {

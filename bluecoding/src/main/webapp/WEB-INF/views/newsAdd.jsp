@@ -85,12 +85,12 @@
                         <div class="form-floating">
                            <input type="hidden" name="id" value="${login.id }">
                            <input type="hidden" name="nick" value="${login.nick }">
-                           <input class="form-control" name="newsTitle"  id="name" type="text" title="제목을 입력하세요" required />
+                           <input class="form-control" name="newsTitle"  id="name" type="text" title="제목을 입력하세요" maxlength="50" required />
                            <label for="name">제목</label>                          
                         </div>
                         <br>
                         <div class="form-floating" id="formMag" style="width: 100%">
-                           <textarea class="form-control" id="message" name="newsText" style="height: 35rem" title="내용을 입력하세요" required></textarea>
+                           <textarea class="form-control" id="message" name="newsText" style="height: 35rem" title="내용을 입력하세요" maxlength="4800" required></textarea>
                            <label for="message">내용</label>
                         </div>
                         <br />

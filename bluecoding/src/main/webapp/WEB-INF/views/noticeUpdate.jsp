@@ -89,13 +89,13 @@
                               <!-- https://startbootstrap.com/solution/contact-forms-->
                               <!-- to get an API token!-->
                               <div class="form-floating">
-                                 <input name="newsTitle" class="form-control" id="name" type="text" value="${newsVO.newsTitle }" title="제목을 입력하세요" required/>
+                                 <input name="newsTitle" class="form-control" id="name" type="text" value="${newsVO.newsTitle }" title="제목을 입력하세요" maxlength="50" required/>
                                  <label for="name">제목</label>  
                                  <input type="hidden" value="${newsVO.newsNO }" name="newsNO">           
                               </div>
                               <br>
                               <div class="form-floating" id="formMag" style="width: 100%">
-                                 <textarea name="newsText" class="form-control" id="message" style="height: 35rem" title="내용을 입력하세요" required>${newsVO.newsText }</textarea>
+                                 <textarea name="newsText" class="form-control" id="message" style="height: 35rem" title="내용을 입력하세요" maxlength="4800" required>${newsVO.newsText }</textarea>
                                  <label for="message">내용</label>
                               </div>
                               <br>

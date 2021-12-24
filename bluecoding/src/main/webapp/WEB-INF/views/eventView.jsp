@@ -259,7 +259,7 @@
                                                    </div>
                                                    <c:choose>
                                                       <c:when
-                                                         test="${login.admin eq 'A' || login.admin eq 'C'}">
+                                                         test="${login.admin eq 'A' || login.id eq newsReply.id}">
                                                          <div class="button header-button">
                                                             <button onClick="replyClick('${replyCnt.count}')"
                                                                id="modify" class="btn"
