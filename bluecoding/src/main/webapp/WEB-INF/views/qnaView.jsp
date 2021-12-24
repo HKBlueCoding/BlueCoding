@@ -102,7 +102,7 @@
                         <br>
                         <p id="title2">
                            <input type=text  value="${qna.qnaTitle }" name="qnaTitle"
-                              id="qnaContent" class="form-control" size=53 style="width: 70%;"  disabled />
+                              id="qnaContent" class="form-control" size=53 style="width: 70%;" maxlength="50" required disabled />
                         </p>
                         <div id="qna">
                            <input type="hidden" name="qnaNO" id="qnaNO" value="${qna.qnaNO}">
@@ -159,11 +159,11 @@
                                  </td>
                                  <td style="border: 3px solid #e9ecef; border-width: 2px; ">
                                     <textarea id="qnaContent2" name="qnaText"
-                                       rows="15" cols="90" disabled>${qna.qnaText }</textarea>
+                                       rows="15" cols="90" maxlength="800" required disabled>${qna.qnaText }</textarea>
                                  </td>
                               </tr>
                            </table>
-                           <input type="hidden" value="${qna.qnaList }" name="qnaList" id="qnaList">                           
+                           <input type="hidden" value="${qna.qnaList }" id="qnaList">                           
                            <table>
                               <tr style="border-top: 1px solid #dfe2e5;" id="tr_btn_image">
                                  <td style="border: 3px solid #e9ecef; border-width: 2px;">
@@ -171,11 +171,11 @@
                                        <c:if test="${empty qnaReply}">
                                           <label for="message" id="tr_btn_label">- 답변 대기중입니다 -</label>
                                           <textarea id="qnaReContent" name="qnaText"
-                                             rows="15" cols="135" disabled></textarea>
+                                             rows="15" cols="135" maxlength="800" required disabled></textarea>
                                        </c:if>
                                        <c:if test="${!empty qnaReply }">
                                           <c:forEach var="reply" items="${qnaReply }">
-                                             <textarea id="qnaReContent" name="qnaText" rows="15" cols="135" disabled>${reply.qnaText }</textarea>
+                                             <textarea id="qnaReContent" name="qnaText" rows="15" cols="135" maxlength="800" required disabled>${reply.qnaText }</textarea>
                                           </c:forEach>
                                        </c:if>
                                     </div>
@@ -262,6 +262,10 @@
       <script> 
          $(document).ready(function() {
              $('#repBtn').click(function() {
+         		if ($.trim($('#qnaReContent').val()) == '') {
+         		alert("내용을 입력해주세요.");
+         		return false;
+         	}
                  $.ajax({
                          type: 'POST',
                          url: '../qna/reply/add',

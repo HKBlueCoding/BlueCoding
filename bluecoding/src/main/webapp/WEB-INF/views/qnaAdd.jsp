@@ -92,7 +92,7 @@
                         </div>
                         <br>
                         <div class="form-floating" id="formMag">
-                           <textarea name="qnaText" rows="15" cols="90" maxlength="800" required></textarea>
+                           <textarea class="form-control2" name="qnaText" rows="15" cols="90" maxlength="800" required></textarea>
                            <input type="hidden" name="qnaImage">
                         </div>
                         <br />
