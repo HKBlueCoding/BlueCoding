@@ -80,15 +80,13 @@
                         <div class="form-floating">
                            <input type="hidden" name="id" value="${login.id }">
                            <input type="hidden" name="nick" value="${login.nick }">
-                           <input class="form-control" id="name" name="boardTitle" type="text" placeholder="Enter your name..." data-sb-validations="required"  required/>
-                           <label for="name">제목</label>                          
-                           <div class="invalid-feedback" data-sb-feedback="name:required">제목을 입력하세요.</div>
+                           <input class="form-control" id="name" name="boardTitle" type="text" maxlength="50" required/>
+                           <label for="name">제목</label>
                         </div>
                         <br>
                         <div class="form-floating" id="formMag">
-                           <textarea class="form-control" id="message" name="boardText" placeholder="Enter your message here..." style="height: 35rem" data-sb-validations="required" required></textarea>
+                           <textarea class="form-control" id="message" name="boardText" style="height: 35rem" maxlength="4800" required></textarea>
                            <label for="message">내용</label>
-                           <div class="invalid-feedback" data-sb-feedback="message:required">내용을 입력하세요.</div>
                         </div>
                         <br />
                         <!-- Submit success message-->

@@ -37,6 +37,17 @@ function del(articleNO) {
 // [댓글 구현]
 $(document).ready(function() {
 	$('#repBtn').click(function() {
+
+		if ($.trim($("#boardReText").val()) == '') {
+			alert("내용을 입력해주세요.");
+			return false;
+		}
+
+		if ($.trim($("#boardReText").val().length) > 300) {
+			alert("댓글은 300글자를 초과할 수 없습니다.");
+			return false;
+		}
+
 		$.ajax({
 			type: 'POST',
 			url: '/board/boardReply/add',
@@ -70,6 +81,15 @@ function replyClick(replyCnt) {
 }
 
 function replyDone(replyNO, replyCnt) {
+	if ($.trim($('#ReText' + replyCnt).val()) == '') {
+		alert("내용을 입력해주세요.");
+		return false;
+	}
+
+	if ($.trim($('#ReText' + replyCnt).val().length) > 300) {
+		alert("댓글은 300글자를 초과할 수 없습니다.");
+		return false;
+	}
 	$.ajax({
 		type: 'POST',
 		url: '/board/boardReply/update',
@@ -102,6 +122,15 @@ function replyReClick(replyCnt) {
 }
 
 function replyInsert(reParentNO, replyCnt) {
+	if ($.trim($('#RepReText' + replyCnt).val()) == '') {
+		alert("내용을 입력해주세요.");
+		return false;
+	}
+
+	if ($.trim($('#RepReText' + replyCnt).val().length) > 300) {
+		alert("댓글은 300글자를 초과할 수 없습니다.");
+		return false;
+	}
 	$.ajax({
 		type: 'POST',
 		url: '/board/bpardReplyRe/add',
@@ -138,6 +167,15 @@ function replyClick(replyCnt) {
 }
 
 function replyReDone(reParentNO, replyCnt) {
+	if ($.trim($('#ReText' + replyCnt).val()) == '') {
+		alert("내용을 입력해주세요.");
+		return false;
+	}
+
+	if ($.trim($('#ReText' + replyCnt).val().length) > 300) {
+		alert("댓글은 300글자를 초과할 수 없습니다.");
+		return false;
+	}
 	$.ajax({
 		type: 'POST',
 		url: '/board/boardReply/update',

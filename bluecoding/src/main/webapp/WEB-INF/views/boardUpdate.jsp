@@ -66,16 +66,14 @@
                         <!-- https://startbootstrap.com/solution/contact-forms-->
                         <!-- to get an API token!-->
                         <div class="form-floating">
-                           <input class="form-control" id="boardTitle" name="boardTitle" type="text" value="${boardVO.boardTitle }" data-sb-validations="required" />
+                           <input class="form-control" id="boardTitle" name="boardTitle" type="text" value="${boardVO.boardTitle }" maxlength="50" required />
                            <label for="name">제목</label>
                            <input type="hidden" value="${boardVO.articleNO }" name="articleNO">  
-                           <div class="invalid-feedback" data-sb-feedback="name:required">제목을 입력하세요.</div>
                         </div>
                         <br>
                         <div class="form-floating" id="formMag">
-                           <textarea class="form-control" id="boardText" name="boardText" style="height: 35rem" data-sb-validations="required">${boardVO.boardText }</textarea>
+                           <textarea class="form-control" id="boardText" name="boardText" style="height: 35rem" maxlength="4800" required>${boardVO.boardText }</textarea>
                            <label for="message">내용</label>
-                           <div class="invalid-feedback" data-sb-feedback="message:required">내용을 입력하세요.</div>
                         </div>
                         <br />
                               <!-- 이미지 미리보기 -->
