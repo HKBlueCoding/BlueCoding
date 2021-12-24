@@ -137,7 +137,7 @@ body {
 									${bookVO.bookDate } &nbsp;&nbsp;&nbsp;&nbsp; <br> <br>
 									<hr class="my-4" style="width: 66.6%">
 									<!-- ======================= 버튼 ========================== -->
-									<c:if test="${login.admin eq 'A' || login.admin eq 'C'}">
+									<c:if test="${login.admin eq 'A' || login.admin eq 'C' || login.id eq bookVO.id }">
 										<div class="button header-button">
 											<a href="../view/add?bookNO=${bookVO.bookNO }" class="btn">회차
 												글쓰기</a>
@@ -688,7 +688,7 @@ body {
            controls: true,
            controlsText: [' < i class = "lni lni-chevron-left" >< /i>', ' < i class = "lni lni-chevron-right" >< /i>'],
            responsive: {
-             0: {
+             0: { 
                items: 1,
              },
              540: {
@@ -707,156 +707,5 @@ body {
          });
       </script>
 	<script src="../../resources/bluecoding/bookView.js"></script>
-	<script>
-         function funbtn() {
-           if (confirm("이전 페이지로 돌아가시겠습니까??")) {
-             javascript: history.back();
-           }
-           else {
-             return;
-           }
-         }
-      </script>
-	<script>
-         function funok() {
-           if (alert("정상적으로 등록되었습니다.") == true) {} else {
-             alert("등록에 실패하였습니다.")
-             return;
-           }
-         }
-      </script>
-	<script>
-         function funFavo() {
-           var favo = confirm("상품을 찜하시겠습니까??");
-           if (favo == true) {
-             document.favo.action = "../view/favo/add";
-             document.favo.method = "POST";
-             document.favo.submit();
-           }
-         }
-      </script>
-	<!-- ================================ 리뷰 구현 ====================================== -->
-	<script> 
-         $(document).ready(function() {
-             $('#repBtn').click(function() {
-                 $.ajax({
-                         type: 'POST',
-                         url: '../view/review/add',
-                         dataType: "json",
-                         data: {"revText": $('#revText').val(), "id":$('#id').val(), "bookNO":$("#bookNO").val(),  "nick":$("#nick").val()},
-                         success: function(data) {
-                            // data.server에서 보낸 map text
-                             alert('리뷰가 등록되었습니다.');
-                             $('#revText').val("");
-                             location.reload();
-                         }, 
-                         error: function(request,status,error) {
-                            alert('에러!! : ' + request.responseText + ":"+error);
-                         }
-                  }); //end ajax 
-             }); //end on 
-         }); 
-      </script>
-	<!-- ================================ 리뷰 구현 끝====================================== -->
-	<!-- ================================ 리뷰 수정 ====================================== -->
-	<script>
-         function replyClick(replyCnt){
-          var modDisplay = document.getElementsByClassName("mod")[(replyCnt-1)].style.display;
-          if( modDisplay == "none"){
-          	document.getElementsByClassName("mod")[(replyCnt-1)].style.display = "block";
-          }else{
-         	 document.getElementsByClassName("mod")[(replyCnt-1)].style.display = "none";
-          } 
-          console.log('글번호'+mod);
-          
-         }
-         
-         function replyDone(revNO, replyCnt){
-             $.ajax({
-                 type: 'POST',
-                 url: '../view/review/update',
-                 dataType: "json",
-                 data: {"revText": $('#ReText'+replyCnt).val(), "id":$('#id').val(), "bookNO":$("#bookNO").val(),  "nick":$("#nick").val(), "revNO":revNO},
-                 success: function(data) {
-                    // data.server에서 보낸 map text
-                     alert('수정이 완료되었습니다.');
-                     $('#ReText').val("");
-                     location.reload();
-                 }, 
-                 error: function(request,status,error) {
-                    alert('에러!! : ' + request.responseText + ":"+error);
-                 }
-          	}); //end ajax
-         }
-      </script>
-	<!-- ================================ 리뷰 수정 끝====================================== -->
-	<!-- ================================ 답글 구현 ====================================== -->
-	<script>
-         function replyReClick(replyCnt){
-          var reDisplay = document.getElementsByClassName("replyRe")[(replyCnt-1)].style.display;
-          if(reDisplay == "none"){
-          	document.getElementsByClassName("replyRe")[(replyCnt-1)].style.display = "block";
-          } else{
-         	  document.getElementsByClassName("replyRe")[(replyCnt-1)].style.display = "none";
-          }
-          console.log('글번호'+replyRe);
-          
-         }
-         
-         function replyInsert(revParentNO, replyCnt){
-           	$.ajax({
-               	type: 'POST',
-               	url: '../view/reviewRe/add',
-               	dataType: "json",
-               	data: {"revText": $('#RepReText'+replyCnt).val(), "id":$('#id').val(), "bookNO":$("#bookNO").val(),  "nick":$("#nick").val(), "revParentNO":revParentNO, "revNO":$("#revNO").val()},
-               	success: function(data) {
-                  	// data.server에서 보낸 map text
-                  	if(data.ret == 0){
-                  		alert('답글 등록에 실패하였습니다.');
-                  	}else{
-                       	alert('답글이 등록되었습니다.');
-                       	$('#RepReText').val("");
-                      	 location.reload();                  		
-                  	}
-                 }, 
-                 error: function(request,status,error) {
-                     alert('에러!! : ' + request.responseText + ":"+error);
-                 }
-           }); //end ajax         	 
-         }
-      </script>
-	<!-- ================================ 답글 구현 끝 ====================================== -->
-	<!-- ================================ 답글 수정 ====================================== -->
-	<script>
-         function replyClick(replyCnt){
-          var modDisplay = document.getElementsByClassName("mod")[(replyCnt-1)].style.display;
-          if( modDisplay == "none"){
-          	document.getElementsByClassName("mod")[(replyCnt-1)].style.display = "block";
-          }else{
-         	 document.getElementsByClassName("mod")[(replyCnt-1)].style.display = "none";
-          } 
-          console.log('글번호'+mod);
-          
-         }
-         
-         function replyReDone(revParentNO, replyCnt){
-             $.ajax({
-                 type: 'POST',
-                 url: '../view/review/update',
-                 dataType: "json",
-                 data: {"revText": $('#ReText'+replyCnt).val(), "id":$('#id').val(), "bookNO": $("#bookNO").val(),  "nick":$("#nick").val(), "revNO":$("#revNO"+replyCnt).val(), "revParentNO": revParentNO},
-                 success: function(data) {
-                    // data.server에서 보낸 map text
-                     alert('수정이 완료되었습니다.');
-                     $('#ReText').val("");
-                     location.reload();
-                 }, 
-                 error: function(request,status,error) {
-                    alert('에러!! : ' + request.responseText + ":"+error);
-                 }
-          	}); //end ajax
-         }
-      </script>
-	<!-- ================================ 답글 수정 끝 ====================================== -->
 </body>
 </html>

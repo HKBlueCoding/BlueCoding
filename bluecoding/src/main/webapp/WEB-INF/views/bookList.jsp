@@ -58,6 +58,7 @@
         padding-left: 1.5rem;
         padding-right: 1.5rem;
       }
+      
       @media all and (max-width: 768px){
       	.boardImage_img{
       		width: 80px;
@@ -84,6 +85,9 @@
       	
       }      
     </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
+      		  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
+              crossorigin="anonymous"></script>
   </head>
   <body>
     <jsp:include page="/WEB-INF/views/include/header.jsp" />
@@ -282,6 +286,7 @@
     <script src="../resources/assets/js/core/bootstrap.min.js"></script>
     <script src="../resources/assets/js/plugins/perfect-scrollbar.min.js"></script>
     <script src="../resources/assets/js/plugins/smooth-scrollbar.min.js"></script>
+    <script src="../../resources/bluecoding/header.js"></script>
     <script>
       var win = navigator.platform.indexOf('Win') > -1;
       if (win && document.querySelector('#sidenav-scrollbar')) {

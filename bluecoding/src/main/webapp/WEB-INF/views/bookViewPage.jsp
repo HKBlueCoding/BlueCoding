@@ -495,6 +495,17 @@
       <script> 
          $(document).ready(function() {
              $('#repBtn').click(function() {
+            	 
+         		if ($.trim($("#pageReText").val()) == '') {
+        			alert("내용을 입력해주세요.");
+        			return false;
+        		}
+
+        		if ($.trim($("#pageReText").val().length) > 300) {
+        			alert("댓글은 300글자를 초과할 수 없습니다.");
+        			return false;
+        		}
+            	 
                  $.ajax({
                          type: 'POST',
                          url: '../view/page/pageReply/add',
@@ -528,6 +539,17 @@
          }
          
          function replyDone(pageReNO, replyCnt){
+        	 
+        		if ($.trim($('#ReText' + replyCnt).val()) == '') {
+        			alert("내용을 입력해주세요.");
+        			return false;
+        		}
+ 
+        		if ($.trim($('#ReText' + replyCnt).val().length) > 300) {
+        			alert("댓글은 300글자를 초과할 수 없습니다.");
+        			return false;
+        		}
+        	 
              $.ajax({
                  type: 'POST',
                  url: '../view/page/pageReply/update',
@@ -560,6 +582,17 @@
          }
          
          function replyInsert(pageParentNO, replyCnt){
+        	 
+        		if ($.trim($('#RepReText' + replyCnt).val()) == '') {
+        			alert("내용을 입력해주세요.");
+        			return false;
+        		}
+
+        		if ($.trim($('#RepReText' + replyCnt).val().length) > 300) {
+        			alert("답글은 300글자를 초과할 수 없습니다.");
+        			return false;
+        		}
+        	 
            	$.ajax({
                	type: 'POST',
                	url: '../view/page/pageReplyRe/add',
@@ -596,6 +629,17 @@
          }
          
          function replyReDone(pageParentNO, replyCnt){
+        	 
+        		if ($.trim($('#ReText' + replyCnt).val()) == '') {
+        			alert("내용을 입력해주세요.");
+        			return false;
+        		}
+
+        		if ($.trim($('#ReText' + replyCnt).val().length) > 300) {
+        			alert("답글은 300글자를 초과할 수 없습니다.");
+        			return false;
+        		}
+        	 
              $.ajax({
                  type: 'POST',
                  url: '../view/page/pageReply/update',
