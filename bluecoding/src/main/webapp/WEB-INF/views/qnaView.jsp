@@ -44,18 +44,37 @@
       <link
          href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css"
          rel="stylesheet" />
-      <style>
-         .search-form {
-         /* all: unset; */
-         }
-      </style>
       <script
          src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
       <script src="../resources/bluecoding/qnaView.js"></script>
+      <style>
+         @media all and (max-width: 1000px){
+         .qnaImage_img{
+         width: 60px;
+         height: 100px;
+         }
+         
+         .qna_text_size{
+         width:100%;
+         }
+         
+         .qna_div_size{
+         width:50%;
+         }
+
+         .qna_div2_size{
+         padding: 0;
+         }
+         }      
+      </style>
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
+         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
+         crossorigin="anonymous"></script>      
    </head>
    <body>
       <!-- header -->
       <jsp:include page="/WEB-INF/views/include/header.jsp" />
+      <br>
       <br>
       <br>
       <br>
@@ -75,10 +94,10 @@
                      <hr class="my-4">
                      <div>
                         <!-- ================== 카테고리 ======================= -->
-                        <div class="categorise search-form wow fadeInUp">
+                        <div class="categorise search-form wow fadeInUp qna_div2_size">
                            <div class="row">
                               <div class="col-lg-3 col-md-3 col-12 p-0">
-                                 <div class="search-input">
+                                 <div class="search-input qna_div_size">
                                     <label for="category"></label>
                                     <select name="qnaList"
                                        id="qnaListLimit" disabled>
@@ -151,14 +170,14 @@
                               <tr style="border-top: 1px solid #dfe2e5;">
                                  <td style="border: 3px solid #e9ecef; border-width: 2px;">
                                     <c:if test="${empty qna.qnaImage }">
-                                       <img src="../../resources/assets/images/mainPage/board1.png" width="300" height="200" class="avatar avatar-sm me-3 border-radius-lg" alt="user1" id="preview" style="float: left; margin-left : 16px;">
+                                       <img src="../../resources/assets/images/mainPage/board1.png" width="300" height="200" class="avatar avatar-sm me-3 border-radius-lg qnaImage_img" alt="user1" id="preview" style="float: left; margin-left : 16px;">
                                     </c:if>
                                     <c:if test="${!empty qna.qnaImage }">
-                                       <img src="../../download?uploadFile=${qna.qnaImage }&inFolder=qna&pk=${qna.qnaNO}" width="300" height="200" class="avatar avatar-sm me-3 border-radius-lg" alt="user1" id="preview" style="float: left; margin-left : 16px;">
+                                       <img src="../../download?uploadFile=${qna.qnaImage }&inFolder=qna&pk=${qna.qnaNO}" width="300" height="200" class="avatar avatar-sm me-3 border-radius-lg qnaImage_img" alt="user1" id="preview" style="float: left; margin-left : 16px;">
                                     </c:if>
                                  </td>
                                  <td style="border: 3px solid #e9ecef; border-width: 2px; ">
-                                    <textarea id="qnaContent2" name="qnaText"
+                                    <textarea class="qna_text_size" id="qnaContent2" name="qnaText"
                                        rows="15" cols="90" maxlength="800" required disabled>${qna.qnaText }</textarea>
                                  </td>
                               </tr>
@@ -170,12 +189,12 @@
                                     <div class="form-floating" id="formMag">
                                        <c:if test="${empty qnaReply}">
                                           <label for="message" id="tr_btn_label">- 답변 대기중입니다 -</label>
-                                          <textarea id="qnaReContent" name="qnaText"
+                                          <textarea class="qna_text_size" id="qnaReContent" name="qnaText"
                                              rows="15" cols="135" maxlength="800" required disabled></textarea>
                                        </c:if>
                                        <c:if test="${!empty qnaReply }">
                                           <c:forEach var="reply" items="${qnaReply }">
-                                             <textarea id="qnaReContent" name="qnaText" rows="15" cols="135" maxlength="800" required disabled>${reply.qnaText }</textarea>
+                                             <textarea class="qna_text_size" id="qnaReContent" name="qnaText" rows="15" cols="135" maxlength="800" required disabled>${reply.qnaText }</textarea>
                                           </c:forEach>
                                        </c:if>
                                     </div>
@@ -285,6 +304,7 @@
              }); //end on 
          });  
       </script>
-      <!-- ================================ 문의 답변 테스트 끝====================================== -->      
+      <!-- ================================ 문의 답변 테스트 끝====================================== -->
+      <script src="../../resources/bluecoding/header.js"></script>
    </body>
 </html>

@@ -36,13 +36,11 @@
       <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
       <!-- Core theme CSS (includes Bootstrap)-->
       <link href="../resources/assets/css/styles.css" rel="stylesheet" />
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" />    
-      <style>
-         .search-form{
-         /* all: unset; */
-         }
-      </style>
-	  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>        
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
+         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
+         crossorigin="anonymous"></script>       
    </head>
    <body>
       <!-- header -->
@@ -51,41 +49,41 @@
       <!-- =================== 글쓰기 폼 ===================== -->
       <!-- Main Content-->
       <form id="contactForm" data-sb-form-api-token="API_TOKEN" action="add" method="post" encType="multipart/form-data">
-       <main class="mb-4">
-         <div class="container px-4 px-lg-5">
-            <div class="row gx-4 gx-lg-5 justify-content-center">
-               <div class="col-md-10 col-lg-8 col-xl-7">
-                  <p id="title">문의글 쓰기</p>
-                  <hr class="my-4">
-                  <!-- ================== 카테고리 ======================= -->
-                  <div class="categorise search-form wow fadeInUp">
-                     <div class="row">
-                        <div class="col-lg-3 col-md-3 col-12 p-0">
-                           <div class="search-input">
-                              <label for="category"></label>
-                              <input type="hidden" name="id" value="${login.id }">
-                              <select name="qnaList" id="qnaList" required>
-                                 <option value="" selected>목록 선택</option>
-                                 <option value="계정 관련">계정 관련</option>
-                                 <option value="책 관련">책 관련</option>
-                                 <option value="충전 관련">충전 관련</option>
-                                 <option value="신고 관련">신고 관련</option>
-                                 <option value="기타">기타</option>
-                              </select>
+         <main class="mb-4">
+            <div class="container px-4 px-lg-5">
+               <div class="row gx-4 gx-lg-5 justify-content-center">
+                  <div class="col-md-10 col-lg-8 col-xl-7">
+                     <p id="title">문의글 쓰기</p>
+                     <hr class="my-4">
+                     <!-- ================== 카테고리 ======================= -->
+                     <div class="categorise search-form wow fadeInUp">
+                        <div class="row">
+                           <div class="col-lg-3 col-md-3 col-12 p-0">
+                              <div class="search-input">
+                                 <label for="category"></label>
+                                 <input type="hidden" name="id" value="${login.id }">
+                                 <select name="qnaList" id="qnaList" required>
+                                    <option value="" selected>목록 선택</option>
+                                    <option value="계정 관련">계정 관련</option>
+                                    <option value="책 관련">책 관련</option>
+                                    <option value="충전 관련">충전 관련</option>
+                                    <option value="신고 관련">신고 관련</option>
+                                    <option value="기타">기타</option>
+                                 </select>
+                              </div>
                            </div>
                         </div>
                      </div>
-                  </div>
-                  <br>
-                  <!-- ================== 카테고리 끝 ======================= -->
-                  <div class="my-5">
-                     <!-- * * * * * * * * * * * * * * *-->
-                     <!-- * * SB Forms Contact Form * *-->
-                     <!-- * * * * * * * * * * * * * * *-->
-                     <!-- This form is pre-integrated with SB Forms.-->
-                     <!-- To make this form functional, sign up at-->
-                     <!-- https://startbootstrap.com/solution/contact-forms-->
-                     <!-- to get an API token!-->
+                     <br>
+                     <!-- ================== 카테고리 끝 ======================= -->
+                     <div class="my-5">
+                        <!-- * * * * * * * * * * * * * * *-->
+                        <!-- * * SB Forms Contact Form * *-->
+                        <!-- * * * * * * * * * * * * * * *-->
+                        <!-- This form is pre-integrated with SB Forms.-->
+                        <!-- To make this form functional, sign up at-->
+                        <!-- https://startbootstrap.com/solution/contact-forms-->
+                        <!-- to get an API token!-->
                         <div class="form-floating">
                            <input class="form-control" id="qnaTitle" name="qnaTitle" type="text" maxlength="50" required/>
                            <label for="qnaTitle">제목</label>                          
@@ -96,10 +94,8 @@
                            <input type="hidden" name="qnaImage">
                         </div>
                         <br />
-                        
-                       <!-- 사진 입력하기 -->
-                       이미지 선택: &nbsp;<input id="uploadFile" name="uploadFile" type="file">
-                        
+                        <!-- 사진 입력하기 -->
+                        이미지 선택: &nbsp;<input id="uploadFile" name="uploadFile" type="file">
                         <!-- ======================= 버튼 ========================== -->                     
                         <div class="button header-button">
                            <input type="submit" class="btn" value="등록">
@@ -108,11 +104,11 @@
                            <a onClick="funbtn()" class="btn">돌아가기</a>
                         </div>
                         <!-- ======================= 버튼 끝 ========================== -->                     
+                     </div>
                   </div>
                </div>
             </div>
-         </div>
-       </main>
+         </main>
       </form>
       <!-- =================== 글쓰기 폼 끝===================== -->
       <!-- ==================== footer ====================== -->      
@@ -173,5 +169,7 @@
            }
          }
       </script>
+      <script src="../../resources/bluecoding/header.js"></script>
+
    </body>
 </html>

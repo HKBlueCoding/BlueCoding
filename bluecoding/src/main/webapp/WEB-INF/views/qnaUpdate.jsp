@@ -42,102 +42,105 @@
          /* all: unset; */
          }
       </style>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script> 
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
+         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
+         crossorigin="anonymous"></script>
    </head>
    <body>
       <!-- header -->
       <jsp:include page="/WEB-INF/views/include/header.jsp"/>
       <br><br><br><br><br><br><br><br>
-       <c:choose>
-      	<c:when test="${empty qnaVO }">
-        	<tr>
-            	<td>null입니다.</td>
+      <c:choose>
+         <c:when test="${empty qnaVO }">
+            <tr>
+               <td>null입니다.</td>
             </tr>
          </c:when>
-      <c:when test="${!empty qnaVO }">
-      <!-- =================== 글쓰기 폼 ===================== -->
-      <!-- Main Content-->
-      <main class="mb-4">
-         <div class="container px-4 px-lg-5">
-            <div class="row gx-4 gx-lg-5 justify-content-center">
-               <div class="col-md-10 col-lg-8 col-xl-7">
-                  <p id="title">문의하기</p>
-                  <hr class="my-4">
-                  <!-- ================== 카테고리 ======================= -->
-                  <div class="categorise search-form wow fadeInUp">
-                     <div class="row">
-                        <div class="col-lg-3 col-md-3 col-12 p-0">
-                           <div class="search-input">
-                              <label for="category"></label>
-                              <select name="qnaList" id="qnaList"  required>
-                                 <option value="none" selected disabled>카테고리</option>
-                                 <option value="none">계정 관련</option>
-                                 <option value="none">책 관련</option>
-                                 <option value="none">충전 관련</option>
-                                 <option value="none">신고 관련</option>
-                                 <option value="none">기타</option>
-                              </select>
+         <c:when test="${!empty qnaVO }">
+            <!-- =================== 글쓰기 폼 ===================== -->
+            <!-- Main Content-->
+            <main class="mb-4">
+               <div class="container px-4 px-lg-5">
+                  <div class="row gx-4 gx-lg-5 justify-content-center">
+                     <div class="col-md-10 col-lg-8 col-xl-7">
+                        <p id="title">문의하기</p>
+                        <hr class="my-4">
+                        <!-- ================== 카테고리 ======================= -->
+                        <div class="categorise search-form wow fadeInUp">
+                           <div class="row">
+                              <div class="col-lg-3 col-md-3 col-12 p-0">
+                                 <div class="search-input">
+                                    <label for="category"></label>
+                                    <select name="qnaList" id="qnaList"  required>
+                                       <option value="none" selected disabled>카테고리</option>
+                                       <option value="none">계정 관련</option>
+                                       <option value="none">책 관련</option>
+                                       <option value="none">충전 관련</option>
+                                       <option value="none">신고 관련</option>
+                                       <option value="none">기타</option>
+                                    </select>
+                                 </div>
+                              </div>
                            </div>
+                        </div>
+                        <br>
+                        <!-- ================== 카테고리 끝 ======================= -->
+                        <div class="my-5">
+                           <!-- * * * * * * * * * * * * * * *-->
+                           <!-- * * SB Forms Contact Form * *-->
+                           <!-- * * * * * * * * * * * * * * *-->
+                           <!-- This form is pre-integrated with SB Forms.-->
+                           <!-- To make this form functional, sign up at-->
+                           <!-- https://startbootstrap.com/solution/contact-forms-->
+                           <!-- to get an API token!-->
+                           <form id="contactForm" data-sb-form-api-token="API_TOKEN">
+                              <div class="form-floating">
+                                 <input class="form-control" id="name" type="text" maxlength="50" required />
+                                 <label for="name">제목</label>
+                              </div>
+                              <br>
+                              <div class="form-floating" id="formMag">
+                                 <textarea class="form-control3" id="message" maxlength="800" required></textarea>
+                                 <label for="message">내용</label>
+                              </div>
+                              <br />
+                              <!-- Submit success message-->
+                              <!---->
+                              <!-- This is what your users will see when the form-->
+                              <!-- has successfully submitted-->
+                              <div class="d-none" id="submitSuccessMessage">
+                                 <div class="text-center mb-3">
+                                    <div class="fw-bolder">Form submission successful!</div>
+                                    To activate this form, sign up at
+                                    <br />
+                                    <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
+                                 </div>
+                              </div>
+                              <!-- Submit error message-->
+                              <!---->
+                              <!-- This is what your users will see when there is-->
+                              <!-- an error submitting the form-->
+                              <div class="d-none" id="submitErrorMessage">
+                                 <div class="text-center text-danger mb-3">Error sending message!</div>
+                              </div>
+                              <!-- Submit Button-->
+                              <button class="btn btn-primary text-uppercase disabled"  id="submitButton" type="submit">이미지 선택(바꿔야 됨)</button>
+                              <!-- ======================= 버튼 ========================== -->
+                              <div class="button header-button">
+                                 <a onClick="funok()" class="btn">수정</a>
+                              </div>
+                              <div class="button header-button">
+                                 <a onClick="funbtn()" class="btn">돌아가기</a>
+                              </div>
+                              <!-- ======================= 버튼 끝 ========================== -->
+                           </form>
                         </div>
                      </div>
                   </div>
-                  <br>
-                  <!-- ================== 카테고리 끝 ======================= -->
-                  <div class="my-5">
-                     <!-- * * * * * * * * * * * * * * *-->
-                     <!-- * * SB Forms Contact Form * *-->
-                     <!-- * * * * * * * * * * * * * * *-->
-                     <!-- This form is pre-integrated with SB Forms.-->
-                     <!-- To make this form functional, sign up at-->
-                     <!-- https://startbootstrap.com/solution/contact-forms-->
-                     <!-- to get an API token!-->
-                     <form id="contactForm" data-sb-form-api-token="API_TOKEN">
-                        <div class="form-floating">
-                           <input class="form-control" id="name" type="text" maxlength="50" required />
-                           <label for="name">제목</label>
-                        </div>
-                        <br>
-                        <div class="form-floating" id="formMag">
-                           <textarea class="form-control3" id="message" maxlength="800" required></textarea>
-                           <label for="message">내용</label>
-                        </div>
-                        <br />
-                        <!-- Submit success message-->
-                        <!---->
-                        <!-- This is what your users will see when the form-->
-                        <!-- has successfully submitted-->
-                        <div class="d-none" id="submitSuccessMessage">
-                           <div class="text-center mb-3">
-                              <div class="fw-bolder">Form submission successful!</div>
-                              To activate this form, sign up at
-                              <br />
-                              <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
-                           </div>
-                        </div>
-                        <!-- Submit error message-->
-                        <!---->
-                        <!-- This is what your users will see when there is-->
-                        <!-- an error submitting the form-->
-                        <div class="d-none" id="submitErrorMessage">
-                           <div class="text-center text-danger mb-3">Error sending message!</div>
-                        </div>
-                        <!-- Submit Button-->
-                        <button class="btn btn-primary text-uppercase disabled"  id="submitButton" type="submit">이미지 선택(바꿔야 됨)</button>
-                        <!-- ======================= 버튼 ========================== -->
-                        <div class="button header-button">
-                           <a onClick="funok()" class="btn">수정</a>
-                        </div>
-                        <div class="button header-button">
-                           <a onClick="funbtn()" class="btn">돌아가기</a>
-                        </div>
-                        <!-- ======================= 버튼 끝 ========================== -->
-                     </form>
-                  </div>
                </div>
-            </div>
-         </div>
-      </main>
-	  </c:when>
+            </main>
+         </c:when>
       </c:choose>
       <!-- =================== 글쓰기 폼 끝===================== -->
       <!-- ==================== footer ====================== -->      
@@ -208,5 +211,6 @@
            }
          }
       </script>
+      <script src="../../resources/bluecoding/header.js"></script>
    </body>
 </html>
