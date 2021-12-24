@@ -114,7 +114,7 @@
                                   			</c:if>
                                           </div>
                                           <div class="d-flex flex-column justify-content-center">
-                                             <a href="/view?bookNO=${favoBook.BOOKNO }" class="mb-0 text-sm" style="color: black">${favoBook.TITLE}</a>
+                                             <a href="/view?bookNO=${favoBook.BOOKNO }" onclick="viewBook('${favoBook.BOOKDELETE}')" class="mb-0 text-sm" style="color: black">${favoBook.TITLE}</a>
                                              <p class="text-xs text-secondary mb-0"></p>
                                           </div>
                                        </div>

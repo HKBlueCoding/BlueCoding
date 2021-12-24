@@ -81,6 +81,57 @@
          }
       </style>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
+          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+      <!-- Core theme JS-->
+      <script src="../resources/assets/js/scripts.js"></script>
+      <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+      <!-- * *                               SB Forms JS                               * *-->
+      <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+      <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+      <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+      <!-- ========================= JS here ========================= -->
+      <script src="../resources/assets/js/bootstrap.min.js"></script>
+      <script src="../resources/assets/js/wow.min.js"></script>
+      <script src="../resources/assets/js/tiny-slider.js"></script>
+      <script src="../resources/assets/js/glightbox.min.js"></script>
+      <script src="../resources/assets/js/main.js"></script>
+      <script type="text/javascript">
+         //========= Category Slider 
+         tns({
+             container: '.category-slider',
+             items: 3,
+             slideBy: 'page',
+             autoplay: false,
+             mouseDrag: true,
+             gutter: 0,
+             nav: false,
+             controls: true,
+             controlsText: ['<i class="lni lni-chevron-left"></i>', '<i class="lni lni-chevron-right"></i>'],
+             responsive: {
+                 0: {
+                     items: 1,
+                 },
+                 540: {
+                     items: 2,
+                 },
+                 768: {
+                     items: 4,
+                 },
+                 992: {
+                     items: 5,
+                 },
+                 1170: {
+                     items: 6,
+                 }
+             }
+         });
+      </script>
+      <script type="text/javascript">
+   	   <c:if test="${pageVO.pageDelete eq 'Y' }">
+		alert('삭제된 도서입니다.');
+		javascript: history.back();
+	   </c:if>   
+      </script>  
    </head>
    <body>
       <!-- header -->
@@ -93,7 +144,7 @@
             <div class="row gx-4 gx-lg-5 justify-content-center">
                <div class="col-md-10 col-lg-8 col-xl-7" style="width: 80%;">
                   <form id="contactForm" data-sb-form-api-token="API_TOKEN">
-                     <p id="title">회차 보기</p>
+                     <p id="title">회차 보기${pageVO.pageDelete }</p>
                      <hr class="my-4">
                      <input type="hidden" name="pageNO" value="${pageVO.pageNO }" id="pageNO">
                      <input type="hidden" value="${login.id }" name="id" id="id">
@@ -105,7 +156,7 @@
                               <a href="../view/update?pageNO=${pageVO.pageNO }" class="btn" style="background-color: #30d8e0;">수정</a>
                            </div>
                            <div class="button header-button">
-                              <a onClick="funok2()" class="btn">삭제</a>
+                              <a onClick="pageDelete('${pageVO.pageNO}')" class="btn">삭제</a>
                            </div>
                         </c:if>
                         <br><br>
@@ -411,51 +462,7 @@
       <!-- footer -->
       <jsp:include page="/WEB-INF/views/include/footer.jsp"/>
       <!-- Bootstrap core JS-->
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-      <!-- Core theme JS-->
-      <script src="../resources/assets/js/scripts.js"></script>
-      <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-      <!-- * *                               SB Forms JS                               * *-->
-      <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
-      <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-      <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-      <!-- ========================= JS here ========================= -->
-      <script src="../resources/assets/js/bootstrap.min.js"></script>
-      <script src="../resources/assets/js/wow.min.js"></script>
-      <script src="../resources/assets/js/tiny-slider.js"></script>
-      <script src="../resources/assets/js/glightbox.min.js"></script>
-      <script src="../resources/assets/js/main.js"></script>
-      <script type="text/javascript">
-         //========= Category Slider 
-         tns({
-             container: '.category-slider',
-             items: 3,
-             slideBy: 'page',
-             autoplay: false,
-             mouseDrag: true,
-             gutter: 0,
-             nav: false,
-             controls: true,
-             controlsText: ['<i class="lni lni-chevron-left"></i>', '<i class="lni lni-chevron-right"></i>'],
-             responsive: {
-                 0: {
-                     items: 1,
-                 },
-                 540: {
-                     items: 2,
-                 },
-                 768: {
-                     items: 4,
-                 },
-                 992: {
-                     items: 5,
-                 },
-                 1170: {
-                     items: 6,
-                 }
-             }
-         });
-      </script>
+
       <script>
          function funbtn() {
            if (confirm("이전 페이지로 돌아가시겠습니까??")) {
@@ -607,5 +614,6 @@
          }
       </script>
       <!-- ================================ 답글 수정 끝 ====================================== -->
+	  <script src="../resources/bluecoding/bookView.js"></script>
    </body>
 </html>
