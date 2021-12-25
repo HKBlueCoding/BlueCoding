@@ -300,10 +300,13 @@ public class BookController {
 	}
 
 	@PostMapping("/view/update")
-	public String bookViewUpdateDone(Model model, @ModelAttribute PageVO pageVO) {
+	public String bookViewUpdateDone(Model model, @ModelAttribute PageVO pageVO, HttpSession session) {
 		logger.debug("[pageVO22] = " + pageVO);
-
-		int ret = bookService.viewUpdateBook(pageVO);
+		UserVO userVO = (UserVO)session.getAttribute("login");
+		if(userVO == null) {
+			return "error";
+		}
+		int ret = bookService.viewUpdateBook(pageVO, userVO.getId());
 		model.addAttribute("ret", ret);
 		logger.debug("[ret] = " + ret);
 

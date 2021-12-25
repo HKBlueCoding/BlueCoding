@@ -51,7 +51,10 @@
       		}
       	}
       	
-      </style>    
+      </style>
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
+              integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
+              crossorigin="anonymous"></script>    
    </head>
    <body>
       <!-- header -->
@@ -97,14 +100,14 @@
                         <div class="form-floating" >
                            <input type="hidden" name="id" value="${login.id }">
                            <input type="hidden" name="name" value="${login.name }">
-                           <input class="form-control" id="name" name="bookTitle" type="text" minlength="1" maxlength="50" title="책 제목를 입력하세요(1자부터 50자까지)" required/>
+                           <input class="form-control text_input" id="name" name="bookTitle" type="text" minlength="1" maxlength="50" title="책 제목를 입력하세요(1자부터 50자까지)" required/>
                            <label for="name">제목</label>
                            <div class="invalid-feedback" data-sb-feedback="name:required">제목을 입력하세요.</div>
                         </div>
                         <br>
                         <br>   
                         <div class="form-floating" id="formMag" style="width: 100%; ">
-                           <textarea name="intro" class="form-control" id="message" minlength="10" maxlength="240" title="줄거리를 입력하세요(10자부터 240자까지)" required></textarea>
+                           <textarea name="intro" class="form-control text_input" id="message" minlength="10" maxlength="240" title="줄거리를 입력하세요(10자부터 240자까지)" required></textarea>
                            <label for="message">줄거리</label>
                         </div>
                         <br />
@@ -182,6 +185,15 @@
          // 1
       </script>
       <script>
+        $(document).ready(function() {
+    	    $('.text_input').change(function() {
+    	    	if($.trim($('.text_input').val())==''){
+    	            alert("공백 없이 내용을 입력해주세요.");
+    	            $('.text_input').val('')
+    	    	}
+    	    }); //end on 
+    	}); 
+      
          function funbtn() {
            if (confirm("이전 페이지로 돌아가시겠습니까??")) {
              javascript:history.back();
@@ -189,8 +201,6 @@
            	return;
            }
          }
-      </script>
-      <script>
          function funok() {
            if (alert("정상적으로 등록되었습니다.") == true) {
             

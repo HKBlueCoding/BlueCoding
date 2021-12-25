@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
@@ -248,10 +249,30 @@ public class BookService {
 		// TODO Auto-generated method stub
 		return pageDAO.pageList(pageNO);
 	}
-
-	public int viewUpdateBook(PageVO pageVO) {
+    
+	@Transactional(isolation= Isolation.READ_COMMITTED , rollbackFor = { Exception.class })
+	public int viewUpdateBook(PageVO pageVO, String id) {
 		// TODO Auto-generated method stub
-		return pageDAO.bookViewUpdate(pageVO);
+		int ret = 0;
+		try {
+			 ret = pageDAO.bookViewUpdate(pageVO);
+			// 만약 유료화면 회차구매 내역을 너줘야 하니..
+			if(pageVO.getCharge() != null && !pageVO.getCharge().equals("")) {
+				Map<String, Object> map = new HashMap<String, Object>();
+				map.put("id", id);
+				map.put("pageNO", pageVO.getPageNO());
+				ret = pageBuyDAO.insertAuthorChange(map);
+			}else {
+				return ret;
+			}
+			
+		}catch (Exception e) {
+			TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+			e.printStackTrace();
+			ret = 0;
+		}
+		
+		return ret;
 	}
 
 	public int addFavo(FavoVO favoVO) {

@@ -87,7 +87,7 @@
                         <!-- https://startbootstrap.com/solution/contact-forms-->
                         <!-- to get an API token!-->
                         <div class="form-floating" style="width: 80%">
-                           <input class="form-control" id="name"  value="${ bookVO.bookTitle}" name="bookTitle" type="text" minlength="1" maxlength="50" title="책 제목를 입력하세요(1자부터 50자까지)" required />
+                           <input class="form-control text_input" id="name"  value="${ bookVO.bookTitle}" name="bookTitle" type="text" minlength="1" maxlength="50" title="책 제목를 입력하세요(1자부터 50자까지)" required />
                            <label for="name">제목</label>
                            <input type="hidden" value="${bookVO.bookNO }" name="bookNO">
                            <div class="invalid-feedback" data-sb-feedback="name:required">제목을 입력하세요.</div>
@@ -101,11 +101,16 @@
                            <!-- 1. 기존에 이미지 이름을 저장 -->    
                            	<input type="hidden" name="bookImage" value="${bookVO.bookImage }" />
 						   <!-- 2. 기존에 이미지 표시 or id를 preview로 해서 이미지 파일이 등록이되면 src를 변경함 -->
-							<img id="preview" src="../../download?uploadFile=${bookVO.bookImage }&inFolder=book&pk=${bookVO.bookNO}" width="160" height="250" class="avatar avatar-sm me-3 border-radius-lg" alt="${bookVO.bookTitle}책의 커버사진" >
+						   <c:if test="${empty bookVO.bookImage }">
+						     <img id="preview" src="../../resources/assets/images/mainPage/board1.png" width="160" height="250" class="avatar avatar-sm me-3 border-radius-lg" alt="${bookVO.bookTitle}책의 커버사진" >
+						   </c:if>
+						   <c:if test="${!empty bookVO.bookImage }">
+							 <img id="preview" src="../../download?uploadFile=${bookVO.bookImage }&inFolder=book&pk=${bookVO.bookNO}" width="160" height="250" class="avatar avatar-sm me-3 border-radius-lg" alt="${bookVO.bookTitle}책의 커버사진" >
+                           </c:if>
                         </div>
                         <br>                           
                         <div class="form-floating" id="formMag" style="width: 100%; ">
-                           <textarea name="intro" class="form-control" id="message" placeholder="Enter your message here..." style="height: 10rem"  minlength="10" maxlength="240" title="줄거리를 입력하세요(10자부터 240자까지)" required>${bookVO.intro}</textarea>
+                           <textarea name="intro" class="form-control text_input" id="message" placeholder="Enter your message here..." style="height: 10rem"  minlength="10" maxlength="240" title="줄거리를 입력하세요(10자부터 240자까지)" required>${bookVO.intro}</textarea>
                            <label for="message">줄거리</label>
                            <div class="invalid-feedback" data-sb-feedback="message:required">줄거리을 입력하세요.</div>
                         </div>
@@ -180,6 +185,15 @@
          });
       </script>
       <script>
+        $(document).ready(function() {
+  	      $('.text_input').change(function() {
+  	    	  if($.trim($('.text_input').val())==''){
+  	              alert("공백 없이 내용을 입력해주세요.");
+  	              $('.text_input').val('');
+  	    	  }
+  	      }); //end on 
+  	    });       
+      
          function funbtn() {
            if (confirm("이전 페이지로 돌아가시겠습니까??")) {
              javascript:history.back();
@@ -187,8 +201,6 @@
            	return;
            }
          }
-      </script>      
-      <script>
          function funok() {
            if (alert("정상적으로 수정되었습니다.") == true) {
             

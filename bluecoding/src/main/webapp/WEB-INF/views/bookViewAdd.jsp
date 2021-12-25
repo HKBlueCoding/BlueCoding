@@ -64,21 +64,21 @@
                         <!-- https://startbootstrap.com/solution/contact-forms-->
                         <!-- to get an API token!-->
                         <div class="form-floating">
-                           <input class="form-control" id="name" name="pageTitle" type="text" maxlength="50" title="제목를 입력하세요(1자부터 50자까지)" required />
+                           <input class="form-control text_input" id="name" name="pageTitle" type="text" maxlength="50" title="제목를 입력하세요(1자부터 50자까지)" required />
                            <label for="name">제목</label>
                            <input type="hidden" value="${bookVO.bookNO }" name="bookNO" >
                            <div class="invalid-feedback" data-sb-feedback="name:required">제목을 입력하세요.</div>
                         </div>
                         <br>
                         <div class="form-floating" id="formMag" style="width: 100%">
-                           <textarea class="form-control" id="message" name="pageText" style="height: 35rem" maxlength="10000" title="내용을 입력하세요(1자부터 10000자까지)" required></textarea>
+                           <textarea class="form-control text_input" id="message" name="pageText" style="height: 35rem" maxlength="10000" title="내용을 입력하세요(1자부터 10000자까지)" required></textarea>
                            <label for="message">본문</label>
                            <div class="invalid-feedback" data-sb-feedback="message:required">내용을 입력하세요.</div>
                            <br><br>
                            <div id="Writer">
                               &nbsp;작가의 말
                            </div>
-                           <textarea name="comment" class="form-control" style="height: 15rem" maxlength="300" title="작가의 말을 입력하세요(1자부터 300자까지)" required></textarea>
+                           <textarea name="comment" class="form-control text_input" style="height: 15rem" maxlength="300" title="작가의 말을 입력하세요(1자부터 300자까지)" required></textarea>
                         </div>
                         <br />
                         <!-- Submit success message-->
@@ -164,6 +164,14 @@
          });
       </script>
       <script>
+         $(document).ready(function() {
+  	        $('.text_input').change(function() {
+  	    	    if($.trim($('.text_input').val())==''){
+  	                alert("공백 없이 내용을 입력해주세요.");
+  	                $('.text_input').val('');
+  	    	    }
+  	        }); //end on 
+  	     });         
          function funbtn() {
            if (confirm("이전 페이지로 돌아가시겠습니까??")) {
              javascript:history.back();

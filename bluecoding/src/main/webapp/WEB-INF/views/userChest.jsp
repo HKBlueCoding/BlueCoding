@@ -137,37 +137,7 @@
                   </div>
                </div>
             </div>
-            <!-- Start Search Form -->
-            <div class="search-form wow fadeInUp" style="margin: 1px; padding: 1px;">
-               <div class="row">
-                  <div class="col-lg-4 col-md-4 col-12 p-0"  style="width: 30%; margin-left: 550px;">
-                     <div class="search-input">
-                        <label for="keyword"><i class="lni lni-search-alt theme-color"></i></label>
-                        <input type="text" name="keyword" id="keyword" placeholder="검색하세요.">
-                     </div>
-                  </div>
-                  <div class="col-lg-2 col-md-2 col-12 p-0">
-                     <div class="search-btn button">
-                        <button class="btn"><i class="lni lni-search-alt"></i> 검색</button>
-                     </div>
-                  </div>
-               </div>
-            </div>
-            <!-- End Search Form -->
          </div>
-         <!-- ====================== 페이징 ====================== -->
-         <div class="w3-center">
-            <div class="w3-bar">
-               <a href="#" class="w3-button">«</a>
-               <a href="#" class="w3-button w3-blue">1</a>
-               <a href="#" class="w3-button">2</a>
-               <a href="#" class="w3-button">3</a>
-               <a href="#" class="w3-button">4</a>
-               <a href="#" class="w3-button">5</a>
-               <a href="#" class="w3-button">»</a>
-            </div>
-         </div>
-         <!-- ====================== 페이징 끝 ====================== -->
          <br>
          <br>
       </div>
@@ -241,37 +211,7 @@
                   </div>
                </div>
             </div>
-            <!-- Start Search Form -->
-            <div class="search-form wow fadeInUp" style="margin: 1px; padding: 1px;">
-               <div class="row">
-                  <div class="col-lg-4 col-md-4 col-12 p-0"  style="width: 30%; margin-left: 550px;">
-                     <div class="search-input">
-                        <label for="keyword"><i class="lni lni-search-alt theme-color"></i></label>
-                        <input type="text" name="keyword" id="keyword" placeholder="검색하세요.">
-                     </div>
-                  </div>
-                  <div class="col-lg-2 col-md-2 col-12 p-0">
-                     <div class="search-btn button">
-                        <button class="btn"><i class="lni lni-search-alt"></i> 검색</button>
-                     </div>
-                  </div>
-               </div>
-            </div>
-            <!-- End Search Form -->
          </div>
-         <!-- ====================== 페이징 ====================== -->
-         <div class="w3-center">
-            <div class="w3-bar">
-               <a href="#" class="w3-button">«</a>
-               <a href="#" class="w3-button w3-blue">1</a>
-               <a href="#" class="w3-button">2</a>
-               <a href="#" class="w3-button">3</a>
-               <a href="#" class="w3-button">4</a>
-               <a href="#" class="w3-button">5</a>
-               <a href="#" class="w3-button">»</a>
-            </div>
-         </div>
-         <!-- ====================== 페이징 끝 ====================== -->
          <br>
          <br>
       </div>
@@ -352,19 +292,6 @@
                </div>
             </div>
          </div>
-         <!-- ====================== 페이징 ====================== -->
-         <div class="w3-center">
-            <div class="w3-bar">
-               <a href="#" class="w3-button">«</a>
-               <a href="#" class="w3-button w3-blue">1</a>
-               <a href="#" class="w3-button">2</a>
-               <a href="#" class="w3-button">3</a>
-               <a href="#" class="w3-button">4</a>
-               <a href="#" class="w3-button">5</a>
-               <a href="#" class="w3-button">»</a>
-            </div>
-         </div>
-         <!-- ====================== 페이징 끝 ====================== -->
          <br>
          <br>
       </div>
@@ -450,37 +377,7 @@
                   </div>
                </div>
             </div>
-            <!-- Start Search Form -->
-            <div class="search-form wow fadeInUp" style="margin: 1px; padding: 1px;">
-               <div class="row">
-                  <div class="col-lg-4 col-md-4 col-12 p-0"  style="width: 30%; margin-left: 550px;">
-                     <div class="search-input">
-                        <label for="keyword"><i class="lni lni-search-alt theme-color"></i></label>
-                        <input type="text" name="keyword" id="keyword" placeholder="검색하세요.">
-                     </div>
-                  </div>
-                  <div class="col-lg-2 col-md-2 col-12 p-0">
-                     <div class="search-btn button">
-                        <button class="btn"><i class="lni lni-search-alt"></i> 검색</button>
-                     </div>
-                  </div>
-               </div>
-            </div>
-            <!-- End Search Form -->
          </div>
-         <!-- ====================== 페이징 ====================== -->
-         <div class="w3-center">
-            <div class="w3-bar">
-               <a href="#" class="w3-button">«</a>
-               <a href="#" class="w3-button w3-blue">1</a>
-               <a href="#" class="w3-button">2</a>
-               <a href="#" class="w3-button">3</a>
-               <a href="#" class="w3-button">4</a>
-               <a href="#" class="w3-button">5</a>
-               <a href="#" class="w3-button">»</a>
-            </div>
-         </div>
-         <!-- ====================== 페이징 끝 ====================== -->
          <br>
          <br>
       </div>

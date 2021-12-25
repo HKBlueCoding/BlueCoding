@@ -41,5 +41,10 @@ public class PageBuyDAO {
 		logger.debug("[저자 페이지]=="+map.get("id"));
 		return sqlSession.insert("mapper.pagebuy.insertAuthorPage", map);
 	}
+
+	public int insertAuthorChange(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("mapper.pagebuy.insertAuthorChange", map);
+	}
 	
 }

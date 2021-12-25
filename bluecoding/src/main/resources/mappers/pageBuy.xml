@@ -33,14 +33,21 @@
 	
 	<!-- [저자가 유료화된 글을 볼 수 있게끔 구매기록 남김] -->
 	<insert id="insertAuthorPage" parameterType="hashmap">
-	 <selectKey keyProperty="pageNO" resultType="java.lang.String" order="BEFORE">
-	  <![CDATA[
-	 	SELECT pageNO FROM b_page WHERE pageDate = #{pageDate}	
-	  ]]>
-	 </selectKey>
-	 <![CDATA[
-	    INSERT INTO B_PAGEBUY (PAGEPAY, ID, PAGENO, PAGEPAYDATE, PISREFUND) 
-		VALUES( 0, #{id}, #{pageNO}, #{pageDate}, '')
-	 ]]>
+	   <selectKey keyProperty="pageNO" resultType="java.lang.String" order="BEFORE">
+	   	<![CDATA[
+	 	 SELECT pageNO FROM b_page WHERE pageDate = #{pageDate}	
+	    ]]>
+	   </selectKey>
+	    <![CDATA[
+	     INSERT INTO B_PAGEBUY (PAGEPAY, ID, PAGENO, PAGEPAYDATE, PISREFUND) 
+		 VALUES( 0, #{id}, #{pageNO}, #{pageDate}, '')
+	    ]]>
 	</insert>
+	
+	<!-- [저자가 무료화에서 유료화로 변경시] -->
+	<insert id="insertAuthorChange" parameterType="map">
+	 	 INSERT INTO B_PAGEBUY (PAGEPAY, ID, PAGENO, PAGEPAYDATE, PISREFUND) 
+		 VALUES( 0, #{id}, #{pageNO}, sysdate, '')
+	</insert>
+	
 </mapper>
