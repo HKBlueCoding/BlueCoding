@@ -62,10 +62,10 @@
                                 <li>
                                   <div id="on_login" class="login-button">
 									<div class="d-flex px-2 py-1 ">
-									  
+									  	<input type="hidden" id="login_gauge" name="gauge" value="${login.gauge }">
 										<c:if test="${empty login.profile }">
                           				 <div>
-                            				<img src="../../resources/material/assets/img/team-4.jpg" width="36" height="36" class="avatar avatar-sm me-3 border-radius-lg" alt="user6" onload="gaugeSet('${login.gauge}')">
+                            				<img src="../../resources/material/assets/img/team-4.jpg" width="36" height="36" class="avatar avatar-sm me-3 border-radius-lg" alt="user6" >
                           				 </div>
                           				</c:if>
                           				<c:if test="${!empty login.profile }">
@@ -77,7 +77,7 @@
                             				<h6 id="loginNick" class="mb-0 text-sm">${login.nick }<a class="text-xs text-secondary mb-0" href="../../logout" style="font-size: 0.875em;">&nbsp;(로그아웃)</a></h6>
                             				<a class="text-xs text-secondary mb-0" style="font-size: 0.875em;" data-bs-toggle="collapse" data-bs-target="#loginMore">메뉴</a>
                           					<ul class="sub-menu collapse" id="loginMore" >
-                                            	<li class="nav-item"><a id="loginInfo" href="">내 정보</a></li>
+                                            	<li class="nav-item"><a href="">안전</a></li>
                                             	<li class="nav-item" onClick="coinCharge()" ><a href="#">캐시 충전</a></li>
                                             	<li id="loginCash" class="nav-item">보유 캐시: ${login.coin }</li>
                                         	</ul>
@@ -126,11 +126,6 @@
                     </div>
                     <p align="center"><a href="../../user/find/id">아이디찾기</a>&nbsp;/&nbsp;<a href="../../user/find/pwd">비밀번호 찾기</a></p>
       			</form>      
-            </div>
-		  		
-            <!-- Modal footer -->
-            <div class="modal-footer">
-                <button type="button" id="loginBack" class="btn btn-danger" data-bs-dismiss="modal">뒤로가기</button>
             </div>
         </div>
     </div>

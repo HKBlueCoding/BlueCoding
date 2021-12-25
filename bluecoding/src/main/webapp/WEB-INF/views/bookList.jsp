@@ -51,7 +51,7 @@
       
       .all_div_size{
       	height:auto; 
-      	width:65%;
+      	width: 80%;
       }
 
       #tbPadd {
@@ -63,15 +63,13 @@
 		width: 400px;
 		overflow:hidden; 
 		text-overflow:ellipsis;
-		white-space:nowrap;  
+		white-space:nowrap;
 	  }
 	  
 	  .name_td{
-	  	width: 30px;
-      	overflow:hidden; 
-		text-overflow:ellipsis;
-		white-space:nowrap;
-		margin-left: 20px;
+	  	width: 50px;
+		word-wrap: break-word;
+		margin-right: 50px;
       }
       
       .view_td{
@@ -179,8 +177,8 @@
                                 </div>
                               </div>
                             </td>
-                            <td class="align-middle">
-                              <span class="text-secondary text-xs font-weight-bold name_td" >${book.name }</span>
+                            <td class="align-middle text-center">
+                              <span class="text-secondary text-xs font-weight-bold name_td" >${book.name }&nbsp;&nbsp;&nbsp;</span>
                             </td>
                             <td class="align-middle text-center text-sm">
                               <span class="badge badge-sm bg-gradient-success view_td" style="background-image: linear-gradient(180deg,#419cef 10%,#106ec3 100%);">${book.bViewCnt }</span>

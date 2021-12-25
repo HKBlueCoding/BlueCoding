@@ -50,8 +50,23 @@
         padding-left: 1.5rem;
         padding-right: 1.5rem;
       }
+      .line_td {
+   		width: 400px;
+   		overflow:hidden; 
+  		text-overflow:ellipsis;
+   		white-space:nowrap;  
+	  }
+	  .nick_td {
+   		width: 80px;
+   		overflow:hidden; 
+  		text-overflow:ellipsis;
+   		white-space:nowrap;		
+	  }      
     </style>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
+              integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
+              crossorigin="anonymous"></script>    
   </head>
 <body>
     <jsp:include page="/WEB-INF/views/include/header.jsp" />
@@ -107,13 +122,13 @@
                                   </c:if>
                                 </div>
                                 <div class="d-flex flex-column justify-content-center">
-                                  <a href="/news/event/view?newsNO=${news.newsNO }" class="mb-0 text-sm" style="color: black">${news.newsTitle }</a>
-                                  <p class="text-xs text-secondary mb-0">${news.newsText }</p>
+                                  <a href="/news/event/view?newsNO=${news.newsNO }" class="mb-0 text-sm line_td " style="color: black">${news.newsTitle }</a>
+                                  <p class="text-xs text-secondary mb-0 line_td">${news.newsText }</p>
                                 </div>
                               </div>
                             </td>
                             <td class="align-middle">
-                              <span class="text-secondary text-xs font-weight-bold">${news.nick }</span>
+                              <span class="text-secondary text-xs font-weight-bold nick_td">${news.nick }</span>
                             </td>
                             <td class="align-middle text-center text-sm">
                               <span class="badge badge-sm bg-gradient-success" style="background-image: linear-gradient(180deg,#419cef 10%,#106ec3 100%);">${news.nViewCnt }</span>

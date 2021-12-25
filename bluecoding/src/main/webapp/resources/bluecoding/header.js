@@ -30,7 +30,8 @@ function loginBtn() {
 }
 
 // 게이지 설정
-function gaugeSet(gauge) {
+window.onload = function(){
+	var gauge = document.getElementById('login_gauge').value;
 	//게이지 레벨로 색깔지정
 	if(gauge < 100){
 		$('#loginGauge').text('Lv 1 ('+gauge+'%)');

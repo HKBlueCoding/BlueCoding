@@ -9,6 +9,9 @@
    <head>
       <meta charset="UTF-8">
       <title>커뮤니티 상세 보기</title>
+      <meta http-equiv="x-ua-compatible" content="ie=edge" />
+      <meta name="description" content="" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />      
       <!-- Web Font -->
       <link
          href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
@@ -68,25 +71,34 @@
          rel="stylesheet" />
       <style>
          body {
-         background-image: url(../../resources/assets/images/here/noticeBG.jpg);
+         	background-image: url(../../resources/assets/images/here/noticeBG.jpg);
          }
          #tbPadd {
-         padding-left: 1.5rem;
-         padding-right: 1.5rem;
+         	padding-left: 1.5rem;
+         	padding-right: 1.5rem;
          }
          .mod {
-         display: none;
+         	display: none;
          }
          .replyRe {
-         display: none;
+         	display: none;
          }
-         #text_div {
+         .text_div {
          	margin-right: 50px;
 			word-wrap: break-word; 
+		 }
+		 #info_span_01{
+		 	margin-left: 300px;
+		 }
+		 #info_span_02{
+		 	margin-left: 50px;
 		 }
       </style>
       <script
          src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
+              integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
+              crossorigin="anonymous"></script>
    </head>
    <body>
       <jsp:include page="/WEB-INF/views/include/header.jsp" />
@@ -116,7 +128,7 @@
                               <div style="width: 100%; padding: 1px;">
                                  <p id="title" style="font-size: 40px;">커뮤니티 상세 보기</p>
                                  <hr class="my-4" style="width: 70%;">
-                                 <p id="title2" style="font-size: 30px;">&nbsp;&nbsp;${boardVO.boardTitle }</p>
+                                 <p id="title2" style="font-size: 30px;">[제목]<br>${boardVO.boardTitle }</p>
                               </div>
                            </div>
                         </div>
@@ -127,35 +139,22 @@
                               <table class="table align-items-center mb-0">
                                  <thead>
                                     <tr>
-                                       <th
-                                          class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">작성자
-                                          : ${boardVO.nick }
-                                       </th>
-                                       <th
-                                          class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">작성일
-                                          : ${boardVO.boardDate }
-                                       </th>
-                                       <th
-                                          class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">조회수
-                                          : ${boardVO.bdViewCnt }
-                                       </th>
-                                       <th
-                                          class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">댓글
-                                          : ${fn:length(boardReplyVO)}
+                                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                          작성자: ${boardVO.nick } <span id="info_span_01">작성일: ${boardVO.boardDate }</span><span id="info_span_02">조회수: ${boardVO.bdViewCnt }</span>
                                        </th>
                                     </tr>
                                  </thead>
                                  <tbody>
                                     <tr>
                                        <td>
-                                          <div id="text_div" class="d-flex px-2 py-1" style="width: 200%;">
-                                             <div>
+                                          <div class="d-flex px-2 py-1 text_div" >
+                                             <div class="text_div">
                                                 <c:if test="${empty boardVO.boardImage }">
                                                    <img
                                                       src="../../resources/assets/images/mainPage/board1.png"
                                                       width="400" height="200"
                                                       class="avatar avatar-sm me-3 border-radius-lg"
-                                                      alt="user1" style="float: left"><p>${boardVO.boardText }</p>
+                                                      alt="user1" style="float: left">${boardVO.boardText }
                                                 </c:if>
                                                 <c:if test="${!empty boardVO.boardImage }">
                                                    <img
@@ -226,11 +225,12 @@
                                                          ⤷작성자명 : ${boardReply.nick }(${boardReply.id }),&nbsp;&nbsp;&nbsp;&nbsp;${boardReply.boardReDate }
                                                       </p>
                                                       <p class="text-xs text-secondary mb-0">
+                                                      <p>   
                                                          <c:forEach begin="1" end="${boardReply.level }"
                                                             step="1">
                                                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                          </c:forEach>  
-                                                      <p>&nbsp;&nbsp;${boardReply.boardReText}</p>
+                                                      &nbsp;&nbsp;${boardReply.boardReText}</p>
                                                       </c:if>
                                                    </div>
                                                 </div>
@@ -254,16 +254,23 @@
                                           <!-- ======================= 버튼 ========================== -->
                                           <td>
                                              <div align="right" style="width: 100%;">
-                                                <!-- [비 로그인 시] -->
+                                                <!-- [로그인 시] -->
                                                 <c:if
                                                    test="${ !empty login.id && login.id ne '' && boardReply.boardReDelete ne 'Y'}">
                                                    <div class="button header-button">
+                                                     <c:if test="${boardReply.level ne '4' }">
                                                       <button onClick="replyReClick('${replyCnt.count}')"
                                                          id="modify" class="btn"
                                                          style="background-color: #30d8e0;">답글</button>
+                                                      </c:if>
+                                                   	 <c:if test="${boardReply.level eq '4' }">
+                                                      <button onClick="alert('답글은 최대 3개 까지입니다.');"
+                                                         class="btn"
+                                                         style="background-color: #30d8e0;">답글</button>                                                   	  
+                                                     </c:if>
                                                    </div>
                                                 </c:if>
-                                                <!-- [로그인 시]] -->
+                                                <!-- [비로그인 시] -->
                                                 <c:if test="${empty login.id && login.id ne '' && boardReply.boardReDelete ne 'Y'}">
                                                    <div class="button header-button">
                                                       <a data-bs-toggle="modal" data-bs-target="#login"
@@ -603,5 +610,6 @@
       <script
          src="../../resources/assets/js/material-dashboard.min.js?v=3.0.0"></script>
       <script src="../resources/bluecoding/boardView.js"></script>
+      <script src="../../resources/bluecoding/header.js"></script>
    </body>
 </html>

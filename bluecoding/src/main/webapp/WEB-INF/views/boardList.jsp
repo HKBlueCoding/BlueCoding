@@ -11,6 +11,9 @@
    <head>
       <meta charset="UTF-8">
       <title>커뮤니티</title>
+      <meta http-equiv="x-ua-compatible" content="ie=edge" />
+      <meta name="description" content="" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
       <!-- Web Font -->
       <link
          href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
@@ -65,16 +68,18 @@
   			text-overflow:ellipsis;
    			white-space:nowrap;  
 		 }
-		.nick_td{
+		.nick_td {
    			width: 80px;
    			overflow:hidden; 
   			text-overflow:ellipsis;
    			white-space:nowrap;		
 		}
-         
       </style>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
-
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
+              integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
+              crossorigin="anonymous"></script>
    </head>
    <body>
       <jsp:include page="/WEB-INF/views/include/header.jsp" />
@@ -134,7 +139,7 @@
                            	     </c:forEach>
                            	 </c:when>
                            </c:choose>
-
+							
                            </tbody>
                         </table>
                      </div>
@@ -148,7 +153,7 @@
          <div class="search-form wow fadeInUp" style="margin: 1px; padding: 1px;">
             <div class="row">
                <div class="button header-button" style="width: 13%; margin-left: 50px; padding: 1px;">
-                  <a href="add" class="btn">새 글 쓰기</a>
+                  <a href="add" class="btn">작성</a>
                </div>
                <div class="button header-button" style="width: 20%; margin-left: 1px; padding: 1px;">
                   <a onClick="funbtn()" class="btn">돌아가기</a>
@@ -213,7 +218,6 @@
       <br>
       <jsp:include page="/WEB-INF/views/include/footer.jsp" />
       <!-- ========================= ClassiGrids JS HERE ========================= -->
-      <script src="../resources/assets/js/bootstrap.min.js"></script>
       <script src="../resources/assets/js/wow.min.js"></script>
       <script src="../resources/assets/js/tiny-slider.js"></script>
       <script src="../resources/assets/js/glightbox.min.js"></script>
@@ -250,25 +254,6 @@
          	}
          });
       </script>
-      <!-- SBAdmin2 JS START -->
-      <!-- Bootstrap core JavaScript-->
-      <script src="../resources/sbadmin2/vendor/jquery/jquery.min.js"></script>
-      <script src="../resources/sbadmin2/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-      <!-- Core plugin JavaScript-->
-      <script src="../resources/sbadmin2/vendor/jquery-easing/jquery.easing.min.js"></script>
-      <!-- Custom scripts for all pages-->
-      <script src="../resources/sbadmin2/js/sb-admin-2.min.js"></script>
-      <!-- Page level plugins -->
-      <script src="../resources/sbadmin2/vendor/datatables/jquery.dataTables.min.js"></script>
-      <script src="../resources/sbadmin2/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-      <!-- Page level custom scripts -->
-      <script src="../resources/sbadmin2/js/demo/datatables-demo.js"></script>
-      <!-- SBAdmin2 JS END -->
-      <!--   Core JS Files   -->
-      <script src="../resources/assets/js/core/popper.min.js"></script>
-      <script src="../resources/assets/js/core/bootstrap.min.js"></script>
-      <script src="../resources/assets/js/plugins/perfect-scrollbar.min.js"></script>
-      <script src="../resources/assets/js/plugins/smooth-scrollbar.min.js"></script>
       <script>
          var win = navigator.platform.indexOf('Win') > -1;
          if (win && document.querySelector('#sidenav-scrollbar')) {
@@ -278,9 +263,6 @@
            Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
          }
       </script>
-      <!-- Github buttons -->
-      <script async defer src="https://buttons.github.io/buttons.js"></script>
-      <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
       <script src="../resources/assets/js/material-dashboard.min.js?v=3.0.0"></script>
       <script src="../../resources/bluecoding/header.js"></script>
       <script>

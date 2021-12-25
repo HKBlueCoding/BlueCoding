@@ -70,6 +70,9 @@ $(document).ready(function() {
 
 // [댓글 수정]
 function replyClick(replyCnt) {
+	// 먼저 기존에 열려있을지 모르니..
+	$(".replyRe").css("display","none");
+	
 	var modDisplay = document.getElementsByClassName("mod")[(replyCnt - 1)].style.display;
 	if (modDisplay == "none") {
 		document.getElementsByClassName("mod")[(replyCnt - 1)].style.display = "block";
@@ -111,13 +114,15 @@ function replyDone(replyNO, replyCnt) {
 
 // [댓글 답변 구현]
 function replyReClick(replyCnt) {
+	// 먼저 기존에 열려있는게 있을지 모르니..
+	$(".mod").css("display","none");
+	
 	var reDisplay = document.getElementsByClassName("replyRe")[(replyCnt - 1)].style.display;
 	if (reDisplay == "none") {
 		document.getElementsByClassName("replyRe")[(replyCnt - 1)].style.display = "block";
 	} else {
 		document.getElementsByClassName("replyRe")[(replyCnt - 1)].style.display = "none";
 	}
-	console.log('글번호' + replyRe);
 
 }
 

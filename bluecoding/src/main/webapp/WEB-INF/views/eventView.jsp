@@ -80,9 +80,22 @@
          .replyRe {
          display: none;
          }
+         .text_div {
+         	margin-right: 50px;
+			word-wrap: break-word; 
+		 }
+		 #info_span_01{
+		 	margin-left: 300px;
+		 }
+		 #info_span_02{
+		 	margin-left: 50px;
+		 }         
       </style>
       <script
          src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
+   	  <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
+              integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
+              crossorigin="anonymous"></script>
    </head>
    <body>
       <jsp:include page="/WEB-INF/views/include/header.jsp" />
@@ -123,28 +136,15 @@
                               <table class="table align-items-center mb-0">
                                  <thead>
                                     <tr>
-                                       <th
-                                          class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">작성자
-                                          : ${newsVO.nick }
-                                       </th>
-                                       <th
-                                          class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">작성일
-                                          : ${newsVO.newsDate }
-                                       </th>
-                                       <th
-                                          class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">조회수
-                                          : ${newsVO.nViewCnt }
-                                       </th>
-                                       <th
-                                          class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">댓글
-                                          : ${fn:length(newsReplyVO)}
+                                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                          작성자: ${newsVO.nick } <span id="info_span_01">작성일: ${newsVO.newsDate }</span><span id="info_span_02">조회수: ${newsVO.nViewCnt }</span>
                                        </th>
                                     </tr>
                                  </thead>
                                  <tbody>
                                     <tr>
                                        <td>
-                                          <div class="d-flex px-2 py-1" style="width: 200%;">
+                                          <div class="d-flex px-2 py-1 text_div">
                                              <div>
                                                 <c:if test="${empty newsVO.newsImage }">
                                                    <img
@@ -252,11 +252,20 @@
                                                 <!-- [로그인시] -->
                                                 <c:if
                                                    test="${!empty login.id && login.id ne '' && newsReply.newsReDelete ne 'Y'}">
-                                                   <div class="button header-button">
+                                                   <c:if test="${newsReply.level ne '4' }">  
+                                                    <div class="button header-button">
                                                       <button onClick="replyReClick('${replyCnt.count}')"
                                                          id="modify" class="btn"
                                                          style="background-color: #30d8e0;">답글</button>
-                                                   </div>
+                                                    </div>
+                                                   </c:if>
+                                                   <c:if test="${newsReply.level eq '4' }">
+                                                    <div class="button header-button">  
+                                                      <button onClick="alert('답글은 최대 3개 까지입니다.');"
+                                                         class="btn"
+                                                         style="background-color: #30d8e0;">답글</button>                                                   	  
+                                                    </div>
+                                                   </c:if>
                                                    <c:choose>
                                                       <c:when
                                                          test="${login.admin eq 'A' || login.id eq newsReply.id}">
@@ -593,5 +602,6 @@
       <script
          src="../../resources/assets/js/material-dashboard.min.js?v=3.0.0"></script>
       <script src="../../resources/bluecoding/eventView.js"></script>
+      <script src="../../resources/bluecoding/header.js"></script>
    </body>
 </html>

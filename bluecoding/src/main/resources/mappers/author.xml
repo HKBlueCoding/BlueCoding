@@ -26,13 +26,21 @@
 	  SELECT max(AUTHORPROFIT) FROM B_AUTHOR WHERE id=#{id}
 	 </selectKey>
 	 <if test="AUTHORPROFIT gte 300">
-	 <![CDATA[
-	  UPDATE 
-	   B_AUTHOR 
-	  SET ISREALIZATION=''
-	  WHERE id=#{id} AND ISREALIZATION='Y'
-	 ]]>
+	  <![CDATA[
+	   UPDATE 
+	    B_AUTHOR 
+	   SET ISREALIZATION=''
+	   WHERE id=#{id} AND ISREALIZATION='Y'
+	  ]]>
 	 </if>
+	 <if test="AUTHORPROFIT lt 300">
+	  <![CDATA[
+	   UPDATE 
+	    B_AUTHOR 
+	   SET ISREALIZATION=''
+	   WHERE id='0' AND ISREALIZATION='Y'	   
+	  ]]>	
+	 </if> 
 	</update>
 	
 </mapper>
