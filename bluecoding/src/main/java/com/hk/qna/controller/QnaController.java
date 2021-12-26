@@ -187,16 +187,21 @@ public class QnaController {
 	@RequestMapping(value = "/qna/reply/add", method = RequestMethod.POST, produces = "application/json; charset=utf8")
 	@ResponseBody // --> ajax 사용할 때 사용
 	public Map<String, Object> qnaReplyAdd(@ModelAttribute QnaVO qnaVO, HttpSession session, Model model) { // -->
-																											// ajax에서 보낸
+		Map<String, Object> map = new HashMap<String, Object>();																									// ajax에서 보낸
+		if(session.getAttribute("login") == null) {
+			map.put("ret", "0");
+			return map;
+		}		
 		UserVO userVO = (UserVO) session.getAttribute("login"); // data
 		logger.debug("[qna 답변의 qnaVO] = " + qnaVO);
+
 		qnaVO.setId(userVO.getId());
 
 		int ret = qnaService.addReply(qnaVO);
 		logger.debug("[qna 답변의 ret] = " + ret);
 		model.addAttribute("ret", ret);
 
-		Map<String, Object> map = new HashMap<String, Object>();
+		
 		map.put("qnaText", qnaVO.getQnaText());
 		map.put("ret", ret);
 		return map;

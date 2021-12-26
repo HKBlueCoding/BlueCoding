@@ -2,9 +2,12 @@ package com.hk.qna.interceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.hk.user.vo.UserVO;
 
 public class QnaInterceptor implements HandlerInterceptor {
 
@@ -12,6 +15,20 @@ public class QnaInterceptor implements HandlerInterceptor {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		// TODO Auto-generated method stub
+		HttpSession session = request.getSession(false);
+		
+		if(session == null || session.getAttribute("login") == null) {
+			
+			return false;
+		}
+		
+		UserVO userVO = (UserVO) session.getAttribute("login");
+		
+		if(userVO.getAdmin() == null || !userVO.getAdmin().equals("A") && !userVO.getAdmin().equals("Q")) {
+			
+			return false;
+		}
+		
 		return true;
 	}
 

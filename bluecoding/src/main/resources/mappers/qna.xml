@@ -102,8 +102,8 @@
 	 	SELECT nvl2(max(qnaNO),max(qnaNO)+1,1 ) FROM B_QNA
 	 </selectKey>
 	 <![CDATA[
-	 	INSERT INTO B_QNA (QNANO, QNAPARENTNO, QNALIST, QNATITLE, QNATEXT, ID)
-	 	VALUES (#{qnaNO}, #{qnaParentNO}, #{qnaList}, '[답변입니다.]', #{qnaText},  #{id})
+	 	INSERT INTO B_QNA (QNANO, QNAPARENTNO, QNALIST, QNATITLE, QNATEXT, QNADATE, ID)
+	 	VALUES (#{qnaNO}, #{qnaParentNO}, #{qnaList}, '[답변입니다.]', #{qnaText}, sysdate, #{id})
 	 ]]>
 	</insert>
 	
@@ -119,7 +119,8 @@
 	 UPDATE 
 	  B_QNA 
 	 SET 
-	  ISPROCESS='Y'
+	  ISPROCESS='Y',
+	  FINISHDATE=sysdate
 	  WHERE QNANO=#{qnaParentNO}
 	</update>
 </mapper>

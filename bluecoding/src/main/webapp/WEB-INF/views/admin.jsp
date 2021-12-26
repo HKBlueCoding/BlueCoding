@@ -10,8 +10,8 @@ request.setCharacterEncoding("UTF-8");
 <html>
 <head>
 <meta charset="utf-8" />
-<meta http-equiv="x-ua-compatible" content="ie=edge" />
 <title>관리자 페이지</title>
+<meta http-equiv="x-ua-compatible" content="ie=edge" />
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="shortcut icon" type="image/x-icon"
@@ -136,7 +136,7 @@ request.setCharacterEncoding("UTF-8");
 									<div class="card-footer p-3" align="center">
 										<button type="button" class="btn btn-secondary"
 											onclick="adRegister()">
-											<a href="#">운영계정 생성</a>
+											<a href="#" style="color: white;">운영계정 생성</a>
 										</button>
 										<button type="button" class="btn btn-secondary"
 											data-bs-toggle="modal" data-bs-target="#adSelect">운영계정
@@ -166,9 +166,6 @@ request.setCharacterEncoding("UTF-8");
 										<button type="button" class="btn btn-secondary"
 											style="height: auto; width: 100%;" data-bs-toggle="modal"
 											data-bs-target="#coinHistory">&nbsp;코인 결제 내역&nbsp;</button>
-										<button type="button" class="btn btn-secondary"
-											style="height: auto; width: 100%;" onclick="monthComm()">&nbsp;이달의
-											수익&nbsp;</button>
 									</div>
 								</div>
 							</div>

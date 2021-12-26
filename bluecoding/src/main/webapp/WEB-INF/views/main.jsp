@@ -23,7 +23,7 @@
       <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap"
          rel="stylesheet">
       <!-- ========================= CSS here ========================= -->
-      <link rel="stylesheet" href="../../assets/css/bootstrap.min.css" />
+      <link rel="stylesheet" href="../resources/assets/css/bootstrap.min.css" />
       <link rel="stylesheet" href="../resources/assets/css/LineIcons.2.0.css" />
       <link rel="stylesheet" href="../resources/assets/css/animate.css" />
       <link rel="stylesheet" href="../resources/assets/css/tiny-slider.css" />
@@ -44,6 +44,9 @@
          padding: 20px;
          padding-right: 45px;
          }
+         .theme_div_02{
+         	display: none;
+         }
          #mainLogo{
          color: #0c74db;
          }
@@ -52,10 +55,29 @@
          text-overflow:ellipsis;
          white-space:nowrap;  
          }
-         @media all and (max-width: 768px){
+         
+         @media all and (max-width: 760px){
 
          	.popBoard_div{
          		display: none;
+         	}
+         	.random_img{
+         		display: none;
+         	}
+         }
+         
+         @media all and (max-width: 450px){
+         	.random_img{
+         		display: none;
+         	}
+         	.theme_div_01{
+         		display: none;
+         	}
+         	.theme_div_02{
+         		display: block;
+         	}
+         	.hero-area {
+    			background-image: url(../resources/assets/images/hero/phone-bg.jpg);         	
          	}
          }
       </style>
@@ -73,14 +95,14 @@
                   <div class="hero-text text-center">
                      <!-- Start Hero Text -->
                      <div class="section-heading">
-                        <h2 class="wow fadeInUp" id="mainLogo" data-wow-delay=".3s" style="visibility: visible; animation-delay: 0.3s; animation-name: fadeInUp;">Blue Novel</h2>
+                        <h2 class="wow fadeInUp" id="mainLogo" data-wow-delay=".3s" style="visibility: visible; animation-delay: 0.3s; animation-name: fadeInUp;">Blue Novel</h2> 
                      </div>
                      <!-- End Search Form -->
                      <!-- Start Search Form -->
-                     <div class="theme wow fadeInUp" data-wow-delay=".7s" style="visibility: visible; animation-delay: 0.7s; animation-name: fadeInUp;">
+                     <div class="theme wow fadeInUp theme_div_01" data-wow-delay=".7s" style="visibility: visible; animation-delay: 0.7s; animation-name: fadeInUp;">
                         <div class="row">
                            <div class="col-lg-12">
-                              <!-- 버튼 fade -->
+                              <!-- 버튼 fade --> 
                               <button type="button" onClick="filterTheme('판타지')" class="btn btn-outline-primary">판타지</button>
                               <button type="button" onClick="filterTheme('청소년')" class="btn btn-outline-primary">청소년</button>    								    								
                               <button type="button" onClick="filterTheme('고전')" class="btn btn-outline-secondary">고전</button>
@@ -94,50 +116,88 @@
                         </div>
                      </div>
                      <!-- 끝 -->   
-                  </div>
-                  <br>
+                  </div>   
+				</div>
 				  <!-- display를 설정하자... -->
                   <!-- [Content 책] -->
                   <div id="demo2" class="carousel slide cat-inner" data-wow-delay=".10s" style="visibility: visible; animation-delay: 0.10s; animation-name: fadeInUp;">
                      <!-- 책 list -->
                      <div class="carousel-inner">
-                      <c:forEach var="i" begin="0" end="${fn:length(menuList)}">
+                      <c:forEach var="i" begin="0" end="${fn:length(menuList)}" step="3">
                       
                        <c:if test="${i eq 0}"> 
                        	<div class="carousel-item active"align="center">
-                       	    <c:if test="${empty menuList[i].bookNO }">
+                       	 <c:forEach var="e" begin="0" end="2" >
+                       	   <c:if test="${e eq 0 }">
+                       	    <c:if test="${empty menuList[i+e].bookNO }">
                        	     <img src="../../resources/assets/images/mainPage/null.jpg" alt="책이 없음" width="221" height="300">
                        	    </c:if>
-                       	    <c:if test="${empty menuList[i].bookImage && !empty menuList[i+two].bookNO}">
-                       	     <a href="/view?bookNO=${menuList[i].bookNO }">
+                       	    <c:if test="${empty menuList[i+e].bookImage && !empty menuList[i+e].bookNO}">
+                       	     <a href="/view?bookNO=${menuList[i+e].bookNO }">
                        	      <img src="../../resources/assets/images/mainPage/board1.png" alt="기본 책사진" width="221" height="300">
                        	     </a>
                        	    </c:if>
-                       	  
-                       	    <c:if test="${!empty menuList[i].bookImage}">
-                       	     <a href="/view?bookNO=${menuList[i].bookNO }" class="menuBook">
-                              <img src="../../download?uploadFile=${menuList[i].bookImage }&inFolder=book&pk=${menuList[i].bookNO}" alt="${menuList[i].bookTitle }책의 커버사진" width="221" height="300">
+                       	    <c:if test="${!empty menuList[i+e].bookImage}">
+                       	     <a href="/view?bookNO=${menuList[i+e].bookNO }" class="menuBook">
+                              <img src="../../download?uploadFile=${menuList[i+e].bookImage }&inFolder=book&pk=${menuList[i+e].bookNO}" alt="${menuList[i+e].bookTitle }책의 커버사진" width="221" height="300">
                              </a>
-                            </c:if>                        		
+                            </c:if> 
+                       	   </c:if>
+                       	   
+                       	   <c:if test="${e ne 0 }">
+                       	    <c:if test="${empty menuList[i+e].bookNO }">
+                       	     <img src="../../resources/assets/images/mainPage/null.jpg" class="random_img" alt="책이 없음" width="221" height="300">
+                       	    </c:if>
+                       	    <c:if test="${empty menuList[i+e].bookImage && !empty menuList[i+e].bookNO}">
+                       	     <a href="/view?bookNO=${menuList[i+e].bookNO }" class="random_img">
+                       	      <img src="../../resources/assets/images/mainPage/board1.png" class="random_img" alt="기본 책사진" width="221" height="300">
+                       	     </a>
+                       	    </c:if>
+                       	    <c:if test="${!empty menuList[i+e].bookImage}">
+                       	     <a href="/view?bookNO=${menuList[i+e].bookNO }" class="random_img">
+                              <img src="../../download?uploadFile=${menuList[i+e].bookImage }&inFolder=book&pk=${menuList[i+e].bookNO}" class="random_img" alt="${menuList[i+e].bookTitle }책의 커버사진" width="221" height="300">
+                             </a>
+                            </c:if>
+                           </c:if> 
+                          </c:forEach>                          		
                         </div>
                        </c:if>
                        
-                       <c:if test="${i ne 0 }"> 
+                       <c:if test="${i ne 0 && i < 28 }"> 
                        	<div class="carousel-item"align="center" >
-                       	    <c:if test="${empty menuList[i].bookNO }">
+                       	 <c:forEach var="e" begin="0" end="2" >
+                       	   <c:if test="${e eq 0 }">
+                       	    <c:if test="${empty menuList[i+e].bookNO }">
                        	     <img src="../../resources/assets/images/mainPage/null.jpg" alt="책이 없음" width="221" height="300">
                        	    </c:if>
-                       	    <c:if test="${empty menuList[i].bookImage && !empty menuList[i].bookNO}">
-                       	     <a href="/view?bookNO=${menuList[i].bookNO }">
+                       	    <c:if test="${empty menuList[i+e].bookImage && !empty menuList[i+e].bookNO}">
+                       	     <a href="/view?bookNO=${menuList[i+e].bookNO }">
                        	      <img src="../../resources/assets/images/mainPage/board1.png" alt="기본 책사진" width="221" height="300">
                        	     </a>
                        	    </c:if>
-                       	  
-                       	    <c:if test="${!empty menuList[i].bookImage}">
-                       	     <a href="/view?bookNO=${menuList[i].bookNO }" class="menuBook">
-                              <img src="../../download?uploadFile=${menuList[i].bookImage }&inFolder=book&pk=${menuList[i].bookNO}" alt="${menuList[i].bookTitle }책의 커버사진" width="221" height="300">
+                       	    <c:if test="${!empty menuList[i+e].bookImage}">
+                       	     <a href="/view?bookNO=${menuList[i+e].bookNO }" class="menuBook">
+                              <img src="../../download?uploadFile=${menuList[i+e].bookImage }&inFolder=book&pk=${menuList[i+e].bookNO}" alt="${menuList[i+e].bookTitle }책의 커버사진" width="221" height="300">
                              </a>
-                            </c:if>                        	
+                            </c:if> 
+                       	   </c:if>
+                       	   
+                       	   <c:if test="${e ne 0 }">
+                       	    <c:if test="${empty menuList[i+e].bookNO }">
+                       	     <img src="../../resources/assets/images/mainPage/null.jpg" class="random_img" alt="책이 없음" width="221" height="300">
+                       	    </c:if>
+                       	    <c:if test="${empty menuList[i+e].bookImage && !empty menuList[i+e].bookNO}">
+                       	     <a href="/view?bookNO=${menuList[i+e].bookNO }" class="random_img">
+                       	      <img src="../../resources/assets/images/mainPage/board1.png" class="random_img" alt="기본 책사진" width="221" height="300">
+                       	     </a>
+                       	    </c:if>
+                       	    <c:if test="${!empty menuList[i+e].bookImage}">
+                       	     <a href="/view?bookNO=${menuList[i+e].bookNO }" class="random_img">
+                              <img src="../../download?uploadFile=${menuList[i+e].bookImage }&inFolder=book&pk=${menuList[i+e].bookNO}" class="random_img" alt="${menuList[i+e].bookTitle }책의 커버사진" width="221" height="300">
+                             </a>
+                            </c:if>
+                           </c:if> 
+                          </c:forEach>                       	
                         </div>
                        </c:if>                       
                        
@@ -204,7 +264,6 @@
                   </div>
                </section>
             </div>
-         </div>
       </section>
       <jsp:include page="/WEB-INF/views/include/footer.jsp"/>
       <!-- ========================= JS here ========================= -->

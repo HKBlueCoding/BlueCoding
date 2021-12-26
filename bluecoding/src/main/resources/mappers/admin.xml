@@ -91,16 +91,14 @@
 
 	<select id="selectAdminList" resultType="hashMap">
 		<![CDATA[
-		SELECT bu.ID AS ID
-		,
-		bu.PWD AS PWD
-		, bu.JOINDATE AS JOINDATE
-		, bu.ADMIN AS ADMIN2,
-		DECODE(ADMIN, 'A', '관리자', 'Q', '상담원') ADMIN
+		SELECT 
+			bu.ID AS ID,
+			bu.PWD AS PWD, 
+			bu.JOINDATE AS JOINDATE, 
+			bu.ADMIN AS ADMIN2,
+			DECODE(ADMIN, 'A', '관리자', 'Q', '상담원') ADMIN
 		FROM B_USER bu
-		WHERE ADMIN =
-		'A'
-		OR ADMIN = 'Q'
+		WHERE ADMIN = 'A' OR ADMIN = 'Q' AND PROHIBITLV NOT IN '3'		 
 		]]>
 	</select>
 
@@ -131,10 +129,13 @@
 	 ]]>
 	</select>
 
-	<delete id="deleteAdminAcc">
-		DELETE FROM B_USER bu
+	<update id="deleteAdminAcc">
+		UPDATE 
+			B_USER 
+		SET 
+			PROHIBITLV=3
 		WHERE ID=#{id}
-	</delete>
+	</update>
 
 
 

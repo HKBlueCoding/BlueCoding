@@ -22,4 +22,7 @@
   </div>
   <!-- End Footer Middle -->
 </footer>
+<a href="#" class="scroll-top btn-hover" style="display: flex;">
+        <i class="lni lni-chevron-up"></i>
+</a>
 <!--/ End Footer Area -->

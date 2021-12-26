@@ -52,7 +52,6 @@ public class BookController {
 		}
 		
 		Map<String, Object> map = bookService.selectMenuList(theme);
-		
 		model.addAttribute("menuList", map.get("menuList"));
 		model.addAttribute("popBList", map.get("popBList"));
 		model.addAttribute("popBDList", map.get("popBDList"));

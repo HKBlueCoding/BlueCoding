@@ -60,7 +60,7 @@ public class AdminDAO {
 
 	public int deleteAdminAcc(String id) {
 		// TODO Auto-generated method stub
-		int rs = sqlSession.delete("mapper.admin.deleteAdminAcc", id);
+		int rs = sqlSession.update("mapper.admin.deleteAdminAcc", id);
 		return rs;
 	}
 

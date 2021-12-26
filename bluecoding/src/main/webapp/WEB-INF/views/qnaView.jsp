@@ -292,9 +292,15 @@
                          data: {"qnaText": $('#qnaReContent').val(), "id":$('#id').val(), "qnaParentNO":$("#qnaNO").val(), "qnaList":$("#qnaList").val(), "qnaTitle":$("#qnaTitle").val()},
                          success: function(data) {
                             // data.server에서 보낸 map text
-                             alert('답변이 등록되었습니다.');
-                             $('#qnaReContent').val("");
-                             location.reload();
+                            if(data.ret > 0){
+                            	alert('답변이 등록되었습니다.');
+                                $('#qnaReContent').val("");
+                                location.reload();
+                            }else{
+                            	alert('답변 등록에 실패하였습니다. 로그인 정보를 확인하세요');
+                            	
+                            }
+                            
                          }, 
                          error: function(request,status,error) {
                             alert($("#qnaNO").val());
