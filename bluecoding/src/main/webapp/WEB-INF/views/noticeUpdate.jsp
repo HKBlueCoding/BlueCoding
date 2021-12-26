@@ -38,16 +38,56 @@
       <link href="../../resources/assets/css/styles.css" rel="stylesheet" />
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" />
       <style>
-         .search-form{
-         /* all: unset; */
+         @media all and (max-width: 1500px){
+	         .notice_text {
+	         	width:100%;
+	         }
+	         
+	         .notice_image_button {
+	         	width:100%;
+	         }
+	         
+	         .notice_button {
+	        	 margin-top: 1em;
+	         	margin-left: 0;
+	         }
+	         
+	         .notice_image {
+	         	width:100%;
+	         }
+	         
+	         .notice_image2 {
+	         	width:100%;
+	         	height:100%;
+	         }
+         }
+         
+         @media all and (max-width: 300px){
+	         .notice_button2 {
+	         	margin-top: 1em;
+	         	margin-left: 0;
+	         }
+         }
+         
+         @media all and (max-width: 800px){
+	         .notice_div_size{
+	         	width:50%;
+	         }
+	         
+	         .notice_div2_size{
+	         	padding: 0;
+	         }
          }
       </style>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>        
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
+         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
+         crossorigin="anonymous"></script>
    </head>
    <body>
       <!-- header -->
       <jsp:include page="/WEB-INF/views/include/header.jsp"/>
-      <br><br><br><br><br><br><br><br>
+      <br><br><br><br><br><br><br><br><br>
       <c:choose>
          <c:when test="${empty newsVO }">
             <tr>
@@ -65,10 +105,10 @@
                            <p id="title">공지사항 수정</p>
                            <hr class="my-4">
                            <!-- ================== 카테고리 ======================= -->
-                           <div class="categorise search-form wow fadeInUp">
+                           <div class="categorise search-form wow fadeInUp notice_div2_size">
                               <div class="row">
                                  <div class="col-lg-3 col-md-3 col-12 p-0" style="width: 20%">
-                                    <div class="search-input">
+                                    <div class="search-input notice_div_size">
                                        <select name="category" id="category" title="카테고리를 선택하세요" required>
                                           <option value="" >카테고리</option>
                                           <option value="notice">공지사항</option>
@@ -89,33 +129,33 @@
                               <!-- https://startbootstrap.com/solution/contact-forms-->
                               <!-- to get an API token!-->
                               <div class="form-floating">
-                                 <input name="newsTitle" class="form-control" id="name" type="text" value="${newsVO.newsTitle }" title="제목을 입력하세요" maxlength="50" required/>
+                                 <input name="newsTitle" class="form-control notice_text_title" id="name" type="text" value="${newsVO.newsTitle }" title="제목을 입력하세요" maxlength="50" required/>
                                  <label for="name">제목</label>  
                                  <input type="hidden" value="${newsVO.newsNO }" name="newsNO">           
                               </div>
                               <br>
                               <div class="form-floating" id="formMag" style="width: 100%">
-                                 <textarea name="newsText" class="form-control" id="message" style="height: 35rem" title="내용을 입력하세요" maxlength="4800" required>${newsVO.newsText }</textarea>
+                                 <textarea name="newsText" class="form-control notice_text" id="message" style="height: 35rem" title="내용을 입력하세요" maxlength="4800" required>${newsVO.newsText }</textarea>
                                  <label for="message">내용</label>
                               </div>
                               <br>
                               <!-- 이미지 미리보기 -->
-                              <div align="center">
+                              <div class="notice_image" align="left">
                               	<!-- 1. 기존에 이미지 이름을 저장 -->
                  			  	<input type="hidden" name="newsImage" value="${newsVO.newsImage }" />
 							  	<!-- 2. 기존에 이미지 표시 or id를 preview로 해서 이미지 파일이 등록이되면 src를 변경함 -->
-							  	<img id="preview" src="../../download?uploadFile=${newsVO.newsImage }&inFolder=news&pk=${newsVO.newsNO}" width="400" height="200" class="avatar avatar-sm me-3 border-radius-lg" alt="user1" >
+							  	<img id="preview" class="notice_image2" src="../../download?uploadFile=${newsVO.newsImage }&inFolder=news&pk=${newsVO.newsNO}" width="400" height="200" class="avatar avatar-sm me-3 border-radius-lg" alt="user1" >
 					          </div>
 					          <!-- 이미지 미리보기 끝 -->   
                               <br>
-                              이미지 선택: <input type="file" name="uploadFile" onchange="readURL(this)" />
+                              이미지 선택: <input type="file" class="notice_image_button" name="uploadFile" onchange="readURL(this)" />
                               <!-- ======================= 버튼 ========================== -->
                               <c:if test="${login.admin eq 'A'}">
-                              <div class="button header-button">
+                              <div class="button header-button notice_button">
                                  <input type="submit" class="btn" value="수정">
                               </div>
                               </c:if>
-                              <div class="button header-button">
+                              <div class="button header-button notice_button2">
                                  <a onClick="funbtn()" class="btn">돌아가기</a>
                               </div>
                               <!-- ======================= 버튼 끝 ========================== -->
@@ -177,6 +217,7 @@
              }
          });
       </script>
+      <script src="../../resources/bluecoding/header.js"></script>
       <script>
          function funbtn() {
            if (confirm("이전 페이지로 돌아가시겠습니까??")) {
@@ -195,6 +236,26 @@
     			reader.readAsDataURL(input.files[0]);
     		}
     	}
+      </script>
+      <script>
+         $(document).ready(function() {
+          $('.notice_text_title').change(function() {
+          	if($.trim($('.notice_text_title').val())==''){
+                  alert("공백 없이 제목을 입력해주세요.");
+                  $('.notice_text_title').val('')
+          	}
+          }); //end on
+         });
+      </script>
+      <script>
+         $(document).ready(function() {
+            $('.notice_text').change(function() {
+            	if($.trim($('.notice_text').val())==''){
+                    alert("공백 없이 내용을 입력해주세요.");
+                    $('.notice_text').val('')
+            	}
+            }); //end on
+         });
       </script>
    </body>
 </html>

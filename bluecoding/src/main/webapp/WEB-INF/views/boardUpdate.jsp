@@ -48,7 +48,7 @@
 	         }
 	         
 	         .board_button {
-	        	 margin-top: 1em;
+	        	margin-top: 1em;
 	         	margin-left: 0;
 	         }
 	         

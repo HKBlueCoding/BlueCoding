@@ -38,19 +38,47 @@
       <link href="../resources/assets/css/styles.css" rel="stylesheet" />
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" />
       <style>
-         .search-form{
-         /* all: unset; */
+         @media all and (max-width: 1500px){
+	         .news_text {
+	         	width:100%;
+	         }
+	         
+	         .news_image_button {
+	         	width:100%;
+	         }
+	         
+	         .news_button {
+	        	 margin-top: 1em;
+	         	margin-left: 0;
+	         }
+         }
+         
+         @media all and (max-width: 300px){
+	         .news_button2 {
+	         	margin-top: 1em;
+	         	margin-left: 0;
+	         }
+         }
+         
+         @media all and (max-width: 800px){
+	         .news_div_size{
+	         	width:50%;
+	         }
+	         
+	         .news_div2_size{
+	         	padding: 0;
+	         }
          }
       </style>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>      
       <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
-              integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
-              crossorigin="anonymous"></script>   
+         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
+         crossorigin="anonymous"></script>   
    </head>
    <body>
       <!-- header -->
       <jsp:include page="/WEB-INF/views/include/header.jsp"/>
-      <br><br><br><br><br><br><br><br>
+      <br><br><br><br><br><br><br><br><br>
       <!-- =================== 글쓰기 폼 ===================== -->
       <!-- Main Content-->
       <form id="contactForm" data-sb-form-api-token="API_TOKEN" action="add" method="post" encType="multipart/form-data">
@@ -61,10 +89,10 @@
                      <p id="title">뉴스글 쓰기</p>
                      <hr class="my-4">
                      <!-- ================== 카테고리 ======================= -->
-                     <div class="categorise search-form wow fadeInUp">
+                     <div class="categorise search-form wow fadeInUp news_div2_size">
                         <div class="row">
-                           <div class="col-lg-3 col-md-3 col-12 p-0" style="width: 20%">
-                              <div class="search-input">
+                           <div class="col-lg-3 col-md-3 col-12 p-0">
+                              <div class="search-input news_div_size">
                                  <label for="category"></label>
                                  <select name="category" id="category" title="카테고리를 선택하세요" required>
                                     <option value=""  selected disabled>카테고리</option>
@@ -88,12 +116,12 @@
                         <div class="form-floating">
                            <input type="hidden" name="id" value="${login.id }">
                            <input type="hidden" name="nick" value="${login.nick }">
-                           <input class="form-control" name="newsTitle"  id="name" type="text" title="제목을 입력하세요" maxlength="50" required />
+                           <input class="form-control news_text_title" name="newsTitle" id="name" type="text" title="제목을 입력하세요" maxlength="50" required />
                            <label for="name">제목</label>                          
                         </div>
                         <br>
                         <div class="form-floating" id="formMag" style="width: 100%">
-                           <textarea class="form-control" id="message" name="newsText" style="height: 35rem" title="내용을 입력하세요" maxlength="4800" required></textarea>
+                           <textarea class="form-control news_text" id="message" name="newsText" style="height: 35rem" title="내용을 입력하세요" maxlength="4800" required></textarea>
                            <label for="message">내용</label>
                         </div>
                         <br />
@@ -117,15 +145,14 @@
                            <div class="text-center text-danger mb-3">Error sending message!</div>
                         </div>
                         <!-- Submit Button-->
-                        이미지 선택: &nbsp;<input id="uploadFile" name="uploadFile" type="file">
-                        
+                        이미지 선택: &nbsp;<input class="news_image_button" id="uploadFile" name="uploadFile" type="file">
                         <!-- ======================= 버튼 ========================== -->
                         <c:if test="${login.admin eq 'A'}">
-                           <div class="button header-button">
+                           <div class="button header-button news_button">
                               <input type="submit" class="btn" value="등록">
                            </div>
                         </c:if>
-                        <div class="button header-button">
+                        <div class="button header-button news_button2">
                            <a onClick="funbtn()" class="btn">돌아가기</a>
                         </div>
                         <!-- ======================= 버튼 끝 ========================== -->
@@ -194,6 +221,26 @@
            	return;
            }
          }
+      </script>
+      <script>
+         $(document).ready(function() {
+          $('.news_text_title').change(function() {
+          	if($.trim($('.news_text_title').val())==''){
+                  alert("공백 없이 제목을 입력해주세요.");
+                  $('.news_text_title').val('')
+          	}
+          }); //end on 
+         });
+      </script>
+      <script>
+         $(document).ready(function() {
+            $('.news_text').change(function() {
+            	if($.trim($('.news_text').val())==''){
+                    alert("공백 없이 내용을 입력해주세요.");
+                    $('.news_text').val('')
+            	}
+            }); //end on 
+         });
       </script>
    </body>
 </html>

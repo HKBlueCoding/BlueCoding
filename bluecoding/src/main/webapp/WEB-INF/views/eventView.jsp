@@ -70,35 +70,54 @@
          body {
          background-image: url(../../resources/assets/images/here/noticeBG.jpg);
          }
+         
          #tbPadd {
          padding-left: 1.5rem;
          padding-right: 1.5rem;
          }
+         
          .mod {
          display: none;
          }
+         
          .replyRe {
          display: none;
          }
+         
          .text_div {
          	margin-right: 50px;
 			word-wrap: break-word; 
 		 }
+		 
 		 #info_span_01{
 		 	margin-left: 300px;
 		 }
+		 
 		 #info_span_02{
 		 	margin-left: 50px;
-		 }         
+		 }
+		 
+         @media all and (max-width: 350px){
+         	.event_button2 {
+         		margin-top: 1em;
+         	}
+         }
+         
+         @media all and (max-width: 450px){
+		     .event_button3 {
+		     	margin-top: 1em;
+		     }
+         }
       </style>
       <script
          src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
-   	  <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
               integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
-              crossorigin="anonymous"></script>
+              crossorigin="anonymous"></script>   
    </head>
    <body>
       <jsp:include page="/WEB-INF/views/include/header.jsp" />
+      <br>
       <br>
       <br>
       <br>
@@ -125,7 +144,7 @@
                               <div style="width: 100%; padding: 1px;">
                                  <p id="title" style="font-size: 40px;">이벤트 상세 보기</p>
                                  <hr class="my-4" style="width: 70%;">
-                                 <p id="title2" style="font-size: 30px;">&nbsp;&nbsp;${newsVO.newsTitle }</p>
+                                 <p id="title2" style="font-size: 30px;">[제목]<br>&nbsp;${newsVO.newsTitle }</p>
                               </div>
                            </div>
                         </div>
@@ -137,7 +156,7 @@
                                  <thead>
                                     <tr>
                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                          작성자: ${newsVO.nick } <span id="info_span_01">작성일: ${newsVO.newsDate }</span><span id="info_span_02">조회수: ${newsVO.nViewCnt }</span>
+                                          	작성자: ${newsVO.nick } <span id="info_span_01">작성일 : ${newsVO.newsDate }</span><span id="info_span_02">조회수: ${newsVO.nViewCnt }</span>
                                        </th>
                                     </tr>
                                  </thead>
@@ -174,10 +193,10 @@
                <!-- ======================= 버튼 ========================== -->
                <div align="right" style="width: 100%;">
                   <c:if test="${login.admin eq 'A'}">
-                     <div class="button header-button">
+                     <div class="button header-button board_button">
                         <a href="../event/update?newsNO=${newsVO.newsNO }" class="btn">수정</a>
                      </div>
-                     <div class="button header-button">
+                     <div class="button header-button board_button2">
                         <a onClick="delEvent('${newsVO.newsNO}')" class="btn">삭제</a>
                      </div>
                   </c:if>
@@ -208,25 +227,23 @@
                                              <c:if test='${newsReply.level > 1 }'>
                                                 <div class="d-flex px-2 py-1">
                                                    <div class="d-flex flex-column justify-content-center">
-                                                      <c:if test="${newsReply.newsReDelete eq 'Y'}">
-                                                         <strike>[삭제된 게시글입니다]</strike>
-                                                      </c:if>
-                                                      <c:if test="${newsReply.newsReDelete ne 'Y'}">
-                                                         <p class="text-xs text-secondary mb-0"
-                                                            style="font-size: 15px;">
-                                                            <c:forEach begin="1" end="${newsReply.level }"
-                                                               step="1">
-                                                               &nbsp;&nbsp;&nbsp;&nbsp;
-                                                            </c:forEach>
-                                                            ⤷작성자명 : ${newsReply.nick }(${newsReply.id }),&nbsp;&nbsp;&nbsp;&nbsp;${newsReply.newsReDate }
-                                                         </p>
-                                                         <p class="text-xs text-secondary mb-0">
-                                                            <c:forEach begin="1" end="${newsReply.level }"
-                                                               step="1">
-                                                               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                            </c:forEach>
-                                                            &nbsp;&nbsp;${newsReply.newsReText }
-                                                         </p>
+                                                   <c:if test="${newsReply.newsReDelete eq 'Y'}">
+                                                   <strike>[삭제된 게시글입니다]</strike>
+                                                   </c:if>
+                                                    <c:if test="${newsReply.newsReDelete ne 'Y'}">
+                                                      <p class="text-xs text-secondary mb-0"
+                                                         style="font-size: 15px;">
+                                                         <c:forEach begin="1" end="${newsReply.level }" step="1">
+                                                            &nbsp;&nbsp;&nbsp;&nbsp;
+                                                         </c:forEach>
+                                                         ⤷작성자명 : ${newsReply.nick }(${newsReply.id }),&nbsp;&nbsp;&nbsp;&nbsp;${newsReply.newsReDate }
+                                                      </p>
+                                                      <p class="text-xs text-secondary mb-0">
+                                                         <c:forEach begin="1" end="${newsReply.level }" step="1">
+                                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                         </c:forEach>
+                                                         &nbsp;&nbsp;${newsReply.newsReText }
+                                                      </p>
                                                       </c:if>
                                                    </div>
                                                 </div>
@@ -234,13 +251,13 @@
                                              <c:if test="${newsReply.level == 1 }">
                                                 <div class="d-flex px-2 py-1">
                                                    <div class="d-flex flex-column justify-content-center">
-                                                      <c:if test="${newsReply.newsReDelete eq 'Y'}">
-                                                         <strike>[삭제된 게시글입니다]</strike>
-                                                      </c:if>
-                                                      <c:if test="${newsReply.newsReDelete ne 'Y'}">
-                                                         <p class="text-xs text-secondary mb-0"
-                                                            style="font-size: 15px;">작성자명 : ${newsReply.nick }(${newsReply.id }),&nbsp;&nbsp;&nbsp;&nbsp;${newsReply.newsReDate }</p>
-                                                         <p class="text-xs text-secondary mb-0">${newsReply.newsReText }</p>
+                                                    <c:if test="${newsReply.newsReDelete eq 'Y'}">
+                                                   <strike>[삭제된 게시글입니다]</strike>
+                                                   </c:if>
+                                                    <c:if test="${newsReply.newsReDelete ne 'Y'}">
+                                                      <p class="text-xs text-secondary mb-0" style="font-size: 15px;">
+                                                      작성자명 : ${newsReply.nick }(${newsReply.id }),&nbsp;&nbsp;&nbsp;&nbsp;${newsReply.newsReDate }</p>
+                                                      <p class="text-xs text-secondary mb-0">${newsReply.newsReText }</p>
                                                       </c:if>
                                                    </div>
                                                 </div>
@@ -251,21 +268,21 @@
                                              <div align="right" style="width: 100%;">
                                                 <!-- [로그인시] -->
                                                 <c:if
-                                                   test="${!empty login.id && login.id ne '' && newsReply.newsReDelete ne 'Y'}">
-                                                   <c:if test="${newsReply.level ne '4' }">  
+                                                   test="${!empty login.id && login.id ne '' && newsReply.newsReDelete ne 'Y' }">
+                                                   <c:if test="${newsReply.level ne '4' }"> 
                                                     <div class="button header-button">
                                                       <button onClick="replyReClick('${replyCnt.count}')"
                                                          id="modify" class="btn"
                                                          style="background-color: #30d8e0;">답글</button>
                                                     </div>
-                                                   </c:if>
+                                                   </c:if> 
                                                    <c:if test="${newsReply.level eq '4' }">
                                                     <div class="button header-button">  
                                                       <button onClick="alert('답글은 최대 3개 까지입니다.');"
                                                          class="btn"
                                                          style="background-color: #30d8e0;">답글</button>                                                   	  
                                                     </div>
-                                                   </c:if>
+                                                   </c:if>                                                   
                                                    <c:choose>
                                                       <c:when
                                                          test="${login.admin eq 'A' || login.id eq newsReply.id}">
@@ -292,9 +309,9 @@
                                                    </div>
                                                 </c:if>
                                              </div>
-                                             <!-- ======================= 버튼 끝 ========================== -->
                                           </td>
                                        </tr>
+                                       <!-- ======================= 버튼 끝 ========================== -->
                                        <!-- =========================== 댓글 끝 =========================== -->
                                        <!-- =========================== 댓글 수정 =========================== -->
                                        <tr class="mod">
@@ -304,7 +321,7 @@
                                                    style="width: 607%;">
                                                    <textarea name="newsReText" class="form-control"
                                                       id="ReText${replyCnt.count }" style="height: 7rem;"
-                                                      data-sb-validations="required">${newsReply.newsReText }</textarea>
+                                                      required>${newsReply.newsReText }</textarea>
                                                    <br> <label for="message">댓글 수정</label> <input
                                                       type="hidden" value="${newsReply.newsReplyNO }"
                                                       id="newsReplyNO${replyCnt.count }"> <input
@@ -458,7 +475,7 @@
                            등록</a>
                         </div>
                      </c:if>
-                     <div class="button header-button">
+                     <div class="button header-button board_button3">
                         <a onClick="funbtn()" class="btn">돌아가기</a>
                      </div>
                   </div>
@@ -468,14 +485,6 @@
          </c:when>
       </c:choose>
       <!-- ====================== 페이징 ====================== -->
-      <div class="w3-center">
-         <div class="w3-bar">
-            <a href="#" class="w3-button">«</a> <a href="#"
-               class="w3-button w3-blue">1</a> <a href="#" class="w3-button">2</a>
-            <a href="#" class="w3-button">3</a> <a href="#" class="w3-button">4</a>
-            <a href="#" class="w3-button">5</a> <a href="#" class="w3-button">»</a>
-         </div>
-      </div>
       <!-- ====================== 페이징 끝 ====================== -->
       <br>
       <br>
@@ -601,7 +610,25 @@
       <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
       <script
          src="../../resources/assets/js/material-dashboard.min.js?v=3.0.0"></script>
-      <script src="../../resources/bluecoding/eventView.js"></script>
       <script src="../../resources/bluecoding/header.js"></script>
+      <script>
+         function funok() {
+           if (confirm("글을 정말 삭제하시겠습니까??")) {
+            alert("정상적으로 삭제되었습니다.")
+           } else {
+           	return;
+           }
+         }
+      </script>
+      <script>
+         function funok2() {
+           if (confirm("글을 정말 삭제하시겠습니까??")) {
+            alert("정상적으로 삭제되었습니다.")
+           } else {
+           	return;
+           }
+         }
+      </script>
+      <script src="../../resources/bluecoding/EventView.js"></script>
    </body>
 </html>

@@ -54,6 +54,7 @@
       <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
       <!-- ====================== 페이징 끝 ====================== -->
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
       <style>
          body{
     	     background-image: url(../resources/assets/images/here/noticeBG.jpg);
@@ -84,7 +85,6 @@
          	}
          }
       </style>
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
       <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
          integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
@@ -121,13 +121,21 @@
                                  </tr>
                               </c:when>
                               <c:when test="${!empty boardList}">
-                                 <c:forEach var="boardList"  items="${boardList }">
+                                 <c:forEach var="boardList" items="${boardList }">
                                     <tr>
                                        <td class="align-middle text-center">
                                           <span class="text-secondary text-xs font-weight-bold">${boardList.articleNO }</span>
                                        </td>
                                        <td>
                                           <div class="d-flex px-2 py-1">
+                                                <div>
+                                                   <c:if test="${empty boardList.boardImage }">
+                                                      <img src="../resources/assets/images/mainPage/board1.png" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
+                                                   </c:if>
+                                                   <c:if test="${!empty boardList.boardImage }">
+                                                      <img src="../../download?uploadFile=${boardList.boardImage }&inFolder=board&pk=${boardList.articleNO}" width="100" height="70" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
+                                                   </c:if>
+                                                </div>
                                              <div class="d-flex flex-column justify-content-center">
                                                 <a href="view?articleNO=${boardList.articleNO}" class="mb-0 text-sm line_td" style="color: black">${boardList.boardTitle }</a>
                                                 <p class="text-xs text-secondary mb-0 line_td">${boardList.boardText }</p>
