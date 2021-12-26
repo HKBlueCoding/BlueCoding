@@ -27,10 +27,15 @@ public class PageDAO {
 		int ret = sqlSession.insert("mapper.page.insertPage", pageVO);
 		return ret;
 	}
-
-	public PageVO pageList(int pageNO) {
+	
+	public Integer selectDirection(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		PageVO pageVO = sqlSession.selectOne("mapper.page.selectOnePage", pageNO);
+		return sqlSession.selectOne("mapper.page.selectDirection",map);
+	}	
+
+	public PageVO pageList(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		PageVO pageVO = sqlSession.selectOne("mapper.page.selectOnePage", map);
 		return pageVO;
 	}
 

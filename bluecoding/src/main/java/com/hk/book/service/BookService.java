@@ -183,23 +183,41 @@ public class BookService {
 		return ret;
 	}
 
-	public Map<String, Object> listPage(int pageNO, UserVO userVO) {
-		Map<String, Object> map = new HashMap<String, Object>();
+	public Map<String, Object> listPage(Map<String, Object> map, UserVO userVO, int pageNO) {
 		// 기본 ret 설정해서 페이지 이동여부 결정
 		map.put("ret", null);
-
-		// 하나는 해당 게시글하나
-		PageVO pageVO = pageDAO.pageList(pageNO);
-
+		map.put("pageNO", pageNO);
+		
+		if(map.get("direction") != null) {
+			// 만약 이전화, 다음화가 있으면, lag 혹은 lead로
+			// 이전화 혹은 다음화의 series를 찾음
+			logger.debug("[이전화, 다음화 발생] 기존 pageNO=="+pageNO);
+			Integer series = pageDAO.selectDirection(map);
+			logger.debug("[조회후 나온 series]=="+series);
+			if(series == null || series == 0) {
+				// 만약 조회된게 없으면 실패
+				// 0 이면 해당 페이지가 존재하지 않습니다...
+				map.put("ret", "0");
+				return map;
+			}else {
+				// 만약 잘 조회됬으면 series를 map에 넣음
+				logger.debug("[series를 넣음]");
+				map.put("series", series);
+			}
+		}
+		
+		// 해당 pageNO를 이용해 페이지 조회
+		PageVO pageVO = pageDAO.pageList(map);
+		
 		// 만약 게시글이 유료화일 경우
 		if (pageVO.getCharge() != null) {
-
 			// 그러나 만약 아이디가 null이면 조회할것도 없으니.. ret = 0을 리턴시킴
-			if (userVO == null) {
+			if (map.get("userVO")== null) {
 				logger.debug("[로그인 안한 유저 감지]");
 				logger.debug("[ret 결과]==" + map.get("ret"));
 				return map;
 			}
+			
 			// 유저의 정보를 담아서 dao에 select 요청
 			Map<String, Object> selectUser = new HashMap<String, Object>();
 			selectUser.put("id", userVO.getId());
@@ -247,7 +265,9 @@ public class BookService {
 
 	public PageVO bookPageOne(int pageNO) {
 		// TODO Auto-generated method stub
-		return pageDAO.pageList(pageNO);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("pageNO", pageNO);
+		return pageDAO.pageList(map);
 	}
     
 	@Transactional(isolation= Isolation.READ_COMMITTED , rollbackFor = { Exception.class })

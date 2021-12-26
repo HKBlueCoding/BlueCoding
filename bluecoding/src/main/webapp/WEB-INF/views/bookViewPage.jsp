@@ -207,7 +207,7 @@
                               <a onclick="alert('첫화입니다.')" class="btn">이전 화</a>
                            </c:if>
                            <c:if test="${pageVO.series ne 1 }">
-                              <a href="../view/page?pageNO=${pageVO.series -1}" class="btn">이전 화</a>
+                              <a href="../view/page?pageNO=${pageVO.pageNO }&bookNO=${pageVO.bookNO}&direction=minus" class="btn">이전 화</a>
                            </c:if>
                         </div>
                         <div class="button header-button">
@@ -215,7 +215,7 @@
                               <a onclick="alert('마지막 화입니다.')" class="btn">다음 화</a>
                            </c:if>
                            <c:if test="${ lastSeries ne pageVO.series }">
-                              <a href="../view/page?pageNO=${pageVO.series +1}" class="btn">다음 화</a>
+                              <a href="../view/page?pageNO=${pageVO.pageNO }&bookNO=${pageVO.bookNO}&direction=plus" class="btn">다음 화</a>
                            </c:if>
                         </div>
                         <div class="button header-button">

@@ -60,7 +60,7 @@
 	<!-- [페이지 작성] -->
 	<insert id="insertPage" parameterType="PageVO">
 	 <selectKey keyProperty="pageNO" resultType="int" order="BEFORE">
-	 	SELECT count(pageNO)+1 FROM B_PAGE
+	 	SELECT NVL2(max(PAGENO)+1, max(PAGENO)+1, 1)  FROM B_PAGE WHERE bookNO = #{bookNO}
 	 </selectKey>
 	 <![CDATA[
 	  INSERT INTO B_PAGE 
@@ -68,11 +68,53 @@
 	  VALUES(#{pageNO}, #{series}, #{pageTitle}, #{pageText}, #{pageDate}, #{comment}, 1, #{charge}, 1, #{bookNO})
 	 ]]>
 	</insert>
+	<!-- [다음화 or 이전화 구하기] -->
+	<select id="selectDirection" parameterType="hashmap" resultType="java.lang.Integer">
+	 <![CDATA[
+	    SELECT 
+	    	bpAll.SERIES
+		FROM 
+			(
+			 	SELECT 
+			 		PAGENO ,
+	  ]]>
+	  <if test='direction.equals("minus")'>
+	   <![CDATA[
+			 		LAG(SERIES, 1, 0) over(ORDER BY SERIES) AS SERIES
+	   ]]>
+	  </if>
+	  <if test='direction.equals("plus")'>
+	   <![CDATA[
+			 		LEAD(SERIES, 1, 0) over(ORDER BY SERIES) AS SERIES
+	   ]]>
+	  </if>	  		 		
+	  <![CDATA[	
+			 	FROM 
+			 		B_PAGE 
+			 	WHERE 
+			 		BOOKNO = #{bookNO} 
+			 	AND 
+			    	PAGEDELETE IS NULL
+			 	ORDER BY 
+			 		series ASC 
+			) bpAll
+		WHERE bpAll.PAGENO = #{pageNO}	
+	  ]]>
+
+	</select>
 	
-	<select id="selectOnePage" resultMap="pageResult">
-    <![CDATA[
+	<!-- [해당 페이지 조회] -->
+	<select id="selectOnePage" parameterType="hashmap" resultMap="pageResult">
+     <if test="series == null">
+      <![CDATA[
 		SELECT * FROM B_PAGE WHERE pageNO=#{pageNO}
-    ]]>
+      ]]>
+     </if>
+    <if test="series != null">
+     <![CDATA[
+     	SELECT * FROM B_PAGE WHERE bookNO = #{bookNO} AND series = #{series}
+     ]]>
+    </if>
 	</select>
 	
 	<update id="viewUpdateBook" parameterType="PageVO">

@@ -259,16 +259,30 @@ public class BookController {
 		return "done/bookViewAddDone";
 	}
 
-	// [회차 조회] - lastSeries 불러오기
+	// [회차 조회] + [이전페이지, 다음페이지]
 	@GetMapping("/view/page")
-	public String bookViewPageDone(Model model, @RequestParam("pageNO") int pageNO, HttpSession session) {
-
+	public String bookViewPageDone(Model model, @RequestParam("pageNO") 
+								  int pageNO, HttpSession session,@RequestParam(value="direction", required=false) String direction
+								  ,@RequestParam(value="bookNO", required=false) Integer bookNO) {
+		
+		// 이전화, 다음화를 위해서 direction-> plus or minus를 받아옴
+		Map<String, Object> map = new HashMap<String, Object>();
+		if(direction != null && bookNO != null) {
+			if(direction.equals("plus") || direction.equals("minus")) {
+				logger.debug("[디폴트 성공]");
+				map.put("direction", direction);
+				map.put("bookNO", bookNO);
+			}
+		}
+		
 		// 유료화 일수도 있으니 session의 userVO 값을 받아옴
 		UserVO userVO = (UserVO) session.getAttribute("login");
-		logger.debug("[userVO]==" + userVO);
+	    logger.debug("[userVO]==" + userVO);
 		
+	    
 		// [해당 페이지 조회 & 유료화에 따라 값 설정]
-		Map<String, Object> map = bookService.listPage(pageNO, userVO);
+	    
+		map = bookService.listPage(map, userVO, pageNO);
 		logger.debug("[map] = " + map);
 		logger.debug("[pageNO] = " + pageNO);
 		
@@ -277,10 +291,17 @@ public class BookController {
 			session.setAttribute("login", userVO);
 		}
 		
-		// 결과 확인
+		// 결과 확인 -> null이면 실패
 		if (map.get("ret") == null) {
 			return "done/pageViewFail";
 		}
+		
+		// 0이면 해당 페이지가 존재하지 않습니다..
+		if(map.get("ret").equals("0")) {
+			model.addAttribute("direction",direction);
+			return "done/pageNotFind";
+		}
+		
 		
 		model.addAttribute("lastSeries", map.get("lastSeries"));
 		model.addAttribute("pageVO", map.get("pageVO"));
