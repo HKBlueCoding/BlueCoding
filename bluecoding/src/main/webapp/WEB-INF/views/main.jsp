@@ -31,6 +31,7 @@
       <link rel="stylesheet" href="../resources/assets/css/main.css" />
       <link href="../resources/assets/css/styles.css" rel="stylesheet" />
       <link href="../../resources/bluecoding/css/header.css" rel="stylesheet" />
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" />
       <style type="text/css">
          .hero-area.overlay::before {
          all: unset;

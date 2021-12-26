@@ -65,12 +65,10 @@
       <!-- ====================== 페이징 ====================== -->
       <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
       <!-- ====================== 페이징 끝 ====================== -->
-      <style>
-         .search-form{
-         /* all: unset; */
-         }
-      </style>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
+              integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
+              crossorigin="anonymous"></script>
    </head>
    <body>
       <!-- header -->
@@ -97,21 +95,21 @@
                         <!-- https://startbootstrap.com/solution/contact-forms-->
                         <!-- to get an API token!-->
                         <div class="form-floating">
-                           <input class="form-control" name="pageTitle" id="name" type="text" value="${pageVO.pageTitle }" data-sb-validations="required" />
+                           <input class="form-control text_input" name="pageTitle" id="name" type="text" value="${pageVO.pageTitle }" data-sb-validations="required" />
                            <label for="name">제목</label>
                            <input type="hidden" value="${pageVO.pageNO }" name="pageNO">
                            <div class="invalid-feedback" data-sb-feedback="name:required">제목을 입력하세요.</div>
                         </div>
                         <br>
                         <div class="form-floating" id="formMag" style="width: 100%">
-                           <textarea class="form-control" name="pageText" id="message" style="height: 35rem" data-sb-validations="required">${pageVO.pageText }</textarea>
+                           <textarea class="form-control text_input" name="pageText" id="message" style="height: 35rem" data-sb-validations="required">${pageVO.pageText }</textarea>
                            <label for="name">본문</label>
                            <div class="invalid-feedback" data-sb-feedback="message:required">내용을 입력하세요.</div>
                            <br><br>
                            <div id="Writer">
                               &nbsp;작가의 말
                            </div>
-                           <textarea class="form-control" name="comment" style="height: 15rem">${pageVO.comment }</textarea>
+                           <textarea class="form-control text_input" name="comment" style="height: 15rem">${pageVO.comment }</textarea>
                         </div>
                         <br />
                         <!-- Submit success message-->
@@ -208,7 +206,39 @@
              }
          });
       </script>
-      <script>
+      <script src="../../resources/bluecoding/header.js"></script>
+      <script> 	
+         $(document).ready(function() {
+        	
+        	// 제목
+  	        $('.text_input:eq(0)').change(function() {	
+  	    	    if($.trim($('.text_input:eq(0)').val())==''){
+  	                alert("제목을 입력해주세요.");
+  	                $('.text_input:eq(0)').val('');
+  	                return;
+  	    	    }     	
+  	        }); //end change
+  	        
+  	   		// 내용
+  	        $('.text_input:eq(1)').change(function() {       	
+  	    	    if($.trim($('.text_input:eq(1)').val())==''){
+  	                alert("내용을 입력해주세요.");
+  	                $('.text_input:eq(1)').val('');
+  	                return;
+  	    	    }       	
+  	        }); //end change  
+
+  	   		// 작가의 말
+  	        $('.text_input:eq(2)').change(function() {       	  	        	
+  	    	    if($.trim($('.text_input:eq(2)').val())==''){
+  	                alert("작가의 말을 입력해주세요.");
+  	                $('.text_input:eq(2)').val('');
+  	                return;
+  	    	    }  	        	
+  	        }); //end change
+  	        
+  	     }); // end ready
+  	     
          function funbtn() {
            if (confirm("이전 페이지로 돌아가시겠습니까??")) {
              javascript:history.back();

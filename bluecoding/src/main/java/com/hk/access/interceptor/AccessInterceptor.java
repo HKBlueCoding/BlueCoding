@@ -28,7 +28,7 @@ public class AccessInterceptor implements HandlerInterceptor {
 		
 		UserVO userVO = (UserVO) session.getAttribute("login");		
 		Integer prohibit = userVO.getProhibitLV();
-		// 제재 단계 2단계면
+		// 제재 단계 2단계면 모든 글쓰기 비활성화
 		if(prohibit != null) {			
 			if(prohibit == 2) {
 				return false;

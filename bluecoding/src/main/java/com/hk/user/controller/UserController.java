@@ -147,7 +147,7 @@ public class UserController {
 		}
 
 		logger.debug("[현금화 가능한 금액] ==" + benefitAll);
-
+		model.addAttribute("id", id);
 		model.addAttribute("favoBookList", map.get("favoBookList"));
 		model.addAttribute("favoBuyList", map.get("favoBuyList"));
 		model.addAttribute("favoPayList", map.get("favoPayList"));

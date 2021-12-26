@@ -95,6 +95,9 @@
       <script src="../resources/assets/js/tiny-slider.js"></script>
       <script src="../resources/assets/js/glightbox.min.js"></script>
       <script src="../resources/assets/js/main.js"></script>
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
+              integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
+              crossorigin="anonymous"></script>
       <script type="text/javascript">
          //========= Category Slider 
          tns({
@@ -659,5 +662,6 @@
       </script>
       <!-- ================================ 답글 수정 끝 ====================================== -->
 	  <script src="../resources/bluecoding/bookView.js"></script>
+	  <script src="../../resources/bluecoding/header.js"></script>
    </body>
 </html>

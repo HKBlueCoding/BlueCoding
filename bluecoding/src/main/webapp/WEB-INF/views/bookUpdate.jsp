@@ -61,7 +61,7 @@
                                  <select name="theme" id="category" required>
                                     <option value="" disabled>테마 선택</option>
                                    <c:if test="${!empty bookVO.theme }">
-                                 	<option value="${bookVO.theme }" selected>${bookVO.theme }</option>
+                                 	<option value="${bookVO.theme }" selected>[기존]${bookVO.theme }</option>
                                    </c:if>
                                     <option value="판타지" >판타지</option>
                                     <option value="청소년">청소년</option>
@@ -186,13 +186,28 @@
       </script>
       <script>
         $(document).ready(function() {
-  	      $('.text_input').change(function() {
-  	    	  if($.trim($('.text_input').val())==''){
-  	              alert("공백 없이 내용을 입력해주세요.");
-  	              $('.text_input').val('');
-  	    	  }
-  	      }); //end on 
-  	    });       
+      	
+      	   // 제목
+  	       $('.text_input:eq(0)').change(function() {
+  	    	
+  	    	   if($.trim($('.text_input:eq(0)').val())==''){
+  	               alert("제목을 입력해주세요.");
+  	               $('.text_input:eq(0)').val('');
+  	               return;
+  	    	   } 	
+  	       }); //end change
+  	    
+      	   // 줄거리
+  	       $('.text_input:eq(1)').change(function() {
+  	    	
+  	    	   if($.trim($('.text_input:eq(1)').val())==''){
+  	               alert("줄거리를 입력해주세요.");
+  	               $('.text_input:eq(1)').val('');
+  	               return;
+  	      	   }    	    	
+  	       }); //end change 
+  	 
+  	     });// end ready     
       
          function funbtn() {
            if (confirm("이전 페이지로 돌아가시겠습니까??")) {

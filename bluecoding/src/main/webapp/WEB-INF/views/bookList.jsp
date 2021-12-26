@@ -5,7 +5,7 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>도서 정보</title>
+    <title>도서 정보 리스트</title>
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -20,20 +20,10 @@
     <link rel="stylesheet" href="../resources/assets/css/glightbox.min.css" />
     <link rel="stylesheet" href="../resources/assets/css/main.css" />
     <!-- SBAdmin2 CSS START -->
-    <!-- Custom fonts for this template -->
-    <link href="../resources/sbadmin2/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-    <!-- Custom styles for this template -->
+
     <link href="../resources/sbadmin2/css/sb-admin-2.min.css" rel="stylesheet">
     <!-- Custom styles for this page -->
     <link href="../resources/sbadmin2/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-    <!-- SBAdmin2 CSS END -->
-    <!--     Fonts and icons     -->
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
-    <!-- Nucleo Icons -->
-    <link href="../resources/assets/css/nucleo-icons.css" rel="stylesheet" />
-    <link href="../resources/assets/css/nucleo-svg.css" rel="stylesheet" />
-    <!-- Material Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
     <!-- CSS Files -->
     <link id="pagestyle" href="../resources/assets/css/material-dashboard.css?v=3.0.0" rel="stylesheet" />
@@ -42,8 +32,7 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <!-- ====================== 페이징 끝 ====================== -->
     <!-- Font Awesome Icons -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="../resources/assets/css/styles.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
       body {
         background-image: url(../resources/assets/images/here/noticeBG.jpg);
@@ -113,7 +102,6 @@
    
       }      
     </style>
-
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
       		  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
               crossorigin="anonymous"></script>

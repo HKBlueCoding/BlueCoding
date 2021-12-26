@@ -53,7 +53,7 @@ WHERE  id = #{id}
 		  p.SERIES AS SERIES,
 		  p.PAGEDATE AS PDATE
 		 FROM B_PAGEBUY pb, B_PAGE p
-		 WHERE pb.PAGENO = p.PAGENO AND pb.ID = #{id}
+		 WHERE pb.PAGENO = p.PAGENO AND pb.ID = #{id} AND pb.PAGEPAY = 300
      ]]>
 	</select>
 	

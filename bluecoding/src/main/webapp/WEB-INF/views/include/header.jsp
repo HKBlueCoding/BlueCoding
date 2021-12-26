@@ -77,7 +77,15 @@
                             				<h6 id="loginNick" class="mb-0 text-sm">${login.nick }<a class="text-xs text-secondary mb-0" href="../../logout" style="font-size: 0.875em;">&nbsp;(로그아웃)</a></h6>
                             				<a class="text-xs text-secondary mb-0" style="font-size: 0.875em;" data-bs-toggle="collapse" data-bs-target="#loginMore">메뉴</a>
                           					<ul class="sub-menu collapse" id="loginMore" >
-                                            	<li class="nav-item"><a href="">안전</a></li>
+                          					   <c:if test="${empty login.prohibitLV || login.prohibitLV eq 0 }">
+                                            	<li class="nav-item"><span class="badge bg-success">클린</span></li>
+                                               </c:if>
+                                               <c:if test="${ login.prohibitLV eq 1 }">
+                                                <span class="badge bg-warning">경고</span>
+                                               </c:if>
+                                               <c:if test="${ login.prohibitLV eq 2 }">
+                                                <span class="badge bg-danger">위험</span>
+                                               </c:if>	
                                             	<li class="nav-item" onClick="coinCharge()" ><a href="#">캐시 충전</a></li>
                                             	<li id="loginCash" class="nav-item">보유 캐시: ${login.coin }</li>
                                         	</ul>
@@ -99,6 +107,17 @@
     <div class="progress" style="height: 30px;">
         <div class="progress-bar" id="loginGauge" style="width: 60%; height: 30px; color:black;">로그인 하여 도서 게이지를 확인하세요</div>
     </div>
+    <!-- [경고창] -->
+    <c:if test="${ login.prohibitLV eq 1 }">
+     <div class="alert alert-warning">
+       <strong>[경고]</strong> 당신은 1단계 제재 상태인 도서 게시판에 관련해서 <a href="#" class="alert-link">경고</a>입니다. <a href="#" class="alert-link">도서관련 작성 및 수정</a>을 할 수 없습니다.
+     </div>
+    </c:if>
+    <c:if test="${ login.prohibitLV eq 2 }">
+     <div class="alert alert-danger">
+       <strong>[위험]</strong> 당신은 2단계 제재 상태인 <a href="#" class="alert-link">위험</a>입니다. 게시글 관련해서 <a href="#" class="alert-link">모든 창작 권한</a>이 제한됩니다.
+     </div>
+    </c:if>     
 </header>
 <!-- End Header Area -->
 

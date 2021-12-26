@@ -212,7 +212,7 @@ public class BookService {
 		// 만약 게시글이 유료화일 경우
 		if (pageVO.getCharge() != null) {
 			// 그러나 만약 아이디가 null이면 조회할것도 없으니.. ret = 0을 리턴시킴
-			if (map.get("userVO")== null) {
+			if (userVO== null) {
 				logger.debug("[로그인 안한 유저 감지]");
 				logger.debug("[ret 결과]==" + map.get("ret"));
 				return map;

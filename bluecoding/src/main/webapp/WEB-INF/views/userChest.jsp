@@ -451,17 +451,12 @@
          }
       </script>
       
-<%--             <c:if test="${empty login.id || login.id ne qnaList[0].id}">
+      <c:if test="${empty login.id || login.id ne id}">
        <script>
 		  javascript:history.back();
 		</script>
-      </c:if> --%>
-            
-      <!-- Github buttons -->
-      <script async defer src="https://buttons.github.io/buttons.js"></script>
-      <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
-      <script src="../resources/assets/js/material-dashboard.min.js?v=3.0.0"></script>
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      </c:if>
       <script src="../../resources/bluecoding/userChest.js"></script>
+      <script src="../../resources/bluecoding/header.js"></script>
 </body>
 </html>

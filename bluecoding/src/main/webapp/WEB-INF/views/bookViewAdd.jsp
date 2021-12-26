@@ -35,11 +35,9 @@
       <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
       <!-- Core theme CSS (includes Bootstrap)-->
       <link href="../resources/assets/css/styles.css" rel="stylesheet" />
-      <style>
-         .search-form{
-         /* all: unset; */
-         }
-      </style>    
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
+              integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
+              crossorigin="anonymous"></script>    
    </head>
    <body>
       <!-- header -->
@@ -163,15 +161,40 @@
              }
          });
       </script>
+      <script src="../../resources/bluecoding/header.js"></script>
       <script>
+    	
          $(document).ready(function() {
-  	        $('.text_input').change(function() {
-  	    	    if($.trim($('.text_input').val())==''){
-  	                alert("공백 없이 내용을 입력해주세요.");
-  	                $('.text_input').val('');
-  	    	    }
-  	        }); //end on 
-  	     });         
+        	
+        	// 제목
+  	        $('.text_input:eq(0)').change(function() {	
+  	    	    if($.trim($('.text_input:eq(0)').val())==''){
+  	                alert("제목을 입력해주세요.");
+  	                $('.text_input:eq(0)').val('');
+  	                return;
+  	    	    }     	
+  	        }); //end change
+  	        
+  	   		// 내용
+  	        $('.text_input:eq(1)').change(function() {       	
+  	    	    if($.trim($('.text_input:eq(1)').val())==''){
+  	                alert("내용을 입력해주세요.");
+  	                $('.text_input:eq(1)').val('');
+  	                return;
+  	    	    }       	
+  	        }); //end change  
+
+  	   		// 작가의 말
+  	        $('.text_input:eq(2)').change(function() {       	  	        	
+  	    	    if($.trim($('.text_input:eq(2)').val())==''){
+  	                alert("작가의 말을 입력해주세요.");
+  	                $('.text_input:eq(2)').val('');
+  	                return;
+  	    	    }  	        	
+  	        }); //end change
+  	        
+  	     }); // end ready 
+         
          function funbtn() {
            if (confirm("이전 페이지로 돌아가시겠습니까??")) {
              javascript:history.back();
