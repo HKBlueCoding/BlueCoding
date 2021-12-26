@@ -38,16 +38,46 @@
       <link href="../resources/assets/css/styles.css" rel="stylesheet" />
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" />
       <style>
-         .search-form{
-         /* all: unset; */
+         @media all and (max-width: 1500px){
+	         .board_text {
+	         	width:100%;
+	         }
+	         
+	         .board_image_button {
+	         	width:100%;
+	         }
+	         
+	         .board_button {
+	        	 margin-top: 1em;
+	         	margin-left: 0;
+	         }
+	         
+	         .board_image {
+	         	width:100%;
+	         }
+	         
+	         .board_image2 {
+	         	width:100%;
+	         	height:100%;
+	         }
+         }
+         
+         @media all and (max-width: 300px){
+	         .board_button2 {
+	         	margin-top: 1em;
+	         	margin-left: 0;
+	         }
          }
       </style>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
+              integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
+              crossorigin="anonymous"></script>
    </head>
    <body>
       <!-- header -->
       <jsp:include page="/WEB-INF/views/include/header.jsp"/>
-      <br><br><br><br><br><br><br><br>
+      <br><br><br><br><br><br><br><br><br>
       <!-- =================== 글쓰기 폼 ===================== -->
       <!-- Main Content-->
       <form id="contactForm" data-sb-form-api-token="API_TOKEN" action="update" method="post" enctype="multipart/form-data">
@@ -66,26 +96,26 @@
                         <!-- https://startbootstrap.com/solution/contact-forms-->
                         <!-- to get an API token!-->
                         <div class="form-floating">
-                           <input class="form-control" id="boardTitle" name="boardTitle" type="text" value="${boardVO.boardTitle }" maxlength="50" required />
+                           <input class="form-control board_text_title" id="boardTitle" name="boardTitle" type="text" value="${boardVO.boardTitle }" maxlength="50" required />
                            <label for="name">제목</label>
                            <input type="hidden" value="${boardVO.articleNO }" name="articleNO">  
                         </div>
                         <br>
                         <div class="form-floating" id="formMag">
-                           <textarea class="form-control" id="boardText" name="boardText" style="height: 35rem" maxlength="4800" required>${boardVO.boardText }</textarea>
+                           <textarea class="form-control board_text" id="boardText" name="boardText" style="height: 35rem" maxlength="4800" required>${boardVO.boardText }</textarea>
                            <label for="message">내용</label>
                         </div>
                         <br />
-                              <!-- 이미지 미리보기 -->
-                              <div align="center">
-                                 <!-- 1. 기존에 이미지 이름을 저장 -->
-                               <input type="hidden" name="boardImage" value="${boardVO.boardImage }" />
-                          <!-- 2. 기존에 이미지 표시 or id를 preview로 해서 이미지 파일이 등록이되면 src를 변경함 -->
-                          <img id="preview" src="../../download?uploadFile=${boardVO.boardImage }&inFolder=board&pk=${boardVO.articleNO}" width="400" height="200" class="avatar avatar-sm me-3 border-radius-lg" alt="user1" >
-                         </div>
-                         <!-- 이미지 미리보기 끝 -->   
-                              <br>
-                              이미지 선택: <input type="file" name="uploadFile" onchange="readURL(this)" />
+                        <!-- 이미지 미리보기 -->
+                        <div class="board_image" align="left">
+                           <!-- 1. 기존에 이미지 이름을 저장 -->
+                           <input type="hidden" name="boardImage" value="${boardVO.boardImage }" />
+                           <!-- 2. 기존에 이미지 표시 or id를 preview로 해서 이미지 파일이 등록이되면 src를 변경함 -->
+                           <img id="preview" class="board_image2" src="../../download?uploadFile=${boardVO.boardImage }&inFolder=board&pk=${boardVO.articleNO}" width="400" height="200" class="avatar avatar-sm me-3 border-radius-lg" alt="user1" >
+                        </div>
+                        <!-- 이미지 미리보기 끝 -->   
+                        <br>
+                        이미지 선택: <input type="file" class="board_image_button" name="uploadFile" onchange="readURL(this)" />
                         <!-- Submit success message-->
                         <!---->
                         <!-- This is what your users will see when the form-->
@@ -104,17 +134,17 @@
                         <!-- ======================= 버튼 ========================== -->
                         <!-- [로그인시] -->
                         <c:if test="${!empty login.id && login.id ne '' }">
-                           <div class="button header-button">
+                           <div class="button header-button board_button">
                               <input type="submit" class="btn" value="수정">
                            </div>
                         </c:if>
                         <!-- [비 로그인시]] -->
                         <c:if test="${empty login.id || login.id  eq '' }">
-                           <div class="button header-button">
+                           <div class="button header-button board_button">
                               <a data-bs-toggle="modal"  data-bs-target="#login" class="btn">수정</a>
                            </div>
                         </c:if>
-                        <div class="button header-button">
+                        <div class="button header-button board_button2">
                            <a onClick="funbtn()" class="btn">돌아가기</a>
                         </div>
                         <!-- ======================= 버튼 끝 ========================== -->
@@ -174,6 +204,7 @@
              }
          });
       </script>
+      <script src="../../resources/bluecoding/header.js"></script>
       <script>
          function funbtn() {
            if (confirm("이전 페이지로 돌아가시겠습니까??")) {
@@ -202,6 +233,26 @@
                 reader.readAsDataURL(input.files[0]);
              }
           }         
+      </script>
+      <script>
+         $(document).ready(function() {
+          $('.board_text_title').change(function() {
+          	if($.trim($('.board_text_title').val())==''){
+                  alert("공백 없이 제목을 입력해주세요.");
+                  $('.board_text_title').val('')
+          	}
+          }); //end on
+         });
+      </script>
+      <script>
+         $(document).ready(function() {
+            $('.board_text').change(function() {
+            	if($.trim($('.board_text').val())==''){
+                    alert("공백 없이 내용을 입력해주세요.");
+                    $('.board_text').val('')
+            	}
+            }); //end on
+         });
       </script>
    </body>
 </html>

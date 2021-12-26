@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" isELIgnored="false"%>
+   pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <%
-  request.setCharacterEncoding("UTF-8");
-%>
+   request.setCharacterEncoding("UTF-8");
+   %>
 <!DOCTYPE html>
 <html>
    <head>
@@ -56,34 +56,43 @@
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" />
       <style>
          body{
-         background-image: url(../resources/assets/images/here/noticeBG.jpg);
+    	     background-image: url(../resources/assets/images/here/noticeBG.jpg);
          }
+         
          #tbPadd{
-         padding-left: 1.5rem;
-         padding-right: 1.5rem;
+	         padding-left: 1.5rem;
+	         padding-right: 1.5rem;
          }
+         
          .line_td {
-   			width: 400px;
-   			overflow:hidden; 
-  			text-overflow:ellipsis;
-   			white-space:nowrap;  
-		 }
-		.nick_td {
-   			width: 80px;
-   			overflow:hidden; 
-  			text-overflow:ellipsis;
-   			white-space:nowrap;		
-		}
+	         width: 400px;
+	         overflow:hidden; 
+	         text-overflow:ellipsis;
+	         white-space:nowrap;  
+         }
+         
+         .nick_td {
+	         width: 80px;
+	         overflow:hidden; 
+	         text-overflow:ellipsis;
+	         white-space:nowrap;		
+         }
+         
+         @media all and (max-width: 325px){
+         	.board_button {
+         		margin-top: 1em;
+         	}
+         }
       </style>
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
       <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
-              integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
-              crossorigin="anonymous"></script>
+         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
+         crossorigin="anonymous"></script>
    </head>
    <body>
       <jsp:include page="/WEB-INF/views/include/header.jsp" />
-      <br><br><br><br><br><br><br>	
+      <br><br><br><br><br><br><br><br><br>
       <div class="container-fluid py-4" style="height:auto; width:60%;">
          <div class="row">
             <div class="col-12">
@@ -98,119 +107,113 @@
                         <table class="table align-items-center mb-0">
                            <thead>
                               <tr>
-                             	 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" style="width: 10%">번호</th>
+                                 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" style="width: 10%">번호</th>
                                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">&nbsp;&nbsp;작성한 글</th>
                                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">작성자</th>
                                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">조회수</th>
                                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">작성일</th>
                               </tr>
                            </thead>
-                           
-                            <c:choose>
-                            	<c:when test="${empty boardList }">
-                           	 	<tr>
-                           	 		<td>null입니다.</td>
-                           	 	</tr>
-                           	  </c:when>
-								<c:when test="${!empty boardList}">
-								    <c:forEach var="boardList"  items="${boardList }">
-                         	  		<tr>
-                                 		<td class="align-middle text-center">
-                                    		<span class="text-secondary text-xs font-weight-bold">${boardList.articleNO }</span>
-                                 		</td>
-                                 		<td>
-                                    		<div class="d-flex px-2 py-1">
-                                       			<div class="d-flex flex-column justify-content-center">
-                                          			<a href="view?articleNO=${boardList.articleNO}" class="mb-0 text-sm line_td" style="color: black">${boardList.boardTitle }</a>
-                                          			<p class="text-xs text-secondary mb-0 line_td">${boardList.boardText }</p>
-                                       			</div>
-                                    		</div>
-                                 		</td>
-                                 <td class="align-middle">
-                                    <span class="text-secondary text-xs font-weight-bold nick_td">${boardList.nick }</span>
-                                 </td>
-                                 <td class="align-middle text-center text-sm">
-                                    <span class="badge badge-sm bg-gradient-success" style="background-image: linear-gradient(180deg,#419cef 10%,#106ec3 100%);">${boardList.bdViewCnt }</span>
-                                 </td>
-                                 <td class="align-middle text-center">
-                                    <span class="text-secondary text-xs font-weight-bold">${boardList.boardDate }</span>
-                                 </td>
-                              	 	</tr>                           	   	 
-                           	     </c:forEach>
-                           	 </c:when>
+                           <c:choose>
+                              <c:when test="${empty boardList }">
+                                 <tr>
+                                    <td>null입니다.</td>
+                                 </tr>
+                              </c:when>
+                              <c:when test="${!empty boardList}">
+                                 <c:forEach var="boardList"  items="${boardList }">
+                                    <tr>
+                                       <td class="align-middle text-center">
+                                          <span class="text-secondary text-xs font-weight-bold">${boardList.articleNO }</span>
+                                       </td>
+                                       <td>
+                                          <div class="d-flex px-2 py-1">
+                                             <div class="d-flex flex-column justify-content-center">
+                                                <a href="view?articleNO=${boardList.articleNO}" class="mb-0 text-sm line_td" style="color: black">${boardList.boardTitle }</a>
+                                                <p class="text-xs text-secondary mb-0 line_td">${boardList.boardText }</p>
+                                             </div>
+                                          </div>
+                                       </td>
+                                       <td class="align-middle">
+                                          <span class="text-secondary text-xs font-weight-bold nick_td">${boardList.nick }</span>
+                                       </td>
+                                       <td class="align-middle text-center text-sm">
+                                          <span class="badge badge-sm bg-gradient-success" style="background-image: linear-gradient(180deg,#419cef 10%,#106ec3 100%);">${boardList.bdViewCnt }</span>
+                                       </td>
+                                       <td class="align-middle text-center">
+                                          <span class="text-secondary text-xs font-weight-bold">${boardList.boardDate }</span>
+                                       </td>
+                                    </tr>
+                                 </c:forEach>
+                              </c:when>
                            </c:choose>
-							
                            </tbody>
                         </table>
                      </div>
                   </div>
                </div>
-            </div>
-         </div>                  
-                           
-  
-         <!-- Start Search Form -->
-         <div class="search-form wow fadeInUp" style="margin: 1px; padding: 1px;">
-            <div class="row">
-               <div class="button header-button" style="width: 13%; margin-left: 50px; padding: 1px;">
-                  <a href="add" class="btn">작성</a>
-               </div>
-               <div class="button header-button" style="width: 20%; margin-left: 1px; padding: 1px;">
-                  <a onClick="funbtn()" class="btn">돌아가기</a>
+               <div class="search-form wow fadeInUp" style="margin: 1px; padding: 1px;">
+                  <div class="row">
+                     <div class="button header-button" style="width: 100%; padding: 1px; margin: 0; text-align: center;">
+                        <a href="add" class="btn">작성</a>
+                        <a onClick="funbtn()" class="btn board_button">돌아가기</a>
+                     </div>
+                  </div>
                </div>
             </div>
          </div>
- 	  </div>         
-         <!-- End Search Form -->
+         <!-- Start Search Form -->
+      </div>
+      <!-- End Search Form -->
       <!-- ====================== 페이징 ====================== -->
       <div class="w3-center">
          <div class="w3-bar">
-          <c:if test="${!empty totArticle }">
-           <c:choose>
-            <c:when test="${ totArticle > 100 }">
-             <c:forEach var="page" begin="1" end="10" step="1">
-              <c:if test="${ section >1 && page == 1 }">
-               <a href="list?section=${section-1 }&pageNum=10" class="w3-button">«</a>
-              </c:if>
-              <c:choose>
-               <c:when test="${page == pageNum }">
-                <a href="list?section=${section }&pageNum=${page}" class="w3-button w3-blue">${(section-1)*10+page }</a>
-               </c:when>
-               <c:otherwise>
-                <a href="list?section=${section }&pageNum=${page}" class="w3-button">${(section-1)*10+page }</a>
-               </c:otherwise>
-              </c:choose>
-              <c:if test="${page == 10 }">
-                <a href="list?section=${section+1 }&pageNum=1" class="w3-button">»</a>
-              </c:if>
-             </c:forEach>
-            </c:when>
-            <c:when test="${totArticle == 100 }">
-             <c:forEach var="page" begin="1" end="10" step="1">
-              <c:choose>
-               <c:when test="${page == pageNum}">
-                <a href="list?section=${section }&pageNum=${page }" class="w3-button w3-blue">${page }</a>
-               </c:when>
-               <c:otherwise>
-                <a href="list?section=${section }&pageNum=${page}" class="w3-button">${page }</a>
-               </c:otherwise>
-              </c:choose>
-             </c:forEach>
-            </c:when>
-            <c:when test="${totArticle < 100 }">
-             <c:forEach var="page" begin="1" end="${totArticle/10 +1 }" step="1">
-              <c:choose>
-               <c:when test="${page == pageNum }">
-               	<a href="list?section=${section }&pageNum=${page }" class="w3-button w3-blue">${page }</a>
-               </c:when>
-               <c:otherwise>
-                <a href="list?section=${section }&pageNum=${page }" class="w3-button">${page }</a>
-               </c:otherwise>
-              </c:choose>
-             </c:forEach>
-            </c:when>
-           </c:choose>
-          </c:if> 
+            <c:if test="${!empty totArticle }">
+               <c:choose>
+                  <c:when test="${ totArticle > 100 }">
+                     <c:forEach var="page" begin="1" end="10" step="1">
+                        <c:if test="${ section >1 && page == 1 }">
+                           <a href="list?section=${section-1 }&pageNum=10" class="w3-button">«</a>
+                        </c:if>
+                        <c:choose>
+                           <c:when test="${page == pageNum }">
+                              <a href="list?section=${section }&pageNum=${page}" class="w3-button w3-blue">${(section-1)*10+page }</a>
+                           </c:when>
+                           <c:otherwise>
+                              <a href="list?section=${section }&pageNum=${page}" class="w3-button">${(section-1)*10+page }</a>
+                           </c:otherwise>
+                        </c:choose>
+                        <c:if test="${page == 10 }">
+                           <a href="list?section=${section+1 }&pageNum=1" class="w3-button">»</a>
+                        </c:if>
+                     </c:forEach>
+                  </c:when>
+                  <c:when test="${totArticle == 100 }">
+                     <c:forEach var="page" begin="1" end="10" step="1">
+                        <c:choose>
+                           <c:when test="${page == pageNum}">
+                              <a href="list?section=${section }&pageNum=${page }" class="w3-button w3-blue">${page }</a>
+                           </c:when>
+                           <c:otherwise>
+                              <a href="list?section=${section }&pageNum=${page}" class="w3-button">${page }</a>
+                           </c:otherwise>
+                        </c:choose>
+                     </c:forEach>
+                  </c:when>
+                  <c:when test="${totArticle < 100 }">
+                     <c:forEach var="page" begin="1" end="${totArticle/10 +1 }" step="1">
+                        <c:choose>
+                           <c:when test="${page == pageNum }">
+                              <a href="list?section=${section }&pageNum=${page }" class="w3-button w3-blue">${page }</a>
+                           </c:when>
+                           <c:otherwise>
+                              <a href="list?section=${section }&pageNum=${page }" class="w3-button">${page }</a>
+                           </c:otherwise>
+                        </c:choose>
+                     </c:forEach>
+                  </c:when>
+               </c:choose>
+            </c:if>
          </div>
       </div>
       <!-- ====================== 페이징 끝 ====================== -->
@@ -274,13 +277,13 @@
            }
          }
       </script>
-   <c:if test="${totArticle > 1 && empty boardList }">    
-    <script> 
-      window.onload = function(){
-    	alert('해당 페이지가 비어 있습니다.');
-    	javascript:history.back();
-      }
-    </script>
-   </c:if>             
+      <c:if test="${totArticle > 1 && empty boardList }">
+         <script> 
+            window.onload = function(){
+            alert('해당 페이지가 비어 있습니다.');
+            javascript:history.back();
+            }
+         </script>
+      </c:if>
    </body>
 </html>

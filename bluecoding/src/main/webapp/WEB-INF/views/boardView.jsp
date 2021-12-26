@@ -73,26 +73,44 @@
          body {
          	background-image: url(../../resources/assets/images/here/noticeBG.jpg);
          }
+         
          #tbPadd {
          	padding-left: 1.5rem;
          	padding-right: 1.5rem;
          }
+         
          .mod {
          	display: none;
          }
+         
          .replyRe {
          	display: none;
          }
+         
          .text_div {
          	margin-right: 50px;
 			word-wrap: break-word; 
 		 }
+		 
 		 #info_span_01{
 		 	margin-left: 300px;
 		 }
+		 
 		 #info_span_02{
 		 	margin-left: 50px;
 		 }
+         
+         @media all and (max-width: 350px){
+         	.board_button2 {
+         		margin-top: 1em;
+         	}
+         }
+         
+         @media all and (max-width: 450px){
+		     .board_button3 {
+		     	margin-top: 1em;
+		     }
+         }         
       </style>
       <script
          src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
@@ -102,6 +120,7 @@
    </head>
    <body>
       <jsp:include page="/WEB-INF/views/include/header.jsp" />
+      <br>
       <br>
       <br>
       <br>
@@ -128,7 +147,7 @@
                               <div style="width: 100%; padding: 1px;">
                                  <p id="title" style="font-size: 40px;">커뮤니티 상세 보기</p>
                                  <hr class="my-4" style="width: 70%;">
-                                 <p id="title2" style="font-size: 30px;">[제목]<br>${boardVO.boardTitle }</p>
+                                 <p id="title2" style="font-size: 30px;">[제목]<br>&nbsp;${boardVO.boardTitle }</p>
                               </div>
                            </div>
                         </div>
@@ -177,11 +196,11 @@
                <!-- ======================= 버튼 ========================== -->
                <div align="right" style="width: 100%;">
                   <c:if test="${login.admin eq 'A'}">
-                     <div class="button header-button">
+                     <div class="button header-button board_button">
                         <a href="../board/update?articleNO=${boardVO.articleNO }"
                            class="btn">수정</a>
                      </div>
-                     <div class="button header-button">
+                     <div class="button header-button board_button2">
                         <a onclick="del('${boardVO.articleNO }')" class="btn">삭제</a>
                      </div>
                   </c:if>
@@ -463,7 +482,7 @@
                            등록</a>
                         </div>
                      </c:if>
-                     <div class="button header-button">
+                     <div class="button header-button board_button3">
                         <a onClick="funbtn()" class="btn">돌아가기</a>
                      </div>
                   </div>

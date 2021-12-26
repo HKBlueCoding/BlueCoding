@@ -154,8 +154,7 @@
          <div class="search-form wow fadeInUp"
             style="margin: 1px; padding: 1px;">
             <div class="row">
-               <div class="button header-button" 
-                  style="width: 100%; padding: 1px; text-align: center;">
+               <div class="button header-button" style="width: 100%; padding: 1px; text-align: center;">
                   <a href="/qna/add" class="btn">작성</a>
                   <a onClick="funbtn()" class="btn">돌아가기</a>
                </div>

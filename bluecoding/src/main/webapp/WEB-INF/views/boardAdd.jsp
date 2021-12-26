@@ -37,53 +37,65 @@
       <!-- Core theme CSS (includes Bootstrap)-->
       <link href="../resources/assets/css/styles.css" rel="stylesheet" />
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+      <style>
+         @media all and (max-width: 1500px){
+	         .board_text {
+	         	width:100%;
+	         }
+	         
+	         .board_image_button {
+	         	width:100%;
+	         }
+	         
+	         .board_button {
+	         	margin-top: 1em;
+	         	margin-left: 0;
+	         }
+         }
+         
+         @media all and (max-width: 300px){
+	         .board_button2 {
+	         	margin-top: 1em;
+	         	margin-left: 0;
+	         }
+         }
+      </style>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
       <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
-              integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
-              crossorigin="anonymous"></script>
+         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
+         crossorigin="anonymous"></script>
    </head>
    <body>
       <!-- header -->
       <jsp:include page="/WEB-INF/views/include/header.jsp"/>
-      <br><br><br><br><br><br><br><br>
+      <br><br><br><br><br><br><br><br><br>
       <!-- =================== 글쓰기 폼 ===================== -->
       <form id="contactForm" data-sb-form-api-token="API_TOKEN" action="add" method="post" encType="multipart/form-data">
-      <!-- Main Content-->
-      <main class="mb-4">
-         <div class="container px-4 px-lg-5">
-            <div class="row gx-4 gx-lg-5 justify-content-center">
-               <div class="col-md-10 col-lg-8 col-xl-7">
-                  <p id="title">커뮤니티글 쓰기</p>
-                  <hr class="my-4">
-                  <!-- ================== 카테고리 ======================= -->
-                  <div class="categorise search-form wow fadeInUp">
-                     <div class="row">
-                        <div class="col-lg-3 col-md-3 col-12 p-0">
-                           <div class="search-input">
-                              <label for="category"></label>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <br>
-                  <!-- ================== 카테고리 끝 ======================= -->
-                  <div class="my-5">
-                     <!-- * * * * * * * * * * * * * * *-->
-                     <!-- * * SB Forms Contact Form * *-->
-                     <!-- * * * * * * * * * * * * * * *-->
-                     <!-- This form is pre-integrated with SB Forms.-->
-                     <!-- To make this form functional, sign up at-->
-                     <!-- https://startbootstrap.com/solution/contact-forms-->
-                     <!-- to get an API token!-->
+         <!-- Main Content-->
+         <main class="mb-4">
+            <div class="container px-4 px-lg-5">
+               <div class="row gx-4 gx-lg-5 justify-content-center">
+                  <div class="col-md-10 col-lg-8 col-xl-7">
+                     <p id="title">커뮤니티글 쓰기</p>
+                     <hr class="my-4">
+                     <br>
+                     <div class="my-5">
+                        <!-- * * * * * * * * * * * * * * *-->
+                        <!-- * * SB Forms Contact Form * *-->
+                        <!-- * * * * * * * * * * * * * * *-->
+                        <!-- This form is pre-integrated with SB Forms.-->
+                        <!-- To make this form functional, sign up at-->
+                        <!-- https://startbootstrap.com/solution/contact-forms-->
+                        <!-- to get an API token!-->
                         <div class="form-floating">
                            <input type="hidden" name="id" value="${login.id }">
                            <input type="hidden" name="nick" value="${login.nick }">
-                           <input class="form-control" id="name" name="boardTitle" type="text" maxlength="50" required/>
+                           <input class="form-control board_text_title" id="name" name="boardTitle" type="text" maxlength="50" required/>
                            <label for="name">제목</label>
                         </div>
                         <br>
                         <div class="form-floating" id="formMag">
-                           <textarea class="form-control" id="message" name="boardText" style="height: 35rem" maxlength="4800" required></textarea>
+                           <textarea class="form-control board_text" id="message" name="boardText" style="height: 35rem" maxlength="4800" required></textarea>
                            <label for="message">내용</label>
                         </div>
                         <br />
@@ -107,20 +119,20 @@
                            <div class="text-center text-danger mb-3">Error sending message!</div>
                         </div>
                         <!-- Submit Button-->
-                                          이미지 선택: &nbsp;<input id="uploadFile" name="uploadFile" type="file">
+                        이미지 선택: &nbsp;<input class="board_image_button" id="uploadFile" name="uploadFile" type="file">
                         <!-- ======================= 버튼 ========================== -->
-                        <div class="button header-button">
+                        <div class="button header-button board_button">
                            <input type="submit" class="btn" value="등록">
                         </div>
-                        <div class="button header-button">
+                        <div class="button header-button board_button2">
                            <a onClick="funbtn()" class="btn">돌아가기</a>
                         </div>
                         <!-- ======================= 버튼 끝 ========================== -->
+                     </div>
                   </div>
                </div>
             </div>
-         </div>
-      </main>
+         </main>
       </form>
       <!-- =================== 글쓰기 폼 끝===================== -->
       <!-- ==================== footer ====================== -->      
@@ -183,14 +195,24 @@
          }
       </script>
       <script>
-         function funok() {
-           if (alert("정상적으로 등록되었습니다.") == true) {
-            
-           } else {
-            alert("등록에 실패하였습니다.")
-           	   return;
-           }
-         }
-      </script>      
+         $(document).ready(function() {
+          $('.board_text_title').change(function() {
+          	if($.trim($('.board_text_title').val())==''){
+                  alert("공백 없이 제목을 입력해주세요.");
+                  $('.board_text_title').val('')
+          	}
+          }); //end on 
+         });
+      </script>
+      <script>
+         $(document).ready(function() {
+            $('.board_text').change(function() {
+            	if($.trim($('.board_text').val())==''){
+                    alert("공백 없이 내용을 입력해주세요.");
+                    $('.board_text').val('')
+            	}
+            }); //end on 
+         });
+      </script>
    </body>
 </html>
