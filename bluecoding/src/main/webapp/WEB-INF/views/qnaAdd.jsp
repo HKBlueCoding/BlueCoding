@@ -29,18 +29,51 @@
       <link rel="stylesheet" href="../resources/assets/css/main.css" />
       <!-- ============================== 글쓰기(startbootstrap-clean-blog-gh-pages) ============================== -->
       <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-      <!-- Font Awesome icons (free version)-->
-      <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" crossorigin="anonymous"></script>
       <!-- Google fonts-->
       <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
       <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
       <!-- Core theme CSS (includes Bootstrap)-->
       <link href="../resources/assets/css/styles.css" rel="stylesheet" />
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+      <style>
+         @media all and (max-width: 1500px){
+	         .qna_text {
+	         	width:100%;
+	         }
+	         
+	         .qna_image_button {
+	         	width:100%;
+	         }
+	         
+	         .qna_button {
+	         	margin-top: 1em;
+	         	margin-left: 0;
+	         }
+         }
+         
+         @media all and (max-width: 300px){
+	         .qna_button2 {
+	         	margin-top: 1em;
+	         	margin-left: 0;
+	         }
+         }
+         
+         @media all and (max-width: 800px){
+	         .qna_div_size{
+	         	width:50%;
+	         }
+	         
+	         .qna_div2_size{
+	         	padding: 0;
+	         }
+         }
+      </style>
+      <!-- Font Awesome icons (free version)-->
+      <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" crossorigin="anonymous"></script>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
-            <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
          integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
-         crossorigin="anonymous"></script>       
+         crossorigin="anonymous"></script>
    </head>
    <body>
       <!-- header -->
@@ -56,10 +89,10 @@
                      <p id="title">문의글 쓰기</p>
                      <hr class="my-4">
                      <!-- ================== 카테고리 ======================= -->
-                     <div class="categorise search-form wow fadeInUp">
+                     <div class="categorise search-form wow fadeInUp qna_div2_size">
                         <div class="row">
                            <div class="col-lg-3 col-md-3 col-12 p-0">
-                              <div class="search-input">
+                              <div class="search-input qna_div_size">
                                  <label for="category"></label>
                                  <input type="hidden" name="id" value="${login.id }">
                                  <select name="qnaList" id="qnaList" required>
@@ -85,22 +118,23 @@
                         <!-- https://startbootstrap.com/solution/contact-forms-->
                         <!-- to get an API token!-->
                         <div class="form-floating">
-                           <input class="form-control" id="qnaTitle" name="qnaTitle" type="text" maxlength="50" required/>
-                           <label for="qnaTitle">제목</label>                          
+                           <input class="form-control qna_text_title" id="qnaTitle" name="qnaTitle" type="text" maxlength="50" required/>
+                           <label for="qnaTitle">제목</label>                   
                         </div>
                         <br>
                         <div class="form-floating" id="formMag">
-                           <textarea class="form-control2" name="qnaText" rows="15" cols="90" maxlength="800" required></textarea>
+                           <textarea class="form-control qna_text" style="border: 1px solid #ced4da; border-radius: 0.25rem; height: 400px;" name="qnaText" rows="15" cols="90" maxlength="800" required></textarea>
                            <input type="hidden" name="qnaImage">
+                           <label for="qnaText">내용</label>
                         </div>
                         <br />
                         <!-- 사진 입력하기 -->
-                        이미지 선택: &nbsp;<input id="uploadFile" name="uploadFile" type="file">
+                        이미지 선택: &nbsp;<input class="qna_image_button" id="uploadFile" name="uploadFile" type="file">
                         <!-- ======================= 버튼 ========================== -->                     
-                        <div class="button header-button">
+                        <div class="button header-button qna_button">
                            <input type="submit" class="btn" value="등록">
                         </div>
-                        <div class="button header-button">
+                        <div class="button header-button qna_button2">
                            <a onClick="funbtn()" class="btn">돌아가기</a>
                         </div>
                         <!-- ======================= 버튼 끝 ========================== -->                     
@@ -170,6 +204,25 @@
          }
       </script>
       <script src="../../resources/bluecoding/header.js"></script>
-
+      <script>
+         $(document).ready(function() {
+          $('.qna_text_title').change(function() {
+          	if($.trim($('.qna_text_title').val())==''){
+                  alert("공백 없이 제목을 입력해주세요.");
+                  $('.qna_text_title').val('')
+          	}
+          }); //end on 
+         });
+      </script>
+      <script>
+         $(document).ready(function() {
+            $('.qna_text').change(function() {
+            	if($.trim($('.qna_text').val())==''){
+                    alert("공백 없이 내용을 입력해주세요.");
+                    $('.qna_text').val('')
+            	}
+            }); //end on 
+         });
+      </script>
    </body>
 </html>

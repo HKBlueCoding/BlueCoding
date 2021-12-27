@@ -16,6 +16,7 @@ function fn_enableRe(obj) {
 	document.getElementById("qnaReContent").disabled = false;
 	document.getElementById("tr_btn_modify2").style.display = "block";
 	document.getElementById("tr_btn_image").style.display = "block";
+	document.getElementById("tr_btn_one").style.display = "none";
 	document.getElementById("tr_btn_two").style.display = "none";
 	document.getElementById("tr_btn_label").style.display = "none";
 }
