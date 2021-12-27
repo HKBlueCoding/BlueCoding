@@ -220,7 +220,7 @@
                   </button>
                </div>
                <hr>
-               <!-- [인기 종류 2개] -->  
+               <!-- [인기 종류 3개] -->  
                <section class="how-works section" style="background-color: #fff;">
                   <div class="container">
                    <c:forEach var="bookPop" items="${popBList }" end="2" varStatus="popCnt">
@@ -237,7 +237,7 @@
                                 <img src="../../download?uploadFile=${popBDList[popCnt.index].boardImage }&inFolder=board&pk=${popBDList[popCnt.index].articleNO}" alt="${popBDList[popCnt.index].boardTitle }게시글 이미지" width="175" height="150" >
                                </c:if>		
                               </a>
-                              <h3>게시글 제목</h3>
+                              <h3>${popBDList[popCnt.index].boardTitle }</h3>
                               <br>
                               <p class="txt_line">${popBDList[popCnt.index].boardText }
                               </p>
@@ -255,7 +255,7 @@
                                <img src="../../download?uploadFile=${bookPop.bookImage }&inFolder=book&pk=${bookPop.bookNO}" alt="${bookPop.bookTitle }의 책" width="180" height="220">
                               </c:if> 
                              </a>                                                         
-                              <h3>${bookPop.bookTitle }</h3>
+                              <h3 class="txt_line">${bookPop.bookTitle }</h3>
                            </div>
                            <!-- End Single Work -->
                         </div>

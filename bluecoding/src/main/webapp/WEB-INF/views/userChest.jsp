@@ -64,7 +64,7 @@
       <jsp:include page="/WEB-INF/views/include/header.jsp" />
       <br><br><br><br><br><br><br><br>
       <!-- ========================= 관심 작품 ========================= -->
-      <div id="aa">
+      <div id="aa" style="display: block;">
          <div class="container-fluid py-4" style="height:auto; width:60%;">
             <!-- ======================= 버튼 ========================== -->
             <div class="button header-button">
@@ -143,7 +143,7 @@
       </div>
       <!-- ========================= 관심 작품 끝 ========================= -->
       <!-- ========================== 구매 내역 ========================== -->
-      <div id="bb">
+      <div id="bb" style="display: none;">
          <div class="container-fluid py-4" style="height:auto; width:60%;">
             <!-- ======================= 버튼 ========================== -->
             <div class="button header-button">
@@ -217,7 +217,7 @@
       </div>
       <!-- ========================== 구매 내역 끝 ========================== -->
       <!-- ========================== 결제 내역 ========================== -->
-      <div id="cc">
+      <div id="cc" style="display: none;">
          <div class="container-fluid py-4" style="height:auto; width:60%;">
             <!-- ======================= 버튼 ========================== -->
             <div class="button header-button">
@@ -297,7 +297,7 @@
       </div>
       <!-- ========================== 결제 내역 끝 ========================== -->
       <!-- ========================== 수익 관리 ========================== -->
-      <div id="dd">
+      <div id="dd" style="display: none;">
          <div class="container-fluid py-4" style="height:auto; width:60%;">
             <!-- ======================= 버튼 ========================== -->
             <div class="button header-button">

@@ -221,9 +221,6 @@
                               <a href="../view/page?pageNO=${pageVO.pageNO }&bookNO=${pageVO.bookNO}&direction=plus" class="btn">다음 화</a>
                            </c:if>
                         </div>
-                        <div class="button header-button">
-                           <a onClick="" class="btn">별점주기</a>
-                        </div>
                         <!-- ======================= 버튼 끝 ========================== -->
                      </div>
                   </form>
@@ -447,19 +444,6 @@
          </form>
          <!-- ======================= 버튼 끝 ========================== -->
       </div>
-      <!-- ====================== 페이징 ====================== -->
-      <div class="w3-center">
-         <div class="w3-bar">
-            <a href="#" class="w3-button">«</a>
-            <a href="#" class="w3-button w3-blue">1</a>
-            <a href="#" class="w3-button">2</a>
-            <a href="#" class="w3-button">3</a>
-            <a href="#" class="w3-button">4</a>
-            <a href="#" class="w3-button">5</a>
-            <a href="#" class="w3-button">»</a>
-         </div>
-      </div>
-      <!-- ====================== 페이징 끝 ====================== -->
       <!-- ====================== 리뷰(댓글) 끝====================== -->        
       <!-- ==================== footer ====================== -->      
       <!-- footer -->

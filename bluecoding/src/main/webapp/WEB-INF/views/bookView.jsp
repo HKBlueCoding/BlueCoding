@@ -172,9 +172,6 @@
                         <a data-bs-toggle="modal" data-bs-target="#login" class="btn" style="background-color: #e3970e;">찜하기</a>
                       </div>
                     </c:if>
-                    <div class="button header-button">
-                      <a href="" class="btn" style="background-color: #1dacf1">작품 리뷰(개수)</a>
-                    </div>
                     <br>
                     <br>
                     <!-- ======================= 버튼 끝 ========================== -->
@@ -247,7 +244,7 @@
                                             <a class="btn" style="background-color: #30e087" onClick="pageBuy('${pageList.pageNO}')">미리보기(유료)</a>
                                           </div>
                                         </c:if>
-                                        <c:if test="${login.admin eq 'A' || login.admin eq 'C'}">
+                                        <c:if test="${login.admin eq 'A' || login.admin eq 'C' || login.id eq bookVO.id}">
                                           <div class="button header-button">
                                             <a href="../view/update?pageNO=${pageList.pageNO}" class="btn" style="background-color: #30d8e0;">수정</a>
                                           </div>

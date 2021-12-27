@@ -149,7 +149,7 @@
                                              </div>
                                           </td>
                                           <td class="align-middle text-center">
-                                             <a href="/qna/view?qnaNO=${qna.qnaNO }"><span class="text-secondary text-xs font-weight-bold">${qna.qnaTitle }</span></a>
+                                             <a href="/qna/view?qnaNO=${qna.qnaNO }"><span class="text-secondary text-xs font-weight-bold ">${qna.qnaTitle }</span></a>
                                           </td>
                                           <td class="align-middle text-center">
                                              <span class="text-secondary text-xs font-weight-bold">${qna.id }</span>

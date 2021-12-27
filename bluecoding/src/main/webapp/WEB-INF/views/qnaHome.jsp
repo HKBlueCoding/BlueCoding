@@ -69,6 +69,12 @@
          padding-left: 1.5rem;
          padding-right: 1.5rem;
          }
+         .txt_line {
+         width: 300px;
+         overflow: hidden;
+         text-overflow: ellipsis;
+         white-space: nowrap;
+         }         
       </style>
       <script
          src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
@@ -87,7 +93,7 @@
       <br>
       <br>
       <br>
-      <div class="container-fluid py-4" style="height: auto; width: 60%;">
+      <div class="container-fluid py-4" style="height: auto; width: 80%;">
          <div class="row">
             <div class="col-12">
                <div class="card my-4">
@@ -125,13 +131,13 @@
                                           <td class="align-middle text-center">
                                              <div>
                                                 <div class="d-flex flex-column justify-content-center">
-                                                   <a href="view?qnaNO=${qna.qnaNO }" class="mb-0 text-sm" style="color: black">${qna.qnaTitle }</a>
+                                                   <a href="view?qnaNO=${qna.qnaNO }" class="mb-0 text-sm txt_line" style="color: black">${qna.qnaTitle }</a>
                                                    <p class="text-xs text-secondary mb-0">${qna.qnaList }</p>
                                                 </div>
                                              </div>
                                           </td>
                                           <td class="align-middle text-center">
-                                             <span class="text-secondary text-xs font-weight-bold">${qna.qnaText }</span>
+                                             <span class="text-secondary text-xs font-weight-bold txt_line">${qna.qnaText }</span>
                                           </td>
                                           <td class="align-middle text-center">
                                              <span class="text-secondary text-xs font-weight-bold">${qna.qnaDate }</span>

@@ -67,7 +67,4 @@ function payRefund(cDate) {
 
 window.onload = function() {
 
-	bChest.style.display = "none";
-	cChest.style.display = "none";
-	dChest.style.display = "none";
 }
