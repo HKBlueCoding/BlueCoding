@@ -154,7 +154,7 @@
         <br />
         <label for="birth">생년월일</label>
         <br />
-        <input type="text" name="birth" id="birth" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" placeholder="ex)2022-01-01" title="ex)2022-01-01" required />
+        <input type="date" name="birth" id="birth" title="ex)2022-01-01" required />
         <br />
         <label for="phone">전화번호</label>
         <br />

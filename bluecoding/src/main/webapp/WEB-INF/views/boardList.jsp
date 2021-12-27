@@ -163,7 +163,9 @@
                <div class="search-form wow fadeInUp" style="margin: 1px; padding: 1px;">
                   <div class="row">
                      <div class="button header-button" style="width: 100%; padding: 1px; margin: 0; text-align: center;">
+                       <c:if test="${!empty login.id }"> 
                         <a href="add" class="btn">작성</a>
+                       </c:if> 
                         <a onClick="funbtn()" class="btn board_button">돌아가기</a>
                      </div>
                   </div>
