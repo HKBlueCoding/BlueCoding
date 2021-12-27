@@ -140,12 +140,10 @@
                            </p>
                         </div>
                         &nbsp;&nbsp;&nbsp;&nbsp;
-                        <c:if test="${login.admin eq 'A' || login.admin eq 'C'}">
                            <div class="button header-button">
                               <input type="submit" value="수정하기" class="btn">
                               <a onClick="funok2()" class="btn">삭제</a>
                            </div>
-                        </c:if>
                         <div class="button header-button">
                            <a onClick="funbtn()" class="btn">돌아가기</a>
                         </div>
