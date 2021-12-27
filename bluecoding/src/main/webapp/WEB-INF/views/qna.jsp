@@ -223,15 +223,6 @@
                         </div>
                      </div>
                   </div>
-                  <div class="row">
-                     <div class="col-lg-4 col-md-4 col-12 p-0" style="width: 30%; margin-left: 100px;">
-                        <div class="search-input">
-                           <label for="keyword"><i class="lni lni-search-alt theme-color"></i></label>
-                           <input type="text" name="keyword" id="keyword" placeholder="검색하세요.">
-                           <button class="btn btn-primary"><i class="lni lni-search-alt"></i> 검색</button>
-                        </div>
-                     </div>
-                  </div>
                </div>
             </div>
          </div>

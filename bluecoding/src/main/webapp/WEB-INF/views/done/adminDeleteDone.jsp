@@ -8,7 +8,7 @@
 </head>
 <body>
   <script>
-	alert("생성 완료");
+	alert("삭제 완료");
 	window.opener.location.reload();
 	window.close();
   </script>

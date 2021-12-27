@@ -98,7 +98,7 @@
 			bu.ADMIN AS ADMIN2,
 			DECODE(ADMIN, 'A', '관리자', 'Q', '상담원') ADMIN
 		FROM B_USER bu
-		WHERE ADMIN = 'A' OR ADMIN = 'Q' AND PROHIBITLV NOT IN '3'		 
+		WHERE (ADMIN = 'A' OR ADMIN = 'Q') AND PROHIBITLV NOT IN '3'		 
 		]]>
 	</select>
 

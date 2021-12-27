@@ -14,12 +14,10 @@
 		<select name="prohibitLV" id="prohibitLV" required>
 		
 			<option value="" selected disabled>제재 레벨</option>
-			<option value="0">0</option>
-			<option value="1">1</option>
-			<option value="2">2</option>
-			<option value="3">3</option>
-			<option value="4">4</option>
-			<option value="5">5</option>
+			<option value="0">0(해제)</option>
+			<option value="1">1(경고)</option>
+			<option value="2">2(위험)</option>
+			<option value="3">3(영구 정지)</option>
 		</select> 
 		
 		<input type="submit" id="submit" value="변경" />

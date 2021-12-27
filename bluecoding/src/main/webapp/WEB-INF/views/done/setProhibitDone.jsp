@@ -9,6 +9,7 @@
 <body>
   <script>
 	alert("수정 완료");
+	window.opener.location.reload();
 	window.close();
   </script>
 </body>

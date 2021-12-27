@@ -107,7 +107,7 @@ public class AdminController {
 		int rs = adminService.deleteAdminAcc(id);
 		model.addAttribute("rs", rs);
 		
-		return "redirect: /admin";
+		return "done/adminDeleteDone";
 	}
 	
 	// 제재 수준 설정

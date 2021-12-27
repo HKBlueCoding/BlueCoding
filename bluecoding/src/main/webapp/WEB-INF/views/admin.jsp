@@ -193,10 +193,10 @@ request.setCharacterEncoding("UTF-8");
 							<div class="card-header pb-0">
 								<div class="row">
 									<div class="col-lg-6 col-7">
-										<h6>
+										<h6 style="margin-right: 5px;">
 											<a href="#" onclick="bookOn()">삭제된 책의 정보</a>
 										</h6>
-										<h6 align="center" style="margin-left: 55px;">
+										<h6 align="center" style="margin-left: 100px;">
 											<a href="#" onclick="pageOn()">삭제된 회차[클릭]</a>
 										</h6>
 									</div>
@@ -500,12 +500,6 @@ request.setCharacterEncoding("UTF-8");
 								</div>
 							</div>
 						</div>
-						<div class="search-input">
-							<label for="keyword"> <i
-								class="lni lni-search-alt theme-color"></i>
-							</label> <input type="text" name="keyword" id="keyword"
-								placeholder="검색하세요." align="center">
-						</div>
 					</div>
 					<div id="pgDetails" class="container-fluid py-4"
 						style="height: auto; width: 60%; display: none;">
@@ -567,12 +561,6 @@ request.setCharacterEncoding("UTF-8");
 									</div>
 								</div>
 							</div>
-						</div>
-						<div class="search-input">
-							<label for="keyword"> <i
-								class="lni lni-search-alt theme-color"></i>
-							</label> <input type="text" name="keyword" id="keyword"
-								placeholder="검색하세요." align="center">
 						</div>
 					</div>
 				</div>
@@ -671,12 +659,6 @@ request.setCharacterEncoding("UTF-8");
 								</div>
 							</div>
 						</div>
-						<div class="search-input">
-							<label for="keyword"> <i
-								class="lni lni-search-alt theme-color"></i>
-							</label> <input type="text" name="keyword" id="keyword"
-								placeholder="검색하세요." align="center">
-						</div>
 					</div>
 				</div>
 				<!-- Modal footer -->
@@ -769,12 +751,6 @@ request.setCharacterEncoding("UTF-8");
 									</div>
 								</div>
 							</div>
-						</div>
-						<div class="search-input">
-							<label for="keyword"> <i
-								class="lni lni-search-alt theme-color"></i>
-							</label> <input type="text" name="keyword" id="keyword"
-								placeholder="검색하세요." align="center">
 						</div>
 					</div>
 				</div>
@@ -916,23 +892,6 @@ request.setCharacterEncoding("UTF-8");
 									</div>
 								</div>
 							</div>
-							<!-- ====================== 페이징 ====================== -->
-							<div class="w3-center" align="center">
-								<div class="w3-bar">
-									<a href="#" class="w3-button">«</a> <a href="#"
-										class="w3-button w3-blue">1</a> <a href="#" class="w3-button">2</a>
-									<a href="#" class="w3-button">3</a> <a href="#"
-										class="w3-button">4</a> <a href="#" class="w3-button">5</a> <a
-										href="#" class="w3-button">»</a>
-								</div>
-							</div>
-							<div class="search-input">
-								<label for="keyword"> <i
-									class="lni lni-search-alt theme-color"></i>
-								</label> <input type="text" name="keyword" id="keyword"
-									placeholder="검색하세요." align="center">
-							</div>
-							<!-- ====================== 페이징 끝 ====================== -->
 						</div>
 					</div>
 				</div>
@@ -986,12 +945,6 @@ request.setCharacterEncoding("UTF-8");
 							</c:choose>
 						</tbody>
 					</table>
-					<div class="search-input">
-						<label for="keyword"> <i
-							class="lni lni-search-alt theme-color"></i>
-						</label> <input type="text" name="keyword" id="keyword"
-							placeholder="검색하세요." align="center">
-					</div>
 				</div>
 				<!-- Modal footer -->
 				<div class="modal-footer">

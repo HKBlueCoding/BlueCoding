@@ -2,6 +2,10 @@
 	pageEncoding="UTF-8"%>
 	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    <script src="../../resources/bluecoding/menu.js"></script> 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
+      		integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
+            crossorigin="anonymous"></script>
 <!-- Start Header Area -->
 <header class="header navbar-area">
     <div class="container">
@@ -40,6 +44,12 @@
                                   <li class="nav-item"><a href="../../user/chest?id=${login.id }" aria-label="Toggle navigation" >보관함</a></li>
                                 </c:if>
                                 <li class="nav-item"><a onclick="goQnaHome('${login.id }')" aria-label="Toggle navigation">고객센터</a></li>
+                                <c:if test="${login.admin eq 'A' }">
+                                 <li class="nav-item"><a onclick="location.href='../../../admin';" aria-label="Toggle navigation">관리자 페이지</a></li>
+                                </c:if> 
+                                <c:if test="${login.admin eq 'Q' }">
+                                 <li class="nav-item"><a onclick="location.href='../../../qna';" aria-label="Toggle navigation">상담원 페이지</a></li>
+                                </c:if>                                                           	
                             </ul>
                         </div>
                         <!-- [비로그인시] -->
