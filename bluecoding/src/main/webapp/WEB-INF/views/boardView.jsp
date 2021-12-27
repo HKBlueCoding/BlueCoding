@@ -195,7 +195,7 @@
                </div>
                <!-- ======================= 버튼 ========================== -->
                <div align="right" style="width: 100%;">
-                  <c:if test="${login.admin eq 'A'}">
+                  <c:if test="${login.admin eq 'A' || boardVO.id eq login.id}">
                      <div class="button header-button board_button">
                         <a href="../board/update?articleNO=${boardVO.articleNO }"
                            class="btn">수정</a>

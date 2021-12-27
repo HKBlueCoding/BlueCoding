@@ -58,7 +58,7 @@
 							B_BOARD
 						WHERE BOARDDELETE IS NULL	
 						ORDER BY
-							articleNO ASC
+							articleNO DESC
 					) BD
 			)
 		WHERE 

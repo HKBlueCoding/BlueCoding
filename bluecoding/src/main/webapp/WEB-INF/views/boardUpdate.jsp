@@ -139,7 +139,7 @@
                            </div>
                         </c:if>
                         <!-- [비 로그인시]] -->
-                        <c:if test="${empty login.id || login.id  eq '' }">
+                        <c:if test="${empty login.id || login.id  eq '' || boardVO.id eq login.id }">
                            <div class="button header-button board_button">
                               <a data-bs-toggle="modal"  data-bs-target="#login" class="btn">수정</a>
                            </div>
