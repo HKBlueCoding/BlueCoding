@@ -131,7 +131,7 @@
                                           <td class="align-middle text-center">
                                              <div>
                                                 <div class="d-flex flex-column justify-content-center">
-                                                   <a href="view?qnaNO=${qna.qnaNO }" class="mb-0 text-sm txt_line" style="color: black">${qna.qnaTitle }</a>
+                                                   <a href="view?qnaNO=${qna.qnaNO }" class="mb-0 text-sm" style="color: black">${qna.qnaTitle }</a>
                                                    <p class="text-xs text-secondary mb-0">${qna.qnaList }</p>
                                                 </div>
                                              </div>
