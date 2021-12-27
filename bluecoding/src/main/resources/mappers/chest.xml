@@ -33,10 +33,8 @@ WHERE  id = #{id}
 		 bb.BOOKDATE AS BDATE, 
 		 bb.BVIEWCNT AS VIEWCNT,
 		 bf.ID 
-		FROM 
-		 B_BOOK bb, B_FAVO bf 
-		WHERE 
-		 bb.BOOKNO = bf.BOOKNO AND bf.ID =#{id}
+		FROM B_BOOK bb, B_FAVO bf 
+		WHERE bb.BOOKNO = bf.BOOKNO AND bf.ID =#{id}
      ]]>
 	</select>
 	
@@ -54,6 +52,7 @@ WHERE  id = #{id}
 		  p.PAGEDATE AS PDATE
 		 FROM B_PAGEBUY pb, B_PAGE p
 		 WHERE pb.PAGENO = p.PAGENO AND pb.ID = #{id} AND pb.PAGEPAY = 300
+		 ORDER BY PDATE DESC
      ]]>
 	</select>
 	
@@ -66,7 +65,8 @@ WHERE  id = #{id}
     	 TO_CHAR(bc.COINDATE, 'yyyy-MM-dd HH24:MI:SS') AS CDATE,
     	 bc.CISREFUND AS REFUND
 		FROM B_COINHISTORY bc
-		WHERE id = #{id}  
+		WHERE id = #{id}
+		ORDER BY CDATE DESC  
 	 ]]>
 	</select>
 	
@@ -83,6 +83,7 @@ WHERE  id = #{id}
 		FROM B_PAGE p, B_AUTHOR ba 
 		WHERE p.PAGENO = ba.PAGENO
 		AND ba.ID = #{id}
+		ORDER BY PPDATE DESC
 	 ]]>
 	</select>
 
