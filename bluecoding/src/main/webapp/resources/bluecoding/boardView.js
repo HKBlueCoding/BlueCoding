@@ -28,6 +28,7 @@ function funbtn() {
 function del(articleNO) {
 	var chk = confirm("정말 글을 삭제하시겠습니까?");
 	if (chk) {
+		alert("글이 삭제되었습니다..");
 		location.href = '/board/delete?articleNO=' + articleNO;
 	}
 }
