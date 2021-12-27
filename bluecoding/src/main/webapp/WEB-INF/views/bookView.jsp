@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" isELIgnored="false"%><%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%><%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+	pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
 <!DOCTYPE html>
 <html>
   <head>
@@ -192,7 +195,7 @@
                       <br>
                     </c:if>
                     <div class="button header-button">
-                      <a href="../view/page?pageNO=${pageVO[0].pageNO }" class="btn" style="background-color: #30e087">첫회보기</a>
+                      <a href="../view/page?pageNO=${pageVO[fn:length(pageVO)-1].pageNO }" class="btn" style="background-color: #30e087">첫회보기</a>
                     </div>
                   </div>
                 </form>
