@@ -165,7 +165,7 @@ a {
                <input type="phone" name="phone" class="form-control" placeholder="전화번호" pattern="[0-9]{2,3}-[0-9]{3,4}-[0-9]{3,4}" title="형식 010-0000-0000"  required><br>
                <p class="check" id="check">${check}</p>
                <br />
-               <button id="btn-Yes" class="btn btn-lg btn-primary btn-block" type="submit">아 이 디 찾 기</button>
+               <button id="btn-Yes" class="btn btn-lg btn-primary btn-block" type="submit">비 밀 번 호 찾 기</button>
             </form>
 
 			</div>
