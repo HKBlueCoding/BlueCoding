@@ -67,21 +67,24 @@
       <!-- ====================== 페이징 끝 ====================== -->
       <style>
          body{
-         background-image: url(../../resources/assets/images/here/noticeBG.jpg);
+         	background-image: url(../../resources/assets/images/here/noticeBG.jpg);
          }
+         
          #tbPadd{
-         padding-left: 1.5rem;
-         padding-right: 1.5rem;
+         	padding-left: 1.5rem;
+         	padding-right: 1.5rem;
          }
+         
          .mod {
-         display: none;
+         	display: none;
          }
+         
          .replyRe {
-         display: none;
+         	display: none;
          }
       </style>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
-          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
       <!-- Core theme JS-->
       <script src="../resources/assets/js/scripts.js"></script>
       <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
@@ -96,8 +99,8 @@
       <script src="../resources/assets/js/glightbox.min.js"></script>
       <script src="../resources/assets/js/main.js"></script>
       <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
-              integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
-              crossorigin="anonymous"></script>
+         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
+         crossorigin="anonymous"></script>
       <script type="text/javascript">
          //========= Category Slider 
          tns({
@@ -130,10 +133,10 @@
          });
       </script>
       <script type="text/javascript">
-   	   <c:if test="${pageVO.pageDelete eq 'Y' }">
-		alert('삭제된 도서입니다.');
-		javascript: history.back();
-	   </c:if>   
+         <c:if test="${pageVO.pageDelete eq 'Y' }">
+         alert('삭제된 도서입니다.');
+         javascript: history.back();
+         </c:if>   
       </script>  
    </head>
    <body>
@@ -142,78 +145,80 @@
       <br><br><br><br><br><br><br><br>
       <!-- =================== 글쓰기 폼 ===================== -->
       <!-- Main Content-->
-      <main class="mb-4">
+      <main class="mb-4" style="background-color: #ccc; padding: 15px;">
          <div class="container px-4 px-lg-5">
-            <div class="row gx-4 gx-lg-5 justify-content-center">
-               <div class="col-md-10 col-lg-8 col-xl-7" style="width: 80%;">
-                  <form id="contactForm" data-sb-form-api-token="API_TOKEN">
-                     <p id="title">회차 보기${pageVO.pageDelete }</p>
-                     <hr class="my-4">
-                     <input type="hidden" name="pageNO" value="${pageVO.pageNO }" id="pageNO">
-                     <input type="hidden" value="${login.id }" name="id" id="id">
-                     <input type="hidden" value="${login.nick }" name="nick" id="nick">
-                     <p id="title2">&nbsp;&nbsp;${pageVO.pageTitle }</p>
-                     <div id="qna">
-                        <c:if test="${login.admin eq 'A' || login.admin eq 'C'}">
-                           <div class="button header-button">
-                              <a href="../view/update?pageNO=${pageVO.pageNO }" class="btn" style="background-color: #30d8e0;">수정</a>
-                           </div>
-                           <div class="button header-button">
-                              <a onClick="pageDelete('${pageVO.pageNO}')" class="btn">삭제</a>
-                           </div>
-                        </c:if>
-                        <br><br>
-                        <div class="my-5">
-                           <!-- * * * * * * * * * * * * * * *-->
-                           <!-- * * SB Forms Contact Form * *-->
-                           <!-- * * * * * * * * * * * * * * *-->
-                           <!-- This form is pre-integrated with SB Forms.-->
-                           <!-- To make this form functional, sign up at-->
-                           <!-- https://startbootstrap.com/solution/contact-forms-->
-                           <!-- to get an API token!-->
-                        </div>
-                        <div class="form-floating" style="width: 66.6%;">
-                           <input class="form-control" name="pageTitle" id="name" type="text" style="padding-top: 9px;" value="${pageVO.pageTitle }" data-sb-validations="required"  readonly/>
-                        </div>
-                        <br>
-                        <div class="form-floating" id="formMag" style="width: 66.6%;">
-                           <textarea class="form-control" name="pageText" id="message" style="height: 35rem" data-sb-validations="required" readonly>${pageVO.pageText }</textarea>
+            <div class="form-control" style="padding-top: 50px; height: auto;">
+               <div class="row gx-4 gx-lg-5 justify-content-center">
+                  <div class="col-md-10 col-lg-8 col-xl-7" style="width: 80%;">
+                     <form id="contactForm" data-sb-form-api-token="API_TOKEN">
+                        <p id="title">회차 보기${pageVO.pageDelete }</p>
+                        <hr class="my-4">
+                        <input type="hidden" name="pageNO" value="${pageVO.pageNO }" id="pageNO">
+                        <input type="hidden" value="${login.id }" name="id" id="id">
+                        <input type="hidden" value="${login.nick }" name="nick" id="nick">
+                        <p id="title2">&nbsp;&nbsp;${pageVO.pageTitle }</p>
+                        <div id="qna">
+                           <c:if test="${login.admin eq 'A' || login.admin eq 'C'}">
+                              <div class="button header-button">
+                                 <a href="../view/update?pageNO=${pageVO.pageNO }" class="btn" style="background-color: #30d8e0;">수정</a>
+                              </div>
+                              <div class="button header-button">
+                                 <a onClick="pageDelete('${pageVO.pageNO}')" class="btn">삭제</a>
+                              </div>
+                           </c:if>
                            <br><br>
-                           <div id="Writer">
-                              &nbsp;작가의 말
+                           <div class="my-5">
+                              <!-- * * * * * * * * * * * * * * *-->
+                              <!-- * * SB Forms Contact Form * *-->
+                              <!-- * * * * * * * * * * * * * * *-->
+                              <!-- This form is pre-integrated with SB Forms.-->
+                              <!-- To make this form functional, sign up at-->
+                              <!-- https://startbootstrap.com/solution/contact-forms-->
+                              <!-- to get an API token!-->
                            </div>
-                           <textarea class="form-control" name="comment" style="height: 15rem" readonly>${pageVO.comment }</textarea>
-                        </div>
-                        <br />
-                        <!-- Submit success message-->
-                        <!---->
-                        <!-- This is what your users will see when the form-->
-                        <!-- has successfully submitted-->
-                        <div class="d-none" id="submitSuccessMessage">
-                           <div class="text-center mb-3">
-                              <div class="fw-bolder">Form submission successful!</div>
-                              To activate this form, sign up at
-                              <br />
-                              <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
+                           <div class="form-floating" style="width: 66.6%;">
+                              <input class="form-control" name="pageTitle" id="name" type="text" style="padding-top: 9px;" value="${pageVO.pageTitle }" data-sb-validations="required"  readonly/>
                            </div>
+                           <br>
+                           <div class="form-floating" id="formMag" style="width: 66.6%;">
+                              <textarea class="form-control" name="pageText" id="message" style="height: 35rem" data-sb-validations="required" readonly>${pageVO.pageText }</textarea>
+                              <br><br>
+                              <div id="Writer">
+                                 &nbsp;작가의 말
+                              </div>
+                              <textarea class="form-control" name="comment" style="height: 15rem" readonly>${pageVO.comment }</textarea>
+                           </div>
+                           <br />
+                           <!-- Submit success message-->
+                           <!---->
+                           <!-- This is what your users will see when the form-->
+                           <!-- has successfully submitted-->
+                           <div class="d-none" id="submitSuccessMessage">
+                              <div class="text-center mb-3">
+                                 <div class="fw-bolder">Form submission successful!</div>
+                                 To activate this form, sign up at
+                                 <br />
+                                 <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
+                              </div>
+                           </div>
+                           <!-- Submit error message-->
+                           <!---->
+                           <!-- This is what your users will see when there is-->
+                           <!-- an error submitting the form-->
+                           <div class="d-none" id="submitErrorMessage">
+                              <div class="text-center text-danger mb-3">Error sending message!</div>
+                           </div>
+                           <!-- ======================= 버튼 ========================== -->
+                           <div class="button header-button">
+                              <a href="../view/page?pageNO=${pageVO.pageNO }&bookNO=${pageVO.bookNO}&direction=minus" class="btn">이전 화</a>
+                           </div>
+                           <div class="button header-button">
+                              <a href="../view/page?pageNO=${pageVO.pageNO }&bookNO=${pageVO.bookNO}&direction=plus" class="btn">다음 화</a>
+                           </div>
+                           <!-- ======================= 버튼 끝 ========================== -->
                         </div>
-                        <!-- Submit error message-->
-                        <!---->
-                        <!-- This is what your users will see when there is-->
-                        <!-- an error submitting the form-->
-                        <div class="d-none" id="submitErrorMessage">
-                           <div class="text-center text-danger mb-3">Error sending message!</div>
-                        </div>
-                        <!-- ======================= 버튼 ========================== -->
-                        <div class="button header-button">
-                        	<a href="../view/page?pageNO=${pageVO.pageNO }&bookNO=${pageVO.bookNO}&direction=minus" class="btn">이전 화</a>
-                        </div>
-                        <div class="button header-button">
-                        	<a href="../view/page?pageNO=${pageVO.pageNO }&bookNO=${pageVO.bookNO}&direction=plus" class="btn">다음 화</a>
-                        </div>
-                        <!-- ======================= 버튼 끝 ========================== -->
-                     </div>
-                  </form>
+                     </form>
+                  </div>
                </div>
             </div>
          </div>
@@ -439,7 +444,6 @@
       <!-- footer -->
       <jsp:include page="/WEB-INF/views/include/footer.jsp"/>
       <!-- Bootstrap core JS-->
-
       <script>
          function funbtn() {
            if (confirm("이전 페이지로 돌아가시겠습니까??")) {
@@ -474,14 +478,14 @@
              $('#repBtn').click(function() {
             	 
          		if ($.trim($("#pageReText").val()) == '') {
-        			alert("내용을 입력해주세요.");
-        			return false;
-        		}
-
-        		if ($.trim($("#pageReText").val().length) > 300) {
-        			alert("댓글은 300글자를 초과할 수 없습니다.");
-        			return false;
-        		}
+         		alert("내용을 입력해주세요.");
+         		return false;
+         	}
+         
+         	if ($.trim($("#pageReText").val().length) > 300) {
+         		alert("댓글은 300글자를 초과할 수 없습니다.");
+         		return false;
+         	}
             	 
                  $.ajax({
                          type: 'POST',
@@ -516,17 +520,17 @@
          }
          
          function replyDone(pageReNO, replyCnt){
-        	 
-        		if ($.trim($('#ReText' + replyCnt).val()) == '') {
-        			alert("내용을 입력해주세요.");
-        			return false;
-        		}
- 
-        		if ($.trim($('#ReText' + replyCnt).val().length) > 300) {
-        			alert("댓글은 300글자를 초과할 수 없습니다.");
-        			return false;
-        		}
-        	 
+          
+         	if ($.trim($('#ReText' + replyCnt).val()) == '') {
+         		alert("내용을 입력해주세요.");
+         		return false;
+         	}
+         
+         	if ($.trim($('#ReText' + replyCnt).val().length) > 300) {
+         		alert("댓글은 300글자를 초과할 수 없습니다.");
+         		return false;
+         	}
+          
              $.ajax({
                  type: 'POST',
                  url: '../view/page/pageReply/update',
@@ -559,17 +563,17 @@
          }
          
          function replyInsert(pageParentNO, replyCnt){
-        	 
-        		if ($.trim($('#RepReText' + replyCnt).val()) == '') {
-        			alert("내용을 입력해주세요.");
-        			return false;
-        		}
-
-        		if ($.trim($('#RepReText' + replyCnt).val().length) > 300) {
-        			alert("답글은 300글자를 초과할 수 없습니다.");
-        			return false;
-        		}
-        	 
+          
+         	if ($.trim($('#RepReText' + replyCnt).val()) == '') {
+         		alert("내용을 입력해주세요.");
+         		return false;
+         	}
+         
+         	if ($.trim($('#RepReText' + replyCnt).val().length) > 300) {
+         		alert("답글은 300글자를 초과할 수 없습니다.");
+         		return false;
+         	}
+          
            	$.ajax({
                	type: 'POST',
                	url: '../view/page/pageReplyRe/add',
@@ -606,17 +610,17 @@
          }
          
          function replyReDone(pageParentNO, replyCnt){
-        	 
-        		if ($.trim($('#ReText' + replyCnt).val()) == '') {
-        			alert("내용을 입력해주세요.");
-        			return false;
-        		}
-
-        		if ($.trim($('#ReText' + replyCnt).val().length) > 300) {
-        			alert("답글은 300글자를 초과할 수 없습니다.");
-        			return false;
-        		}
-        	 
+          
+         	if ($.trim($('#ReText' + replyCnt).val()) == '') {
+         		alert("내용을 입력해주세요.");
+         		return false;
+         	}
+         
+         	if ($.trim($('#ReText' + replyCnt).val().length) > 300) {
+         		alert("답글은 300글자를 초과할 수 없습니다.");
+         		return false;
+         	}
+          
              $.ajax({
                  type: 'POST',
                  url: '../view/page/pageReply/update',
@@ -635,7 +639,7 @@
          }
       </script>
       <!-- ================================ 답글 수정 끝 ====================================== -->
-	  <script src="../resources/bluecoding/bookView.js"></script>
-	  <script src="../../resources/bluecoding/header.js"></script>
+      <script src="../resources/bluecoding/bookView.js"></script>
+      <script src="../../resources/bluecoding/header.js"></script>
    </body>
 </html>

@@ -82,64 +82,67 @@
       <!-- =================== 글쓰기 폼 ===================== -->
       <!-- Main Content-->
       <form id="contactForm" data-sb-form-api-token="API_TOKEN" action="add" method="post" encType="multipart/form-data">
-         <main class="mb-4">
+         <main class="mb-4" style="background-color: #ccc; padding: 15px;">
             <div class="container px-4 px-lg-5">
-            <div class="row gx-4 gx-lg-5 justify-content-center">
-               <div class="col-md-10 col-lg-8 col-xl-7">
-                  <p id="title">작품 글쓰기</p>
-                  <hr class="my-4">
-                  <!-- ================== 카테고리 ======================= -->
-                  <div class="categorise search-form wow fadeInUp book_div2_size">
-                     <div class="row">
-                        <div class="col-lg-3 col-md-3 col-12 p-0">
-                           <div class="search-input book_div_size">
-                              <label for="category"></label>
-                              <select name="theme" id="category" title="테마를 선택하세요" required>
-                                 <option value="" selected disabled>테마 선택</option>
-                                 <option value="판타지">판타지</option>
-                                 <option value="청소년">청소년</option>
-                                 <option value="고전">고전</option>
-                                 <option value="공포/호러">공포/호러</option>
-                                 <option value="미스터리/스릴러">미스터리/스릴러</option>
-                                 <option value="로맨스">로맨스</option>
-                                 <option value="SF/과학">SF/과학</option>
-                                 <option value="드라마/영화">드라마/영화</option>
-                              </select>
+               <div class="form-control" style="padding-top: 50px; height: auto;">
+                  <div class="row gx-4 gx-lg-5 justify-content-center">
+                     <div class="col-md-10 col-lg-8 col-xl-7">
+                        <p id="title">작품 글쓰기</p>
+                        <hr class="my-4">
+                        <!-- ================== 카테고리 ======================= -->
+                        <div class="categorise search-form wow fadeInUp book_div2_size">
+                           <div class="row">
+                              <div class="col-lg-3 col-md-3 col-12 p-0">
+                                 <div class="search-input book_div_size">
+                                    <label for="category"></label>
+                                    <select name="theme" id="category" title="테마를 선택하세요" required>
+                                       <option value="" selected disabled>테마 선택</option>
+                                       <option value="판타지">판타지</option>
+                                       <option value="청소년">청소년</option>
+                                       <option value="고전">고전</option>
+                                       <option value="공포/호러">공포/호러</option>
+                                       <option value="미스터리/스릴러">미스터리/스릴러</option>
+                                       <option value="로맨스">로맨스</option>
+                                       <option value="SF/과학">SF/과학</option>
+                                       <option value="드라마/영화">드라마/영화</option>
+                                    </select>
+                                 </div>
+                              </div>
+                           </div>
+                           <!-- ================== 카테고리 끝 ======================= -->
+                           <div class="my-5">
+                              <!-- * * * * * * * * * * * * * * *-->
+                              <!-- * * SB Forms Contact Form * *-->
+                              <!-- * * * * * * * * * * * * * * *-->
+                              <!-- This form is pre-integrated with SB Forms.-->
+                              <!-- To make this form functional, sign up at-->
+                              <!-- https://startbootstrap.com/solution/contact-forms-->
+                              <!-- to get an API token!-->
+                              <div class="form-floating">
+                                 <input type="hidden" name="id" value="${login.id }">
+                                 <input type="hidden" name="name" value="${login.name }">
+                                 <input class="form-control book_text_title" id="bookTitle" name="bookTitle" type="text" maxlength="50" required/>
+                                 <label for="bookTitle">제목</label>                   
+                              </div>
+                              <br>
+                              <div class="form-floating" id="formMag">
+                                 <textarea class="form-control book_text" style="border: 1px solid #ced4da; border-radius: 0.25rem; height: 400px;" name="intro" rows="15" cols="90" minlength="10" maxlength="240" title="줄거리를 입력하세요(10자부터 240자까지)" required></textarea>
+                                 <input type="hidden" name="bookImage">
+                                 <label for="message">줄거리</label>
+                              </div>
+                              <br />
+                              <!-- 사진 입력하기 -->
+                              이미지 선택: &nbsp;<input class="book_image_button" id="uploadFile" name="uploadFile" type="file">
+                              <!-- ======================= 버튼 ========================== -->                     
+                              <div class="button header-button book_button">
+                                 <input type="submit" class="btn" value="등록">
+                              </div>
+                              <div class="button header-button book_button2">
+                                 <a onClick="funbtn()" class="btn">돌아가기</a>
+                              </div>
+                              <!-- ======================= 버튼 끝 ========================== -->                     
                            </div>
                         </div>
-                     </div>
-                     <!-- ================== 카테고리 끝 ======================= -->
-                     <div class="my-5">
-                        <!-- * * * * * * * * * * * * * * *-->
-                        <!-- * * SB Forms Contact Form * *-->
-                        <!-- * * * * * * * * * * * * * * *-->
-                        <!-- This form is pre-integrated with SB Forms.-->
-                        <!-- To make this form functional, sign up at-->
-                        <!-- https://startbootstrap.com/solution/contact-forms-->
-                        <!-- to get an API token!-->
-                        <div class="form-floating">
-                           <input type="hidden" name="id" value="${login.id }">
-                           <input type="hidden" name="name" value="${login.name }">
-                           <input class="form-control book_text_title" id="bookTitle" name="bookTitle" type="text" maxlength="50" required/>
-                           <label for="bookTitle">제목</label>                   
-                        </div>
-                        <br>
-                        <div class="form-floating" id="formMag">
-                           <textarea class="form-control book_text" style="border: 1px solid #ced4da; border-radius: 0.25rem; height: 400px;" name="intro" rows="15" cols="90" minlength="10" maxlength="240" title="줄거리를 입력하세요(10자부터 240자까지)" required></textarea>
-                           <input type="hidden" name="bookImage">
-                           <label for="message">줄거리</label>
-                        </div>
-                        <br />
-                        <!-- 사진 입력하기 -->
-                        이미지 선택: &nbsp;<input class="book_image_button" id="uploadFile" name="uploadFile" type="file">
-                        <!-- ======================= 버튼 ========================== -->                     
-                        <div class="button header-button book_button">
-                           <input type="submit" class="btn" value="등록">
-                        </div>
-                        <div class="button header-button book_button2">
-                           <a onClick="funbtn()" class="btn">돌아가기</a>
-                        </div>
-                        <!-- ======================= 버튼 끝 ========================== -->                     
                      </div>
                   </div>
                </div>

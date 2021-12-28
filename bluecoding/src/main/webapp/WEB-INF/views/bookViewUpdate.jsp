@@ -67,8 +67,8 @@
       <!-- ====================== 페이징 끝 ====================== -->
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
       <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
-              integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
-              crossorigin="anonymous"></script>
+         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
+         crossorigin="anonymous"></script>
    </head>
    <body>
       <!-- header -->
@@ -77,77 +77,81 @@
       <!-- =================== 글쓰기 폼 ===================== -->
       <!-- Main Content-->
       <form id="contactForm" data-sb-form-api-token="API_TOKEN" action="update" method="post">
-         <main class="mb-4">
+         <main class="mb-4" style="background-color: #ccc; padding: 15px;">
             <div class="container px-4 px-lg-5">
-               <div class="row gx-4 gx-lg-5 justify-content-center">
-                  <div class="col-md-10 col-lg-8 col-xl-7" style="width: 80%">
-                     <p id="title">회차 수정하기</p>
-                     <hr class="my-4">
-					 <br>
-                     <p id="title2">&nbsp;&nbsp;${pageVO.pageTitle }</p>
-                     <br><br>
-                     <div class="my-5">
-                        <!-- * * * * * * * * * * * * * * *-->
-                        <!-- * * SB Forms Contact Form * *-->
-                        <!-- * * * * * * * * * * * * * * *-->
-                        <!-- This form is pre-integrated with SB Forms.-->
-                        <!-- To make this form functional, sign up at-->
-                        <!-- https://startbootstrap.com/solution/contact-forms-->
-                        <!-- to get an API token!-->
-                        <div class="form-floating">
-                           <input class="form-control text_input" name="pageTitle" id="name" type="text" value="${pageVO.pageTitle }" data-sb-validations="required" />
-                           <label for="name">제목</label>
-                           <input type="hidden" value="${pageVO.pageNO }" name="pageNO">
-                           <div class="invalid-feedback" data-sb-feedback="name:required">제목을 입력하세요.</div>
-                        </div>
+               <div class="form-control" style="padding-top: 50px; height: auto;">
+                  <div class="row gx-4 gx-lg-5 justify-content-center">
+                     <div class="col-md-10 col-lg-8 col-xl-7" style="width: 80%">
+                        <p id="title">회차 수정하기</p>
+                        <hr class="my-4">
                         <br>
-                        <div class="form-floating" id="formMag" style="width: 100%">
-                           <textarea class="form-control text_input" name="pageText" id="message" style="height: 35rem" data-sb-validations="required">${pageVO.pageText }</textarea>
-                           <label for="name">본문</label>
-                           <div class="invalid-feedback" data-sb-feedback="message:required">내용을 입력하세요.</div>
-                           <br><br>
-                           <div id="Writer">
-                              &nbsp;작가의 말
+                        <p id="title2">&nbsp;&nbsp;${pageVO.pageTitle }</p>
+                        <br><br>
+                        <div class="my-5">
+                           <!-- * * * * * * * * * * * * * * *-->
+                           <!-- * * SB Forms Contact Form * *-->
+                           <!-- * * * * * * * * * * * * * * *-->
+                           <!-- This form is pre-integrated with SB Forms.-->
+                           <!-- To make this form functional, sign up at-->
+                           <!-- https://startbootstrap.com/solution/contact-forms-->
+                           <!-- to get an API token!-->
+                           <div class="form-floating">
+                              <input class="form-control text_input" name="pageTitle" id="name" type="text" value="${pageVO.pageTitle }" data-sb-validations="required" />
+                              <label for="name">제목</label>
+                              <input type="hidden" value="${pageVO.pageNO }" name="pageNO">
+                              <div class="invalid-feedback" data-sb-feedback="name:required">제목을 입력하세요.</div>
                            </div>
-                           <textarea class="form-control text_input" name="comment" style="height: 15rem">${pageVO.comment }</textarea>
-                        </div>
-                        <br />
-                        <!-- Submit success message-->
-                        <!---->
-                        <!-- This is what your users will see when the form-->
-                        <!-- has successfully submitted-->
-                        <div class="d-none" id="submitSuccessMessage">
-                           <div class="text-center mb-3">
-                              <div class="fw-bolder">Form submission successful!</div>
-                              To activate this form, sign up at
-                              <br />
-                              <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
+                           <br>
+                           <div class="form-floating" id="formMag" style="width: 100%">
+                              <textarea class="form-control text_input" name="pageText" id="message" style="height: 35rem" data-sb-validations="required">${pageVO.pageText }</textarea>
+                              <label for="name">본문</label>
+                              <div class="invalid-feedback" data-sb-feedback="message:required">내용을 입력하세요.</div>
+                              <br><br>
+                              <div id="Writer">
+                                 &nbsp;작가의 말
+                              </div>
+                              <textarea class="form-control text_input" name="comment" style="height: 15rem">${pageVO.comment }</textarea>
                            </div>
-                        </div>
-                        <!-- Submit error message-->
-                        <!---->
-                        <!-- This is what your users will see when there is-->
-                        <!-- an error submitting the form-->
-                        <div class="d-none" id="submitErrorMessage">
-                           <div class="text-center text-danger mb-3">Error sending message!</div>
-                        </div>
-                        <!-- ======================= 버튼 ========================== -->
-                        <div class="button header-button">
-                           <p>유료화 여부:<select name="charge" id="charge">
-                            			 	<option value="">무료</option>
-                                         	<option value="Y">유료화</option>
-                           				  </select>
-                           </p>
-                        </div>
-                        &nbsp;&nbsp;&nbsp;&nbsp;
+                           <br />
+                           <!-- Submit success message-->
+                           <!---->
+                           <!-- This is what your users will see when the form-->
+                           <!-- has successfully submitted-->
+                           <div class="d-none" id="submitSuccessMessage">
+                              <div class="text-center mb-3">
+                                 <div class="fw-bolder">Form submission successful!</div>
+                                 To activate this form, sign up at
+                                 <br />
+                                 <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
+                              </div>
+                           </div>
+                           <!-- Submit error message-->
+                           <!---->
+                           <!-- This is what your users will see when there is-->
+                           <!-- an error submitting the form-->
+                           <div class="d-none" id="submitErrorMessage">
+                              <div class="text-center text-danger mb-3">Error sending message!</div>
+                           </div>
+                           <!-- ======================= 버튼 ========================== -->
+                           <div class="button header-button">
+                              <p>
+                                 유료화 여부:
+                                 <select name="charge" id="charge">
+                                    <option value="">무료</option>
+                                    <option value="Y">유료화</option>
+                                 </select>
+                              </p>
+                           </div>
+                           &nbsp;&nbsp;&nbsp;&nbsp;
                            <div class="button header-button">
                               <input type="submit" value="수정하기" class="btn">
                               <a onClick="funok2()" class="btn">삭제</a>
                            </div>
-                        <div class="button header-button">
-                           <a onClick="funbtn()" class="btn">돌아가기</a>
+                           <div class="button header-button">
+                              <a onClick="funbtn()" class="btn">돌아가기</a>
+                           </div>
+                           <!-- ======================= 버튼 끝 ========================== -->
                         </div>
-                        <!-- ======================= 버튼 끝 ========================== -->
                      </div>
                   </div>
                </div>
@@ -207,36 +211,36 @@
       <script src="../../resources/bluecoding/header.js"></script>
       <script> 	
          $(document).ready(function() {
-        	
-        	// 제목
-  	        $('.text_input:eq(0)').change(function() {	
-  	    	    if($.trim($('.text_input:eq(0)').val())==''){
-  	                alert("제목을 입력해주세요.");
-  	                $('.text_input:eq(0)').val('');
-  	                return;
-  	    	    }     	
-  	        }); //end change
-  	        
-  	   		// 내용
-  	        $('.text_input:eq(1)').change(function() {       	
-  	    	    if($.trim($('.text_input:eq(1)').val())==''){
-  	                alert("내용을 입력해주세요.");
-  	                $('.text_input:eq(1)').val('');
-  	                return;
-  	    	    }       	
-  	        }); //end change  
-
-  	   		// 작가의 말
-  	        $('.text_input:eq(2)').change(function() {       	  	        	
-  	    	    if($.trim($('.text_input:eq(2)').val())==''){
-  	                alert("작가의 말을 입력해주세요.");
-  	                $('.text_input:eq(2)').val('');
-  	                return;
-  	    	    }  	        	
-  	        }); //end change
-  	        
-  	     }); // end ready
-  	     
+         
+         // 제목
+           $('.text_input:eq(0)').change(function() {	
+            if($.trim($('.text_input:eq(0)').val())==''){
+                   alert("제목을 입력해주세요.");
+                   $('.text_input:eq(0)').val('');
+                   return;
+            }     	
+           }); //end change
+           
+         // 내용
+           $('.text_input:eq(1)').change(function() {       	
+            if($.trim($('.text_input:eq(1)').val())==''){
+                   alert("내용을 입력해주세요.");
+                   $('.text_input:eq(1)').val('');
+                   return;
+            }       	
+           }); //end change  
+         
+         // 작가의 말
+           $('.text_input:eq(2)').change(function() {       	  	        	
+            if($.trim($('.text_input:eq(2)').val())==''){
+                   alert("작가의 말을 입력해주세요.");
+                   $('.text_input:eq(2)').val('');
+                   return;
+            }  	        	
+           }); //end change
+           
+         }); // end ready
+         
          function funbtn() {
            if (confirm("이전 페이지로 돌아가시겠습니까??")) {
              javascript:history.back();
