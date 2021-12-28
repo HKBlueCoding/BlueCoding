@@ -206,20 +206,10 @@
                         </div>
                         <!-- ======================= 버튼 ========================== -->
                         <div class="button header-button">
-                           <c:if test="${pageVO.series eq 1 }">
-                              <a onclick="alert('첫화입니다.')" class="btn">이전 화</a>
-                           </c:if>
-                           <c:if test="${pageVO.series ne 1 }">
-                              <a href="../view/page?pageNO=${pageVO.pageNO }&bookNO=${pageVO.bookNO}&direction=minus" class="btn">이전 화</a>
-                           </c:if>
+                        	<a href="../view/page?pageNO=${pageVO.pageNO }&bookNO=${pageVO.bookNO}&direction=minus" class="btn">이전 화</a>
                         </div>
                         <div class="button header-button">
-                           <c:if test="${ lastSeries eq pageVO.series }">
-                              <a onclick="alert('마지막 화입니다.')" class="btn">다음 화</a>
-                           </c:if>
-                           <c:if test="${ lastSeries ne pageVO.series }">
-                              <a href="../view/page?pageNO=${pageVO.pageNO }&bookNO=${pageVO.bookNO}&direction=plus" class="btn">다음 화</a>
-                           </c:if>
+                        	<a href="../view/page?pageNO=${pageVO.pageNO }&bookNO=${pageVO.bookNO}&direction=plus" class="btn">다음 화</a>
                         </div>
                         <!-- ======================= 버튼 끝 ========================== -->
                      </div>

@@ -37,17 +37,13 @@
 	</select>
 
 	<select id="selectDeletePage" resultType="hashMap">
-		SELECT bb.BOOKTITLE AS
-		BOOKTITLE
-		, bp.PAGENO AS PAGENO
-		, bp.PAGETITLE AS PAGETITLE
-		, bp.PAGEDATE
-		AS PAGEDATE
+		SELECT 
+			bb.BOOKTITLE AS BOOKTITLE,
+			bp.PAGENO AS PAGENO, 
+			bp.PAGETITLE AS PAGETITLE, 
+			bp.PAGEDATE AS PAGEDATE
 		FROM B_BOOK bb, B_PAGE bp
-		WHERE bb.BOOKNO =
-		bp.BOOKNO
-		AND
-		bp.PAGEDELETE = 'Y'
+		WHERE bb.BOOKNO = bp.BOOKNO AND bp.PAGEDELETE = 'Y'
 		ORDER BY PAGEDATE DESC
 	</select>
 

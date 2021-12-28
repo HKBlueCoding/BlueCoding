@@ -297,6 +297,8 @@ public class BookController {
 		
 		// 0이면 해당 페이지가 존재하지 않습니다..
 		if(map.get("ret").equals("0")) {
+			logger.debug("====== [0 실패] ========");
+			logger.debug("[direction] ==" + direction);
 			model.addAttribute("direction",direction);
 			return "done/pageNotFind";
 		}

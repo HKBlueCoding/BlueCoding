@@ -265,7 +265,7 @@
                   </div>
                </section>
             </div>
-      </section>
+      </section>      
       <jsp:include page="/WEB-INF/views/include/footer.jsp"/>
       <!-- ========================= JS here ========================= -->
       <script src="../resources/assets/js/bootstrap.min.js"></script>
