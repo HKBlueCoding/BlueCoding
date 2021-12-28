@@ -56,7 +56,7 @@ public class CoinHistoryController {
 
 		// 다되면 외부 URL로 이동해야 하니.. // 혹시나 실패할지 모르니 미리 실패 URL 지정
 		RedirectView redirectView = new RedirectView();
-		redirectView.setUrl("http://localhost:8888/kakaopay/fail");
+		redirectView.setUrl("http://localhost/kakaopay/fail");
 		logger.debug("[kakao 결제 들어옴]");
 
 		// header에 Authorization, Accept 등등을 설정
@@ -74,9 +74,9 @@ public class CoinHistoryController {
 		params.add("quantity", "1");
 		params.add("total_amount", Integer.toString(coinHistoryVO.getRechargeCoin())); // 결제금액 지정
 		params.add("tax_free_amount", "0");
-		params.add("approval_url", "http://localhost:8888/kakaopay/done");
-		params.add("cancel_url", "http://localhost:8888/kakaopay/cancel");
-		params.add("fail_url", "http://localhost:8888/kakaopay/fail");
+		params.add("approval_url", "http://localhost/kakaopay/done");
+		params.add("cancel_url", "http://localhost/kakaopay/cancel");
+		params.add("fail_url", "http://localhost/kakaopay/fail");
 
 		HttpEntity<MultiValueMap<String, String>> body = new HttpEntity<MultiValueMap<String, String>>(params, headers);
 
