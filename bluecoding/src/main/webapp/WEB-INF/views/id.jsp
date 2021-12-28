@@ -132,40 +132,17 @@
             <form action="id" class="form-signin" method="POST">
                <p class="text2">아이디 찾기</p>
                <input type="text" name="name" id="name" class="form-control" placeholder="이름"  required autofocus><br> 
-               <input type="phone" name="phone" class="form-control" placeholder="전화번호" pattern="[0-9]{2,3}-[0-9]{3,4}-[0-9]{3,4}" title="형식 010-0000-0000"  required><br>
-               <p class="check" id="check">${check}</p>
-               <br />
+               <input type="phone" name="phone" class="form-control" placeholder="전화번호" pattern="[0-9]{2,3}-[0-9]{3,4}-[0-9]{3,4}" title="형식 010-0000-0000"  required>
+               <br>
                <button id="btn-Yes" class="btn btn-lg btn-primary btn-block" type="submit">아 이 디 찾 기</button>
             </form>
          </div>
-         <div class="links">
-            <a href="pwd">비밀번호 찾기</a> | <a href="memberLogin">로그인</a> | <a
-               href="register">회원가입</a>
+         <div class="links" align="center">
+            <a href="pwd">비밀번호 찾기</a> | <a
+               href="../register">회원가입</a>
          </div>
       </div>
    </body>
-   <script type="text/javascript">
-      $("#name").focusout(function(){
-      	
-        if($('#name').val() == ""){
-      		$('#check').text('이름을 입력해주세요.');
-      	  	$('#check').css('color', 'red');
-      
-        }else{
-       	 $('#check').hide();
-        }
-        });
-        
-      $("#email").focusout(function(){
-        if($('#email').val() == ""){
-      		$('#check').text('이메일을 입력해주세요');
-      	  	$('#check').css('color', 'red');
-        }else{
-       	 $('#check').hide();
-        }
-        });
-      
-   </script>
    <jsp:include page="/WEB-INF/views/include/footer.jsp" />
    <!-- ========================= ClassiGrids JS HERE ========================= -->
    <script src="../../resources/assets/js/bootstrap.min.js"></script>

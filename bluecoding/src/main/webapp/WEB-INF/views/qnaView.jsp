@@ -201,8 +201,7 @@
                                  <td style="border: 3px solid #e9ecef; border-width: 2px;">
                                     <div class="form-floating">
                                        <c:if test="${empty qnaReply}">
-                                          <label for="message" id="tr_btn_label">- 답변 대기중입니다 -</label>
-                                          <textarea class="form-control qna_text_size qna_text" style="height: 300px;" id="qnaReContent" name="qnaText" rows="15" cols="135" maxlength="800" required disabled></textarea>
+                                          <textarea class="form-control qna_text_size qna_text" style="height: 300px;" id="qnaReContent" name="qnaText" rows="15" cols="135" maxlength="800" required disabled>--답변 대기중--</textarea>
                                        </c:if>
                                        <c:if test="${!empty qnaReply }">
                                           <c:forEach var="reply" items="${qnaReply }">

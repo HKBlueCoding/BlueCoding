@@ -34,26 +34,29 @@
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" />
       <style type="text/css">
          .hero-area.overlay::before {
-         all: unset;
+         	all: unset;
          }
          .theme{
-         margin-top: 40px;
-         /* background: #fff3; */
-         background:#eee;
-         border-radius: 6px;
-         padding: 20px;
-         padding-right: 45px;
+         	margin-top: 40px;
+         	/* background: #fff3; */
+         	background:#eee;
+         	border-radius: 6px;
+         	padding: 20px;
+         	padding-right: 45px;
          }
          .theme_div_02{
          	display: none;
          }
          #mainLogo{
-         color: #0c74db;
+         	color: #0c74db;
          }
          .txt_line { 
-         overflow:hidden; 
-         text-overflow:ellipsis;
-         white-space:nowrap;  
+         	overflow:hidden; 
+         	text-overflow:ellipsis;
+         	white-space:nowrap;  
+         }
+         .section-heading{
+         	margin-top: unset;
          }
          
          @media all and (max-width: 760px){
@@ -64,6 +67,9 @@
          	.random_img{
          		display: none;
          	}
+         	.section-heading{
+         		margin-top: 3.75rem;
+         	}         	
          }
          
          @media all and (max-width: 450px){
@@ -78,6 +84,9 @@
          	}
          	.hero-area {
     			background-image: url(../resources/assets/images/hero/phone-bg.jpg);         	
+         	}
+         	.section-heading{
+         		margin-top: 6rem;
          	}
          }
       </style>

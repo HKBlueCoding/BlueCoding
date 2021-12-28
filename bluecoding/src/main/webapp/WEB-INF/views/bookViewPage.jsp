@@ -152,7 +152,7 @@
                      <input type="hidden" name="pageNO" value="${pageVO.pageNO }" id="pageNO">
                      <input type="hidden" value="${login.id }" name="id" id="id">
                      <input type="hidden" value="${login.nick }" name="nick" id="nick">
-                     <p id="title2">&nbsp;&nbsp;${pageVO.series }화, ${pageVO.pageTitle }</p>
+                     <p id="title2">&nbsp;&nbsp;${pageVO.pageTitle }</p>
                      <div id="qna">
                         <c:if test="${login.admin eq 'A' || login.admin eq 'C'}">
                            <div class="button header-button">
@@ -173,7 +173,7 @@
                            <!-- to get an API token!-->
                         </div>
                         <div class="form-floating" style="width: 66.6%;">
-                           <input class="form-control" name="pageTitle" id="name" type="text" style="padding-top: 9px;" value="${pageVO.series }화, ${pageVO.pageTitle }" data-sb-validations="required"  readonly/>
+                           <input class="form-control" name="pageTitle" id="name" type="text" style="padding-top: 9px;" value="${pageVO.pageTitle }" data-sb-validations="required"  readonly/>
                         </div>
                         <br>
                         <div class="form-floating" id="formMag" style="width: 66.6%;">

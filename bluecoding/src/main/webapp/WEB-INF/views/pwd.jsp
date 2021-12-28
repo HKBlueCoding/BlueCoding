@@ -162,58 +162,21 @@ a {
                <br>
                <input type="text" name="name" id="name" class="form-control" placeholder="이름"  required autofocus>
                <br> 
-               <input type="phone" name="phone" class="form-control" placeholder="전화번호" pattern="[0-9]{2,3}-[0-9]{3,4}-[0-9]{3,4}" title="형식 010-0000-0000"  required><br>
-               <p class="check" id="check">${check}</p>
-               <br />
+               <input type="phone" name="phone" class="form-control" placeholder="전화번호" pattern="[0-9]{2,3}-[0-9]{3,4}-[0-9]{3,4}" title="형식 010-0000-0000"  required>
+               <br>
                <button id="btn-Yes" class="btn btn-lg btn-primary btn-block" type="submit">비 밀 번 호 찾 기</button>
             </form>
 
 			</div>
 			<div class="links">
-				<a href="id">아이디 찾기</a> | <a href="memberLogin">로그인</a> | <a
-					href="memberRegist">회원가입</a>
+				<a href="id">아이디 찾기</a> | <a
+					href="../register">회원가입</a>
 
 			</div>
 		</div>
 	</div>	
 	<jsp:include page="../../WEB-INF/views/include/footer.jsp" />
 </body>
-<script type="text/javascript">
-
-	
-	  	//아이디 정규식
-		var idJ = /^[a-z0-9]{5,20}$/;
-		
-  		$("#member_id").focusout(function(){
-	     if($('#member_id').val() == ""){
-	   		$('#checks').text('아이디를 입력해주세요.');
-	   	  	$('#checks').css('color', 'red');
-	     }
-	     });
-  		
-  		$("#member_id").focusout(function(){
-  			if(!idJ.test($(this).val())){
-  			$('#checks').text('5~20자의 영문 소문자, 숫자만 사용가능합니다');
-  			$('#checks').css('color', 'red');
-  		}
-  		 });
-  		
-  		$("#name").focusout(function(){
-	     if($('#name').val() == ""){
-	   		$('#checks').text('이름을 입력해주세요.');
-	   	  	$('#checks').css('color', 'red');
-	     }
-	     });
-	     
-  		$("#email").focusout(function(){
-	     if($('#email').val() == ""){
-	   		$('#checks').text('이메일을 입력해주세요');
-	   	  	$('#checks').css('color', 'red');
-	     }
-	     });
-  
-  </script>
-
 <!-- ========================= ClassiGrids JS HERE ========================= -->
 <script src="../../resources/assets/js/bootstrap.min.js"></script>
 <script src="../../resources/assets/js/wow.min.js"></script>

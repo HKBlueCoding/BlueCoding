@@ -84,7 +84,7 @@
                      <p id="title">회차 수정하기</p>
                      <hr class="my-4">
 					 <br>
-                     <p id="title2">&nbsp;&nbsp;${pageVO.series }화, ${pageVO.pageTitle }</p>
+                     <p id="title2">&nbsp;&nbsp;${pageVO.pageTitle }</p>
                      <br><br>
                      <div class="my-5">
                         <!-- * * * * * * * * * * * * * * *-->

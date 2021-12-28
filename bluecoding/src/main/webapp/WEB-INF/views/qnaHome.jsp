@@ -142,9 +142,16 @@
                                           <td class="align-middle text-center">
                                              <span class="text-secondary text-xs font-weight-bold">${qna.qnaDate }</span>
                                           </td>
+                                         <c:if test="${qna.isProcess eq 'Y' }">
                                           <td class="align-middle text-center text-sm">
-                                             <span class="badge badge-sm bg-gradient-success" style="background-image: linear-gradient(180deg, #419cef 10%, #106ec3 100%);">${qna.isProcess }</span>
+                                             <span class="text-secondary text-xs font-weight-bold">답변 완료</span>
                                           </td>
+                                         </c:if>
+                                         <c:if test="${qna.isProcess ne 'Y' }">
+                                          <td class="align-middle text-center text-sm">
+                                             <span class="badge badge-sm bg-gradient-success" style="background-image: linear-gradient(180deg, #419cef 10%, #106ec3 100%);">답변 대기중</span>
+                                          </td>
+                                         </c:if>                                           
                                        </tr>
                                     </c:forEach>
                                  </c:when>
