@@ -68,11 +68,11 @@
          }
          
          @media all and (max-width: 325px){
-	         #tr_btn_one {
+	         .qna_button {
 	         	margin-left: 0;
 	         }
 	         
-	         #tr_btn_two {
+	         .qna_button2 {
 	         	margin-top: 1em;
 	         	margin-left: 0;
 	         }
@@ -153,12 +153,12 @@
                            <!-- 답변반영 바꿔줘야 함(insert 사용) -->
                            <c:if test="${login.admin eq 'A' || login.admin eq 'Q'}">
                               <c:if test="${qna.isProcess ne 'Y'}">
-                                 <div class="button header-button" id="tr_btn_modify2"
+                                 <div class="button header-button qna_button" id="tr_btn_modify2"
                                     style="display: none;">
                                     <a id="repBtn" class="btn">답변반영</a>
                                     <a onClick="funbtn(this.form)" class="btn">취소</a>
                                  </div>
-                                 <div class="button header-button" id="tr_btn_two">
+                                 <div class="button header-button qna_button2" id="tr_btn_two">
                                     <a onclick="fn_enableRe(this.form)" class="btn">답변하기</a>
                                  </div>
                               </c:if>
@@ -201,7 +201,8 @@
                                  <td style="border: 3px solid #e9ecef; border-width: 2px;">
                                     <div class="form-floating">
                                        <c:if test="${empty qnaReply}">
-                                          <textarea class="form-control qna_text_size qna_text" style="height: 300px;" id="qnaReContent" name="qnaText" rows="15" cols="135" maxlength="800" required disabled>--답변 대기중--</textarea>
+                                          <textarea class="form-control qna_text_size qna_text" style="height: 300px;" id="qnaReContent" name="qnaText" rows="15" cols="135" maxlength="800" required disabled></textarea>
+                                          <label id="tr_btn_label">--답변 대기중--</label>
                                        </c:if>
                                        <c:if test="${!empty qnaReply }">
                                           <c:forEach var="reply" items="${qnaReply }">
