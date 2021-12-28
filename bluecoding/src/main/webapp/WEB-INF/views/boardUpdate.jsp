@@ -133,13 +133,13 @@
                         </div>
                         <!-- ======================= 버튼 ========================== -->
                         <!-- [로그인시] -->
-                        <c:if test="${!empty login.id && login.id ne '' }">
+                        <c:if test="${!empty login.id && login.id ne '' && boardVO.id eq login.id }">
                            <div class="button header-button board_button">
                               <input type="submit" class="btn" value="수정">
                            </div>
                         </c:if>
                         <!-- [비 로그인시]] -->
-                        <c:if test="${empty login.id || login.id  eq '' || boardVO.id eq login.id }">
+                        <c:if test="${empty login.id || login.id  eq '' || boardVO.id ne login.id }">
                            <div class="button header-button board_button">
                               <a data-bs-toggle="modal"  data-bs-target="#login" class="btn">수정</a>
                            </div>
