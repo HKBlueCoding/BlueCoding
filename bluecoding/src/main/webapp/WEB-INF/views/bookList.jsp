@@ -182,10 +182,9 @@
         </div>
       </div>
       <!-- ======버튼====== -->
-      <div class="search-form wow fadeInUp" style="margin: 1px; padding: 1px;">
+      <div class="search-form wow fadeInUp" style="margin: 1px; padding: 1px; text-align: center;">
         <div class="row">
-          
-            <div class="button header-button" >
+            <div class="button header-button" style="margin-left: 0;">
              <c:if test="${!empty login.id && login.id ne '' }">
               <a href="add" class="btn">작성</a>
              </c:if>

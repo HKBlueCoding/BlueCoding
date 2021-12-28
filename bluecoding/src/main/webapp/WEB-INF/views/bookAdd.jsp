@@ -33,28 +33,47 @@
       <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
       <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
       <!-- Core theme CSS (includes Bootstrap)-->
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" />
       <link href="../resources/assets/css/styles.css" rel="stylesheet" />
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" />
       <style>
-      	#message{
-      		height: 10rem;
-      	}
-      	.line_td {
-   			width: 400px;
-   			overflow:hidden; 
-  			text-overflow:ellipsis;
-   			white-space:nowrap;  
-		}
-      	@media all and (max-width: 450px){
-      		.all_main{
-      			margin-top: 50px;
-      		}
-      	}
-      	
+         @media all and (max-width: 1500px){
+	         .book_text {
+	         	width:100%;
+	         }
+	         
+	         .book_image_button {
+	         	width:100%;
+	         }
+	         
+	         .book_button {
+	         	margin-top: 1em;
+	         	margin-left: 0;
+	         }
+         }
+         
+         @media all and (max-width: 300px){
+	         .book_button2 {
+	         	margin-top: 1em;
+	         	margin-left: 0;
+	         }
+         }
+         
+         @media all and (max-width: 800px){
+	         .book_div_size{
+	         	width:50%;
+	         }
+	         
+	         .book_div2_size{
+	         	padding: 0;
+	         }
+         }
       </style>
+      <!-- Font Awesome icons (free version)-->
+      <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
       <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
-              integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
-              crossorigin="anonymous"></script>    
+         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
+         crossorigin="anonymous"></script>
    </head>
    <body>
       <!-- header -->
@@ -62,30 +81,31 @@
       <br><br><br><br><br><br><br><br>
       <!-- =================== 글쓰기 폼 ===================== -->
       <!-- Main Content-->
-      <form id="contactForm" method="post" action="add" data-sb-form-api-token="API_TOKEN" encType="multipart/form-data">
-         <main class="mb-4 all_main">
+      <form id="contactForm" data-sb-form-api-token="API_TOKEN" action="add" method="post" encType="multipart/form-data">
+         <main class="mb-4">
             <div class="container px-4 px-lg-5">
-               <div class="row gx-4 gx-lg-5 justify-content-center">
-                  <div class="col-md-10 col-lg-8 col-xl-7" >
-                     <p id="title">작품 글쓰기</p>
-                     <hr class="my-4">
-                     <!-- ================== 카테고리 ======================= -->
-                     <div class="categorise">
-                        <div class="row">
-                              <div class="category_div">
-                                 <label for="category"></label>
-                                 <select name="theme" id="category" title="테마를 선택하세요" required>
-                                    <option value="" selected disabled>테마 선택</option>
-                                    <option value="판타지">판타지</option>
-                                    <option value="청소년">청소년</option>
-                                    <option value="고전">고전</option>
-                                    <option value="공포/호러">공포/호러</option>
-                                    <option value="미스터리/스릴러">미스터리/스릴러</option>
-                                    <option value="로맨스">로맨스</option>
-                                    <option value="SF/과학">SF/과학</option>
-                                    <option value="드라마/영화">드라마/영화</option>
-                                 </select>
-                              </div>
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+               <div class="col-md-10 col-lg-8 col-xl-7">
+                  <p id="title">작품 글쓰기</p>
+                  <hr class="my-4">
+                  <!-- ================== 카테고리 ======================= -->
+                  <div class="categorise search-form wow fadeInUp book_div2_size">
+                     <div class="row">
+                        <div class="col-lg-3 col-md-3 col-12 p-0">
+                           <div class="search-input book_div_size">
+                              <label for="category"></label>
+                              <select name="theme" id="category" title="테마를 선택하세요" required>
+                                 <option value="" selected disabled>테마 선택</option>
+                                 <option value="판타지">판타지</option>
+                                 <option value="청소년">청소년</option>
+                                 <option value="고전">고전</option>
+                                 <option value="공포/호러">공포/호러</option>
+                                 <option value="미스터리/스릴러">미스터리/스릴러</option>
+                                 <option value="로맨스">로맨스</option>
+                                 <option value="SF/과학">SF/과학</option>
+                                 <option value="드라마/영화">드라마/영화</option>
+                              </select>
+                           </div>
                         </div>
                      </div>
                      <!-- ================== 카테고리 끝 ======================= -->
@@ -97,39 +117,29 @@
                         <!-- To make this form functional, sign up at-->
                         <!-- https://startbootstrap.com/solution/contact-forms-->
                         <!-- to get an API token!-->
-                        <div class="form-floating" >
+                        <div class="form-floating">
                            <input type="hidden" name="id" value="${login.id }">
                            <input type="hidden" name="name" value="${login.name }">
-                           <input class="form-control text_input" id="name" name="bookTitle" type="text" minlength="1" maxlength="50" title="책 제목를 입력하세요(1자부터 50자까지)" required/>
-                           <label for="name">제목</label>
-                           <div class="invalid-feedback" data-sb-feedback="name:required">제목을 입력하세요.</div>
+                           <input class="form-control book_text_title" id="bookTitle" name="bookTitle" type="text" maxlength="50" required/>
+                           <label for="bookTitle">제목</label>                   
                         </div>
                         <br>
-                        <br>   
-                        <div class="form-floating" id="formMag" style="width: 100%; ">
-                           <textarea name="intro" class="form-control text_input" id="message" minlength="10" maxlength="240" title="줄거리를 입력하세요(10자부터 240자까지)" required></textarea>
+                        <div class="form-floating" id="formMag">
+                           <textarea class="form-control book_text" style="border: 1px solid #ced4da; border-radius: 0.25rem; height: 400px;" name="intro" rows="15" cols="90" minlength="10" maxlength="240" title="줄거리를 입력하세요(10자부터 240자까지)" required></textarea>
+                           <input type="hidden" name="bookImage">
                            <label for="message">줄거리</label>
                         </div>
                         <br />
-                        <!-- Submit Button-->
-                        <input id="uploadFile" name="uploadFile" type="file">
-                        <!-- ======================= 버튼 ========================== -->
-                        <!-- [로그인시] -->
-                        <br>
-                        <br>
-                        <!-- [비 로그인시]] -->
-                        
-                           <div class="button" >
-                             <c:if test="${!empty login.id && login.id ne '' }">
-                              <input type="submit" class="btn" value="등록">
-                             </c:if>
-                             <c:if test="${empty login.id || login.id  eq '' }">
-                              <a data-bs-toggle="modal"  data-bs-target="#login" class="btn">등록</a>
-                           	 </c:if> 
-                           	  <a onClick="funbtn()" class="btn">돌아가기</a>
-                           </div>
-                        
-                        <!-- ======================= 버튼 끝 ========================== -->
+                        <!-- 사진 입력하기 -->
+                        이미지 선택: &nbsp;<input class="book_image_button" id="uploadFile" name="uploadFile" type="file">
+                        <!-- ======================= 버튼 ========================== -->                     
+                        <div class="button header-button book_button">
+                           <input type="submit" class="btn" value="등록">
+                        </div>
+                        <div class="button header-button book_button2">
+                           <a onClick="funbtn()" class="btn">돌아가기</a>
+                        </div>
+                        <!-- ======================= 버튼 끝 ========================== -->                     
                      </div>
                   </div>
                </div>
@@ -140,12 +150,15 @@
       <!-- ==================== footer ====================== -->      
       <!-- footer -->
       <jsp:include page="/WEB-INF/views/include/footer.jsp"/>
-
+      <!-- Bootstrap core JS-->
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+      <!-- Core theme JS-->
+      <script src="../resources/assets/js/scripts.js"></script>
       <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
       <!-- * *                               SB Forms JS                               * *-->
       <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
       <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-
+      <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
       <!-- ========================= JS here ========================= -->
       <script src="../resources/assets/js/bootstrap.min.js"></script>
       <script src="../resources/assets/js/wow.min.js"></script>
@@ -182,33 +195,8 @@
                  }
              }
          });
-         // 1
       </script>
-      <script>    	
-        $(document).ready(function() {
-        	
-        	 // 제목
-    	     $('.text_input:eq(0)').change(function() {
-    	    	
-    	    	 if($.trim($('.text_input:eq(0)').val())==''){
-    	             alert("제목을 입력해주세요.");
-    	             $('.text_input:eq(0)').val('');
-    	             return;
-    	    	 } 	
-    	     }); //end change
-    	    
-        	 // 줄거리
-    	     $('.text_input:eq(1)').change(function() {
-    	    	
-    	    	 if($.trim($('.text_input:eq(1)').val())==''){
-    	             alert("줄거리를 입력해주세요.");
-    	             $('.text_input:eq(1)').val('');
-    	             return;
-    	    	 }    	    	
-    	     }); //end change 
-    	 
-    	 });// end ready
-      
+      <script>
          function funbtn() {
            if (confirm("이전 페이지로 돌아가시겠습니까??")) {
              javascript:history.back();
@@ -216,15 +204,27 @@
            	return;
            }
          }
-         function funok() {
-           if (alert("정상적으로 등록되었습니다.") == true) {
-            
-           } else {
-            alert("등록에 실패하였습니다.")
-           	   return;
-           }
-         }
       </script>
-      <script src="../../resources/bluecoding/header.js"></script>      
+      <script src="../../resources/bluecoding/header.js"></script>
+      <script>
+         $(document).ready(function() {
+          $('.book_text_title').change(function() {
+          	if($.trim($('.book_text_title').val())==''){
+                  alert("공백 없이 제목을 입력해주세요.");
+                  $('.book_text_title').val('')
+          	}
+          }); //end on 
+         });
+      </script>
+      <script>
+         $(document).ready(function() {
+            $('.book_text').change(function() {
+            	if($.trim($('.book_text').val())==''){
+                    alert("공백 없이 내용을 입력해주세요.");
+                    $('.book_text').val('')
+            	}
+            }); //end on 
+         });
+      </script>
    </body>
 </html>

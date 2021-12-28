@@ -475,7 +475,7 @@
                            등록</a>
                         </div>
                      </c:if>
-                     <div class="button header-button board_button3">
+                     <div class="button header-button notice_button3">
                         <a onClick="funbtn()" class="btn">돌아가기</a>
                      </div>
                   </div>
