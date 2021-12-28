@@ -213,7 +213,7 @@
                   alert("공백 없이 제목을 입력해주세요.");
                   $('.book_text_title').val('')
           	}
-          }); //end on 
+          }); //end on
          });
       </script>
       <script>
