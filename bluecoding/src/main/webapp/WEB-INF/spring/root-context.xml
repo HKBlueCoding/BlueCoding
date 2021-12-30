@@ -11,7 +11,7 @@
 		<property name="driverClassName"
 			value="oracle.jdbc.driver.OracleDriver" />
 		<property name="url"
-			value="jdbc:oracle:thin:@192.168.55.199:1521:XE" />
+			value="jdbc:oracle:thin:@192.168.44.200:1521:XE" />
 		<property name="username" value="BLUECODING" />
 		<property name="password" value="BLUECODING" />
 	</bean>

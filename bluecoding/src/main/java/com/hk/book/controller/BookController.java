@@ -228,6 +228,9 @@ public class BookController {
 		// 해당 책의 NO와 id(혹시 모르니까)를 보내서 삭제 표시 후
 		// 해당 bookNO의 자식 페이지들도 전부 삭제 표시로 바꿈
 		Map<String, Object> userMap = new HashMap<String, Object>();
+		if(userVO.getAdmin() != null) {
+			userMap.put("admin", userVO.getAdmin());
+		}
 		userMap.put("id", userVO.getId());
 		userMap.put("bookNO", bookNO);
 		

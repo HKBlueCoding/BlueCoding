@@ -151,7 +151,10 @@
 	 SET 
 	  BOOKDELETE = 'Y'
 	 WHERE 
-	  BOOKNO=#{bookNO} AND id=#{id}
+	  BOOKNO=#{bookNO} 
+	 <if test='admin == null or !admin.equals("A")'>
+	  AND id=#{id}
+	 </if>
 	</update>
 	
 	<!-- [책 번호 조회] -->
