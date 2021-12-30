@@ -5,10 +5,10 @@
 
 <mapper namespace="mapper.author">
 
-	<insert id="insertProfit" parameterType="PageBuyVO">	
+	<insert id="insertProfit" parameterType="hashmap">	
 	 <![CDATA[
 	  INSERT INTO B_AUTHOR (AUTHORPROFIT, ISREALIZATION, PAGEPAYDATE, REALIZATIONDATE, PAGENO, ID) 
-	  VALUES(300, 'Y', #{pagePayDate}, '', #{pageNO}, #{id})
+	  VALUES(300, 'Y', sysdate, '', #{pageNO}, #{authorId})
 	 ]]>
 	</insert>
 	

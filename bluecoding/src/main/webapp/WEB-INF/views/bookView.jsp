@@ -249,7 +249,7 @@
                                                             <div align="right" style="width: 100%;">
                                                                <c:if test="${pageList.charge eq 'Y'}">
                                                                   <div class="button header-button">
-                                                                     <a class="btn" style="background-color: #30e087" onClick="pageBuy('${pageList.pageNO}')">미리보기(유료)</a>
+                                                                     <a class="btn" style="background-color: #30e087" onClick="pageBuy('${pageList.pageNO}','${bookVO.id }')">미리보기(유료)</a>
                                                                   </div>
                                                                </c:if>
                                                                <c:if test="${login.admin eq 'A' || login.admin eq 'C' || login.id eq bookVO.id}">

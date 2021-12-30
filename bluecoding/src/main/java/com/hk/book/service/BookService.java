@@ -307,7 +307,7 @@ public class BookService {
 
 	// [회차 구매]
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { Exception.class })
-	public int buyPage(PageBuyVO pageBuyVO) throws Exception {
+	public int buyPage(PageBuyVO pageBuyVO, String authorId) throws Exception {
 		// TODO Auto-generated method stub
 
 		// 0.먼저 코인 결제시간을 설정
@@ -323,7 +323,6 @@ public class BookService {
 		map.put("coin", 0);
 
 		try {
-
 			// 1-2. 넣은값을 토대로 update
 			ret = userDAO.minusCoin(map);
 			logger.debug("[코인차감 결과]==" + ret);
@@ -332,8 +331,13 @@ public class BookService {
 				// 1-3 코인을 지불했으니까... 환불을 하면 안되니..
 				ret = coinHistoryDAO.updateNotRefund(pageBuyVO.getId());
 				
-				// 2. 저자에게 해당 회차에 대한 코인을 줌
-				ret = authorDAO.insertProfit(pageBuyVO);
+				// 2. 해당 책의 저자에게 해당 회차에 대한 코인을 줌
+				// 2-1 그전에 셋팅
+				map.put("authorId", authorId);
+				map.put("pageNO", pageBuyVO.getPageNO());
+				
+				// 2-2 셋팅 후 insert
+				ret = authorDAO.insertProfit(map);
 
 				// 3. 회차 구매 내역을 작성
 				ret = pageBuyDAO.insertBuyPage(pageBuyVO);

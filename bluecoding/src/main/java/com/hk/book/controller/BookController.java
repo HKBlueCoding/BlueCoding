@@ -379,12 +379,12 @@ public class BookController {
 	// [페이지 결제하기]
 	@RequestMapping(value = "/page/buy", method = { RequestMethod.POST }, produces = "application/json; charset=utf8")
 	@ResponseBody
-	public Map<String, Object> pageBuy(@ModelAttribute PageBuyVO pageBuyVO, HttpSession session) throws Exception {
+	public Map<String, Object> pageBuy(@ModelAttribute PageBuyVO pageBuyVO, @RequestParam("authorId")String authorId, HttpSession session) throws Exception {
 		// id와 해당 페이지의 번호
-
+		logger.debug("pageBuyVO=="+pageBuyVO);
 		Map<String, Object> map = new HashMap<String, Object>();
 
-		int ret = bookService.buyPage(pageBuyVO);
+		int ret = bookService.buyPage(pageBuyVO, authorId);
 
 		// 결제에 성공 했으니까 유저의 코인 갯수 재설정
 		if (ret > 0) {

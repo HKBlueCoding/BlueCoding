@@ -28,9 +28,8 @@ function reviewReply(revParentNO, bookNO) {
 
 }
 
-function pageBuy(pageNO) {
+function pageBuy(pageNO, authorId) {
 	var id = $("#id").val();
-
 	if (id == null || id == "") {
 		alert('로그인 후 결제가 가능합니다.');
 		return;
@@ -61,12 +60,8 @@ function pageBuy(pageNO) {
 						type: 'POST',
 						url: '../page/buy',
 						dataType: 'json',
-						data: {
-							"pageNO": pageNO,
-							"id": id
-						},
+						data: {"pageNO": pageNO, "id": id, "authorId": authorId},
 						success: function(data) {
-
 							if (data.ret > 0) {
 								alert('회차 구매에 성공하였습니다. 해당 페이지로 이동합니다');
 								location.href = "../../view/page?pageNO=" + pageNO;
