@@ -6,7 +6,7 @@
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	
 	<!-- [학원에서 할때] -->
-	<bean id="dataSource"
+<!-- 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName"
 			value="oracle.jdbc.driver.OracleDriver" />
@@ -14,15 +14,15 @@
 			value="jdbc:oracle:thin:@192.168.44.200:1521:XE" />
 		<property name="username" value="BLUECODING" />
 		<property name="password" value="BLUECODING" />
-	</bean>
+	</bean> -->
 	
 	<!-- [집에서 할때] -->
-<!--    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+   <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
       <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
         <property name="url" value="jdbc:oracle:thin:@localhost:1521:XE" />
         <property name="username" value="STUDY" />
         <property name="password" value="STUDY" />
-    </bean> -->    	
+    </bean>    	
 	
 
 	<bean id="sqlSessionFactory"
