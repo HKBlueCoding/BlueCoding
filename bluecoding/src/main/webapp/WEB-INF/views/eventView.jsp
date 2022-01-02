@@ -629,6 +629,6 @@
            }
          }
       </script>
-      <script src="../../resources/bluecoding/EventView.js"></script>
+      <script src="../../resources/bluecoding/eventView.js"></script>
    </body>
 </html>
